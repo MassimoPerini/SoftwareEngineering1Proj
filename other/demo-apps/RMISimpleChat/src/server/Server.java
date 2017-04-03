@@ -33,7 +33,7 @@ public class Server extends UnicastRemoteObject implements ServerInt {
         System.out.println("Constructing server implementation...");
         Server server = new Server();
         System.out.println("Binding server implementation to registry...");
-        Registry registry= LocateRegistry.getRegistry();
+        Registry registry= LocateRegistry.getRegistry("localhost");
         registry.bind("chat_server", server);
         System.out.println("Waiting for invocations from clients...");
 

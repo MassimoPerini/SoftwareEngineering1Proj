@@ -23,9 +23,10 @@ public class Controller implements ViewControllerInt {
 
 
 
-    public Controller() throws RemoteException, NotBoundException {
+    public Controller(Communication c) throws RemoteException, NotBoundException {
         super();
-        c = new Communication("TEST");
+        this.c = c;
+        Platform.setImplicitExit(true);
     }
 
 
@@ -42,11 +43,6 @@ public class Controller implements ViewControllerInt {
         }catch (RemoteException e){e.printStackTrace();}
     }
 
-    @FXML
-    public void exitApplication(ActionEvent event) throws RemoteException {     //TODO gestire errori in Communication
-        c.remove();
-        Platform.exit();
-    }
 
     @FXML
     public void changeUsername (ActionEvent event) throws RemoteException {

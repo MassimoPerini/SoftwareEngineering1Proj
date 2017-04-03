@@ -9,6 +9,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 30/03/17.
@@ -18,6 +20,7 @@ public class Communication extends UnicastRemoteObject implements ClientInt {
     private final LinkedList <ViewControllerInt> views= new LinkedList<>();
     private String username;
     private int secret;
+    private ExecutorService pool = Executors.newCachedThreadPool();
 
     public Communication(String username) throws RemoteException, NotBoundException {
         super();
@@ -36,12 +39,14 @@ public class Communication extends UnicastRemoteObject implements ClientInt {
 
     public void sendMessage (String message) throws RemoteException{
 
+        pool.submit(() -> {
+            try {
+                server.send(username, message, secret);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
 
-        try {
-
-            server.send(username, message, secret);
-
-        }catch (RemoteException e){e.printStackTrace();}
       /*  Thread t = new Thread() {
             public void run() {
                 System.out.println("Sending message");
@@ -94,6 +99,12 @@ public class Communication extends UnicastRemoteObject implements ClientInt {
         {
             v.showText(input);
         }
+    }
+
+    public void close () throws RemoteException {
+        this.remove();
+        pool.shutdown();
+        pool.shutdownNow();
     }
 
 
