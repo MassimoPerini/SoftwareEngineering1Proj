@@ -1,4 +1,4 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.pcXX;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
