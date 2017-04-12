@@ -4,9 +4,9 @@
     http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>it.polimi.ingsw</groupId>
-  <artifactId>pc01</artifactId><!--da cambiare-->
+  <artifactId>GC_06</artifactId><!--da cambiare-->
   <version>0.0.1-SNAPSHOT</version>
-  <name>pc01</name><!--da cambiare-->
+  <name>GC_06</name><!--da cambiare-->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar.language>java</sonar.language>
