@@ -1,0 +1,58 @@
+[
+    {
+      "name": "Miniera d'Oro",
+      "type": "green",
+      "era": 1,
+      "requirements": {
+        "get": {},
+        "permanent": {
+          "value": 1
+        }
+      },
+      "instant": {
+        "money": 1
+      },
+      "permanent": {
+        "money": 2
+      }
+    },
+    {
+      "name": "Mercato",
+      "type": "yellow",
+      "era": 2,
+      "requirements": {
+        "get": {
+          "wood": 2,
+          "stone": 1
+        },
+        "permanent": {
+          "value": 3,
+          "money": 3
+        }
+      },
+      "instant": {
+        "victory": 3
+      },
+      "permanent": {
+        "wood": 2,
+        "stone": 2
+      }
+    },
+    {
+      "name": "Ingaggiare mercenari",
+      "type": "purple",
+      "era": 3,
+      "requirements": {
+        "get": {
+          "money": 8
+        },
+        "permanent": {}
+      },
+      "instant": {
+        "military": 7
+      },
+      "permanent": {
+        "victory": 6
+      }
+    }
+]
