@@ -13,8 +13,8 @@ import java.util.LinkedList;
  */
 public class App 
 {
-    public static void main( String[] args ) throws FileNotFoundException {
-
+    public static void main( String[] args ) {
+/*
         Gson gson = new Gson ();
         Card[] cards = gson.fromJson(new FileReader("datas/test.json"), Card[].class);
         int i=1;
@@ -23,6 +23,7 @@ public class App
             System.out.println("Carta "+i+":\n"+card.toString());
             i++;
         }
+        */
 
     }
 }
