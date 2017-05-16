@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06;
+package it.polimi.ingsw.GC_06.Dice;
 
 import java.util.Observable;
 import java.util.Random;

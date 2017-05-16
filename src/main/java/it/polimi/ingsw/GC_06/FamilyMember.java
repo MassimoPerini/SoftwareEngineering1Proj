@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06;
 
+import it.polimi.ingsw.GC_06.Dice.DiceColor;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -36,5 +38,9 @@ public class FamilyMember implements Observer {
 
     public void setPlayerColor(PlayerId playerColor) {
         this.playerColor = playerColor;
+    }
+
+    public int getValue() {
+        return value;
     }
 }

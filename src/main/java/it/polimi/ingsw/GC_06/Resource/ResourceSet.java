@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06;
+package it.polimi.ingsw.GC_06.Resource;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,6 +25,9 @@ public class ResourceSet {
 
     public void addResource(ResourceType resource, int amount)
     {
+        if (amount<0)
+            throw new IllegalArgumentException();
+
         Integer myQty = this.resources.get(resource);
         if (myQty==null)
             this.resources.put(resource, amount);
@@ -34,7 +37,7 @@ public class ResourceSet {
         }
     }
 
-    public void addResource(ResourceSet resourceSet, int amount)
+    public void addResource(ResourceSet resourceSet)
     {
         Iterator<Map.Entry<ResourceType, Integer>> i = getIterator(resourceSet);
 
@@ -46,19 +49,22 @@ public class ResourceSet {
 
     }
 
-    public void removeResource (ResourceType resource, int amount) throws IllegalStateException
+    public void removeResource (ResourceType resource, int amount)
     {
+        if (amount <0)
+            throw new IllegalArgumentException();
+
         if (! isIncluded(resource, amount))
-            throw new IllegalStateException();
+            throw new IllegalArgumentException();
 
         int myQty = this.resources.get(resource).intValue();
         myQty-=amount;
         resources.replace(resource, myQty);
     }
 
-    public void removeResource (ResourceSet resourceSet, int amount) throws IllegalStateException
+    public void removeResource (ResourceSet resourceSet) throws IllegalStateException
     {
-        if (! isIncluded(resourceSet, amount))
+        if (! isIncluded(resourceSet))
             throw new IllegalStateException();
         Iterator<Map.Entry<ResourceType, Integer>> i = getIterator(resourceSet);
 
@@ -69,7 +75,7 @@ public class ResourceSet {
         }
     }
 
-    public boolean isIncluded (ResourceSet resourceSet, int amount)
+    public boolean isIncluded (ResourceSet resourceSet)
     {
         Iterator<Map.Entry<ResourceType, Integer>> i = getIterator(resourceSet);
 
@@ -85,9 +91,7 @@ public class ResourceSet {
     public boolean isIncluded (ResourceType resource, int amount)
     {
         Integer myQty = this.resources.get(resource);
-        if (myQty==null)
-            return  false;
-        return myQty.intValue() >= amount;
+        return myQty!=null && myQty.intValue() >= amount;
     }
 
 

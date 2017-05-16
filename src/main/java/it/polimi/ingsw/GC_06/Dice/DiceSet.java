@@ -1,4 +1,6 @@
-package it.polimi.ingsw.GC_06;
+package it.polimi.ingsw.GC_06.Dice;
+
+import it.polimi.ingsw.GC_06.FamilyMember;
 
 /**
  * Created by massimo on 12/05/17.

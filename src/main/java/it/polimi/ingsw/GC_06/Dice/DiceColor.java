@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06;
+package it.polimi.ingsw.GC_06.Dice;
 
 /**
  * Created by massimo on 12/05/17.
