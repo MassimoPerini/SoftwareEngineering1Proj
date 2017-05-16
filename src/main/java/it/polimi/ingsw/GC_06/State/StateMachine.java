@@ -7,13 +7,10 @@ public class StateMachine {
     //singleton
 
     private static StateMachine instance = null;
-}
-/*    private GameState currentGameState;
 
 
     private StateMachine(){
         super();
-        this.currentGameState =
     }
 
     public static StateMachine getInstance()
@@ -23,10 +20,4 @@ public class StateMachine {
         return instance;
     }
 
-    public void initialize()
-    {
-        this.currentGameState = new StartState();
-
-    }
-    */
 }
