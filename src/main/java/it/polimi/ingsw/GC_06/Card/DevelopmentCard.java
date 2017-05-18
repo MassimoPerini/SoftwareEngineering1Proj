@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_06.Card;
 
 import it.polimi.ingsw.GC_06.Action.Action;
+import it.polimi.ingsw.GC_06.Requirements;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -11,17 +13,40 @@ import java.util.LinkedList;
 public class DevelopmentCard extends Card
 {
     private LinkedList<Action> immediateActions;
+    private int era;
+    private ArrayList<Requirements> requirements;
+
 //    private ResourceSet immediateRequirement;
 
-    public DevelopmentCard(CardType cardType, String name)
+    public DevelopmentCard(CardType cardType, String name, int era)
     {
         super(name, cardType);
+        this.era = era;
+        this.requirements = new ArrayList<>();
+
         immediateActions = new LinkedList<>();
     }
 
     public void addAction(Action action)
     {
         this.immediateActions.add(action);
+    }
+
+    public void addRequirements(Requirements requirements)
+    {
+        this.requirements.add(requirements);
+    }
+
+    //E' una OR
+    public boolean isSatisfied(ResourceSet resourceSet)
+    {
+        for (Requirements requirement:requirements)
+        {
+            if (requirement.isSatisfied(resourceSet))
+                return true;
+        }
+        return false;
+
     }
 
     public void applyImmediateActions ()
@@ -47,4 +72,12 @@ public class DevelopmentCard extends Card
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "DevelopmentCard{" +
+                "immediateActions=" + immediateActions.toString() +
+                ", era=" + era +
+                ", requirements=" + requirements.toString() +
+                '}';
+    }
 }

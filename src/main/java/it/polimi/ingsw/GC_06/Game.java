@@ -24,7 +24,7 @@ public class Game extends Observable{
         super();
     }
 
-    public static Game getInstance()
+    public static synchronized Game getInstance()
     {
         if (instance==null)
         {

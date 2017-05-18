@@ -10,20 +10,21 @@ import java.util.Set;
  */
 public class ResourceSet {
 
-    private HashMap<ResourceType, Integer> resources;
+    private HashMap<Resource, Integer> resources;
 
     public ResourceSet ()
     {
         super();
+        this.resources = new HashMap<>();
     }
 
-    private Iterator<Map.Entry<ResourceType, Integer>> getIterator (ResourceSet resourceSet)
+    private Iterator<Map.Entry<Resource, Integer>> getIterator (ResourceSet resourceSet)
     {
-        Set<Map.Entry<ResourceType, Integer>> newRes = resourceSet.resources.entrySet();
+        Set<Map.Entry<Resource, Integer>> newRes = resourceSet.resources.entrySet();
         return newRes.iterator();
     }
 
-    public void addResource(ResourceType resource, int amount)
+    public void addResource(Resource resource, int amount)
     {
         if (amount<0)
             throw new IllegalArgumentException();
@@ -39,17 +40,17 @@ public class ResourceSet {
 
     public void addResource(ResourceSet resourceSet)
     {
-        Iterator<Map.Entry<ResourceType, Integer>> i = getIterator(resourceSet);
+        Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
 
         while (i.hasNext())
         {
-            Map.Entry<ResourceType, Integer> entry = i.next();
+            Map.Entry<Resource, Integer> entry = i.next();
             this.addResource(entry.getKey(), entry.getValue());
         }
 
     }
 
-    public void removeResource (ResourceType resource, int amount)
+    public void removeResource (Resource resource, int amount)
     {
         if (amount <0)
             throw new IllegalArgumentException();
@@ -66,29 +67,29 @@ public class ResourceSet {
     {
         if (! isIncluded(resourceSet))
             throw new IllegalStateException();
-        Iterator<Map.Entry<ResourceType, Integer>> i = getIterator(resourceSet);
+        Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
 
         while (i.hasNext())
         {
-            Map.Entry<ResourceType, Integer> entry = i.next();
+            Map.Entry<Resource, Integer> entry = i.next();
             this.removeResource(entry.getKey(), entry.getValue());
         }
     }
 
     public boolean isIncluded (ResourceSet resourceSet)
     {
-        Iterator<Map.Entry<ResourceType, Integer>> i = getIterator(resourceSet);
+        Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
 
         while (i.hasNext())
         {
-            Map.Entry<ResourceType, Integer> entry = i.next();
+            Map.Entry<Resource, Integer> entry = i.next();
             if (! isIncluded(entry.getKey(), entry.getValue()))
                 return false;
         }
         return true;
     }
 
-    public boolean isIncluded (ResourceType resource, int amount)
+    public boolean isIncluded (Resource resource, int amount)
     {
         Integer myQty = this.resources.get(resource);
         return myQty!=null && myQty.intValue() >= amount;
