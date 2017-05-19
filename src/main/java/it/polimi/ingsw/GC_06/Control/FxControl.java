@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
  */
 public class FxControl {
 
+
+
     public FxControl()
     {
         super();
