@@ -15,6 +15,7 @@ hs_err_pid*
 **/.idea/workspace.xml
 **/.idea/libraries
 **/.idea/tasks.xml
+**/.idea/misc.xml
 .DS_Store
 /build
 /captures
