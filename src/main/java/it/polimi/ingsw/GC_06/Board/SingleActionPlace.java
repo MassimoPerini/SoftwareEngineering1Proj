@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.Board;
 
-import it.polimi.ingsw.GC_06.Action.ChangeResources;
 import it.polimi.ingsw.GC_06.FamilyMember;
 
 /**

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.Card;
 
-import it.polimi.ingsw.GC_06.Action.Action;
 import it.polimi.ingsw.GC_06.Requirements;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 

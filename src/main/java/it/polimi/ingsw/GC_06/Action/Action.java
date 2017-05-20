@@ -1,11 +1,10 @@
 package it.polimi.ingsw.GC_06.Action;
 
 /**
- * Created by massimo on 12/05/17.
+ * Created by giuseppe on 5/20/17.
  */
 public interface Action {
 
-    boolean isApplicable();
-    void apply();
-
+    public void  execute();
+    public boolean isAllowed();
 }
