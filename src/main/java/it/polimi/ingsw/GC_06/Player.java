@@ -15,6 +15,8 @@ public class Player
     private PlayerId id;
     private ResourceSet resources;
     private CardSet[] cardSets = new CardSet[CardType.values().length];
+    
+    
 
 
     public Player(PlayerId id, ResourceSet resources, FamilyMember [] familyMembers)
@@ -34,6 +36,8 @@ public class Player
             familyMember.setPlayerColor(this.id);
 
     }
+    
+    
 
     public ResourceSet getResources()
     {
