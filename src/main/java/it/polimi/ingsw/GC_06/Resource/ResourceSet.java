@@ -38,6 +38,18 @@ public class ResourceSet {
         }
     }
 
+    public void variateResource(Resource resource, int amount){
+
+        if(amount > 0) {
+            addResource(resource,amount);
+        }
+
+        else{
+
+            removeResource(resource,amount);
+        }
+    }
+
     public void addResource(ResourceSet resourceSet)
     {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
@@ -55,8 +67,12 @@ public class ResourceSet {
         if (amount <0)
             throw new IllegalArgumentException();
 
-        if (! isIncluded(resource, amount))
-            throw new IllegalArgumentException();
+        if (! isIncluded(resource, amount)){
+
+            resources.replace(resource,0);
+            return;
+        }
+
 
         int myQty = this.resources.get(resource).intValue();
         myQty-=amount;

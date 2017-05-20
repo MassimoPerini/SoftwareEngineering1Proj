@@ -79,4 +79,8 @@ public class DevelopmentCard extends Card
                 ", requirements=" + requirements.toString() +
                 '}';
     }
+
+    public ArrayList<Requirements> getRequirements() {
+        return requirements;
+    }
 }

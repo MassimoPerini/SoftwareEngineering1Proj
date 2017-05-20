@@ -5,6 +5,8 @@ import it.polimi.ingsw.GC_06.Card.CardSet;
 import it.polimi.ingsw.GC_06.Card.CardType;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
+import java.util.ArrayList;
+
 /**
  * Created by massimo on 12/05/17.
  */
@@ -14,7 +16,7 @@ public class Player
     private FamilyMember [] familyMembers=new FamilyMember[4];
     private PlayerId id;
     private ResourceSet resources;
-    private CardSet[] cardSets = new CardSet[CardType.values().length];
+    private ArrayList<CardSet> cardSets = new ArrayList<>();
     
     
 
@@ -36,8 +38,10 @@ public class Player
             familyMember.setPlayerColor(this.id);
 
     }
-    
-    
+
+    public CardSet[] getCardSets() {
+        return cardSets;
+    }
 
     public ResourceSet getResources()
     {
