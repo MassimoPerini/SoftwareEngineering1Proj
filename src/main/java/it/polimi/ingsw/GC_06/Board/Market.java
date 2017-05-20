@@ -1,12 +1,26 @@
 package it.polimi.ingsw.GC_06.Board;
 
+import it.polimi.ingsw.GC_06.Action.Effect;
+import it.polimi.ingsw.GC_06.FamilyMember;
+
 import java.util.ArrayList;
 
-public class Market {
-	private ArrayList<ActionPlaceTower> places;
+public class Market implements Component{
+	private ArrayList<ActionPlace> actionPlaces;
 	
-	public Market(ArrayList<ActionPlaceTower> places) {
-		this.places = places;
+	public Market(ArrayList<ActionPlace> places) {
+		this.actionPlaces = places;
 	}
 
+	@Override
+	public ArrayList<Effect> addFamilyMember(FamilyMember familyMember, int index) {
+		return actionPlaces.get(index).addFamilyMember(familyMember);
+	}
+
+	@Override
+	public boolean isAllowed(FamilyMember familyMember, int index) {
+
+		ActionPlace actionPlace = actionPlaces.get(index);
+		return actionPlace.isAllowed(familyMember);
+	}
 }

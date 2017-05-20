@@ -11,8 +11,13 @@ public class Board {
     private ArrayList<Tower> towers = new ArrayList<>();
  //   private ArrayList<MixedActionPlace> operations = new ArrayList<>();
     private MultipleActionPlace council;
-    private ArrayList<SingleActionPlace> market = new ArrayList<>();
 
+
+    private ArrayList<Tower> towers = new ArrayList<>();
+    private ArrayList<Tower> towers = new ArrayList<>();
+
+
+    //TODO DA RIFARE
 
     public Board()
     {

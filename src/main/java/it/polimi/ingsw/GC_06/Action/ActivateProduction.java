@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Card;
+package it.polimi.ingsw.GC_06.Action;
 
 import it.polimi.ingsw.GC_06.Action.Action;
 import it.polimi.ingsw.GC_06.Player;

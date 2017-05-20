@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Control;
 
+import it.polimi.ingsw.GC_06.View.FxControl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

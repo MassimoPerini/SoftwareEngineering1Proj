@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Control;
+package it.polimi.ingsw.GC_06.View;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

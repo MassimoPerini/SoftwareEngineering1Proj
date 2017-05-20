@@ -1,12 +1,31 @@
 package it.polimi.ingsw.GC_06.Board;
 
-public class ProdHarvZone {
-	private ActionPlaceTower placeTower;
-	private ActionPlaceProdHarv placeProdHarv;
+import it.polimi.ingsw.GC_06.Action.Effect;
+import it.polimi.ingsw.GC_06.FamilyMember;
+
+import java.util.ArrayList;
+
+public class ProdHarvZone implements Component{
+
+	private ArrayList <ActionPlace> actionPlaces;
 	
-	public ProdHarvZone (ActionPlaceTower placeTower, ActionPlaceProdHarv placeProdHarv) {
-		this.placeProdHarv = placeProdHarv;
-		this.placeTower = placeTower;
+	public ProdHarvZone () {
+		this.actionPlaces = new ArrayList<>();
 	}
 
+	public void addActionPlace (ActionPlace actionPlace)
+	{
+		this.actionPlaces.add(actionPlace);
+	}
+
+
+	@Override
+	public ArrayList<Effect> addFamilyMember(FamilyMember familyMember, int index) {
+		return actionPlaces.get(index).addFamilyMember(familyMember);
+	}
+
+	@Override
+	public boolean isAllowed(FamilyMember familyMember, int index) {
+		return actionPlaces.get(index).isAllowed(familyMember);
+	}
 }

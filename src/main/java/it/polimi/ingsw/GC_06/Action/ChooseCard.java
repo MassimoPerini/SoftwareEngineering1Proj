@@ -2,11 +2,9 @@ package it.polimi.ingsw.GC_06.Action;
 
 import it.polimi.ingsw.GC_06.Board.Component;
 import it.polimi.ingsw.GC_06.Board.TowerFloor;
-import it.polimi.ingsw.GC_06.Card.Card;
-import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.Card.Requirement;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.Player;
-import it.polimi.ingsw.GC_06.Requirements;
 
 import java.util.ArrayList;
 
@@ -42,10 +40,10 @@ public class ChooseCard implements Action{
     private void payCard(){
 
         int counter = 0;
-        ArrayList<Requirements> satisfiedRequirements = new ArrayList<>();
-        ArrayList<Requirements> requirements =  towerFloor.getCard().getRequirements();
+        ArrayList<Requirement> satisfiedRequirements = new ArrayList<>();
+        ArrayList<Requirement> requirements =  towerFloor.getCard().getRequirements();
         //TODO parte della richiesta all'utente sulla scelta di pagamento
-        for(Requirements requirement : requirements){
+        for(Requirement requirement : requirements){
             if(requirement.isSatisfied(player.getResources())){
                 satisfiedRequirements.add(requirement){
             }

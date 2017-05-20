@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06;
+package it.polimi.ingsw.GC_06.Card;
 
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
@@ -7,13 +7,13 @@ import java.util.ArrayList;
 /**
  * Created by massimo on 18/05/17.
  */
-public class Requirements {
+public class Requirement {
 
     //TODO TEST!!!
     private ResourceSet requirements;
     private ResourceSet cost;
 
-    public Requirements(ResourceSet requirements, ResourceSet cost) {
+    public Requirement(ResourceSet requirements, ResourceSet cost) {
         if (requirements == null)
             requirements = new ResourceSet();
         if (cost == null)
@@ -37,7 +37,7 @@ public class Requirements {
 
     @Override
     public String toString() {
-        return "Requirements{" +
+        return "Requirement{" +
                 "requirements=" + requirements.toString() +
                 ", cost=" + cost.toString() +
                 '}';

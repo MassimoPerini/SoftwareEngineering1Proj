@@ -2,29 +2,40 @@ package it.polimi.ingsw.GC_06.Board;
 
 import java.util.ArrayList;
 
-
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.playerTools.Effect;
+import it.polimi.ingsw.GC_06.Action.Effect;
 
 public abstract class ActionPlace {
-	protected int maxFamiliari;
     protected ArrayList<Effect> effects;
 	protected ArrayList<FamilyMember> members;
-	protected int costo;
+	protected int price;
 	
-	public ActionPlace(ArrayList<Effect> effect, int costo) {
-		this.maxFamiliari = 1;
+	public ActionPlace(ArrayList<Effect> effect, int price) {
 		this.effects = effect;
 		this.members = new ArrayList<>();
-		this.costo = costo;
+		this.price = price;
 		
 	}
+
+	//TODO N.B. Sarebbe meglio una delega???
 	
 	protected boolean isValidColor(FamilyMember member) {
 		//TODO controllare che non ci sia un altro familiare dello stesso colore
 		return true;
 	}
-	
-	public abstract boolean isOccupied(FamilyMember member);
+
+	public boolean isAllowed(FamilyMember member){
+
+		return isValidColor(member);
+	}
+
+    public ArrayList<Effect> addFamilyMember(FamilyMember familyMember)
+	{
+		if (!isAllowed(familyMember))
+			throw new IllegalStateException();
+		//TODO
+		return effects;
+	}
+
 
 }

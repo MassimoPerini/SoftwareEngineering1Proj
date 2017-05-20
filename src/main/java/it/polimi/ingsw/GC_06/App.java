@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06;
 
-import it.polimi.ingsw.GC_06.Control.FxControl;
+import it.polimi.ingsw.GC_06.View.FxControl;
 import it.polimi.ingsw.GC_06.Control.TerminalControl;
 import it.polimi.ingsw.GC_06.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.View.CmdView;

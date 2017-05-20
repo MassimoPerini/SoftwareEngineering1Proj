@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.Card;
 
-import it.polimi.ingsw.GC_06.Requirements;
+import it.polimi.ingsw.GC_06.Action.Action;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class DevelopmentCard extends Card
 {
     private LinkedList<Action> immediateActions;
     private int era;
-    private ArrayList<Requirements> requirements;
+    private ArrayList<Requirement> requirements;
 
 //    private ResourceSet immediateRequirement;
 
@@ -31,15 +31,15 @@ public class DevelopmentCard extends Card
         this.immediateActions.add(action);
     }
 
-    public void addRequirements(Requirements requirements)
+    public void addRequirements(Requirement requirement)
     {
-        this.requirements.add(requirements);
+        this.requirements.add(requirement);
     }
 
     //E' una OR
     public boolean isSatisfied(ResourceSet resourceSet)
     {
-        for (Requirements requirement:requirements)
+        for (Requirement requirement:requirements)
         {
             if (requirement.isSatisfied(resourceSet))
                 return true;
@@ -55,7 +55,7 @@ public class DevelopmentCard extends Card
 
         for (Action action:immediateActions)
         {
-            action.apply();
+            action.execute();
         }
         immediateActions=new LinkedList<>();
     }
@@ -64,7 +64,7 @@ public class DevelopmentCard extends Card
     {
         for (Action action:immediateActions)
         {
-            boolean res = action.isApplicable();
+            boolean res = action.isAllowed();
             if (! res)
                 return false;
         }
@@ -80,7 +80,7 @@ public class DevelopmentCard extends Card
                 '}';
     }
 
-    public ArrayList<Requirements> getRequirements() {
+    public ArrayList<Requirement> getRequirements() {
         return requirements;
     }
 }
