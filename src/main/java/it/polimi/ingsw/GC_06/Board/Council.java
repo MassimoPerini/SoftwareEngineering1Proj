@@ -14,7 +14,7 @@ public class Council implements Component {
 
 	@Override
 	public ArrayList<Effect> addFamilyMember(FamilyMember familyMember, int index) {
-		return null;
+		return false;
 	}
 
 	@Override

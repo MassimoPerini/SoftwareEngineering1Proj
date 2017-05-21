@@ -28,10 +28,7 @@ public abstract class ActionPlace {
 		return true;
 	}
 
-	public boolean isAllowed(FamilyMember member){
-
-		return isValidColor(member);
-	}
+	public abstract boolean isAllowed (FamilyMember member);
 
     public ArrayList<Effect> addFamilyMember(FamilyMember familyMember)
 	{

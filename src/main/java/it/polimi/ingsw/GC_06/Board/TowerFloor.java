@@ -17,7 +17,7 @@ public class TowerFloor {
 
     public TowerFloor(ArrayList<Effect> effect, int price, DevelopmentCard card )
     {
-        this.actionPlace = new FixedActionPlace(effect , price);    //NOTA BENE!
+        this.actionPlace = new ActionPlaceFixed(effect , price);    
         this.card = card;
     }
 
