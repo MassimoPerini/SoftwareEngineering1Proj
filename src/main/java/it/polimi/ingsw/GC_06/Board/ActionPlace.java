@@ -20,7 +20,11 @@ public abstract class ActionPlace {
 	//TODO N.B. Sarebbe meglio una delega???
 	
 	protected boolean isValidColor(FamilyMember member) {
-		//TODO controllare che non ci sia un altro familiare dello stesso colore
+		for (FamilyMember f : members) {
+			if (f.getColour() == member.getColour()) {
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -33,7 +37,7 @@ public abstract class ActionPlace {
 	{
 		if (!isAllowed(familyMember))
 			throw new IllegalStateException();
-		//TODO
+		else this.members.add(familyMember);
 		return effects;
 	}
 

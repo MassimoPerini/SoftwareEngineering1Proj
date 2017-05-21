@@ -43,4 +43,8 @@ public class FamilyMember implements Observer {
     public int getValue() {
         return value;
     }
+    
+    public PlayerId getColour() {
+    	return this.playerColor;
+    }
 }

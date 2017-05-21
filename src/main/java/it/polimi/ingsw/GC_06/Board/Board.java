@@ -9,12 +9,11 @@ import java.util.ArrayList;
  */
 public class Board {
     private ArrayList<Tower> towers = new ArrayList<>();
- //   private ArrayList<MixedActionPlace> operations = new ArrayList<>();
-    private MultipleActionPlace council;
+    private Council council;
+    private Market market;
+    private ProdHarvZone production;
+    private ProdHarvZone harvest;
 
-
-    private ArrayList<Tower> towers = new ArrayList<>();
-    private ArrayList<Tower> towers = new ArrayList<>();
 
 
     //TODO DA RIFARE
@@ -23,32 +22,29 @@ public class Board {
     {
         for (int i=0;i<4;i++)
         {
-            towers.add(new Tower());
+            towers.add(new Tower(null));
         }
-    //    operations.add(new MixedActionPlace(1,1));
-    //    operations.add(new MixedActionPlace(1,1));
-        council = new MultipleActionPlace(1);
-        market.add(new SingleActionPlace(1));
-        market.add(new SingleActionPlace(1));
-        market.add(new SingleActionPlace(1));
-        market.add(new SingleActionPlace(1));
-        market.add(new SingleActionPlace(1));
-    }
+        
+        this.council = new Council(null);
+        this.market = new Market(null);
+        this.production = new ProdHarvZone();
+        this.harvest = new ProdHarvZone();
+    }//TODO da integrare con il caricamento degli effetti da file, in modo da mettere gli effetti sui vari actionplace
 
     public void addToTower (int tower, int floor, FamilyMember familyMember)
     {
-
+      //TODO
     }
     public void addToCouncil (){
-
+       //TODO
     }
 
     public void addToOperations(){
-
+      //TODO
     }
     public void addToMarket()
     {
-
+      //TODOS
     }
 
 }
