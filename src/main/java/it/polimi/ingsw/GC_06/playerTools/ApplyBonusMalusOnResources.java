@@ -1,9 +1,11 @@
 package it.polimi.ingsw.GC_06.playerTools;
 
+import it.polimi.ingsw.GC_06.Action.Effect;
+
 /**
  * Created by giuseppe on 5/19/17.
  */
-public class ApplyBonusMalusOnResources implements Effect {
+public class ApplyBonusMalusOnResources {
     private int amount;
 
     public ApplyBonusMalusOnResources(int amount) {
@@ -14,8 +16,8 @@ public class ApplyBonusMalusOnResources implements Effect {
     public void addResource() {
     }
 
-    @Override
-    public void applyEffect() {
+  //  @Override
+    public void execute() {
 
     }
 

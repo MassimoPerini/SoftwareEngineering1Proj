@@ -7,11 +7,11 @@ import java.util.Scanner;
 /**
  * Created by massimo on 16/05/17.
  */
-public class CmdView extends Observable implements Observer {
+public class CommandView extends Observable implements Observer {
 
     private Scanner input;
 
-    public CmdView()
+    public CommandView()
     {
         super();
         input = new Scanner (System.in);
@@ -41,7 +41,7 @@ public class CmdView extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("CmdView: Model changed!\nThis is the object passed:");
+        System.out.println("CommandView: Model changed!\nThis is the object passed:");
         System.out.println(arg);
     }
 }

@@ -23,20 +23,20 @@ public class ChooseCard implements Action{
     public ChooseCard(Player player, TowerFloor towerFloor, Component component) {
         this.player = player;
         this.towerFloor = towerFloor;
-        this.component = component
+        this.component = component;
     }
 
     @Override
     public void execute() {
-        player.addCard(towerFloor.pickCard());
+     //   player.addCard(towerFloor.pickCard());
 
     }
 
     @Override
     public boolean isAllowed() {
-        return component.isAllowed(FamilyMember familyMember);
+        return component.isAllowed(familyMember, index);
     }
-
+/*
     private void payCard(){
 
         int counter = 0;
@@ -56,5 +56,5 @@ public class ChooseCard implements Action{
             //TODO sono cazzi amari
         }
         player.getResources().removeResource(card.);
-    }
+    }*/
 }

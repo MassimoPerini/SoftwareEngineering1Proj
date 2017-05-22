@@ -20,12 +20,13 @@ public class HarvestProduction implements Action {
 
     @Override
     public void execute() {
-
+        /*
        ArrayList<DevelopmentCard> harvestCards =  player.getPlayerBoard().getGreenCard();
 
        for(DevelopmentCard harvestCard : harvestCards){
            harvestCard.getEffect().execute();
        }
+       */
     }
 
     @Override

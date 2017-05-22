@@ -13,6 +13,11 @@ public class FamilyMember implements Observer {
     private PlayerId playerColor;
     private int value;
     private DiceColor diceColor;
+    private String playerUserName;
+
+    public String getPlayerUserName() {
+        return playerUserName;
+    }
 
     public FamilyMember(){
         this(null, null);
@@ -28,6 +33,11 @@ public class FamilyMember implements Observer {
         super();
         this.diceColor=diceColor;
         this.playerColor=playerColor;
+    }
+
+    public boolean isNeutral()
+    {
+        return diceColor == null;
     }
 
     public void update(Observable obs, Object args)

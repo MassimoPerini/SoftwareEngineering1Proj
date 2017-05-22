@@ -37,7 +37,7 @@ public class Game extends Observable{
     {
         DiceSet diceSet = new DiceSet();
         Player player1 = new Player(PlayerId.BLUE, new ResourceSet(), diceSet.createFamilyMembers(true));
-        Board b = new Board();
+     //   Board b = new Board();
 
         setChanged();
         notifyObservers(this);          //TODO: DA NON FARE!!!! (E RIMUOVERE)

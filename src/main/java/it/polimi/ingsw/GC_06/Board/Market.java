@@ -5,7 +5,8 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 
 import java.util.ArrayList;
 
-public class Market implements Component{
+public class Market implements Component
+{
 	private ArrayList<ActionPlace> actionPlaces;
 	
 	public Market(ArrayList<ActionPlace> places) {
@@ -20,7 +21,6 @@ public class Market implements Component{
 	@Override
 	public boolean isAllowed(FamilyMember familyMember, int index) {
 
-		ActionPlace actionPlace = actionPlaces.get(index);
-		return actionPlace.isAllowed(familyMember);
+		return actionPlaces.get(index).isAllowed(familyMember);
 	}
 }

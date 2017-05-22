@@ -50,6 +50,18 @@ public class ResourceSet {
         }
     }
 
+    public void variateResource(ResourceSet resourceSet)
+    {
+        Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
+
+        while (i.hasNext())
+        {
+            Map.Entry<Resource, Integer> entry = i.next();
+            this.variateResource(entry.getKey(), entry.getValue());
+        }
+
+    }
+
     public void addResource(ResourceSet resourceSet)
     {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);

@@ -8,28 +8,27 @@ import java.util.ArrayList;
  * Created by massimo on 13/05/17.
  */
 public class Board {
-    private ArrayList<Tower> towers = new ArrayList<>();
-    private Council council;
-    private Market market;
-    private ProdHarvZone production;
-    private ProdHarvZone harvest;
-
-
+    private final ArrayList<Tower> towers;
+    private final ArrayList<Market> markets;
+    private final ArrayList<ProdHarvZone> prodHarvZones;
+    private final ArrayList<Council> councils;
 
     //TODO DA RIFARE
 
-    public Board()
+    public Board(ArrayList<Tower> towers, ArrayList<Market> markets, ArrayList<ProdHarvZone> prodHarvZones, ArrayList<Council> councils)
     {
-        for (int i=0;i<4;i++)
-        {
-            towers.add(new Tower(null));
-        }
-        
-        this.council = new Council(null);
-        this.market = new Market(null);
-        this.production = new ProdHarvZone();
-        this.harvest = new ProdHarvZone();
+        super();
+        this.towers = towers;
+        this.markets = markets;
+        this.prodHarvZones = prodHarvZones;
+        this.councils = councils;
+
     }//TODO da integrare con il caricamento degli effetti da file, in modo da mettere gli effetti sui vari actionplace
+
+    //TODO remove
+    public ArrayList<Tower> getTowers() {
+        return towers;
+    }
 
     public void addToTower (int tower, int floor, FamilyMember familyMember)
     {

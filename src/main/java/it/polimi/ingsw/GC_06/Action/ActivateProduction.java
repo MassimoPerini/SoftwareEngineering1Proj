@@ -10,6 +10,7 @@ import java.util.Observable;
  */
 public class ActivateProduction extends Observable implements Action {
     private Player player;
+    private int points;
 
 
     public ActivateProduction(int points, Player player) {

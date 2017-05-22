@@ -4,21 +4,24 @@ import it.polimi.ingsw.GC_06.Action.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Council implements Component {
-	private ActionPlace actionPlace;
+	private ArrayList<ActionPlace> actionPlaces;
 	
-	public Council(ActionPlace actionPlace) {
-		this.actionPlace = actionPlace;
+	public Council(ArrayList<ActionPlace> actionPlaces) {
+		this.actionPlaces = actionPlaces;
 	}
 
 	@Override
 	public ArrayList<Effect> addFamilyMember(FamilyMember familyMember, int index) {
-		return false;
+		if (!isAllowed(familyMember, index))
+			throw new IllegalStateException();
+		return actionPlaces.get(index).addFamilyMember(familyMember);
 	}
 
 	@Override
 	public boolean isAllowed(FamilyMember familyMember, int index) {
-		return false;
+		return actionPlaces.get(index).isAllowed(familyMember);
 	}
 }

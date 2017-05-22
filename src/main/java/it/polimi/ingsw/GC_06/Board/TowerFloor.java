@@ -12,27 +12,35 @@ import java.util.ArrayList;
  */
 public class TowerFloor {
 
-    private DevelopmentCard card;
+    private DevelopmentCard card;       //TODO Lista????
     private ActionPlace actionPlace;
 
+
+    /*
     public TowerFloor(ArrayList<Effect> effect, int price, DevelopmentCard card )
     {
         this.actionPlace = new ActionPlaceFixed(effect , price);    
         this.card = card;
+    }*/
+
+    public TowerFloor(ActionPlace actionPlace, DevelopmentCard card)
+    {
+        this.actionPlace = actionPlace;
+        this.card = card;
     }
 
+    public ActionPlace getActionPlace() {
+        return actionPlace;
+    }
 
     public ArrayList<Effect> addFamilyMember(FamilyMember familyMember) {
+        if (!isAllowed(familyMember))
+            throw new IllegalStateException();
         return actionPlace.addFamilyMember(familyMember);
     }
 
     public boolean isAllowed(FamilyMember familyMember) {
-
-        if (actionPlace.isAllowed(familyMember)){
-            if (card != null)       //Shortcut:  if (card){}
-                return true;
-        }
-        return false;
+        return actionPlace.isAllowed(familyMember) && card != null;
     }
 
 

@@ -30,30 +30,33 @@ public class Player
 
         this.familyMembers = familyMembers;
 
-        for (int i=0; i<CardType.values().length;i++)
-            cardSets[i] = new CardSet(CardType.values()[i]);
+     //   cardSets = new CardSet();
 
+/*
+        for (int i=0; i<CardType.values().length;i++)
+            cardSets.get(i) = new CardSet(CardType.values()[i]);
+*/
 
         for (FamilyMember familyMember: this.familyMembers)
             familyMember.setPlayerColor(this.id);
 
     }
-
+/*
     public CardSet[] getCardSets() {
         return cardSets;
     }
-
+*/
     public ResourceSet getResources()
     {
         return resources;
     }
-
+/*
     public void addCard(Card card)
     {
         cardSets[card.getCardType().ordinal()].addCard(card);
         // TODO EXECUTE IMMEDIATE EFFECTS
     }
-
+*/
     public FamilyMember[] getFamilyMembers() {
         return familyMembers;
     }

@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.Board;
 
 import it.polimi.ingsw.GC_06.Action.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
 import java.util.ArrayList;
 /**
@@ -9,13 +10,16 @@ import java.util.ArrayList;
  */
 public class Tower implements Component{
 
-    private ArrayList<TowerFloor> floors = new ArrayList<>();
+    private ArrayList<TowerFloor> towerFloors = new ArrayList<>();
+    private int maxSamePlayerFamilyMember;
+    private int minFamilyMembersMalus;
+    private ResourceSet malusSet;
 
-    public Tower( ArrayList<TowerFloor> floors){
-    	this.floors = floors;
+    public Tower(ArrayList<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus, ResourceSet malusSet){
+    	this.towerFloors = floors;
+    	this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
+    	this.minFamilyMembersMalus = minFamilyMembersMalus;
     }
-
-    //TODO
 
     @Override
     public ArrayList<Effect> addFamilyMember(FamilyMember familyMember, int index) {
@@ -23,14 +27,46 @@ public class Tower implements Component{
         if (!isAllowed(familyMember, index))
             throw new IllegalStateException();
 
-        return floors.get(index).addFamilyMember(familyMember);
+        return towerFloors.get(index).addFamilyMember(familyMember);
 
     }
 
     @Override
     public boolean isAllowed(FamilyMember familyMember, int index) {
-        //TODO se non ci sono + di N (da file ecc...) familiari dello stesso giocatore....
 
-        return floors.get(index).isAllowed(familyMember);
+        int samePlayerFamilyMember = 0;
+        int familyMemberCount = 0;
+
+        for (TowerFloor towerFloor : towerFloors)
+        {
+            for (FamilyMember familyMember1 : towerFloor.getActionPlace().getMembers())     //Se ci sono + familiari per effetto di carte eroe...
+            {
+                familyMemberCount++;
+
+                if (familyMember1.getPlayerUserName().equals(familyMember) && !familyMember1.isNeutral())
+                {
+                    samePlayerFamilyMember++;
+                }
+            }
+        }
+
+        if (samePlayerFamilyMember >= maxSamePlayerFamilyMember)
+            return false;
+
+        if (familyMemberCount >= minFamilyMembersMalus)
+        {
+            //TODO torre occupata: + risorse!!!
+            //TODO che fare? Aggiungere ai requisiti delle carte
+      //      towerFloors.get(index).get
+        }
+
+        return towerFloors.get(index).isAllowed(familyMember);
+    }
+
+    //TODO remove
+
+
+    public ArrayList<TowerFloor> getTowerFloors() {
+        return towerFloors;
     }
 }

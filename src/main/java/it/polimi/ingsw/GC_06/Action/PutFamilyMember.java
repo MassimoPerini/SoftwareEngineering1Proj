@@ -28,7 +28,7 @@ public class PutFamilyMember implements Action {
     @Override
     public void execute() {
 
-        ArrayList<Effect> effects = component.addFamilyMember(familyMember);
+        ArrayList<Effect> effects = component.addFamilyMember(familyMember, index);
 
         //facciamo un ciclo
         for(Effect effect : effects){
@@ -42,7 +42,5 @@ public class PutFamilyMember implements Action {
     public boolean isAllowed() {
         return component.isAllowed(familyMember, index) ;
     }
-
-    public
 
 }
