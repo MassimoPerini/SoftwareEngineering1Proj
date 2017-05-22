@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.Board;
 
-import it.polimi.ingsw.GC_06.Action.Effect;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
 
@@ -27,6 +27,10 @@ public class TowerFloor {
     {
         this.actionPlace = actionPlace;
         this.card = card;
+    }
+
+    public DevelopmentCard getCard() {
+        return card;
     }
 
     public ActionPlace getActionPlace() {

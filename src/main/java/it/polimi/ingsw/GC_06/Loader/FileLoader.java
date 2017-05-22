@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.Loader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.Action.Effect;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.Board.*;
 import it.polimi.ingsw.GC_06.Card.CardType;
 import it.polimi.ingsw.GC_06.Card.DevelopmentCard;

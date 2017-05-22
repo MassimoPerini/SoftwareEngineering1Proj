@@ -1,12 +1,11 @@
 package it.polimi.ingsw.GC_06.Action;
 
-import it.polimi.ingsw.GC_06.Action.Action;
 import it.polimi.ingsw.GC_06.Board.Component;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.playerTools.Player;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * Created by giuseppe on 5/20/17.

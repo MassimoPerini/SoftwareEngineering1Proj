@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.Board;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.Action.Effect;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 
 public class ActionPlace {
     protected ArrayList<Effect> effects;

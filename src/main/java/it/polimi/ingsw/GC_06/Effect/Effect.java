@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Action;
+package it.polimi.ingsw.GC_06.Effect;
 
 
 import it.polimi.ingsw.GC_06.playerTools.Player;

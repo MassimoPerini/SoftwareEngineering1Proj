@@ -1,11 +1,9 @@
 package it.polimi.ingsw.GC_06.Card;
 
-import it.polimi.ingsw.GC_06.Action.Action;
-import it.polimi.ingsw.GC_06.Action.Effect;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * Created by massimo on 12/05/17.

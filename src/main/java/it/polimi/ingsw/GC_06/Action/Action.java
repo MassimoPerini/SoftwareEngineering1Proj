@@ -10,5 +10,4 @@ public interface Action {
 
     public void  execute();
     public boolean isAllowed();
-    public void setPlayer(Player player);
 }

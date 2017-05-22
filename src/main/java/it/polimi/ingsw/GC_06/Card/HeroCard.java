@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_06.Card;
 
 import java.util.ArrayList;
 
-import it.polimi.ingsw.GC_06.Action.Effect;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
 /**

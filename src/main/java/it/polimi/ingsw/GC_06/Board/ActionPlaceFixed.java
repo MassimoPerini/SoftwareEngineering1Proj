@@ -1,8 +1,7 @@
 package it.polimi.ingsw.GC_06.Board;
 
-import it.polimi.ingsw.GC_06.Action.Effect;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.Loader.Setting;
 
 import java.util.ArrayList;
 

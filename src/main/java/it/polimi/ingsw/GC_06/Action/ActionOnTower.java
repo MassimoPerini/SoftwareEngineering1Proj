@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_06.Action;
 
 import it.polimi.ingsw.GC_06.Board.Component;
+import it.polimi.ingsw.GC_06.Board.PlayerBoard;
 import it.polimi.ingsw.GC_06.Board.TowerFloor;
-import it.polimi.ingsw.GC_06.Card.Requirement;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.playerTools.Player;
 
@@ -44,7 +45,13 @@ public class ActionOnTower implements Action{
             effect.execute(player);
         }
 
-        player.addCard(towerFloor.pickCard());
+        /** we must controll if the player can afford the card */
+
+
+
+        /**we are adding the card to the player board*/
+        player.getPlayerBoard().getCards().put(towerFloor.getCard().getIdColour(), towerFloor.getCard());
+
 
     }
 
@@ -57,7 +64,7 @@ public class ActionOnTower implements Action{
     public boolean isAllowed() {
 
     }
-/*
+/**
     private void payCard(){
 
         int counter = 0;
@@ -77,5 +84,6 @@ public class ActionOnTower implements Action{
             //TODO sono cazzi amari
         }
         player.getResources().removeResource(card.);
-    }*/
+    }
+ */
 }

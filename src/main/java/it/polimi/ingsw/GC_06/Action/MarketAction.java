@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.Action;
 
-import it.polimi.ingsw.GC_06.Board.Board;
 import it.polimi.ingsw.GC_06.Board.Component;
+import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.playerTools.Player;
 

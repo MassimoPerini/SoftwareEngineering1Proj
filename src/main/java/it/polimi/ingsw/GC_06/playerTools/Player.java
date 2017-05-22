@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Player {
 
     private CardSet cardSet;
+    private PlayerBoard playerBoard;
     private ArrayList<FamilyMember> familyMembers;
     private ResourceSet resourceSet;
     private final String PLAYER_ID;
@@ -35,6 +36,10 @@ public class Player {
 
             familyMembers.add(new FamilyMember());
         }
+    }
+
+    public PlayerBoard getPlayerBoard() {
+        return playerBoard;
     }
 
     public CardSet getCardSet() {
