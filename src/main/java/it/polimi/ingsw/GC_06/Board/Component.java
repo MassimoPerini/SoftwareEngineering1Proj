@@ -13,5 +13,5 @@ public interface Component {
 
     public void addFamilyMember(FamilyMember familyMember, int index);
     boolean isAllowed(FamilyMember familyMember, int index);
-    public ArrayList<Effect> getEffect();
+    public void ArrayList<Effect> getEffect();
 }

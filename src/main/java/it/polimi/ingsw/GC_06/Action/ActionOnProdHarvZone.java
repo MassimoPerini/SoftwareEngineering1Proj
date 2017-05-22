@@ -25,12 +25,12 @@ public class ActionOnProdHarvZone implements Action {
     //TODO da cambiare
 
 
-    public ActionOnProdHarvZone(int point, Player player, FamilyMember familyMember, String colour, Component componet) {
+    public ActionOnProdHarvZone(int point, Player player, FamilyMember familyMember, String colour, Component component) {
         this.colour = colour;
         this.point = point;
         this.player = player;
         this.familyMember = familyMember;
-        this.component = componet;
+        this.component = component;
     }
 
 
@@ -70,7 +70,6 @@ public class ActionOnProdHarvZone implements Action {
 
     @Override
     public boolean isAllowed() {
-
         return true;
     }
 }
