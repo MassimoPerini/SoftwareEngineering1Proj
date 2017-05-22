@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.Board;
 
 import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.Player;
 
 import java.util.ArrayList;
 
@@ -11,7 +10,8 @@ import java.util.ArrayList;
  */
 public interface Component {
 
-    public void addFamilyMember(FamilyMember familyMember, int index);
+    void addFamilyMember(FamilyMember familyMember, int index);
     boolean isAllowed(FamilyMember familyMember, int index);
-    public void ArrayList<Effect> getEffect();
+    ArrayList<Effect> getEffect();
+
 }

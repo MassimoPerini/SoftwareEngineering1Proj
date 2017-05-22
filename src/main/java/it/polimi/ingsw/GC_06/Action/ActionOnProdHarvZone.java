@@ -17,7 +17,7 @@ import java.util.LinkedList;
 public class ActionOnProdHarvZone implements Action {
 
     private int point;
-    private Component component
+    private Component component;
     private Player player;
     private FamilyMember familyMember;
     private String colour;
