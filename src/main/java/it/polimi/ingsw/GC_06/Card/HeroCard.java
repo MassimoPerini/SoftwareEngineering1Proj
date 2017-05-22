@@ -12,17 +12,16 @@ public class HeroCard extends Card {
 	
 	private ArrayList<Effect> effects;
 	private ArrayList<Requirement> requirements;
+	private ArrayList<Effect> permanentEffects;
 
-    public HeroCard(String name, CardType cardType) {
+    public HeroCard(String name, CardType cardType, ArrayList<Effect> effects, ArrayList<Effect> permanentEffects) {
         super(name, cardType);
-        this.effects = new ArrayList<>();
+        this.effects = effects;
         this.requirements = new ArrayList<>();
+        this.permanentEffects = permanentEffects;
+        
     }
     
-    public void addEffect(Effect effect)
-    {
-        this.effects.add(effect);
-    }
 
     public void addRequirements(Requirement requirement)
     {
@@ -41,16 +40,12 @@ public class HeroCard extends Card {
     }
 
     
-    public void applyEffects ()
-    {
-        if (! areAllowedEffects())
-            throw new IllegalStateException();
-
-        for (Effect effect :effects)
-        {
-            effect.execute();
-        }
-        effects = new ArrayList<>();
+    public ArrayList<Effect> getEffects() {
+    	return this.effects;
+    }
+    
+    public ArrayList<Effect> getImmediateEffects() {
+    	return this.permanentEffects;
     }
 
     public boolean areAllowedEffects()
