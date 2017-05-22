@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Card;
 
 import it.polimi.ingsw.GC_06.Action.Action;
+import it.polimi.ingsw.GC_06.Action.Effect;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.LinkedList;
  */
 public class DevelopmentCard extends Card
 {
-    private LinkedList<Action> immediateActions;
+    private ArrayList<Effect> effects;
     private int era;
     private ArrayList<Requirement> requirements;
 
@@ -22,13 +23,12 @@ public class DevelopmentCard extends Card
         super(name, cardType);
         this.era = era;
         this.requirements = new ArrayList<>();
-
-        immediateActions = new LinkedList<>();
+        this.effects = new ArrayList<>();
     }
 
-    public void addAction(Action action)
+    public void addEffect(Effect effect)
     {
-        this.immediateActions.add(action);
+        this.effects.add(effect);
     }
 
     public void addRequirements(Requirement requirement)
@@ -48,23 +48,23 @@ public class DevelopmentCard extends Card
 
     }
 
-    public void applyImmediateActions ()
+    public void applyEffects ()
     {
-        if (! areAllowedImmediateActions())
+        if (! areAllowedEffects())
             throw new IllegalStateException();
 
-        for (Action action:immediateActions)
+        for (Effect effect :effects)
         {
-            action.execute();
+            effect.execute();
         }
-        immediateActions=new LinkedList<>();
+        effects = new ArrayList<>();
     }
 
-    public boolean areAllowedImmediateActions()
+    public boolean areAllowedEffects()
     {
-        for (Action action:immediateActions)
+        for (Effect effect:effects)
         {
-            boolean res = action.isAllowed();
+            boolean res = effect.isAllowed();
             if (! res)
                 return false;
         }
@@ -74,7 +74,7 @@ public class DevelopmentCard extends Card
     @Override
     public String toString() {
         return "DevelopmentCard{" +
-                "immediateActions=" + immediateActions.toString() +
+                "effects=" + effects.toString() +
                 ", era=" + era +
                 ", requirements=" + requirements.toString() +
                 '}';

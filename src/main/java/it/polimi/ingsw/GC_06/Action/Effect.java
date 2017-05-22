@@ -5,5 +5,5 @@ package it.polimi.ingsw.GC_06.Action;
  */
 public interface Effect {
     public void execute();
-    public void isAllowed();
+    public boolean isAllowed();
 }

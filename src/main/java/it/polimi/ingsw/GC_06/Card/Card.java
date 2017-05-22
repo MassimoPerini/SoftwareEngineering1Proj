@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.Card;
 
+import java.util.ArrayList;
+
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
 /**
@@ -8,7 +10,7 @@ import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 public class Card {
     private String name;
     private CardType cardType;
-//    private ResourceSet requirements;       //requisiti per l'utilizzo
+ //   private ArrayList<Requirement> requirements;       //requisiti per l'utilizzo
 
 
     public Card (String name, CardType cardType)
