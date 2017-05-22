@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Action;
 
 import it.polimi.ingsw.GC_06.Action.Action;
+import it.polimi.ingsw.GC_06.Board.Component;
 import it.polimi.ingsw.GC_06.Card.Card;
 import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.Effect.Effect;
@@ -16,33 +17,37 @@ import java.util.LinkedList;
 public class ActionOnProdHarvZone implements Action {
 
     private int point;
+    private Component component
     private Player player;
     private FamilyMember familyMember;
     private String colour;
+    private int index;
     //TODO da cambiare
 
 
-    public ActionOnProdHarvZone(int point, Player player, FamilyMember familyMember, String colour) {
+    public ActionOnProdHarvZone(int point, Player player, FamilyMember familyMember, String colour, Component componet) {
         this.colour = colour;
         this.point = point;
         this.player = player;
         this.familyMember = familyMember;
+        this.component = componet;
     }
 
 
 
     @Override
     public void execute() {
+        ArrayList<Effect> effects = new ArrayList<Effect>();
 
         if(familyMember!=null){
-            // aggiungi il familiare
+            component.addFamilyMember(familyMember, index);
         }
+
 
 
         //select the cards from the player's cardSet
 
         LinkedList<DevelopmentCard> colouredCards;
-        ArrayList<Effect> effects = new ArrayList<Effect>();
 
         /**  this is an array of development cards*/
         colouredCards = player.getPlayerBoard().getColouredCards(colour);
@@ -54,7 +59,7 @@ public class ActionOnProdHarvZone implements Action {
         for(DevelopmentCard card : colouredCards){
             // potrebbe essere una cazzata
             /**chiediamo a massi*/
-            ArrayList<Effect> effects  = card.getEffects();
+            effects  = card.getEffects();
         }
 
         for(Effect effect : effects){
@@ -65,6 +70,7 @@ public class ActionOnProdHarvZone implements Action {
 
     @Override
     public boolean isAllowed() {
+
         return true;
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public interface Component {
 
-    ArrayList<Effect> addFamilyMember(FamilyMember familyMember, int index);
+    public void addFamilyMember(FamilyMember familyMember, int index);
     boolean isAllowed(FamilyMember familyMember, int index);
     public ArrayList<Effect> getEffect();
 }

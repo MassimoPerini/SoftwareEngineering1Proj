@@ -32,13 +32,13 @@ public class ActionOnTower implements Action{
     public void execute() {
         ArrayList<Effect> effects;
 
+        /**if we are in the real action we add the family member in the correct position*/
         if(familyMember!=null){
-            effects = component.addFamilyMember(familyMember, index);
+            component.addFamilyMember(familyMember, index);
         }
 
-        else{
-            effects = component.getEffect();
-        }
+
+        effects = component.getEffect();
 
         for(Effect effect : effects){
             //TODO definire meglio l'interfaccia
@@ -63,6 +63,8 @@ public class ActionOnTower implements Action{
     @Override
     public boolean isAllowed() {
 
+        /** è permessa solo quando non c'è un familiare sulla torre*/
+        return true;
     }
 /**
     private void payCard(){

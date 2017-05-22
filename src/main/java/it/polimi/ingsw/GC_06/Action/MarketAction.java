@@ -29,7 +29,10 @@ public class MarketAction implements Action {
     @Override
     public void execute() {
 
-        ArrayList<Effect> effects = component.addFamilyMember(familyMember, index);
+        component.addFamilyMember(familyMember, index);
+        /** questa cosa non funzionerà ovviamente*/
+        /** ci sono delle cose da cambiare, io eliminerei il component*/
+        ArrayList<Effect> effects = component.getEffect();
         //facciamo un ciclo
         for(Effect effect : effects){
             //TODO definire meglio l'interfaccia
