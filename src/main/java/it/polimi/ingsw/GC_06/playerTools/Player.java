@@ -18,6 +18,7 @@ public class Player {
     private ResourceSet resourceSet;
     private final String PLAYER_ID;
     private final static String TOKEN = "n_family_members";
+
     //TODO sistemare la questione dei malus e bonus sul player
 //    private PermanentEffect permanentEffect;
 

@@ -4,14 +4,15 @@ import it.polimi.ingsw.GC_06.Board.Component;
 import it.polimi.ingsw.GC_06.Board.TowerFloor;
 import it.polimi.ingsw.GC_06.Card.Requirement;
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.Player;
+import it.polimi.ingsw.GC_06.playerTools.Player;
+
 
 import java.util.ArrayList;
 
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class ChooseCard implements Action{
+public class ActionOnTower implements Action{
 
     private Player player;
     private FamilyMember familyMember;
@@ -20,7 +21,7 @@ public class ChooseCard implements Action{
     int index;
 
 
-    public ChooseCard(Player player, TowerFloor towerFloor, Component component) {
+    public ActionOnTower(Player player, TowerFloor towerFloor, Component component) {
         this.player = player;
         this.towerFloor = towerFloor;
         this.component = component;
@@ -28,13 +29,33 @@ public class ChooseCard implements Action{
 
     @Override
     public void execute() {
-     //   player.addCard(towerFloor.pickCard());
+        ArrayList<Effect> effects;
 
+        if(familyMember!=null){
+            effects = component.addFamilyMember(familyMember, index);
+        }
+
+        else{
+            effects = component.getEffect();
+        }
+
+        for(Effect effect : effects){
+            //TODO definire meglio l'interfaccia
+            effect.execute(player);
+        }
+
+        player.addCard(towerFloor.pickCard());
+
+    }
+
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     @Override
     public boolean isAllowed() {
-        return component.isAllowed(familyMember, index);
+
     }
 /*
     private void payCard(){

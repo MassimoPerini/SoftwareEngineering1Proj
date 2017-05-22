@@ -7,8 +7,9 @@ import java.util.LinkedList;
  * Created by massimo on 13/05/17.
  */
 public class CardSet {
-    CardType cardsType;
-    LinkedList<Card> cards = new LinkedList<>();
+    private CardType cardsType;
+    private LinkedList<Card> cards = new LinkedList<>();
+
 
     public CardSet(CardType cardType){
         this.cardsType = cardType;
@@ -23,7 +24,19 @@ public class CardSet {
         cards.add(card);
     }
 
-    public CardType getCardsType() {
-        return cardsType;
+    // this is the list made of cards of colour cardsType
+    public LinkedList <Card> getColourCard(String cardsID){
+
+        LinkedList<Card> colourList = new LinkedList<Card>();
+
+        for(Card card : cards){
+
+            if((cards.get ()).equals(cardsID)){
+
+                colourList.add(card);
+            }
+        }
+
+        return colourList;
     }
 }

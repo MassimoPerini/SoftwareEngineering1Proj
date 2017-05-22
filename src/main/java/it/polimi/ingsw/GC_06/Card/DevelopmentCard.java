@@ -72,6 +72,10 @@ public class DevelopmentCard extends Card
                 '}';
     }
 
+    public String getIdColour() {
+        return idColour;
+    }
+
     public ArrayList<Requirement> getRequirements() {
         return requirements;
     }
