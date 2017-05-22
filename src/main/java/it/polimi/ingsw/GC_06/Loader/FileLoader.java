@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_06.Loader;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Action.Effect;
 import it.polimi.ingsw.GC_06.Board.*;
 import it.polimi.ingsw.GC_06.Card.CardType;
@@ -54,7 +56,11 @@ public class FileLoader {
 
     public Board loadBoard() throws IOException {
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(boardRootPath));
-        Board board = gson.fromJson(fr , Board.class);
+
+        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
+        Board board = gson2.fromJson(fr, Board.class);
+
         fr.close();
         return board;
     }
@@ -107,7 +113,10 @@ public class FileLoader {
         Board b = new Board(towers, markets, prodHarvZones, councils);
 
         FileWriter fw = new FileWriter("src/main/resources/model/board.txt");
-        this.gson.toJson(b, fw);
+
+        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
+        gson2.toJson(b, fw);
         fw.close();
     }
 

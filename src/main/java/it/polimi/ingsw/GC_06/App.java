@@ -22,6 +22,7 @@ public class App
 
         FileLoader f = FileLoader.getFileLoader();
         DevelopmentCard [] developmentCards = f.loadCards();
+        f.writeBoard();
         Board board = f.loadBoard();
 
         //TODO Implement FIX: https://futurestud.io/tutorials/how-to-deserialize-a-list-of-polymorphic-objects-with-gson
