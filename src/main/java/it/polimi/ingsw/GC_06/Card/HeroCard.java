@@ -48,7 +48,14 @@ public class HeroCard extends Card {
     	return this.permanentEffects;
     }
 
-    //TODO da fare il toString
+    @Override
+    public String toString() {
+        return "HeroCard{" +
+                "effects=" + effects.toString() +
+                ", permanentEffects=" + permanentEffects.toString() +
+                ", requirements=" + requirements.toString() +
+                '}';
+    }
 
 
 }
