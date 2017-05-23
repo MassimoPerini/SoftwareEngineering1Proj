@@ -14,8 +14,8 @@ public class HeroCard extends Card {
 	private ArrayList<Requirement> requirements;
 	private ArrayList<Effect> permanentEffects;
 
-    public HeroCard(String name, CardType cardType, ArrayList<Effect> effects, ArrayList<Effect> permanentEffects) {
-        super(name, cardType);
+    public HeroCard(String name, ArrayList<Effect> effects, ArrayList<Effect> permanentEffects) {
+        super(name);
         this.effects = effects;
         this.requirements = new ArrayList<>();
         this.permanentEffects = permanentEffects;
@@ -48,16 +48,6 @@ public class HeroCard extends Card {
     	return this.permanentEffects;
     }
 
-    public boolean areAllowedEffects()
-    {
-        for (Effect effect:effects)
-        {
-            boolean res = effect.isAllowed();
-            if (! res)
-                return false;
-        }
-        return true;
-    }
     //TODO da fare il toString
 
 

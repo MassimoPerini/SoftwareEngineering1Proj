@@ -35,4 +35,8 @@ public class ActionPlace {
 	public ArrayList<FamilyMember> getMembers() {
 		return members;
 	}
+
+	public ArrayList<Effect> getEffects() {
+		return effects;
+	}
 }

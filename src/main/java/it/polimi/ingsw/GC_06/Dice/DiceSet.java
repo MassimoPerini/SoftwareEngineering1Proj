@@ -18,6 +18,8 @@ public class DiceSet {
     }
 
     //TODO: HERE????  OBSERVER DESIGN PATTERN
+
+    
     public FamilyMember[] createFamilyMembers(boolean zeroFamiliar)
     {
         int i=0;

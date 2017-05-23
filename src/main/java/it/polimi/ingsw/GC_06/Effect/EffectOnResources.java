@@ -17,7 +17,7 @@ public class EffectOnResources implements Effect {
 
     public void execute(Player player){
        ResourceSet resourceSet =  player.getResourceSet();
-       resourceSet.variateResource(resourceSet);
+       resourceSet.variateResource(this.resourceSet);
     }
 
 

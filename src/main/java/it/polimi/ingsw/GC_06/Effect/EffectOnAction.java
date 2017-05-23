@@ -20,7 +20,7 @@ public class EffectOnAction implements Effect {
 
     @Override
     public void execute(Player player) {
-        action.setPlayer(player);
+    //    action.setPlayer(player);     //TODO chiedere a Martin
         action.execute();
     }
 }

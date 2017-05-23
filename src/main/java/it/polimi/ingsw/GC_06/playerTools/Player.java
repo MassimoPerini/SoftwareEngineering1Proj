@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.Card.Card;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.Loader.Setting;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,13 @@ public class Player {
 
             familyMembers.add(new FamilyMember());
         }
+    }
+
+    public Player (Player p)
+    {
+        this.resourceSet = new ResourceSet(p.getResourceSet());
+        this.PLAYER_ID = p.getPLAYER_ID();
+        //TODO complete here...
     }
 
     public PlayerBoard getPlayerBoard() {

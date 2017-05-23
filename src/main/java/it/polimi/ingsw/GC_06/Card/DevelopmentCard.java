@@ -18,17 +18,14 @@ public class DevelopmentCard extends Card
 
 //    private ResourceSet immediateRequirement;
 
-    public DevelopmentCard(CardType cardType, String name, int era, ArrayList<Effect> effects, ArrayList<Requirement> requirements, String idColour)
+    public DevelopmentCard(String name, int era, ArrayList<Effect> effects, ArrayList<Requirement> requirements, String idColour)
     {
-        super(name, cardType);
+        super(name);
         this.era = era;
         this.requirements = new ArrayList<>();
         this.effects = effects;
         this.idColour = idColour;
     }
-
-
-
 
     //E' una OR
     public boolean isSatisfied(ResourceSet resourceSet)
@@ -48,17 +45,6 @@ public class DevelopmentCard extends Card
     
     public ArrayList<Effect> getImmediateEffects() {
     	return this.immediateEffects;
-    }
-
-    public boolean areAllowedEffects()
-    {
-        for (Effect effect:effects)
-        {
-            boolean res = effect.isAllowed();
-            if (! res)
-                return false;
-        }
-        return true;
     }
 
     @Override

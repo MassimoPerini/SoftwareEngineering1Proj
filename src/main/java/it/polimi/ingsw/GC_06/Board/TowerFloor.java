@@ -29,8 +29,12 @@ public class TowerFloor {
         this.card = card;
     }
 
-    public DevelopmentCard getCard() {
+    DevelopmentCard getCard() {
         return card;
+    }
+    void setCard(DevelopmentCard c)
+    {
+        this.card = c;
     }
 
     public ActionPlace getActionPlace() {
@@ -41,6 +45,11 @@ public class TowerFloor {
         if (!isAllowed(familyMember))
             throw new IllegalStateException();
         return actionPlace.addFamilyMember(familyMember);
+    }
+
+    ArrayList<Effect> getEffects ()
+    {
+        return this.actionPlace.effects;
     }
 
     public boolean isAllowed(FamilyMember familyMember) {

@@ -9,17 +9,12 @@ import it.polimi.ingsw.GC_06.Resource.ResourceSet;
  */
 public class Card {
     private String name;
-    private CardType cardType;
  //   private ArrayList<Requirement> requirements;       //requisiti per l'utilizzo
 
 
-    public Card (String name, CardType cardType)
+    public Card (String name)
     {
         this.name = name;
-        this.cardType = cardType;
     }
 
-    public CardType getCardType() {
-        return cardType;
-    }
 }

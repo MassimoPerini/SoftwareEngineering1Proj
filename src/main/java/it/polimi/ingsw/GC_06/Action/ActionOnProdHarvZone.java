@@ -22,7 +22,7 @@ public class ActionOnProdHarvZone implements Action {
     private FamilyMember familyMember;
     private String colour;
     private int index;
-    //TODO da cambiare
+    //TODO da cambiare TUTTO (familymember e component)
 
 
     public ActionOnProdHarvZone(int point, Player player, FamilyMember familyMember, String colour, Component component) {
@@ -47,10 +47,9 @@ public class ActionOnProdHarvZone implements Action {
 
         //select the cards from the player's cardSet
 
-        LinkedList<DevelopmentCard> colouredCards;
 
         /**  this is an array of development cards*/
-        colouredCards = player.getPlayerBoard().getColouredCards(colour);
+        ArrayList<DevelopmentCard> colouredCards = colouredCards = player.getPlayerBoard().getColouredCards(colour);
 
         // for where we throw effects
 

@@ -18,6 +18,12 @@ public class ResourceSet {
         this.resources = new HashMap<>();
     }
 
+    public ResourceSet(ResourceSet resourceSet)
+    {
+        super();
+        this.resources = new HashMap<>(resourceSet.resources);      //TODO CHECK CLONE!
+    }
+
     private Iterator<Map.Entry<Resource, Integer>> getIterator (ResourceSet resourceSet)
     {
         Set<Map.Entry<Resource, Integer>> newRes = resourceSet.resources.entrySet();

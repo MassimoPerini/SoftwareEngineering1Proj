@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Action;
 
 import it.polimi.ingsw.GC_06.Board.Component;
+import it.polimi.ingsw.GC_06.Board.Market;
 import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.playerTools.Player;
@@ -15,11 +16,11 @@ public class MarketAction implements Action {
 
     private Player player;
     private FamilyMember familyMember;
-    private Component component;
+    private Market component;
     int index;
 
 
-    public MarketAction(Player player, FamilyMember familyMember, int index, Component component) {
+    public MarketAction(Player player, FamilyMember familyMember, int index, Market component) {
         this.player = player;
         this.familyMember = familyMember;
         this.index = index;
@@ -30,12 +31,9 @@ public class MarketAction implements Action {
     public void execute() {
 
         component.addFamilyMember(familyMember, index);
-        /** questa cosa non funzionerà ovviamente*/
-        /** ci sono delle cose da cambiare, io eliminerei il component*/
-        ArrayList<Effect> effects = component.getEffect();
+        ArrayList<Effect> effects = component.getEffect(index);
         //facciamo un ciclo
         for(Effect effect : effects){
-            //TODO definire meglio l'interfaccia
             effect.execute(player);
         }
     }

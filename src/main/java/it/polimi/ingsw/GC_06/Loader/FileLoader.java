@@ -65,6 +65,7 @@ public class FileLoader {
         return board;
     }
 
+
     public void writeBoard() throws IOException {
         int [] values = {1,3,5,7};
 
@@ -122,38 +123,39 @@ public class FileLoader {
 
     public void writeCards() throws IOException {
 
-        DevelopmentCard card1 = new DevelopmentCard(CardType.GREEN, "Villaggio minerario", 2);
+        DevelopmentCard card1 = new DevelopmentCard("Villaggio minerario", 2, new ArrayList<Effect>(), new ArrayList<Requirement>(), "green");
 
         ResourceSet res1 = new ResourceSet();
         res1.addResource(Resource.MONEY, 6);
 
-        DevelopmentCard card2 = new DevelopmentCard(CardType.BLUE, "Nobile", 3);
-        Requirement r = new Requirement(new ResourceSet(), res1);
-        card2.addRequirements(r);
+        ArrayList<Requirement> r = new ArrayList<>();
+        r.add(new Requirement(new ResourceSet(), res1));
+        DevelopmentCard card2 = new DevelopmentCard("Nobile",3, new ArrayList<Effect>(), r, "blue");
 
-        DevelopmentCard card3 = new DevelopmentCard(CardType.YELLOW, "Accademia militare", 3);
         ResourceSet res2 = new ResourceSet();
         res2.addResource(Resource.SERVANT, 1);
         res2.addResource(Resource.WOOD, 2);
         res2.addResource(Resource.STONE, 2);
-        r = new Requirement(new ResourceSet(), res2);
-        card3.addRequirements(r);
+        r = new ArrayList<>();
+        r.add(new Requirement(new ResourceSet(), res2));
+        DevelopmentCard card3 = new DevelopmentCard("Accademia militare", 3, new ArrayList<Effect>(), r, "yellow");
 
 
-        DevelopmentCard card4 = new DevelopmentCard(CardType.PURPLE, "Sostegno al papa", 3);
         res2 = new ResourceSet();
         res2.addResource(Resource.WOOD, 3);
         res2.addResource(Resource.MONEY, 4);
         res2.addResource(Resource.STONE, 3);
-        r = new Requirement(new ResourceSet(), res2);
-        card4.addRequirements(r);
+        r = new ArrayList<>();
+        r.add(new Requirement(new ResourceSet(), res2));
+
+
 
         res2 = new ResourceSet();
         res2.addResource(Resource.MILITARYPOINT, 5);
         res1 = new ResourceSet();
         res1.addResource(Resource.MILITARYPOINT, 10);
-        r = new Requirement(res1, res2);
-        card4.addRequirements(r);
+        r.add(new Requirement(res1, res2));
+        DevelopmentCard card4 = new DevelopmentCard( "Sostegno al papa", 3, new ArrayList<Effect>(), r, "purple");
 
         DevelopmentCard [] cards = {card1, card2, card3, card4};
 

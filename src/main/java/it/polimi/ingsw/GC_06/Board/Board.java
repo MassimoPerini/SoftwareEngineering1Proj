@@ -13,8 +13,6 @@ public class Board {
     private final ArrayList<ProdHarvZone> prodHarvZones;
     private final ArrayList<Council> councils;
 
-    //TODO DA RIFARE
-
     public Board(ArrayList<Tower> towers, ArrayList<Market> markets, ArrayList<ProdHarvZone> prodHarvZones, ArrayList<Council> councils)
     {
         super();
@@ -25,7 +23,7 @@ public class Board {
 
     }//TODO da integrare con il caricamento degli effetti da file, in modo da mettere gli effetti sui vari actionplace
 
-    //TODO remove
+    //TODO remove FIX here!
     public ArrayList<Tower> getTowers() {
         return towers;
     }

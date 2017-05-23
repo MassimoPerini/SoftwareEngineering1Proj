@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Action;
 
 import it.polimi.ingsw.GC_06.Board.Component;
+import it.polimi.ingsw.GC_06.Board.Council;
 import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.playerTools.Player;
@@ -13,12 +14,11 @@ import java.util.ArrayList;
 public class ActionOnCounsilPalace  implements Action {
 
     private Player player;
-    private ArrayList<Effect> effects;
-    private Component component;
+    private Council component;
     private FamilyMember familyMember;
     private int index;
 
-    public ActionOnCounsilPalace(Player player,Component component,FamilyMember familyMember, int index) {
+    public ActionOnCounsilPalace(Player player,Council component,FamilyMember familyMember, int index) {
 
         this.familyMember = familyMember;
         this.component = component;
@@ -29,19 +29,17 @@ public class ActionOnCounsilPalace  implements Action {
     @Override
     public void execute() {
 
-        effects = component.addFamilyMember(familyMember, index);
+        component.addFamilyMember(familyMember, index);
+        ArrayList<Effect> effects = component.getEffect(index);
         for(Effect effect : effects){
-            //TODO definire meglio l'interfaccia
             effect.execute(player);
         }
 
     }
 
-
-
     @Override
     public boolean isAllowed() {
-        return true;
+        return component.isAllowed(familyMember, index);
     }
 }
 

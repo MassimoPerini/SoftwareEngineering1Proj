@@ -2,10 +2,16 @@ package it.polimi.ingsw.GC_06.Action;
 
 import it.polimi.ingsw.GC_06.Board.Component;
 import it.polimi.ingsw.GC_06.Board.PlayerBoard;
+import it.polimi.ingsw.GC_06.Board.Tower;
 import it.polimi.ingsw.GC_06.Board.TowerFloor;
+import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.Card.Requirement;
 import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.Resource.Resource;
+import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.playerTools.Player;
+import javafx.application.Platform;
 
 
 import java.util.ArrayList;
@@ -17,41 +23,59 @@ public class ActionOnTower implements Action{
 
     private Player player;
     private FamilyMember familyMember;
-    private Component component;
-    private TowerFloor towerFloor;
-    int index;
+    private Tower component;
+    private int index;
+    private ResourceSet malusSet;
 
 
-    public ActionOnTower(Player player, TowerFloor towerFloor, Component component) {
+    public ActionOnTower(Player player, int index, Tower component, FamilyMember familyMember) {
         this.player = player;
-        this.towerFloor = towerFloor;
+        this.index = index;
         this.component = component;
+        this.familyMember = familyMember;
     }
 
     @Override
     public void execute() {
+
+        if (!isAllowed())
+            throw new IllegalStateException();
+
+
         ArrayList<Effect> effects;
 
         /**if we are in the real action we add the family member in the correct position*/
+
         if(familyMember!=null){
             component.addFamilyMember(familyMember, index);
         }
 
+        executePenality(player.getResourceSet());
 
-        effects = component.getEffect();
+        ArrayList<Requirement> satisfiedRequirements = new ArrayList<>();
+        ArrayList<Requirement> requirements =  component.getRequirement(index);
 
-        for(Effect effect : effects){
-            //TODO definire meglio l'interfaccia
-            effect.execute(player);
+        effects = component.getEffect(index);
+        executeEffects(player, effects);
+
+        /** we must control if the player can afford the card */
+        for(Requirement requirement : requirements){
+            if(requirement.isSatisfied(player.getResourceSet()))
+                satisfiedRequirements.add(requirement);
         }
 
-        /** we must controll if the player can afford the card */
-
-
+        if(satisfiedRequirements.size() == 1){
+                satisfiedRequirements.get(0).doIt(player.getResourceSet());
+        }
+        else{
+                //TODO sono cazzi amari
+        }
 
         /**we are adding the card to the player board*/
-        player.getPlayerBoard().getCards().put(towerFloor.getCard().getIdColour(), towerFloor.getCard());
+        DevelopmentCard c = component.pickCard(index);
+        player.getPlayerBoard().addCard(c);
 
+        executeEffects(player, c.getEffects());
 
     }
 
@@ -64,28 +88,54 @@ public class ActionOnTower implements Action{
     public boolean isAllowed() {
 
         /** è permessa solo quando non c'è un familiare sulla torre*/
-        return true;
-    }
-/**
-    private void payCard(){
 
-        int counter = 0;
-        ArrayList<Requirement> satisfiedRequirements = new ArrayList<>();
-        ArrayList<Requirement> requirements =  towerFloor.getCard().getRequirements();
-        //TODO parte della richiesta all'utente sulla scelta di pagamento
+
+        //Check posso piazzare il familiare (o virtuale)
+        if (!component.isAllowed(familyMember, index))
+            return false;
+
+        //Check board space
+
+        player.getPlayerBoard().canAdd(component.getCard(index));
+
+        //check prezzo
+
+        Player p = new Player(player);     //CLONE (I hope...) TODO
+
+        if (!executePenality(p.getResourceSet()))
+            return false;
+        //Check requirements (add plane and...)
+        //Start effect plane!
+
+        ArrayList<Effect> effects = component.getEffect(index);
+        executeEffects(p, effects);
+
+        ArrayList<Requirement> requirements =  component.getRequirement(index);
         for(Requirement requirement : requirements){
-            if(requirement.isSatisfied(player.getResources())){
-                satisfiedRequirements.add(requirement){
+            if(requirement.isSatisfied(p.getResourceSet())){
+                return true;
             }
         }
+        return false;
 
-        if(satisfiedRequirements.size() == 1){
-            requirement.doIt(player.getResources());
-        }
-        else{
-            //TODO sono cazzi amari
-        }
-        player.getResources().removeResource(card.);
     }
- */
+
+    private void executeEffects(Player p, ArrayList<Effect> effects)
+    {
+        for (Effect effect:effects)
+        {
+            effect.execute(p);
+        }
+    }
+
+    private boolean executePenality(ResourceSet resourceSet)
+    {
+        if (!component.isNoPenalityAllowed(familyMember, index))
+        {
+            if (!resourceSet.isIncluded(malusSet))
+                return false;
+            resourceSet.removeResource(malusSet);
+        }
+        return true;
+    }
 }

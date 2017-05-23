@@ -16,37 +16,48 @@ public class PlayerBoard {
      * This is the object which describes the "plancia"
      */
 
-   private HashMap<String,DevelopmentCard> cards = new HashMap<String,DevelopmentCard>();
+    private HashMap<String,ArrayList<DevelopmentCard>> cards;
+    private HashMap<String, Integer> maxCards;      //Il "limite" delle carte coltivazione
 
-    public HashMap<String, DevelopmentCard> getCards() {
-        return cards;
+    public PlayerBoard ()
+    {
+        this.cards = new HashMap<>();
+        this.maxCards = new HashMap<>();        //TODO da caricare da file + (observer?)
     }
-
-    public void setCards(HashMap<String, DevelopmentCard> cards) {
-        this.cards = cards;
-    }
-
 
 
     // adesso qui mettiamo il metodo per farci restituire un array di carte che vogliamo
 
-    public LinkedList<DevelopmentCard> getColouredCards(String colour){
+    public ArrayList<DevelopmentCard> getColouredCards(String colour){
+        ArrayList<DevelopmentCard> res = cards.get(colour);
+        if (res==null)
+            return new ArrayList<>();
+        return res;
+    }
 
-        Iterator it = cards.entrySet().iterator();
-        LinkedList<DevelopmentCard> colouredCards = new LinkedList<DevelopmentCard>();
-        while (it.hasNext()){
+    public void addCard(DevelopmentCard card)
+    {
+        if (!canAdd(card))
+            throw new IllegalStateException();
 
-            if(cards.keySet().equals(colour)){
-                /**
-                 * non sapevo il nome del metodo per farmi restituire il valore dalla hash map
-                 * comunque eccetto questo funziona
-                 */
-
-                colouredCards.add((DevelopmentCard) cards.values());
-            }
+        String idCard = card.getIdColour();
+        ArrayList<DevelopmentCard> cardsColor = cards.get(idCard);
+        if (cardsColor == null)
+        {
+            cardsColor = new ArrayList<>();
+            cardsColor.add(card);
         }
+        cardsColor.add(card);
+    }
 
-        return colouredCards;
-
+    public boolean canAdd (DevelopmentCard cardId)
+    {
+        Integer limit = maxCards.get(cardId.getIdColour());
+        ArrayList<DevelopmentCard> cardsKey = cards.get(cardId.getIdColour());
+        if (cardsKey == null)
+        {
+            return limit.intValue() > 0;
+        }
+        return limit.intValue() > cardsKey.size();
     }
 }
