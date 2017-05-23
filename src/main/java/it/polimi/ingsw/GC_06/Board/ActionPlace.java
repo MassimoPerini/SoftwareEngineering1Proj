@@ -6,9 +6,9 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.Effect.Effect;
 
 public class ActionPlace {
-    protected ArrayList<Effect> effects;
-	protected ArrayList<FamilyMember> members;
-	protected int price;
+    private ArrayList<Effect> effects;
+	private ArrayList<FamilyMember> members;
+	private int price;
 	
 	public ActionPlace(ArrayList<Effect> effect, int price) {
 		this.effects = effect;

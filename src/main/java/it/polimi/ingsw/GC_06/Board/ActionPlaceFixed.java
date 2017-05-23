@@ -18,7 +18,7 @@ public class ActionPlaceFixed extends ActionPlace {
 	@Override
 	public boolean isAllowed(FamilyMember member)
 	{
-		return super.isAllowed(member) && this.members.size() < maxFamilyMembers;
+		return super.isAllowed(member) && this.getMembers().size() < maxFamilyMembers;
 	}
 
 }
