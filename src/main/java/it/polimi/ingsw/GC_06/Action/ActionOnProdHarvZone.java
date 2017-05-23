@@ -69,6 +69,7 @@ public class ActionOnProdHarvZone implements Action {
 
     @Override
     public boolean isAllowed() {
+    	//TODO cazzo peppe scrivi i todo
         return true;
     }
 }
