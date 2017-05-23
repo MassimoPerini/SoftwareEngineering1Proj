@@ -28,12 +28,12 @@ public class App
         //TODO Implement FIX: https://futurestud.io/tutorials/how-to-deserialize-a-list-of-polymorphic-objects-with-gson
         //TODO http://stackoverflow.com/questions/19588020/gson-serialize-a-list-of-polymorphic-objects
 
-        if (board.getTowers().get(0).getTowerFloors().get(0).getActionPlace() instanceof ActionPlaceFixed){
+        //if (board.getTowers().get(0).getTowerFloors().get(0).getActionPlace() instanceof ActionPlaceFixed){
             System.out.println("Tutto ok, ho capito l'effetiva implementazione");
         }
-        else{
-            System.out.println("Errore, penso che sulla torre ci sia un actionplace generico");
-        }
+        //else{
+            //System.out.println("Errore, penso che sulla torre ci sia un actionplace generico");
+        //}
 /*
         Game gioco = Game.getInstance();
         CommandView view = new CommandView();
@@ -51,4 +51,4 @@ public class App
 */
 
     }
-}
+//}

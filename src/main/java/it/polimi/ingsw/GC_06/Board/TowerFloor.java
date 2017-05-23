@@ -49,7 +49,7 @@ public class TowerFloor {
 
     ArrayList<Effect> getEffects ()
     {
-        return this.actionPlace.effects;
+        return this.actionPlace.getEffects();
     }
 
     public boolean isAllowed(FamilyMember familyMember) {

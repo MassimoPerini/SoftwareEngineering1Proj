@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.State;
 
-import it.polimi.ingsw.GC_06.Player;
+import it.polimi.ingsw.GC_06.playerTools.*;
 
 import java.util.ArrayList;
 

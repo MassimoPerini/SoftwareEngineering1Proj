@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Board;
 import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 public class ProdHarvZone implements Component{
@@ -15,11 +16,11 @@ public class ProdHarvZone implements Component{
 	}
 
 	@Override
-	public ArrayList<Effect> addFamilyMember(FamilyMember familyMember, int index)
+	public void addFamilyMember(FamilyMember familyMember, int index)
 	{
 		if (!isAllowed(familyMember, index))
 			throw new IllegalStateException();
-		return actionPlaces.get(index).addFamilyMember(familyMember);
+		actionPlaces.get(index).addFamilyMember(familyMember);
 	}
 
 	@Override
@@ -44,5 +45,12 @@ public class ProdHarvZone implements Component{
 		//TODO malus su produzione se va in cella grande
 
 		return actionPlaces.get(index).isAllowed(familyMember);
+	}
+
+
+	@Override
+	public ArrayList<Effect> getEffect(int index) {
+		
+         return this.actionPlaces.get(index).getEffects();
 	}
 }

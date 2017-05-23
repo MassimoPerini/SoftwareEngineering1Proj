@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06;
 
 import it.polimi.ingsw.GC_06.Board.Board;
+import it.polimi.ingsw.GC_06.playerTools.*;
 import it.polimi.ingsw.GC_06.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
@@ -36,7 +37,7 @@ public class Game extends Observable{
     public void init()
     {
         DiceSet diceSet = new DiceSet();
-        Player player1 = new Player(PlayerId.BLUE, new ResourceSet(), diceSet.createFamilyMembers(true));
+        Player player1 = new Player("massimo");
      //   Board b = new Board();
 
         setChanged();
