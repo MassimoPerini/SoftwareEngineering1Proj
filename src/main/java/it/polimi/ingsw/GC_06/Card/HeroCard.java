@@ -44,7 +44,7 @@ public class HeroCard extends Card {
     	return this.effects;
     }
     
-    public ArrayList<Effect> getImmediateEffects() {
+    public ArrayList<Effect> getPermanentEffects() {
     	return this.permanentEffects;
     }
 

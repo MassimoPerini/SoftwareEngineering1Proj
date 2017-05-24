@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.Board.*;
 import it.polimi.ingsw.GC_06.Card.CardType;
 import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.Card.Requirement;
+import it.polimi.ingsw.GC_06.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.Resource.Resource;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
@@ -73,12 +74,21 @@ public class FileLoader {
 
         //Generate towers
         //TODO una torre contiene carte solo di un solo tipo
+        Resource [] resources = {Resource.WOOD, Resource.STONE, Resource.MILITARYPOINT, Resource.MONEY};
+
         for (int j=0;j<4;j++) {
             ArrayList<TowerFloor> towerFloors = new ArrayList<>();
             ResourceSet malus = new ResourceSet();
             malus.addResource(Resource.MONEY, 3);
             for (int i = 0; i < 4; i++) {
-                TowerFloor towerFloor = new TowerFloor(new ActionPlaceFixed(new ArrayList<>(), values[i], 1), null);
+                ResourceSet resourceSet = new ResourceSet();
+                if (i>2)
+                    resourceSet.addResource(resources[j], i-2);
+
+                EffectOnResources effectOnResources = new EffectOnResources(resourceSet);
+                ArrayList<Effect> effectOnResources1 = new ArrayList<>();
+                effectOnResources1.add(effectOnResources);
+                TowerFloor towerFloor = new TowerFloor(new ActionPlaceFixed(effectOnResources1, values[i], 1), null);
                 towerFloors.add(towerFloor);
             }
 

@@ -3,7 +3,11 @@ package it.polimi.ingsw.GC_06;
 import it.polimi.ingsw.GC_06.Board.ActionPlaceFixed;
 import it.polimi.ingsw.GC_06.Board.Board;
 import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.Effect.Effect;
+import it.polimi.ingsw.GC_06.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.View.FxControl;
+import it.polimi.ingsw.GC_06.View.FxLoader;
 
 import java.io.IOException;
 
@@ -20,16 +24,21 @@ public class App
 
     public static void main( String[] args ) throws IOException {
 
+        FxLoader fxLoader = new FxLoader();
+        fxLoader.initialize(args);
+
         FileLoader f = FileLoader.getFileLoader();
         DevelopmentCard [] developmentCards = f.loadCards();
-        f.writeBoard();
+        //TODO FIX PARSER EFFECTS POLYMORPHISM
+/*        f.writeBoard();
         Board board = f.loadBoard();
-
+        System.out.println( board.getTowers().get(0).getEffect(3).get(0) instanceof EffectOnResources);*/
         //TODO Implement FIX: https://futurestud.io/tutorials/how-to-deserialize-a-list-of-polymorphic-objects-with-gson
         //TODO http://stackoverflow.com/questions/19588020/gson-serialize-a-list-of-polymorphic-objects
 
         //if (board.getTowers().get(0).getTowerFloors().get(0).getActionPlace() instanceof ActionPlaceFixed){
-            System.out.println("Tutto ok, ho capito l'effetiva implementazione");
+
+
         }
         //else{
             //System.out.println("Errore, penso che sulla torre ci sia un actionplace generico");
