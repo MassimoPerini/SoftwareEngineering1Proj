@@ -10,8 +10,9 @@ import it.polimi.ingsw.GC_06.playerTools.Player;
 public class EffectOnResources implements Effect {
 
     private ResourceSet resourceSet;
-
+    
     public EffectOnResources(ResourceSet resourceSet) {
+    	super();
         this.resourceSet = resourceSet;
     }
 
