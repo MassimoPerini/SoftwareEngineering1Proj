@@ -19,20 +19,19 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class ActionOnTower implements Action{
+public class ActionOnTower extends Action{
 
     private Player player;
-    private FamilyMember familyMember;
     private Tower component;
     private int index;
     private ResourceSet malusSet;
 
 
     public ActionOnTower(Player player, int index, Tower component, FamilyMember familyMember) {
-        this.player = player;
+        super(familyMember);
+    	this.player = player;
         this.index = index;
         this.component = component;
-        this.familyMember = familyMember;
     }
 
     @Override
@@ -46,8 +45,8 @@ public class ActionOnTower implements Action{
 
         /**if we are in the real action we add the family member in the correct position*/
 
-        if(familyMember!=null){
-            component.addFamilyMember(familyMember, index);
+        if(getFamilyMember()!=null){
+            component.addFamilyMember(getFamilyMember(), index);
         }
 
         executePenality(player.getResourceSet());
@@ -91,7 +90,7 @@ public class ActionOnTower implements Action{
 
 
         //Check posso piazzare il familiare (o virtuale)
-        if (!component.isAllowed(familyMember, index))
+        if (!component.isAllowed(getFamilyMember(), index))
             return false;
 
         //Check board space
@@ -130,7 +129,7 @@ public class ActionOnTower implements Action{
 
     private boolean executePenality(ResourceSet resourceSet)
     {
-        if (!component.isNoPenalityAllowed(familyMember, index))
+        if (!component.isNoPenalityAllowed(getFamilyMember(), index))
         {
             if (!resourceSet.isIncluded(malusSet))
                 return false;

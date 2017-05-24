@@ -14,9 +14,8 @@ import java.util.LinkedList;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class ActionOnProdHarvZone implements Action {
+public class ActionOnProdHarvZone extends Action {
 
-    private int point;
     private Component component;
     private Player player;
     private FamilyMember familyMember;
@@ -25,11 +24,10 @@ public class ActionOnProdHarvZone implements Action {
     //TODO da cambiare TUTTO (familymember e component)
 
 
-    public ActionOnProdHarvZone(int point, Player player, FamilyMember familyMember, String colour, Component component) {
-        this.colour = colour;
-        this.point = point;
+    public ActionOnProdHarvZone(Player player, FamilyMember familyMember, String colour, Component component) {
+        super(familyMember);
+    	this.colour = colour; 
         this.player = player;
-        this.familyMember = familyMember;
         this.component = component;
     }
 

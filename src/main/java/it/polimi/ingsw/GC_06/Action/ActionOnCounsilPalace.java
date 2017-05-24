@@ -11,25 +11,24 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class ActionOnCounsilPalace  implements Action {
+public class ActionOnCounsilPalace extends Action {
 
     private Player player;
     private Council component;
-    private FamilyMember familyMember;
     private int index;
 
     public ActionOnCounsilPalace(Player player,Council component,FamilyMember familyMember, int index) {
 
-        this.familyMember = familyMember;
+        super(familyMember);
         this.component = component;
         this.player = player;
-        this.index = index;
+        
     }
 
     @Override
     public void execute() {
 
-        component.addFamilyMember(familyMember, index);
+        component.addFamilyMember(getFamilyMember(), index);
         ArrayList<Effect> effects = component.getEffect(index);
         for(Effect effect : effects){
             effect.execute(player);
@@ -39,7 +38,7 @@ public class ActionOnCounsilPalace  implements Action {
 
     @Override
     public boolean isAllowed() {
-        return component.isAllowed(familyMember, index);
+        return component.isAllowed(getFamilyMember(), index);
     }
 }
 

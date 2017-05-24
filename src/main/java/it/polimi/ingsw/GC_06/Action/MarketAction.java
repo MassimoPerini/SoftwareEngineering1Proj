@@ -12,17 +12,16 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class MarketAction implements Action {
+public class MarketAction extends Action {
 
     private Player player;
-    private FamilyMember familyMember;
     private Market component;
     int index;
 
 
     public MarketAction(Player player, FamilyMember familyMember, int index, Market component) {
-        this.player = player;
-        this.familyMember = familyMember;
+        super(familyMember);
+    	this.player = player;
         this.index = index;
         this.component = component;
     }
@@ -30,7 +29,7 @@ public class MarketAction implements Action {
     @Override
     public void execute() {
 
-        component.addFamilyMember(familyMember, index);
+        component.addFamilyMember(getFamilyMember(), index);
         ArrayList<Effect> effects = component.getEffect(index);
         //facciamo un ciclo
         for(Effect effect : effects){
@@ -44,7 +43,7 @@ public class MarketAction implements Action {
 
     @Override
     public boolean isAllowed() {
-        return component.isAllowed(familyMember, index) ;
+        return component.isAllowed(getFamilyMember(), index) ;
     }
 
 }
