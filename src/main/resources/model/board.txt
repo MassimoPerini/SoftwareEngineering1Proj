@@ -8,6 +8,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -23,6 +24,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -38,6 +40,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -53,6 +56,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {
                     "WOOD": 1
@@ -76,6 +80,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -91,6 +96,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -106,6 +112,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -121,6 +128,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {
                     "STONE": 1
@@ -144,6 +152,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -159,6 +168,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -174,6 +184,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -189,6 +200,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {
                     "MILITARYPOINT": 1
@@ -212,6 +224,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -227,6 +240,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -242,6 +256,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {}
                 }
@@ -257,6 +272,7 @@
             "maxFamilyMembers": 1,
             "effects": [
               {
+                "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {
                     "MONEY": 1

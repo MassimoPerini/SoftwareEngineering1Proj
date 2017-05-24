@@ -10,6 +10,9 @@ import it.polimi.ingsw.GC_06.View.FxControl;
 import it.polimi.ingsw.GC_06.View.FxLoader;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Hello world!
@@ -24,15 +27,22 @@ public class App
 
     public static void main( String[] args ) throws IOException {
 
+        FileLoader f = FileLoader.getFileLoader();
+    //    f.writeBoard();
+        f.writeCards();
+        Board board = f.loadBoard();
+        DevelopmentCard [] developmentCards = f.loadCards();
+
+        for (int i=0;i<board.getTowers().size();i++)
+        {
+            board.getTowers().get(i).setCards(new ArrayList<>(Arrays.asList(developmentCards)));
+            board.getTowers().get(i).shuffle();
+        }
+
         FxLoader fxLoader = new FxLoader();
         fxLoader.initialize(args);
 
-        FileLoader f = FileLoader.getFileLoader();
-        DevelopmentCard [] developmentCards = f.loadCards();
-        //TODO FIX PARSER EFFECTS POLYMORPHISM
-/*        f.writeBoard();
-        Board board = f.loadBoard();
-        System.out.println( board.getTowers().get(0).getEffect(3).get(0) instanceof EffectOnResources);*/
+
         //TODO Implement FIX: https://futurestud.io/tutorials/how-to-deserialize-a-list-of-polymorphic-objects-with-gson
         //TODO http://stackoverflow.com/questions/19588020/gson-serialize-a-list-of-polymorphic-objects
 

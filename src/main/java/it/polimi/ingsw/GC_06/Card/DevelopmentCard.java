@@ -18,9 +18,10 @@ public class DevelopmentCard extends Card
 
 //    private ResourceSet immediateRequirement;
 
-    public DevelopmentCard(String name, int era, ArrayList<Effect> effects, ArrayList<Requirement> requirements, String idColour)
+    public DevelopmentCard(String name, int era, ArrayList<Effect> effects, ArrayList<Requirement> requirements, ArrayList<Effect> immediate, String idColour)
     {
         super(name);
+        this.immediateEffects = immediate;
         this.era = era;
         this.requirements = new ArrayList<>();
         this.effects = effects;
@@ -47,14 +48,6 @@ public class DevelopmentCard extends Card
     	return this.immediateEffects;
     }
 
-    @Override
-    public String toString() {
-        return "DevelopmentCard{" +
-                "effects=" + effects.toString() +
-                ", era=" + era +
-                ", requirements=" + requirements.toString() +
-                '}';
-    }
 
     public String getIdColour() {
         return idColour;

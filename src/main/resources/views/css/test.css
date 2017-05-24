@@ -1,4 +1,7 @@
-.test
-{
-    -fx-background-color: blue;
+#board{
+    -fx-background-image: url("../resources/gameboard_small.jpeg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 800 1103;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
 }

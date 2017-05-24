@@ -16,6 +16,7 @@ public class Tower implements Component{
     private ArrayList<TowerFloor> towerFloors = new ArrayList<>();
     private int maxSamePlayerFamilyMember;
     private int minFamilyMembersMalus;
+    private ArrayList<DevelopmentCard> cards;
 
     public Tower(ArrayList<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus, ResourceSet malusSet){
     	this.towerFloors = floors;
@@ -68,6 +69,20 @@ public class Tower implements Component{
     @Override
     public ArrayList<Effect> getEffect(int index) {
         return this.towerFloors.get(index).getEffects();
+    }
+
+    public void setCards(ArrayList<DevelopmentCard> cards)
+    {
+        this.cards = cards;
+    }
+
+    public void shuffle()
+    {
+        for (int i=0;i<this.towerFloors.size();i++)
+        {
+            this.towerFloors.get(i).setCard(cards.get(0));
+            cards.remove(0);
+        }
     }
 
     public ArrayList<Requirement> getRequirement(int index)

@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.Board.*;
 import it.polimi.ingsw.GC_06.Card.CardType;
 import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.Card.Requirement;
+import it.polimi.ingsw.GC_06.Effect.EffectOnAction;
 import it.polimi.ingsw.GC_06.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.Resource.Resource;
 import it.polimi.ingsw.GC_06.Resource.ResourceSet;
@@ -48,8 +49,11 @@ public class FileLoader {
 
     public DevelopmentCard[] loadCards() throws IOException {
 
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(cardsRootPath));
-        DevelopmentCard [] cards = gson.fromJson(fr , DevelopmentCard [].class);
+        DevelopmentCard [] cards = gson2.fromJson(fr , DevelopmentCard [].class);
         fr.close();
         return cards;
     //    System.out.println(cards[3].toString());
@@ -58,8 +62,10 @@ public class FileLoader {
     public Board loadBoard() throws IOException {
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(boardRootPath));
 
-        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
-        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
+        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
+
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).create();
         Board board = gson2.fromJson(fr, Board.class);
 
         fr.close();
@@ -125,22 +131,24 @@ public class FileLoader {
 
         FileWriter fw = new FileWriter("src/main/resources/model/board.txt");
 
-        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
-        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
+        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
+
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).create();
         gson2.toJson(b, fw);
         fw.close();
     }
 
     public void writeCards() throws IOException {
 
-        DevelopmentCard card1 = new DevelopmentCard("Villaggio minerario", 2, new ArrayList<Effect>(), new ArrayList<Requirement>(), "green");
+        DevelopmentCard card1 = new DevelopmentCard("Villaggio minerario", 2, new ArrayList<Effect>(), new ArrayList<Requirement>(),new ArrayList<Effect>(), "green");
 
         ResourceSet res1 = new ResourceSet();
         res1.addResource(Resource.MONEY, 6);
 
         ArrayList<Requirement> r = new ArrayList<>();
         r.add(new Requirement(new ResourceSet(), res1));
-        DevelopmentCard card2 = new DevelopmentCard("Nobile",3, new ArrayList<Effect>(), r, "blue");
+        DevelopmentCard card2 = new DevelopmentCard("Nobile",3, new ArrayList<Effect>(), r,new ArrayList<Effect>(), "blue");
 
         ResourceSet res2 = new ResourceSet();
         res2.addResource(Resource.SERVANT, 1);
@@ -148,7 +156,7 @@ public class FileLoader {
         res2.addResource(Resource.STONE, 2);
         r = new ArrayList<>();
         r.add(new Requirement(new ResourceSet(), res2));
-        DevelopmentCard card3 = new DevelopmentCard("Accademia militare", 3, new ArrayList<Effect>(), r, "yellow");
+        DevelopmentCard card3 = new DevelopmentCard("Accademia militare", 3, new ArrayList<Effect>(), r,new ArrayList<Effect>(), "yellow");
 
 
         res2 = new ResourceSet();
@@ -165,14 +173,17 @@ public class FileLoader {
         res1 = new ResourceSet();
         res1.addResource(Resource.MILITARYPOINT, 10);
         r.add(new Requirement(res1, res2));
-        DevelopmentCard card4 = new DevelopmentCard( "Sostegno al papa", 3, new ArrayList<Effect>(), r, "purple");
+        DevelopmentCard card4 = new DevelopmentCard( "Sostegno al papa", 3, new ArrayList<Effect>(), r, new ArrayList<Effect>(),"purple");
 
         DevelopmentCard [] cards = {card1, card2, card3, card4};
 
         //TODO FIX HERE (relative path!)
 
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+
         FileWriter fw = new FileWriter("src/main/resources/model/cards.txt");
-        this.gson.toJson(cards, fw);
+        gson2.toJson(cards, fw);
         fw.close();
     }
 
