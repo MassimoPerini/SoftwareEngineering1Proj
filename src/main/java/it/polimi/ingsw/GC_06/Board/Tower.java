@@ -1,24 +1,24 @@
 package it.polimi.ingsw.GC_06.Board;
 
-import it.polimi.ingsw.GC_06.Card.Card;
 import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.Card.Requirement;
 import it.polimi.ingsw.GC_06.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.Resource.ResourceSet;
 
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by massimo on 13/05/17.
  */
 public class Tower implements Component{
 
-    private ArrayList<TowerFloor> towerFloors = new ArrayList<>();
+    private List<TowerFloor> towerFloors;
     private int maxSamePlayerFamilyMember;
     private int minFamilyMembersMalus;
-    private ArrayList<DevelopmentCard> cards;
+    private List<DevelopmentCard> cards;
 
-    public Tower(ArrayList<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus, ResourceSet malusSet){
+    public Tower(List<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus){
     	this.towerFloors = floors;
     	this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
     	this.minFamilyMembersMalus = minFamilyMembersMalus;
@@ -32,7 +32,7 @@ public class Tower implements Component{
 
     }
 
-    public boolean isNoPenalityAllowed(FamilyMember familyMember, int index)
+    public boolean isNoPenalityAllowed()
     {
         int familyMemberCount = 0;
         for (TowerFloor towerFloor : towerFloors)
@@ -54,7 +54,7 @@ public class Tower implements Component{
         {
             for (FamilyMember familyMember1 : towerFloor.getActionPlace().getMembers())     //Se ci sono + familiari per effetto di carte eroe...
             {
-                if (familyMember1.getPlayerUserName().equals(familyMember) && !familyMember1.isNeutral())
+                if (familyMember1.getPlayerUserName().equals(familyMember.getPlayerUserName()) && !familyMember1.isNeutral())
                 {
                     samePlayerFamilyMember++;
                 }
@@ -71,7 +71,7 @@ public class Tower implements Component{
         return this.towerFloors.get(index).getEffects();
     }
 
-    public void setCards(ArrayList<DevelopmentCard> cards)
+    public void setCards(List<DevelopmentCard> cards)
     {
         this.cards = cards;
     }
@@ -85,7 +85,7 @@ public class Tower implements Component{
         }
     }
 
-    public ArrayList<Requirement> getRequirement(int index)
+    public List<Requirement> getRequirement(int index)
     {
         return this.towerFloors.get(index).getCard().getRequirements();
     }

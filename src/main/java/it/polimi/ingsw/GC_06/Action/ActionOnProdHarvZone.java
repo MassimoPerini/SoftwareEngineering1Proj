@@ -35,7 +35,7 @@ public class ActionOnProdHarvZone extends Action {
 
     @Override
     public void execute() {
-        ArrayList<Effect> effects = new ArrayList<Effect>();
+        ArrayList<Effect> effects = new ArrayList<>();
 
         if(familyMember!=null){
             component.addFamilyMember(familyMember, index);
@@ -47,7 +47,7 @@ public class ActionOnProdHarvZone extends Action {
 
 
         /**  this is an array of development cards*/
-        ArrayList<DevelopmentCard> colouredCards = colouredCards = player.getPlayerBoard().getColouredCards(colour);
+        ArrayList<DevelopmentCard> colouredCards = player.getPlayerBoard().getColouredCards(colour);
 
         // for where we throw effects
 

@@ -15,6 +15,7 @@ import javafx.application.Platform;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by giuseppe on 5/20/17.
@@ -52,7 +53,7 @@ public class ActionOnTower extends Action{
         executePenality(player.getResourceSet());
 
         ArrayList<Requirement> satisfiedRequirements = new ArrayList<>();
-        ArrayList<Requirement> requirements =  component.getRequirement(index);
+        List<Requirement> requirements =  component.getRequirement(index);
 
         effects = component.getEffect(index);
         executeEffects(player, effects);
@@ -109,7 +110,7 @@ public class ActionOnTower extends Action{
         ArrayList<Effect> effects = component.getEffect(index);
         executeEffects(p, effects);
 
-        ArrayList<Requirement> requirements =  component.getRequirement(index);
+        List<Requirement> requirements =  component.getRequirement(index);
         for(Requirement requirement : requirements){
             if(requirement.isSatisfied(p.getResourceSet())){
                 return true;
@@ -129,7 +130,7 @@ public class ActionOnTower extends Action{
 
     private boolean executePenality(ResourceSet resourceSet)
     {
-        if (!component.isNoPenalityAllowed(getFamilyMember(), index))
+        if (!component.isNoPenalityAllowed())
         {
             if (!resourceSet.isIncluded(malusSet))
                 return false;

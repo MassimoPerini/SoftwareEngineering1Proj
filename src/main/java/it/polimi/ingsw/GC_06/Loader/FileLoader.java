@@ -98,7 +98,7 @@ public class FileLoader {
                 towerFloors.add(towerFloor);
             }
 
-            Tower tower = new Tower(towerFloors, 1, 1, malus);
+            Tower tower = new Tower(towerFloors, 1, 1);
             towers.add(tower);
         }
 
