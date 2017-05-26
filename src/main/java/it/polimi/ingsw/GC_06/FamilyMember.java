@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06;
 
-import it.polimi.ingsw.GC_06.Dice.DiceColor;
+import it.polimi.ingsw.GC_06.model.Dice.DiceColor;
 
 import java.util.Observable;
 import java.util.Observer;

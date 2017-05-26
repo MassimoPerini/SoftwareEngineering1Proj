@@ -1,13 +1,9 @@
 package it.polimi.ingsw.GC_06;
 
-import it.polimi.ingsw.GC_06.Board.Board;
-import it.polimi.ingsw.GC_06.playerTools.*;
-import it.polimi.ingsw.GC_06.Dice.DiceSet;
-import it.polimi.ingsw.GC_06.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.*;
+import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 
 import java.util.Observable;
-import java.util.Observer;
-import java.util.Scanner;
 
 /**
  * Created by massimo on 12/05/17.

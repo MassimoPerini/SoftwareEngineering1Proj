@@ -1,18 +1,13 @@
 package it.polimi.ingsw.GC_06;
 
-import it.polimi.ingsw.GC_06.Board.ActionPlaceFixed;
-import it.polimi.ingsw.GC_06.Board.Board;
-import it.polimi.ingsw.GC_06.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.Effect.Effect;
-import it.polimi.ingsw.GC_06.Effect.EffectOnResources;
-import it.polimi.ingsw.GC_06.Loader.FileLoader;
-import it.polimi.ingsw.GC_06.View.FxControl;
+import it.polimi.ingsw.GC_06.model.Board.Board;
+import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.View.FxLoader;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Hello world!
