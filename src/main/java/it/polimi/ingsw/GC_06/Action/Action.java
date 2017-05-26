@@ -14,9 +14,9 @@ public abstract class Action {
 
     public abstract void  execute();
     public abstract boolean isAllowed();
-    public Action(FamilyMember familyMember) {
+    public Action(FamilyMember familyMember, int value) {
     	this.familyMember = familyMember;
-    	this.value = familyMember.getValue();
+    	this.value = value;
     }
     public int getValue() {
     	return this.value;

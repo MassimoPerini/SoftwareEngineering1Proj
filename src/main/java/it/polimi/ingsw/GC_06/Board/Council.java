@@ -16,6 +16,7 @@ public class Council implements Component {
 	public void addFamilyMember(FamilyMember familyMember, int index) {
 		if (!isAllowed(familyMember, index))
 			throw new IllegalStateException();
+		this.actionPlaces.get(index).addFamilyMember(familyMember);
 	}
 
 	@Override

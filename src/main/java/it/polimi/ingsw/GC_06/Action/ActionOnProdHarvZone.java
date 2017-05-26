@@ -24,8 +24,8 @@ public class ActionOnProdHarvZone extends Action {
     //TODO da cambiare TUTTO (familymember e component)
 
 
-    public ActionOnProdHarvZone(Player player, FamilyMember familyMember, String colour, Component component) {
-        super(familyMember);
+    public ActionOnProdHarvZone(Player player, FamilyMember familyMember, String colour, Component component, int value) {
+        super(familyMember, value);
     	this.colour = colour; 
         this.player = player;
         this.component = component;

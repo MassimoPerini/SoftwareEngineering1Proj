@@ -29,6 +29,7 @@ public class Tower implements Component{
 
         if (!isAllowed(familyMember, index))
             throw new IllegalStateException();
+        this.towerFloors.get(index).addFamilyMember(familyMember);
 
     }
 

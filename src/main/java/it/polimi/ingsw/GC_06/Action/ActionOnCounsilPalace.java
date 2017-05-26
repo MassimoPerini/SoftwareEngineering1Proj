@@ -17,11 +17,12 @@ public class ActionOnCounsilPalace extends Action {
     private Council component;
     private int index;
 
-    public ActionOnCounsilPalace(Player player,Council component,FamilyMember familyMember, int index) {
+    public ActionOnCounsilPalace(Player player,Council component,FamilyMember familyMember, int index, int value) {
 
-        super(familyMember);
+        super(familyMember, value);
         this.component = component;
         this.player = player;
+        this.index = index;
         
     }
 

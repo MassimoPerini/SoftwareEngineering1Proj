@@ -19,8 +19,8 @@ public class MarketAction extends Action {
     int index;
 
 
-    public MarketAction(Player player, FamilyMember familyMember, int index, Market component) {
-        super(familyMember);
+    public MarketAction(Player player, FamilyMember familyMember, int index, Market component, int value) {
+        super(familyMember, value);
     	this.player = player;
         this.index = index;
         this.component = component;

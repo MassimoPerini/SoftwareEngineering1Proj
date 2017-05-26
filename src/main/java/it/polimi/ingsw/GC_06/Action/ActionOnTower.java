@@ -28,8 +28,8 @@ public class ActionOnTower extends Action{
     private ResourceSet malusSet;
 
 
-    public ActionOnTower(Player player, int index, Tower component, FamilyMember familyMember) {
-        super(familyMember);
+    public ActionOnTower(Player player, int index, Tower component, FamilyMember familyMember, int value) {
+        super(familyMember, value);
     	this.player = player;
         this.index = index;
         this.component = component;
