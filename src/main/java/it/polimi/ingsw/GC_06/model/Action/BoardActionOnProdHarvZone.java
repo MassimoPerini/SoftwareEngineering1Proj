@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class ActionOnProdHarvZone extends Action {
+public class BoardActionOnProdHarvZone extends BoardAction {
 
     private Component component;
     private Player player;
@@ -21,7 +21,7 @@ public class ActionOnProdHarvZone extends Action {
     //TODO da cambiare TUTTO (familymember e component)
 
 
-    public ActionOnProdHarvZone(Player player, FamilyMember familyMember, String colour, Component component, int value) {
+    public BoardActionOnProdHarvZone(Player player, FamilyMember familyMember, String colour, Component component, int value) {
         super(familyMember, value);
     	this.colour = colour; 
         this.player = player;

@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class ActionOnTower extends Action{
+public class BoardActionOnTower extends BoardAction {
 
     private Player player;
     private Tower component;
@@ -23,7 +23,7 @@ public class ActionOnTower extends Action{
     private ResourceSet malusSet;
 
 
-    public ActionOnTower(Player player, int index, Tower component, FamilyMember familyMember, int value) {
+    public BoardActionOnTower(Player player, int index, Tower component, FamilyMember familyMember, int value) {
         super(familyMember, value);
     	this.player = player;
         this.index = index;

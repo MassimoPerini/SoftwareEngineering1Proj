@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.View;
 
 import it.polimi.ingsw.GC_06.ViewController.PlaneViewController;
-import it.polimi.ingsw.GC_06.ViewController.RootViewController;
+import it.polimi.ingsw.GC_06.ViewController.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -35,7 +35,7 @@ public class FxLoader extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setController(new RootViewController());
+        loader.setController(new MainController());
         Pane root = FXMLLoader.load(getClass().getResource("/views/fxml/mainBoard.fxml"));
 
         HBox towerArea = new HBox();

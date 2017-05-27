@@ -1,24 +1,11 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
-import it.polimi.ingsw.GC_06.FamilyMember;
-
 /**
- * Created by giuseppe on 5/20/17.
+ * Created by massimo on 26/05/17.
  */
-public abstract class Action {
-	private int value;
-	private FamilyMember familyMember;
+public interface Action {
 
-    public abstract void  execute();
-    public abstract boolean isAllowed();
-    public Action(FamilyMember familyMember, int value) {
-    	this.familyMember = familyMember;
-    	this.value = value;
-    }
-    public int getValue() {
-    	return this.value;
-    }
-    public FamilyMember getFamilyMember() {
-    	return this.familyMember;
-    }
+    void execute();
+    boolean isAllowed();
+
 }
