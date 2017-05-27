@@ -38,7 +38,7 @@ public class Tower implements Component{
         int familyMemberCount = 0;
         for (TowerFloor towerFloor : towerFloors)
         {
-            for (FamilyMember familyMember1 : towerFloor.getActionPlace().getMembers()) {     //Se ci sono + familiari per effetto di carte eroe...
+            for (FamilyMember familyMember1 : towerFloor.getSmallActionPlace().getMembers()) {     //Se ci sono + familiari per effetto di carte eroe...
                 familyMemberCount++;
             }
         }
@@ -53,7 +53,7 @@ public class Tower implements Component{
 
         for (TowerFloor towerFloor : towerFloors)
         {
-            for (FamilyMember familyMember1 : towerFloor.getActionPlace().getMembers())     //Se ci sono + familiari per effetto di carte eroe...
+            for (FamilyMember familyMember1 : towerFloor.getSmallActionPlace().getMembers())     //Se ci sono + familiari per effetto di carte eroe...
             {
                 if (familyMember1.getPlayerUserName().equals(familyMember.getPlayerUserName()) && !familyMember1.isNeutral())
                 {

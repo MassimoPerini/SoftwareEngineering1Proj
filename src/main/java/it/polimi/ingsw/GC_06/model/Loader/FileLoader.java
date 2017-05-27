@@ -61,7 +61,7 @@ public class FileLoader {
     public Board loadBoard() throws IOException {
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(boardRootPath));
 
-        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(SmallActionPlace.class, "type").registerSubtype(SmallActionPlace.class).registerSubtype(ActionPlaceFixed.class);
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
 
         Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).create();
@@ -106,31 +106,31 @@ public class FileLoader {
         //Generate production/harvest
         ArrayList<ProdHarvZone> prodHarvZones = new ArrayList<>();
         for (int i=0;i<2;i++) {
-            ArrayList<ActionPlace> prodHarvActionPlaces = new ArrayList<>();
-            prodHarvActionPlaces.add(new ActionPlaceFixed(new ArrayList<Effect>(), 1, 1));
-            prodHarvActionPlaces.add(new ActionPlace(new ArrayList<Effect>(), 1));
-            ProdHarvZone prodHarvZone = new ProdHarvZone(prodHarvActionPlaces);
+            ArrayList<SmallActionPlace> prodHarvSmallActionPlaces = new ArrayList<>();
+            prodHarvSmallActionPlaces.add(new ActionPlaceFixed(new ArrayList<Effect>(), 1, 1));
+            prodHarvSmallActionPlaces.add(new SmallActionPlace(new ArrayList<Effect>(), 1));
+            ProdHarvZone prodHarvZone = new ProdHarvZone(prodHarvSmallActionPlaces);
             prodHarvZones.add(prodHarvZone);
         }
 
         ArrayList<Market> markets = new ArrayList<>();
-        ArrayList <ActionPlace> marketActionPlaces = new ArrayList<>();
+        ArrayList <SmallActionPlace> marketSmallActionPlaces = new ArrayList<>();
         for (int i=0;i<5;i++)
         {
-            marketActionPlaces.add(new ActionPlaceFixed(new ArrayList<>(), 1, 1));    //TODO EFFECT???
+            marketSmallActionPlaces.add(new ActionPlaceFixed(new ArrayList<>(), 1, 1));    //TODO EFFECT???
         }
-        markets.add(new Market(marketActionPlaces));
+        markets.add(new Market(marketSmallActionPlaces));
 
         ArrayList<Council> councils = new ArrayList<>();
-        ArrayList<ActionPlace> actionPlaces = new ArrayList<ActionPlace>();
-        actionPlaces.add(new ActionPlace(new ArrayList<Effect>(), 1));
-        councils.add(new Council(actionPlaces));
+        ArrayList<SmallActionPlace> smallActionPlaces = new ArrayList<SmallActionPlace>();
+        smallActionPlaces.add(new SmallActionPlace(new ArrayList<Effect>(), 1));
+        councils.add(new Council(smallActionPlaces));
 
         Board b = new Board(towers, markets, prodHarvZones, councils);
 
         FileWriter fw = new FileWriter("src/main/resources/model/board.txt");
 
-        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(SmallActionPlace.class, "type").registerSubtype(SmallActionPlace.class).registerSubtype(ActionPlaceFixed.class);
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
 
         Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).create();

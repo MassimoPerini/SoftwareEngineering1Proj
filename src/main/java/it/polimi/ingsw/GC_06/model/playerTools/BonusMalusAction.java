@@ -9,7 +9,7 @@ public class BonusMalusAction implements BonusMalus {
 	private ArrayList<Action> actions;
 
 	@Override
-	public void filter() {
+	public void modify() {
 		
 	}
 

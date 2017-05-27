@@ -1,42 +1,16 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
-import java.util.ArrayList;
-
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 
-public class ActionPlace {
-    private ArrayList<Effect> effects;
-	private ArrayList<FamilyMember> members;
-	private int price;
-	
-	public ActionPlace(ArrayList<Effect> effect, int price) {
-		this.effects = effect;
-		this.members = new ArrayList<>();
-		this.price = price;
-		
-	}
+import java.util.ArrayList;
 
-	//TODO N.B. Sarebbe meglio una delega???
+/**
+ * Created by giuseppe on 5/27/17.
+ */
+public interface ActionPlace {
 
-	public boolean isAllowed (FamilyMember member)
-	{
-		return member.getValue() >= price;
-	}
-
-    public ArrayList<Effect> addFamilyMember(FamilyMember familyMember)
-	{
-		if (!isAllowed(familyMember))
-			throw new IllegalStateException();
-		this.members.add(familyMember);
-		return effects;
-	}
-
-	public ArrayList<FamilyMember> getMembers() {
-		return members;
-	}
-
-	public ArrayList<Effect> getEffects() {
-		return effects;
-	}
+    ArrayList<Effect> addFamilyMember(FamilyMember familyMember);
+    boolean isAllowed(FamilyMember familyMember);
+    ArrayList<Effect> getEffects();
 }

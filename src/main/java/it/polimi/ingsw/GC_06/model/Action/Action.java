@@ -6,8 +6,10 @@ import it.polimi.ingsw.GC_06.FamilyMember;
  * Created by giuseppe on 5/20/17.
  */
 public abstract class Action {
-	private int value;
+
+    private boolean RealAction;
 	private FamilyMember familyMember;
+    private int value = familyMember.getValue();
 
     public abstract void  execute();
     public abstract boolean isAllowed();
@@ -21,4 +23,6 @@ public abstract class Action {
     public FamilyMember getFamilyMember() {
     	return this.familyMember;
     }
+
+
 }

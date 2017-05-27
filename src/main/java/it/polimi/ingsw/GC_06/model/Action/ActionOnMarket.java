@@ -11,14 +11,14 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class MarketAction extends Action {
+public class ActionOnMarket extends Action {
 
     private Player player;
     private Market component;
     int index;
 
 
-    public MarketAction(Player player, FamilyMember familyMember, int index, Market component, int value) {
+    public ActionOnMarket(Player player, FamilyMember familyMember, int index, Market component, int value) {
         super(familyMember, value);
     	this.player = player;
         this.index = index;
@@ -28,11 +28,18 @@ public class MarketAction extends Action {
     @Override
     public void execute() {
 
-        component.addFamilyMember(getFamilyMember(), index);
-        ArrayList<Effect> effects = component.getEffect(index);
-        //facciamo un ciclo
-        for(Effect effect : effects){
-            effect.execute(player);
+        if(!isAllowed()){
+            return ;
+        }
+
+        else {
+
+            component.addFamilyMember(getFamilyMember(), index);
+            ArrayList<Effect> effects = component.getEffect(index);
+            //facciamo un ciclo
+            for (Effect effect : effects) {
+                effect.execute(player);
+            }
         }
     }
 /**
@@ -42,7 +49,8 @@ public class MarketAction extends Action {
 
     @Override
     public boolean isAllowed() {
-        return component.isAllowed(getFamilyMember(), index) ;
+
+        return false;
     }
 
 }

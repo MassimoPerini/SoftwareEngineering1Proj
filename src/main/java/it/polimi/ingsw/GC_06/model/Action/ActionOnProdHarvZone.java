@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
 import it.polimi.ingsw.GC_06.model.Board.Component;
+import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
@@ -13,19 +14,19 @@ import java.util.ArrayList;
  */
 public class ActionOnProdHarvZone extends Action {
 
-    private Component component;
+    private ProdHarvZone prodHarvZone;
     private Player player;
     private FamilyMember familyMember;
     private String colour;
     private int index;
-    //TODO da cambiare TUTTO (familymember e component)
+    //TODO da cambiare TUTTO (familymember e prodHarvZone)
 
 
-    public ActionOnProdHarvZone(Player player, FamilyMember familyMember, String colour, Component component, int value) {
+    public ActionOnProdHarvZone(Player player, FamilyMember familyMember, String colour, ProdHarvZone prodHarvZone, int value) {
         super(familyMember, value);
     	this.colour = colour; 
         this.player = player;
-        this.component = component;
+        this.prodHarvZone = prodHarvZone ;
     }
 
 
@@ -35,7 +36,7 @@ public class ActionOnProdHarvZone extends Action {
         ArrayList<Effect> effects = new ArrayList<>();
 
         if(familyMember!=null){
-            component.addFamilyMember(familyMember, index);
+            prodHarvZone.addFamilyMember(familyMember, index);
         }
 
 
@@ -65,6 +66,7 @@ public class ActionOnProdHarvZone extends Action {
     @Override
     public boolean isAllowed() {
     	//TODO cazzo peppe scrivi i todo
+
         return true;
     }
 }

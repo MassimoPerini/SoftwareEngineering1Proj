@@ -7,25 +7,31 @@ import java.util.ArrayList;
 
 public class Market implements Component
 {
-	private ArrayList<ActionPlace> actionPlaces;
+	private ArrayList<SmallActionPlace> smallActionPlaces;
 	
-	public Market(ArrayList<ActionPlace> places) {
-		this.actionPlaces = places;
+	public Market(ArrayList<SmallActionPlace> places) {
+		this.smallActionPlaces = places;
 	}
 
 	@Override
 	public void addFamilyMember(FamilyMember familyMember, int index) {
-		actionPlaces.get(index).addFamilyMember(familyMember);
+		smallActionPlaces.get(index).addFamilyMember(familyMember);
 	}
 
 	@Override
 	public boolean isAllowed(FamilyMember familyMember, int index) {
 
-		return actionPlaces.get(index).isAllowed(familyMember);
+		return smallActionPlaces.get(index).isAllowed(familyMember);
+	}
+
+	public ArrayList<SmallActionPlace> getSmallActionPlaces() {
+		return smallActionPlaces;
 	}
 
 	@Override
 	public ArrayList<Effect> getEffect(int index) {
-		return actionPlaces.get(index).getEffects();
+		return smallActionPlaces.get(index).getEffects();
 	}
+
+
 }
