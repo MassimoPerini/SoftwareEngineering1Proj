@@ -6,9 +6,9 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import java.util.ArrayList;
 
 public class Council implements Component {
-	private ArrayList<SmallActionPlace> smallActionPlaces;
+	private ArrayList<ActionPlace> smallActionPlaces;
 	
-	public Council(ArrayList<SmallActionPlace> smallActionPlaces) {
+	public Council(ArrayList<ActionPlace> smallActionPlaces) {
 		this.smallActionPlaces = smallActionPlaces;
 	}
 

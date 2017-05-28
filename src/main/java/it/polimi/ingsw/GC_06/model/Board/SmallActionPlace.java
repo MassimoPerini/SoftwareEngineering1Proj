@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.model.Board;
+/**package it.polimi.ingsw.GC_06.model.Board;
 
 import java.util.ArrayList;
 
@@ -52,4 +52,4 @@ public class SmallActionPlace implements ActionPlace {
 	}
 
 
-}
+}*/
