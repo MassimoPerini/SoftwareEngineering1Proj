@@ -13,19 +13,19 @@ import java.util.ArrayList;
 public class TowerFloor {
 
     private DevelopmentCard card;       //TODO Lista????
-    private SmallActionPlace smallActionPlace;
+    private ActionPlace actionPlace;
 
 
     /*
     public TowerFloor(ArrayList<Effect> effect, int price, DevelopmentCard card )
     {
-        this.smallActionPlace = new ActionPlaceFixed(effect , price);
+        this.actionPlace = new ActionPlaceFixed(effect , price);    
         this.card = card;
     }*/
 
-    public TowerFloor(SmallActionPlace smallActionPlace, DevelopmentCard card)
+    public TowerFloor(ActionPlace actionPlace, DevelopmentCard card)
     {
-        this.smallActionPlace = smallActionPlace;
+        this.actionPlace = actionPlace;
         this.card = card;
     }
 
@@ -37,23 +37,23 @@ public class TowerFloor {
         this.card = c;
     }
 
-    public SmallActionPlace getSmallActionPlace() {
-        return smallActionPlace;
+    public ActionPlace getActionPlace() {
+        return actionPlace;
     }
 
     public ArrayList<Effect> addFamilyMember(FamilyMember familyMember) {
         if (!isAllowed(familyMember))
             throw new IllegalStateException();
-        return smallActionPlace.addFamilyMember(familyMember);
+        return actionPlace.addFamilyMember(familyMember);
     }
 
     ArrayList<Effect> getEffects ()
     {
-        return this.smallActionPlace.getEffects();
+        return this.actionPlace.getEffects();
     }
 
     public boolean isAllowed(FamilyMember familyMember) {
-        return smallActionPlace.isAllowed(familyMember) && card != null;
+        return actionPlace.isAllowed(familyMember) && card != null;
     }
 
 

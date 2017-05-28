@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_06.FamilyMember;
  */
 public class DiceSet {
 
-    Dice[] dices = new Dice[DiceColor.values().length];
+    private Dice[] dices = new Dice[DiceColor.values().length];
 
     public DiceSet()
     {
@@ -19,23 +19,9 @@ public class DiceSet {
 
     //TODO: HERE????  OBSERVER DESIGN PATTERN
 
-    
-    public FamilyMember[] createFamilyMembers(boolean zeroFamiliar)
-    {
-        int i=0;
 
-        if (zeroFamiliar)
-            i=1;
-
-        FamilyMember[] familyMembers = new FamilyMember[DiceColor.values().length+i];
-
-        for (i=0;i<DiceColor.values().length;i++) {
-            familyMembers[i] = new FamilyMember(DiceColor.values()[i]);
-            dices[i].addObserver(familyMembers[i]);
-        }
-        if (zeroFamiliar)
-            familyMembers[i]=new FamilyMember();
-        return familyMembers;
+    public Dice[] getDices() {
+        return dices;
     }
 
     public void roll()

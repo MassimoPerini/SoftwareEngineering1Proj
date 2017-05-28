@@ -10,13 +10,13 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class ActionOnCounsilPalace extends Action {
+public class BoardActionOnCounsilPalace extends BoardAction {
 
     private Player player;
     private Council component;
     private int index;
 
-    public ActionOnCounsilPalace(Player player,Council component,FamilyMember familyMember, int index, int value) {
+    public BoardActionOnCounsilPalace(Player player, Council component, FamilyMember familyMember, int index, int value) {
 
         super(familyMember, value);
         this.component = component;

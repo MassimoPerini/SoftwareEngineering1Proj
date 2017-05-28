@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class ProdHarvZone implements Component{
 
-	private ArrayList <ActionPlace> smallActionPlaces;
+	private ArrayList <ActionPlace> actionPlaces;
 	private int maxSamePlayerFamilyMember;
 	
-	public ProdHarvZone (ArrayList<ActionPlace> smallActionPlaces) {
-		this.smallActionPlaces = smallActionPlaces;
+	public ProdHarvZone (ArrayList<ActionPlace> actionPlaces) {
+		this.actionPlaces = actionPlaces;
 	}
 
 	@Override
@@ -19,16 +19,16 @@ public class ProdHarvZone implements Component{
 	{
 		if (!isAllowed(familyMember, index))
 			throw new IllegalStateException();
-		smallActionPlaces.get(index).addFamilyMember(familyMember);
+		actionPlaces.get(index).addFamilyMember(familyMember);
 	}
 
 	@Override
 	public boolean isAllowed(FamilyMember familyMember, int index)
 	{
 		int samePlayerFamilyMembers = 0;
-		for (ActionPlace smallActionPlace : smallActionPlaces)
+		for (ActionPlace actionPlace : actionPlaces)
 		{
-			for (FamilyMember familyMember1 : smallActionPlace.getMembers())
+			for (FamilyMember familyMember1 : actionPlace.getMembers())
 			{
 				if (!familyMember1.isNeutral() && familyMember1.getPlayerUserName().equals(familyMember.getPlayerUserName()))
 				{
@@ -43,13 +43,13 @@ public class ProdHarvZone implements Component{
 
 		//TODO malus su produzione se va in cella grande
 
-		return smallActionPlaces.get(index).isAllowed(familyMember);
+		return actionPlaces.get(index).isAllowed(familyMember);
 	}
 
 
 	@Override
 	public ArrayList<Effect> getEffect(int index) {
 		
-         return this.smallActionPlaces.get(index).getEffects();
+         return this.actionPlaces.get(index).getEffects();
 	}
 }

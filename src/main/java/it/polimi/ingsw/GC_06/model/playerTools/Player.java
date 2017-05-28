@@ -16,7 +16,7 @@ public class Player {
 
     private CardSet cardSet;
     private PlayerBoard playerBoard;
-    private ArrayList<FamilyMember> familyMembers;
+    private FamilyMember [] familyMembers;
     private ResourceSet resourceSet;
     private final String PLAYER_ID;
     private final static String TOKEN = "n_family_members";
@@ -24,19 +24,13 @@ public class Player {
 
     //TODO sistemare la questione dei malus e bonus sul player
 
-    public Player(String PLAYER_ID) {
+    public Player(String PLAYER_ID, FamilyMember[] familyMembers) {
 
 
         this.PLAYER_ID = PLAYER_ID;
         this.resourceSet = new ResourceSet();
         this.cardSet = new CardSet();
-        this.familyMembers =  new ArrayList<>();
-        int numberOfFamilyMember = Integer.parseInt(Setting.getInstance().getProperty(TOKEN));
-
-        for(int i = 0; i < numberOfFamilyMember; i++){
-
-            familyMembers.add(new FamilyMember());
-        }
+        this.familyMembers = familyMembers;
     }
 
     public Player (Player p)
@@ -64,5 +58,9 @@ public class Player {
 
     public void add(Card card){
      //   cardSet.addCard(card);
+    }
+
+    public FamilyMember[] getFamilyMembers() {
+        return familyMembers;
     }
 }

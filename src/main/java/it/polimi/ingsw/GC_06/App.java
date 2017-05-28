@@ -1,13 +1,20 @@
 package it.polimi.ingsw.GC_06;
 
+import it.polimi.ingsw.GC_06.ViewController.CmdViewController.StartViewController;
+import it.polimi.ingsw.GC_06.ViewController.NavigationController;
 import it.polimi.ingsw.GC_06.model.Board.Board;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.View.FxLoader;
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.GameStatus;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Hello world!
@@ -22,22 +29,17 @@ public class App
 
     public static void main( String[] args ) throws IOException {
 
-        FileLoader f = FileLoader.getFileLoader();
     //    f.writeBoard();
-        f.writeCards();
-        Board board = f.loadBoard();
-        DevelopmentCard [] developmentCards = f.loadCards();
+    //    f.writeCards();
+        Game game = Game.getInstance();
+        game.addPlayer("massimo");
+        NavigationController.getInstance().pushViewController(new StartViewController());
 
-        for (int i=0;i<board.getTowers().size();i++)
-        {
-            board.getTowers().get(i).setCards(new ArrayList<>(Arrays.asList(developmentCards)));
-            board.getTowers().get(i).shuffle();
-        }
-
+/*
         FxLoader fxLoader = new FxLoader();
         fxLoader.initialize(args);
 
-
+*/
         //TODO Implement FIX: https://futurestud.io/tutorials/how-to-deserialize-a-list-of-polymorphic-objects-with-gson
         //TODO http://stackoverflow.com/questions/19588020/gson-serialize-a-list-of-polymorphic-objects
 
@@ -50,7 +52,7 @@ public class App
         //}
 /*
         Game gioco = Game.getInstance();
-        CommandView view = new CommandView();
+        CmdView view = new CmdView();
         TerminalControl c = new TerminalControl(gioco, view);
 
         FxLoader fxLoader = new FxLoader();

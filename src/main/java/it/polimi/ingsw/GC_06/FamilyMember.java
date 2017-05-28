@@ -10,34 +10,25 @@ import java.util.Observer;
  */
 public class FamilyMember implements Observer {
 
-    private PlayerId playerColor;
     private int value;
-    private DiceColor diceColor;
+    private String diceColor;
     private String playerUserName;
 
     public String getPlayerUserName() {
         return playerUserName;
     }
 
-    public FamilyMember(){
-        this(null, null);
-    }
 
-    public FamilyMember(DiceColor color)
-    {
-        this(null, color);
-    }
-
-    public FamilyMember(PlayerId playerColor, DiceColor diceColor)
+    public FamilyMember(String diceColor, String playerUserName)
     {
         super();
         this.diceColor=diceColor;
-        this.playerColor=playerColor;
+        this.playerUserName = playerUserName;
     }
 
     public boolean isNeutral()
     {
-        return diceColor == null;
+        return diceColor.equals("");
     }
 
     public void update(Observable obs, Object args)
@@ -46,15 +37,14 @@ public class FamilyMember implements Observer {
         this.value = val.intValue();
     }
 
-    public void setPlayerColor(PlayerId playerColor) {
-        this.playerColor = playerColor;
-    }
 
     public int getValue() {
         return value;
     }
-    
-    public PlayerId getColour() {
-    	return this.playerColor;
+
+    public void variateValue(int variate)
+    {
+        this.value+=variate;
     }
+    
 }

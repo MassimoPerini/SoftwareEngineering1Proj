@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class ActionOnTower extends Action{
+public class BoardActionOnTower extends BoardAction {
 
     private Player player;
     private Tower component;
@@ -23,7 +23,7 @@ public class ActionOnTower extends Action{
     private ResourceSet malusSet;
 
 
-    public ActionOnTower(Player player, int index, Tower component, FamilyMember familyMember, int value) {
+    public BoardActionOnTower(Player player, int index, Tower component, FamilyMember familyMember, int value) {
         super(familyMember, value);
     	this.player = player;
         this.index = index;
@@ -78,12 +78,6 @@ public class ActionOnTower extends Action{
     public void setPlayer(Player player) {
         this.player = player;
     }
-
-    /** controlla se il player può
-     * 1) aggiungere un familiare alla torre
-     * 2) prenderne le carte
-     * @return
-     */
 
     @Override
     public boolean isAllowed() {
