@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class ProdHarvZone implements Component{
 
-	private ArrayList <ActionPlace> smallActionPlaces;
+	private ArrayList <SmallActionPlace> smallActionPlaces;
 	private int maxSamePlayerFamilyMember;
 	
-	public ProdHarvZone (ArrayList<ActionPlace> smallActionPlaces) {
+	public ProdHarvZone (ArrayList<SmallActionPlace> smallActionPlaces) {
 		this.smallActionPlaces = smallActionPlaces;
 	}
 
@@ -26,7 +26,7 @@ public class ProdHarvZone implements Component{
 	public boolean isAllowed(FamilyMember familyMember, int index)
 	{
 		int samePlayerFamilyMembers = 0;
-		for (ActionPlace smallActionPlace : smallActionPlaces)
+		for (SmallActionPlace smallActionPlace : smallActionPlaces)
 		{
 			for (FamilyMember familyMember1 : smallActionPlace.getMembers())
 			{
