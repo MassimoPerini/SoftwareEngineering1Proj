@@ -1,7 +1,12 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
-public class BigActionPlaceFix {
-/**
+import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.FamilyMember;
+
+import java.util.ArrayList;
+
+public class ActionPlaceFixed extends ActionPlace {
+
 	private int maxFamilyMembers;
 
 	public ActionPlaceFixed(ArrayList<Effect> effect, int price, int maxFamilyMembers) {
@@ -15,7 +20,5 @@ public class BigActionPlaceFix {
 	{
 		return super.isAllowed(member) && this.getMembers().size() < maxFamilyMembers;
 	}
-*/
+
 }
-
-

@@ -79,12 +79,6 @@ public class ActionOnTower extends Action{
         this.player = player;
     }
 
-    /** controlla se il player può
-     * 1) aggiungere un familiare alla torre
-     * 2) prenderne le carte
-     * @return
-     */
-
     @Override
     public boolean isAllowed() {
 

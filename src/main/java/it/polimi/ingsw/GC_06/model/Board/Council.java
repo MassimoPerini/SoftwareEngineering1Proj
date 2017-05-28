@@ -6,27 +6,27 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import java.util.ArrayList;
 
 public class Council implements Component {
-	private ArrayList<SmallActionPlace> smallActionPlaces;
+	private ArrayList<ActionPlace> actionPlaces;
 	
-	public Council(ArrayList<SmallActionPlace> smallActionPlaces) {
-		this.smallActionPlaces = smallActionPlaces;
+	public Council(ArrayList<ActionPlace> actionPlaces) {
+		this.actionPlaces = actionPlaces;
 	}
 
 	@Override
 	public void addFamilyMember(FamilyMember familyMember, int index) {
 		if (!isAllowed(familyMember, index))
 			throw new IllegalStateException();
-		this.smallActionPlaces.get(index).addFamilyMember(familyMember);
+		this.actionPlaces.get(index).addFamilyMember(familyMember);
 	}
 
 	@Override
 	public boolean isAllowed(FamilyMember familyMember, int index) {
-		return smallActionPlaces.get(index).isAllowed(familyMember);
+		return actionPlaces.get(index).isAllowed(familyMember);
 	}
 
 	@Override
 	public ArrayList<Effect> getEffect(int index) {
-		return smallActionPlaces.get(index).getEffects();
+		return actionPlaces.get(index).getEffects();
 	}
 
 
