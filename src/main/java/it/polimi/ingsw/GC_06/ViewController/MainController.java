@@ -22,7 +22,7 @@ public class MainController {
         ResourceSet resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.SERVANT, -points);
         //TODO FIX CONTROLLI RESOURCESET
-        Status status = Game.getInstance().getGameStatus();
+        GameStatus status = Game.getInstance().getGameStatus();
         Player player = status.getCurrentPlayer();
         FamilyMember familyMember1 = player.getFamilyMembers()[familyMember];
 

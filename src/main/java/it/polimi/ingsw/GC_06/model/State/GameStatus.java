@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/19/17.
  */
-public class GameStatus implements Status {
+public class GameStatus {
 
     private static GameStatus gameStatus;
 
@@ -23,7 +23,6 @@ public class GameStatus implements Status {
         players = new ArrayList<>();
 
     }
-
 
     public Player getCurrentPlayer()
     {

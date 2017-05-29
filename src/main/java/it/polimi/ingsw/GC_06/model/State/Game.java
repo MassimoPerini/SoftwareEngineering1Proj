@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Created by massimo on 27/05/17.
@@ -38,11 +39,6 @@ public class Game {
         maxPlayers = 2;
         gameStatus = new GameStatus();
 
-        for (int i=0;i<board.getTowers().size();i++)
-        {
-            board.getTowers().get(i).setCards(new ArrayList<>(Arrays.asList(developmentCards)));
-            board.getTowers().get(i).shuffle();
-        }
     }
 
     public int getMaxPlayers() {
@@ -53,6 +49,22 @@ public class Game {
         if (gameStatus.getPlayers().size() > maxPlayers)
             throw new IllegalStateException();
         this.maxPlayers = maxPlayers;
+    }
+
+    public void start()
+    {
+        Collections.shuffle(gameStatus.getPlayers());
+
+    }
+
+    void newTurn()
+    {
+
+    }
+
+    void newEra()
+    {
+
     }
 
     public static Game getInstance(){

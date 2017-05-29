@@ -7,7 +7,13 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public interface Status {
 
-    Player getCurrentPlayer();
+    void putFamilyMember();
+    void pickCard();
+    void activateProdHarv();
+    void chooseProdHarvCard();
+    void userInput();
+    void end();
+    void startProduction();
 
 }
 

@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Loader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
@@ -25,9 +26,14 @@ public class FileLoader {
 
     private static final String CARDS_PATH = "cards_path";
     private static final String BOARD_PATH = "board_path";
+    private static final String DEFAULT_RES = "default_resource_path";
+    private static final String DICES = "dices_path";
+
 
     private String cardsRootPath;
     private String boardRootPath;
+    private String defaultResourceRootPath;
+    private String dicePath;
     private Gson gson;
 
 
@@ -37,6 +43,8 @@ public class FileLoader {
         this.gson = new Gson();
         cardsRootPath = Setting.getInstance().getProperty(CARDS_PATH);
         boardRootPath = Setting.getInstance().getProperty(BOARD_PATH);
+        defaultResourceRootPath = Setting.getInstance().getProperty(DEFAULT_RES);
+        dicePath = Setting.getInstance().getProperty(DICES);
     }
 
     public static FileLoader getFileLoader ()
@@ -44,6 +52,36 @@ public class FileLoader {
         if (instance == null)
             instance = new FileLoader();
         return instance;
+    }
+
+    public void writeResourceSet(ResourceSet resourceSet) throws IOException {
+        FileWriter fw = new FileWriter("src/main/resources/model/default_res.txt");
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        gson.toJson(resourceSet, fw);
+        fw.close();
+    }
+
+    public ResourceSet[] loadResourceSet() throws IOException {
+        InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(defaultResourceRootPath));
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        ResourceSet [] defaultResourceSets = gson.fromJson(fr , ResourceSet [].class);
+        fr.close();
+        return defaultResourceSets;
+    }
+
+    public void writeDiceSet(DiceSet diceSet) throws IOException {
+        FileWriter fw = new FileWriter("src/main/resources/model/dices.txt");
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        gson.toJson(diceSet, fw);
+        fw.close();
+    }
+
+    public DiceSet loadDiceSet() throws IOException {
+        InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(dicePath));
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        DiceSet diceSet = gson.fromJson(fr , DiceSet.class);
+        fr.close();
+        return diceSet;
     }
 
     public DevelopmentCard[] loadCards() throws IOException {
