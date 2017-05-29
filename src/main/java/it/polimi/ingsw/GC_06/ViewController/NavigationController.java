@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.ViewController;
 
+import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.GameStatus;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -66,6 +67,6 @@ public class NavigationController implements NavigationControllerInterface {
 
     @Override
     public Player getPlayer() {
-        return GameStatus.getInstance().getCurrentPlayer();
+        return Game.getInstance().getGameStatus().getCurrentPlayer();
     }
 }

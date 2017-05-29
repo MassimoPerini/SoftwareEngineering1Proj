@@ -21,13 +21,22 @@ public class Game {
     private DiceSet diceSet;
     private DevelopmentCard[] developmentCards;
     private static Game game;
+    private int maxPlayers;
+    private GameStatus gameStatus;
 
+    //TODO TO REMOVE
+    public static void clearForTesting()
+    {
+        game=null;
+    }
 
     private Game() throws IOException {
         FileLoader f = FileLoader.getFileLoader();
         board = f.loadBoard();
         developmentCards = f.loadCards();
         diceSet = new DiceSet();
+        maxPlayers = 2;
+        gameStatus = new GameStatus();
 
         for (int i=0;i<board.getTowers().size();i++)
         {
@@ -36,17 +45,38 @@ public class Game {
         }
     }
 
-    public static Game getInstance() throws IOException {
-        if (game==null)
-            game = new Game();
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public void setMaxPlayers(int maxPlayers) {
+        if (gameStatus.getPlayers().size() > maxPlayers)
+            throw new IllegalStateException();
+        this.maxPlayers = maxPlayers;
+    }
+
+    public static Game getInstance(){
+        if (game==null) {
+            try {
+                game = new Game();
+            }catch (Exception e)
+            {
+                System.out.println("Game class: error reading a file");
+            }
+        }
         return game;
     }
 
+
     public void addPlayer (String p)
     {
+        if (p==null)
+            throw new NullPointerException();
+        if (gameStatus.getPlayers().size() >= maxPlayers)
+            throw new IllegalStateException();
         this.createFamilyMembers(true, p);
         Player player = new Player(p, this.createFamilyMembers(true, p));
-        GameStatus.getInstance().addPlayer(player);
+        gameStatus.addPlayer(player);
     }
 
     private FamilyMember[] createFamilyMembers(boolean zeroFamiliar, String playerID)
@@ -67,5 +97,13 @@ public class Game {
         return familyMembers;
     }
 
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
+
+    public void roll()
+    {
+        diceSet.roll();
+    }
 
 }

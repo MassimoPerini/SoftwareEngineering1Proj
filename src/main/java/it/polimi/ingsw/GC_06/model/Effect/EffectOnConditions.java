@@ -22,7 +22,7 @@ public class EffectOnConditions implements Effect{
     public void execute(Player player) {
         int size = (player.getPlayerBoard().getColouredCards(colour)).size();
         int variation = multiplier * size;
-        player.getResourceSet().addResource(modifiedResource,variation);
+        player.getResourceSet().variateResource(modifiedResource,variation);
 
     }
 

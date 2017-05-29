@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by giuseppe on 5/20/17.
@@ -29,7 +30,7 @@ public class BoardActionOnCounsilPalace extends BoardAction {
     public void execute() {
 
         component.addFamilyMember(getFamilyMember(), index);
-        ArrayList<Effect> effects = component.getEffect(index);
+        List<Effect> effects = component.getEffect(index);
         for(Effect effect : effects){
             effect.execute(player);
         }

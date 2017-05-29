@@ -30,7 +30,7 @@ public class Requirement {
     {
         if (!isSatisfied(resourceSet))
             throw new IllegalArgumentException();
-        resourceSet.removeResource(cost);
+        resourceSet.variateResource(cost);
     }
 
     @Override

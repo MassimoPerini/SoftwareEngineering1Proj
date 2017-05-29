@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -41,13 +42,13 @@ public class TowerFloor {
         return actionPlace;
     }
 
-    public ArrayList<Effect> addFamilyMember(FamilyMember familyMember) {
+    public List<Effect> addFamilyMember(FamilyMember familyMember) {
         if (!isAllowed(familyMember))
             throw new IllegalStateException();
         return actionPlace.addFamilyMember(familyMember);
     }
 
-    ArrayList<Effect> getEffects ()
+    List<Effect> getEffects ()
     {
         return this.actionPlace.getEffects();
     }

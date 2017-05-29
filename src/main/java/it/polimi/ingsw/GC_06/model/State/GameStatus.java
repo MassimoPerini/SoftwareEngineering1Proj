@@ -17,26 +17,20 @@ public class GameStatus implements Status {
 
 
 
-    private GameStatus()
+    GameStatus()
     {
         super();
         players = new ArrayList<>();
 
     }
 
-    public static GameStatus getInstance()
-    {
-        if (gameStatus==null)
-            gameStatus = new GameStatus();
-        return gameStatus;
-    }
 
     public Player getCurrentPlayer()
     {
         return players.get(currentPlayer);
     }
 
-    public void addPlayer(Player player)
+    void addPlayer(Player player)
     {
         this.players.add(player);
     }
@@ -45,4 +39,7 @@ public class GameStatus implements Status {
         this.currentStatus = currentStatus;
     }
 
+    ArrayList<Player> getPlayers() {
+        return players;
+    }
 }

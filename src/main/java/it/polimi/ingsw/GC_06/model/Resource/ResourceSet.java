@@ -30,8 +30,8 @@ public class ResourceSet {
         Set<Map.Entry<Resource, Integer>> newRes = resourceSet.resources.entrySet();
         return newRes.iterator();
     }
-
-    public void addResource(Resource resource, int amount)
+/*
+    private void addResource(Resource resource, int amount)
     {
         if (amount<0)
             throw new IllegalArgumentException();
@@ -44,16 +44,15 @@ public class ResourceSet {
             this.resources.replace(resource, res);
         }
     }
-
+*/
     public void variateResource(Resource resource, int amount){
 
-        if(amount > 0) {
-            addResource(resource,amount);
-        }
-
-        else{
-
-            removeResource(resource,amount);
+        Integer myQty = this.resources.get(resource);
+        if (myQty==null)
+            this.resources.put(resource, amount);
+        else {
+            int res = myQty.intValue() + amount;
+            this.resources.replace(resource, res);
         }
     }
 
@@ -68,8 +67,8 @@ public class ResourceSet {
         }
 
     }
-
-    public void addResource(ResourceSet resourceSet)
+/*
+    private void addResource(ResourceSet resourceSet)
     {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
 
@@ -81,7 +80,7 @@ public class ResourceSet {
 
     }
 
-    public void removeResource (Resource resource, int amount)
+    private void removeResource (Resource resource, int amount)
     {
         if (amount <0)
             throw new IllegalArgumentException();
@@ -98,7 +97,7 @@ public class ResourceSet {
         resources.replace(resource, myQty);
     }
 
-    public void removeResource (ResourceSet resourceSet) throws IllegalStateException
+    private void removeResource (ResourceSet resourceSet) throws IllegalStateException
     {
         if (! isIncluded(resourceSet))
             throw new IllegalStateException();
@@ -110,7 +109,7 @@ public class ResourceSet {
             this.removeResource(entry.getKey(), entry.getValue());
         }
     }
-
+*/
     public boolean isIncluded (ResourceSet resourceSet)
     {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
@@ -126,6 +125,7 @@ public class ResourceSet {
 
     public boolean isIncluded (Resource resource, int amount)
     {
+        amount = Math.abs(amount);
         Integer myQty = this.resources.get(resource);
         return myQty!=null && myQty.intValue() >= amount;
     }

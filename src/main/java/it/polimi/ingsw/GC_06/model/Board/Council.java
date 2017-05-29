@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Council implements Component {
 	private ArrayList<ActionPlace> actionPlaces;
@@ -25,7 +26,7 @@ public class Council implements Component {
 	}
 
 	@Override
-	public ArrayList<Effect> getEffect(int index) {
+	public List<Effect> getEffect(int index) {
 		return actionPlaces.get(index).getEffects();
 	}
 

@@ -1,16 +1,19 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 
 public class ActionPlace {
-    private ArrayList<Effect> effects;
+    private List<Effect> effects;
 	private ArrayList<FamilyMember> members;
 	private int price;
 	
-	public ActionPlace(ArrayList<Effect> effect, int price) {
+	public ActionPlace(List<Effect> effect, int price) {
+		if (effect == null)
+			throw new NullPointerException();
 		this.effects = effect;
 		this.members = new ArrayList<>();
 		this.price = price;
@@ -21,13 +24,15 @@ public class ActionPlace {
 
 	public boolean isAllowed (FamilyMember member)
 	{
+		if (member == null)
+			throw new NullPointerException();
 		return member.getValue() >= price;
 	}
 
-    public ArrayList<Effect> addFamilyMember(FamilyMember familyMember)
+    public List<Effect> addFamilyMember(FamilyMember familyMember)
 	{
 		if (!isAllowed(familyMember))
-			throw new IllegalStateException();
+			throw new IllegalArgumentException();
 		this.members.add(familyMember);
 		return effects;
 	}
@@ -36,7 +41,7 @@ public class ActionPlace {
 		return members;
 	}
 
-	public ArrayList<Effect> getEffects() {
+	public List<Effect> getEffects() {
 		return effects;
 	}
 }

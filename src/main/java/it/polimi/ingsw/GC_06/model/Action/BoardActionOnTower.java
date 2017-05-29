@@ -37,7 +37,7 @@ public class BoardActionOnTower extends BoardAction {
             throw new IllegalStateException();
 
 
-        ArrayList<Effect> effects;
+        List<Effect> effects;
 
         /**if we are in the real action we add the family member in the correct position*/
 
@@ -102,7 +102,7 @@ public class BoardActionOnTower extends BoardAction {
         //Check requirements (add plane and...)
         //Start effect plane!
 
-        ArrayList<Effect> effects = component.getEffect(index);
+        List<Effect> effects = component.getEffect(index);
         executeEffects(p, effects);
 
         List<Requirement> requirements =  component.getRequirement(index);
@@ -115,7 +115,7 @@ public class BoardActionOnTower extends BoardAction {
 
     }
 
-    private void executeEffects(Player p, ArrayList<Effect> effects)
+    private void executeEffects(Player p, List<Effect> effects)
     {
         for (Effect effect:effects)
         {
@@ -129,7 +129,7 @@ public class BoardActionOnTower extends BoardAction {
         {
             if (!resourceSet.isIncluded(malusSet))
                 return false;
-            resourceSet.removeResource(malusSet);
+            resourceSet.variateResource(malusSet);
         }
         return true;
     }

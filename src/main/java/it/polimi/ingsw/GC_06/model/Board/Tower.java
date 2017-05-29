@@ -68,7 +68,7 @@ public class Tower implements Component{
     }
 
     @Override
-    public ArrayList<Effect> getEffect(int index) {
+    public List<Effect> getEffect(int index) {
         return this.towerFloors.get(index).getEffects();
     }
 
