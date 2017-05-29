@@ -24,7 +24,7 @@ public class PowerUpFamilyMember implements  Action{
     @Override
     public void execute() {
 
-        player.getResourceSet().variateResource(variateResources);
+        player.variateResource(variateResources);
         familyMember.variateValue(variateFamilyMember);
 
     }

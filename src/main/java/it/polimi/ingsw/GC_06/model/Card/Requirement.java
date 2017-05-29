@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Card;
 
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 18/05/17.
@@ -26,11 +27,9 @@ public class Requirement {
         return resourceSet.isIncluded(requirements) && resourceSet.isIncluded(cost);
     }
 
-    public void doIt (ResourceSet resourceSet)
+    public void doIt (Player player)
     {
-        if (!isSatisfied(resourceSet))
-            throw new IllegalArgumentException();
-        resourceSet.variateResource(cost);
+        player.variateResource(cost);
     }
 
     @Override

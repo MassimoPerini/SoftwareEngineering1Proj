@@ -30,7 +30,7 @@ public class TowerFloor {
         this.card = card;
     }
 
-    DevelopmentCard getCard() {
+    public DevelopmentCard getCard() {
         return card;
     }
     void setCard(DevelopmentCard c)
@@ -51,6 +51,13 @@ public class TowerFloor {
     List<Effect> getEffects ()
     {
         return this.actionPlace.getEffects();
+    }
+
+    public DevelopmentCard pickCard()
+    {
+        DevelopmentCard c = this.card;
+        this.setCard(null);
+        return c;
     }
 
     public boolean isAllowed(FamilyMember familyMember) {

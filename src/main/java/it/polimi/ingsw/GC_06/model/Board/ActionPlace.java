@@ -44,4 +44,8 @@ public class ActionPlace {
 	public List<Effect> getEffects() {
 		return effects;
 	}
+
+	public int getPrice() {
+		return price;
+	}
 }

@@ -64,4 +64,16 @@ public class Player {
         return familyMembers;
     }
 
+    public void variateResource(ResourceSet resourceSet) throws IllegalArgumentException
+    {
+        if (this.getResourceSet().isIncluded(resourceSet))
+            this.getResourceSet().variateResource(resourceSet);
+        else {
+            throw new IllegalArgumentException();
+
+        }
+    }
+
+
+
 }

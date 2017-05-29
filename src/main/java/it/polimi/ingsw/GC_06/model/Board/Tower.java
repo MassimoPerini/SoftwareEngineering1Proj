@@ -4,6 +4,8 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +19,14 @@ public class Tower implements Component{
     private int maxSamePlayerFamilyMember;
     private int minFamilyMembersMalus;
     private List<DevelopmentCard> cards;
+    private ResourceSet malusSet;
 
     public Tower(List<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus){
     	this.towerFloors = floors;
     	this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
     	this.minFamilyMembersMalus = minFamilyMembersMalus;
+        this.malusSet = new ResourceSet();
+        this.malusSet.variateResource(Resource.MONEY, -3);
     }
 
     @Override
@@ -91,15 +96,17 @@ public class Tower implements Component{
         return this.towerFloors.get(index).getCard().getRequirements();
     }
 
-    public DevelopmentCard pickCard(int index)
-    {
-        DevelopmentCard c = getCard(index);
-        this.towerFloors.get(index).setCard(null);
-        return c;
-    }
-
     public DevelopmentCard getCard (int index)
     {
         return this.towerFloors.get(index).getCard();
+    }
+
+    public TowerFloor getTowerFloor(int index)
+    {
+        return this.towerFloors.get(index);
+    }
+
+    public ResourceSet getMalusSet() {
+        return malusSet;
     }
 }
