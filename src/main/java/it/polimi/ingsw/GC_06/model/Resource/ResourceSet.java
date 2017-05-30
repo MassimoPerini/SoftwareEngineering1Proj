@@ -130,5 +130,7 @@ public class ResourceSet {
         return myQty!=null && myQty.intValue() >= amount;
     }
 
-
+    public HashMap<Resource, Integer> getResources() {
+        return resources;
+    }
 }
