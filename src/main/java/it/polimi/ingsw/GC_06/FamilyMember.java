@@ -46,5 +46,8 @@ public class FamilyMember implements Observer {
     {
         this.value+=variate;
     }
-    
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }

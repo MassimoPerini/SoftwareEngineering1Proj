@@ -4,8 +4,7 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Resource.Resource;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,26 +12,23 @@ import java.util.List;
 /**
  * Created by massimo on 13/05/17.
  */
-public class Tower implements Component{
+public class Tower{
 
     private List<TowerFloor> towerFloors;
     private int maxSamePlayerFamilyMember;
     private int minFamilyMembersMalus;
     private List<DevelopmentCard> cards;
-    private ResourceSet malusSet;
+    private List<Effect> malusOnMultipleFamilyMembers;
 
     public Tower(List<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus){
     	this.towerFloors = floors;
     	this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
     	this.minFamilyMembersMalus = minFamilyMembersMalus;
-        this.malusSet = new ResourceSet();
-        this.malusSet.variateResource(Resource.MONEY, -3);
     }
 
-    @Override
     public void addFamilyMember(FamilyMember familyMember, int index) {
 
-        if (!isAllowed(familyMember, index))
+        if (!isAllowed(familyMember, towerFloors.get(index)))
             throw new IllegalStateException();
         this.towerFloors.get(index).addFamilyMember(familyMember);
 
@@ -51,8 +47,7 @@ public class Tower implements Component{
 
     }
 
-    @Override
-    public boolean isAllowed(FamilyMember familyMember, int index) {
+    public boolean isAllowed(FamilyMember familyMember, TowerFloor towerFloorUser) {
 
         int samePlayerFamilyMember = 0;
 
@@ -69,10 +64,9 @@ public class Tower implements Component{
 
         if (samePlayerFamilyMember >= maxSamePlayerFamilyMember)
             return false;
-        return towerFloors.get(index).isAllowed(familyMember);
+        return towerFloorUser.isAllowed(familyMember);
     }
 
-    @Override
     public List<Effect> getEffect(int index) {
         return this.towerFloors.get(index).getEffects();
     }
@@ -106,7 +100,7 @@ public class Tower implements Component{
         return this.towerFloors.get(index);
     }
 
-    public ResourceSet getMalusSet() {
-        return malusSet;
+    public List<Effect> getMalusOnMultipleFamilyMembers() {
+        return malusOnMultipleFamilyMembers;
     }
 }

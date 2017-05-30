@@ -21,6 +21,7 @@ public class Player {
     private final String PLAYER_ID;
     private final static String TOKEN = "n_family_members";
     private ArrayList<Effect> bonusMalus;
+    private ResourceSet addAtTheEnd;
 
     //TODO sistemare la questione dei malus e bonus sul player
 
@@ -74,6 +75,7 @@ public class Player {
         }
     }
 
-
-
+    public ResourceSet getAddAtTheEnd() {
+        return addAtTheEnd;
+    }
 }

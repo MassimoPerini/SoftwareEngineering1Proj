@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
+import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.Board.TowerFloor;
@@ -16,11 +17,11 @@ public class PickCard implements Action {
 
     private Player player;
     private TowerFloor towerFloor;
-    private int value;
     private PayCard payCard;
     private Tower tower;
+    private int valueFamilyMember;
 
-    public PickCard(Player player, TowerFloor towerFloor, Tower tower)
+    public PickCard(Player player, TowerFloor towerFloor, Tower tower, int valueFamilyMember)
     {
         super();
         if (player==null || towerFloor==null)
@@ -28,8 +29,8 @@ public class PickCard implements Action {
         this.player = player;
         this.towerFloor = towerFloor;
         this.tower = tower;
-        this.value = towerFloor.getActionPlace().getPrice();
         this.payCard = new PayCard(towerFloor.getCard(), player);
+        this.valueFamilyMember = valueFamilyMember;
     }
 
     @Override
@@ -57,6 +58,13 @@ public class PickCard implements Action {
     @Override
     public boolean isAllowed() {
         //Can add in PlayerBoard
+        FamilyMember familyMemberTest = new FamilyMember(null, player.getPLAYER_ID());
+        familyMemberTest.setValue(valueFamilyMember);
+
+        if (!tower.isAllowed(familyMemberTest, towerFloor))
+            return false;
+
+
         if (!player.getPlayerBoard().canAdd(towerFloor.getCard()))
             return false;
 
@@ -92,7 +100,11 @@ public class PickCard implements Action {
     {
         if (!tower.isNoPenalityAllowed())
         {
-            player.variateResource(tower.getMalusSet());
+            List<Effect> effects = tower.getMalusOnMultipleFamilyMembers();
+            for (Effect effect: effects)
+            {
+                effect.execute(player);
+            }
         }
     }
 

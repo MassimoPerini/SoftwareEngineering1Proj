@@ -38,7 +38,7 @@ public class PayCard implements Action {
 
         if(satisfiedRequirements.size() == 1){
             satisfiedRequirements.get(0).doIt(player);
-            this.executeEffects(player, developmentCard.getEffects());
+            this.executeEffects(player, developmentCard.getImmediateEffects());
         }
         else{
             //TODO CAMBIO STATO / notifica alla view
@@ -49,11 +49,7 @@ public class PayCard implements Action {
 
     @Override
     public boolean isAllowed() {
-        for(Requirement requirement : developmentCard.getRequirements()){
-            if(requirement.isSatisfied(player.getResourceSet()));
-                return true;
-        }
-        return false;
+        return developmentCard.isSatisfied(player.getResourceSet());
     }
 
     private void executeEffects(Player p, List<Effect> effects)

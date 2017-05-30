@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Loader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Board.*;
@@ -15,6 +16,7 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by massimo on 17/05/17.
@@ -178,14 +180,22 @@ public class FileLoader {
 
     public void writeCards() throws IOException {
 
-        DevelopmentCard card1 = new DevelopmentCard("Villaggio minerario", 2, new ArrayList<Effect>(), new ArrayList<Requirement>(),new ArrayList<Effect>(), "green");
+        List<ProdHarvEffect> prodHarvEffects = new ArrayList<>();
+
+        ResourceSet resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.SERVANT, 2);
+        resourceSet.variateResource(Resource.STONE, 1);
+        Effect immediateEffect = new EffectOnResources(resourceSet);
+
+
+        DevelopmentCard card1 = new DevelopmentCard("Villaggio minerario", 2, new ArrayList<Requirement>(), new ArrayList<Effect>(),new ArrayList<Effect>(), "green");
 
         ResourceSet res1 = new ResourceSet();
         res1.variateResource(Resource.MONEY, 6);
 
         ArrayList<Requirement> r = new ArrayList<>();
         r.add(new Requirement(new ResourceSet(), res1));
-        DevelopmentCard card2 = new DevelopmentCard("Nobile",3, new ArrayList<Effect>(), r,new ArrayList<Effect>(), "blue");
+        DevelopmentCard card2 = new DevelopmentCard("Nobile",3, new ArrayList<Requirement>(), new ArrayList<Effect>(),new ArrayList<Effect>(), "blue");
 
         ResourceSet res2 = new ResourceSet();
         res2.variateResource(Resource.SERVANT, 1);
@@ -193,7 +203,7 @@ public class FileLoader {
         res2.variateResource(Resource.STONE, 2);
         r = new ArrayList<>();
         r.add(new Requirement(new ResourceSet(), res2));
-        DevelopmentCard card3 = new DevelopmentCard("Accademia militare", 3, new ArrayList<Effect>(), r,new ArrayList<Effect>(), "yellow");
+        DevelopmentCard card3 = new DevelopmentCard("Accademia militare", 3,new ArrayList<Requirement>(), new ArrayList<Effect>(),new ArrayList<Effect>(), "yellow");
 
 
         res2 = new ResourceSet();
@@ -210,7 +220,7 @@ public class FileLoader {
         res1 = new ResourceSet();
         res1.variateResource(Resource.MILITARYPOINT, 10);
         r.add(new Requirement(res1, res2));
-        DevelopmentCard card4 = new DevelopmentCard( "Sostegno al papa", 3, new ArrayList<Effect>(), r, new ArrayList<Effect>(),"purple");
+        DevelopmentCard card4 = new DevelopmentCard( "Sostegno al papa", 3, new ArrayList<Requirement>(), new ArrayList<Effect>(),new ArrayList<Effect>(),"purple");
 
         DevelopmentCard [] cards = {card1, card2, card3, card4};
 

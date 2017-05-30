@@ -55,9 +55,9 @@ public class TowerFloor {
 
     public DevelopmentCard pickCard()
     {
-        DevelopmentCard c = this.card;
-        this.setCard(null);
-        return c;
+        DevelopmentCard developmentCard = this.card;
+        this.card = null;
+        return developmentCard;
     }
 
     public boolean isAllowed(FamilyMember familyMember) {

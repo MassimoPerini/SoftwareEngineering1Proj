@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by giuseppe on 5/20/17.
@@ -32,7 +33,7 @@ public class BoardActionOnProdHarvZone extends BoardAction {
 
     @Override
     public void execute() {
-        ArrayList<Effect> effects = new ArrayList<>();
+        List<Effect> effects = new ArrayList<>();
 
         if(familyMember!=null){
             component.addFamilyMember(familyMember, index);
@@ -53,7 +54,7 @@ public class BoardActionOnProdHarvZone extends BoardAction {
         for(DevelopmentCard card : colouredCards){
             // potrebbe essere una cazzata
             /**chiediamo a massi*/
-            effects  = card.getEffects();
+            effects  = card.getImmediateEffects();
         }
 
         for(Effect effect : effects){

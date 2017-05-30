@@ -27,6 +27,8 @@ public class Requirement {
         return resourceSet.isIncluded(requirements) && resourceSet.isIncluded(cost);
     }
 
+
+
     public void doIt (Player player)
     {
         player.variateResource(cost);

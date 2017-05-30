@@ -1,31 +1,32 @@
 package it.polimi.ingsw.GC_06.model.Card;
 
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by massimo on 12/05/17.
  */
 public class DevelopmentCard extends Card
 {
-    private ArrayList<Effect> effects;
     private int era;
-    private ArrayList<Requirement> requirements;
-    private ArrayList<Effect> immediateEffects;
+    private List<Requirement> requirements;
+    private List<Effect> immediateEffects;
+    private List<Effect> prodHarvEffects;
     private String idColour;
 
 //    private ResourceSet immediateRequirement;
 
-    public DevelopmentCard(String name, int era, ArrayList<Effect> effects, ArrayList<Requirement> requirements, ArrayList<Effect> immediate, String idColour)
+    public DevelopmentCard(String name, int era, List<Requirement> requirements, List<Effect> immediate, List<Effect> prodHarvEffects, String idColour)
     {
         super(name);
         this.immediateEffects = immediate;
         this.era = era;
-        this.requirements = new ArrayList<>();
-        this.effects = effects;
+        this.requirements = requirements;
         this.idColour = idColour;
+        this.prodHarvEffects = prodHarvEffects;
     }
 
     //E' una OR
@@ -37,23 +38,21 @@ public class DevelopmentCard extends Card
                 return true;
         }
         return false;
-
     }
 
-    public ArrayList<Effect> getEffects() {
-    	return this.effects;
+    public List<Effect> getProdHarvEffects() {
+        return prodHarvEffects;
     }
-    
-    public ArrayList<Effect> getImmediateEffects() {
+
+    public List<Effect> getImmediateEffects() {
     	return this.immediateEffects;
     }
-
 
     public String getIdColour() {
         return idColour;
     }
 
-    public ArrayList<Requirement> getRequirements() {
+    public List<Requirement> getRequirements() {
         return requirements;
     }
 }

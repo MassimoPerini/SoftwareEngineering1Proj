@@ -17,23 +17,26 @@ import java.util.List;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class BoardActionOnTower extends BoardAction {
+public class BoardActionOnTower implements Action {
 
     private Tower tower;
     private int index;
-    private FamilyMember familyMember;
     private Action pickCard;
+    private FamilyMember familyMember;
+    private int value;
 
     public BoardActionOnTower(Player player, int index, Tower tower, FamilyMember familyMember) {
 
-        super(familyMember, tower.getTowerFloor(index).getActionPlace().getPrice());
+        super();
         if (player==null || tower==null || familyMember==null)
             throw new NullPointerException();
 
+        this.familyMember = familyMember;
+        this.value = familyMember.getValue();
         this.index = index;
         this.tower = tower;
         this.familyMember = familyMember;
-        this.pickCard = new PickCard(player, tower.getTowerFloor(index), tower);
+        this.pickCard = new PickCard(player, tower.getTowerFloor(index), tower, familyMember.getValue());
     }
 
     @Override
@@ -53,12 +56,7 @@ public class BoardActionOnTower extends BoardAction {
 
         /** è permessa solo quando non c'è un familiare sulla torre*/
 
-        //Check posso piazzare il familiare (o virtuale)
-        if (!tower.isAllowed(getFamilyMember(), index))
-            return false;
         return pickCard.isAllowed();
-        /*DA SEPARARE*/
-        //Check board space
 
     }
 }
