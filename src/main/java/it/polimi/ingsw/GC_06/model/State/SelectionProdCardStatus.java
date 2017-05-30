@@ -35,6 +35,7 @@ public class SelectionProdCardStatus implements Status {
 
     @Override
     public void userInput() {
+        System.out.println(" ");
         System.out.println("Let's go to the production");
         gameStatus.setStateGame(gameStatus.getHarvProdStatus());
 
