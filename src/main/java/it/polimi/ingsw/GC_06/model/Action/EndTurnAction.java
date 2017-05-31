@@ -51,6 +51,6 @@ public class EndTurnAction implements Action{
 
     @Override
     public boolean isAllowed() {
-        return false;
+        return true;
     }
 }
