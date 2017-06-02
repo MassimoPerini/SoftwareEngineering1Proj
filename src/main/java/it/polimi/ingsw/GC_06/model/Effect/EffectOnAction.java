@@ -1,25 +1,29 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
+import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.BoardAction;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
+
+import java.util.ArrayList;
 
 /**
  * Created by giuseppe on 5/22/17.
  */
 public class EffectOnAction implements Effect {
 
-    private BoardAction action;
+    private ArrayList<Action> actions;
     private Player player;
 
 
-    public EffectOnAction(int points, BoardAction action) {
+    public EffectOnAction(int points, ArrayList<Action> actions) {
         super();
-        this.action = action;
+        this.actions = actions;
     }
 
     @Override
     public void execute(Player player) {
-    //    action.setPlayer(player);     //TODO chiedere a Martin
-        action.execute();
+       // for (Action a : actions) a.setPlayer();     //TODO settare il Player di tutte le action
+        // TODO decidere se singola o arrayList
+        for (Action a : actions) a.execute();
     }
 }
