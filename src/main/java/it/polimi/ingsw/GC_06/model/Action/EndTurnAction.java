@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/31/17.
  */
-public class EndTurnAction implements Action{
+public class EndTurnAction extends Action{
 
     private Player player;
     private ArrayList<String> cardColours;
@@ -18,6 +18,7 @@ public class EndTurnAction implements Action{
     private Resource resource;
 
     public EndTurnAction(Player player, ArrayList<String> cardColours, ConversionTable conversionTable,Resource resource) {
+        super("endTurn", 1);
         this.player = player;
         this.cardColours = new ArrayList<String>();
         this.conversionTable = conversionTable;

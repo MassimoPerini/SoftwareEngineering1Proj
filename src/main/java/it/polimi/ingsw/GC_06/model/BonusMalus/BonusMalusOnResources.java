@@ -23,13 +23,13 @@ public class BonusMalusOnResources implements BonusMalus {
         if (targetResourceSet.isIncluded(bonusMalusEntity, coefficient)) {
             System.out.println("\nIsIncluded " + targetResourceSet.isIncluded(bonusMalusEntity, coefficient));
 
-            int variation = targetResourceSet.getResources().get(bonusMalusEntity) / coefficient;
+            double variation = (double) targetResourceSet.resourceAmount(bonusMalusEntity) / (double)coefficient;
             System.out.println("This is variation " + variation);
 
 
             /** otteniamo la quantità di cose da sottrarre dal targetResourceSet*/
 
-            targetResourceSet.variateResource(bonusMalusEntity, variation);
+            targetResourceSet.variateResource(bonusMalusEntity, (int)-variation);
         }
     }
 }

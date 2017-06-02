@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
-import it.polimi.ingsw.GC_06.model.Action.BoardAction;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;

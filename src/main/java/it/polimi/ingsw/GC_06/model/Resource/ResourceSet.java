@@ -97,4 +97,9 @@ public class ResourceSet {
         }
         return false;
     }
+
+    public int resourceAmount(Resource resource)
+    {
+        return this.resources.get(resource);
+    }
 }
