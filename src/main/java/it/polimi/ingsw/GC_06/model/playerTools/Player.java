@@ -4,10 +4,7 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.PlayerBoard;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.Card;
-import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-
-import java.util.ArrayList;
 
 /**
  * Created by giuseppe on 5/19/17.
@@ -20,7 +17,6 @@ public class Player {
     private ResourceSet resourceSet;
     private final String PLAYER_ID;
     private final static String TOKEN = "n_family_members";
-    private ArrayList<Effect> bonusMalus;
     private ResourceSet addAtTheEnd;
     private BonusMalusSet bonusMalusSet;
 
@@ -56,6 +52,10 @@ public class Player {
 
     public String getPLAYER_ID() {
         return PLAYER_ID;
+    }
+
+    public BonusMalusSet getBonusMalusSet() {
+        return bonusMalusSet;
     }
 
     public void add(Card card){
