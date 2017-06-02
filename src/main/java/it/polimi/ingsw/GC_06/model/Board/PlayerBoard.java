@@ -58,4 +58,7 @@ public class PlayerBoard {
         }
         return limit.intValue() > cardsKey.size();
     }
+
+    /** ritorna il numero di carte di un certo colore possedute da un giocatore*/
+
 }
