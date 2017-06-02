@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
-import it.polimi.ingsw.GC_06.model.Action.BoardAction;
+import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
@@ -8,11 +8,11 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public class EffectOnAction implements Effect {
 
-    private BoardAction action;
+    private Action action;
     private Player player;
 
 
-    public EffectOnAction(int points, BoardAction action) {
+    public EffectOnAction(int points, Action action) {
         super();
         this.action = action;
     }

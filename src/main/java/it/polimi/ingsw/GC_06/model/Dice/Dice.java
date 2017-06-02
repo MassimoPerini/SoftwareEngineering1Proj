@@ -8,10 +8,9 @@ import java.util.Random;
  */
 public class Dice extends Observable {
 
-    private int points;
-    private Random random;
     private int minPoint, maxPoint; //Inclusive
     private DiceColor color;
+    private int points;
 
     public Dice (DiceColor color)
     {
@@ -21,7 +20,6 @@ public class Dice extends Observable {
     public Dice(int minPoint, int maxPoint, DiceColor color)
     {
         super();
-        this.random = new Random();
         this.minPoint=minPoint;
         this.maxPoint=maxPoint;
         this.color = color;
@@ -29,9 +27,14 @@ public class Dice extends Observable {
 
     public void roll()
     {
+        Random random = new Random();
         points = minPoint + random.nextInt((maxPoint-minPoint)+1);
         setChanged();
         notifyObservers(new Integer(points));
+    }
+
+    public DiceColor getColor() {
+        return color;
     }
 
     public int getPoints() {

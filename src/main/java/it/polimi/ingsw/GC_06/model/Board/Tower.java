@@ -26,14 +26,6 @@ public class Tower{
     	this.minFamilyMembersMalus = minFamilyMembersMalus;
     }
 
-    public void addFamilyMember(FamilyMember familyMember, int index) {
-
-        if (!isAllowed(familyMember, towerFloors.get(index)))
-            throw new IllegalStateException();
-        this.towerFloors.get(index).addFamilyMember(familyMember);
-
-    }
-
     public boolean isNoPenalityAllowed()
     {
         int familyMemberCount = 0;
@@ -67,10 +59,6 @@ public class Tower{
         return towerFloorUser.isAllowed(familyMember);
     }
 
-    public List<Effect> getEffect(int index) {
-        return this.towerFloors.get(index).getEffects();
-    }
-
     public void setCards(List<DevelopmentCard> cards)
     {
         this.cards = cards;
@@ -85,19 +73,9 @@ public class Tower{
         }
     }
 
-    public List<Requirement> getRequirement(int index)
+    public List<TowerFloor> getTowerFloor()
     {
-        return this.towerFloors.get(index).getCard().getRequirements();
-    }
-
-    public DevelopmentCard getCard (int index)
-    {
-        return this.towerFloors.get(index).getCard();
-    }
-
-    public TowerFloor getTowerFloor(int index)
-    {
-        return this.towerFloors.get(index);
+        return this.towerFloors;
     }
 
     public List<Effect> getMalusOnMultipleFamilyMembers() {

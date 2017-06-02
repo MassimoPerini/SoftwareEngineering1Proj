@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
-import it.polimi.ingsw.GC_06.model.Action.BoardAction;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
@@ -17,26 +16,23 @@ import java.util.List;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class BoardActionOnTower implements Action {
+public class BoardActionOnTower extends Action {
 
     private Tower tower;
     private int index;
     private Action pickCard;
     private FamilyMember familyMember;
-    private int value;
 
     public BoardActionOnTower(Player player, int index, Tower tower, FamilyMember familyMember) {
-
-        super();
+        super("actionOnTower", familyMember.getValue());
         if (player==null || tower==null || familyMember==null)
             throw new NullPointerException();
 
         this.familyMember = familyMember;
-        this.value = familyMember.getValue();
         this.index = index;
         this.tower = tower;
         this.familyMember = familyMember;
-        this.pickCard = new PickCard(player, tower.getTowerFloor(index), tower, familyMember.getValue());
+        this.pickCard = new PickCard(player, tower.getTowerFloor().get(index), tower, super.getValueAction());
     }
 
     @Override
@@ -45,7 +41,7 @@ public class BoardActionOnTower implements Action {
         if (!isAllowed())
             throw new IllegalStateException();
 
-        tower.getTowerFloor(index).addFamilyMember(familyMember);
+        tower.getTowerFloor().get(index).addFamilyMember(familyMember);
 
         pickCard.execute();
 

@@ -14,12 +14,12 @@ public class DevelopmentCard extends Card
     private int era;
     private List<Requirement> requirements;
     private List<Effect> immediateEffects;
-    private List<Effect> prodHarvEffects;
+    private List<ProdHarvEffect> prodHarvEffects;
     private String idColour;
 
 //    private ResourceSet immediateRequirement;
 
-    public DevelopmentCard(String name, int era, List<Requirement> requirements, List<Effect> immediate, List<Effect> prodHarvEffects, String idColour)
+    public DevelopmentCard(String name, int era, List<Requirement> requirements, List<Effect> immediate, List<ProdHarvEffect> prodHarvEffects, String idColour)
     {
         super(name);
         this.immediateEffects = immediate;
@@ -40,7 +40,7 @@ public class DevelopmentCard extends Card
         return false;
     }
 
-    public List<Effect> getProdHarvEffects() {
+    public List<ProdHarvEffect> getProdHarvEffects() {
         return prodHarvEffects;
     }
 

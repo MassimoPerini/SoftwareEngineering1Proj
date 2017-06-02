@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdHarvZone implements Component{
+public class ProdHarvZone{
 
 	private ArrayList <ActionPlace> actionPlaces;
 	private int maxSamePlayerFamilyMember;
@@ -15,7 +15,6 @@ public class ProdHarvZone implements Component{
 		this.actionPlaces = actionPlaces;
 	}
 
-	@Override
 	public void addFamilyMember(FamilyMember familyMember, int index)
 	{
 		if (!isAllowed(familyMember, index))
@@ -23,7 +22,6 @@ public class ProdHarvZone implements Component{
 		actionPlaces.get(index).addFamilyMember(familyMember);
 	}
 
-	@Override
 	public boolean isAllowed(FamilyMember familyMember, int index)
 	{
 		int samePlayerFamilyMembers = 0;
@@ -48,9 +46,12 @@ public class ProdHarvZone implements Component{
 	}
 
 
-	@Override
 	public List<Effect> getEffect(int index) {
 		
          return this.actionPlaces.get(index).getEffects();
+	}
+
+	public ArrayList<ActionPlace> getActionPlaces() {
+		return actionPlaces;
 	}
 }

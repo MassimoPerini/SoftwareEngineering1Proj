@@ -12,13 +12,14 @@ import java.util.List;
 /**
  * Created by massimo on 29/05/17.
  */
-public class PayCard implements Action {
+public class PayCard extends Action {
 
     private Player player;
     private DevelopmentCard developmentCard;
 
     public PayCard(DevelopmentCard developmentCard, Player player)
     {
+        super("payCard", 1);
         this.player = player;
         this.developmentCard = developmentCard;
     }

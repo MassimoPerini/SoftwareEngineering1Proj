@@ -6,11 +6,11 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Dice.DiceColor;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -18,12 +18,17 @@ import java.util.Collections;
  */
 public class Game {
 
-    private Board board;
-    private DiceSet diceSet;
-    private DevelopmentCard[] developmentCards;
+    private final Board board;
+    private final DiceSet diceSet;
+    private final DevelopmentCard[] developmentCards;
     private static Game game;
-    private int maxPlayers;
-    private GameStatus gameStatus;
+    private final int maxPlayers, minPlayers;
+    private final int neutralFamilyMembers;
+    private final GameStatus gameStatus;
+    private final ResourceSet [] startResources;
+    private static final String MINPLAYERSKEY = "min_players";
+    private static final String MAXPLAYERSKEY = "max_players";
+    private static final String NEUTRALFAMILYMEMBERSKEY = "neutral_family_members";
 
     //TODO TO REMOVE
     public static void clearForTesting()
@@ -35,8 +40,11 @@ public class Game {
         FileLoader f = FileLoader.getFileLoader();
         board = f.loadBoard();
         developmentCards = f.loadCards();
-        diceSet = new DiceSet();
-        maxPlayers = 2;
+        diceSet = f.loadDiceSet();
+        maxPlayers = Integer.parseInt(Setting.getInstance().getProperty(MAXPLAYERSKEY));
+        minPlayers = Integer.parseInt(Setting.getInstance().getProperty(MINPLAYERSKEY));
+        neutralFamilyMembers = Integer.parseInt(Setting.getInstance().getProperty(NEUTRALFAMILYMEMBERSKEY));
+        startResources = f.loadDefaultResourceSets();
         gameStatus = new GameStatus();
 
     }
@@ -45,16 +53,16 @@ public class Game {
         return maxPlayers;
     }
 
-    public void setMaxPlayers(int maxPlayers) {
-        if (gameStatus.getPlayers().size() > maxPlayers)
-            throw new IllegalStateException();
-        this.maxPlayers = maxPlayers;
-    }
-
     public void start()
     {
         Collections.shuffle(gameStatus.getPlayers());
-
+        int i=0;
+        for (Player player : gameStatus.getPlayers())
+        {
+            player.variateResource(startResources[i]);
+            i++;
+        }
+        gameStatus.setCurrentStatus(new StartStatus(new Gioco()));
     }
 
     void newTurn()
@@ -86,26 +94,23 @@ public class Game {
             throw new NullPointerException();
         if (gameStatus.getPlayers().size() >= maxPlayers)
             throw new IllegalStateException();
-        this.createFamilyMembers(true, p);
-        Player player = new Player(p, this.createFamilyMembers(true, p));
+        Player player = new Player(p, this.createFamilyMembers(p));
         gameStatus.addPlayer(player);
     }
 
-    private FamilyMember[] createFamilyMembers(boolean zeroFamiliar, String playerID)
+    private FamilyMember[] createFamilyMembers(String playerID)
     {
         int i=0;
+        FamilyMember[] familyMembers = new FamilyMember[diceSet.getDices().length+neutralFamilyMembers];
 
-        if (zeroFamiliar)
-            i=1;
-
-        FamilyMember[] familyMembers = new FamilyMember[DiceColor.values().length+i];
-
-        for (i=0;i<DiceColor.values().length;i++) {
-            familyMembers[i] = new FamilyMember(DiceColor.values()[i].name(), playerID);
+        for (i=0;i<diceSet.getDices().length;i++) {
+            familyMembers[i] = new FamilyMember(diceSet.getDices()[i].getColor().name(), playerID);
             diceSet.getDices()[i].addObserver(familyMembers[i]);
         }
-        if (zeroFamiliar)
-            familyMembers[i]=new FamilyMember("",playerID);
+        for (i=0;i<neutralFamilyMembers;i++)
+        {
+            familyMembers[diceSet.getDices().length+i]=new FamilyMember("",playerID);
+        }
         return familyMembers;
     }
 
@@ -118,4 +123,7 @@ public class Game {
         diceSet.roll();
     }
 
+    public Board getBoard() {
+        return board;
+    }
 }

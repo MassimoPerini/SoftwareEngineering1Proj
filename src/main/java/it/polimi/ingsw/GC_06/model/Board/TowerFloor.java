@@ -48,11 +48,6 @@ public class TowerFloor {
         return actionPlace.addFamilyMember(familyMember);
     }
 
-    List<Effect> getEffects ()
-    {
-        return this.actionPlace.getEffects();
-    }
-
     public DevelopmentCard pickCard()
     {
         DevelopmentCard developmentCard = this.card;

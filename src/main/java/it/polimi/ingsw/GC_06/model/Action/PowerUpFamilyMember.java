@@ -7,25 +7,24 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 26/05/17.
  */
-public class PowerUpFamilyMember implements  Action{
+public class PowerUpFamilyMember extends Action{
 
     private Player player;
     private FamilyMember familyMember;
     private ResourceSet variateResources;
-    private int variateFamilyMember;
 
     public PowerUpFamilyMember(Player player, FamilyMember familyMember, ResourceSet variateResources, int variateFamilyMember) {
+        super("powerUp", variateFamilyMember);
         this.player = player;
         this.familyMember = familyMember;
         this.variateResources = variateResources;
-        this.variateFamilyMember = variateFamilyMember;
     }
 
     @Override
     public void execute() {
 
         player.variateResource(variateResources);
-        familyMember.variateValue(variateFamilyMember);
+        familyMember.variateValue(super.getValueAction());
 
     }
 

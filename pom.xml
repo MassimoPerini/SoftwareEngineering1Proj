@@ -20,7 +20,6 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
@@ -32,7 +31,16 @@
       <artifactId>gson-extras</artifactId>
       <version>0.2.1</version>
     </dependency>
-
+    <dependency>
+      <groupId>com.airhacks</groupId>
+      <artifactId>afterburner.fx</artifactId>
+      <version>1.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>de.vandermeer</groupId>
+      <artifactId>asciitable</artifactId>
+      <version>0.3.2</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

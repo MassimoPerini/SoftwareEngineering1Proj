@@ -13,24 +13,22 @@ import java.util.List;
 /**
  * Created by massimo on 26/05/17.
  */
-public class PickCard implements Action {
+public class PickCard extends Action {
 
     private Player player;
     private TowerFloor towerFloor;
     private PayCard payCard;
     private Tower tower;
-    private int valueFamilyMember;
 
     public PickCard(Player player, TowerFloor towerFloor, Tower tower, int valueFamilyMember)
     {
-        super();
+        super("pickCard", valueFamilyMember);
         if (player==null || towerFloor==null)
             throw new NullPointerException();
         this.player = player;
         this.towerFloor = towerFloor;
         this.tower = tower;
         this.payCard = new PayCard(towerFloor.getCard(), player);
-        this.valueFamilyMember = valueFamilyMember;
     }
 
     @Override
@@ -59,7 +57,7 @@ public class PickCard implements Action {
     public boolean isAllowed() {
         //Can add in PlayerBoard
         FamilyMember familyMemberTest = new FamilyMember(null, player.getPLAYER_ID());
-        familyMemberTest.setValue(valueFamilyMember);
+        familyMemberTest.setValue(super.getValueAction());
 
         if (!tower.isAllowed(familyMemberTest, towerFloor))
             return false;

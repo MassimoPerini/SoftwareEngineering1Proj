@@ -74,7 +74,27 @@ public class ResourceSet {
         return myQty!=null && (myQty.intValue()+amount)>=0;
     }
 
-    public HashMap<Resource, Integer> getResources() {
-        return resources;
+    public boolean isNegativeValuePresent ()
+    {
+        Iterator<Map.Entry<Resource, Integer>> i = getIterator(this);
+        while (i.hasNext())
+        {
+            Map.Entry<Resource, Integer> entry = i.next();
+            if (entry.getValue().intValue() < 0)
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isPositiveValuePresent ()
+    {
+        Iterator<Map.Entry<Resource, Integer>> i = getIterator(this);
+        while (i.hasNext())
+        {
+            Map.Entry<Resource, Integer> entry = i.next();
+            if (entry.getValue().intValue() >= 0)
+                return true;
+        }
+        return false;
     }
 }

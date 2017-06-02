@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_06.ViewController.CmdViewController;
 
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
+
 /**
  * Created by massimo on 27/05/17.
  */
@@ -18,6 +21,11 @@ public class CmdViewUtils {
         if (!ok || res>max || res <min)
             ok=false;
         return ok;
+    }
+
+    public static Player getCurrentPlayer()
+    {
+        return Game.getInstance().getGameStatus().getCurrentPlayer();
     }
 
 }

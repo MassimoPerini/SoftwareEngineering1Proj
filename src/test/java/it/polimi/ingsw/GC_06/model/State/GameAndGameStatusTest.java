@@ -42,17 +42,16 @@ public class GameAndGameStatusTest {
     @Test (expected = IllegalStateException.class)
     public void reachedMaxCustomNumberOfPlayer() throws IOException {
         Game game = Game.getInstance();
-        game.setMaxPlayers(3);
         game.addPlayer("sudo");
         game.addPlayer("nano");
         game.addPlayer("massimo");
         game.addPlayer("perini");
+        game.addPlayer("pallo");
     }
 
     @Test
     public void testAdded() throws IOException {
         Game game = Game.getInstance();
-        game.setMaxPlayers(5);
         game.addPlayer("pinco");
         game.addPlayer("pallino");
         game.addPlayer("massimo");
@@ -64,21 +63,10 @@ public class GameAndGameStatusTest {
     @Test
     public void testFirst() throws IOException {
         Game game = Game.getInstance();
-        game.setMaxPlayers(3);
         game.addPlayer("pinco");
         game.addPlayer("pallino");
         game.addPlayer("massimo");
         assertEquals(Game.getInstance().getGameStatus().getCurrentPlayer().getPLAYER_ID(), "pinco");
-    }
-
-    @Test (expected=IllegalStateException.class)
-    public void testAddedAndRemoved() throws IOException {
-        Game game = Game.getInstance();
-        game.setMaxPlayers(3);
-        game.addPlayer("pinco");
-        game.addPlayer("pallino");
-        game.addPlayer("massimo");
-        game.setMaxPlayers(2);
     }
 
 

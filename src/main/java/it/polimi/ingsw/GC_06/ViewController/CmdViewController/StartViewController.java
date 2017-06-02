@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.ViewController.CmdViewController;
 
 import it.polimi.ingsw.GC_06.View.CmdView;
 import it.polimi.ingsw.GC_06.View.CommandView;
-import it.polimi.ingsw.GC_06.ViewController.NavigationController;
 import it.polimi.ingsw.GC_06.ViewController.ViewController;
 
 /**
@@ -17,18 +16,13 @@ public class StartViewController implements ViewController{
     public StartViewController()
     {
         super();
-    }
-
-    @Override
-    public void viewDidLoad() {
         commandView = new CmdView();
-        System.out.println("DEBUG - viewDidLoad invoked!");
-
     }
+
 
     private void init()
     {
-        nextController[0] = null;
+        nextController[0] = new TowerActionViewController();
         nextController[1] = new PowerUpFamilyMemberViewController();
         nextController[2] = null;
         nextController[3] = null;
@@ -73,17 +67,7 @@ public class StartViewController implements ViewController{
         }
         System.gc();
 
-        NavigationController.getInstance().pushViewController(nextController[res]);
+        nextController[res].viewWillAppear();
 
-    }
-
-    @Override
-    public void viewWillDisappear() {
-        System.out.println("DEBUG - viewWillDisappear invoked!");
-    }
-
-    @Override
-    public void viewDidUnload() {
-        System.out.println("DEBUG - viewDidUnload invoked!");
     }
 }

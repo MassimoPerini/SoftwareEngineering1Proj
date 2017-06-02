@@ -289,7 +289,7 @@
       "minFamilyMembersMalus": 1
     }
   ],
-  "markets": [
+  "marketAndCouncils": [
     {
       "actionPlaces": [
         {

@@ -26,6 +26,10 @@ public class FamilyMember implements Observer {
         this.playerUserName = playerUserName;
     }
 
+    public String getDiceColor() {
+        return diceColor;
+    }
+
     public boolean isNeutral()
     {
         return diceColor.equals("");

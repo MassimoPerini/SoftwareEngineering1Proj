@@ -17,7 +17,7 @@ public class BonusMalusResources extends BonusMalus {
 
     @Override
     public void modify(ResourceSet resourceSet) {
-
+/*
         for(Resource resource :resourceSet.getResources().keySet()){
             if(resource.equals(resourceSet.getResources().keySet())){
                 resourceSet.getResources().put(resource,resourceSet.getResources().get(resource) +
@@ -29,8 +29,8 @@ public class BonusMalusResources extends BonusMalus {
 
     /*@Override
     public void filter() {
-
-    }*/
+*/
+    }
 
 
     @Override

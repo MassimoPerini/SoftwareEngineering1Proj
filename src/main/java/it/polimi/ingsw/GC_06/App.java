@@ -1,20 +1,9 @@
 package it.polimi.ingsw.GC_06;
 
 import it.polimi.ingsw.GC_06.ViewController.CmdViewController.StartViewController;
-import it.polimi.ingsw.GC_06.ViewController.NavigationController;
-import it.polimi.ingsw.GC_06.model.Board.Board;
-import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
-import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
-import it.polimi.ingsw.GC_06.View.FxLoader;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.GameStatus;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Hello world!
@@ -31,9 +20,10 @@ public class App
 
     //    f.writeBoard();
     //    f.writeCards();
+
         Game game = Game.getInstance();
         game.addPlayer("massimo");
-        NavigationController.getInstance().pushViewController(new StartViewController());
+        new StartViewController().viewWillAppear();
 
 /*
         FxLoader fxLoader = new FxLoader();

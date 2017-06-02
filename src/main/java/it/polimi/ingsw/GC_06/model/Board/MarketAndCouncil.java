@@ -6,27 +6,26 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Market implements Component
+public class MarketAndCouncil
 {
 	private ArrayList<ActionPlace> actionPlaces;
 	
-	public Market(ArrayList<ActionPlace> places) {
+	public MarketAndCouncil(ArrayList<ActionPlace> places) {
 		this.actionPlaces = places;
 	}
 
-	@Override
 	public void addFamilyMember(FamilyMember familyMember, int index) {
 		actionPlaces.get(index).addFamilyMember(familyMember);
 	}
 
-	@Override
 	public boolean isAllowed(FamilyMember familyMember, int index) {
 
 		return actionPlaces.get(index).isAllowed(familyMember);
 	}
 
-	@Override
-	public List<Effect> getEffect(int index) {
+	public List<Effect> getEffects(int index)
+	{
 		return actionPlaces.get(index).getEffects();
 	}
+
 }

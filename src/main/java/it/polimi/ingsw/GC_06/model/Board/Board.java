@@ -9,15 +9,15 @@ import java.util.ArrayList;
  */
 public class Board {
     private final ArrayList<Tower> towers;
-    private final ArrayList<Market> markets;
+    private final ArrayList<MarketAndCouncil> marketAndCouncils;
     private final ArrayList<ProdHarvZone> prodHarvZones;
-    private final ArrayList<Council> councils;
+    private final ArrayList<MarketAndCouncil> councils;
 
-    public Board(ArrayList<Tower> towers, ArrayList<Market> markets, ArrayList<ProdHarvZone> prodHarvZones, ArrayList<Council> councils)
+    public Board(ArrayList<Tower> towers, ArrayList<MarketAndCouncil> marketAndCouncils, ArrayList<ProdHarvZone> prodHarvZones, ArrayList<MarketAndCouncil> councils)
     {
         super();
         this.towers = towers;
-        this.markets = markets;
+        this.marketAndCouncils = marketAndCouncils;
         this.prodHarvZones = prodHarvZones;
         this.councils = councils;
 
@@ -28,20 +28,16 @@ public class Board {
         return towers;
     }
 
-    public void addToTower (int tower, int floor, FamilyMember familyMember)
-    {
-      this.towers.get(tower).addFamilyMember(familyMember, floor);
-    }
-    public void addToCouncil (FamilyMember familyMember, int index){
-       this.councils.get(0).addFamilyMember(familyMember, index);
+
+    public ArrayList<MarketAndCouncil> getMarketAndCouncils() {
+        return marketAndCouncils;
     }
 
-    public void addToOperations(int prodHarv, FamilyMember familyMember, int index){
-      this.prodHarvZones.get(prodHarv).addFamilyMember(familyMember, index);
-    }
-    public void addToMarket(FamilyMember familyMember, int index)
-    {
-      this.markets.get(0).addFamilyMember(familyMember, index);
+    public ArrayList<ProdHarvZone> getProdHarvZones() {
+        return prodHarvZones;
     }
 
+    public ArrayList<MarketAndCouncil> getCouncils() {
+        return councils;
+    }
 }
