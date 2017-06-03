@@ -39,4 +39,14 @@ class State extends Observable implements FsmNode {
         setChanged();
         notifyObservers(ID);
     }
+
+    @Override
+    public void sendNotify(Object o) {
+        setChanged();
+        notifyObservers(o);
+    }
+
+    public StateName getID() {
+        return ID;
+    }
 }

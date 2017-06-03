@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Board.Board;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
@@ -12,8 +11,8 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by massimo on 27/05/17.
@@ -26,23 +25,23 @@ public class Game {
     private static Game game;
 
     //params
-    private final int maxPlayers, minPlayers;
-    private final int neutralFamilyMembers;
+    private final int maxPlayers, minPlayers, neutralFamilyMembers;
     private final GameStatus gameStatus;
     private final ResourceSet [] startResources;
+    private final Map<StateName, FsmNode> statuses;
 
     //keys
     private static final String MINPLAYERSKEY = "min_players";
     private static final String MAXPLAYERSKEY = "max_players";
     private static final String NEUTRALFAMILYMEMBERSKEY = "neutral_family_members";
 
-    //TODO TO REMOVE
+    //TODO TO REMOVE (KEEP SINGLETON)
     public static void clearForTesting()
     {
         game=null;
     }
 
-    private Game() throws IOException {
+    public Game() throws IOException {
         FileLoader f = FileLoader.getFileLoader();
         board = f.loadBoard();
         developmentCards = f.loadCards();
@@ -52,15 +51,11 @@ public class Game {
         neutralFamilyMembers = Integer.parseInt(Setting.getInstance().getProperty(NEUTRALFAMILYMEMBERSKEY));
         startResources = f.loadDefaultResourceSets();
         //load from file
-        gameStatus = new GameStatus(this.generateStatuses());
+        this.statuses = new HashMap<>();
+        this.generateStatuses();
+        gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
     }
 
-
-
-
-    public int getMaxPlayers() {
-        return maxPlayers;
-    }
 
     public void start()
     {
@@ -129,18 +124,22 @@ public class Game {
         return familyMembers;
     }
 
-    public FsmNode generateStatuses()
+    private FsmNode generateStatuses()
     {
         //Loaded from file?
 
         //Init states and state transition table for each state
-        FsmNode node1 = new State(StateName.IDLE);
-        FsmNode node2 = new State(StateName.PLACE_FAM_MEM);
-        FsmNode node3 = new State(StateName.PICK_CARD);
+        State node1 = new State(StateName.IDLE);
+        State node2 = new State(StateName.PLACE_FAM_MEM);
+        State node3 = new State(StateName.PICK_CARD);
 
         node1.addTransition(TransitionType.ADDFAMILYMEMBER, node2);
         node2.addTransition(TransitionType.PAYCARD, node3);
         node3.addTransition(TransitionType.END, node1);
+
+        statuses.put(node1.getID(), node1);
+        statuses.put(node2.getID(), node2);
+        statuses.put(node3.getID(), node3);
 
         return node1;
 

@@ -38,6 +38,15 @@ public class GameStatus {
         return true;
     }
 
+    public void changeState(TransitionType type, Object o)
+    {
+        if (!currentStatus.canConsume(type)){
+            throw new IllegalStateException();
+        }
+        this.currentStatus = currentStatus.consume(type);
+        currentStatus.sendNotify(o);
+    }
+
     public void changeState(TransitionType type)
     {
         if (!currentStatus.canConsume(type)){
@@ -57,7 +66,9 @@ public class GameStatus {
         this.players.add(player);
     }
 
-    ArrayList<Player> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
+
+
 }

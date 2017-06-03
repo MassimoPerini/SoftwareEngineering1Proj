@@ -9,7 +9,9 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +21,7 @@ import static org.junit.Assert.*;
 /**
  * Created by massimo on 28/05/17.
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ActionPlaceTest {
 
     private ActionPlace actionPlace;

@@ -14,7 +14,7 @@ public class EffectOnAction implements Effect {
     private Player player;
 
 
-    public EffectOnAction(int points, ArrayList<Action> actions) {
+    public EffectOnAction(ArrayList<Action> actions) {
         super();
         this.actions = actions;
     }

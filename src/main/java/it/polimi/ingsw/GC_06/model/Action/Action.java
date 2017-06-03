@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.GameStatus;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.Set;
@@ -12,10 +14,12 @@ public abstract class Action {
     private final String idAction;
     private int valueAction;
     private Player player;
+    protected GameStatus status;
 
     public Action(String idAction, int valueAction)
     {
         super();
+        this.status = Game.getInstance().getGameStatus();
         this.valueAction = valueAction;
         this.idAction = idAction;
     }

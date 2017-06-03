@@ -8,4 +8,6 @@ interface FsmNode {
     FsmNode consume(TransitionType type);
     void addTransition (TransitionType type, FsmNode nextState);
     void sendNotify();
+    void sendNotify(Object o);
+
 }
