@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 /**
  * Created by giuseppe on 5/31/17.
  */
-public class BonusMalusOnResources implements BonusMalus {
+public class BonusMalusOnResources{
     /** i malus o bonus sulle risorse attaccano una risorsa per volta*/
 
     private Resource bonusMalusEntity;
@@ -23,13 +23,13 @@ public class BonusMalusOnResources implements BonusMalus {
         if (targetResourceSet.isIncluded(bonusMalusEntity, coefficient)) {
             System.out.println("\nIsIncluded " + targetResourceSet.isIncluded(bonusMalusEntity, coefficient));
 
-            double variation = (double) targetResourceSet.resourceAmount(bonusMalusEntity) / (double)coefficient;
+            int variation =  targetResourceSet.resourceAmount(bonusMalusEntity) / coefficient;
             System.out.println("This is variation " + variation);
 
 
             /** otteniamo la quantità di cose da sottrarre dal targetResourceSet*/
 
-            targetResourceSet.variateResource(bonusMalusEntity, (int)-variation);
+            targetResourceSet.variateResource(bonusMalusEntity, variation);
         }
     }
 }

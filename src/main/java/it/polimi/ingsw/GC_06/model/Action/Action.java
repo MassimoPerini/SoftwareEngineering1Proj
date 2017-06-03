@@ -1,5 +1,9 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
+
+import java.util.Set;
+
 /**
  * Created by massimo on 26/05/17.
  */
@@ -7,6 +11,7 @@ public abstract class Action {
 
     private final String idAction;
     private int valueAction;
+    private Player player;
 
     public Action(String idAction, int valueAction)
     {
@@ -28,5 +33,18 @@ public abstract class Action {
 
     public String getIdAction() {
         return idAction;
+    }
+
+    private boolean checkBonusMalus(){
+
+        Set<String> keySet =  player.getBonusMalusSet().getBonusMalusOnAction().keySet();
+
+        for(String key : keySet){
+            if(key.equals(this.idAction)){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

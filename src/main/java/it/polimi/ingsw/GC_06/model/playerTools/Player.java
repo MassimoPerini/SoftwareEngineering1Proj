@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_06.model.playerTools;
 
+import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.PlayerBoard;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.Card;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
@@ -21,6 +23,7 @@ public class Player {
     private final String PLAYER_ID;
     private ArrayList<Effect> bonusMalus;
     private ResourceSet addAtTheEnd;
+    private BonusMalusSet bonusMalusSet;
 
     //TODO sistemare la questione dei malus e bonus sul player
 
@@ -54,6 +57,10 @@ public class Player {
 
     public String getPLAYER_ID() {
         return PLAYER_ID;
+    }
+
+    public BonusMalusSet getBonusMalusSet() {
+        return bonusMalusSet;
     }
 
     public void add(Card card){

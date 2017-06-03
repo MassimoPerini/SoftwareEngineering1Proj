@@ -1,17 +1,9 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
+import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
-import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.model.Card.Requirement;
-import it.polimi.ingsw.GC_06.model.Effect.Effect;
-import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by giuseppe on 5/20/17.
@@ -41,9 +33,12 @@ public class BoardActionOnTower extends Action {
         if (!isAllowed())
             throw new IllegalStateException();
 
+
         tower.getTowerFloor().get(index).addFamilyMember(familyMember);
 
         pickCard.execute();
+
+
 
     }
 
