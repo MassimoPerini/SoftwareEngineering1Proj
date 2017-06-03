@@ -12,28 +12,26 @@ public class ResourceSet {
 
     private HashMap<Resource, Integer> resources;
 
-    public ResourceSet ()
-    {
+    public ResourceSet() {
         super();
         this.resources = new HashMap<>();
     }
 
-    public ResourceSet(ResourceSet resourceSet)
-    {
+    public ResourceSet(ResourceSet resourceSet) {
         super();
         this.resources = new HashMap<>(resourceSet.resources);
         //TODO CHECK CLONE!
     }
 
-    private Iterator<Map.Entry<Resource, Integer>> getIterator (ResourceSet resourceSet)
-    {
+    private Iterator<Map.Entry<Resource, Integer>> getIterator(ResourceSet resourceSet) {
         Set<Map.Entry<Resource, Integer>> newRes = resourceSet.resources.entrySet();
         return newRes.iterator();
     }
-    public void variateResource(Resource resource, int amount){
+
+    public void variateResource(Resource resource, int amount) {
 
         Integer myQty = this.resources.get(resource);
-        if (myQty==null)
+        if (myQty == null)
             this.resources.put(resource, amount);
         else {
             int res = myQty.intValue() + amount;
@@ -41,44 +39,38 @@ public class ResourceSet {
         }
     }
 
-    public void variateResource(ResourceSet resourceSet)
-    {
+    public void variateResource(ResourceSet resourceSet) {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
 
-        while (i.hasNext())
-        {
+        while (i.hasNext()) {
             Map.Entry<Resource, Integer> entry = i.next();
             this.variateResource(entry.getKey(), entry.getValue());
         }
 
     }
-    public boolean isIncluded (ResourceSet resourceSet)
-    {
+
+    public boolean isIncluded(ResourceSet resourceSet) {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
 
-        while (i.hasNext())
-        {
+        while (i.hasNext()) {
             Map.Entry<Resource, Integer> entry = i.next();
-            if (! isIncluded(entry.getKey(), entry.getValue()))
+            if (!isIncluded(entry.getKey(), entry.getValue()))
                 return false;
         }
         return true;
     }
 
-    public boolean isIncluded (Resource resource, int amount)
-    {
-        if (amount>0)
+    public boolean isIncluded(Resource resource, int amount) {
+        if (amount > 0)
             return true;
 
         Integer myQty = this.resources.get(resource);
-        return myQty!=null && (myQty.intValue()+amount)>=0;
+        return myQty != null && (myQty.intValue() + amount) >= 0;
     }
 
-    public boolean isNegativeValuePresent ()
-    {
+    public boolean isNegativeValuePresent() {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(this);
-        while (i.hasNext())
-        {
+        while (i.hasNext()) {
             Map.Entry<Resource, Integer> entry = i.next();
             if (entry.getValue().intValue() < 0)
                 return true;
@@ -86,11 +78,9 @@ public class ResourceSet {
         return false;
     }
 
-    public boolean isPositiveValuePresent ()
-    {
+    public boolean isPositiveValuePresent() {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(this);
-        while (i.hasNext())
-        {
+        while (i.hasNext()) {
             Map.Entry<Resource, Integer> entry = i.next();
             if (entry.getValue().intValue() >= 0)
                 return true;
@@ -98,8 +88,21 @@ public class ResourceSet {
         return false;
     }
 
-    public int resourceAmount(Resource resource)
-    {
-        return this.resources.get(resource);
+    public int totalResourceQuantity(){
+
+        int totalResource = 0;
+
+        for(Resource resource : this.resources.keySet()){
+
+            totalResource = totalResource + this.resources.get(resource);
+        }
+
+        return totalResource;
+    }
+
+    public HashMap<Resource, Integer> getResources() {
+        return resources;
     }
 }
+
+
