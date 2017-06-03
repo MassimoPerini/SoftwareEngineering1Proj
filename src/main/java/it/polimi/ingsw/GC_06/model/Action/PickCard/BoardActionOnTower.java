@@ -25,7 +25,7 @@ public class BoardActionOnTower extends Action {
 
     public BoardActionOnTower(Player player, int index, Tower tower, FamilyMember familyMember) {
         super("actionOnTower", familyMember.getValue());
-        if (player==null || tower==null || familyMember==null)
+        if (player==null || tower==null)
             throw new NullPointerException();
 
         this.familyMember = familyMember;

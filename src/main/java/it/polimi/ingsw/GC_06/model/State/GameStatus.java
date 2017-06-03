@@ -9,19 +9,42 @@ import java.util.ArrayList;
  */
 public class GameStatus {
 
-    private static GameStatus gameStatus;
-
     private ArrayList<Player> players;
-    private Status currentStatus;
+    private FsmNode currentStatus;
     private int currentPlayer, turn, era,numberTurn, numberEra;
 
 
 
-    GameStatus()
+    GameStatus(FsmNode currentStatus)
     {
         super();
+
+        this.currentStatus = currentStatus;
+
+
         players = new ArrayList<>();
 
+    }
+
+    boolean isAllowedAddPlayer(String playerID)
+    {
+        for (Player player: players)
+        {
+            if (player.getPLAYER_ID().equals(playerID))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void changeState(TransitionType type)
+    {
+        if (!currentStatus.canConsume(type)){
+            throw new IllegalStateException();
+        }
+        this.currentStatus = currentStatus.consume(type);
+        currentStatus.sendNotify();
     }
 
     public Player getCurrentPlayer()
@@ -32,10 +55,6 @@ public class GameStatus {
     void addPlayer(Player player)
     {
         this.players.add(player);
-    }
-
-    public void setCurrentStatus(Status currentStatus) {
-        this.currentStatus = currentStatus;
     }
 
     ArrayList<Player> getPlayers() {

@@ -10,6 +10,7 @@ public abstract class Action {
 
     public Action(String idAction, int valueAction)
     {
+        super();
         this.valueAction = valueAction;
         this.idAction = idAction;
     }

@@ -30,17 +30,10 @@ public class GameAndGameStatusTest {
         Game game = Game.getInstance();
         game.addPlayer(null);
     }
+    
 
     @Test (expected = IllegalStateException.class)
     public void reachedMaxNumberOfPlayer() throws IOException {
-        Game game = Game.getInstance();
-        game.addPlayer("pinco");
-        game.addPlayer("pallino");
-        game.addPlayer("massimo");
-    }
-
-    @Test (expected = IllegalStateException.class)
-    public void reachedMaxCustomNumberOfPlayer() throws IOException {
         Game game = Game.getInstance();
         game.addPlayer("sudo");
         game.addPlayer("nano");

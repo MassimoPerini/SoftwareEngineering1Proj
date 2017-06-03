@@ -19,7 +19,6 @@ public class Player {
     private FamilyMember [] familyMembers;
     private ResourceSet resourceSet;
     private final String PLAYER_ID;
-    private final static String TOKEN = "n_family_members";
     private ArrayList<Effect> bonusMalus;
     private ResourceSet addAtTheEnd;
 
