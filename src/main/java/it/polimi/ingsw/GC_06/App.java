@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_06;
 
+import it.polimi.ingsw.GC_06.ViewController.CmdViewController.StartViewController;
+import it.polimi.ingsw.GC_06.model.State.Game;
+
 import java.io.IOException;
 
 /**
@@ -18,9 +21,9 @@ public class App
     //    f.writeBoard();
     //    f.writeCards();
 
-        //Game game = Game.getInstance();
-        //game.addPlayer("massimo");
-        //new StartViewController().viewWillAppear();
+        Game game = Game.getInstance();
+        game.addPlayer("massimo");
+        new StartViewController().viewWillAppear();
 
 /*
         FxLoader fxLoader = new FxLoader();
