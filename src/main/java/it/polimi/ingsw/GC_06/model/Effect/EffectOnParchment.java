@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
+import it.polimi.ingsw.GC_06.model.State.GameStatus;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
@@ -9,6 +10,7 @@ public class EffectOnParchment implements Effect {
     @Override
     public void execute(Player player) {
        // TODO quando sarà fatta la view notify(player.view())
+        // TODO notifica al controller di cambiare lo stato del gioco in PrivilegeDecisionStatus
 
     }
 }

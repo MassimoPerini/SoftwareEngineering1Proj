@@ -21,7 +21,7 @@ public class EffectOnAction implements Effect {
 
     @Override
     public void execute(Player player) {
-       // for (Action a : actions) a.setPlayer();     //TODO settare il Player di tutte le action
+        for (Action a : actions) a.setPlayer(player);
         // TODO decidere se singola o arrayList
         for (Action a : actions) a.execute();
     }

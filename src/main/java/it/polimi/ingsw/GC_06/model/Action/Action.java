@@ -35,6 +35,10 @@ public abstract class Action {
         return idAction;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     private boolean checkBonusMalus(){
 
         Set<String> keySet =  player.getBonusMalusSet().getBonusMalusOnAction().keySet();
