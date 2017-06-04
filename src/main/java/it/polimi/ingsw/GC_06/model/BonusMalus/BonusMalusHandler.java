@@ -37,6 +37,8 @@ public class BonusMalusHandler {
             for (BonusMalusOnAction bonusMalusOnAction : bonusMalusOnActions) {
                 bonusMalusOnAction.modify(action.getValueAction());
             }
+
+            System.out.println("Work in progress");
         }
     }
 
