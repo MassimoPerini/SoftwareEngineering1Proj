@@ -7,6 +7,13 @@ import java.util.Observable;
 /**
  * Created by massimo on 03/06/17.
  */
+
+/**
+ * @author massimo
+ * This class is a state of the game.
+ * It contains a transitionTable that allows to generate the following state
+ * Is an Observable class
+ */
 class State extends Observable implements FsmNode {
 
     private Map<TransitionType, FsmNode> transitionTable;

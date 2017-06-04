@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 
 /**
  * Created by massimo on 03/06/17.
+ * @author massimo
+ * This is the "Main View" presenter
+ * It uses FXML and @INJECT directives.
  */
 public class MainPresenter implements Initializable, Observer {
 

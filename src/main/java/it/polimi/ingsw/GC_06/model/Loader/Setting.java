@@ -4,6 +4,9 @@ import java.util.ResourceBundle;
 
 /**
  * Created by massimo on 18/05/17.
+ * @author massimo
+ * Reads the Settings bundle
+ * singleton!
  */
 public class Setting {
 

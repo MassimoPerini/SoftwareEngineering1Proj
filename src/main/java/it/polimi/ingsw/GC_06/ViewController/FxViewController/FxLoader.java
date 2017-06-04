@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 /**
  * Created by massimo on 18/05/17.
+ * @author massimo
+ * Loads and shows the main JavaFx class
+ * It uses Afterburner fx in order to simplify its creation.
  */
 public class FxLoader extends Application {
 

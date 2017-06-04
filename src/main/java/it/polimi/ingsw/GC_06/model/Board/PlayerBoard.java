@@ -5,8 +5,9 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 /**
- * Created by giuseppe on 5/20/17.
+ * @author giuseppe
  */
 public class PlayerBoard {
 
@@ -33,6 +34,10 @@ public class PlayerBoard {
         return res;
     }
 
+    /**
+     * Adds a card to the player board. If it is not possible, generate an IllegalStateException
+     * @param card
+     */
     public void addCard(DevelopmentCard card)
     {
         if (!canAdd(card))
@@ -48,6 +53,11 @@ public class PlayerBoard {
         cardsColor.add(card);
     }
 
+    /**
+     * check if I can add a card to the player board (check on the restrictions).
+     * @param cardId
+     * @return
+     */
     public boolean canAdd (DevelopmentCard cardId)
     {
         Integer limit = maxCards.get(cardId.getIdColour());

@@ -17,6 +17,9 @@ import java.util.List;
 
 /**
  * Created by massimo on 17/05/17.
+ * @author massimo
+ * This class reads and writes JSON files, thanks to Google GSON library.
+ * Remove the write functions before submit!
  */
 
 public class FileLoader {

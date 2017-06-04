@@ -4,7 +4,9 @@ import java.util.Observable;
 import java.util.Random;
 
 /**
+ * @author massimo
  * Created by massimo on 12/05/17.
+ * This is a dice
  */
 public class Dice extends Observable {
 
@@ -12,11 +14,12 @@ public class Dice extends Observable {
     private DiceColor color;
     private int points;
 
-    public Dice (DiceColor color)
-    {
-        this(0, 6, color);
-    }
-
+    /**
+     * Inits a new dice. minPoint and maxPoint are inclusive
+     * @param minPoint
+     * @param maxPoint
+     * @param color
+     */
     public Dice(int minPoint, int maxPoint, DiceColor color)
     {
         super();
@@ -25,6 +28,9 @@ public class Dice extends Observable {
         this.color = color;
     }
 
+    /**
+     * Roll the dice. It generates a new value AND NOTIFY the observers (usually the FamilyMember of the same value)
+     */
     public void roll()
     {
         Random random = new Random();

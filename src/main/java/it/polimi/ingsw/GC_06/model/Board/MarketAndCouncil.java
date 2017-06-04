@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.FamilyMember;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MarketAndCouncil
 {
 	private ArrayList<ActionPlace> actionPlaces;

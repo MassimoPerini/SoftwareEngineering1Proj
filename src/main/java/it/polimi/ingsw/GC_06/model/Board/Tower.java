@@ -12,6 +12,11 @@ import java.util.List;
 /**
  * Created by massimo on 13/05/17.
  */
+
+/**
+ * @author massimo
+ * This class represents a "tower" of the game
+ */
 public class Tower{
 
     private List<TowerFloor> towerFloors;
@@ -26,6 +31,12 @@ public class Tower{
     	this.minFamilyMembersMalus = minFamilyMembersMalus;
     }
 
+    /**
+     * Chack if you deserve a malus when you add the card (the -3 gold).
+     * It will be used together with getMalusOnMultipleFamilyMembers
+     * TODO DO IT!
+     * @return
+     */
     public boolean isNoPenalityAllowed()
     {
         int familyMemberCount = 0;
@@ -39,6 +50,12 @@ public class Tower{
 
     }
 
+    /**
+     * Check if the player can add the family member to a floor. It doesn't manage the malus when a player is added
+     * @param familyMember
+     * @param towerFloorUser
+     * @return
+     */
     public boolean isAllowed(FamilyMember familyMember, TowerFloor towerFloorUser) {
 
         int samePlayerFamilyMember = 0;
@@ -59,11 +76,19 @@ public class Tower{
         return towerFloorUser.isAllowed(familyMember);
     }
 
+    /**
+     * Set an amount of cards on the tower
+     * @param cards
+     */
     public void setCards(List<DevelopmentCard> cards)
     {
         this.cards = cards;
     }
 
+    /**
+     * @requires this.cards.size() >= towerFloors.size()
+     * Gives a new card for each towerFloor
+     */
     public void shuffle()
     {
         for (int i=0;i<this.towerFloors.size();i++)
