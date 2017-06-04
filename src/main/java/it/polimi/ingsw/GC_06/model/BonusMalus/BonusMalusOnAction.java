@@ -9,12 +9,13 @@ public class BonusMalusOnAction {
     private String colourTarget;
     private int malusEntity;
 
-    public BonusMalusOnAction( int malusEntity) {
+    public BonusMalusOnAction(String colourTarget, int malusEntity) {
+        this.colourTarget = colourTarget;
         this.malusEntity = malusEntity;
     }
 
-    public void setColourTarget(String colourTarget) {
-        this.colourTarget = colourTarget;
+    public void setMalusEntity(int malusEntity) {
+        this.malusEntity = malusEntity;
     }
 
     public String getColourTarget() {

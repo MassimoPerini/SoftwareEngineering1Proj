@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
+import it.polimi.ingsw.GC_06.model.Action.PlayType;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -10,10 +11,12 @@ public class EffectOnResourcesHarvProduction implements ProdHarvEffect{
 
     private int requiredValue;
     private ResourceSet variateResource;
+    private PlayType playType;
 
-    public EffectOnResourcesHarvProduction(int requiredValue, ResourceSet variateResource) {
+    public EffectOnResourcesHarvProduction(int requiredValue, ResourceSet variateResource,PlayType playType) {
         this.requiredValue = requiredValue;
         this.variateResource = variateResource;
+        this.playType = playType;
     }
 
 
