@@ -52,6 +52,7 @@ public class PickCard extends Action {
 
         payCard.execute();
 
+        //TODO qui deve partire l'effetto immediato della carta in automatico
     }
 
     @Override
