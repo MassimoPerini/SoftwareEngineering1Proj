@@ -9,6 +9,11 @@ import java.util.List;
 /**
  * Created by giuseppe on 5/20/17.
  */
+
+/**
+ * @deprecated DON'T USE IT
+ *
+ */
 public interface Component {
 
     void addFamilyMember(FamilyMember familyMember, int index);

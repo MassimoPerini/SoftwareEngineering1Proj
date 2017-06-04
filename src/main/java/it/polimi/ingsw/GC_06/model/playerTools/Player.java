@@ -13,10 +13,11 @@ import java.util.ArrayList;
 
 /**
  * Created by giuseppe on 5/19/17.
+ * @author giuseppe
+ * This class is a Player of the game
  */
 public class Player {
 
-    private CardSet cardSet;
     private PlayerBoard playerBoard;
     private FamilyMember [] familyMembers;
     private ResourceSet resourceSet;
@@ -32,7 +33,7 @@ public class Player {
 
         this.PLAYER_ID = PLAYER_ID;
         this.resourceSet = new ResourceSet();
-        this.cardSet = new CardSet();
+        this.playerBoard = new PlayerBoard();
         this.familyMembers = familyMembers;
     }
 
@@ -47,10 +48,6 @@ public class Player {
         return playerBoard;
     }
 
-    public CardSet getCardSet() {
-        return cardSet;
-    }
-
     public ResourceSet getResourceSet() {
         return resourceSet;
     }
@@ -63,9 +60,6 @@ public class Player {
         return bonusMalusSet;
     }
 
-    public void add(Card card){
-     //   cardSet.addCard(card);
-    }
 
     public FamilyMember[] getFamilyMembers() {
         return familyMembers;

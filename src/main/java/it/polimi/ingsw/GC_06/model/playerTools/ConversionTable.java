@@ -6,6 +6,7 @@ import java.util.HashMap;
 /**
  * Created by giuseppe on 5/31/17.
  */
+
 public class ConversionTable {
 
     private HashMap<String, ArrayList<Integer>> conversionTable;

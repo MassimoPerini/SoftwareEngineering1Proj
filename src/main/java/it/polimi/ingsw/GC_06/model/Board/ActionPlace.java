@@ -6,6 +6,12 @@ import java.util.List;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 
+/**
+ * @author massimo
+ * This class is the unlimited ActionPlace
+ * We HAVE TO use the delegation pattern instead of the extension
+ */
+
 public class ActionPlace {
     private List<Effect> effects;
 	private ArrayList<FamilyMember> members;
@@ -22,6 +28,12 @@ public class ActionPlace {
 
 	//TODO N.B. Sarebbe meglio una delega???
 
+	/**
+	 *
+	 * @param member
+	 * @return
+	 * The only restriction is if the value of the familymember is lower than the field price
+	 */
 	public boolean isAllowed (FamilyMember member)
 	{
 		if (member == null)
@@ -29,6 +41,12 @@ public class ActionPlace {
 		return member.getValue() >= price;
 	}
 
+	/**
+	 *
+	 * @param familyMember
+	 * @return
+	 * Adds the familymember to the ActionSpace if possible. Generate a IllegalArgumentException if it is not.
+	 */
     public List<Effect> addFamilyMember(FamilyMember familyMember)
 	{
 		if (!isAllowed(familyMember))
@@ -37,6 +55,9 @@ public class ActionPlace {
 		return effects;
 	}
 
+	/*
+	The getters should be used in read-only mode
+	 */
 	public ArrayList<FamilyMember> getMembers() {
 		return members;
 	}

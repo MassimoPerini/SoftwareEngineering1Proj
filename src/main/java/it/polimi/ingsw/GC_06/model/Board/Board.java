@@ -7,6 +7,11 @@ import java.util.ArrayList;
 /**
  * Created by massimo on 13/05/17.
  */
+
+/**
+ * @author massimo
+ * This class represents the main board of the game
+ */
 public class Board {
     private final ArrayList<Tower> towers;
     private final ArrayList<MarketAndCouncil> marketAndCouncils;

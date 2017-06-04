@@ -7,6 +7,11 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/19/17.
  */
+
+/**
+ * This class is the main status of the game.
+ * Contains the current status, the turn of the game and the players order.
+ */
 public class GameStatus {
 
     private ArrayList<Player> players;
@@ -38,6 +43,12 @@ public class GameStatus {
         return true;
     }
 
+    /**
+     * Change the state of the game using a TransitionType
+     * The new state will notify its observer
+     * @param type
+     * @param o
+     */
     public void changeState(TransitionType type, Object o)
     {
         if (!currentStatus.canConsume(type)){

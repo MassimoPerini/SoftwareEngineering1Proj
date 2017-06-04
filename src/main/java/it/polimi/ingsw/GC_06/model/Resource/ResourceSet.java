@@ -7,6 +7,8 @@ import java.util.Set;
 
 /**
  * Created by massimo on 11/05/17.
+ * @author massimo
+ * This class is a Set of Resources.
  */
 public class ResourceSet {
 
@@ -28,6 +30,11 @@ public class ResourceSet {
         return newRes.iterator();
     }
 
+    /**
+     * Adds or subtract a resource
+     * @param resource
+     * @param amount
+     */
     public void variateResource(Resource resource, int amount) {
 
         Integer myQty = this.resources.get(resource);
@@ -39,6 +46,10 @@ public class ResourceSet {
         }
     }
 
+    /**
+     * Adds or subtract an entire ResourceSet
+     * @param resourceSet
+     */
     public void variateResource(ResourceSet resourceSet) {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
 
@@ -49,6 +60,11 @@ public class ResourceSet {
 
     }
 
+    /**
+     * Can I find in the ResourceSet all resources and amounts of the ResourceSet as parameter
+     * @param resourceSet
+     * @return
+     */
     public boolean isIncluded(ResourceSet resourceSet) {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(resourceSet);
 
@@ -60,11 +76,21 @@ public class ResourceSet {
         return true;
     }
 
+    /**
+     * Can I find at least one Resource
+     * @param resource
+     * @return
+     */
     public boolean isIncluded(Resource resource) {
         return isIncluded(resource, -1);
     }
 
-
+    /**
+     * Can I find in the set at least <amount> of Resouce
+     * @param resource
+     * @param amount
+     * @return
+     */
     public boolean isIncluded(Resource resource, int amount) {
         Integer myQty = this.resources.get(resource);
         if (myQty == null) {
@@ -73,6 +99,10 @@ public class ResourceSet {
         return (myQty.intValue() + amount) >= 0;
     }
 
+    /**
+     * This ResourceSet contains at least negative Resource?
+     * @return
+     */
     public boolean isNegativeValuePresent() {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(this);
         while (i.hasNext()) {
@@ -83,6 +113,10 @@ public class ResourceSet {
         return false;
     }
 
+    /**
+     * This ResourceSet contains at least positive Resource
+     * @return
+     */
     public boolean isPositiveValuePresent() {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(this);
         while (i.hasNext()) {
@@ -93,6 +127,11 @@ public class ResourceSet {
         return false;
     }
 
+    /**
+     * Gives the quantity of a certain Resource
+     * @param resource
+     * @return
+     */
     public int getResourceAmount(Resource resource)
     {
         Integer amount = this.resources.get(resource);
@@ -101,6 +140,10 @@ public class ResourceSet {
         return amount.intValue();
     }
 
+    /**
+     * Gives the quantity of all resources
+     * @return
+     */
     public int totalResourceQuantity(){
 
         int totalResource = 0;

@@ -16,6 +16,9 @@ import java.util.Map;
 
 /**
  * Created by massimo on 27/05/17.
+ * @author massimo
+ * This is the main Game file
+ * SINGLETON
  */
 public class Game {
 
@@ -41,6 +44,10 @@ public class Game {
         game=null;
     }
 
+    /**
+     * Load from file the needed values. If it can't do this, throws an exception
+     * @throws IOException
+     */
     public Game() throws IOException {
         FileLoader f = FileLoader.getFileLoader();
         board = f.loadBoard();
@@ -56,7 +63,9 @@ public class Game {
         gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
     }
 
-
+    /**
+     * Starts a new game (sorts the player, sets the cardsand the inital resources for each player)
+     */
     public void start()
     {
         //mix the players
@@ -95,7 +104,11 @@ public class Game {
         return game;
     }
 
-
+    /**
+     * Add a new Player to the match
+     * @param p
+     * @throws IllegalStateException
+     */
     public void addPlayer (String p) throws IllegalStateException
     {
         if (p==null)
@@ -108,6 +121,11 @@ public class Game {
         gameStatus.addPlayer(player);
     }
 
+    /**
+     * Generate all the familymembers of the player (with an observer on the relative dice)
+     * @param playerID
+     * @return
+     */
     private FamilyMember[] createFamilyMembers(String playerID)
     {
         int i=0;
@@ -124,6 +142,11 @@ public class Game {
         return familyMembers;
     }
 
+    /**
+     * Generates the state of the game
+     * //TODO load from file.
+     * @return
+     */
     private FsmNode generateStatuses()
     {
         //Loaded from file?
