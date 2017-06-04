@@ -24,7 +24,8 @@ public class BonusMalusOnResources{
 
 
         // il target del mio bonus malus coincide con le risorse dell'effeto che stiamo attivando allora lo lanciamo
-        if (targetResourceSet.getResources().containsKey(bonusMalusTarget)) {
+    //    if (targetResourceSet.getResources().containsKey(bonusMalusTarget)) {
+        if (targetResourceSet.isIncluded(bonusMalusTarget)){
 
             // adesso dobbiamo prendere l'amount del bonusMalusEntity;
             // adesso prendiamo la somma di tutte le quantità di ciascuna risorsa

@@ -60,12 +60,17 @@ public class ResourceSet {
         return true;
     }
 
-    public boolean isIncluded(Resource resource, int amount) {
-        if (amount > 0)
-            return true;
+    public boolean isIncluded(Resource resource) {
+        return isIncluded(resource, -1);
+    }
 
+
+    public boolean isIncluded(Resource resource, int amount) {
         Integer myQty = this.resources.get(resource);
-        return myQty != null && (myQty.intValue() + amount) >= 0;
+        if (myQty == null) {
+            return amount > 0;
+        }
+        return (myQty.intValue() + amount) >= 0;
     }
 
     public boolean isNegativeValuePresent() {
@@ -88,21 +93,25 @@ public class ResourceSet {
         return false;
     }
 
+    public int getResourceAmount(Resource resource)
+    {
+        Integer amount = this.resources.get(resource);
+        if (amount==null)
+            return 0;
+        return amount.intValue();
+    }
+
     public int totalResourceQuantity(){
 
         int totalResource = 0;
 
         for(Resource resource : this.resources.keySet()){
-
             totalResource = totalResource + this.resources.get(resource);
         }
 
         return totalResource;
     }
 
-    public HashMap<Resource, Integer> getResources() {
-        return resources;
-    }
 }
 
 

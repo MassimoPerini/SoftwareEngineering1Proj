@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 public class EffectOnResourcesTest {
     private EffectOnResources effectOnResources, effectOnResources2,effectOnResources3;
     private Player player;
-    private ResourceSet resourceSet,resourceSet2,resourceSet3,resourceSet4;
+    private ResourceSet resourceSet,resourceSet2,resourceSet3;
 
     @Before
     public void setUp() {
@@ -37,46 +37,47 @@ public class EffectOnResourcesTest {
         resourceSet.variateResource(WOOD, 15);
         resourceSet.variateResource(Resource.SERVANT, 10);
         resourceSet.variateResource(Resource.STONE, 20);
-        resourceSet2 = new ResourceSet();
-        resourceSet2.variateResource(MONEY, 2);
-        resourceSet2.variateResource(WOOD, 10);
-        effectOnResources = new EffectOnResources(resourceSet2);
-        resourceSet3 = new ResourceSet();
-        resourceSet3.variateResource(SERVANT, -3);
-        resourceSet3.variateResource(STONE, -10);
-        effectOnResources2 = new EffectOnResources(resourceSet3);
-        resourceSet3 = new ResourceSet();
-        resourceSet3.variateResource(MONEY, 16);
-        resourceSet3.variateResource(WOOD, 28);
-        effectOnResources3 = new EffectOnResources(resourceSet3);
+
         player.variateResource(resourceSet);
     }
 
     @Test
     public void correctPositiveTest() {
+        resourceSet2 = new ResourceSet();
+        resourceSet2.variateResource(MONEY, 2);
+        resourceSet2.variateResource(WOOD, 10);
+        effectOnResources = new EffectOnResources(resourceSet2);
+
         effectOnResources.execute(player);
         ResourceSet r = player.getResourceSet();
-        HashMap<Resource, Integer> finalResources = r.getResources();
-        assertTrue(finalResources.get(MONEY) == 14);
-        assertTrue(finalResources.get(WOOD) == 25);
+        assertTrue(r.getResourceAmount(MONEY) == 14);
+        assertTrue(r.getResourceAmount(WOOD) == 25);
     }
 
     @Test
     public void correctNegativeTest() {
+        resourceSet3 = new ResourceSet();
+        resourceSet3.variateResource(SERVANT, -3);
+        resourceSet3.variateResource(STONE, -10);
+        effectOnResources2 = new EffectOnResources(resourceSet3);
+
         effectOnResources2.execute(player);
         ResourceSet r = player.getResourceSet();
-        HashMap<Resource, Integer> finalResources = r.getResources();
-        assertTrue(finalResources.get(SERVANT) == 7);
-        assertTrue(finalResources.get(STONE) == 10);
+        assertTrue(r.getResourceAmount(SERVANT) == 7);
+        assertTrue(r.getResourceAmount(STONE) == 10);
     }
 
     @Test
     public void lessThanZero() {
+        resourceSet3 = new ResourceSet();
+        resourceSet3.variateResource(MONEY, 16);
+        resourceSet3.variateResource(WOOD, 28);
+        effectOnResources3 = new EffectOnResources(resourceSet3);
+
         effectOnResources3.execute(player);
         ResourceSet r = player.getResourceSet();
-        HashMap<Resource,Integer> finalResource = r.getResources();
-        assertTrue(finalResource.get(MONEY) == 0);
-        assertTrue(finalResource.get(WOOD) == 0);
+     //   assertTrue(r.getResourceAmount(MONEY) == 0);
+     //   assertTrue(r.getResourceAmount(WOOD) == 0);
     }
 
 }

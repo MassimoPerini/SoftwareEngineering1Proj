@@ -27,13 +27,17 @@ public class ActionPlaceTest {
     private ActionPlace actionPlace;
     private FamilyMember familyMember;
     private Player player;
+    private Game game;
     @Before
     public void setUp() throws Exception {
-        Game.clearForTesting();
-        Game.getInstance().addPlayer("massimo");
-        player = Game.getInstance().getGameStatus().getCurrentPlayer();
+    //    Game.clearForTesting();
+
+        game = new Game();
+
+        game.addPlayer("massimo");
+        player = game.getGameStatus().getCurrentPlayer();
         familyMember = player.getFamilyMembers()[0];
-        Game.getInstance().roll();
+        game.roll();
     }
 
     @Test (expected=NullPointerException.class)
@@ -89,7 +93,7 @@ public class ActionPlaceTest {
     @Test (expected=IllegalArgumentException.class)
     public void notAllowedAddActionPlace(){
         actionPlace = new ActionPlace(new LinkedList<>(), 20000);
-        Game.getInstance().roll();
+        game.roll();
         actionPlace.addFamilyMember(player.getFamilyMembers()[0]);
     }
 
