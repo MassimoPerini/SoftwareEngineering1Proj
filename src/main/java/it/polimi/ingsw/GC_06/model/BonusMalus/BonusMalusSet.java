@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.model.BonusMalus;
 
+import it.polimi.ingsw.GC_06.model.Action.PlayType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,19 +11,19 @@ import java.util.HashMap;
 public class BonusMalusSet {
 
     /** secondome va un po' ripensato*/
-    HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
-    HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnAction;
+    HashMap<PlayType,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
+    HashMap<PlayType,ArrayList<BonusMalusOnAction>> bonusMalusOnAction;
 
     public BonusMalusSet() {
-        this.bonusMalusOnResources = new HashMap<String,ArrayList<BonusMalusOnResources>>();
-        this.bonusMalusOnAction = new HashMap<String,ArrayList<BonusMalusOnAction>>();
+        this.bonusMalusOnResources = new HashMap<PlayType,ArrayList<BonusMalusOnResources>>();
+        this.bonusMalusOnAction = new HashMap<PlayType,ArrayList<BonusMalusOnAction>>();
     }
 
-    public HashMap<String, ArrayList<BonusMalusOnResources>> getBonusMalusOnResources() {
+    public HashMap<PlayType, ArrayList<BonusMalusOnResources>> getBonusMalusOnResources() {
         return bonusMalusOnResources;
     }
 
-    public HashMap<String, ArrayList<BonusMalusOnAction>> getBonusMalusOnAction() {
+    public HashMap<PlayType, ArrayList<BonusMalusOnAction>> getBonusMalusOnAction() {
         return bonusMalusOnAction;
     }
 }
