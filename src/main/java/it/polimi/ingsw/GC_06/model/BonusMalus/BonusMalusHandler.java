@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.BonusMalus;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.PlayType;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
@@ -37,10 +38,26 @@ public class BonusMalusHandler {
             for (BonusMalusOnAction bonusMalusOnAction : bonusMalusOnActions) {
                 bonusMalusOnAction.modify(action.getValueAction());
             }
-
-            System.out.println("Work in progress");
         }
+
+        System.out.println("Work in progress");
     }
 
+    // questo viene chiamato sulle modifiche alle risorse
+    public void filter(Player player, PlayType playType, ResourceSet targetResourceSet){
+
+        if (checkBonusMalus(player, playType)){
+
+            ArrayList<BonusMalusOnResources> bonusMalusOnResources = player.getBonusMalusSet().getBonusMalusOnResources().get(playType);
+
+            for(BonusMalusOnResources bonusMalusOnResource : bonusMalusOnResources){
+                if(playType.equals(playType)){
+                    bonusMalusOnResource.modify(targetResourceSet);
+                }
+            }
+
+        }
+
+    }
 
 }
