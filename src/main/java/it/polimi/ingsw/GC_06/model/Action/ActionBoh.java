@@ -11,18 +11,16 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 public abstract class ActionBoh {
 
     private BonusMalusHandler bonusMalusHandler;
-    private PlayType playType;
     private int valueAction;
     private Player player;
     protected GameStatus status;
 
-    public ActionBoh(PlayType playType, int valueAction, BonusMalusHandler bonusMalusHandler)
+    public ActionBoh(int valueAction, BonusMalusHandler bonusMalusHandler)
     {
         super();
         this.bonusMalusHandler = bonusMalusHandler;
         this.status = Game.getInstance().getGameStatus();
         this.valueAction = valueAction;
-        this.playType = playType;
     }
 
     public abstract void execute();
@@ -34,10 +32,6 @@ public abstract class ActionBoh {
 
     public void setValueAction(int valueAction) {
         this.valueAction = valueAction;
-    }
-
-    public PlayType getPlayType() {
-        return playType;
     }
 
     public void setPlayer(Player player) {

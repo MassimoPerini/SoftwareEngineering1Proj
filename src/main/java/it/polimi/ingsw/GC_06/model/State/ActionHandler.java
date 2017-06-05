@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 
 import java.util.List;
@@ -9,10 +10,10 @@ import java.util.List;
  */
 public class ActionHandler {
 
-    private List<ActionBoh> actions;
+    private List<Action> actions;
 
 
-    public void addAction(ActionBoh action)
+    public void addAction(Action action)
     {
         this.actions.add(action);
     }
@@ -29,7 +30,7 @@ public class ActionHandler {
         }
     }
 
-    public ActionBoh getCurrentAction()
+    public Action getCurrentAction()
     {
         if (actions.size()>0)
             return actions.get(0);

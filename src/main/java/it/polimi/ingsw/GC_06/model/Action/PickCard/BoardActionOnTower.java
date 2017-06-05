@@ -7,8 +7,6 @@ import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import static it.polimi.ingsw.GC_06.model.Action.PlayType.actionOnTower;
-
 /**
  * Created by giuseppe on 5/20/17.
  */

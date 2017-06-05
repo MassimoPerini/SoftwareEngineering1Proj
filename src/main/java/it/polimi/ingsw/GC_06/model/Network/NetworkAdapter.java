@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Network;
 
+import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 
 /**
@@ -7,6 +8,6 @@ import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
  */
 public interface NetworkAdapter {
 
-    void send(ActionBoh action);
+    void send(Action action);
 
 }

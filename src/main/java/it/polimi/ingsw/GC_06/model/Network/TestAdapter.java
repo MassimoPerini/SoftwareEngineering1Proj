@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Network;
 
+import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 
 /**
@@ -7,7 +8,7 @@ import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
  */
 public class TestAdapter implements NetworkAdapter {
     @Override
-    public void send(ActionBoh action) {
+    public void send(Action action) {
         action.execute();
     }
 }

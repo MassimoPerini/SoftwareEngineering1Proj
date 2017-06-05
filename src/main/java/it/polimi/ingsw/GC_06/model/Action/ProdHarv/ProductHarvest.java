@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
+import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by massimo on 30/05/17.
  */
-public class ProductHarvest extends ActionBoh {
+public class ProductHarvest implements Action {
 
     private List<DevelopmentCard> activateCards;
     private Player player;
@@ -23,7 +24,7 @@ public class ProductHarvest extends ActionBoh {
 
     public ProductHarvest(List<DevelopmentCard> activateCards, Player player, int value, BonusMalusHandler bonusMalusHandler)
     {
-        super(value);
+        super();
         if (activateCards == null || player == null)
             throw new NullPointerException();
 

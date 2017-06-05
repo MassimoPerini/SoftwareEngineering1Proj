@@ -3,11 +3,11 @@ package it.polimi.ingsw.GC_06.model.Action;
 /**
  * Created by massimo on 01/06/17.
  */
-public class EndTurn extends ActionBoh {
+public class EndTurn implements Action {
 
 
     public EndTurn(int valueAction) {
-        super( valueAction);
+        super();
     }
 
     @Override

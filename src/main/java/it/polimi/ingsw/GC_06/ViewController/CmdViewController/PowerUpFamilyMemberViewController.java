@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.View.CmdView;
 import it.polimi.ingsw.GC_06.View.CommandView;
 import it.polimi.ingsw.GC_06.ViewController.MainController;
 import it.polimi.ingsw.GC_06.ViewController.ViewController;
+import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.Network.NetworkAdapter;
 import it.polimi.ingsw.GC_06.model.Network.TestAdapter;
@@ -57,7 +58,7 @@ public class PowerUpFamilyMemberViewController implements ViewController {
 
         int points = Integer.parseInt(input);
         MainController mainController = new MainController();
-        ActionBoh action = mainController.powerUpFamilyMember(points, familyMember);
+        Action action = mainController.powerUpFamilyMember(points, familyMember);
 
         if (action.isAllowed())
         {
