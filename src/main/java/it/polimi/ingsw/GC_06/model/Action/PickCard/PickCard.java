@@ -7,6 +7,8 @@ import it.polimi.ingsw.GC_06.model.Board.TowerFloor;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.List;
@@ -39,6 +41,8 @@ public class PickCard implements Action {
 
         if (!isAllowed())
             throw new IllegalStateException();
+        Game.getInstance().getGameStatus().changeState(TransitionType.PICKCARD);
+
 
         /**if we are in the real action we add the family member in the correct position*/
         //Tower penality
@@ -62,6 +66,7 @@ public class PickCard implements Action {
         executeEffects = new ExecuteEffects(towerFloor.getCard().getImmediateEffects(), player);
         executeEffects.execute();
 
+        Game.getInstance().getGameStatus().changeState(TransitionType.END);
     }
 
     @Override
@@ -99,11 +104,11 @@ public class PickCard implements Action {
 
         //Apply ActionSpace effects to clone
         List<Effect> effects = towerFloor.getActionPlace().getEffects();
-        ExecuteEffects testEffect = new ExecuteEffects(effects, pClone);
-        if (!testEffect.isAllowed())
-            return false;
 
-        testEffect.execute();
+        for(Effect effect: effects)
+        {
+            effect.execute(pClone);
+        }
 
         //Can I pay?
         PayCard payClone = new PayCard(towerFloor.getCard(), pClone);
@@ -115,10 +120,7 @@ public class PickCard implements Action {
 
         ExecuteEffects executeEffects = new ExecuteEffects(towerFloor.getCard().getImmediateEffects(), pClone);
 
-        if (!executeEffects.isAllowed())
-            return false;
-        executeEffects.execute();
-        return true;
+        return executeEffects.isAllowed();
     }
 
 

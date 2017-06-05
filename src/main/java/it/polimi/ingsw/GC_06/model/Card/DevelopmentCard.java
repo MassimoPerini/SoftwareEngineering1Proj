@@ -19,7 +19,6 @@ public class DevelopmentCard extends Card
     private int era;
     private List<Requirement> requirements;
     private List<Effect> immediateEffects;
-    private List<ProdHarvEffect> prodHarvEffects;
     private String idColour;
 
 //    private ResourceSet immediateRequirement;
@@ -30,20 +29,18 @@ public class DevelopmentCard extends Card
      * @param era
      * @param requirements
      * @param immediate
-     * @param prodHarvEffects
      * @param idColour
      * To create a new DevelopmentCard. No null values are accepted!
      */
-    public DevelopmentCard(String name, int era, List<Requirement> requirements, List<Effect> immediate, List<ProdHarvEffect> prodHarvEffects, String idColour)
+    public DevelopmentCard(String name, int era, List<Requirement> requirements, List<Effect> immediate, String idColour)
     {
         super(name);
-        if (requirements==null || immediate==null || prodHarvEffects==null || idColour==null)
+        if (requirements==null || immediate==null || idColour==null)
             throw new NullPointerException();
         this.immediateEffects = immediate;
         this.era = era;
         this.requirements = requirements;
         this.idColour = idColour;
-        this.prodHarvEffects = prodHarvEffects;
     }
 
     /**
@@ -59,10 +56,6 @@ public class DevelopmentCard extends Card
                 return true;
         }
         return false;
-    }
-
-    public List<ProdHarvEffect> getProdHarvEffects() {
-        return prodHarvEffects;
     }
 
     public List<Effect> getImmediateEffects() {

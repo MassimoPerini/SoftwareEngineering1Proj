@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.LinkedList;
@@ -29,6 +31,8 @@ public class PayCard implements Action {
         if (!isAllowed())
             throw new IllegalStateException();
 
+        Game.getInstance().getGameStatus().changeState(TransitionType.PAYCARD);
+
         List<Requirement> satisfiedRequirements = new LinkedList<>();
         /** we must control if the player can afford the card */
         for(Requirement requirement : developmentCard.getRequirements()){
@@ -40,10 +44,9 @@ public class PayCard implements Action {
             satisfiedRequirements.get(0).doIt(player);
         }
         else{
-            //TODO CAMBIO STATO / notifica alla view
+            Game.getInstance().getGameStatus().changeState(TransitionType.USR_MULTIPLEPAYMENT, satisfiedRequirements);
         }
-
-
+        Game.getInstance().getGameStatus().changeState(TransitionType.END);
     }
 
     @Override

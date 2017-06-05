@@ -5,6 +5,8 @@ import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
@@ -42,7 +44,7 @@ public class BoardActionOnTower implements Action {
 
         //this.familyMember.getValue() = super.getValueAction();
 
-
+        Game.getInstance().getGameStatus().changeState(TransitionType.ADDFAMILYMEMBER);
 
         if (!isAllowed())
             throw new IllegalStateException();
@@ -52,8 +54,7 @@ public class BoardActionOnTower implements Action {
 
         pickCard.execute();
 
-
-
+        Game.getInstance().getGameStatus().changeState(TransitionType.END);
     }
 
     @Override

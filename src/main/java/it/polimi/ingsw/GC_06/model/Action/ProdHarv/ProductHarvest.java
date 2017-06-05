@@ -18,11 +18,20 @@ import java.util.List;
  */
 public class ProductHarvest implements Action {
 
-    private List<DevelopmentCard> activateCards;
     private Player player;
-    private List<ProdHarvEffect> automaticEffects;
+    private int value;
 
-    public ProductHarvest(List<DevelopmentCard> activateCards, Player player, int value, BonusMalusHandler bonusMalusHandler)
+    @Override
+    public void execute() {
+
+    }
+
+    @Override
+    public boolean isAllowed() {
+        return false;
+    }
+/*
+    public ProductHarvest(Player player, int value)
     {
         super();
         if (activateCards == null || player == null)
@@ -79,4 +88,5 @@ public class ProductHarvest implements Action {
 
         return false;
     }
+    */
 }

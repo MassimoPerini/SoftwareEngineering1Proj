@@ -9,5 +9,6 @@ interface FsmNode {
     void addTransition (TransitionType type, FsmNode nextState);
     void sendNotify();
     void sendNotify(Object o);
+    void setPrevNode (FsmNode node);
 
 }

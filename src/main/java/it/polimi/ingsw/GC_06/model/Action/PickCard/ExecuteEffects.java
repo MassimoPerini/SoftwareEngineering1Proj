@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.List;
@@ -25,10 +27,16 @@ public class ExecuteEffects implements Action {
 
     @Override
     public void execute() {
+
+        Game.getInstance().getGameStatus().changeState(TransitionType.EXECUTEEFFECT);
+
         for(Effect effect: effects)
         {
             effect.execute(player);
         }
+
+        Game.getInstance().getGameStatus().changeState(TransitionType.END);
+
     }
 
     @Override
