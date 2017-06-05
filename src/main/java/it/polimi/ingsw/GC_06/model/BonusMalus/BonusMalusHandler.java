@@ -21,8 +21,9 @@ public class BonusMalusHandler {
        Set<PlayType> actionKeySet =  player.getBonusMalusSet().getBonusMalusOnAction().keySet();
        for(PlayType key : actionKeySet){
            if(key.equals(playType)){
-               return true;
+               return false;
            }
+
        }
 
        return false;
