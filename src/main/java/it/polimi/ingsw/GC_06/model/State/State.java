@@ -17,7 +17,7 @@ import java.util.Observable;
 class State extends Observable implements FsmNode {
 
     private Map<TransitionType, FsmNode> transitionTable;
-    private FsmNode prevNode;
+  //  private FsmNode prevNode;
     private StateName ID;
 
     public State(StateName ID)
@@ -33,10 +33,10 @@ class State extends Observable implements FsmNode {
 
     @Override
     public FsmNode consume(final TransitionType type) {
-        if (TransitionType.END == type){
+    /*    if (TransitionType.END == type){
             return prevNode;
         }
-        transitionTable.get(type).setPrevNode(this);
+        transitionTable.get(type).setPrevNode(this);*/
         return transitionTable.get(type);
 
     }
@@ -58,10 +58,10 @@ class State extends Observable implements FsmNode {
         notifyObservers(o);
     }
 
-    @Override
+ /*   @Override
     public void setPrevNode(FsmNode node) {
         this.prevNode = node;
-    }
+    }*/
 
     public StateName getID() {
         return ID;

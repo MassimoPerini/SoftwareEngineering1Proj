@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 01/06/17.
  */
-public class EffectOnResourcesHarvProduction implements ProdHarvEffect{
+public class EffectOnResourcesHarvProduction{
 
     private int requiredValue;
     private ResourceSet variateResource;
@@ -18,7 +18,6 @@ public class EffectOnResourcesHarvProduction implements ProdHarvEffect{
     }
 
 
-    @Override
     public void execute(Player player, int points) {
         if (points >= requiredValue)
         {
@@ -26,7 +25,6 @@ public class EffectOnResourcesHarvProduction implements ProdHarvEffect{
         }
     }
 
-    @Override
     public int getValue() {
         return requiredValue;
     }

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by massimo on 05/06/17.
  */
-public class ProdHarvDevelopmentCard extends DevelopmentCard {
+public class ProdHarvDevelopmentCard {}/*extends DevelopmentCard {
 
     private List<ProdHarvEffect> prodHarvEffects;
     private int requiredValueProdHarv;
@@ -21,10 +21,10 @@ public class ProdHarvDevelopmentCard extends DevelopmentCard {
      * @param prodHarvEffects
      * @param idColour
      * @param requiredValueProdHarv
-     */
+
     public ProdHarvDevelopmentCard(String name, int era, List<Requirement> requirements, List<Effect> immediate, List<ProdHarvEffect> prodHarvEffects, String idColour, int requiredValueProdHarv)
     {
-        super(name, era, requirements, immediate, idColour);
+        super(name, era, requirements, immediate, idColour, prodHarvEffects, );
         this.prodHarvEffects = prodHarvEffects;
         this.requiredValueProdHarv = requiredValueProdHarv;
     }
@@ -37,3 +37,4 @@ public class ProdHarvDevelopmentCard extends DevelopmentCard {
         return requiredValueProdHarv;
     }
 }
+*/

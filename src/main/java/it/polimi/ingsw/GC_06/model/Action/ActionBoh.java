@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 26/05/17.
+ * @deprecated
  */
 public abstract class ActionBoh {
 

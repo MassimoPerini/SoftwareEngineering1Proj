@@ -54,7 +54,6 @@ public class BoardActionOnTower implements Action {
 
         pickCard.execute();
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.END);
     }
 
     @Override

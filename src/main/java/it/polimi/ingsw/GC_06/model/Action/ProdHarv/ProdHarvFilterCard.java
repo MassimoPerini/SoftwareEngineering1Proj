@@ -7,6 +7,6 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
  */
 
 @FunctionalInterface
-public interface DevelopmentCardFilter {
+public interface ProdHarvFilterCard {
     boolean isSatisfiable(DevelopmentCard card);
 }

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.model.Action.PickCard;
+package it.polimi.ingsw.GC_06.model.Action;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
@@ -19,7 +19,7 @@ public class ExecuteEffects implements Action {
 
     public ExecuteEffects(List<Effect> effectList, Player player) {
         super();
-        if (effectList==null)
+        if (effectList == null)
             throw new NullPointerException();
         this.effects = effectList;
         this.player = player;
@@ -34,8 +34,6 @@ public class ExecuteEffects implements Action {
         {
             effect.execute(player);
         }
-
-        Game.getInstance().getGameStatus().changeState(TransitionType.END);
 
     }
 

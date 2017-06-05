@@ -46,7 +46,6 @@ public class PayCard implements Action {
         else{
             Game.getInstance().getGameStatus().changeState(TransitionType.USR_MULTIPLEPAYMENT, satisfiedRequirements);
         }
-        Game.getInstance().getGameStatus().changeState(TransitionType.END);
     }
 
     @Override

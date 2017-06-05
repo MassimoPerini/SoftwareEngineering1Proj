@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.Board.TowerFloor;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
@@ -21,7 +22,6 @@ public class PickCard implements Action {
     
     private Player player;
     private TowerFloor towerFloor;
-    private PayCard payCard;
     private Tower tower;
     private int valueFamilyMember;
 
@@ -60,13 +60,13 @@ public class PickCard implements Action {
         DevelopmentCard c = towerFloor.pickCard();
         player.getPlayerBoard().addCard(c);
 
-        PayCard payCard = new PayCard(towerFloor.getCard(), player);
+        //pay the card
+        PayCard payCard = new PayCard(c, player);
         payCard.execute();
 
-        executeEffects = new ExecuteEffects(towerFloor.getCard().getImmediateEffects(), player);
+        executeEffects = new ExecuteEffects(c.getImmediateEffects(), player);
         executeEffects.execute();
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.END);
     }
 
     @Override

@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Action;
-import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -23,17 +22,32 @@ public class BoardActionOnProdHarv implements Action {
     private FamilyMember familyMember;
     private StartProdHarv startProdHarv;
 
-    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, FamilyMember familyMember)
+    /**
+     *
+     * @param player The player that invoked the action
+     * @param index Index of the field of the production/harvest area
+     * @param prodHarvArea The production/harvest area
+     * @param selectProdHarvCard The function that selects the production/harvest cards
+     * @param askUserCardFilter The function that selects the cards that we have to ask
+     * @param familyMember The family member placed
+     */
+
+    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ProdHarvFilterCard selectProdHarvCard, AskUserCard askUserCardFilter , FamilyMember familyMember)
     {
         super();
-        if (player == null || prodHarvArea == null || familyMember == null)
+        if (player == null || prodHarvArea == null || familyMember == null || askUserCardFilter==null || selectProdHarvCard == null)
             throw new NullPointerException();
 
         this.prodHarvArea = prodHarvArea;
         this.player = player;
         this.index = index;
         this.familyMember = familyMember;
+        this.startProdHarv = new StartProdHarv(player.getPlayerBoard().getDevelopmentCards(), selectProdHarvCard, askUserCardFilter ,familyMember.getValue(), player);
     }
+
+    /**
+     * Adds the family member and starts the prod/harv
+     */
 
     @Override
     public void execute() {
@@ -50,11 +64,12 @@ public class BoardActionOnProdHarv implements Action {
             effect.execute(player);
         }
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.END);
+        startProdHarv.execute();
+
     }
 
     @Override
     public boolean isAllowed() {
-        return prodHarvArea.isAllowed(familyMember, index);
+        return !prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed();
     }
 }
