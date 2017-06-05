@@ -13,7 +13,11 @@ public enum PlayType {
     endTurn,
     ProdHarvAction,
     ResourceFromCard,
-    ResourceFromActionSpace
+    ResourceFromActionSpace,
+    effectOnResource,
+    powerUp,
+    boardAction,
+    productHarvest
 
     //potrebbero Essercene Altri
 

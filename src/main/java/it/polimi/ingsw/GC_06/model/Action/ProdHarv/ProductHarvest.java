@@ -1,15 +1,16 @@
 package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.model.Effect.DefaultProdHarvEffect;
-import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResourcesHarvProduction;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import static it.polimi.ingsw.GC_06.model.Action.PlayType.productHarvest;
 
 /**
  * Created by massimo on 30/05/17.
@@ -20,9 +21,9 @@ public class ProductHarvest extends Action {
     private Player player;
     private List<ProdHarvEffect> automaticEffects;
 
-    public ProductHarvest(List<DevelopmentCard> activateCards, Player player, int value)
+    public ProductHarvest(List<DevelopmentCard> activateCards, Player player, int value, BonusMalusHandler bonusMalusHandler)
     {
-        super("productHarvest", value);
+        super(productHarvest, value, bonusMalusHandler);
         if (activateCards == null || player == null)
             throw new NullPointerException();
 

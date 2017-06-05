@@ -3,17 +3,20 @@ package it.polimi.ingsw.GC_06.model.Loader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.model.Effect.*;
-import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
+import it.polimi.ingsw.GC_06.model.Action.PlayType;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.model.Card.Requirement;
+import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
+import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.Effect.EffectOnAction;
+import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by massimo on 17/05/17.
@@ -130,7 +133,7 @@ public class FileLoader {
                 if (i>2)
                     resourceSet.variateResource(resources[j], i-2);
 
-                EffectOnResources effectOnResources = new EffectOnResources(resourceSet);
+                EffectOnResources effectOnResources = new EffectOnResources(resourceSet, PlayType.effectOnResource);
                 ArrayList<Effect> effectOnResources1 = new ArrayList<>();
                 effectOnResources1.add(effectOnResources);
                 TowerFloor towerFloor = new TowerFloor(new ActionPlaceFixed(effectOnResources1, values[i], 1), null);

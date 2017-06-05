@@ -13,7 +13,10 @@ import java.util.Set;
  */
 public class BonusMalusHandler {
 
-    private boolean checkBonusMalus(Player player,PlayType playType){
+    public BonusMalusHandler() {
+    }
+
+    private boolean checkBonusMalus(Player player, PlayType playType){
 
        Set<PlayType> actionKeySet =  player.getBonusMalusSet().getBonusMalusOnAction().keySet();
        for(PlayType key : actionKeySet){
