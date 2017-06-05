@@ -1,39 +1,25 @@
 package it.polimi.ingsw.GC_06.model.BonusMalus;
 
-import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
-import it.polimi.ingsw.GC_06.model.Action.PlayType;
+import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 /**
  * Created by giuseppe on 6/4/17.
  */
 public class BonusMalusHandler {
 
-    public BonusMalusHandler() {
-    }
 
-    private boolean checkBonusMalus(Player player, PlayType playType){
+    private static  boolean checkBonusMalus(Player player){
 
-       Set<PlayType> actionKeySet =  player.getBonusMalusSet().getBonusMalusOnAction().keySet();
-       for(PlayType key : actionKeySet){
-           if(key.equals(playType)){
-               return false;
-           }
-
-       }
-
-       return false;
+        return true;
 
     }
 
     // questo è il primo filter che chiamerà i bonus e i malus sulla action
-    public void filter(Player player, PlayType playType, ActionBoh action) {
+    public static void filter(Player player, Action action) {
 
-        if (checkBonusMalus(player, playType)) {
+        /** if (true) {
 
             // mi deve eseguire tutti i bonus e i malus
 
@@ -44,13 +30,13 @@ public class BonusMalusHandler {
             }
         }
 
-        System.out.println("Work in progress");
+        System.out.println("Work in progress");*/
     }
 
     // questo viene chiamato sulle modifiche alle risorse
-    public void filter(Player player, PlayType playType, ResourceSet targetResourceSet){
+    public static void filter(Player player, ResourceSet targetResourceSet){
 
-        if (checkBonusMalus(player, playType)){
+        /**if (true){
 
             ArrayList<BonusMalusOnResources> bonusMalusOnResources = player.getBonusMalusSet().getBonusMalusOnResources().get(playType);
 
@@ -64,6 +50,8 @@ public class BonusMalusHandler {
 
     }
 
-    public void filter(){}
-
+    public static void filter(){}
+*/
 }
+}
+

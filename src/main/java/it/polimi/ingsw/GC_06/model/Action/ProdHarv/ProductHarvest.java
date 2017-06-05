@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import java.util.LinkedList;
 import java.util.List;
 
-import static it.polimi.ingsw.GC_06.model.Action.PlayType.productHarvest;
+
 
 /**
  * Created by massimo on 30/05/17.
@@ -23,7 +23,7 @@ public class ProductHarvest extends ActionBoh {
 
     public ProductHarvest(List<DevelopmentCard> activateCards, Player player, int value, BonusMalusHandler bonusMalusHandler)
     {
-        super(productHarvest, value, bonusMalusHandler);
+        super(value);
         if (activateCards == null || player == null)
             throw new NullPointerException();
 

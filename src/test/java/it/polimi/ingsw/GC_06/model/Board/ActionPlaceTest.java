@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Action.PlayType;
+
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
@@ -76,11 +76,12 @@ public class ActionPlaceTest {
     @Test
     public void checkEffects(){
         List<Effect> effectList = new LinkedList<>();
-        Effect effect = new EffectOnResources(new ResourceSet(), PlayType.effectOnResource);
+        Effect effect = new EffectOnResources(new ResourceSet());
         effectList.add(effect);
         actionPlace = new ActionPlace(effectList, -1);
         assertTrue(actionPlace.getEffects().size()==1);
         assertEquals(actionPlace.getEffects().get(0), effect);
+
     }
 
     @Test (expected=NullPointerException.class)

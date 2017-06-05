@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_06.model.Loader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.model.Action.PlayType;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
@@ -133,7 +132,7 @@ public class FileLoader {
                 if (i>2)
                     resourceSet.variateResource(resources[j], i-2);
 
-                EffectOnResources effectOnResources = new EffectOnResources(resourceSet, PlayType.effectOnResource);
+                EffectOnResources effectOnResources = new EffectOnResources(resourceSet);
                 ArrayList<Effect> effectOnResources1 = new ArrayList<>();
                 effectOnResources1.add(effectOnResources);
                 TowerFloor towerFloor = new TowerFloor(new ActionPlaceFixed(effectOnResources1, values[i], 1), null);
