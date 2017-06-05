@@ -1,0 +1,52 @@
+[
+  {
+    "resources": {
+      "MONEY": 5
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 6
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 7
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 8
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 9
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 10
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 11
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 12
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 13
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 14
+    }
+  }
+]

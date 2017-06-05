@@ -1,0 +1,28 @@
+{
+  "dices": [
+    {
+      "minPoint": 0,
+      "maxPoint": 6,
+      "color": "WHITE",
+      "points": 0,
+      "changed": false,
+      "obs": []
+    },
+    {
+      "minPoint": 0,
+      "maxPoint": 6,
+      "color": "RED",
+      "points": 0,
+      "changed": false,
+      "obs": []
+    },
+    {
+      "minPoint": 0,
+      "maxPoint": 6,
+      "color": "BLACK",
+      "points": 0,
+      "changed": false,
+      "obs": []
+    }
+  ]
+}
