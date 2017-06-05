@@ -13,7 +13,6 @@ public class EffectOnAction implements Effect {
 
 
     private ArrayList<Action> actions;
-    private Player player;
 
 
     public EffectOnAction(ArrayList<Action> actions) {
