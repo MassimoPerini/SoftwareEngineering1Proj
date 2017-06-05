@@ -7,7 +7,9 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
  */
 public class BonusMalusOnConditions {
 
-    /** annullano il valore di conversione delle carte in punti*/
+    /**
+     * annullano il valore di conversione delle carte in punti
+     */
 
     private DevelopmentCard developmentCard;
     private int value;
@@ -16,10 +18,11 @@ public class BonusMalusOnConditions {
         this.developmentCard = developmentCard;
         this.value = value;
     }
-    public  void modify(int size, String developmentCard_ID){
+
+    public void modify(int size, String developmentCard_ID) {
 
         // non mi piace inserire la logica di controllo qui dentro
-        if(developmentCard_ID.equals(developmentCard.getIdColour())){
+        if (developmentCard_ID.equals(developmentCard.getIdColour())) {
             value = size;
         }
     }
