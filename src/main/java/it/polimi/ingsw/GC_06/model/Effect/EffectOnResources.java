@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
-import it.polimi.ingsw.GC_06.model.Action.PlayType;
+
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -10,12 +10,12 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 public class EffectOnResources implements Effect {
 
     private ResourceSet resourceSet;
-    private PlayType playType;
+
     
-    public EffectOnResources(ResourceSet resourceSet,PlayType playType) {
+    public EffectOnResources(ResourceSet resourceSet) {
     	super();
         this.resourceSet = resourceSet;
-        this.playType = playType;
+
     }
 
     public void execute(Player player){

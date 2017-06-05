@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.GameStatus;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -10,19 +9,16 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public abstract class Action {
 
-    private BonusMalusHandler bonusMalusHandler;
-    private PlayType playType;
+
     private int valueAction;
     private Player player;
     protected GameStatus status;
 
-    public Action(PlayType playType, int valueAction, BonusMalusHandler bonusMalusHandler)
+    public Action(int valueAction)
     {
         super();
-        this.bonusMalusHandler = bonusMalusHandler;
         this.status = Game.getInstance().getGameStatus();
         this.valueAction = valueAction;
-        this.playType = playType;
     }
 
     public abstract void execute();
@@ -36,17 +32,13 @@ public abstract class Action {
         this.valueAction = valueAction;
     }
 
-    public PlayType getPlayType() {
-        return playType;
-    }
+
 
     public void setPlayer(Player player) {
         this.player = player;
     }
 
-    public BonusMalusHandler getBonusMalusHandler() {
-        return bonusMalusHandler;
-    }
+
 
     public Player getPlayer() {
         return player;

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
-import it.polimi.ingsw.GC_06.model.Action.PlayType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
@@ -9,11 +8,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 public class EffectOnParchment implements Effect {
 
 
-    private PlayType playType;
 
-    public EffectOnParchment(PlayType playType) {
-        this.playType = playType;
-    }
 
     @Override
     public void execute(Player player) {

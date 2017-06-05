@@ -2,10 +2,8 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Action;
-import it.polimi.ingsw.GC_06.model.Action.PlayType;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.Board.TowerFloor;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -23,15 +21,15 @@ public class PickCard extends Action {
     private PayCard payCard;
     private Tower tower;
 
-    public PickCard(Player player, TowerFloor towerFloor, Tower tower, int valueFamilyMember, BonusMalusHandler bonusMalusHandler)
+    public PickCard(Player player, TowerFloor towerFloor, Tower tower, int valueFamilyMember)
     {
-        super(PlayType.piCkCard, valueFamilyMember,bonusMalusHandler);
+        super(valueFamilyMember);
         if (player==null || towerFloor==null)
             throw new NullPointerException();
         this.player = player;
         this.towerFloor = towerFloor;
         this.tower = tower;
-        this.payCard = new PayCard(towerFloor.getCard(), player,bonusMalusHandler);
+        this.payCard = new PayCard(towerFloor.getCard(), player);
     }
 
     @Override
@@ -88,7 +86,7 @@ public class PickCard extends Action {
         executeEffects(pClone, effects);
 
         //Can I pay?
-        PayCard payClone = new PayCard(towerFloor.getCard(), pClone,super.getBonusMalusHandler());
+        PayCard payClone = new PayCard(towerFloor.getCard(), pClone);
         return payClone.isAllowed();
     }
 

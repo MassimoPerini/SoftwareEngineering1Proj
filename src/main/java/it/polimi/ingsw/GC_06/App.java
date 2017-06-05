@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06;
 
 import it.polimi.ingsw.GC_06.ViewController.CmdViewController.StartViewController;
-import it.polimi.ingsw.GC_06.ViewController.FxViewController.FxLoader;
 import it.polimi.ingsw.GC_06.model.State.Game;
 
 import java.io.IOException;
@@ -26,9 +25,9 @@ public class App
         game.addPlayer("massimo");
         game.addPlayer("pinco");
         game.start();
-        FxLoader fxLoader = new FxLoader();
-        fxLoader.initialize(args);
-      //  new StartViewController().viewWillAppear();
+        //FxLoader fxLoader = new FxLoader();
+        //fxLoader.initialize(args);
+        new StartViewController().viewWillAppear();
 
 
 

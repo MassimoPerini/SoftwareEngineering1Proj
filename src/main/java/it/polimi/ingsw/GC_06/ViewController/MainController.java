@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_06.ViewController;
 import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.PowerUpFamilyMember;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -18,14 +17,13 @@ public class MainController {
     public Action powerUpFamilyMember (int points, int familyMember)
     {
         ResourceSet resourceSet = new ResourceSet();
-        BonusMalusHandler bonusMalusHandler = new BonusMalusHandler();
         resourceSet.variateResource(Resource.SERVANT, -points);
         //TODO FIX CONTROLLI RESOURCESET
         GameStatus status = Game.getInstance().getGameStatus();
         Player player = status.getCurrentPlayer();
         FamilyMember familyMember1 = player.getFamilyMembers()[familyMember];
 
-        Action action = new PowerUpFamilyMember(status.getCurrentPlayer(), familyMember1, resourceSet, points,bonusMalusHandler);
+        Action action = new PowerUpFamilyMember(status.getCurrentPlayer(), familyMember1, resourceSet, points);
         return action;
 
     }

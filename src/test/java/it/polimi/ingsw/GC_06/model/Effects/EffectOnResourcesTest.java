@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effects;
 
-import it.polimi.ingsw.GC_06.model.Action.PlayType;
+
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
@@ -41,7 +41,7 @@ public class EffectOnResourcesTest {
         resourceSet2 = new ResourceSet();
         resourceSet2.variateResource(MONEY, 2);
         resourceSet2.variateResource(WOOD, 10);
-        effectOnResources = new EffectOnResources(resourceSet2, PlayType.effectOnResource);
+        effectOnResources = new EffectOnResources(resourceSet2);
 
         effectOnResources.execute(player);
         ResourceSet r = player.getResourceSet();
@@ -54,7 +54,7 @@ public class EffectOnResourcesTest {
         resourceSet3 = new ResourceSet();
         resourceSet3.variateResource(SERVANT, -3);
         resourceSet3.variateResource(STONE, -10);
-        effectOnResources2 = new EffectOnResources(resourceSet3,PlayType.effectOnResource);
+        effectOnResources2 = new EffectOnResources(resourceSet3);
 
         effectOnResources2.execute(player);
         ResourceSet r = player.getResourceSet();
@@ -67,7 +67,7 @@ public class EffectOnResourcesTest {
         resourceSet3 = new ResourceSet();
         resourceSet3.variateResource(MONEY, 16);
         resourceSet3.variateResource(WOOD, 28);
-        effectOnResources3 = new EffectOnResources(resourceSet3,PlayType.effectOnResource);
+        effectOnResources3 = new EffectOnResources(resourceSet3);
 
         effectOnResources3.execute(player);
         ResourceSet r = player.getResourceSet();
