@@ -60,4 +60,6 @@ public class BonusMalusHandler {
 
     }
 
+    public void filter(){}
+
 }

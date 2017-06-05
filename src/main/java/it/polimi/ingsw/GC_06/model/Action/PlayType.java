@@ -6,9 +6,11 @@ package it.polimi.ingsw.GC_06.model.Action;
 public enum PlayType {
 
     // questa è la enum con le tipoloogie di effetti e azioni
+    actionOnTower,
+    payCard,
     PutFamilyMember,
-    PiCkCard,
-    EndTurn,
+    piCkCard,
+    endTurn,
     ProdHarvAction,
     ResourceFromCard,
     ResourceFromActionSpace

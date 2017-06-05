@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.playerTools.ConversionTable;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -17,8 +18,8 @@ public class EndTurnAction extends Action{
     /** questa cosa è assolutamente da cambiare, si può fare molto meglio*/
     private Resource resource;
 
-    public EndTurnAction(Player player, ArrayList<String> cardColours, ConversionTable conversionTable,Resource resource) {
-        super("endTurn", 1);
+    public EndTurnAction(Player player, ArrayList<String> cardColours, ConversionTable conversionTable, Resource resource, BonusMalusHandler bonusMalusHandler) {
+        super(PlayType.endTurn, 1,bonusMalusHandler);
         this.player = player;
         this.cardColours = new ArrayList<String>();
         this.conversionTable = conversionTable;
@@ -33,6 +34,7 @@ public class EndTurnAction extends Action{
 
             /**prendo le carte di un certo colore possedute da un giocatore*/
             int numbOfCards = (player.getPlayerBoard().getColouredCards(colour)).size();
+            super.getBonusMalusHandler().filter();
             /**prendo i valori di conversione associati a quella tipologia di carte (identificate dal colore)*/
             ArrayList<Integer> conversionValues = conversionTable.getConversionTable().get(colour);
 

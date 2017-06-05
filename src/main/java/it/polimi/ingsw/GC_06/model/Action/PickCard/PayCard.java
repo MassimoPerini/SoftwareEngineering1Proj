@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
@@ -8,6 +9,8 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import static it.polimi.ingsw.GC_06.model.Action.PlayType.payCard;
 
 /**
  * Created by massimo on 29/05/17.
@@ -17,9 +20,9 @@ public class PayCard extends Action {
     private Player player;
     private DevelopmentCard developmentCard;
 
-    public PayCard(DevelopmentCard developmentCard, Player player)
+    public PayCard(DevelopmentCard developmentCard, Player player, BonusMalusHandler bonusMalusHandler)
     {
-        super("payCard", 1);
+        super(payCard, 1,bonusMalusHandler);
         this.player = player;
         this.developmentCard = developmentCard;
     }

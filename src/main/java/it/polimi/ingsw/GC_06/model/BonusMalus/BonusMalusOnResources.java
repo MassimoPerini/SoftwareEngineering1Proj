@@ -14,7 +14,7 @@ public class BonusMalusOnResources{
     /** questo coefficiente è un termine proporzionale per individuare la quantità di risorse da aggiungere o sottrarre*/
     private int coefficient;
 
-    public BonusMalusOnResources(ResourceSet bonusMalusEntity, int coefficient, Resource resource) {
+    public BonusMalusOnResources(ResourceSet bonusMalusEntity, int coefficient, Resource bonusMalusTarget) {
         this.bonusMalusEntity = bonusMalusEntity;
         this.coefficient = coefficient;
         this.bonusMalusTarget = bonusMalusTarget;
