@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Tower{
     private int maxSamePlayerFamilyMember;
     private int minFamilyMembersMalus;
     private List<DevelopmentCard> cards;
-    private List<Effect> malusOnMultipleFamilyMembers;
+    private ResourceSet malusOnMultipleFamilyMembers;
 
     public Tower(List<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus){
     	this.towerFloors = floors;
@@ -103,7 +104,7 @@ public class Tower{
         return this.towerFloors;
     }
 
-    public List<Effect> getMalusOnMultipleFamilyMembers() {
+    public ResourceSet getMalusOnMultipleFamilyMembers() {
         return malusOnMultipleFamilyMembers;
     }
 }

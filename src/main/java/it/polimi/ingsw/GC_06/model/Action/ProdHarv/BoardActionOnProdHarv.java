@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
@@ -14,7 +14,7 @@ import static it.polimi.ingsw.GC_06.model.Action.PlayType.boardAction;
 /**
  * Created by massimo on 01/06/17.
  */
-public class BoardActionOnProdHarv extends Action {
+public class BoardActionOnProdHarv extends ActionBoh {
 
     private int index;
     private Player player;

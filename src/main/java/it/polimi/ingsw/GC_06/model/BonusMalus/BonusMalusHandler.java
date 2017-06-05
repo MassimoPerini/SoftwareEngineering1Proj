@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.BonusMalus;
 
-import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.Action.PlayType;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -31,7 +31,7 @@ public class BonusMalusHandler {
     }
 
     // questo è il primo filter che chiamerà i bonus e i malus sulla action
-    public void filter(Player player, PlayType playType, Action action) {
+    public void filter(Player player, PlayType playType, ActionBoh action) {
 
         if (checkBonusMalus(player, playType)) {
 

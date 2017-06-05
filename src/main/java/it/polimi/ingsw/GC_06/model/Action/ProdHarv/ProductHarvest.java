@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
-import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResourcesHarvProduction;
@@ -15,7 +15,7 @@ import static it.polimi.ingsw.GC_06.model.Action.PlayType.productHarvest;
 /**
  * Created by massimo on 30/05/17.
  */
-public class ProductHarvest extends Action {
+public class ProductHarvest extends ActionBoh {
 
     private List<DevelopmentCard> activateCards;
     private Player player;

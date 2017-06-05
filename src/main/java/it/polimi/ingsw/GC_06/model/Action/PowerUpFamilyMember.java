@@ -10,7 +10,7 @@ import static it.polimi.ingsw.GC_06.model.Action.PlayType.powerUp;
 /**
  * Created by massimo on 26/05/17.
  */
-public class PowerUpFamilyMember extends Action{
+public class PowerUpFamilyMember extends ActionBoh {
 
     private Player player;
     private FamilyMember familyMember;

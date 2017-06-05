@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;

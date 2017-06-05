@@ -26,9 +26,9 @@ public class App
         game.addPlayer("massimo");
         game.addPlayer("pinco");
         game.start();
-        FxLoader fxLoader = new FxLoader();
-        fxLoader.initialize(args);
-      //  new StartViewController().viewWillAppear();
+      //  FxLoader fxLoader = new FxLoader();
+      //  fxLoader.initialize(args);
+        new StartViewController().viewWillAppear();
 
 
 

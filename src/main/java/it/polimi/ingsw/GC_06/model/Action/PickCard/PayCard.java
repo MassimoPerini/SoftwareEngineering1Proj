@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
@@ -15,14 +16,14 @@ import static it.polimi.ingsw.GC_06.model.Action.PlayType.payCard;
 /**
  * Created by massimo on 29/05/17.
  */
-public class PayCard extends Action {
+public class PayCard implements Action {
 
     private Player player;
     private DevelopmentCard developmentCard;
 
-    public PayCard(DevelopmentCard developmentCard, Player player, BonusMalusHandler bonusMalusHandler)
+    public PayCard(DevelopmentCard developmentCard, Player player)
     {
-        super(payCard, 1,bonusMalusHandler);
+        super();
         this.player = player;
         this.developmentCard = developmentCard;
     }
@@ -42,7 +43,6 @@ public class PayCard extends Action {
 
         if(satisfiedRequirements.size() == 1){
             satisfiedRequirements.get(0).doIt(player);
-            this.executeEffects(player, developmentCard.getImmediateEffects());
         }
         else{
             //TODO CAMBIO STATO / notifica alla view
@@ -56,10 +56,6 @@ public class PayCard extends Action {
         return developmentCard.isSatisfied(player.getResourceSet());
     }
 
-    private void executeEffects(Player p, List<Effect> effects)
-    {
-        for (Effect effect:effects)
-            effect.execute(p);
-    }
+
 
 }

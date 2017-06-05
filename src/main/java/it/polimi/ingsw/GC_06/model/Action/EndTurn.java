@@ -7,7 +7,7 @@ import static it.polimi.ingsw.GC_06.model.Action.PlayType.endTurn;
 /**
  * Created by massimo on 01/06/17.
  */
-public class EndTurn extends Action {
+public class EndTurn extends ActionBoh {
 
 
     public EndTurn(int valueAction, BonusMalusHandler bonusMalusHandler) {

@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Action;
 
 /**
  * Created by giuseppe on 6/4/17.
+ * @deprecated
  */
 public enum PlayType {
 

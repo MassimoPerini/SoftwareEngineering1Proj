@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by giuseppe on 5/31/17.
  */
-public class EndTurnAction extends Action{
+public class EndTurnAction extends ActionBoh {
 
     private Player player;
     private ArrayList<String> cardColours;
