@@ -8,6 +8,8 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -15,7 +17,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class EffectOnParchmentTest {
     private EffectOnParchment effectOnParchment;
-    private ResourceSet parchment1,parchment2,parchment3,parchment4,parchment5;
+    private ArrayList<ResourceSet> parchments;
     private Player player;
 
     @Before
@@ -23,18 +25,25 @@ public class EffectOnParchmentTest {
         Game.clearForTesting();
         Game.getInstance().addPlayer("gabriele");
         player = Game.getInstance().getGameStatus().getCurrentPlayer();
-        parchment1 = new ResourceSet();
+        ResourceSet parchment1 = new ResourceSet();
         parchment1.variateResource(Resource.WOOD,1);
         parchment1.variateResource(Resource.STONE,1);
         parchment1.variateResource(Resource.MONEY,1);
+        parchments.add(parchment1);
+        ResourceSet parchment2 = new ResourceSet();
         parchment2.variateResource(Resource.SERVANT,2);
         parchment2.variateResource(Resource.MONEY,1);
+        parchments.add(parchment2);
+        ResourceSet parchment3 = new ResourceSet();
         parchment3.variateResource(Resource.MONEY,3);
+        parchments.add(parchment3);
+        ResourceSet parchment4 = new ResourceSet();
         parchment4.variateResource(Resource.MILITARYPOINT,2);
         parchment4.variateResource(Resource.MONEY,1);
+        ResourceSet parchment5 = new ResourceSet();
         parchment5.variateResource(Resource.FAITHPOINT,1);
         parchment5.variateResource(Resource.MONEY,1);
-        effectOnParchment = new EffectOnParchment(parchment1,parchment2,parchment3,parchment4,parchment5);
+        effectOnParchment = new EffectOnParchment(parchments);
 
     }
 

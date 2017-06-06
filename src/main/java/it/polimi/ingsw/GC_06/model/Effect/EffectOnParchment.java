@@ -17,9 +17,6 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 public class EffectOnParchment implements Effect {
 
     private ArrayList<ResourceSet> parchments;
-    // uso uno scanner per imitare la view, andrà sostituito poi con la view vera
-    private Scanner view = new Scanner(System.in);
-    private String choice;
 
     public EffectOnParchment(ArrayList<ResourceSet> parchments) {
 
