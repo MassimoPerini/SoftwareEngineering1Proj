@@ -6,5 +6,5 @@ package it.polimi.ingsw.GC_06.model.State;
  * All the states
  */
 public enum StateName {
-    IDLE, PLACE_FAM_MEM, PICK_CARD, PAY_CARD, USER_
+    IDLE, PLACE_FAM_MEM, PICK_CARD, PAY_CARD, USER_, CHOOSE_PARCHMENT, CHOOSE_CARD
 }
