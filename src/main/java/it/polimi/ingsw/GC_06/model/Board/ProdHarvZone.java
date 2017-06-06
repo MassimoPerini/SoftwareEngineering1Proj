@@ -4,15 +4,17 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ProdHarvZone{
 
-	private ArrayList <ActionPlace> actionPlaces;
-	private int maxSamePlayerFamilyMember;
-	
-	public ProdHarvZone (ArrayList<ActionPlace> actionPlaces) {
+	private final ArrayList <ActionPlace> actionPlaces;
+	private final int maxSamePlayerFamilyMember;
+
+	public ProdHarvZone (ArrayList<ActionPlace> actionPlaces, int maxSamePlayerFamilyMember) {
 		this.actionPlaces = actionPlaces;
+		this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
 	}
 
 	public void addFamilyMember(FamilyMember familyMember, int index)
@@ -48,10 +50,10 @@ public class ProdHarvZone{
 
 	public List<Effect> getEffect(int index) {
 		
-         return this.actionPlaces.get(index).getEffects();
+         return Collections.unmodifiableList(this.actionPlaces.get(index).getEffects());
 	}
 
-	public ArrayList<ActionPlace> getActionPlaces() {
-		return actionPlaces;
+	public List<ActionPlace> getActionPlaces() {
+		return Collections.unmodifiableList(actionPlaces);
 	}
 }

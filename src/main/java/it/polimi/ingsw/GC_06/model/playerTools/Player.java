@@ -18,9 +18,9 @@ import java.util.ArrayList;
  */
 public class Player {
 
-    private PlayerBoard playerBoard;
-    private FamilyMember [] familyMembers;
-    private ResourceSet resourceSet;
+    private final PlayerBoard playerBoard;
+    private final FamilyMember [] familyMembers;
+    private final ResourceSet resourceSet;
     private final String PLAYER_ID;
     private ArrayList<Effect> bonusMalus;
     private ResourceSet addAtTheEnd;
@@ -41,6 +41,8 @@ public class Player {
     {
         this.resourceSet = new ResourceSet(p.getResourceSet());
         this.PLAYER_ID = p.getPLAYER_ID();
+        this.playerBoard = p.playerBoard;
+        this.familyMembers = p.familyMembers;
         //TODO complete here...
     }
 

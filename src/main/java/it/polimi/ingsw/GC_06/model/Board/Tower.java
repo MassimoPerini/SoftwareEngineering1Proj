@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class Tower{
 
-    private List<TowerFloor> towerFloors;
+    private final List<TowerFloor> towerFloors;
     private int maxSamePlayerFamilyMember;
     private int minFamilyMembersMalus;
     private List<DevelopmentCard> cards;
@@ -101,7 +102,7 @@ public class Tower{
 
     public List<TowerFloor> getTowerFloor()
     {
-        return this.towerFloors;
+        return Collections.unmodifiableList(this.towerFloors);
     }
 
     public ResourceSet getMalusOnMultipleFamilyMembers() {

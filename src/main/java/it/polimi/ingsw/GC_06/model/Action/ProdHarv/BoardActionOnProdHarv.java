@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class BoardActionOnProdHarv implements Action {
 
-    private int index;
-    private Player player;
-    private ProdHarvZone prodHarvArea;
-    private FamilyMember familyMember;
-    private StartProdHarv startProdHarv;
+    private final int index;
+    private final Player player;
+    private final ProdHarvZone prodHarvArea;
+    private final FamilyMember familyMember;
+    private final StartProdHarv startProdHarv;
 
     /**
      *

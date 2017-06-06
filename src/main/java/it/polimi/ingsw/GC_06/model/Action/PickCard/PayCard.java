@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class PayCard implements Action {
 
-    private Player player;
-    private DevelopmentCard developmentCard;
+    private final Player player;
+    private final DevelopmentCard developmentCard;
 
     public PayCard(DevelopmentCard developmentCard, Player player)
     {

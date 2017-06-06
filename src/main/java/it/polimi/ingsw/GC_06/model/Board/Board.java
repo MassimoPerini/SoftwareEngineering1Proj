@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_06.model.Board;
 import it.polimi.ingsw.GC_06.FamilyMember;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by massimo on 13/05/17.
@@ -29,20 +31,20 @@ public class Board {
     }//TODO da integrare con il caricamento degli effetti da file, in modo da mettere gli effetti sui vari actionplace
 
     //TODO remove FIX here!
-    public ArrayList<Tower> getTowers() {
-        return towers;
+    public List<Tower> getTowers() {
+        return Collections.unmodifiableList(towers);
     }
 
 
-    public ArrayList<MarketAndCouncil> getMarketAndCouncils() {
-        return marketAndCouncils;
+    public List<MarketAndCouncil> getMarketAndCouncils() {
+        return Collections.unmodifiableList(marketAndCouncils);
     }
 
-    public ArrayList<ProdHarvZone> getProdHarvZones() {
-        return prodHarvZones;
+    public List<ProdHarvZone> getProdHarvZones() {
+        return Collections.unmodifiableList(prodHarvZones);
     }
 
-    public ArrayList<MarketAndCouncil> getCouncils() {
-        return councils;
+    public List<MarketAndCouncil> getCouncils() {
+        return Collections.unmodifiableList(councils);
     }
 }

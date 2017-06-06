@@ -9,10 +9,10 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public class PowerUpFamilyMember implements Action {
 
-    private Player player;
-    private FamilyMember familyMember;
-    private ResourceSet variateResources;
-    private int value;
+    private final Player player;
+    private final FamilyMember familyMember;
+    private final ResourceSet variateResources;
+    private final int value;
 
     public PowerUpFamilyMember(Player player, FamilyMember familyMember, ResourceSet variateResources, int variateFamilyMember) {
         super();

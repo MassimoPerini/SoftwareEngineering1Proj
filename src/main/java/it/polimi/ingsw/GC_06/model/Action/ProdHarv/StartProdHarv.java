@@ -17,10 +17,10 @@ import java.util.List;
  */
 public class StartProdHarv implements Action {
 
-    private List<DevelopmentCard> developmentCards;
-    private AskUserCard prodHarvFilterCard;
-    private int value;
-    private Player player;
+    private final List<DevelopmentCard> developmentCards;
+    private final AskUserCard prodHarvFilterCard;
+    private final int value;
+    private final Player player;
 
     /**
      *

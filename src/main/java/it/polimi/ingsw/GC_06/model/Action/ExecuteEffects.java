@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class ExecuteEffects implements Action {
 
-    private List<Effect> effects;
-    private Player player;
+    private final List<Effect> effects;
+    private final Player player;
 
     public ExecuteEffects(List<Effect> effectList, Player player) {
         super();

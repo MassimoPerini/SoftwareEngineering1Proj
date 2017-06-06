@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Board;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,8 +17,8 @@ public class PlayerBoard {
      * This is the object which describes the "plancia"
      */
 
-    private HashMap<String,List<DevelopmentCard>> cards;
-    private HashMap<String, Integer> maxCards;      //Il "limite" delle carte coltivazione
+    private final HashMap<String,List<DevelopmentCard>> cards;
+    private final HashMap<String, Integer> maxCards;      //Il "limite" delle carte coltivazione
 
     public PlayerBoard ()
     {
@@ -32,14 +33,14 @@ public class PlayerBoard {
         List<DevelopmentCard> res = cards.get(colour);
         if (res==null)
             return new ArrayList<>();
-        return res;
+        return Collections.unmodifiableList(res);
     }
 
     public List<DevelopmentCard> getDevelopmentCards()
     {
         List list = new ArrayList();
         list.addAll(cards.values());
-        return list;
+        return Collections.unmodifiableList(list);
     }
 
     /**

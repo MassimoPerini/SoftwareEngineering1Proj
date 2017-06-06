@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class BoardActionOnMarketCouncil implements Action {
 
-    private MarketAndCouncil marketAndCouncil;
-    private int index;
-    private FamilyMember familyMember;
-    private ExecuteEffects executeEffects;
+    private final MarketAndCouncil marketAndCouncil;
+    private final int index;
+    private final FamilyMember familyMember;
+    private final ExecuteEffects executeEffects;
 
     public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player)
     {

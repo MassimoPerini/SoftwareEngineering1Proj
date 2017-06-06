@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +20,10 @@ import java.util.Map;
 public class DevelopmentCard extends Card
 {
     private int era;
-    private List<Requirement> requirements;
-    private List<Effect> immediateEffects;
-    private String idColour;
-    private Map<Integer, List<ProdHarvEffect>> prodHarvEffects;
+    private final List<Requirement> requirements;
+    private final List<Effect> immediateEffects;
+    private final String idColour;
+    private final Map<Integer, List<ProdHarvEffect>> prodHarvEffects;
 
 //    private ResourceSet immediateRequirement;
 
@@ -54,7 +55,7 @@ public class DevelopmentCard extends Card
         for (int i=0; i<=value; i++) {
             resultEffects.addAll(this.prodHarvEffects.get(value));
         }
-        return resultEffects;
+        return Collections.unmodifiableList(resultEffects);
     }
 
     /**
@@ -73,7 +74,7 @@ public class DevelopmentCard extends Card
     }
 
     public List<Effect> getImmediateEffects() {
-    	return this.immediateEffects;
+    	return Collections.unmodifiableList(this.immediateEffects);
     }
 
     public String getIdColour() {
@@ -81,6 +82,6 @@ public class DevelopmentCard extends Card
     }
 
     public List<Requirement> getRequirements() {
-        return requirements;
+        return Collections.unmodifiableList(requirements);
     }
 }

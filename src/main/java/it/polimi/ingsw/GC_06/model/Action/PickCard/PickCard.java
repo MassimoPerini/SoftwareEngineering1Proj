@@ -20,10 +20,10 @@ import java.util.List;
 public class PickCard implements Action {
 
     
-    private Player player;
-    private TowerFloor towerFloor;
-    private Tower tower;
-    private int valueFamilyMember;
+    private final Player player;
+    private final TowerFloor towerFloor;
+    private final Tower tower;
+    private final int valueFamilyMember;
 
     public PickCard(Player player, Tower tower, TowerFloor towerFloor, int valueFamilyMember)
     {

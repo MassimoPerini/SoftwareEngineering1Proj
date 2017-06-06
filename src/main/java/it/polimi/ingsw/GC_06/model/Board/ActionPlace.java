@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import it.polimi.ingsw.GC_06.FamilyMember;
@@ -13,8 +15,8 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
  */
 
 public class ActionPlace {
-    private List<Effect> effects;
-	private ArrayList<FamilyMember> members;
+    private final List<Effect> effects;
+	private final ArrayList<FamilyMember> members;
 	private int price;
 	
 	public ActionPlace(List<Effect> effect, int price) {
@@ -58,11 +60,11 @@ public class ActionPlace {
 	/*
 	The getters should be used in read-only mode
 	 */
-	public ArrayList<FamilyMember> getMembers() {
-		return members;
+	public List<FamilyMember> getMembers() {
+		return Collections.unmodifiableList(members);
 	}
 
 	public List<Effect> getEffects() {
-		return effects;
+		return Collections.unmodifiableList(effects);
 	}
 }

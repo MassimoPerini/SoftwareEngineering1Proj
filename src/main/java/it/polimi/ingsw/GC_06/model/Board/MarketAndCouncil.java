@@ -4,12 +4,13 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.FamilyMember;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class MarketAndCouncil
 {
-	private ArrayList<ActionPlace> actionPlaces;
+	private final ArrayList<ActionPlace> actionPlaces;
 	
 	public MarketAndCouncil(ArrayList<ActionPlace> places) {
 		this.actionPlaces = places;
@@ -26,7 +27,7 @@ public class MarketAndCouncil
 
 	public List<Effect> getEffects(int index)
 	{
-		return actionPlaces.get(index).getEffects();
+		return Collections.unmodifiableList(actionPlaces.get(index).getEffects());
 	}
 
 }
