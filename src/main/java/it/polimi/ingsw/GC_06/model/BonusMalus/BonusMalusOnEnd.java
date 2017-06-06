@@ -29,4 +29,12 @@ public class BonusMalusOnEnd {
         }
 
     }
+
+    public ActionType getActionType() {
+        return actionType;
+    }
+
+    public String getColour() {
+        return colour;
+    }
 }

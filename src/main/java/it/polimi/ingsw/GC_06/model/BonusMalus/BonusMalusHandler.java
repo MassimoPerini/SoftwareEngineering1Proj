@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.model.BonusMalus;
 
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
@@ -11,56 +11,58 @@ import java.util.ArrayList;
  */
 public class BonusMalusHandler {
 
+    /** filtro sulle azioni torre e specifiche per un colore */
 
-        /** questo metodo si occuperà di verificare se il player ha dei bonus o malus che gli devono essere applicati*/
+    public static void filter(Player player, ActionType actionType, String towerColour, FamilyMember familyMember){
 
-
-
-    /** questo sarà il filtro dei bonus e malus*/
-    public static void filter(Player player, FamilyMember familyMember, ActionType actionTarget) {
-
-        ArrayList<BonusMalusOnAction> bonusMalusOnActions =  player.getBonusMalusSet().getBonusMalusOnAction().get("ACTION");
+        ArrayList<BonusMalusOnAction> bonusMalusOnActions = player.getBonusMalusSet().getBonusMalusOnAction().get("ACTIONBONUSMALUS");
 
         for(BonusMalusOnAction bonusMalusOnAction : bonusMalusOnActions){
-            /** verifico che quel malus è riferito a quel tipo di azione*/
-            if(bonusMalusOnAction.getActionType().equals(actionTarget)){
-                /** superato il controllo eseguo il malus o il bonus*/
+            if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.getColourTarget().equals(towerColour)
+                    && bonusMalusOnAction.checkFamilyMember(familyMember)){
                 bonusMalusOnAction.modify(familyMember);
             }
         }
-
     }
 
-    /** va aggiunto un altro filter è quello che mi penalizza solo su certe azioni di un certo colore */
+    /** filtro sulle azioni generiche che attaccano qualsiasi familiare*/
 
-    public static void filter(Player player,FamilyMember familyMember,ActionType actionTarget, String colour){
+    public static void filter(Player player, ActionType actionType, FamilyMember familyMember){
 
-    }
+        ArrayList<BonusMalusOnAction> bonusMalusOnActions = player.getBonusMalusSet().getBonusMalusOnAction().get("ACTIONBONUSMALUS");
 
-    /** questo sarà il filtro quando provengo da una endTurn, così facendo il giocatore non riceve alcun punto bonus alla fine del turno */
-
-
-
-    /** altro filtro sulle endTurn */
-
-
-
-    /** qui ci sarà il filtro sui costi*/
-
-    /** questo sarà il filtro sugli effetti */
-    public static void filter(Player player, ResourceSet targetResourceSet, ActionType effectTarget){
-
-            ArrayList<BonusMalusOnResources> bonusMalusOnResources = player.getBonusMalusSet().getBonusMalusOnResources().get("RESOURCE");
-
-            for(BonusMalusOnResources bonusMalusOnResource : bonusMalusOnResources){
-                /** verifico che il malus o il bonus è riferito a quel tipo di effetto */
-                if(bonusMalusOnResource.getActionType().equals(effectTarget)){
-                    /** superato il controllo eseguo il malus o il bonus*/
-                    bonusMalusOnResource.modify(targetResourceSet);
-                }
+        for(BonusMalusOnAction bonusMalusOnAction : bonusMalusOnActions){
+            if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.checkFamilyMember(familyMember)){
+                bonusMalusOnAction.modify(familyMember);
             }
-
+        }
     }
+
+    /** questo sarà il filtro che si applicherà sulle variazioni di risorse */
+    public static void filter(Player player, ActionType actionType, ResourceSet targetResourceSet){
+        ArrayList<BonusMalusOnResources> bonusMalusOnResources = player.getBonusMalusSet().getBonusMalusOnResources().get("RESOURCEBONUSMALUS");
+
+        for(BonusMalusOnResources bonusMalusOnResource : bonusMalusOnResources){
+            if(bonusMalusOnResource.getActionType().equals(actionType)){
+                bonusMalusOnResource.modify(targetResourceSet);
+            }
+        }
+    }
+    /**filtro sui bonus e i malus di fine turno*/
+    public static void filter(Player player,ActionType actionType,ResourceSet resourceSet, String colour){
+
+        ArrayList<BonusMalusOnEnd> bonusMalusOnEnds = player.getBonusMalusSet().getBonusMalusOnEnd().get("ENDBONUSMALUS");
+
+        for(BonusMalusOnEnd bonusMalusOnEnd : bonusMalusOnEnds){
+            if(bonusMalusOnEnd.getActionType().equals(actionType) && bonusMalusOnEnd.getColour().equals(colour)){
+                bonusMalusOnEnd.modify(resourceSet);
+            }
+        }
+    }
+
+    /** ultimo filtro è quello sui costi*/
+
+
 
 
 }
