@@ -10,11 +10,10 @@ import java.util.List;
 public class ProdHarvZone{
 
 	private final ArrayList <ActionPlace> actionPlaces;
-	private final int maxSamePlayerFamilyMember;
+	private int maxSamePlayerFamilyMember;
 
-	public ProdHarvZone (ArrayList<ActionPlace> actionPlaces, int maxSamePlayerFamilyMember) {
+	public ProdHarvZone (ArrayList<ActionPlace> actionPlaces) {
 		this.actionPlaces = actionPlaces;
-		this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
 	}
 
 	public void addFamilyMember(FamilyMember familyMember, int index)
