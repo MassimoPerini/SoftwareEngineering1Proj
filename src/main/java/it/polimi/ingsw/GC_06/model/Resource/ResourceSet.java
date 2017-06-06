@@ -82,7 +82,14 @@ public class ResourceSet {
      * @return
      */
     public boolean isIncluded(Resource resource) {
-        return isIncluded(resource, -1);
+        for(Resource res : this.getResources().keySet()){
+            if(res.equals(resource)){
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
     /**
@@ -153,6 +160,17 @@ public class ResourceSet {
         }
 
         return totalResource;
+    }
+
+    public HashMap<Resource, Integer> getResources() {
+        return resources;
+    }
+
+    public boolean isEmpty(){
+        if(this.getResources().keySet().size() == 0){
+            return true;
+        }
+        return false;
     }
 
 }

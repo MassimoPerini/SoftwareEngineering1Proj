@@ -31,6 +31,22 @@ public class BonusMalusHandler {
 
     }
 
+    /** va aggiunto un altro filter è quello che mi penalizza solo su certe azioni di un certo colore */
+
+    public static void filter(Player player,FamilyMember familyMember,ActionType actionTarget, String colour){
+
+    }
+
+    /** questo sarà il filtro quando provengo da una endTurn, così facendo il giocatore non riceve alcun punto bonus alla fine del turno */
+
+
+
+    /** altro filtro sulle endTurn */
+
+
+
+    /** qui ci sarà il filtro sui costi*/
+
     /** questo sarà il filtro sugli effetti */
     public static void filter(Player player, ResourceSet targetResourceSet, ActionType effectTarget){
 
@@ -46,16 +62,6 @@ public class BonusMalusHandler {
 
     }
 
-    /** questa è l'ultima tipologia di malus quelli che modificano la donazione di punti fede alla fine del gioco
-     * ( a me non piace quindi molto probabilmente la cambierò)
-     */
-    public static void filter(int size, String developmentCard_ID,Player player){
-       ArrayList<BonusMalusOnConditions> bonusMalusOnConditions= player.getBonusMalusSet().getBonusMalusOnConditions().get("CONDITIONAL");
-
-       for(BonusMalusOnConditions bonusMalusOnCondition : bonusMalusOnConditions){
-           bonusMalusOnCondition.modify(size,developmentCard_ID);
-       }
-    }
 
 }
 
