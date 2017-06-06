@@ -12,10 +12,11 @@ public class BonusMalusSet {
     /** secondome va un po' ripensato*/
     HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
     HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnAction;
-
+    HashMap<String,ArrayList<BonusMalusOnConditions>> bonusMalusOnConditions;
     public BonusMalusSet() {
         this.bonusMalusOnResources = new HashMap<String,ArrayList<BonusMalusOnResources>>();
         this.bonusMalusOnAction = new HashMap<String,ArrayList<BonusMalusOnAction>>();
+        this.bonusMalusOnConditions = new HashMap<String,ArrayList<BonusMalusOnConditions>>();
     }
 
     public HashMap<String, ArrayList<BonusMalusOnResources>> getBonusMalusOnResources() {
@@ -24,5 +25,9 @@ public class BonusMalusSet {
 
     public HashMap<String, ArrayList<BonusMalusOnAction>> getBonusMalusOnAction() {
         return bonusMalusOnAction;
+    }
+
+    public HashMap<String, ArrayList<BonusMalusOnConditions>> getBonusMalusOnConditions() {
+        return bonusMalusOnConditions;
     }
 }

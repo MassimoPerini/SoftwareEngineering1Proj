@@ -19,7 +19,6 @@ public class GameStatus {
     private int currentPlayer, turn, era,numberTurn, numberEra;
 
 
-
     GameStatus(FsmNode currentStatus)
     {
         super();
@@ -29,6 +28,11 @@ public class GameStatus {
 
         players = new ArrayList<>();
 
+    }
+
+    public void endTurn()
+    {
+        //Todo implement
     }
 
     boolean isAllowedAddPlayer(String playerID)

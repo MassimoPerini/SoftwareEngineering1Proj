@@ -15,8 +15,8 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 public class Requirement {
 
     //TODO TEST!!!
-    private ResourceSet requirements;
-    private ResourceSet cost;
+    private final ResourceSet requirements;
+    private final ResourceSet cost;
 
     /**
      * Requirements and costs are handled differently

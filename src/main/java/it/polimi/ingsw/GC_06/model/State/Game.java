@@ -158,7 +158,7 @@ public class Game {
 
         node1.addTransition(TransitionType.ADDFAMILYMEMBER, node2);
         node2.addTransition(TransitionType.PAYCARD, node3);
-        node3.addTransition(TransitionType.END, node1);
+        node3.addTransition(TransitionType.EXECUTEEFFECT, node1);
 
         statuses.put(node1.getID(), node1);
         statuses.put(node2.getID(), node2);

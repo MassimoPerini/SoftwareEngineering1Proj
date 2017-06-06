@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**

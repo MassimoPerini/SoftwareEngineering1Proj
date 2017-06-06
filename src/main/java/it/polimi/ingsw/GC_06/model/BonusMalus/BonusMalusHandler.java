@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_06.model.BonusMalus;
 
-import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
+
+import java.util.ArrayList;
 
 /**
  * Created by giuseppe on 6/4/17.
@@ -10,48 +12,52 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 public class BonusMalusHandler {
 
 
-    private static  boolean checkBonusMalus(Player player){
+        /** questo metodo si occuperà di verificare se il player ha dei bonus o malus che gli devono essere applicati*/
 
-        return true;
 
-    }
 
-    // questo è il primo filter che chiamerà i bonus e i malus sulla action
-    public static void filter(Player player, Action action) {
+    /** questo sarà il filtro dei bonus e malus*/
+    public static void filter(Player player, FamilyMember familyMember, ActionType actionTarget) {
 
-        /** if (true) {
+        ArrayList<BonusMalusOnAction> bonusMalusOnActions =  player.getBonusMalusSet().getBonusMalusOnAction().get("ACTION");
 
-            // mi deve eseguire tutti i bonus e i malus
-
-            ArrayList<BonusMalusOnAction> bonusMalusOnActions = player.getBonusMalusSet().getBonusMalusOnAction().get(playType);
-
-            for (BonusMalusOnAction bonusMalusOnAction : bonusMalusOnActions) {
-                bonusMalusOnAction.modify(action.getValueAction());
+        for(BonusMalusOnAction bonusMalusOnAction : bonusMalusOnActions){
+            /** verifico che quel malus è riferito a quel tipo di azione*/
+            if(bonusMalusOnAction.getActionType().equals(actionTarget)){
+                /** superato il controllo eseguo il malus o il bonus*/
+                bonusMalusOnAction.modify(familyMember);
             }
         }
 
-        System.out.println("Work in progress");*/
     }
 
-    // questo viene chiamato sulle modifiche alle risorse
-    public static void filter(Player player, ResourceSet targetResourceSet){
+    /** questo sarà il filtro sugli effetti */
+    public static void filter(Player player, ResourceSet targetResourceSet, ActionType effectTarget){
 
-        /**if (true){
-
-            ArrayList<BonusMalusOnResources> bonusMalusOnResources = player.getBonusMalusSet().getBonusMalusOnResources().get(playType);
+            ArrayList<BonusMalusOnResources> bonusMalusOnResources = player.getBonusMalusSet().getBonusMalusOnResources().get("RESOURCE");
 
             for(BonusMalusOnResources bonusMalusOnResource : bonusMalusOnResources){
-                if(playType.equals(playType)){
+                /** verifico che il malus o il bonus è riferito a quel tipo di effetto */
+                if(bonusMalusOnResource.getActionType().equals(effectTarget)){
+                    /** superato il controllo eseguo il malus o il bonus*/
                     bonusMalusOnResource.modify(targetResourceSet);
                 }
             }
 
-        }
-
     }
 
-    public static void filter(){}
-*/
+    /** questa è l'ultima tipologia di malus quelli che modificano la donazione di punti fede alla fine del gioco
+     * ( a me non piace quindi molto probabilmente la cambierò)
+     */
+    public static void filter(int size, String developmentCard_ID,Player player){
+       ArrayList<BonusMalusOnConditions> bonusMalusOnConditions= player.getBonusMalusSet().getBonusMalusOnConditions().get("CONDITIONAL");
+
+       for(BonusMalusOnConditions bonusMalusOnCondition : bonusMalusOnConditions){
+           bonusMalusOnCondition.modify(size,developmentCard_ID);
+       }
+    }
+
 }
-}
+
+
 
