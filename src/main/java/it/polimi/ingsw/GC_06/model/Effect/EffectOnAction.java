@@ -22,11 +22,7 @@ public class EffectOnAction implements Effect {
 
     @Override
     public void execute(Player player) {
-     /*   for (Action a : actions) a.setPlayer(player);
-        // TODO decidere se singola o arrayList
-        for (Action a : actions) a.execute();
-*/
-       //TODO da rivedere per la PickCard
 
+        for (Action a : actions) a.execute();
     }
 }
