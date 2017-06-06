@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
-import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
@@ -12,6 +13,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class ActionPlaceTest {
         game = new Game();
 
         game.addPlayer("massimo");
-        player = game.getGameStatus().getCurrentPlayer();
+        player = game.getGameStatus().getPlayers().get("massimo");
         familyMember = player.getFamilyMembers()[0];
         game.roll();
     }
@@ -45,9 +47,12 @@ public class ActionPlaceTest {
     }
 
     @Test
-    public void checkValueFamilyMember(){
+    public void checkValueFamilyMember() throws IOException {
         int val = player.getFamilyMembers()[0].getValue();
-        assertTrue(val < 7 && val > 0);
+        assertTrue(val <= (FileLoader.getFileLoader().loadDiceSet().getDices()[0].getMaxPoint()));
+        assertTrue(val >= (FileLoader.getFileLoader().loadDiceSet().getDices()[0].getMinPoint()));
+        assertEquals(player.getFamilyMembers()[0].getDiceColor(), (FileLoader.getFileLoader().loadDiceSet().getDices()[0].getColor()));
+
     }
 
     @Test

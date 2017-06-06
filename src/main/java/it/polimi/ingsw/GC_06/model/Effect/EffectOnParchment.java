@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -16,9 +17,9 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public class EffectOnParchment implements Effect {
 
-    private ArrayList<ResourceSet> parchments;
+    private List<ResourceSet> parchments;
 
-    public EffectOnParchment(ArrayList<ResourceSet> parchments) {
+    public EffectOnParchment(List<ResourceSet> parchments) {
 
         this.parchments = parchments;
 
@@ -27,6 +28,6 @@ public class EffectOnParchment implements Effect {
 
     @Override
     public void execute (Player player){
-        Game.getInstance().getGameStatus().changeState(TransitionType.CHOOSING_PARCHMENT, parchments );
+        Game.getInstance().getGameStatus().changeState(TransitionType.CHOOSING_PARCHMENT, parchments);
         }
     }

@@ -1,7 +1,7 @@
 {
   "dices": [
     {
-      "minPoint": 0,
+      "minPoint": 1,
       "maxPoint": 6,
       "color": "WHITE",
       "points": 0,
@@ -9,7 +9,7 @@
       "obs": []
     },
     {
-      "minPoint": 0,
+      "minPoint": 1,
       "maxPoint": 6,
       "color": "RED",
       "points": 0,
@@ -17,7 +17,7 @@
       "obs": []
     },
     {
-      "minPoint": 0,
+      "minPoint": 1,
       "maxPoint": 6,
       "color": "BLACK",
       "points": 0,

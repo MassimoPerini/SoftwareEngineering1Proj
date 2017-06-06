@@ -1,11 +1,10 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
-import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import java.util.Collections;
 import java.util.List;
 
 /**

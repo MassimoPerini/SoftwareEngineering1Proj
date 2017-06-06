@@ -5,7 +5,7 @@
     "requirements": [],
     "immediateEffects": [],
     "idColour": "green",
-    "name": "Villaggio minerario"
+    "path": "devcards_f_en_c_1.png"
   },
   {
     "effects": [],
@@ -13,7 +13,7 @@
     "requirements": [],
     "immediateEffects": [],
     "idColour": "blue",
-    "name": "Nobile"
+    "path": "devcards_f_en_c_65.png"
   },
   {
     "effects": [],
@@ -21,7 +21,7 @@
     "requirements": [],
     "immediateEffects": [],
     "idColour": "yellow",
-    "name": "Accademia militare"
+    "path": "devcards_f_en_c_47.png"
   },
   {
     "effects": [],
@@ -29,6 +29,102 @@
     "requirements": [],
     "immediateEffects": [],
     "idColour": "purple",
-    "name": "Sostegno al papa"
+    "path": "devcards_f_en_c_96.png"
+  },
+  {
+    "effects": [],
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "green",
+    "path": "devcards_f_en_c_1.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "blue",
+    "path": "devcards_f_en_c_65.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "yellow",
+    "path": "devcards_f_en_c_47.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "purple",
+    "path": "devcards_f_en_c_96.png"
+  },
+  {
+    "effects": [],
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "green",
+    "path": "devcards_f_en_c_1.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "blue",
+    "path": "devcards_f_en_c_65.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "yellow",
+    "path": "devcards_f_en_c_47.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "purple",
+    "path": "devcards_f_en_c_96.png"
+  },
+  {
+    "effects": [],
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "green",
+    "path": "devcards_f_en_c_1.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "blue",
+    "path": "devcards_f_en_c_65.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "yellow",
+    "path": "devcards_f_en_c_47.png"
+  },
+  {
+    "effects": [],
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "purple",
+    "path": "devcards_f_en_c_96.png"
   }
 ]

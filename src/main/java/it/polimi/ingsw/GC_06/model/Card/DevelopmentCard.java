@@ -84,4 +84,8 @@ public class DevelopmentCard extends Card
     public List<Requirement> getRequirements() {
         return Collections.unmodifiableList(requirements);
     }
+
+    public int getEra() {
+        return era;
+    }
 }

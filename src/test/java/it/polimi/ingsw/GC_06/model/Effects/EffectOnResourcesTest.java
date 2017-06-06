@@ -1,12 +1,11 @@
 package it.polimi.ingsw.GC_06.model.Effects;
 
 
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-import jdk.nashorn.internal.runtime.RewriteException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,9 +22,9 @@ public class EffectOnResourcesTest {
 
     @Before
     public void setUp() {
-        Game.clearForTesting();
-        Game.getInstance().addPlayer("gabriele");
-        player = Game.getInstance().getGameStatus().getCurrentPlayer();
+        FamilyMember [] familyMembers = new FamilyMember[1];
+        familyMembers[0] = new FamilyMember("BLUE", "gabriele");
+        player = new Player("gabriele", familyMembers);
         resourceSet = new ResourceSet();
         resourceSet.variateResource(MONEY, 12);
         resourceSet.variateResource(Resource.FAITHPOINT, 2);

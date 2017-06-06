@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
-import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
@@ -20,7 +20,7 @@ public class ActionPlaceFixedTest {
     public void setUp() throws Exception {
         Game.clearForTesting();
         Game.getInstance().addPlayer("massimo");
-        player = Game.getInstance().getGameStatus().getCurrentPlayer();
+        player = Game.getInstance().getGameStatus().getPlayers().get("massimo");
         Game.getInstance().roll();
     }
 

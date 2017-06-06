@@ -1,18 +1,14 @@
 package it.polimi.ingsw.GC_06.model.State;
 
-import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.Board;
-import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by massimo on 27/05/17.
@@ -24,18 +20,15 @@ public class Game {
 
     private final Board board;
     private final DiceSet diceSet;
-    private final DevelopmentCard[] developmentCards;
+    private final RoundManager roundManager;
     private static Game game;
 
     //params
-    private final int maxPlayers, minPlayers, neutralFamilyMembers;
+    private final int neutralFamilyMembers;
     private final GameStatus gameStatus;
-    private final ResourceSet [] startResources;
     private final Map<StateName, FsmNode> statuses;
 
     //keys
-    private static final String MINPLAYERSKEY = "min_players";
-    private static final String MAXPLAYERSKEY = "max_players";
     private static final String NEUTRALFAMILYMEMBERSKEY = "neutral_family_members";
 
     //TODO TO REMOVE (KEEP SINGLETON)
@@ -51,45 +44,33 @@ public class Game {
     public Game() throws IOException {
         FileLoader f = FileLoader.getFileLoader();
         board = f.loadBoard();
-        developmentCards = f.loadCards();
         diceSet = f.loadDiceSet();
-        maxPlayers = Integer.parseInt(Setting.getInstance().getProperty(MAXPLAYERSKEY));
-        minPlayers = Integer.parseInt(Setting.getInstance().getProperty(MINPLAYERSKEY));
         neutralFamilyMembers = Integer.parseInt(Setting.getInstance().getProperty(NEUTRALFAMILYMEMBERSKEY));
-        startResources = f.loadDefaultResourceSets();
         //load from file
         this.statuses = new HashMap<>();
         this.generateStatuses();
         gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
+        roundManager = new RoundManager(board, neutralFamilyMembers+diceSet.getDices().length);
     }
 
-    /**
-     * Starts a new game (sorts the player, sets the cardsand the inital resources for each player)
-     */
-    public void start()
+    public void addPlayer (String p) throws IllegalStateException, IllegalArgumentException
     {
-        //mix the players
-        Collections.shuffle(gameStatus.getPlayers());
-        int i=0;
-
-        //Adding start resources
-        for (Player player : gameStatus.getPlayers())
-        {
-            player.variateResource(startResources[i]);
-            i++;
-        }
-
-        //set the first player "ready", the others busy
-    }
-
-    void newTurn()
-    {
+        if (p==null)
+            throw new NullPointerException();
+        Player player = new Player(p, this.createFamilyMembers(p));
+        gameStatus.addPlayer(player);
+        roundManager.addPlayer(player);
 
     }
 
-    void newEra()
-    {
+    public void start(){
+        gameStatus.start();
+        roundManager.start();
+    }
 
+    public void endTurn()
+    {
+        roundManager.endTurn();
     }
 
     public static Game getInstance(){
@@ -104,21 +85,9 @@ public class Game {
         return game;
     }
 
-    /**
-     * Add a new Player to the match
-     * @param p
-     * @throws IllegalStateException
-     */
-    public void addPlayer (String p) throws IllegalStateException
+    public Player getCurrentPlayer()
     {
-        if (p==null)
-            throw new NullPointerException();
-        if (gameStatus.getPlayers().size() >= maxPlayers)
-            throw new IllegalStateException("too many players");
-        if (!gameStatus.isAllowedAddPlayer(p))
-            throw new IllegalStateException("username already present");
-        Player player = new Player(p, this.createFamilyMembers(p));
-        gameStatus.addPlayer(player);
+        return roundManager.getCurrentPlayer();
     }
 
     /**
@@ -132,7 +101,7 @@ public class Game {
         FamilyMember[] familyMembers = new FamilyMember[diceSet.getDices().length+neutralFamilyMembers];
 
         for (i=0;i<diceSet.getDices().length;i++) {
-            familyMembers[i] = new FamilyMember(diceSet.getDices()[i].getColor().name(), playerID);
+            familyMembers[i] = new FamilyMember(diceSet.getDices()[i].getColor(), playerID);
             diceSet.getDices()[i].addObserver(familyMembers[i]);
         }
         for (i=0;i<neutralFamilyMembers;i++)
@@ -179,5 +148,9 @@ public class Game {
 
     public Board getBoard() {
         return board;
+    }
+
+    public static String getNEUTRALFAMILYMEMBERSKEY() {
+        return NEUTRALFAMILYMEMBERSKEY;
     }
 }

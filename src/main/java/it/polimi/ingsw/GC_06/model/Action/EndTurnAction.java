@@ -41,7 +41,7 @@ public class EndTurnAction implements Action {
 
         }*/
 
-        Game.getInstance().getGameStatus().endTurn();
+        Game.getInstance().endTurn();
     }
 
     @Override

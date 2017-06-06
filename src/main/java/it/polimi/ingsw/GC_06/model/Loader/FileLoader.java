@@ -16,6 +16,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by massimo on 17/05/17.
@@ -177,6 +179,19 @@ public class FileLoader {
 
         Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).create();
         gson2.toJson(b, fw);
+        fw.close();
+    }
+
+    public void writeCardTower() throws IOException {
+        Map<String, int[]> map = new HashMap<>();
+        int [] arrPos = {0,1,2,3};
+        map.put("devcards_f_en_c_1.png", arrPos);
+        map.put("devcards_f_en_c_65.png", arrPos);
+        map.put("devcards_f_en_c_47.png", arrPos);
+        map.put("devcards_f_en_c_96.png", arrPos);
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        FileWriter fw = new FileWriter("src/main/resources/model/tower-cards.txt");
+        gson.toJson(map, fw);
         fw.close();
     }
 

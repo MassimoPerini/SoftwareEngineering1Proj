@@ -1,12 +1,8 @@
 package it.polimi.ingsw.GC_06.model.playerTools;
 
-import it.polimi.ingsw.GC_06.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.PlayerBoard;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
-import it.polimi.ingsw.GC_06.model.Card.Card;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
-import it.polimi.ingsw.GC_06.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.ArrayList;

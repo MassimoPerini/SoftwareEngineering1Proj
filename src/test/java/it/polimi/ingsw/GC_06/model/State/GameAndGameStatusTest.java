@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,10 +12,13 @@ import static org.junit.Assert.*;
  * Created by massimo on 28/05/17.
  */
 public class GameAndGameStatusTest {
+
+    private Game game;
+
     @Before
     public void setUp() throws Exception {
         //TODO to remove
-        Game.clearForTesting();
+        game = new Game();
     }
 
     @Test
@@ -27,14 +31,12 @@ public class GameAndGameStatusTest {
 
     @Test (expected=NullPointerException.class)
     public void checkNullPlayer() throws IOException {
-        Game game = Game.getInstance();
         game.addPlayer(null);
     }
     
 
     @Test (expected = IllegalStateException.class)
     public void reachedMaxNumberOfPlayer() throws IOException {
-        Game game = Game.getInstance();
         game.addPlayer("sudo");
         game.addPlayer("nano");
         game.addPlayer("massimo");
@@ -44,22 +46,30 @@ public class GameAndGameStatusTest {
 
     @Test
     public void testAdded() throws IOException {
-        Game game = Game.getInstance();
         game.addPlayer("pinco");
         game.addPlayer("pallino");
         game.addPlayer("massimo");
         game.addPlayer("perini");
-        assertEquals(Game.getInstance().getGameStatus().getPlayers().size(), 4);
-        assertEquals(Game.getInstance().getGameStatus().getPlayers().get(2).getPLAYER_ID(), "massimo");
+        assertTrue(game.getGameStatus().getPlayers().size() == 4);
+        assertNotEquals(game.getGameStatus().getPlayers().get("massimo"), null);
+        assertEquals(game.getGameStatus().getPlayers().get("pallino").getPLAYER_ID(), "pallino");
+
     }
 
     @Test
     public void testFirst() throws IOException {
-        Game game = Game.getInstance();
         game.addPlayer("pinco");
         game.addPlayer("pallino");
         game.addPlayer("massimo");
-        assertEquals(Game.getInstance().getGameStatus().getCurrentPlayer().getPLAYER_ID(), "pinco");
+        game.start();
+        int i=0;
+        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+
+        if (currentPlayer.getPLAYER_ID().equals("pinco")) i++;
+        if (currentPlayer.getPLAYER_ID().equals("pallino")) i++;
+        if (currentPlayer.getPLAYER_ID().equals("massimo")) i++;
+
+        assertTrue(i==1);
     }
 
 

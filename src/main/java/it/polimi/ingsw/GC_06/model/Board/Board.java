@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
-import it.polimi.ingsw.GC_06.FamilyMember;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

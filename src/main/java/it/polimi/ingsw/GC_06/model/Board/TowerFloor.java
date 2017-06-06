@@ -1,11 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
-import it.polimi.ingsw.GC_06.model.Effect.Effect;
-import it.polimi.ingsw.GC_06.FamilyMember;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

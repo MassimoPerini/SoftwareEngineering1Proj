@@ -1,8 +1,11 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.playerTools.*;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by giuseppe on 5/19/17.
@@ -14,37 +17,49 @@ import java.util.ArrayList;
  */
 public class GameStatus {
 
-    private ArrayList<Player> players;
     private FsmNode currentStatus;
-    private int currentPlayer, turn, era,numberTurn, numberEra;
+    private final Map<String, Player> players;
+    private final int  maxPlayers, minPlayers;
+
+    private static final String MINPLAYERSKEY = "min_players";
+    private static final String MAXPLAYERSKEY = "max_players";
 
 
-    GameStatus(FsmNode currentStatus)
-    {
+    GameStatus(FsmNode currentStatus) throws IOException {
         super();
-
         this.currentStatus = currentStatus;
+        maxPlayers = Integer.parseInt(Setting.getInstance().getProperty(MAXPLAYERSKEY));
+        minPlayers = Integer.parseInt(Setting.getInstance().getProperty(MINPLAYERSKEY));
 
+        if (minPlayers<1)
+            throw new IllegalArgumentException();
 
-        players = new ArrayList<>();
+        players = new HashMap<>();
 
     }
 
-    public void endTurn()
+
+    /**
+     * Add a new Player to the match
+     * @param player
+     * @throws IllegalStateException
+     */
+    void addPlayer (Player player) throws IllegalStateException, IllegalArgumentException
     {
-        //Todo implement
+        if (player == null)
+            throw new NullPointerException();
+        if (this.getPlayers().size() >= maxPlayers)
+            throw new IllegalStateException("too many players");
+
+        if (this.players.get(player.getPLAYER_ID()) != null)
+            throw new IllegalArgumentException("username already present");
+
+        this.players.put(player.getPLAYER_ID(), player);
     }
 
-    boolean isAllowedAddPlayer(String playerID)
-    {
-        for (Player player: players)
-        {
-            if (player.getPLAYER_ID().equals(playerID))
-            {
-                return false;
-            }
-        }
-        return true;
+    void start() {
+        if (players.size() < minPlayers)
+            throw new IllegalArgumentException();
     }
 
     /**
@@ -71,19 +86,15 @@ public class GameStatus {
         currentStatus.sendNotify();
     }
 
-    public Player getCurrentPlayer()
-    {
-        return players.get(currentPlayer);
-    }
-
-    void addPlayer(Player player)
-    {
-        this.players.add(player);
-    }
-
-    public ArrayList<Player> getPlayers() {
+    public Map<String, Player> getPlayers() {
         return players;
     }
 
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
 
+    public int getMinPlayers() {
+        return minPlayers;
+    }
 }

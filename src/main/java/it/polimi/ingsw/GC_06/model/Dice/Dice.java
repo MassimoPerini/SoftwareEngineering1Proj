@@ -11,7 +11,7 @@ import java.util.Random;
 public class Dice extends Observable {
 
     private int minPoint, maxPoint; //Inclusive
-    private DiceColor color;
+    private String color;
     private int points;
 
     /**
@@ -20,7 +20,7 @@ public class Dice extends Observable {
      * @param maxPoint
      * @param color
      */
-    public Dice(int minPoint, int maxPoint, DiceColor color)
+    public Dice(int minPoint, int maxPoint, String color)
     {
         super();
         this.minPoint=minPoint;
@@ -39,11 +39,19 @@ public class Dice extends Observable {
         notifyObservers(new Integer(points));
     }
 
-    public DiceColor getColor() {
+    public String getColor() {
         return color;
     }
 
     public int getPoints() {
         return points;
+    }
+
+    public int getMinPoint() {
+        return minPoint;
+    }
+
+    public int getMaxPoint() {
+        return maxPoint;
     }
 }

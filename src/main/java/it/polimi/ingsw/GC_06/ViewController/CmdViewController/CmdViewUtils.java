@@ -25,7 +25,7 @@ public class CmdViewUtils {
 
     public static Player getCurrentPlayer()
     {
-        return Game.getInstance().getGameStatus().getCurrentPlayer();
+        return Game.getInstance().getCurrentPlayer();
     }
 
 }

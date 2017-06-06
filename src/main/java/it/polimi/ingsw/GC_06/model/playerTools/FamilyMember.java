@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06;
+package it.polimi.ingsw.GC_06.model.playerTools;
 
 import it.polimi.ingsw.GC_06.model.Dice.DiceColor;
 
