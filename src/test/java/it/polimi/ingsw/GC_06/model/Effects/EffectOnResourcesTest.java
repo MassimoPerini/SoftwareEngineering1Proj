@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Effects;
 
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
@@ -73,5 +74,14 @@ public class EffectOnResourcesTest {
         assertTrue(r.getResourceAmount(MONEY) == 0);
         assertTrue(r.getResourceAmount(WOOD) == 0);
     }
+
+    @Test (expected=InvalidArgumentException.class)
+    public void lessThanZero() {
+        ResourceSet resourceSet = new ResourceSet();
+        resourceSet.variateResource(MONEY, -13);
+        resourceSet.variateResource(WOOD, -16);
+        EffectOnResources effectOnResources3 = new EffectOnResources(resourceSet);
+    }
+
 
 }

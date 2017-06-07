@@ -25,7 +25,7 @@ public class EffectOnParchmentTest {
     public void setUp() {
         Game.clearForTesting();
         Game.getInstance().addPlayer("gabriele");
-        player = Game.getInstance().getGameStatus().getCurrentPlayer();
+        player = Game.getInstance().getGameStatus().getPlayers().get("gabriele");
         parchments = new ArrayList<>();
         ResourceSet parchment1 = new ResourceSet();
         parchment1.variateResource(Resource.WOOD,1);
