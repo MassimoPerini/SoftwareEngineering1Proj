@@ -52,7 +52,10 @@ public class GameStatusTest {
     @Test (expected = IllegalArgumentException.class)
     public void sameName()
     {
-        for (int i=0;i<gameStatus.getMinPlayers();i++){
+        int min=gameStatus.getMinPlayers();
+        if (min==1)
+            min++;
+        for (int i=0;i<min;i++){
             FamilyMember[] familyMembers = new FamilyMember[1];
             familyMembers[0] = new FamilyMember("YELLOW", "massimo");
             Player player = new Player("massimo", familyMembers);

@@ -30,10 +30,7 @@ public class RoundManager {
 
 
     public RoundManager(Board board, int nFamilyMembersMax) throws IOException {
-        turn = 1;
-        era = 1;
-        currentPlayer = 0;
-        familyMembersPlaced = 0;
+        reset();
         developmentCards = Arrays.asList(FileLoader.getFileLoader().loadCards());
         maxEras = Integer.parseInt(Setting.getInstance().getProperty(MAXERA));
         maxTurns = Integer.parseInt(Setting.getInstance().getProperty(MAXTURNS));
@@ -44,24 +41,34 @@ public class RoundManager {
 
     }
 
+    private void reset()
+    {
+        turn = 1;
+        era = 1;
+        currentPlayer = 0;
+        familyMembersPlaced = 0;
+    }
+
     void endTurn()
     {
         if (players.size()==0)
             throw new IllegalStateException();
 
-        int newPlayer = (++currentPlayer) % players.size();
-        if (currentPlayer > newPlayer)      //means that I'm starting again the "cycle"
+        int newPlayer = (currentPlayer+1) % players.size();
+        if (currentPlayer >= newPlayer)      //means that I'm starting again the "cycle"
         {
             int newFamilyMemberPlaced = (++familyMembersPlaced) % nMaxFamilyMembers;
             if (newFamilyMemberPlaced < familyMembersPlaced) {      //I've placed the last family member (usually 4 familymembers for turn)
                 //Finito un giro, ne rimangono n_familiari giri
-                int newTurn = (++turn) % (maxTurns+1);
+                int newTurn = (turn+1) % (maxTurns+1);
                 if (turn > newTurn) {       //I've resetted the turn, so I have to change the era
                     newTurn++;
-                    era = (++era) % (maxEras+1);
+                    era = (era+1) % (maxEras+1);
                     if (era == 0) {
                         era=1;
                         endGame();      //Do here what you need to do when the game finished
+                        reset();
+                        return;
                     } else {
                         newEra();       //A new era started
                     }
@@ -75,18 +82,23 @@ public class RoundManager {
 //        Game.getInstance().getGameStatus().changeState(TransitionType.ROUNDFINISHED);
     }
 
-    private void newTurn()
+    private void shuffleCards()
     {
         List<Tower> towers = board.getTowers();
         for (Tower tower: towers)
         {
-        //    tower.shuffle(); TODO REIMPLEMENT
+            tower.shuffle();
         }
+    }
+
+    private void newTurn()
+    {
+        shuffleCards();
     }
 
     private void newEra()
     {
-     //   disposeCards(); TODO REIMPLEMENT
+        disposeCards();
     }
 
     private void endGame()
@@ -126,7 +138,8 @@ public class RoundManager {
         for (Tower tower: board.getTowers())
         {
             tower.setCards(cards.get(tower.getColor()));
-            tower.shuffle();
+            if (cards.get(tower.getColor()).size() < tower.getTowerFloor().size()*maxTurns)
+                throw new IllegalArgumentException("No enaugh cards");
         }
     }
 
@@ -144,7 +157,8 @@ public class RoundManager {
         {
             player.variateResource(startResources[i]);
         }
-    //    disposeCards();
+        disposeCards();
+        shuffleCards();
 
     }
     public Player getCurrentPlayer()

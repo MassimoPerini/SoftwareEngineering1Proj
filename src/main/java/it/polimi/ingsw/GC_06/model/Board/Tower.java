@@ -24,10 +24,12 @@ public class Tower{
     private ResourceSet malusOnMultipleFamilyMembers;
     private String color;
 
-    public Tower(List<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus){
+    public Tower(List<TowerFloor> floors, int maxSamePlayerFamilyMember, int minFamilyMembersMalus, String color, ResourceSet malusOnMultipleFamilyMembers){
     	this.towerFloors = floors;
     	this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
     	this.minFamilyMembersMalus = minFamilyMembersMalus;
+    	this.color = color;
+    	this.malusOnMultipleFamilyMembers = malusOnMultipleFamilyMembers;
     }
 
     /**

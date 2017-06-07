@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class EffectOnResources implements Effect {
+public class EffectOnResources implements ProdHarvMalusEffect {
 
     private ResourceSet resourceSet;
 
@@ -29,5 +29,10 @@ public class EffectOnResources implements Effect {
 
     public void setResourceSet(ResourceSet resourceSet) {
         this.resourceSet = resourceSet;
+    }
+
+    @Override
+    public boolean isAllowed(Player player) {
+        return player.getResourceSet().isIncluded(resourceSet);
     }
 }

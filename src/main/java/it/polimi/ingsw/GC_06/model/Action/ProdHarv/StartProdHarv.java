@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.model.Action.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
+import it.polimi.ingsw.GC_06.model.Effect.ProdHarvMalusEffect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -59,8 +60,6 @@ public class StartProdHarv implements Action {
     public void execute() {
         Game.getInstance().getGameStatus().changeState(TransitionType.PRODHARV);
 
-        //First filter: value pawn >= required card value
-
 
         List<ProdHarvEffect> autoExecute = new LinkedList<>();
         List<DevelopmentCard> askUser = new LinkedList<>();
@@ -69,12 +68,18 @@ public class StartProdHarv implements Action {
 
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {
-            if (prodHarvFilterCard.askUser(developmentCard, value))
+            if (prodHarvFilterCard.askUser(developmentCard, value))     //I need to ask
             {
                 askUser.add(developmentCard);
             }
-            else{
-                autoExecute.addAll(developmentCard.getProdHarvEffects(value));
+            else {             //Otherwise if it is allowed I will execute it
+                List<ProdHarvEffect> effects = developmentCard.getProdHarvEffects(value);
+                for (ProdHarvEffect effect : effects) {
+                    if (effect.isAllowed(player)){
+                        autoExecute.add(effect);
+                    }
+                }
+
             }
         }
 
@@ -83,6 +88,12 @@ public class StartProdHarv implements Action {
         List <Effect> temp = new LinkedList<>();
         for (ProdHarvEffect effect : autoExecute)
         {
+            for (ProdHarvMalusEffect malusEffect : effect.getMalusEffect()) {
+                if (malusEffect.isAllowed(player))
+                {
+                    temp.add(malusEffect);          //I have to execute the malus because it is not optional
+                }
+            }
             temp.addAll(effect.getMalusEffect());
         }
 
