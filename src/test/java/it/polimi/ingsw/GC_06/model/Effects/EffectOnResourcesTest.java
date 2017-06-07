@@ -75,12 +75,13 @@ public class EffectOnResourcesTest {
         assertTrue(r.getResourceAmount(WOOD) == 0);
     }
 
-    @Test (expected=InvalidArgumentException.class)
+    @Test (expected=IllegalArgumentException.class)
     public void lessThanZero() {
         ResourceSet resourceSet = new ResourceSet();
         resourceSet.variateResource(MONEY, -13);
         resourceSet.variateResource(WOOD, -16);
         EffectOnResources effectOnResources3 = new EffectOnResources(resourceSet);
+        effectOnResources3.execute(player);
     }
 
 
