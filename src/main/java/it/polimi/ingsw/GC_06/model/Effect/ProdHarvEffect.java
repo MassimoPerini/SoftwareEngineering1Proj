@@ -7,8 +7,33 @@ import java.util.List;
 /**
  * Created by massimo on 01/06/17.
  */
-public interface ProdHarvEffect {
+public class ProdHarvEffect {
 
-    List<Effect> getBonusEffect();
-    List<Effect> getMalusEffect();
+    private List<ProdHarvMalusEffect> malusEffect;
+    private List<Effect> bonusEffect;
+
+    public ProdHarvEffect(List<ProdHarvMalusEffect> malusEffect, List<Effect> bonusEffect) {
+        this.malusEffect = malusEffect;
+        this.bonusEffect = bonusEffect;
+    }
+
+    public List<Effect> getBonusEffect()
+    {
+        return bonusEffect;
+    }
+    public List<ProdHarvMalusEffect> getMalusEffect()
+    {
+        return malusEffect;
+    }
+
+    public boolean isAllowed(Player player)
+    {
+
+        for (ProdHarvMalusEffect prodHarvMalusEffect : malusEffect) {
+            if (!prodHarvMalusEffect.isAllowed(player))
+                return false;
+        }
+        return true;
+    }
+
 }

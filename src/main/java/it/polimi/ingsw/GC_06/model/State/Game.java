@@ -137,6 +137,10 @@ public class Game {
 
     }
 
+    RoundManager getRoundManager() {
+        return roundManager;
+    }
+
     public GameStatus getGameStatus() {
         return gameStatus;
     }

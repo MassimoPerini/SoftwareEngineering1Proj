@@ -70,7 +70,13 @@
         }
       ],
       "maxSamePlayerFamilyMember": 1,
-      "minFamilyMembersMalus": 1
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "GREEN"
     },
     {
       "towerFloors": [
@@ -142,7 +148,13 @@
         }
       ],
       "maxSamePlayerFamilyMember": 1,
-      "minFamilyMembersMalus": 1
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "BLUE"
     },
     {
       "towerFloors": [
@@ -214,7 +226,13 @@
         }
       ],
       "maxSamePlayerFamilyMember": 1,
-      "minFamilyMembersMalus": 1
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "YELLOW"
     },
     {
       "towerFloors": [
@@ -286,7 +304,13 @@
         }
       ],
       "maxSamePlayerFamilyMember": 1,
-      "minFamilyMembersMalus": 1
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "PURPLE"
     }
   ],
   "marketAndCouncils": [

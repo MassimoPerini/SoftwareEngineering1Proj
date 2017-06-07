@@ -17,53 +17,64 @@ import static org.junit.Assert.*;
  */
 public class RoundManagerTest {
 
-    private RoundManager roundManager;
+    private Game game;
 
     @Before
     public void setUp() throws Exception {
-        this.roundManager = new RoundManager(FileLoader.getFileLoader().loadBoard(), FileLoader.getFileLoader().loadDiceSet().getDices().length + Integer.parseInt(Setting.getInstance().getProperty("neutral_family_members")));
+        game = new Game();
+
     }
 
     @Test
     public void testInitValues()
     {
+        game.addPlayer("Massimo");
+        game.start();
+        checkInitValues();
+    }
+
+
+    private void checkInitValues()
+    {
+        RoundManager roundManager = game.getRoundManager();
+
         assertTrue(roundManager.getEra() == 1);
         assertTrue(roundManager.getTurn() == 1);
         assertTrue(roundManager.getFamilyMembersPlaced() == 0);
     }
 
-    @Test (expected=IllegalStateException.class)
+    @Test (expected=IllegalArgumentException.class)
     public void testNoPlayers()
     {
-        testValues(1);
+        game.start();
+        RoundManager roundManager = game.getRoundManager();
+
+        testValues(1, roundManager);
     }
 
     @Test
     public void testOnePlayer()
     {
-        generateFamilyMembers(1);
-        testValues(1);
+        game.addPlayer("Massimo");
+        game.start();
+        RoundManager roundManager = game.getRoundManager();
+        testValues(1, roundManager);
     }
 
     @Test
     public void testMorePlayers()
     {
-        generateFamilyMembers(3);
-        testValues(3);
+        game.addPlayer("Massimo");
+        game.addPlayer("Perini");
+        game.addPlayer("ciao");
+        game.start();
+        RoundManager roundManager = game.getRoundManager();
+
+        testValues(3, roundManager);
     }
 
-    public void generateFamilyMembers(int n)
-    {
-        for (int i=0;i<n;i++){
-            FamilyMember [] familyMembers = new FamilyMember[2];
-            familyMembers[0] = new FamilyMember("YELLOW", "massimo");
-            familyMembers[1] = new FamilyMember("GREEN", "massimo");
-            Player p1 = new Player("massimo", familyMembers);
-            roundManager.addPlayer(p1);
-        }
-    }
 
-    private void testValues(int nPlayers)
+    private void testValues(int nPlayers, RoundManager roundManager)
     {
         for (int i=1;i<=roundManager.getMaxEras();i++)
         {
@@ -84,18 +95,21 @@ public class RoundManagerTest {
             assertTrue(roundManager.getTurn() == 1);
         }
 
-        testInitValues();
+        checkInitValues();
     }
 
     @Test
     public void testStart() throws IOException {
         ResourceSet [] resourceSets = FileLoader.getFileLoader().loadDefaultResourceSets();
-        generateFamilyMembers(3);
-        roundManager.start();
+        game.addPlayer("Massimo");
+        game.addPlayer("Perini");
+        game.addPlayer("ciao");
+        game.start();
+        RoundManager roundManager = game.getRoundManager();
+
         assertTrue(roundManager.getCurrentPlayer().getResourceSet().isIncluded(resourceSets[0]));
         assertTrue(resourceSets[0].isIncluded(roundManager.getCurrentPlayer().getResourceSet()));
 
     }
-
 
 }

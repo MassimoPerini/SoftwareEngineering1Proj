@@ -5,19 +5,19 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnAction;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
+import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by massimo on 17/05/17.
@@ -125,6 +125,8 @@ public class FileLoader {
         //TODO una torre contiene carte solo di un solo tipo
         Resource [] resources = {Resource.WOOD, Resource.STONE, Resource.MILITARYPOINT, Resource.MONEY};
 
+        String colors [] = {"GREEN", "BLUE", "YELLOW", "PURPLE"};
+
         for (int j=0;j<4;j++) {
             ArrayList<TowerFloor> towerFloors = new ArrayList<>();
             ResourceSet malus = new ResourceSet();
@@ -141,7 +143,10 @@ public class FileLoader {
                 towerFloors.add(towerFloor);
             }
 
-            Tower tower = new Tower(towerFloors, 1, 1);
+            ResourceSet malusResourceSet = new ResourceSet();
+            malusResourceSet.variateResource(Resource.MONEY, -3);
+
+            Tower tower = new Tower(towerFloors, 1, 1, colors[j], malusResourceSet);
             towers.add(tower);
         }
 
@@ -182,64 +187,71 @@ public class FileLoader {
         fw.close();
     }
 
-    public void writeCardTower() throws IOException {
-        Map<String, int[]> map = new HashMap<>();
-        int [] arrPos = {0,1,2,3};
-        map.put("devcards_f_en_c_1.png", arrPos);
-        map.put("devcards_f_en_c_65.png", arrPos);
-        map.put("devcards_f_en_c_47.png", arrPos);
-        map.put("devcards_f_en_c_96.png", arrPos);
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        FileWriter fw = new FileWriter("src/main/resources/model/tower-cards.txt");
-        gson.toJson(map, fw);
-        fw.close();
-    }
 
     public void writeCards() throws IOException {
 
-    /*    List<ProdHarvEffect> prodHarvEffects = new ArrayList<>();
+        List<ProdHarvEffect> prodHarvEffects = new ArrayList<>();
 
         ResourceSet resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.SERVANT, 2);
         resourceSet.variateResource(Resource.STONE, 1);
         Effect immediateEffect = new EffectOnResources(resourceSet);
 
+        List<DevelopmentCard> cards = new LinkedList<>();
 
-        DevelopmentCard card1 = new DevelopmentCard("Villaggio minerario", 2, new ArrayList<Requirement>(), new ArrayList<Effect>(),new ArrayList<ProdHarvEffect>(), "green");
+        ArrayList<Requirement> r;
+        ResourceSet res1;
+        for (int j=1;j<=3;j++) {
+            for (int k=0;k<2;k++) {
+                for (int i = 0; i < 4; i++) {
+                    DevelopmentCard card1 = new DevelopmentCard("devcards_f_en_c_1" + String.valueOf(i) +String.valueOf(k) +String.valueOf(j), j, new ArrayList<Requirement>(), new ArrayList<Effect>(), "GREEN", new HashMap<>());
+                    r = new ArrayList<>();
+                    res1 = new ResourceSet();
+                    res1.variateResource(Resource.MONEY, 6);
 
-        ResourceSet res1 = new ResourceSet();
-        res1.variateResource(Resource.MONEY, 6);
+                    r.add(new Requirement(new ResourceSet(), res1));
+                    cards.add(card1);
+                }
 
-        ArrayList<Requirement> r = new ArrayList<>();
-        r.add(new Requirement(new ResourceSet(), res1));
-        DevelopmentCard card2 = new DevelopmentCard("Nobile",3, new ArrayList<Requirement>(), new ArrayList<Effect>(),new ArrayList<ProdHarvEffect>(), "blue");
+                ResourceSet res2 = new ResourceSet();
 
-        ResourceSet res2 = new ResourceSet();
-        res2.variateResource(Resource.SERVANT, 1);
-        res2.variateResource(Resource.WOOD, 2);
-        res2.variateResource(Resource.STONE, 2);
-        r = new ArrayList<>();
-        r.add(new Requirement(new ResourceSet(), res2));
-        DevelopmentCard card3 = new DevelopmentCard("Accademia militare", 3,new ArrayList<Requirement>(), new ArrayList<Effect>(),new ArrayList<ProdHarvEffect>(), "yellow");
+                for (int i = 0; i < 4; i++) {
+                    DevelopmentCard card2 = new DevelopmentCard("devcards_f_en_c_65" + String.valueOf(i) +String.valueOf(k)+ String.valueOf(j), j, new ArrayList<Requirement>(), new ArrayList<Effect>(), "BLUE", new HashMap<>());
 
+                    res2.variateResource(Resource.SERVANT, 1);
+                    res2.variateResource(Resource.WOOD, 2);
+                    res2.variateResource(Resource.STONE, 2);
+                    r = new ArrayList<>();
+                    r.add(new Requirement(new ResourceSet(), res2));
+                    cards.add(card2);
+                }
 
-        res2 = new ResourceSet();
-        res2.variateResource(Resource.WOOD, 3);
-        res2.variateResource(Resource.MONEY, 4);
-        res2.variateResource(Resource.STONE, 3);
-        r = new ArrayList<>();
-        r.add(new Requirement(new ResourceSet(), res2));
+                for (int i = 0; i < 4; i++) {
 
+                    DevelopmentCard card3 = new DevelopmentCard("devcards_f_en_c_47" + String.valueOf(i) + String.valueOf(k)+String.valueOf(j), j, new ArrayList<Requirement>(), new ArrayList<Effect>(), "YELLOW", new HashMap<>());
 
+                    res2 = new ResourceSet();
+                    res2.variateResource(Resource.WOOD, 3);
+                    res2.variateResource(Resource.MONEY, 4);
+                    res2.variateResource(Resource.STONE, 3);
+                    r = new ArrayList<>();
+                    r.add(new Requirement(new ResourceSet(), res2));
+                    cards.add(card3);
+                }
 
-        res2 = new ResourceSet();
-        res2.variateResource(Resource.MILITARYPOINT, 5);
-        res1 = new ResourceSet();
-        res1.variateResource(Resource.MILITARYPOINT, 10);
-        r.add(new Requirement(res1, res2));
-        DevelopmentCard card4 = new DevelopmentCard( "Sostegno al papa", 3, new ArrayList<Requirement>(), new ArrayList<Effect>(),new ArrayList<ProdHarvEffect>(),"purple");
+                for (int i = 0; i < 4; i++) {
+                    res2 = new ResourceSet();
+                    res2.variateResource(Resource.MILITARYPOINT, 5);
+                    res1 = new ResourceSet();
+                    res1.variateResource(Resource.MILITARYPOINT, 10);
+                    r = new ArrayList<>();
+                    r.add(new Requirement(res1, res2));
+                    DevelopmentCard card4 = new DevelopmentCard("devcards_f_en_c_96" + String.valueOf(i) +String.valueOf(k)+ String.valueOf(j), j, new ArrayList<Requirement>(), new ArrayList<Effect>(), "PURPLE", new HashMap<>());
+                    cards.add(card4);
+                }
+            }
+        }
 
-        DevelopmentCard [] cards = {card1, card2, card3, card4};
 
         //TODO FIX HERE (relative path!)
 
@@ -248,7 +260,7 @@ public class FileLoader {
 
         FileWriter fw = new FileWriter("src/main/resources/model/cards.txt");
         gson2.toJson(cards, fw);
-        fw.close();*/
+        fw.close();
     }
 
 

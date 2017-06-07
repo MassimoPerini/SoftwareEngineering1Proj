@@ -23,7 +23,8 @@ public class App
     //    f.writeBoard();
     //    f.writeCards();
 
-        FileLoader.getFileLoader().writeCardTower();
+     //   FileLoader.getFileLoader().writeBoard();
+     //   FileLoader.getFileLoader().writeCards();
 
         Game game = Game.getInstance();
         game.addPlayer("massimo");
