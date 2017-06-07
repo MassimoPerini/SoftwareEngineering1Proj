@@ -62,16 +62,16 @@ public class EffectOnResourcesTest {
     }
 
     @Test
-    public void lessThanZero() {
+    public void equalsZero() {
         ResourceSet resourceSet = new ResourceSet();
-        resourceSet.variateResource(MONEY, 16);
-        resourceSet.variateResource(WOOD, 28);
+        resourceSet.variateResource(MONEY, -12);
+        resourceSet.variateResource(WOOD, -15);
         EffectOnResources effectOnResources3 = new EffectOnResources(resourceSet);
 
         effectOnResources3.execute(player);
         ResourceSet r = player.getResourceSet();
-     //   assertTrue(r.getResourceAmount(MONEY) == 0);
-     //   assertTrue(r.getResourceAmount(WOOD) == 0);
+        assertTrue(r.getResourceAmount(MONEY) == 0);
+        assertTrue(r.getResourceAmount(WOOD) == 0);
     }
 
 }

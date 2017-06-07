@@ -124,14 +124,17 @@ public class Game {
         State node1 = new State(StateName.IDLE);
         State node2 = new State(StateName.PLACE_FAM_MEM);
         State node3 = new State(StateName.PICK_CARD);
+        State node4 = new State(StateName.CHOOSE_PARCHMENT);
 
         node1.addTransition(TransitionType.ADDFAMILYMEMBER, node2);
         node2.addTransition(TransitionType.PAYCARD, node3);
         node3.addTransition(TransitionType.EXECUTEEFFECT, node1);
+        node4.addTransition(TransitionType.CHOOSING_PARCHMENT, node1);
 
         statuses.put(node1.getID(), node1);
         statuses.put(node2.getID(), node2);
         statuses.put(node3.getID(), node3);
+        statuses.put(node4.getID(), node4);
 
         return node1;
 

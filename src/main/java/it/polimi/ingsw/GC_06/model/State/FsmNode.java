@@ -9,6 +9,7 @@ interface FsmNode {
     void addTransition (TransitionType type, FsmNode nextState);
     void sendNotify();
     void sendNotify(Object o);
+    StateName getID();
  //   void setPrevNode (FsmNode node);
 
 }
