@@ -76,7 +76,7 @@ public class EffectOnResourcesHarvProductionTest {
         assertTrue(r.getResourceAmount(Resource.WOOD)==-1);
     }
 
-    @Test
+    @Test //TODO il test mostra che non esegue, ma come ho scritto nella classe dovremmo mettere almeno un avviso
     public void insufficientPoints() {
         ResourceSet resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.MONEY, -2);
