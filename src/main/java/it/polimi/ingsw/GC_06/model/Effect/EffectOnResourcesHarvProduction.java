@@ -17,7 +17,7 @@ public class EffectOnResourcesHarvProduction{
         this.variateResource = variateResource;
     }
 
-
+    //TODO effettivamente non esegue se non hai punti sufficienti, ma non dovrebbe per lo meno dare un avviso?
     public void execute(Player player, int points) {
         if (points >= requiredValue)
         {
