@@ -13,9 +13,9 @@ public class BonusMalusOnResources{
     private ResourceSet bonusMalusEntity;
     private ActionType actionType;
     /** questo coefficiente è un termine proporzionale per individuare la quantità di risorse da aggiungere o sottrarre*/
-    private int coefficient;
+    private double coefficient;
 
-    public BonusMalusOnResources(ResourceSet bonusMalusEntity, int coefficient,  ActionType actionType, Resource bonusMalusTarget) {
+    public BonusMalusOnResources(ResourceSet bonusMalusEntity, double coefficient,  ActionType actionType, Resource bonusMalusTarget) {
         this.bonusMalusEntity = bonusMalusEntity;
         this.coefficient = coefficient;
         this.actionType = actionType;
@@ -34,7 +34,7 @@ public class BonusMalusOnResources{
            //TODO cambiare questa piccola cosa ed è fatta
             int totalAmount = bonusMalusEntity.totalResourceQuantity();
 
-            int variation = totalAmount*coefficient;
+            int variation = (int) (totalAmount*coefficient);
             System.out.println("This is variation " + variation);
 
             //TODO aggiungere questa variazione al bonusMalus

@@ -11,6 +11,8 @@ import java.util.ArrayList;
  */
 public class BonusMalusHandler {
 
+    /** se mi vengono passati due resourceSet dobbiamo settare il BonusMalusEntity*/
+
     /** filtro sulle azioni torre e specifiche per un colore */
 
     public static void filter(Player player, ActionType actionType, String towerColour, FamilyMember familyMember){
