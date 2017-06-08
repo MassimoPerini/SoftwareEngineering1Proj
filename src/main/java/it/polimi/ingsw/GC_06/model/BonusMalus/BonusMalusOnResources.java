@@ -31,13 +31,11 @@ public class BonusMalusOnResources{
 
             // adesso dobbiamo prendere l'amount del bonusMalusEntity;
             // adesso prendiamo la somma di tutte le quantità di ciascuna risorsa
-           //TODO cambiare questa piccola cosa ed è fatta
             int totalAmount = bonusMalusEntity.totalResourceQuantity();
 
             int variation = (int) (totalAmount*coefficient);
             System.out.println("This is variation " + variation);
 
-            //TODO aggiungere questa variazione al bonusMalus
 
 
             /** otteniamo la quantità di cose da sottrarre dal targetResourceSet*/

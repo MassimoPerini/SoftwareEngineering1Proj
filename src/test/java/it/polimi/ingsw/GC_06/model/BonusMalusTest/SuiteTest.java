@@ -11,6 +11,7 @@ public class SuiteTest {
     public static Test suite(){
         TestSuite suite = new TestSuite();
         suite.addTest(new BonusMalusOnResourcesTest("firstTest"));
+        suite.addTest(new BonusMalusOnActionTest("secondTest"));
         return suite;
     }
 
