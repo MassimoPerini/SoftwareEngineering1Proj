@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effects;
 
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;

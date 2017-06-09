@@ -10,13 +10,12 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 public class BonusMalusOnEnd {
 
     private Resource bonusMalusTarget;
-    int coefficient;
     private String colour;
     private ActionType actionType;
 
-    public BonusMalusOnEnd(Resource bonusMalusTarget, int coefficient, String colour, ActionType actionType) {
+    public BonusMalusOnEnd(Resource bonusMalusTarget,String colour, ActionType actionType) {
         this.bonusMalusTarget = bonusMalusTarget;
-        this.coefficient = coefficient;
+
         this.colour = colour;
         this.actionType = actionType;
     }
@@ -24,7 +23,7 @@ public class BonusMalusOnEnd {
     public void modify(ResourceSet targetResourceSet){
 
         if(targetResourceSet.isIncluded(bonusMalusTarget)){
-            int variation = targetResourceSet.getResources().get(bonusMalusTarget)* coefficient;
+            int variation = targetResourceSet.getResources().get(bonusMalusTarget);
             targetResourceSet.variateResource(bonusMalusTarget,variation);
         }
 
