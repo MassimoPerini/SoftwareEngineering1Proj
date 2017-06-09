@@ -63,7 +63,7 @@ public class GameAndGameStatusTest {
         game.addPlayer("massimo");
         game.start();
         int i=0;
-        Player currentPlayer = Game.getInstance().getCurrentPlayer();
+        Player currentPlayer = game.getCurrentPlayer();
 
         if (currentPlayer.getPLAYER_ID().equals("pinco")) i++;
         if (currentPlayer.getPLAYER_ID().equals("pallino")) i++;
