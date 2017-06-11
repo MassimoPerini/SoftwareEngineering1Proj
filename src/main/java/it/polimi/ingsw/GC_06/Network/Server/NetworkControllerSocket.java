@@ -18,4 +18,9 @@ public class NetworkControllerSocket implements LoginHandler {
     public void handleLogin(String username) {
         
     }
+
+    @Override
+    public boolean checkLogin() {
+        return false;
+    }
 }

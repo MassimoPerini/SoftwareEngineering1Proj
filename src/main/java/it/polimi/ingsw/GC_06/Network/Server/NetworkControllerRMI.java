@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 /**
  * Created by gabri on 09/06/2017.
  */
-public class NetworkControllerRMI implements LoginHandler {
+public class NetworkControllerRMI  {
     private int timeOut;
     private int minPlayers;
     private int maxPlayers;
@@ -18,7 +18,7 @@ public class NetworkControllerRMI implements LoginHandler {
         this.maxPlayers = maxPlayers;
     }
 
-    @Override
+    //@Override
     public void handleLogin(String username) {
 
     }
