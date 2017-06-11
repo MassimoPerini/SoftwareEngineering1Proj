@@ -68,6 +68,10 @@ public class Game {
         roundManager.start();
     }
 
+    public int getPlayerNumber(){
+        return gameStatus.getPlayers().size();
+    }
+
     public void endTurn()
     {
         roundManager.endTurn();

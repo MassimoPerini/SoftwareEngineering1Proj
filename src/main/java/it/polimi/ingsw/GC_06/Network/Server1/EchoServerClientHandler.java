@@ -8,6 +8,8 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by giuseppe on 6/7/17.
@@ -18,7 +20,7 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
     private Socket socket;
     private BufferedReader input;
     private PrintWriter output;
-    int delay = 1000;
+    int delay = 10000;
 
     public EchoServerClientHandler(Socket socket) {
         this.socket = socket;
@@ -52,6 +54,17 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
         try{
             Game.getInstance().addPlayer(username);
             output.println("login done");
+            if(Game.getInstance().getPlayerNumber()==2){
+                 Timer timer = new Timer();
+                 timer.schedule(new TimerTask() {
+                     @Override
+                     public void run() {
+                         System.out.println("creo un nuovo gioco");
+                         Game.getInstance().start();
+                     }
+                 },delay);
+
+            }
         }catch(IllegalStateException e){
             output.println(e.getMessage());
 
