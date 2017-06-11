@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by giuseppe on 5/19/17.
@@ -75,5 +76,18 @@ public class Player {
 
     public ResourceSet getAddAtTheEnd() {
         return addAtTheEnd;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerBoard=  " + playerBoard +
+                ", familyMembers= " + Arrays.toString(familyMembers) +
+                ", resourceSet= " + resourceSet +
+                ", PLAYER_ID= " + PLAYER_ID + '\'' +
+                ", bonusMalus= " + bonusMalus +
+                ", addAtTheEnd= " + addAtTheEnd +
+                ", bonusMalusSet= " + bonusMalusSet +
+                '}';
     }
 }

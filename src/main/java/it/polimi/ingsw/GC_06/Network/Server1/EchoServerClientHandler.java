@@ -5,6 +5,8 @@ package it.polimi.ingsw.GC_06.Network.Server1;
  */
 
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.*;
 import java.net.Socket;
@@ -34,15 +36,17 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String username = input.readLine();
             System.out.println("Username " + username);
-            String password = input.readLine();
-            System.out.println("Passoword  " + password);
+            /**String password = input.readLine();
+            System.out.println("Passoword  " + password);*/
 
             output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-            // apriamo comunque il canale di comunicazione con il client
 
+            /** effettuata questa operazione avremo i nostri giocatori loggati ed il gioco iniziato*/
             doLogin(username);
 
+            /** adesso vorremmo inviare al giocatore tutte le sue informazioni*/
+            statistics(username);
 
         }catch (IOException e){
             System.err.println(e.getMessage());
@@ -63,12 +67,19 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
                          Game.getInstance().start();
                      }
                  },delay);
-
             }
         }catch(IllegalStateException e){
             output.println(e.getMessage());
 
         }
+        output.flush();
+    }
+
+    @Override
+    public void statistics(String username) {
+
+        Player player = Game.getInstance().getGameStatus().getPlayers().get(username);
+        output.println(player.toString());
         output.flush();
     }
 }

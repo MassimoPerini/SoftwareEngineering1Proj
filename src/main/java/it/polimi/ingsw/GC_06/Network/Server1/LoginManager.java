@@ -6,6 +6,6 @@ package it.polimi.ingsw.GC_06.Network.Server1;
 public interface LoginManager {
 
     void doLogin(String username);
-
+    void statistics(String username);
 }
 

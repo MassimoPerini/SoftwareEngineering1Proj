@@ -3,6 +3,9 @@ package it.polimi.ingsw.GC_06.Network.Client1;
 /**
  * Created by giuseppe on 6/11/17.
  */
+import com.sun.org.apache.xpath.internal.SourceTree;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
+
 import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
@@ -16,13 +19,13 @@ public class LineClient{
     private String ip;
     private int port;
     private String username;
-    private String password;
+   // private String password;
 
     public LineClient(String ip, int port) {
         this.ip = ip;
         this.port = port;
         this.username = username;
-        this.password = password;
+       // this.password = password;
     }
 
     public static void main(String[] args) {
@@ -79,8 +82,8 @@ public class LineClient{
         String username = JOptionPane.showInputDialog(null,"enter username");
         output.println(username);
 
-        String pass = JOptionPane.showInputDialog(null,"enter pass");
-        output.println(pass);
+       // String pass = JOptionPane.showInputDialog(null,"enter pass");
+        //output.println(pass);
 
         output.flush();
 
@@ -92,7 +95,10 @@ public class LineClient{
         String response = read.readLine();
         System.out.println("This is the response from the Server: " + response);
 
+        String player = read.readLine();
+        System.out.println("this are your initial resources :" + player);
         JOptionPane.showMessageDialog(null,response);
+
         /**String socketLine = socketIn.nextLine();
          System.out.println(socketLine);*/
 
