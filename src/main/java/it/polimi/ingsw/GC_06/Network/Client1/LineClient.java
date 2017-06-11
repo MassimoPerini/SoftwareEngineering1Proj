@@ -32,6 +32,7 @@ public class LineClient{
 
 
 
+
         LineClient client = new LineClient("127.0.0.1",1337);
         try{
             client.startClient();
@@ -91,6 +92,9 @@ public class LineClient{
         read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         //leggiamo quello che è nel buffer
+        String userID = read.readLine();
+        System.out.println(userID);
+
 
         String response = read.readLine();
         System.out.println("This is the response from the Server: " + response);

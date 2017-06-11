@@ -4,6 +4,7 @@ package it.polimi.ingsw.GC_06.Network.Server1;
  * Created by giuseppe on 6/11/17.
  */
 
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -18,7 +19,7 @@ import java.util.TimerTask;
  */
 public class EchoServerClientHandler implements Runnable, LoginManager {
 
-
+    private String userId;
     private Socket socket;
     private BufferedReader input;
     private PrintWriter output;
@@ -41,12 +42,21 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
 
             output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 
+            userId = username;
+            output.println("The server registered you with your id: " + userId);
+            output.flush();
 
             /** effettuata questa operazione avremo i nostri giocatori loggati ed il gioco iniziato*/
             doLogin(username);
 
+
+
             /** adesso vorremmo inviare al giocatore tutte le sue informazioni*/
             statistics(username);
+
+            /** dobbiamo impedire al client di effettuare azioni in questa fase se non ci sono due giocatori*/
+
+
 
         }catch (IOException e){
             System.err.println(e.getMessage());
@@ -58,7 +68,7 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
         try{
             Game.getInstance().addPlayer(username);
             output.println("login done");
-            if(Game.getInstance().getPlayerNumber()==2){
+            if(Game.getInstance().getPlayerNumber()== Integer.parseInt(Setting.getInstance().getProperty("min_players"))){
                  Timer timer = new Timer();
                  timer.schedule(new TimerTask() {
                      @Override
@@ -79,7 +89,11 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
     public void statistics(String username) {
 
         Player player = Game.getInstance().getGameStatus().getPlayers().get(username);
+        //TODO da fare con json
         output.println(player.toString());
         output.flush();
     }
+
+    /** qui dovrà iniziare la gestione delle azioni */
+
 }
