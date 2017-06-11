@@ -4,6 +4,8 @@ package it.polimi.ingsw.GC_06.Network.Server1;
  * Created by giuseppe on 6/11/17.
  */
 
+
+import it.polimi.ingsw.GC_06.model.Controller.*;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -24,6 +26,7 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
     private BufferedReader input;
     private PrintWriter output;
     int delay = 10000;
+    private ModelController modelController;
 
     public EchoServerClientHandler(Socket socket) {
         this.socket = socket;
@@ -95,5 +98,46 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
     }
 
     /** qui dovrà iniziare la gestione delle azioni */
-
+    /** quello che pensavo di fare io era di chiamare qui la classe di handling del model con pattern strategy  */
+    //TODO qui deserializza la stringa e tira fuori il messaggio e l'object
+    public void callToModel() {
+        //simulo di avere gia il messaggio e l'object
+        Object objectFromSocket = new Object();
+        String messageFromSocket = new String();
+        switch (messageFromSocket) {
+            case "messaggio azione su torre" :
+                modelController = new ActionOnTowerController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio azione su prodHarv" :
+                modelController = new ActionOnProdHarvController();
+                modelController.ActOnModel(objectFromSocket,userId);
+            case "messaggio askUserSelector" :
+                modelController = new AskUserSelectorController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio endTurn" :
+                modelController = new EndTurnActionController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio executeEffects" :
+                modelController = new ExecuteEffectsController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio HarvestCardSelector" :
+                modelController = new HarvestCardSelectorController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio Paycard" :
+                modelController = new PayCardController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio PickCard" :
+                modelController = new PickCardController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio PowerUpFamilyMember" :
+                modelController = new PowerUpFamilyMemberController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio StartProdHarv" :
+                modelController = new StartProdHarvController();
+                modelController.ActOnModel(objectFromSocket, userId);
+            case "messaggio VariateResource" :
+                modelController = new VariateResourceActionController();
+                modelController.ActOnModel(objectFromSocket, userId);
+        }
+    }
 }
