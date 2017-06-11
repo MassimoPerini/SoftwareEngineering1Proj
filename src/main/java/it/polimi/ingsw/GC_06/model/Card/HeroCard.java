@@ -1,61 +1,41 @@
 package it.polimi.ingsw.GC_06.model.Card;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 17/05/17.
  */
 public class HeroCard extends Card {
-	
-	private ArrayList<Effect> effects;
-	private ArrayList<Requirement> requirements;
-	private ArrayList<Effect> permanentEffects;
 
-    public HeroCard(String name, ArrayList<Effect> effects, ArrayList<Effect> permanentEffects) {
-        super(name);
-        this.effects = effects;
-        this.requirements = new ArrayList<>();
-        this.permanentEffects = permanentEffects;
-        
-    }
-    
 
-    public void addRequirements(Requirement requirement)
-    {
-        this.requirements.add(requirement);
+    private HashMap<String,Integer> cardConditions;
+    private ResourceSet resourceConditions;
+
+
+    public HeroCard(String path, HashMap<String, Integer> cardConditions, ResourceSet resourceConditions) {
+        super(path);
+        this.cardConditions = cardConditions;
+        this.resourceConditions = resourceConditions;
     }
-    
-    public boolean isSatisfied(ResourceSet resourceSet)
-    {
-        for (Requirement requirement:requirements)
-        {
-            if (requirement.isSatisfied(resourceSet))
-                return true;
+
+    public HashMap<String, Integer> getCardConditions() {
+        return cardConditions;
+    }
+
+    public ResourceSet getResourceConditions() {
+        return resourceConditions;
+    }
+
+    public boolean isActivable(Player player){
+        if(resourceConditions.isIncluded(player.getResourceSet()) && player.getPlayerBoard().isIncluded(this.cardConditions)){
+           return true;
         }
         return false;
-
     }
-
-    
-    public ArrayList<Effect> getEffects() {
-    	return this.effects;
-    }
-    
-    public ArrayList<Effect> getPermanentEffects() {
-    	return this.permanentEffects;
-    }
-
-    @Override
-    public String toString() {
-        return "HeroCard{" +
-                "effects=" + effects.toString() +
-                ", permanentEffects=" + permanentEffects.toString() +
-                ", requirements=" + requirements.toString() +
-                '}';
-    }
-
-
 }

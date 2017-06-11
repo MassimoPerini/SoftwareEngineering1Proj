@@ -2,10 +2,7 @@ package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -76,6 +73,18 @@ public class PlayerBoard {
             return limit.intValue() > 0;
         }
         return limit.intValue() > cardsKey.size();
+    }
+
+    public boolean isIncluded(HashMap<String,Integer> requirements){
+
+        Set<String> colourRequirements = requirements.keySet();
+        for(String colour : colourRequirements){
+            if(requirements.get(colour) < this.cards.get(colour).size()){
+                return false;
+            }
+        }
+        return true;
+
     }
 
     /** ritorna il numero di carte di un certo colore possedute da un giocatore*/

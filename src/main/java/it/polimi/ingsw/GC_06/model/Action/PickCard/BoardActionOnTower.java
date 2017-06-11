@@ -47,7 +47,7 @@ public class BoardActionOnTower implements Action {
         if (!isAllowed())
             throw new IllegalStateException();
 
-
+        // qui faccio il malus
         tower.getTowerFloor().get(index).addFamilyMember(familyMember);
 
         pickCard.execute();
