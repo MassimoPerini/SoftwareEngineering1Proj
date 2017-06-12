@@ -15,6 +15,8 @@ public class BonusMalusOnAction {
     private int bonusMalusEntity;
     /** actionType serve ad identificare l'azione sulla quale il bonus o il malus agirà*/
     private ActionType actionType;
+    private boolean permanent;
+    private boolean ON;
 
     public BonusMalusOnAction(String colourTarget, int malusEntity,ActionType actionType,LinkedList<String> familyMemberColours) {
         this.colourTarget = colourTarget;
@@ -45,5 +47,17 @@ public class BonusMalusOnAction {
 
     public String getColourTarget() {
         return colourTarget;
+    }
+
+    public boolean isON() {
+        return ON;
+    }
+
+    public boolean isPermanent() {
+        return permanent;
+    }
+
+    public void setON(boolean ON) {
+        this.ON = ON;
     }
 }

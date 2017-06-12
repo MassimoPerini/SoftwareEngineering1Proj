@@ -14,6 +14,8 @@ public class BonusMalusOnResources{
     private ActionType actionType;
     /** questo coefficiente è un termine proporzionale per individuare la quantità di risorse da aggiungere o sottrarre*/
     private double coefficient;
+    private boolean permanent;
+    private boolean ON;
 
     public BonusMalusOnResources(ResourceSet bonusMalusEntity, double coefficient,  ActionType actionType, Resource bonusMalusTarget) {
         this.bonusMalusEntity = bonusMalusEntity;
@@ -54,6 +56,17 @@ public class BonusMalusOnResources{
         return actionType;
     }
 
+    public boolean isPermanent() {
+        return permanent;
+    }
+
+    public boolean isON() {
+        return ON;
+    }
+
+    public void setON(boolean ON) {
+        this.ON = ON;
+    }
 }
 
 

@@ -28,7 +28,7 @@ public class ExecuteEffects implements Action {
     @Override
     public void execute() {
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.EXECUTEEFFECT);
+        Game.getInstance().getGameStatus().changeState(TransitionType.EXECUTE_EFFECT);
 
         for(Effect effect: effects)
         {

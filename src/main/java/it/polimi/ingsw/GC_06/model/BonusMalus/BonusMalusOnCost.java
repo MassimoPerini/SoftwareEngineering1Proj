@@ -15,6 +15,8 @@ public class BonusMalusOnCost {
     private ResourceSet bonusMalusEntity;
     private String colourTarget;
     private ActionType actionType;
+    private boolean permanent;
+    private boolean ON;
 
     public BonusMalusOnCost(ResourceSet bonusMalusEntity, String colourTarget, ActionType actionType) {
         this.bonusMalusEntity = bonusMalusEntity;

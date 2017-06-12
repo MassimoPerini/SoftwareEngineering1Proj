@@ -9,6 +9,8 @@ public class GiveFamilyBonus {
 
     /** questo bonus è una cagata spero di riuscire ad eliminarlo*/
     private FamilyMember newFamilyMember;
+    private boolean permanent;
+    private boolean ON;
 
     public GiveFamilyBonus(FamilyMember newFamilyMember) {
         this.newFamilyMember = newFamilyMember;

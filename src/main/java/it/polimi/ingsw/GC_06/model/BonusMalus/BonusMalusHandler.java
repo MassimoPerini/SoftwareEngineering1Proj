@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.BonusMalus;
 
+import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -19,12 +20,19 @@ public class BonusMalusHandler {
 
         ArrayList<BonusMalusOnAction> bonusMalusOnActions = player.getBonusMalusSet().getBonusMalusOnAction().get("ACTIONBONUSMALUS");
 
-        for(BonusMalusOnAction bonusMalusOnAction : bonusMalusOnActions){
+
+        for(int i=0; i<bonusMalusOnActions.size();i++){
+            BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
             if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.getColourTarget().equals(towerColour)
-                    && bonusMalusOnAction.checkFamilyMember(familyMember)){
+                    && bonusMalusOnAction.checkFamilyMember(familyMember)& bonusMalusOnAction.isON()){
                 bonusMalusOnAction.modify(familyMember);
+                if(!bonusMalusOnAction.isPermanent()){
+                    bonusMalusOnActions.remove(i);
+                    i--;
+                }
             }
         }
+
     }
 
     /** filtro sulle azioni generiche che attaccano qualsiasi familiare*/
@@ -33,21 +41,34 @@ public class BonusMalusHandler {
 
         ArrayList<BonusMalusOnAction> bonusMalusOnActions = player.getBonusMalusSet().getBonusMalusOnAction().get("ACTIONBONUSMALUS");
 
-        for(BonusMalusOnAction bonusMalusOnAction : bonusMalusOnActions){
-            if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.checkFamilyMember(familyMember)){
+        for(int i = 0; i< bonusMalusOnActions.size();i++){
+
+            BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
+            if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.checkFamilyMember(familyMember) && bonusMalusOnAction.isON()){
                 bonusMalusOnAction.modify(familyMember);
+                if(!bonusMalusOnAction.isPermanent()){
+                    bonusMalusOnActions.remove(i);
+                    i--;
+                }
             }
         }
     }
 
     /** questo sarà il filtro che si applicherà sulle variazioni di risorse */
-    public static void filter(Player player, ActionType actionType, ResourceSet targetResourceSet){
+    public static void filter(Player player, ActionType actionType, ResourceSet targetResourceSet) {
         ArrayList<BonusMalusOnResources> bonusMalusOnResources = player.getBonusMalusSet().getBonusMalusOnResources().get("RESOURCEBONUSMALUS");
 
-        for(BonusMalusOnResources bonusMalusOnResource : bonusMalusOnResources){
-            if(bonusMalusOnResource.getActionType().equals(actionType)){
+        for (int i = 0; i < bonusMalusOnResources.size(); i++) {
+
+            BonusMalusOnResources bonusMalusOnResource = bonusMalusOnResources.get(i);
+            if (bonusMalusOnResource.getActionType().equals(actionType) && bonusMalusOnResource.isON()) {
                 bonusMalusOnResource.modify(targetResourceSet);
+                if (!bonusMalusOnResource.isPermanent()) {
+                    bonusMalusOnResources.remove(i);
+                    i--;
+                }
             }
+
         }
     }
     /**filtro sui bonus e i malus di fine turno*/
@@ -55,16 +76,21 @@ public class BonusMalusHandler {
 
         ArrayList<BonusMalusOnEnd> bonusMalusOnEnds = player.getBonusMalusSet().getBonusMalusOnEnd().get("ENDBONUSMALUS");
 
-        for(BonusMalusOnEnd bonusMalusOnEnd : bonusMalusOnEnds){
-            if(bonusMalusOnEnd.getActionType().equals(actionType) && bonusMalusOnEnd.getColour().equals(colour)){
+        for(int i = 0; i < bonusMalusOnEnds.size(); i++){
+            BonusMalusOnEnd bonusMalusOnEnd = bonusMalusOnEnds.get(i);
+            if(bonusMalusOnEnd.getActionType().equals(actionType) && bonusMalusOnEnd.getColour().equals(colour) && bonusMalusOnEnd.isON()){
                 bonusMalusOnEnd.modify(resourceSet);
+                if(!bonusMalusOnEnd.isPermanent()){
+                    bonusMalusOnEnds.remove(i);
+                    i--;
+                }
             }
         }
     }
 
     /** ultimo filtro è quello sui costi*/
 
-
+    /** filtro per attivare tutti i bonus una volta per turno della carta */
 
 
 }

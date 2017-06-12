@@ -12,6 +12,8 @@ public class BonusMalusOnEnd {
     private Resource bonusMalusTarget;
     private String colour;
     private ActionType actionType;
+    private boolean permanent;
+    private boolean ON;
 
     public BonusMalusOnEnd(Resource bonusMalusTarget,String colour, ActionType actionType) {
         this.bonusMalusTarget = bonusMalusTarget;
@@ -35,5 +37,17 @@ public class BonusMalusOnEnd {
 
     public String getColour() {
         return colour;
+    }
+
+    public boolean isPermanent() {
+        return permanent;
+    }
+
+    public boolean isON() {
+        return ON;
+    }
+
+    public void setON(boolean ON) {
+        this.ON = ON;
     }
 }

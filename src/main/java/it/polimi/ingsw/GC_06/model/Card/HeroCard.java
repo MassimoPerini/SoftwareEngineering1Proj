@@ -6,6 +6,7 @@ import java.util.Set;
 
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
+import it.polimi.ingsw.GC_06.model.BonusMalus.SpecialBonusMalus;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -20,7 +21,11 @@ public class HeroCard extends Card {
     private ResourceSet resourceConditions;
     private ArrayList<Effect> effectList;
     private BonusMalusSet bonusMalusSet;
-    private boolean permanent;
+    private boolean permanent,ON;
+    private ArrayList<BonusMalusOnAction> bonusMalusOnActions;
+    private ArrayList <SpecialBonusMalus> specialBonusMaluses;
+
+
 
     public HeroCard(String path, HashMap<String, Integer> cardConditions, ResourceSet resourceConditions, ArrayList<Effect> effectList,boolean permanent,
                     BonusMalusSet bonusMaluSet) {
@@ -29,6 +34,7 @@ public class HeroCard extends Card {
         this.resourceConditions = resourceConditions;
         this.effectList = effectList;
         this.permanent = permanent;
+        this.ON = true;
         this.bonusMalusSet = bonusMaluSet;
     }
 
@@ -45,7 +51,7 @@ public class HeroCard extends Card {
     }
 
     public boolean isActivable(Player player){
-        if(resourceConditions.isIncluded(player.getResourceSet()) && player.getPlayerBoard().isIncluded(this.cardConditions)){
+        if(this.ON = true & resourceConditions.isIncluded(player.getResourceSet()) && player.getPlayerBoard().isIncluded(this.cardConditions)){
            return true;
         }
         return false;
@@ -57,5 +63,9 @@ public class HeroCard extends Card {
 
     public BonusMalusSet getBonusMalusSet() {
         return bonusMalusSet;
+    }
+
+    public void setON(boolean ON) {
+        this.ON = ON;
     }
 }
