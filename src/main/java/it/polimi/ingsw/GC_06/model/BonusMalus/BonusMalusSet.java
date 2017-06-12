@@ -40,4 +40,27 @@ public class BonusMalusSet {
     public HashMap<String, ArrayList<BonusMalusOnEnd>> getBonusMalusOnEnd() {
         return bonusMalusOnEnd;
     }
+
+    public void joinSet(BonusMalusSet bonusMalusSet){
+        this.add(bonusMalusSet.bonusMalusOnAction);
+        this.add1(bonusMalusSet.bonusMalusOnResources);
+        this.add2(bonusMalusSet.bonusMalusOnEnd);
+        this.add3(bonusMalusSet.bonusMalusOnConditions);
+    }
+
+    private void add(HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnAction){
+        this.bonusMalusOnAction.putAll(bonusMalusOnAction);
+    }
+    private void add1(HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources){
+        this.bonusMalusOnResources.putAll(bonusMalusOnResources);
+    }
+    private void add2(HashMap<String,ArrayList<BonusMalusOnEnd>> bonusMalusOnEnd){
+        this.bonusMalusOnEnd.putAll(bonusMalusOnEnd);
+    }
+    private void add3(HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnCost){
+        this.getBonusMalusOnCost().putAll(bonusMalusOnCost);
+    }
+
 }
+
+
