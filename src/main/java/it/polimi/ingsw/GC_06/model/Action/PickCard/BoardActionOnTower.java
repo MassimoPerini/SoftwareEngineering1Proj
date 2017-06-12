@@ -42,7 +42,7 @@ public class BoardActionOnTower implements Action {
 
         //this.familyMember.getValue() = super.getValueAction();
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.ADDFAMILYMEMBER);
+        Game.getInstance().getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
 
         if (!isAllowed())
             throw new IllegalStateException();

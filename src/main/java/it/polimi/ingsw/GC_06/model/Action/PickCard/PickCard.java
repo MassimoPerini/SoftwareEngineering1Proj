@@ -41,7 +41,7 @@ public class PickCard implements Action {
 
         if (!isAllowed())
             throw new IllegalStateException();
-        Game.getInstance().getGameStatus().changeState(TransitionType.PICKCARD);
+        Game.getInstance().getGameStatus().changeState(TransitionType.PICK_CARD);
 
 
         /**if we are in the real action we add the family member in the correct position*/

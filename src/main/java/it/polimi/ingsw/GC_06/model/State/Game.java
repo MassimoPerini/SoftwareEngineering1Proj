@@ -129,7 +129,7 @@ public class Game {
         State node2 = new State(StateName.PLACE_FAM_MEM);
         State node3 = new State(StateName.PICK_CARD);
 
-        node1.addTransition(TransitionType.ADDFAMILYMEMBER, node2);
+        //node1.addTransition(TransitionType.ADDFAMILYMEMBER, node2);
         node2.addTransition(TransitionType.PAYCARD, node3);
         node3.addTransition(TransitionType.EXECUTEEFFECT, node1);
 

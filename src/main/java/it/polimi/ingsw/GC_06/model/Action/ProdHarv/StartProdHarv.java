@@ -58,7 +58,7 @@ public class StartProdHarv implements Action {
      */
     @Override
     public void execute() {
-        Game.getInstance().getGameStatus().changeState(TransitionType.PRODHARV);
+        Game.getInstance().getGameStatus().changeState(TransitionType.START_PRODHARV);
 
 
         List<ProdHarvEffect> autoExecute = new LinkedList<>();

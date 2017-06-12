@@ -52,7 +52,7 @@ public class BoardActionOnProdHarv implements Action {
     @Override
     public void execute() {
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.ADDFAMILYMEMBER);
+        Game.getInstance().getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
 
         if (!isAllowed())
             throw new IllegalStateException();
