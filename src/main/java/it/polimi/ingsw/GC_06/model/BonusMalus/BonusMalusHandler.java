@@ -26,10 +26,7 @@ public class BonusMalusHandler {
             if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.getColourTarget().equals(towerColour)
                     && bonusMalusOnAction.checkFamilyMember(familyMember)){
                 bonusMalusOnAction.modify(familyMember);
-                if(!bonusMalusOnAction.isPermanent()){
-                    bonusMalusOnActions.remove(i);
-                    i--;
-                }
+                player.getBonusMalusSet().removeBonusMalusAction(bonusMalusOnActions,i);
             }
         }
 
@@ -46,10 +43,7 @@ public class BonusMalusHandler {
             BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
             if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.checkFamilyMember(familyMember)){
                 bonusMalusOnAction.modify(familyMember);
-                if(!bonusMalusOnAction.isPermanent()){
-                    bonusMalusOnActions.remove(i);
-                    i--;
-                }
+                player.getBonusMalusSet().removeBonusMalusAction(bonusMalusOnActions,i);
             }
         }
     }
@@ -63,10 +57,7 @@ public class BonusMalusHandler {
             BonusMalusOnResources bonusMalusOnResource = bonusMalusOnResources.get(i);
             if (bonusMalusOnResource.getActionType().equals(actionType)) {
                 bonusMalusOnResource.modify(targetResourceSet);
-                if (!bonusMalusOnResource.isPermanent()) {
-                    bonusMalusOnResources.remove(i);
-                    i--;
-                }
+                player.getBonusMalusSet().removeBonusMalusResources(bonusMalusOnResources,i);
             }
 
 
@@ -81,10 +72,7 @@ public class BonusMalusHandler {
             BonusMalusOnEnd bonusMalusOnEnd = bonusMalusOnEnds.get(i);
             if(bonusMalusOnEnd.getActionType().equals(actionType) && bonusMalusOnEnd.getColour().equals(colour)){
                 bonusMalusOnEnd.modify(resourceSet);
-                if(!bonusMalusOnEnd.isPermanent()){
-                    bonusMalusOnEnds.remove(i);
-                    i--;
-                }
+                player.getBonusMalusSet().removeBonusMalusEnd(bonusMalusOnEnds,i);
             }
         }
     }
@@ -101,10 +89,7 @@ public class BonusMalusHandler {
 
             if(bonusMalusOnAccess.getActionType().equals(actionType)){
                 bonusMalusOnAccess.modify(result);
-                if(!bonusMalusOnAccess.isPermanent()){
-                    bonusMalusOnAccesses.remove(i);
-                    i--;
-                }
+                player.getBonusMalusSet().removeBonusMalusAccess(bonusMalusOnAccesses,i);
             }
 
         }

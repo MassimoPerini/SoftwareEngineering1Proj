@@ -78,6 +78,7 @@ public class PickCard implements Action {
         if (!tower.isAllowed(familyMemberTest, towerFloor))
             return false;
 
+        /** controllo se il player può aggiungere la carta */
         if (!player.getPlayerBoard().canAdd(towerFloor.getCard()))
             return false;
 

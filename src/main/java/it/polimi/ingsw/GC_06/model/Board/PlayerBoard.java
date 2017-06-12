@@ -57,6 +57,7 @@ public class PlayerBoard {
             cardsColor.add(card);
         }
         cardsColor.add(card);
+
     }
 
     /**
@@ -72,6 +73,9 @@ public class PlayerBoard {
         {
             return limit.intValue() > 0;
         }
+
+        /** questo deve controllare anche se la carta è verde se è associata ad alcuni limit*/
+
         return limit.intValue() > cardsKey.size();
     }
 

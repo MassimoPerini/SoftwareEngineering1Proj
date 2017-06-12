@@ -69,6 +69,45 @@ public class BonusMalusSet {
     public HashMap<String, ArrayList<BonusMalusOnAccess>> getBonusMalusOnAccess() {
         return bonusMalusOnAccess;
     }
+
+    public int removeBonusMalusAction(ArrayList<BonusMalusOnAction> actions, int i){
+
+        if(!actions.get(i).isPermanent()){
+            actions.remove(i);
+           return  i--;
+        }
+        return i;
+    }
+
+    public int removeBonusMalusResources(ArrayList<BonusMalusOnResources> resources, int i){
+
+        if(!resources.get(i).isPermanent()){
+            resources.remove(i);
+            return  i--;
+        }
+        return i;
+
+    }
+
+    public int removeBonusMalusAccess(ArrayList<BonusMalusOnAccess> accesses, int i){
+        if(!accesses.get(i).isPermanent()){
+            accesses.remove(i);
+            return  i--;
+        }
+        return i;
+
+    }
+
+    public int removeBonusMalusEnd(ArrayList<BonusMalusOnEnd> ends, int i){
+
+        if(!ends.get(i).isPermanent()){
+            ends.remove(i);
+            return i--;
+        }
+        return i;
+
+    }
+
 }
 
 
