@@ -24,7 +24,7 @@ public class BonusMalusHandler {
         for(int i=0; i<bonusMalusOnActions.size();i++){
             BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
             if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.getColourTarget().equals(towerColour)
-                    && bonusMalusOnAction.checkFamilyMember(familyMember)& bonusMalusOnAction.isON()){
+                    && bonusMalusOnAction.checkFamilyMember(familyMember)){
                 bonusMalusOnAction.modify(familyMember);
                 if(!bonusMalusOnAction.isPermanent()){
                     bonusMalusOnActions.remove(i);
@@ -44,7 +44,7 @@ public class BonusMalusHandler {
         for(int i = 0; i< bonusMalusOnActions.size();i++){
 
             BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
-            if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.checkFamilyMember(familyMember) && bonusMalusOnAction.isON()){
+            if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.checkFamilyMember(familyMember)){
                 bonusMalusOnAction.modify(familyMember);
                 if(!bonusMalusOnAction.isPermanent()){
                     bonusMalusOnActions.remove(i);
@@ -61,13 +61,14 @@ public class BonusMalusHandler {
         for (int i = 0; i < bonusMalusOnResources.size(); i++) {
 
             BonusMalusOnResources bonusMalusOnResource = bonusMalusOnResources.get(i);
-            if (bonusMalusOnResource.getActionType().equals(actionType) && bonusMalusOnResource.isON()) {
+            if (bonusMalusOnResource.getActionType().equals(actionType)) {
                 bonusMalusOnResource.modify(targetResourceSet);
                 if (!bonusMalusOnResource.isPermanent()) {
                     bonusMalusOnResources.remove(i);
                     i--;
                 }
             }
+
 
         }
     }
@@ -78,7 +79,7 @@ public class BonusMalusHandler {
 
         for(int i = 0; i < bonusMalusOnEnds.size(); i++){
             BonusMalusOnEnd bonusMalusOnEnd = bonusMalusOnEnds.get(i);
-            if(bonusMalusOnEnd.getActionType().equals(actionType) && bonusMalusOnEnd.getColour().equals(colour) && bonusMalusOnEnd.isON()){
+            if(bonusMalusOnEnd.getActionType().equals(actionType) && bonusMalusOnEnd.getColour().equals(colour)){
                 bonusMalusOnEnd.modify(resourceSet);
                 if(!bonusMalusOnEnd.isPermanent()){
                     bonusMalusOnEnds.remove(i);
@@ -91,7 +92,23 @@ public class BonusMalusHandler {
     /** ultimo filtro è quello sui costi*/
 
     /** filtro per attivare tutti i bonus una volta per turno della carta */
+    /** filtri sull'accesso*/
 
+    public static void filter(Player player,ActionType actionType,boolean result){
+        ArrayList<BonusMalusOnAccess> bonusMalusOnAccesses = player.getBonusMalusSet().getBonusMalusOnAccess().get("ACCESS");
+        for(int i = 0; i < bonusMalusOnAccesses.size();i++){
+            BonusMalusOnAccess bonusMalusOnAccess = bonusMalusOnAccesses.get(i);
+
+            if(bonusMalusOnAccess.getActionType().equals(actionType)){
+                bonusMalusOnAccess.modify(result);
+                if(!bonusMalusOnAccess.isPermanent()){
+                    bonusMalusOnAccesses.remove(i);
+                    i--;
+                }
+            }
+
+        }
+    }
 
 }
 

@@ -36,14 +36,15 @@ public class BoardActionOnMarketCouncil implements Action {
 
     @Override
     public void execute() {
-
-        marketAndCouncil.addFamilyMember(familyMember, index);
-        executeEffects.execute();
-
+        if(isAllowed()) {
+            marketAndCouncil.addFamilyMember(familyMember, index);
+            executeEffects.execute();
+        }
     }
 
     @Override
     public boolean isAllowed() {
-        return marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed();
+        boolean result =  marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed();
+        return result;
     }
 }

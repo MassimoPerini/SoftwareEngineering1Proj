@@ -14,6 +14,7 @@ public class BonusMalusSet {
     HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnAction;
     HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnConditions;
     HashMap<String,ArrayList<BonusMalusOnEnd>> bonusMalusOnEnd;
+    HashMap<String,ArrayList<BonusMalusOnAccess>> bonusMalusOnAccess;
     public BonusMalusSet() {
         this.bonusMalusOnResources = new HashMap<String,ArrayList<BonusMalusOnResources>>();
         this.bonusMalusOnAction = new HashMap<String,ArrayList<BonusMalusOnAction>>();
@@ -45,7 +46,8 @@ public class BonusMalusSet {
         this.add(bonusMalusSet.bonusMalusOnAction);
         this.add1(bonusMalusSet.bonusMalusOnResources);
         this.add2(bonusMalusSet.bonusMalusOnEnd);
-        this.add3(bonusMalusSet.bonusMalusOnConditions);
+        //this.add3(bonusMalusSet.bonusMalusOnConditions);
+        this.add4(bonusMalusSet.bonusMalusOnAccess);
     }
 
     private void add(HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnAction){
@@ -57,10 +59,16 @@ public class BonusMalusSet {
     private void add2(HashMap<String,ArrayList<BonusMalusOnEnd>> bonusMalusOnEnd){
         this.bonusMalusOnEnd.putAll(bonusMalusOnEnd);
     }
-    private void add3(HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnCost){
-        this.getBonusMalusOnCost().putAll(bonusMalusOnCost);
+    /**private void add3(HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnCost){
+        this.bonusMalusOnCost().putAll(bonusMalusOnCost);
+    }*/
+    private void add4(HashMap<String,ArrayList<BonusMalusOnAccess>> bonusMalusOnAccess){
+        this.bonusMalusOnAccess.putAll(bonusMalusOnAccess);
     }
 
+    public HashMap<String, ArrayList<BonusMalusOnAccess>> getBonusMalusOnAccess() {
+        return bonusMalusOnAccess;
+    }
 }
 
 
