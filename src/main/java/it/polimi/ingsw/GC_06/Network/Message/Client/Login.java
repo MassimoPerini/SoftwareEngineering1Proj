@@ -17,4 +17,14 @@ public class Login implements MessageClient {
     @Override
     public void execute() {
     }
+
+    @Override
+    public void setGame(int game) {
+
+    }
+
+    @Override
+    public void setPlayer(String player) {
+
+    }
 }
