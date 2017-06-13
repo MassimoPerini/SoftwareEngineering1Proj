@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.Network.Server;
 
-import it.polimi.ingsw.GC_06.Network.Client.ClientSocket;
 import it.polimi.ingsw.GC_06.Network.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;

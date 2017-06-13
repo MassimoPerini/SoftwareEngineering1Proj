@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_06;
 
-import it.polimi.ingsw.GC_06.Network.Client.ClientInputSocket;
-import it.polimi.ingsw.GC_06.Network.Client.ClientOutputSocket;
+
+import it.polimi.ingsw.GC_06.Network.Client.ClientOrchestrator;
 import it.polimi.ingsw.GC_06.Network.Client.ClientSocket;
-import it.polimi.ingsw.GC_06.ViewController.CmdViewController.MainController;
+import it.polimi.ingsw.GC_06.ViewController.CmdViewController.LoginViewController;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -20,22 +20,9 @@ public class AppClient {
 
     public static void main(String[] args) throws IOException {
 
-        ClientSocket clientSocket = new ClientSocket();
-    //    clientSocket.startClient();
-
-/*
-        Map<Object, Object> customProperties = new HashMap<>();
-        customProperties.put("outputHandler", new ClientOutputSocket(new Socket("127.0.0.1",1337)));
-        /*
-         * any function which accepts an Object as key and returns
-         * and return an Object as result can be used as source.
-         */
-/*        Injector.setConfigurationSource(customProperties::get);
-
-        LoginViewController loginViewController = new LoginViewController();
-        loginViewController.viewWillAppear();
-*/
-     //   new StartViewController().viewWillAppear();
+        System.out.println("Che connessione vuoi?");
+        ClientOrchestrator clientOrchestrator = new ClientOrchestrator(new ClientSocket(new Socket("127.0.0.1", 1337)));
+        LoginViewController loginViewController = new LoginViewController(clientOrchestrator);
 
         //TODO Implement FIX: https://futurestud.io/tutorials/how-to-deserialize-a-list-of-polymorphic-objects-with-gson
         //TODO http://stackoverflow.com/questions/19588020/gson-serialize-a-list-of-polymorphic-objects

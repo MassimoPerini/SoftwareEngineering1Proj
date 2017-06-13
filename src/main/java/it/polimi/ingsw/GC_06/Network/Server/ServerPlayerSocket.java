@@ -8,8 +8,6 @@ import it.polimi.ingsw.GC_06.Network.Message.Client.Login;
 import it.polimi.ingsw.GC_06.Network.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Network.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Network.Message.Server.ChangeStatus;
-import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -23,12 +21,12 @@ import java.util.concurrent.Executors;
  */
 public class ServerPlayerSocket extends Observable implements Runnable {
 
-    @NotNull
-    private final Socket socket;
+    @NotNull private final Socket socket;
     @NotNull private final BufferedReader socketIn;
-    @NotNull private final ObjectOutputStream socketOut;
-    @NotNull private ExecutorService executor;
+    @NotNull private final OutputStreamWriter socketOut;
+    @NotNull private final ExecutorService executor;
     @NotNull private final Gson readGson;
+    @NotNull private final Gson writeGson;
 
     private String player;
     private int game;
@@ -48,13 +46,13 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     public ServerPlayerSocket(@NotNull Socket socket) throws IOException {
         this.socket = socket;
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.socketOut = new ObjectOutputStream(socket.getOutputStream());
+        this.socketOut = new OutputStreamWriter(socket.getOutputStream());
         this.executor = Executors.newFixedThreadPool(1);
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageClient.class, "type").registerSubtype(Login.class);
         readGson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
-
-        this.send(new ChangeStatus());
+        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type");//.registerSubtype(BoardActionOnTower.class);
+        writeGson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
     }
 
     @Override
@@ -96,15 +94,20 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     public void send(MessageServer messageServer) throws IOException {
         executor.submit (() -> {
             try {
-                RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageServer.class, "type"); //.registerSubtype(.class);
-                Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
-                String res = gson.toJson(messageServer);
-                socketOut.writeChars(res);
-
+                String res = writeGson.toJson(messageServer);
+                socketOut.write(res);
+                socketOut.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
+
+    public void finish() throws IOException {
+        socketOut.close();
+        socketIn.close();
+        socket.close();
+    }
+
 
 }

@@ -57,7 +57,7 @@ public class PowerUpFamilyMemberViewController /**implements ViewController*/ {
         }
 
         int points = Integer.parseInt(input);
-        MainController mainController = new MainController();
+        ClientOrchestrator mainController = new ClientOrchestrator();
         Action action = new PowerUpFamilyMember(player,points,familyMember);;
 
         if (action.isAllowed())

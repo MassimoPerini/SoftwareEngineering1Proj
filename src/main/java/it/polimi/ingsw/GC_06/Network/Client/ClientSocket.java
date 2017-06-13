@@ -1,32 +1,98 @@
 package it.polimi.ingsw.GC_06.Network.Client;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+import it.polimi.ingsw.GC_06.Network.Message.MessageClient;
+import it.polimi.ingsw.GC_06.Network.Message.MessageServer;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.*;
 import java.net.Socket;
+import java.util.Observable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by massimo on 13/06/17.
+ * Created by massimo on 11/06/17.
  */
+public class ClientSocket extends Client {
 
-public class ClientSocket {
+    @NotNull private final BufferedReader socketIn;
+    @NotNull private final OutputStreamWriter socketOut;
+    @NotNull private final ExecutorService pool;
+    @NotNull private final Gson readGson;
+    @NotNull private final Gson writeGson;
+    @NotNull private final Socket socket;
 
-    private final static int PORT = 29999;
-    private final static String IP = "127.0.0.1";
 
-    public void startClient() throws IOException {
+    public ClientSocket(@NotNull Socket socket) throws IOException {
+        this.socket = socket;
+        this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        this.socketOut = new OutputStreamWriter(socket.getOutputStream());
+        this.pool = Executors.newFixedThreadPool(1);
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageServer.class, "type"); //.registerSubtype(.class);
+        readGson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
 
-        Socket socket = new Socket(IP, PORT);
+        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageClient.class, "type"); //.registerSubtype(.class);
+        writeGson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
+    }
 
-        System.out.println("Connection created");
+    @Override
+    public void run() {
 
-        ExecutorService executor = Executors.newFixedThreadPool(1);
+        try {
+            while (true)
+            {
+                String input;
 
-        ClientOutputSocket clientOutputSocket = new ClientOutputSocket(new ObjectOutputStream(socket.getOutputStream()));
+                while ((input = socketIn.readLine()) != null)
+                {
+                    MessageServer messageServer = readGson.fromJson(input, MessageServer.class);
+                    setChanged();
+                    notifyObservers(messageServer);
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        executor.submit(new ClientInputSocket(new ObjectInputStream(socket.getInputStream())));
-}
+    @Override
+    public void submit(MessageClient action) {
+        pool.submit(() -> {
+            //Serializzazione e invio
+            try {
+                socketOut.write(writeGson.toJson(action));
+                socketOut.flush();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    @Override
+    public void submit(String string) {
+        pool.submit(() -> {
+            //Serializzazione e invio
+            try {
+                socketOut.write(string);
+                socketOut.flush();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void finish() throws IOException {
+        socketOut.close();
+        socketIn.close();
+        socket.close();
+    }
 
 }

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.ViewController.CmdViewController;
 
-import it.polimi.ingsw.GC_06.Network.Client.ClientOutputHandler;
+import it.polimi.ingsw.GC_06.Network.Client.ClientOrchestrator;
 import it.polimi.ingsw.GC_06.Network.Message.Client.Login;
 import it.polimi.ingsw.GC_06.View.CmdView;
 import it.polimi.ingsw.GC_06.View.CommandView;
@@ -12,15 +12,13 @@ import org.jetbrains.annotations.NotNull;
  */
 public class LoginViewController implements ViewController {
 
-    @NotNull
-    private CommandView commandView;
-    @NotNull private ClientOutputHandler outputHandler;
+    @NotNull private CommandView commandView;
+    @NotNull private ClientOrchestrator clientOrchestrator;
 
-
-    public LoginViewController(@NotNull ClientOutputHandler clientOutputHandler)
+    public LoginViewController(@NotNull ClientOrchestrator clientOrchestrator)
     {
         this.commandView = new CmdView();
-        this.outputHandler = clientOutputHandler;
+        this.clientOrchestrator = clientOrchestrator;
     }
 
     @Override
@@ -29,7 +27,6 @@ public class LoginViewController implements ViewController {
         commandView.addLocalizedText("msg_login_start");
         commandView.addLocalizedText("username");
         String username = commandView.getString();
-        Login login = new Login(username);
-        outputHandler.submit(login);
+        clientOrchestrator.send(username);
     }
 }
