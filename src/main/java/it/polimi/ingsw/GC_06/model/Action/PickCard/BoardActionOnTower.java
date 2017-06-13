@@ -16,6 +16,7 @@ public class BoardActionOnTower implements Action {
     private int index;
     private Action pickCard;
     private FamilyMember familyMember;
+    private Game game;
 
     public BoardActionOnTower(Player player, int index, Tower tower, FamilyMember familyMember) {
         super();
@@ -42,7 +43,7 @@ public class BoardActionOnTower implements Action {
 
         //this.familyMember.getValue() = super.getValueAction();
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
+        game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
 
         if (!isAllowed())
             throw new IllegalStateException();
@@ -52,6 +53,10 @@ public class BoardActionOnTower implements Action {
 
         pickCard.execute();
 
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override

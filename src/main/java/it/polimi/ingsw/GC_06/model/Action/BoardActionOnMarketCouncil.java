@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
+import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
@@ -16,6 +17,7 @@ public class BoardActionOnMarketCouncil implements Action {
     private final int index;
     private final FamilyMember familyMember;
     private final ExecuteEffects executeEffects;
+    private Game game;
 
     public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player)
     {
@@ -31,7 +33,7 @@ public class BoardActionOnMarketCouncil implements Action {
         if (effectList==null)
             throw new NullPointerException();
 
-        this.executeEffects = new ExecuteEffects(effectList, player);
+        this.executeEffects = new ExecuteEffects(effectList, player,game);
     }
 
     @Override
@@ -40,6 +42,10 @@ public class BoardActionOnMarketCouncil implements Action {
             marketAndCouncil.addFamilyMember(familyMember, index);
             executeEffects.execute();
         }
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override

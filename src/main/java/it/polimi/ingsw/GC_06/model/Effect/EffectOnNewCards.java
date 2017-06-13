@@ -21,7 +21,7 @@ public class EffectOnNewCards implements Effect {
     }
 
     @Override
-    public void execute(Player player) {
-        Game.getInstance().getGameStatus().changeState(TransitionType.CHOOSING_CARD, towerFloors);
+    public void execute(Player player,Game game) {
+        game.getGameStatus().changeState(TransitionType.CHOOSING_CARD, towerFloors);
     }
 }

@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +23,12 @@ public class EffectOnNeweCardsTest {
     private Player player;
 
     @Before
-    public void setUp() {
-        Game.clearForTesting();
-        Game.getInstance().addPlayer("gabriele");
-        player = Game.getInstance().getGameStatus().getPlayers().get("gabriele");
+    public void setUp() throws IOException {
+        Game game = new Game();
+        game.addPlayer("gabriele");
+        player = game.getGameStatus().getPlayers().get("gabriele");
         selectableCards = new ArrayList<>();
-        selectableCards = Game.getInstance().getBoard().getTowers().get(0).getTowerFloor();
+        selectableCards = game.getBoard().getTowers().get(0).getTowerFloor();
         effectOnNewCards = new EffectOnNewCards(selectableCards);
     }
 

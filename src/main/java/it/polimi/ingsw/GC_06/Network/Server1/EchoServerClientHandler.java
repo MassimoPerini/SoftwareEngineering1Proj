@@ -70,40 +70,27 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
 
     @Override
     public void doLogin(String username) {
-        try{
-            subscribedPlayers.add(username);
-            System.out.println(subscribedPlayers.size());
-            output.println("login done");
-           /**if(Game.getInstance().getPlayerNumber()== Integer.parseInt(Setting.getInstance().getProperty("min_players"))){
-                 Timer timer = new Timer();
-                 timer.schedule(new TimerTask() {
-                     @Override
-                     public void run() {
-                         System.out.println("creo un nuovo gioco");
-                         Game.getInstance().start();
-                     }
-                 },delay);
-            }*/
+       /** try{
+            LoginHub.getInstance().fillHub(username);
         }catch(IllegalStateException e){
             output.println(e.getMessage());
-
         }
-        output.flush();
+        output.flush();*/
     }
 
     @Override
     public void statistics(String username) {
-
+/**
         Player player = Game.getInstance().getGameStatus().getPlayers().get(username);
         //TODO da fare con json
         output.println(player.toString());
-        output.flush();
+        output.flush();*/
     }
 
     /** qui dovrà iniziare la gestione delle azioni */
     /** quello che pensavo di fare io era di chiamare qui la classe di handling del model con pattern strategy  */
     //TODO qui deserializza la stringa e tira fuori il messaggio e l'object
-    public void callToModel() {
+    /**public void callToModel() {
         //simulo di avere gia il messaggio e l'object
         Object objectFromSocket = new Object();
         String messageFromSocket = new String();
@@ -142,5 +129,5 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
                 modelController = new VariateResourceActionController();
                 modelController.ActOnModel(objectFromSocket, userId);
         }
-    }
+    }*/
 }

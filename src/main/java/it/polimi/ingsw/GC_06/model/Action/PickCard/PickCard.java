@@ -24,6 +24,7 @@ public class PickCard implements Action {
     private final TowerFloor towerFloor;
     private final Tower tower;
     private final int valueFamilyMember;
+    private Game game;
 
     public PickCard(Player player, Tower tower, TowerFloor towerFloor, int valueFamilyMember)
     {
@@ -41,7 +42,7 @@ public class PickCard implements Action {
 
         if (!isAllowed())
             throw new IllegalStateException();
-        Game.getInstance().getGameStatus().changeState(TransitionType.PICK_CARD);
+        game.getGameStatus().changeState(TransitionType.PICK_CARD);
 
 
         /**if we are in the real action we add the family member in the correct position*/
@@ -53,7 +54,7 @@ public class PickCard implements Action {
 
         //Apply ActionSpace effects
         List<Effect> effects = towerFloor.getActionPlace().getEffects();
-        ExecuteEffects executeEffects = new ExecuteEffects(effects, player);
+        ExecuteEffects executeEffects = new ExecuteEffects(effects, player,game);
         executeEffects.execute();
 
         /**we are adding the card to the player board*/
@@ -64,9 +65,13 @@ public class PickCard implements Action {
         PayCard payCard = new PayCard(c, player);
         payCard.execute();
 
-        executeEffects = new ExecuteEffects(c.getImmediateEffects(), player);
+        executeEffects = new ExecuteEffects(c.getImmediateEffects(), player,game);
         executeEffects.execute();
 
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override
@@ -108,7 +113,7 @@ public class PickCard implements Action {
 
         for(Effect effect: effects)
         {
-            effect.execute(pClone);
+            effect.execute(pClone,game);
         }
 
         //Can I pay?
@@ -119,7 +124,7 @@ public class PickCard implements Action {
             return false;
         }
 
-        ExecuteEffects executeEffects = new ExecuteEffects(towerFloor.getCard().getImmediateEffects(), pClone);
+        ExecuteEffects executeEffects = new ExecuteEffects(towerFloor.getCard().getImmediateEffects(), pClone,game);
 
         return executeEffects.isAllowed();
     }

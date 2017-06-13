@@ -22,6 +22,7 @@ public class StartProdHarv implements Action {
     private final AskUserCard prodHarvFilterCard;
     private final int value;
     private final Player player;
+    private Game game;
 
     /**
      *
@@ -58,7 +59,7 @@ public class StartProdHarv implements Action {
      */
     @Override
     public void execute() {
-        Game.getInstance().getGameStatus().changeState(TransitionType.START_PRODHARV);
+        game.getGameStatus().changeState(TransitionType.START_PRODHARV);
 
 
         List<ProdHarvEffect> autoExecute = new LinkedList<>();
@@ -97,7 +98,7 @@ public class StartProdHarv implements Action {
             temp.addAll(effect.getMalusEffect());
         }
 
-        ExecuteEffects executeEffects = new ExecuteEffects(temp, player);
+        ExecuteEffects executeEffects = new ExecuteEffects(temp, player,game);
         if (executeEffects.isAllowed())
         {
             executeEffects.execute();
@@ -107,7 +108,7 @@ public class StartProdHarv implements Action {
 
         if (askUser.size()>0)
         {
-            Game.getInstance().getGameStatus().changeState(TransitionType.USR_PRODHARVTRANSFORM, askUser);
+            game.getGameStatus().changeState(TransitionType.USR_PRODHARVTRANSFORM, askUser);
         }
 
         //Apply the auto-bonus
@@ -116,12 +117,16 @@ public class StartProdHarv implements Action {
         {
             temp.addAll(effect.getBonusEffect());
         }
-        executeEffects = new ExecuteEffects(temp, player);
+        executeEffects = new ExecuteEffects(temp, player,game);
         if (executeEffects.isAllowed())
         {
             executeEffects.execute();
         }
 
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override

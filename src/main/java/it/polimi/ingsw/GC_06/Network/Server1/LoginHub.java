@@ -9,8 +9,8 @@ import java.util.*;
  * Created by giuseppe on 6/13/17.
  */
 public class LoginHub {
-
-    ArrayList<String> hub = new ArrayList<>();
+    /**
+    List<String> hub = new ArrayList<>();
     private static LoginHub instance = null;
 
     private LoginHub() {
@@ -26,7 +26,8 @@ public class LoginHub {
 
     public void fillHub(String username) {
         hub.add(username);
-        if (hub.size() == Integer.parseInt(Setting.getInstance().getProperty("min_players"))) {
+        System.out.println(hub.size());
+        if (hub.size() == 2 /**Integer.parseInt(Setting.getInstance().getProperty("min_players"))) {
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
@@ -36,18 +37,20 @@ public class LoginHub {
                     }
                     Game.getInstance().start();
                 }
-            }, 1000);
+            }, 1000*60*60);
 
         }
-        if (hub.size() == Integer.parseInt(Setting.getInstance().getProperty("max_players"))) {
+        if (hub.size() == 4 /**Integer.parseInt(Setting.getInstance().getProperty("max_players"))) {
+            int i = 0;
 
-            /** game non è un sigleton*/
             for (String player : hub) {
                 Game.getInstance().addPlayer(player);
             }
-            hub.clear();
+            hub = new LinkedList<String>();
+            System.out.println("sto creando il gioco numero: " + i);
             Game.getInstance().start();
+            i++;
         }
-    }
+    }*/
 
 }

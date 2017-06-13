@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  * Created by massimo on 27/05/17.
  */
 public class CmdViewUtils {
-
+/**
     public static boolean validateInt(String answ, int min, int max)
     {
         boolean ok=true;
@@ -26,6 +26,6 @@ public class CmdViewUtils {
     public static Player getCurrentPlayer()
     {
         return Game.getInstance().getCurrentPlayer();
-    }
+    }*/
 
 }

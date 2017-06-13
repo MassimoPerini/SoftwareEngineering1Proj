@@ -10,6 +10,8 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 /**
  * Created by gabri on 08/06/2017.
  */
@@ -19,10 +21,11 @@ public class DefaultProdHarvEffectTest {
     private DefaultProdHarvEffect defaultProdHarvEffect;
 
     @Before
-    public void setUp() {
-        Game.clearForTesting();
-        Game.getInstance().addPlayer("gabriele");
-        player = Game.getInstance().getGameStatus().getPlayers().get("gabriele");
+    public void setUp() throws IOException {
+
+        Game game = new Game();
+        game.addPlayer("gabriele");
+        player = game.getGameStatus().getPlayers().get("gabriele");
         resourceSetPlayer = new ResourceSet();
         resourceSetPlayer.variateResource(Resource.MONEY,20);
         resourceSetPlayer.variateResource(Resource.WOOD, 20);

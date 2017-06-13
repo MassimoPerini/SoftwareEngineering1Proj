@@ -21,12 +21,6 @@ public class GameAndGameStatusTest {
         game = new Game();
     }
 
-    @Test
-    public void checkGameSingleton() throws Exception {
-        Game game = Game.getInstance();
-        Game game1 = Game.getInstance();
-        assertTrue(game == game1);
-    }
 
 
     @Test (expected=NullPointerException.class)

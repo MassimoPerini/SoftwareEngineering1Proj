@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Effect;
 
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ import java.util.List;
 /**
  * Created by massimo on 30/05/17.
  */
-public class DefaultProdHarvEffect implements Effect {
-
+public class DefaultProdHarvEffect/** implements Effect */{
+/**
     private List<Requirement> requirement;
     private List<Effect> effects;
     private int minPoints;
@@ -31,13 +32,13 @@ public class DefaultProdHarvEffect implements Effect {
     /*    if (!isAllowed(player, playerMinPoints))
             throw new IllegalStateException();
 */
-        for (Effect effect:effects) {
-            effect.execute(player);
+        /**for (Effect effect:effects) {
+            effect.execute(player,game);
         }
     }
 
     @Override
-    public void execute(Player player) {
+    public void execute(Player player,Game game) {
 
-    }
+    }*/
 }

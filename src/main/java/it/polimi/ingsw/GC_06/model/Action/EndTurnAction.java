@@ -12,8 +12,10 @@ import java.util.ArrayList;
  */
 public class EndTurnAction implements Action {
 
+    public Game game;
     public EndTurnAction() {
         super( );
+
     }
 
     @Override
@@ -41,7 +43,11 @@ public class EndTurnAction implements Action {
 
         }*/
 
-        Game.getInstance().endTurn();
+        game.endTurn();
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override

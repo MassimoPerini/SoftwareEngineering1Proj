@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * Created by massimo on 01/06/17.
  */
-public class BoardStatusViewController implements ViewController {
-
+public class BoardStatusViewController /**implements ViewController*/ {
+    /**
     AsciiTable at;
 
     public BoardStatusViewController()
@@ -52,5 +52,5 @@ public class BoardStatusViewController implements ViewController {
         //ecc...
 
 
-    }
+    }*/
 }

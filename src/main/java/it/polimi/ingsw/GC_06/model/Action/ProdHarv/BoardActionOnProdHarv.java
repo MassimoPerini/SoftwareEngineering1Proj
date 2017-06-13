@@ -21,6 +21,7 @@ public class BoardActionOnProdHarv implements Action {
     private final ProdHarvZone prodHarvArea;
     private final FamilyMember familyMember;
     private final StartProdHarv startProdHarv;
+    private Game game;
 
     /**
      *
@@ -52,7 +53,7 @@ public class BoardActionOnProdHarv implements Action {
     @Override
     public void execute() {
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
+        game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
 
         if (!isAllowed())
             throw new IllegalStateException();
@@ -61,11 +62,15 @@ public class BoardActionOnProdHarv implements Action {
         List<Effect> effects = prodHarvArea.getEffect(index);
         for (Effect effect : effects)
         {
-            effect.execute(player);
+            effect.execute(player,game);
         }
 
         startProdHarv.execute();
 
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override

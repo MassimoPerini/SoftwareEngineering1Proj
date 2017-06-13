@@ -11,9 +11,13 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 21/05/17.
  */
+/**
+ * @deprecated
+ */
 public class MainController {
-
-    public Action powerUpFamilyMember (int points, int familyMember)
+    /**
+    public Game game;
+    public Action powerUpFamilyMember (int points, int familyMember,Game game)
     {
         ResourceSet resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.SERVANT, -points);
@@ -25,6 +29,6 @@ public class MainController {
         Action action = new PowerUpFamilyMember(status.getCurrentPlayer(), familyMember1, resourceSet, points);
         return action;
 
-    }
+    }*/
 
 }

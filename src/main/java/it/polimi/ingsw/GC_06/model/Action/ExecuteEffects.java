@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
-import it.polimi.ingsw.GC_06.model.Action.Action;
-import it.polimi.ingsw.GC_06.model.Action.ActionBoh;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
@@ -16,23 +14,25 @@ public class ExecuteEffects implements Action {
 
     private final List<Effect> effects;
     private final Player player;
+    private Game game;
 
-    public ExecuteEffects(List<Effect> effectList, Player player) {
+    public ExecuteEffects(List<Effect> effectList, Player player,Game game) {
         super();
         if (effectList == null)
             throw new NullPointerException();
         this.effects = effectList;
         this.player = player;
+        this.game = game;
     }
 
     @Override
     public void execute() {
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.EXECUTE_EFFECT);
+        game.getGameStatus().changeState(TransitionType.EXECUTE_EFFECT);
 
         for(Effect effect: effects)
         {
-            effect.execute(player);
+            effect.execute(player,game);
         }
 
     }
@@ -41,4 +41,6 @@ public class ExecuteEffects implements Action {
     public boolean isAllowed() {
         return  true;
     }
+
+
 }

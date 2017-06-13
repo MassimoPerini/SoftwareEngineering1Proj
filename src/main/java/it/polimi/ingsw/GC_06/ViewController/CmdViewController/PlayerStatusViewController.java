@@ -9,9 +9,9 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 27/05/17.
  */
-public class PlayerStatusViewController implements ViewController {
+public class PlayerStatusViewController /**implements ViewController*/ {
 
-    private CommandView commandView;
+    /**private CommandView commandView;
 
     public PlayerStatusViewController()
     {
@@ -38,6 +38,6 @@ public class PlayerStatusViewController implements ViewController {
         //TODO KEEP IMPL...
 
         commandView.print();
-    }
+    }*/
 
 }

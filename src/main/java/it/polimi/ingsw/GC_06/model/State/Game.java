@@ -77,7 +77,7 @@ public class Game {
         roundManager.endTurn();
     }
 
-    public static Game getInstance(){
+    private static Game getInstance(){
         if (game==null) {
             try {
                 game = new Game();

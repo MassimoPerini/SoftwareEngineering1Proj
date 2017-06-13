@@ -7,8 +7,8 @@ import it.polimi.ingsw.GC_06.ViewController.ViewController;
 /**
  * Created by massimo on 27/05/17.
  */
-public class StartViewController implements ViewController{
-
+public class StartViewController /**implements ViewController*/{
+/**
     private CommandView commandView;
     private ViewController [] nextController = new ViewController[6];
 
@@ -69,5 +69,5 @@ public class StartViewController implements ViewController{
 
         nextController[res].viewWillAppear();
 
-    }
+    }*/
 }

@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Effect;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
 
+import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class EffectOnAction implements Effect {
     }
 
     @Override
-    public void execute(Player player) {
+    public void execute(Player player,Game game) {
 
         for (Action a : actions) a.execute();
     }

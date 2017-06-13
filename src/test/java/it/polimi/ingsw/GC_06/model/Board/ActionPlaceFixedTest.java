@@ -18,10 +18,10 @@ public class ActionPlaceFixedTest {
 
     @Before
     public void setUp() throws Exception {
-        Game.clearForTesting();
-        Game.getInstance().addPlayer("massimo");
-        player = Game.getInstance().getGameStatus().getPlayers().get("massimo");
-        Game.getInstance().roll();
+        Game game = new Game();
+        game.addPlayer("massimo");
+        player = game.getGameStatus().getPlayers().get("massimo");
+        game.roll();
     }
 
     @Test (expected=NullPointerException.class)

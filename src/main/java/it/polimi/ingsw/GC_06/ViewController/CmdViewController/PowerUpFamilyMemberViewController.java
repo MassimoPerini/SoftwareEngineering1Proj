@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.View.CommandView;
 import it.polimi.ingsw.GC_06.ViewController.MainController;
 import it.polimi.ingsw.GC_06.ViewController.ViewController;
 import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Cancel.NetworkAdapter;
 import it.polimi.ingsw.GC_06.model.Cancel.TestAdapter;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -12,9 +13,9 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 27/05/17.
  */
-public class PowerUpFamilyMemberViewController implements ViewController {
+public class PowerUpFamilyMemberViewController /**implements ViewController*/ {
 
-    private CommandView commandView;
+    /**private CommandView commandView;
     private Player player;
 
     public PowerUpFamilyMemberViewController()
@@ -57,7 +58,7 @@ public class PowerUpFamilyMemberViewController implements ViewController {
 
         int points = Integer.parseInt(input);
         MainController mainController = new MainController();
-        Action action = mainController.powerUpFamilyMember(points, familyMember);
+        Action action = new PowerUpFamilyMember(player,points,familyMember);;
 
         if (action.isAllowed())
         {
@@ -70,6 +71,6 @@ public class PowerUpFamilyMemberViewController implements ViewController {
         }
 
 
-    }
+    }*/
 
 }

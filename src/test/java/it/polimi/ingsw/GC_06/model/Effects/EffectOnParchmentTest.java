@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
@@ -22,10 +23,10 @@ public class EffectOnParchmentTest {
     private Player player;
 
     @Before
-    public void setUp() {
-        Game.clearForTesting();
-        Game.getInstance().addPlayer("gabriele");
-        player = Game.getInstance().getGameStatus().getPlayers().get("gabriele");
+    public void setUp() throws IOException {
+        Game game = new Game();
+        game.addPlayer("gabriele");
+        player = game.getGameStatus().getPlayers().get("gabriele");
         parchments = new ArrayList<>();
         ResourceSet parchment1 = new ResourceSet();
         parchment1.variateResource(Resource.WOOD,1);

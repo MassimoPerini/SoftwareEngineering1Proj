@@ -17,6 +17,7 @@ public class PayCard implements Action {
 
     private final Player player;
     private final DevelopmentCard developmentCard;
+    private Game game;
 
     public PayCard(DevelopmentCard developmentCard, Player player)
     {
@@ -31,7 +32,7 @@ public class PayCard implements Action {
         if (!isAllowed())
             throw new IllegalStateException();
 
-        Game.getInstance().getGameStatus().changeState(TransitionType.PAYCARD);
+        game.getGameStatus().changeState(TransitionType.PAYCARD);
 
         List<Requirement> satisfiedRequirements = new LinkedList<>();
         /** we must control if the player can afford the card */
@@ -44,7 +45,7 @@ public class PayCard implements Action {
             satisfiedRequirements.get(0).doIt(player);
         }
         else{
-            Game.getInstance().getGameStatus().changeState(TransitionType.USR_MULTIPLEPAYMENT, satisfiedRequirements);
+            game.getGameStatus().changeState(TransitionType.USR_MULTIPLEPAYMENT, satisfiedRequirements);
         }
     }
 

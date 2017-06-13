@@ -7,8 +7,8 @@ import it.polimi.ingsw.GC_06.ViewController.ViewController;
 /**
  * Created by massimo on 01/06/17.
  */
-public class TowerActionViewController implements ViewController {
-
+public class TowerActionViewController /**implements ViewController*/ {
+/**
     private CommandView commandView;
 
     public TowerActionViewController()
@@ -25,5 +25,5 @@ public class TowerActionViewController implements ViewController {
 
 
 
-    }
+    }*/
 }
