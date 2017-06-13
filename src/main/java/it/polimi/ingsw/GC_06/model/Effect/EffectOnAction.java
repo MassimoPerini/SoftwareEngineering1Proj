@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Effect;
 import it.polimi.ingsw.GC_06.model.Action.Action;
 
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
@@ -13,17 +14,19 @@ import java.util.ArrayList;
 public class EffectOnAction implements Effect {
 
 
-    private ArrayList<Action> actions;
+    private TransitionType action;
+    private Object object;
 
 
-    public EffectOnAction(ArrayList<Action> actions) {
+    public EffectOnAction(TransitionType action, Object object) {
         super();
-        this.actions = actions;
+        this.action = action;
+        this.object = object;
     }
 
     @Override
     public void execute(Player player,Game game) {
 
-        for (Action a : actions) a.execute();
+        game.getGameStatus().changeState(action, object);
     }
 }
