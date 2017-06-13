@@ -125,19 +125,52 @@ public class Game {
         //Loaded from file?
 
         //Init states and state transition table for each state
-        State node1 = new State(StateName.IDLE);
-        State node2 = new State(StateName.PLACE_FAM_MEM);
-        State node3 = new State(StateName.PICK_CARD);
+        State idle  = new State(StateName.IDLE);
+        State memberOnTower = new State(StateName.MEMBER_ON_TOWER);
+        State choosingPayment = new State(StateName.CHOOSING_PAYMENT);
+        State cardReady = new State(StateName.CARD_READY);
+        State cardToUser = new State(StateName.CARD_TO_USER);
+        State choosingCard = new State(StateName.CHOOSING_CARD);
+        State memberOnProdHarv = new State(StateName.MEMBER_ON_PROFHARV);
+        State choosingProdHarvCards = new State(StateName.CHOOSING_PRODHARV_CARDS);
+        State memberOnMarketCounsil = new State(StateName.MEMBER_ON_MARKETCOUNSIL);
+        State choosingParchment = new State(StateName.CHOOSING_PARCHMENT);
+        State choosingSupportVatican = new State(StateName.CHOOSING_SUPPORT_VATICAN);
 
-        //node1.addTransition(TransitionType.ADDFAMILYMEMBER, node2);
-        node2.addTransition(TransitionType.PAYCARD, node3);
-        node3.addTransition(TransitionType.EXECUTE_EFFECT, node1);
+        idle.addTransition(TransitionType.EXECUTE_EFFECT, idle);
+        idle.addTransition(TransitionType.ACTION_ON_TOWER, memberOnTower);
+        idle.addTransition(TransitionType.ACTION_ON_PRODHARV, memberOnProdHarv);
+        idle.addTransition(TransitionType.ACTION_ON_MARKETCOUNSIL, memberOnMarketCounsil);
+        idle.addTransition(TransitionType.SIDE_WITH_VATICAN, choosingSupportVatican);
+        memberOnTower.addTransition(TransitionType.ASK_PAYMENT, choosingPayment);
+        memberOnTower.addTransition(TransitionType.PAY_CARD, cardReady);
+        choosingPayment.addTransition(TransitionType.PAY_CARD, cardReady);
+        cardReady.addTransition(TransitionType.PICK_CARD, cardToUser);
+        cardToUser.addTransition(TransitionType.BONUS_CARD, choosingCard);
+        cardToUser.addTransition(TransitionType.EXECUTE_EFFECT, idle);
+        choosingCard.addTransition(TransitionType.EXECUTE_EFFECT, idle);
+        memberOnProdHarv.addTransition(TransitionType.START_PRODHARV, choosingProdHarvCards);
+        memberOnProdHarv.addTransition(TransitionType.PRODHARV, idle);
+        choosingProdHarvCards.addTransition(TransitionType.PRODHARV, idle);
+        memberOnMarketCounsil.addTransition(TransitionType.EXECUTE_EFFECT, idle);
+        memberOnMarketCounsil.addTransition(TransitionType.CHOOSE_PARCHMENT, choosingParchment);
+        choosingParchment.addTransition(TransitionType.PARCHMENT_CHOICE_DONE, idle);
+        choosingSupportVatican.addTransition(TransitionType.PAY_VATICAN, idle);
+        choosingSupportVatican.addTransition(TransitionType.GET_EXCOMUNICATION, idle);
 
-        statuses.put(node1.getID(), node1);
-        statuses.put(node2.getID(), node2);
-        statuses.put(node3.getID(), node3);
+        statuses.put(idle.getID(), idle);
+        statuses.put(memberOnTower.getID(), memberOnTower);
+        statuses.put(choosingPayment.getID(), choosingPayment);
+        statuses.put(cardReady.getID(), cardReady);
+        statuses.put(cardToUser.getID(), cardToUser);
+        statuses.put(choosingCard.getID(), choosingCard);
+        statuses.put(memberOnProdHarv.getID(), memberOnProdHarv);
+        statuses.put(choosingProdHarvCards.getID(), choosingProdHarvCards);
+        statuses.put(memberOnMarketCounsil.getID(), memberOnMarketCounsil);
+        statuses.put(choosingParchment.getID(), choosingParchment);
+        statuses.put(choosingSupportVatican.getID(), choosingSupportVatican);
 
-        return node1;
+        return idle;
 
     }
 

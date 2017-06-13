@@ -108,7 +108,7 @@ public class StartProdHarv implements Action {
 
         if (askUser.size()>0)
         {
-            game.getGameStatus().changeState(TransitionType.USR_PRODHARVTRANSFORM, askUser);
+            game.getGameStatus().changeState(TransitionType.START_PRODHARV, askUser);
         }
 
         //Apply the auto-bonus

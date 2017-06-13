@@ -28,6 +28,6 @@ public class EffectOnParchment implements Effect {
 
     @Override
     public void execute (Player player,Game game){
-        game.getGameStatus().changeState(TransitionType.CHOOSING_PARCHMENT, parchments);
+        game.getGameStatus().changeState(TransitionType.CHOOSE_PARCHMENT, parchments);
         }
     }
