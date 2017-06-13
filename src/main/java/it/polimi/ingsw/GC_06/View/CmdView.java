@@ -24,11 +24,6 @@ public class CmdView implements CommandView {
     }
 
     @Override
-    public void setLocalizedText(String string) {
-        text = string;
-    }
-
-    @Override
     public void flush() {
         text="";
     }
@@ -42,6 +37,31 @@ public class CmdView implements CommandView {
     public void print() {
         System.out.println(text);
         flush();
+    }
+
+    @Override
+    public int getInt(int start, int end) {
+        boolean ok = true;
+        int res=0;
+
+        do {
+            ok = true;
+            try {
+                res = input.nextInt();
+                if (res<start || res > end)
+                {
+                    this.addLocalizedText("error_input");
+                    this.print();
+                }
+            } catch (Exception e) {
+                this.addLocalizedText("error_input");
+                this.print();
+                ok = false;
+            }
+        }while(!ok);
+
+        return res;
+
     }
 
     @Override

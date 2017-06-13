@@ -19,6 +19,10 @@ public class ResourceSet {
         this.resources = new HashMap<>();
     }
 
+    /**
+     *
+     * @param resourceSet
+     */
     public ResourceSet(ResourceSet resourceSet) {
         super();
         this.resources = new HashMap<>(resourceSet.resources);
@@ -31,10 +35,11 @@ public class ResourceSet {
     }
 
     /**
-     * Adds or subtract a resource
+     * Questo fa X
      * @param resource
      * @param amount
      */
+
     public void variateResource(Resource resource, int amount) {
 
         Integer myQty = this.resources.get(resource);
@@ -93,9 +98,9 @@ public class ResourceSet {
     }
 
     /**
-     * Can I find in the set at least <amount> of Resouce
+     * Can I find in the set at least a certain @amount of Resouce
      * @param resource
-     * @param amount
+     * @param amount the amount
      * @return
      */
     public boolean isIncluded(Resource resource, int amount) {
@@ -167,10 +172,7 @@ public class ResourceSet {
     }
 
     public boolean isEmpty(){
-        if(this.getResources().keySet().size() == 0){
-            return true;
-        }
-        return false;
+        return this.getResources().keySet().size() == 0;
     }
 
 }

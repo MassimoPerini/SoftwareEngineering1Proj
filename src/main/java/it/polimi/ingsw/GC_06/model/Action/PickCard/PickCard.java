@@ -59,7 +59,7 @@ public class PickCard implements Action {
 
         /**we are adding the card to the player board*/
         DevelopmentCard c = towerFloor.pickCard();
-        player.getPlayerBoard().addCard(c);
+        player.getPlayerBoard().addCard(c, player.getResourceSet());
 
         //pay the card
         PayCard payCard = new PayCard(c, player);
@@ -84,7 +84,7 @@ public class PickCard implements Action {
             return false;
 
         /** controllo se il player può aggiungere la carta */
-        if (!player.getPlayerBoard().canAdd(towerFloor.getCard()))
+        if (!player.getPlayerBoard().canAdd(towerFloor.getCard(), player.getResourceSet()))
             return false;
 
         //clone player

@@ -6,10 +6,10 @@ package it.polimi.ingsw.GC_06.View;
 public interface CommandView {
 
     void addLocalizedText(String string);
-    void setLocalizedText(String string);
     void flush();
     void addText(String string);
     void print();
+    int getInt(int start, int end);
     String getString();
 
 }

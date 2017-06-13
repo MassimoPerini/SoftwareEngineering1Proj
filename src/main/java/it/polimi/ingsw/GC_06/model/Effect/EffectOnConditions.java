@@ -22,7 +22,7 @@ public class EffectOnConditions implements Effect{
 
     @Override
     public void execute(Player player,Game game) {
-        int size = (player.getPlayerBoard().getColouredCards(colour)).size();
+        int size = (player.getPlayerBoard().getDevelopmentCards(colour)).size();
         int variation = multiplier * size;
         player.getResourceSet().variateResource(modifiedResource,variation);
 

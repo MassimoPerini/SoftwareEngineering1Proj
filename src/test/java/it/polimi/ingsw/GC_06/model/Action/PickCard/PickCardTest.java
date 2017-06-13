@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Board.Board;
+import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -24,20 +25,20 @@ public class PickCardTest {
         game.addPlayer("massimo");
         game.addPlayer("pinco");
         game.start();
-
     }
 
 
     @Test
     public void pickCard()
     {
-    /*    Player player = game.getGameStatus().getCurrentPlayer();
+    /*    Player player = game.getCurrentPlayer();
         Board board = game.getBoard();
         DevelopmentCard pickingCard = board.getTowers().get(0).getTowerFloor().get(0).getCard();
-        Action pickCard = new PickCard(player,board.getTowers().get(0), board.getTowers().get(0).getTowerFloor().get(0), 10);
+        Tower tower = board.getTowers().get(0);
+        Action pickCard = new PickCard(player,tower, tower.getTowerFloor().get(0), 10);
+        pickCard.execute();
         assertTrue(player.getPlayerBoard().getDevelopmentCards().size() == 1);
-        assertTrue(player.getPlayerBoard().getDevelopmentCards().get(0) == pickingCard);
-        */
+        assertTrue(player.getPlayerBoard().getDevelopmentCards().get(0) == pickingCard);*/
     }
 
 

@@ -87,7 +87,7 @@ public class Tower{
     }
 
     /**
-     * @requires this.cards.size() >= towerFloors.size()
+     * \requires this.cards.size() at least towerFloors.size()
      * Gives a new card for each towerFloor
      */
     public void shuffle()

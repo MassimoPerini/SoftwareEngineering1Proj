@@ -3,8 +3,10 @@ package it.polimi.ingsw.GC_06.model.playerTools;
 import it.polimi.ingsw.GC_06.model.Board.PlayerBoard;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,7 +32,7 @@ public class Player {
 
         this.PLAYER_ID = PLAYER_ID;
         this.resourceSet = new ResourceSet();
-        this.playerBoard = new PlayerBoard();
+        this.playerBoard = FileLoader.getFileLoader().loadPlayerBoard();
         this.familyMembers = familyMembers;
     }
 

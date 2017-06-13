@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.*;
 
@@ -14,23 +16,24 @@ public class PlayerBoard {
      * This is the object which describes the "plancia"
      */
 
-    private final HashMap<String,List<DevelopmentCard>> cards;
-    private final HashMap<String, Integer> maxCards;      //Il "limite" delle carte coltivazione
+    private final Map<String,List<PlayerBoardSlot>> cards;
 
-    public PlayerBoard ()
+    public PlayerBoard (Map<String,List<PlayerBoardSlot>> cards)
     {
-        this.cards = new HashMap<>();
-        this.maxCards = new HashMap<>();        //TODO da caricare da file + (observer?)
+        this.cards = cards;
     }
 
 
     // adesso qui mettiamo il metodo per farci restituire un array di carte che vogliamo
 
-    public List<DevelopmentCard> getColouredCards(String colour){
-        List<DevelopmentCard> res = cards.get(colour);
-        if (res==null)
-            return new ArrayList<>();
-        return Collections.unmodifiableList(res);
+
+    public List<DevelopmentCard> getDevelopmentCards(String color)
+    {
+        LinkedList <DevelopmentCard> list = new LinkedList();
+        for (PlayerBoardSlot playerBoardSlot : cards.get(color)) {
+            list.add(playerBoardSlot.getDevelopmentCard());
+        }
+        return Collections.unmodifiableList(list);
     }
 
     public List<DevelopmentCard> getDevelopmentCards()
@@ -44,20 +47,25 @@ public class PlayerBoard {
      * Adds a card to the player board. If it is not possible, generate an IllegalStateException
      * @param card
      */
-    public void addCard(DevelopmentCard card)
+    public void addCard(DevelopmentCard card, ResourceSet resourceSet)
     {
-        if (!canAdd(card))
+        if (!canAdd(card, resourceSet))
             throw new IllegalStateException();
+        PlayerBoardSlot slot = this.getFirstEmpty(card.getIdColour());
+        slot.addCard(card, resourceSet);
+    }
 
-        String idCard = card.getIdColour();
-        List<DevelopmentCard> cardsColor = cards.get(idCard);
+    private PlayerBoardSlot getFirstEmpty(String color)
+    {
+        List<PlayerBoardSlot> cardsColor = cards.get(color);
         if (cardsColor == null)
-        {
-            cardsColor = new ArrayList<>();
-            cardsColor.add(card);
-        }
-        cardsColor.add(card);
+            return null;
 
+        for (PlayerBoardSlot playerBoardSlot : cardsColor) {
+            if (playerBoardSlot.isEmpty())
+                return playerBoardSlot;
+        }
+        return null;
     }
 
     /**
@@ -65,18 +73,12 @@ public class PlayerBoard {
      * @param cardId
      * @return
      */
-    public boolean canAdd (DevelopmentCard cardId)
+    public boolean canAdd (DevelopmentCard cardId, ResourceSet resourceSet)
     {
-        Integer limit = maxCards.get(cardId.getIdColour());
-        List<DevelopmentCard> cardsKey = cards.get(cardId.getIdColour());
-        if (cardsKey == null)
-        {
-            return limit.intValue() > 0;
-        }
-
-        /** questo deve controllare anche se la carta è verde se è associata ad alcuni limit*/
-
-        return limit.intValue() > cardsKey.size();
+        PlayerBoardSlot slot = getFirstEmpty(cardId.getIdColour());
+        if (slot==null)
+            return false;
+        return slot.isAllowed(cardId, resourceSet);
     }
 
     public boolean isIncluded(HashMap<String,Integer> requirements){

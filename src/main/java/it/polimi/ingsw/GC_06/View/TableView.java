@@ -9,10 +9,6 @@ public class TableView implements CommandView {
 
     }
 
-    @Override
-    public void setLocalizedText(String string) {
-
-    }
 
     @Override
     public void flush() {
@@ -27,6 +23,11 @@ public class TableView implements CommandView {
     @Override
     public void print() {
 
+    }
+
+    @Override
+    public int getInt(int start, int end) {
+        return 0;
     }
 
     @Override

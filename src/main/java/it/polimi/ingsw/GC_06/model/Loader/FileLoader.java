@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.model.Board.*;
+import it.polimi.ingsw.GC_06.model.Card.Card;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
@@ -34,12 +35,14 @@ public class FileLoader {
     private static final String BOARD_PATH = "board_path";
     private static final String DEFAULT_RES = "default_resource_path";
     private static final String DICES = "dices_path";
+    private static final String PLAYER_BOARD = "player_board_path";
 
 
     private String cardsRootPath;
     private String boardRootPath;
     private String defaultResourceRootPath;
     private String dicePath;
+    private String playerBoardPath;
     private Gson gson;
 
 
@@ -51,6 +54,7 @@ public class FileLoader {
         boardRootPath = Setting.getInstance().getProperty(BOARD_PATH);
         defaultResourceRootPath = Setting.getInstance().getProperty(DEFAULT_RES);
         dicePath = Setting.getInstance().getProperty(DICES);
+        playerBoardPath = Setting.getInstance().getProperty(PLAYER_BOARD);
     }
 
     public static FileLoader getFileLoader ()
@@ -115,6 +119,59 @@ public class FileLoader {
         return board;
     }
 
+    public PlayerBoard loadPlayerBoard()
+    {
+        InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(playerBoardPath));
+        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(Card.class, "type").registerSubtype(DevelopmentCard.class);
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory1).create();
+        PlayerBoard playerBoard = gson2.fromJson(fr, PlayerBoard.class);
+        return playerBoard;
+    }
+
+    public void writePlayerBoard() throws IOException {
+        Map<String, List<PlayerBoardSlot>> result = new HashMap<>();
+
+        int [] malus = {0,0,-3,-7,-12,-18};
+        int [] res = {0,0,1,4,10,20};
+
+        List slots = new LinkedList();
+        ResourceSet requirements = new ResourceSet();
+        ResourceSet bonus = new ResourceSet();
+        PlayerBoardSlot playerBoardSlot;
+
+        for (int i=0;i<6;i++) {
+            requirements.variateResource(Resource.MILITARYPOINT, malus[i]);
+            bonus.variateResource(Resource.VICTORYPOINT, res[i]);
+            slots.add(new PlayerBoardSlot(requirements, bonus));
+            requirements = new ResourceSet();
+            bonus = new ResourceSet();
+        }
+        result.put("GREEN", slots);
+        slots = new LinkedList();
+
+        String [] colors = {"BLUE","YELLOW", "PURPLE"};
+
+        for (int j=0;j<colors.length;j++) {
+            slots = new LinkedList();
+            for (int i = 0; i < 6; i++) {
+                requirements = new ResourceSet();
+                bonus = new ResourceSet();
+                playerBoardSlot = new PlayerBoardSlot(requirements, bonus);
+                slots.add(playerBoardSlot);
+            }
+            result.put(colors[j], slots);
+            slots = new LinkedList();
+        }
+
+        PlayerBoard playerBoard = new PlayerBoard(result);
+
+        FileWriter fw = new FileWriter("src/main/resources/model/playerBoard.txt");
+        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(Card.class, "type").registerSubtype(DevelopmentCard.class);
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory1).create();
+        gson2.toJson(playerBoard, fw);
+        fw.close();
+
+    }
 
     public void writeBoard() throws IOException {
         int [] values = {1,3,5,7};
