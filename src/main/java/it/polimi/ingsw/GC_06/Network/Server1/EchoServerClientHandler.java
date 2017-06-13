@@ -13,6 +13,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,6 +26,7 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
     private Socket socket;
     private BufferedReader input;
     private PrintWriter output;
+    private LinkedList<String> subscribedPlayers = new LinkedList<>();
     int delay = 10000;
     private ModelController modelController;
 
@@ -69,9 +71,10 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
     @Override
     public void doLogin(String username) {
         try{
-            Game.getInstance().addPlayer(username);
+            subscribedPlayers.add(username);
+            System.out.println(subscribedPlayers.size());
             output.println("login done");
-            if(Game.getInstance().getPlayerNumber()== Integer.parseInt(Setting.getInstance().getProperty("min_players"))){
+           /**if(Game.getInstance().getPlayerNumber()== Integer.parseInt(Setting.getInstance().getProperty("min_players"))){
                  Timer timer = new Timer();
                  timer.schedule(new TimerTask() {
                      @Override
@@ -80,7 +83,7 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
                          Game.getInstance().start();
                      }
                  },delay);
-            }
+            }*/
         }catch(IllegalStateException e){
             output.println(e.getMessage());
 
