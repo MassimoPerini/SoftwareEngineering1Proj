@@ -5,4 +5,7 @@ package it.polimi.ingsw.GC_06.Network.Message;
  */
 public interface MessageClient {
     void execute();
+    void setGame (int game);
+    void setPlayer(String player);
+
 }

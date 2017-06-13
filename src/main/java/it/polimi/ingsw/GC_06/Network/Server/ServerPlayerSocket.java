@@ -31,8 +31,19 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     @NotNull private final Gson readGson;
 
     private String player;
-    private Game game;
+    private int game;
 
+    public String getPlayer() {
+        return player;
+    }
+
+    public int getGame() {
+        return game;
+    }
+
+    public void setGame(int game) {
+        this.game = game;
+    }
 
     public ServerPlayerSocket(@NotNull Socket socket) throws IOException {
         this.socket = socket;
@@ -69,6 +80,10 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 while ((input = socketIn.readLine()) != null)
                 {
                     MessageClient messageClient = readGson.fromJson(input, MessageClient.class);
+                    messageClient.setGame(game);
+                    messageClient.setPlayer(player);
+                    setChanged();
+                    notifyObservers(messageClient);
                 }
             }
         }

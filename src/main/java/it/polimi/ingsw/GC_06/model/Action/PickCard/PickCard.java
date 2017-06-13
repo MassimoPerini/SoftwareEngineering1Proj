@@ -73,6 +73,8 @@ public class PickCard implements Action {
     public void setGame(Game game) {
         this.game = game;
     }
+    public void setGame (int game){}
+    public void setPlayer(String player){}
 
     @Override
     public boolean isAllowed() {

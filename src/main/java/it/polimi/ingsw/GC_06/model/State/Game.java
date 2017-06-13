@@ -17,7 +17,7 @@ import java.util.*;
  * SINGLETON
  */
 public class Game {
-
+    private final int id;
     private final Board board;
     private final DiceSet diceSet;
     private final RoundManager roundManager;
@@ -31,11 +31,6 @@ public class Game {
     //keys
     private static final String NEUTRALFAMILYMEMBERSKEY = "neutral_family_members";
 
-    //TODO TO REMOVE (KEEP SINGLETON)
-    public static void clearForTesting()
-    {
-        game=null;
-    }
 
     /**
      * Load from file the needed values. If it can't do this, throws an exception
@@ -51,6 +46,7 @@ public class Game {
         this.generateStatuses();
         gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
         roundManager = new RoundManager(board, neutralFamilyMembers+diceSet.getDices().length);
+        id = 1;     //TODO
     }
 
     public void addPlayer (String p) throws IllegalStateException, IllegalArgumentException
@@ -113,6 +109,10 @@ public class Game {
             familyMembers[diceSet.getDices().length+i]=new FamilyMember("",playerID);
         }
         return familyMembers;
+    }
+
+    public int getId() {
+        return id;
     }
 
     /**
