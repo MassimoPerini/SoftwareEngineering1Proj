@@ -1,0 +1,228 @@
+{
+  "cards": {
+    "BLUE": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      }
+    ],
+    "YELLOW": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      }
+    ],
+    "PURPLE": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "bonusEnd": {
+          "resources": {}
+        }
+      }
+    ],
+    "GREEN": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 0
+          }
+        },
+        "bonusEnd": {
+          "resources": {
+            "VICTORYPOINT": 0
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 0
+          }
+        },
+        "bonusEnd": {
+          "resources": {
+            "VICTORYPOINT": 0
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": -3
+          }
+        },
+        "bonusEnd": {
+          "resources": {
+            "VICTORYPOINT": 1
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": -7
+          }
+        },
+        "bonusEnd": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": -12
+          }
+        },
+        "bonusEnd": {
+          "resources": {
+            "VICTORYPOINT": 10
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": -18
+          }
+        },
+        "bonusEnd": {
+          "resources": {
+            "VICTORYPOINT": 20
+          }
+        }
+      }
+    ]
+  }
+}
