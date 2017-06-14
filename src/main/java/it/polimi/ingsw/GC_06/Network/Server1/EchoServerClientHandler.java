@@ -26,7 +26,6 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
     private Socket socket;
     private BufferedReader input;
     private PrintWriter output;
-    private LinkedList<String> subscribedPlayers = new LinkedList<>();
     int delay = 10000;
     private ModelController modelController;
 

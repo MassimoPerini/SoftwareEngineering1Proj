@@ -73,17 +73,6 @@ public class Game {
         roundManager.endTurn();
     }
 
-    private static Game getInstance(){
-        if (game==null) {
-            try {
-                game = new Game();
-            }catch (Exception e)
-            {
-                System.out.println("Game class: error reading a file");
-            }
-        }
-        return game;
-    }
 
     public Player getCurrentPlayer()
     {
