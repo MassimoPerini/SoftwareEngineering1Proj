@@ -10,7 +10,11 @@ import java.util.Map;
  */
 public class MainClientModel {
     private ClientBoardGame board;
-    private List<ClientPlayerBoard> clientPlayerBoard;
+    private Map<String,ClientPlayerBoard> clientPlayerBoard;
     private Map<StateName, ClientState> clientStates;
     private ClientState currentState;
+
+    public ClientPlayerBoard getClientPlayerBoard(String username) {
+        return clientPlayerBoard.get(username);
+    }
 }

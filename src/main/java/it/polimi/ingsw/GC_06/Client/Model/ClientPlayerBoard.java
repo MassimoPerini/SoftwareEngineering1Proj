@@ -10,6 +10,7 @@ public class ClientPlayerBoard {
     private Map<String, List<String>> cards;
     private java.util.List<String> excommunication;
     private java.util.Map<String, Integer> resourceSet;
+    private String playerUsername;
 
     public void addCard(String colour, String card) {
     }
