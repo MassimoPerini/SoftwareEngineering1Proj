@@ -28,7 +28,7 @@ public class EffectOnNeweCardsTest {
         game.addPlayer("gabriele");
         player = game.getGameStatus().getPlayers().get("gabriele");
         selectableCards = new ArrayList<>();
-        selectableCards = game.getBoard().getTowers().get(0).getTowerFloor();
+        selectableCards = game.getBoard().getTowers().get("GREEN").getTowerFloor();
         effectOnNewCards = new EffectOnNewCards(selectableCards);
     }
 

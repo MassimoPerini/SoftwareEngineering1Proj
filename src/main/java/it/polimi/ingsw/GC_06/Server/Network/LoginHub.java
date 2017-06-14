@@ -40,11 +40,10 @@ public class LoginHub {
 
             if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game();
+                ControllerGame controllerGame = new ControllerGame(game, serverOrchestrator, 1);
                 for (String username : loggedPlayers) {
                     game.addPlayer(username);
-                    game.start();
-                    /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
-                    serverOrchestrator.startGame(game);
+                    controllerGame.start();
                 }
                 loggedPlayers = new ArrayList<>();
             }
@@ -56,10 +55,7 @@ public class LoginHub {
 
         /** la lista contiene l'elenco di tutti i giocatori effettivamente registrati a tutti i giochi  quindi */
 
-        if (totPlayers.contains(user)) {
-            return false;
-        }
-        return true;
+        return !totPlayers.contains(user);
     }
 
     public void setServerOrchestrator(ServerOrchestrator serverOrchestrator) {

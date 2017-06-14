@@ -6,4 +6,14 @@ package it.polimi.ingsw.GC_06.Client.Model;
 public class ClientTowerFloor {
     private String card;
     private ClientSpaceAction spaceAction;
+
+    void removeCard()
+    {
+        card = null;
+    }
+    void addFamilyMember(ClientFamilyMember clientFamilyMember)
+    {
+        spaceAction.addClientFamilyMember(clientFamilyMember);
+    }
+
 }

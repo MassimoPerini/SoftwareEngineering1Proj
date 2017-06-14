@@ -1,8 +1,9 @@
-package it.polimi.ingsw.GC_06.model.Board;
+package it.polimi.ingsw.GC_06.model.playerTools;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.*;
 
@@ -47,12 +48,13 @@ public class PlayerBoard {
      * Adds a card to the player board. If it is not possible, generate an IllegalStateException
      * @param card
      */
-    public void addCard(DevelopmentCard card, ResourceSet resourceSet)
+     void addCard(DevelopmentCard card, ResourceSet resourceSet)
     {
         if (!canAdd(card, resourceSet))
             throw new IllegalStateException();
         PlayerBoardSlot slot = this.getFirstEmpty(card.getIdColour());
         slot.addCard(card, resourceSet);
+
     }
 
     private PlayerBoardSlot getFirstEmpty(String color)
@@ -73,7 +75,7 @@ public class PlayerBoard {
      * @param cardId
      * @return
      */
-    public boolean canAdd (DevelopmentCard cardId, ResourceSet resourceSet)
+     boolean canAdd (DevelopmentCard cardId, ResourceSet resourceSet)
     {
         PlayerBoardSlot slot = getFirstEmpty(cardId.getIdColour());
         if (slot==null)

@@ -17,4 +17,9 @@ public class MainClientModel {
     public ClientPlayerBoard getClientPlayerBoard(String username) {
         return clientPlayerBoard.get(username);
     }
+
+    public ClientBoardGame getClientBoardGame()
+    {
+        return this.board;
+    }
 }

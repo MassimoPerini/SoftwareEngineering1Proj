@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -21,16 +22,14 @@ public class PickCard implements Action {
 
     
     private final Player player;
-    private final TowerFloor towerFloor;
+    private final int towerFloor;
     private final Tower tower;
     private final int valueFamilyMember;
     private Game game;
 
-    public PickCard(Player player, Tower tower, TowerFloor towerFloor, int valueFamilyMember)
+    public PickCard(@NotNull Player player, @NotNull Tower tower, int towerFloor, int valueFamilyMember)
     {
         super();
-        if (player==null || towerFloor==null)
-            throw new NullPointerException();
         this.player = player;
         this.towerFloor = towerFloor;
         this.tower = tower;
@@ -53,13 +52,13 @@ public class PickCard implements Action {
         }
 
         //Apply ActionSpace effects
-        List<Effect> effects = towerFloor.getActionPlace().getEffects();
+        List<Effect> effects = tower.getTowerFloor().get(towerFloor).getActionPlace().getEffects();
         ExecuteEffects executeEffects = new ExecuteEffects(effects, player,game);
         executeEffects.execute();
 
         /**we are adding the card to the player board*/
-        DevelopmentCard c = towerFloor.pickCard();
-        player.getPlayerBoard().addCard(c, player.getResourceSet());
+        DevelopmentCard c = tower.pickCard(towerFloor);
+        player.addCard(c);
 
         //pay the card
         PayCard payCard = new PayCard(c, player);
@@ -86,7 +85,7 @@ public class PickCard implements Action {
             return false;
 
         /** controllo se il player può aggiungere la carta */
-        if (!player.getPlayerBoard().canAdd(towerFloor.getCard(), player.getResourceSet()))
+        if (!player.canAdd(tower.getTowerFloor().get(towerFloor).getCard()))
             return false;
 
         //clone player
@@ -111,7 +110,7 @@ public class PickCard implements Action {
         //Start effect plane!
 
         //Apply ActionSpace effects to clone
-        List<Effect> effects = towerFloor.getActionPlace().getEffects();
+        List<Effect> effects = tower.getTowerFloor().get(towerFloor).getActionPlace().getEffects();
 
         for(Effect effect: effects)
         {
@@ -119,14 +118,14 @@ public class PickCard implements Action {
         }
 
         //Can I pay?
-        PayCard payClone = new PayCard(towerFloor.getCard(), pClone);
+        PayCard payClone = new PayCard( tower.getTowerFloor().get(towerFloor).getCard(), pClone);
 
         if(payClone.isAllowed())
         {
             return false;
         }
 
-        ExecuteEffects executeEffects = new ExecuteEffects(towerFloor.getCard().getImmediateEffects(), pClone,game);
+        ExecuteEffects executeEffects = new ExecuteEffects( tower.getTowerFloor().get(towerFloor).getCard().getImmediateEffects(), pClone,game);
 
         return executeEffects.isAllowed();
     }

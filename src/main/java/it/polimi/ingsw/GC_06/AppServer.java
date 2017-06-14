@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06;
 
 import it.polimi.ingsw.GC_06.Server.Network.SocketServer;
+import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class AppServer {
 
         SocketServer socketServer = new SocketServer();
 
-
+        FileLoader.getFileLoader().writeBoard();
 
         System.out.println("Server ended...");
 

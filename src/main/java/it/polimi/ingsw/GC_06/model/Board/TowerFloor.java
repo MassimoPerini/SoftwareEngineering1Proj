@@ -47,7 +47,7 @@ public class TowerFloor {
      * Adds a new FamilyMember to the TowerFloor ActionSpace
      * @param familyMember
      */
-    public void addFamilyMember(FamilyMember familyMember) {
+    void addFamilyMember(FamilyMember familyMember) {
         if (!isAllowed(familyMember))
             throw new IllegalStateException();
     }
@@ -56,7 +56,7 @@ public class TowerFloor {
      * return the associated card and remove it from the ActionSpace
      * @return
      */
-    public DevelopmentCard pickCard()
+    DevelopmentCard pickCard()
     {
         DevelopmentCard developmentCard = this.card;
         this.card = null;

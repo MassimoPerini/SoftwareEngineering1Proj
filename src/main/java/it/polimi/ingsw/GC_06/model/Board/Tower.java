@@ -1,11 +1,15 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnTower;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageRemoveCard;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Created by massimo on 13/05/17.
@@ -15,7 +19,7 @@ import java.util.List;
  * @author massimo
  * This class represents a "tower" of the game
  */
-public class Tower{
+public class Tower extends Observable{
 
     private final List<TowerFloor> towerFloors;
     private int maxSamePlayerFamilyMember;
@@ -57,7 +61,7 @@ public class Tower{
      * @param towerFloorUser
      * @return
      */
-    public boolean isAllowed(FamilyMember familyMember, TowerFloor towerFloorUser) {
+    public boolean isAllowed(FamilyMember familyMember, int towerFloorUser) {
 
         int samePlayerFamilyMember = 0;
 
@@ -74,7 +78,7 @@ public class Tower{
 
         if (samePlayerFamilyMember >= maxSamePlayerFamilyMember)
             return false;
-        return towerFloorUser.isAllowed(familyMember);
+        return towerFloors.get(towerFloorUser).isAllowed(familyMember);
     }
 
     /**
@@ -100,7 +104,23 @@ public class Tower{
     }
 
     //TODO create addFamilyMemeber here
-    // TODO pickCard
+    public DevelopmentCard pickCard(int indexFloor)
+    {
+        DevelopmentCard res = towerFloors.get(indexFloor).pickCard();
+        MessageServer message = new MessageRemoveCard(this.color, indexFloor);
+        setChanged();
+        notifyObservers(message);
+        return res;
+    }
+
+    public void addFamilyMember(FamilyMember familyMember, int index)
+    {
+        towerFloors.get(index).addFamilyMember(familyMember);
+
+        MessageServer messageServer = new MessageAddMemberOnTower(this.color, index, familyMember);
+        setChanged();
+        notifyObservers(messageServer);
+    }
 
     public List<TowerFloor> getTowerFloor()
     {

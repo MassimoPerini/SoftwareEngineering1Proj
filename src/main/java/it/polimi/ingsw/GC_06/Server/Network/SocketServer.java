@@ -63,23 +63,22 @@ public class SocketServer extends Server implements Observer {
         }
     }
 
-    /**
-     * Inits the game
-     * @param game
-     */
     @Override
-    public synchronized void startGame(@NotNull Game game)
+    public synchronized boolean startGame(@NotNull Map<String, Player> players, int id)
     {
-        Map<String, Player> players = game.getGameStatus().getPlayers();
+        boolean result = false;
         List <ServerPlayerSocket> gamePlayers = new ArrayList();
         for (ServerPlayerSocket serverPlayerSocket : socketList) {
             if (players.get(serverPlayerSocket.getPlayer()) != null)
             {
                 socketFromId.put(serverPlayerSocket.getPlayer(), serverPlayerSocket);
                 gamePlayers.add(serverPlayerSocket);
+                result = true;
             }
         }
-        socketsFromGame.put(game.getId(), gamePlayers);
+        if (result)
+            socketsFromGame.put(id, gamePlayers);
+        return result;
     }
 
     @Override

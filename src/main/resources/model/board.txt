@@ -1,84 +1,6 @@
 {
-  "towers": [
-    {
-      "towerFloors": [
-        {
-          "actionPlace": {
-            "type": "ActionPlaceFixed",
-            "maxFamilyMembers": 1,
-            "effects": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {}
-                }
-              }
-            ],
-            "members": [],
-            "price": 1
-          }
-        },
-        {
-          "actionPlace": {
-            "type": "ActionPlaceFixed",
-            "maxFamilyMembers": 1,
-            "effects": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {}
-                }
-              }
-            ],
-            "members": [],
-            "price": 3
-          }
-        },
-        {
-          "actionPlace": {
-            "type": "ActionPlaceFixed",
-            "maxFamilyMembers": 1,
-            "effects": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {}
-                }
-              }
-            ],
-            "members": [],
-            "price": 5
-          }
-        },
-        {
-          "actionPlace": {
-            "type": "ActionPlaceFixed",
-            "maxFamilyMembers": 1,
-            "effects": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {
-                    "WOOD": 1
-                  }
-                }
-              }
-            ],
-            "members": [],
-            "price": 7
-          }
-        }
-      ],
-      "maxSamePlayerFamilyMember": 1,
-      "minFamilyMembersMalus": 1,
-      "malusOnMultipleFamilyMembers": {
-        "resources": {
-          "MONEY": -3
-        }
-      },
-      "color": "GREEN"
-    },
-    {
+  "towers": {
+    "BLUE": {
       "towerFloors": [
         {
           "actionPlace": {
@@ -154,9 +76,11 @@
           "MONEY": -3
         }
       },
-      "color": "BLUE"
+      "color": "BLUE",
+      "changed": false,
+      "obs": []
     },
-    {
+    "YELLOW": {
       "towerFloors": [
         {
           "actionPlace": {
@@ -232,9 +156,11 @@
           "MONEY": -3
         }
       },
-      "color": "YELLOW"
+      "color": "YELLOW",
+      "changed": false,
+      "obs": []
     },
-    {
+    "PURPLE": {
       "towerFloors": [
         {
           "actionPlace": {
@@ -310,9 +236,91 @@
           "MONEY": -3
         }
       },
-      "color": "PURPLE"
+      "color": "PURPLE",
+      "changed": false,
+      "obs": []
+    },
+    "GREEN": {
+      "towerFloors": [
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 1
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 3
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "WOOD": 1
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 7
+          }
+        }
+      ],
+      "maxSamePlayerFamilyMember": 1,
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "GREEN",
+      "changed": false,
+      "obs": []
     }
-  ],
+  },
   "marketAndCouncils": [
     {
       "actionPlaces": [
@@ -351,7 +359,9 @@
           "members": [],
           "price": 1
         }
-      ]
+      ],
+      "changed": false,
+      "obs": []
     }
   ],
   "prodHarvZones": [
@@ -371,7 +381,9 @@
           "price": 1
         }
       ],
-      "maxSamePlayerFamilyMember": 0
+      "maxSamePlayerFamilyMember": 0,
+      "changed": false,
+      "obs": []
     },
     {
       "actionPlaces": [
@@ -389,7 +401,9 @@
           "price": 1
         }
       ],
-      "maxSamePlayerFamilyMember": 0
+      "maxSamePlayerFamilyMember": 0,
+      "changed": false,
+      "obs": []
     }
   ],
   "councils": [
@@ -401,7 +415,9 @@
           "members": [],
           "price": 1
         }
-      ]
+      ],
+      "changed": false,
+      "obs": []
     }
   ]
 }

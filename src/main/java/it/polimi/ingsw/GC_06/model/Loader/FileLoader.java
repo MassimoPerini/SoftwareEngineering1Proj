@@ -14,6 +14,8 @@ import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoard;
+import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoardSlot;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -176,7 +178,7 @@ public class FileLoader {
     public void writeBoard() throws IOException {
         int [] values = {1,3,5,7};
 
-        ArrayList<Tower> towers = new ArrayList<>();
+        Map<String, Tower> towers = new HashMap<>();
 
         //Generate towers
         //TODO una torre contiene carte solo di un solo tipo
@@ -204,7 +206,7 @@ public class FileLoader {
             malusResourceSet.variateResource(Resource.MONEY, -3);
 
             Tower tower = new Tower(towerFloors, 1, 1, colors[j], malusResourceSet);
-            towers.add(tower);
+            towers.put(tower.getColor(), tower);
         }
 
         //TODO: NEI COSTRUTTORI RICHIEDERE ARRAY, non LINKEDLIST

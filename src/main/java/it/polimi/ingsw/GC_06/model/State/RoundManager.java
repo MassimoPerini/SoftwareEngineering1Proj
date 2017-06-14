@@ -84,9 +84,8 @@ public class RoundManager {
 
     private void shuffleCards()
     {
-        List<Tower> towers = board.getTowers();
-        for (Tower tower: towers)
-        {
+        Map<String, Tower> towers = board.getTowers();
+        for (Tower tower : towers.values()) {
             tower.shuffle();
         }
     }
@@ -135,7 +134,7 @@ public class RoundManager {
             }
         }
 
-        for (Tower tower: board.getTowers())
+        for (Tower tower: board.getTowers().values())
         {
             tower.setCards(cards.get(tower.getColor()));
             if (cards.get(tower.getColor()).size() < tower.getTowerFloor().size()*maxTurns)

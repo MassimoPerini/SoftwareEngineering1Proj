@@ -27,7 +27,7 @@ public class BoardActionOnTower implements Action {
         this.index = index;
         this.tower = tower;
         this.familyMember = familyMember;
-        this.pickCard = new PickCard(player, tower, tower.getTowerFloor().get(index), familyMember.getValue());
+        this.pickCard = new PickCard(player, tower, index, familyMember.getValue());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class BoardActionOnTower implements Action {
             throw new IllegalStateException();
 
         // qui faccio il malus
-        tower.getTowerFloor().get(index).addFamilyMember(familyMember);
+        tower.addFamilyMember(familyMember, index);
 
         pickCard.execute();
 

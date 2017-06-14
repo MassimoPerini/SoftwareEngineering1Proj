@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server;
 
+import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.ViewController.CmdViewController.LoginViewController;
 
@@ -15,8 +16,7 @@ public class ChangeStatus implements MessageServer {
     }
 
     @Override
-    public void execute()
-    {
+    public void execute(MainClientModel mainClientModel) {
 
     }
 }

@@ -1,8 +1,11 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by massimo on 13/05/17.
@@ -13,12 +16,12 @@ import java.util.List;
  * This class represents the main board of the game
  */
 public class Board {
-    private final ArrayList<Tower> towers;
-    private final ArrayList<MarketAndCouncil> marketAndCouncils;
-    private final ArrayList<ProdHarvZone> prodHarvZones;
-    private final ArrayList<MarketAndCouncil> councils;
+    @NotNull private final Map<String, Tower> towers;
+    @NotNull private final ArrayList<MarketAndCouncil> marketAndCouncils;
+    @NotNull private final ArrayList<ProdHarvZone> prodHarvZones;
+    @NotNull private final ArrayList<MarketAndCouncil> councils;
 
-    public Board(ArrayList<Tower> towers, ArrayList<MarketAndCouncil> marketAndCouncils, ArrayList<ProdHarvZone> prodHarvZones, ArrayList<MarketAndCouncil> councils)
+    public Board(Map<String, Tower> towers, ArrayList<MarketAndCouncil> marketAndCouncils, ArrayList<ProdHarvZone> prodHarvZones, ArrayList<MarketAndCouncil> councils)
     {
         super();
         this.towers = towers;
@@ -29,8 +32,8 @@ public class Board {
     }//TODO da integrare con il caricamento degli effetti da file, in modo da mettere gli effetti sui vari actionplace
 
     //TODO remove FIX here!
-    public List<Tower> getTowers() {
-        return Collections.unmodifiableList(towers);
+    public Map<String, Tower> getTowers() {
+        return towers;
     }
 
 

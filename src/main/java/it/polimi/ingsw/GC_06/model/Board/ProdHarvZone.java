@@ -6,8 +6,9 @@ import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
 
-public class ProdHarvZone{
+public class ProdHarvZone extends Observable{
 
 	private final ArrayList <ActionPlace> actionPlaces;
 	private int maxSamePlayerFamilyMember;

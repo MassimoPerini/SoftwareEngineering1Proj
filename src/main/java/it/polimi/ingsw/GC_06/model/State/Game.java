@@ -17,7 +17,6 @@ import java.util.*;
  * SINGLETON
  */
 public class Game {
-    private final int id;
     private final Board board;
     private final DiceSet diceSet;
     private final RoundManager roundManager;
@@ -46,7 +45,6 @@ public class Game {
         this.generateStatuses();
         gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
         roundManager = new RoundManager(board, neutralFamilyMembers+diceSet.getDices().length);
-        id = 1;     //TODO
     }
 
     public void addPlayer (String p) throws IllegalStateException, IllegalArgumentException
@@ -98,10 +96,6 @@ public class Game {
             familyMembers[diceSet.getDices().length+i]=new FamilyMember("",playerID);
         }
         return familyMembers;
-    }
-
-    public int getId() {
-        return id;
     }
 
     /**
@@ -161,6 +155,11 @@ public class Game {
 
         return idle;
 
+    }
+
+
+    public Map<StateName, FsmNode> getStatuses() {
+        return statuses;
     }
 
     RoundManager getRoundManager() {

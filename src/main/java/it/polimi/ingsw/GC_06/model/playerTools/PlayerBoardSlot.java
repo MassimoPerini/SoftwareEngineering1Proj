@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.model.Board;
+package it.polimi.ingsw.GC_06.model.playerTools;
 
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;

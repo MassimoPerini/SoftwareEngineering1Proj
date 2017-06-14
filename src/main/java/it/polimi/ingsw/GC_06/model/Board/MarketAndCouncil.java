@@ -6,9 +6,10 @@ import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
 
 
-public class MarketAndCouncil
+public class MarketAndCouncil extends Observable
 {
 	private final ArrayList<ActionPlace> actionPlaces;
 	

@@ -14,7 +14,7 @@ import java.util.Observable;
  * It contains a transitionTable that allows to generate the following state
  * Is an Observable class
  */
-class State extends Observable implements FsmNode {
+class State extends FsmNode {
 
     private Map<TransitionType, FsmNode> transitionTable;
   //  private FsmNode prevNode;
