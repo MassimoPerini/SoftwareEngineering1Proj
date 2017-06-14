@@ -55,7 +55,7 @@ public class LoginHub {
         /** la lista contiene l'elenco di tutti i giocatori effettivamente registrati a tutti i giochi  quindi */
 
         if (totPlayers.contains(user)) {
-            throw new IllegalStateException("Username already present");
+            throw new IllegalStateException("Username already present!");
 
         }
     }
