@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Network.Server1;
+package it.polimi.ingsw.GC_06.ServerTry;
 
 /**
  * Created by giuseppe on 6/11/17.
@@ -6,16 +6,9 @@ package it.polimi.ingsw.GC_06.Network.Server1;
 
 
 import it.polimi.ingsw.GC_06.model.Controller.*;
-import it.polimi.ingsw.GC_06.model.Loader.Setting;
-import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.LinkedList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by giuseppe on 6/7/17.

@@ -99,6 +99,9 @@ public class Tower{
         }
     }
 
+    //TODO create addFamilyMemeber here
+    // TODO pickCard
+
     public List<TowerFloor> getTowerFloor()
     {
         return Collections.unmodifiableList(this.towerFloors);

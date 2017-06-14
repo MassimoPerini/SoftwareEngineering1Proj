@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Network.Server;
+package it.polimi.ingsw.GC_06.Server.Network;
 
 import it.polimi.ingsw.GC_06.model.State.Game;
 import org.jetbrains.annotations.NotNull;

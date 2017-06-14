@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Network.Server1;
+package it.polimi.ingsw.GC_06.ServerTry;
 
 /**
  * Created by giuseppe on 6/11/17.

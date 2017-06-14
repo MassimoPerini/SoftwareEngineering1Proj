@@ -1,9 +1,6 @@
-package it.polimi.ingsw.GC_06.Network;
+package it.polimi.ingsw.GC_06.Server.Network;
 
-import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,11 +11,13 @@ import java.util.List;
  */
 public class LoginHub {
 
-    private List<String> totPlayers = new ArrayList<>();
+    private List<String> totPlayers = new ArrayList<>(); /** tutti i giocatori iscritti alle partire */
     private List<String> loggedPlayers = new ArrayList<>();
-    private int playerCounter = 0;
+
 
     public static LoginHub instance = new LoginHub();
+
+    ServerOrchestrator serverOrchestrator = new ServerOrchestrator();
 
     private LoginHub() {
 
@@ -29,7 +28,7 @@ public class LoginHub {
     }
 
     public void addUser(String user) throws IllegalArgumentException, IOException {
-        int i = 0;
+
         /** qui faccio il controllo anche sul fatto che un giocatore non può essere registrato su più partite */
 
 
@@ -39,10 +38,13 @@ public class LoginHub {
             loggedPlayers.add(user);
 
 
-            if (loggedPlayers.size() == Integer.parseInt(Setting.getInstance().getProperty("max_player"))) {
+            if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game();
                 for (String username : loggedPlayers) {
                     game.addPlayer(username);
+                    game.start();
+                    /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
+                    serverOrchestrator.startGame(game);
                 }
                 loggedPlayers = new ArrayList<>();
             }
@@ -58,6 +60,10 @@ public class LoginHub {
             return false;
         }
         return true;
+    }
+
+    public void setServerOrchestrator(ServerOrchestrator serverOrchestrator) {
+        this.serverOrchestrator = serverOrchestrator;
     }
 
     public List<String> getTotPlayers() {

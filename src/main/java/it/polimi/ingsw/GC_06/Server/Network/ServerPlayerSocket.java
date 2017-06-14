@@ -1,13 +1,12 @@
-package it.polimi.ingsw.GC_06.Network.Server;
+package it.polimi.ingsw.GC_06.Server.Network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.Network.LoginHub;
-import it.polimi.ingsw.GC_06.Network.Message.Client.Login;
-import it.polimi.ingsw.GC_06.Network.Message.MessageClient;
-import it.polimi.ingsw.GC_06.Network.Message.MessageServer;
-import it.polimi.ingsw.GC_06.Network.Message.Server.ChangeStatus;
+import it.polimi.ingsw.GC_06.Server.Message.Client.Login;
+import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.ChangeStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;

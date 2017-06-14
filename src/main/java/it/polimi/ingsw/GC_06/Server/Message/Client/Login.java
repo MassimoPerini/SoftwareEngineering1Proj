@@ -1,7 +1,6 @@
-package it.polimi.ingsw.GC_06.Network.Message.Client;
+package it.polimi.ingsw.GC_06.Server.Message.Client;
 
-import it.polimi.ingsw.GC_06.Network.Message.MessageClient;
-import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 
 /**
  * Created by massimo on 11/06/17.

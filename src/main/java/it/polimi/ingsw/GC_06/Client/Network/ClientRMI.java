@@ -1,8 +1,6 @@
-package it.polimi.ingsw.GC_06.Network.Client;
+package it.polimi.ingsw.GC_06.Client.Network;
 
-import it.polimi.ingsw.GC_06.Network.Message.MessageClient;
-
-import java.util.Observable;
+import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 
 /**
  * Created by massimo on 12/06/17.

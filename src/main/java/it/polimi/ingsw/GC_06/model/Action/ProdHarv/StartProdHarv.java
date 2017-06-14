@@ -108,6 +108,7 @@ public class StartProdHarv implements Action {
 
         if (askUser.size()>0)
         {
+            //stiamo mandando le carte fra cui scegliere allo stato che poi le manderà al controller e poi al client
             game.getGameStatus().changeState(TransitionType.START_PRODHARV, askUser);
         }
 

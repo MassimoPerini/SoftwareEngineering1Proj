@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Network.Server;
+package it.polimi.ingsw.GC_06.Server.Network;
 
 import java.net.ServerSocket;
 import java.net.Socket;

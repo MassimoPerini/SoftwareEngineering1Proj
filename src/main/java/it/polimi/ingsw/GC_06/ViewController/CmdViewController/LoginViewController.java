@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.ViewController.CmdViewController;
 
-import it.polimi.ingsw.GC_06.Network.Client.ClientOrchestrator;
-import it.polimi.ingsw.GC_06.Network.Message.Client.Login;
+import it.polimi.ingsw.GC_06.Client.Network.ClientOrchestrator;
 import it.polimi.ingsw.GC_06.View.CmdView;
 import it.polimi.ingsw.GC_06.View.CommandView;
 import it.polimi.ingsw.GC_06.ViewController.ViewController;

@@ -11,9 +11,9 @@ import java.util.List;
 /**
  * Created by massimo on 30/05/17.
  */
-public class DefaultProdHarvEffect/** implements Effect */{
-/**
-    private List<Requirement> requirement;
+public class DefaultProdHarvEffect /**implements Effect*/ {
+
+   /** private List<Requirement> requirement;
     private List<Effect> effects;
     private int minPoints;
 
@@ -29,10 +29,10 @@ public class DefaultProdHarvEffect/** implements Effect */{
 
     public void applyEffect(Player player, int playerMinPoints)
     {
-    /*    if (!isAllowed(player, playerMinPoints))
+       if (!isAllowed(player, playerMinPoints))
             throw new IllegalStateException();
-*/
-        /**for (Effect effect:effects) {
+
+        for (Effect effect:effects) {
             effect.execute(player,game);
         }
     }

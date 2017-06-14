@@ -1,6 +1,6 @@
-package it.polimi.ingsw.GC_06.Network.Server;
+package it.polimi.ingsw.GC_06.Server.Network;
 
-import it.polimi.ingsw.GC_06.Network.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.jetbrains.annotations.NotNull;

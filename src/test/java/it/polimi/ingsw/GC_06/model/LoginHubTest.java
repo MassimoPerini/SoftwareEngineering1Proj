@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.model;
 
 
-import it.polimi.ingsw.GC_06.Network.LoginHub;
+import it.polimi.ingsw.GC_06.Server.Network.LoginHub;
 import org.junit.Before;
 import org.junit.Test;
 

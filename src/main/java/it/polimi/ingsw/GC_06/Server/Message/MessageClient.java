@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Network.Message;
+package it.polimi.ingsw.GC_06.Server.Message;
 
 /**
  * Created by massimo on 11/06/17.

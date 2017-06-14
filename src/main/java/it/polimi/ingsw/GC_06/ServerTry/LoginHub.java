@@ -1,9 +1,4 @@
-package it.polimi.ingsw.GC_06.Network.Server1;
-
-import it.polimi.ingsw.GC_06.model.Loader.Setting;
-import it.polimi.ingsw.GC_06.model.State.Game;
-
-import java.util.*;
+package it.polimi.ingsw.GC_06.ServerTry;
 
 /**
  * Created by giuseppe on 6/13/17.

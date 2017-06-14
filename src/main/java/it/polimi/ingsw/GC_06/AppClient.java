@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_06;
 
 
-import it.polimi.ingsw.GC_06.Network.Client.ClientOrchestrator;
-import it.polimi.ingsw.GC_06.Network.Client.ClientSocket;
+import it.polimi.ingsw.GC_06.Client.Network.ClientOrchestrator;
+import it.polimi.ingsw.GC_06.Client.Network.ClientSocket;
 import it.polimi.ingsw.GC_06.ViewController.CmdViewController.LoginViewController;
 
 import java.io.IOException;

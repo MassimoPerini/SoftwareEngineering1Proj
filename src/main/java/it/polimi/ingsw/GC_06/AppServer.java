@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06;
 
-import it.polimi.ingsw.GC_06.Network.Server.SocketServer;
+import it.polimi.ingsw.GC_06.Server.Network.SocketServer;
 
 import java.io.IOException;
 

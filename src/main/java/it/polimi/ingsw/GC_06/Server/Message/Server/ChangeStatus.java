@@ -1,6 +1,6 @@
-package it.polimi.ingsw.GC_06.Network.Message.Server;
+package it.polimi.ingsw.GC_06.Server.Message.Server;
 
-import it.polimi.ingsw.GC_06.Network.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.ViewController.CmdViewController.LoginViewController;
 
 /**
