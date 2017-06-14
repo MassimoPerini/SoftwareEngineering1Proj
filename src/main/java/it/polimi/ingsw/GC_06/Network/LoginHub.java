@@ -31,33 +31,40 @@ public class LoginHub {
     public void addUser(String user) throws IllegalArgumentException, IOException {
         int i = 0;
         /** qui faccio il controllo anche sul fatto che un giocatore non può essere registrato su più partite */
-        try{
-            access(user);
 
-            loggedPlayers.add(user);
+
+        if(access(user)) {
+
             totPlayers.add(user);
+            loggedPlayers.add(user);
 
-            if(loggedPlayers.size() == Integer.parseInt(Setting.getInstance().getProperty("max_player"))){
+
+            if (loggedPlayers.size() == 4/**Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game();
-                for(String username : loggedPlayers){
+                for (String username : loggedPlayers) {
                     game.addPlayer(username);
                 }
                 loggedPlayers = new ArrayList<>();
             }
 
-        }catch(IllegalStateException e){
-            e.getMessage();
         }
     }
 
-    private void access(String user) {
+    public boolean access(String user) {
 
         /** la lista contiene l'elenco di tutti i giocatori effettivamente registrati a tutti i giochi  quindi */
 
         if (totPlayers.contains(user)) {
-            throw new IllegalStateException("Username already present!");
-
+            return false;
         }
+        return true;
     }
 
+    public List<String> getTotPlayers() {
+        return totPlayers;
+    }
+
+    public List<String> getLoggedPlayers() {
+        return loggedPlayers;
+    }
 }
