@@ -39,7 +39,7 @@ public class LoginHub {
             loggedPlayers.add(user);
 
 
-            if (loggedPlayers.size() == 4/**Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+            if (loggedPlayers.size() == Integer.parseInt(Setting.getInstance().getProperty("max_player"))) {
                 Game game = new Game();
                 for (String username : loggedPlayers) {
                     game.addPlayer(username);
