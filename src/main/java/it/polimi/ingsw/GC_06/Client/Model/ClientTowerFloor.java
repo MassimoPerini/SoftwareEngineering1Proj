@@ -16,4 +16,12 @@ public class ClientTowerFloor {
         spaceAction.addClientFamilyMember(clientFamilyMember);
     }
 
+    void removeFamilyMember()
+    {
+        spaceAction.reset();
+    }
+    void setNewCard(String card)
+    {
+        this.card = card;
+    }
 }

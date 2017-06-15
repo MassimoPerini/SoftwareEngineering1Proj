@@ -1,11 +1,10 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageClearBoard;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by massimo on 13/05/17.
@@ -15,17 +14,17 @@ import java.util.Map;
  * @author massimo
  * This class represents the main board of the game
  */
-public class Board {
+public class Board extends Observable{
     @NotNull private final Map<String, Tower> towers;
-    @NotNull private final ArrayList<MarketAndCouncil> marketAndCouncils;
-    @NotNull private final ArrayList<ProdHarvZone> prodHarvZones;
-    @NotNull private final ArrayList<MarketAndCouncil> councils;
+    @NotNull private final List<MarketAndCouncil> market;
+    @NotNull private final List<ProdHarvZone> prodHarvZones;
+    @NotNull private final List<MarketAndCouncil> councils;
 
-    public Board(Map<String, Tower> towers, ArrayList<MarketAndCouncil> marketAndCouncils, ArrayList<ProdHarvZone> prodHarvZones, ArrayList<MarketAndCouncil> councils)
+    public Board(Map<String, Tower> towers, List<MarketAndCouncil> marketAndCouncils, List<ProdHarvZone> prodHarvZones, List<MarketAndCouncil> councils)
     {
         super();
         this.towers = towers;
-        this.marketAndCouncils = marketAndCouncils;
+        this.market = marketAndCouncils;
         this.prodHarvZones = prodHarvZones;
         this.councils = councils;
 
@@ -36,9 +35,29 @@ public class Board {
         return towers;
     }
 
+    public void resetFamilyMembers()
+    {
+        for (Tower tower : towers.values()) {
+            tower.removeFamilyMembers();
+        }
+        for (MarketAndCouncil marketAndCouncil : market) {
+            marketAndCouncil.removeFamilyMembers();
+        }
+        for (ProdHarvZone prodHarvZone : prodHarvZones) {
+            prodHarvZone.removeFamilyMembers();
+        }
+        for (MarketAndCouncil council : councils) {
+            council.removeFamilyMembers();
+        }
 
-    public List<MarketAndCouncil> getMarketAndCouncils() {
-        return Collections.unmodifiableList(marketAndCouncils);
+
+        MessageServer messageClearBoard = new MessageClearBoard();
+        setChanged();
+        notifyObservers(messageClearBoard);
+    }
+
+    public List<MarketAndCouncil> getMarket() {
+        return Collections.unmodifiableList(market);
     }
 
     public List<ProdHarvZone> getProdHarvZones() {

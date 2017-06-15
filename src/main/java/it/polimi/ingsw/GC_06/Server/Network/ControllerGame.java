@@ -39,7 +39,7 @@ public class ControllerGame implements Observer {
         for (ProdHarvZone prodHarvZone : game.getBoard().getProdHarvZones()) {
             prodHarvZone.addObserver(this);
         }
-        for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarketAndCouncils()) {
+        for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarket()) {
             marketAndCouncil.addObserver(this);
         }
         Map<String, Player> players = game.getGameStatus().getPlayers();

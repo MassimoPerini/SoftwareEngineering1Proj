@@ -15,7 +15,7 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 
 public class ActionPlace {
     private final List<Effect> effects;
-	private final ArrayList<FamilyMember> members;
+	private List<FamilyMember> members;
 	private int price;
 	
 	public ActionPlace(List<Effect> effect, int price) {
@@ -40,6 +40,11 @@ public class ActionPlace {
 		if (member == null)
 			throw new NullPointerException();
 		return member.getValue() >= price;
+	}
+
+	public void removeFamilyMembers()
+	{
+		this.members = new ArrayList<>();
 	}
 
 	/**

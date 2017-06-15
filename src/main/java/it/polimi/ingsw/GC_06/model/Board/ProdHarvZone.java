@@ -47,6 +47,12 @@ public class ProdHarvZone extends Observable{
 		return actionPlaces.get(index).isAllowed(familyMember);
 	}
 
+	void removeFamilyMembers()
+	{
+		for (ActionPlace actionPlace : actionPlaces) {
+			actionPlace.removeFamilyMembers();
+		}
+	}
 
 	public List<Effect> getEffect(int index) {
 		

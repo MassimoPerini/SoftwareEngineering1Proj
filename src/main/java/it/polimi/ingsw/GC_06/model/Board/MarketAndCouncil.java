@@ -31,4 +31,11 @@ public class MarketAndCouncil extends Observable
 		return Collections.unmodifiableList(actionPlaces.get(index).getEffects());
 	}
 
+	void removeFamilyMembers()
+	{
+		for (ActionPlace actionPlace : actionPlaces) {
+			actionPlace.removeFamilyMembers();
+		}
+	}
+
 }

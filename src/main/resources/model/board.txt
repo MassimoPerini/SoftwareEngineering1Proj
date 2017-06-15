@@ -321,7 +321,7 @@
       "obs": []
     }
   },
-  "marketAndCouncils": [
+  "market": [
     {
       "actionPlaces": [
         {
@@ -419,5 +419,7 @@
       "changed": false,
       "obs": []
     }
-  ]
+  ],
+  "changed": false,
+  "obs": []
 }

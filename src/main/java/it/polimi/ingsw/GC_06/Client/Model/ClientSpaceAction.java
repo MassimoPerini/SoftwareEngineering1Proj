@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -8,9 +9,11 @@ import java.util.List;
 public class ClientSpaceAction {
     private List<ClientFamilyMember> familyMembers;
 
-    public void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
+    void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
     }
 
-    public void reset() {
+    void reset() {
+        familyMembers = new LinkedList<>();
+        //notify
     }
 }

@@ -4,6 +4,7 @@ package it.polimi.ingsw.GC_06;
 import it.polimi.ingsw.GC_06.Client.Network.ClientOrchestrator;
 import it.polimi.ingsw.GC_06.Client.Network.ClientSocket;
 import it.polimi.ingsw.GC_06.ViewController.CmdViewController.LoginViewController;
+import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -21,6 +22,7 @@ public class AppClient {
     public static void main(String[] args) throws IOException {
 
         System.out.println("Che connessione vuoi?");
+
         ClientOrchestrator clientOrchestrator = new ClientOrchestrator(new ClientSocket(new Socket("127.0.0.1", 1337)));
         LoginViewController loginViewController = new LoginViewController(clientOrchestrator);
 

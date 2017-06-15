@@ -2,12 +2,14 @@ package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnTower;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageNewCards;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageRemoveCard;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 
@@ -96,11 +98,18 @@ public class Tower extends Observable{
      */
     public void shuffle()
     {
+        LinkedList<DevelopmentCard> addedCards = new LinkedList<>();
+
         for (int i=0;i<this.towerFloors.size();i++)
         {
             this.towerFloors.get(i).setCard(cards.get(0));
+            addedCards.add(cards.get(0));
             cards.remove(0);
         }
+
+        MessageServer messageServer = new MessageNewCards(addedCards, this.color);
+        setChanged();
+        notifyObservers(messageServer);
     }
 
     //TODO create addFamilyMemeber here
@@ -111,6 +120,13 @@ public class Tower extends Observable{
         setChanged();
         notifyObservers(message);
         return res;
+    }
+
+    void removeFamilyMembers()
+    {
+        for (TowerFloor towerFloor : towerFloors) {
+            towerFloor.removeFamilyMembers();
+        }
     }
 
     public void addFamilyMember(FamilyMember familyMember, int index)

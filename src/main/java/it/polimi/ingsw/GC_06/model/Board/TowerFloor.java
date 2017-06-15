@@ -52,6 +52,11 @@ public class TowerFloor {
             throw new IllegalStateException();
     }
 
+    void removeFamilyMembers()
+    {
+        actionPlace.removeFamilyMembers();
+    }
+
     /**
      * return the associated card and remove it from the ActionSpace
      * @return
