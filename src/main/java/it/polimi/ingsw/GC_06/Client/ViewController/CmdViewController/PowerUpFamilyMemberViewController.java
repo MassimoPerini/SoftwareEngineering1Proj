@@ -1,14 +1,4 @@
-package it.polimi.ingsw.GC_06.ViewController.CmdViewController;
-
-import it.polimi.ingsw.GC_06.View.CmdView;
-import it.polimi.ingsw.GC_06.View.CommandView;
-import it.polimi.ingsw.GC_06.ViewController.MainController;
-import it.polimi.ingsw.GC_06.ViewController.ViewController;
-import it.polimi.ingsw.GC_06.model.Action.Action;
-import it.polimi.ingsw.GC_06.model.Action.PowerUpFamilyMember;
-import it.polimi.ingsw.GC_06.model.Cancel.NetworkAdapter;
-import it.polimi.ingsw.GC_06.model.Cancel.TestAdapter;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
+package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 
 /**
  * Created by massimo on 27/05/17.

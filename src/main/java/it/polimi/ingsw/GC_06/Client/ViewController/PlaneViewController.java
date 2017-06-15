@@ -1,11 +1,9 @@
-package it.polimi.ingsw.GC_06.ViewController;
+package it.polimi.ingsw.GC_06.Client.ViewController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.stage.StageStyle;
-
-import javax.swing.*;
 
 /**
  * Created by massimo on 24/05/17.

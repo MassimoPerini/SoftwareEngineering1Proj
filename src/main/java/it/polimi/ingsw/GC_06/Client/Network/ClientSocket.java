@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 public class ClientSocket extends Client {
 
     @NotNull private final BufferedReader socketIn;
-    @NotNull private final OutputStreamWriter socketOut;
+    @NotNull private final PrintWriter socketOut;
     @NotNull private final ExecutorService pool;
     @NotNull private final Gson readGson;
     @NotNull private final Gson writeGson;
@@ -28,8 +28,8 @@ public class ClientSocket extends Client {
     public ClientSocket(@NotNull Socket socket) throws IOException {
         this.socket = socket;
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.socketOut = new OutputStreamWriter(socket.getOutputStream());
-        this.pool = Executors.newFixedThreadPool(1);
+        this.socketOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+        this.pool = Executors.newCachedThreadPool();
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageServer.class, "type"); //.registerSubtype(.class);
         readGson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
 
@@ -75,11 +75,12 @@ public class ClientSocket extends Client {
 
     @Override
     public void submit(String string) {
-        pool.submit(() -> {
+        pool.execute(() -> {
             //Serializzazione e invio
             try {
-                socketOut.write(string);
+                socketOut.println(string);
                 socketOut.flush();
+                System.out.println("Client: SENT "+string);
             }
             catch(Exception e)
             {

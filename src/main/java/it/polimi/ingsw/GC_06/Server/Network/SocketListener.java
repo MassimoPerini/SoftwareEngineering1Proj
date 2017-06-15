@@ -32,6 +32,7 @@ public class SocketListener implements Runnable {
                 //Waits for a new client to connect
                 Socket inputSocket = serverSocket.accept();
                 // creates the view (server side) associated with the new client
+                System.out.println("New connection on Socket");
                 ServerPlayerSocket serverPlayerSocket = new ServerPlayerSocket(inputSocket, loginHub);
                 // a new thread handle the connection with the view
                 executor.submit(serverPlayerSocket);

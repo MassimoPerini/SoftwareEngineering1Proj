@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.View;
+package it.polimi.ingsw.GC_06.Client.View;
 
 /**
  * Created by massimo on 27/05/17.

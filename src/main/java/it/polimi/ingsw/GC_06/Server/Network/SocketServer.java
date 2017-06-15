@@ -28,25 +28,25 @@ public class SocketServer extends Server implements Observer {
     }
 
     @Override
-    public void start(){
+    void start(){
         ExecutorService executor = Executors.newCachedThreadPool();
         SocketListener socketListener = new SocketListener(this, loginHub);
         executor.submit(socketListener);
     }
 
-    public synchronized void addPlayerSocket(@NotNull ServerPlayerSocket serverPlayerSocket)
+    synchronized void addPlayerSocket(@NotNull ServerPlayerSocket serverPlayerSocket)
     {
         this.socketList.add(serverPlayerSocket);
         serverPlayerSocket.addObserver(this);       //I'm the observer of the socket's client
     }
     @Override
-    public boolean isPlayerManaged(@NotNull String player)
+    boolean isPlayerManaged(@NotNull String player)
     {
         return socketFromId.get(player) != null;
     }
 
     @Override
-    public void sendMessageToPlayer(@NotNull String player, @NotNull Object o) throws IOException
+    void sendMessageToPlayer(@NotNull String player, @NotNull Object o) throws IOException
     {
         if (!isPlayerManaged(player))
             throw new IllegalArgumentException();
@@ -54,7 +54,7 @@ public class SocketServer extends Server implements Observer {
     }
 
     @Override
-    public void sendMessageToGame(int game, @NotNull Object o) throws IOException {
+    void sendMessageToGame(int game, @NotNull Object o) throws IOException {
         if (socketsFromGame.get(game)==null)
             return;
 
@@ -70,7 +70,14 @@ public class SocketServer extends Server implements Observer {
     }
 
     @Override
-    public synchronized boolean startGame(@NotNull Map<String, Player> players, int id)
+    void stop() throws IOException {
+        for (ServerPlayerSocket serverPlayerSocket : socketList) {
+            serverPlayerSocket.finish();
+        }
+    }
+
+    @Override
+    synchronized boolean startGame(@NotNull Map<String, Player> players, int id)
     {
         boolean result = false;
         List <ServerPlayerSocket> gamePlayers = new ArrayList();

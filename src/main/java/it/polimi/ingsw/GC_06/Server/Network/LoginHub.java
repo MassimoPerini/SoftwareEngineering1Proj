@@ -73,7 +73,7 @@ public class LoginHub {
 
         /** qui faccio il controllo anche sul fatto che un giocatore non può essere registrato su più partite */
 
-
+        System.out.println("LoginHub: tentativo di loggare l'utente: "+user);
 
         if(access(user)) {
 

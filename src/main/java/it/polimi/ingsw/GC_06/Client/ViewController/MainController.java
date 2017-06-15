@@ -1,12 +1,4 @@
-package it.polimi.ingsw.GC_06.ViewController;
-
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Action.Action;
-import it.polimi.ingsw.GC_06.model.Action.PowerUpFamilyMember;
-import it.polimi.ingsw.GC_06.model.Resource.Resource;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
+package it.polimi.ingsw.GC_06.Client.ViewController;
 
 /**
  * Created by massimo on 21/05/17.

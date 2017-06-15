@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.View;
+package it.polimi.ingsw.GC_06.Client.View;
 
 import java.util.Scanner;
 
@@ -41,6 +41,7 @@ public class CmdView implements CommandView {
 
     @Override
     public int getInt(int start, int end) {
+        this.print();
         boolean ok = true;
         int res=0;
 
@@ -52,6 +53,7 @@ public class CmdView implements CommandView {
                 {
                     this.addLocalizedText("error_input");
                     this.print();
+                    ok = false;
                 }
             } catch (Exception e) {
                 this.addLocalizedText("error_input");

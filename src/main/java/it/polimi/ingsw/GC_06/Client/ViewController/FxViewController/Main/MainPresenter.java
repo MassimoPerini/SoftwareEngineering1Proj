@@ -1,6 +1,6 @@
-package it.polimi.ingsw.GC_06.ViewController.FxViewController.Main;
+package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Main;
 
-import it.polimi.ingsw.GC_06.ViewController.FxViewController.Board.BoardView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board.BoardView;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

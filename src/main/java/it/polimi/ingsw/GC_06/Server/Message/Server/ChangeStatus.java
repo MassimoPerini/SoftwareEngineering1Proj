@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_06.Server.Message.Server;
 
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import it.polimi.ingsw.GC_06.ViewController.CmdViewController.LoginViewController;
+import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.LoginViewController;
 
 /**
  * Created by massimo on 13/06/17.

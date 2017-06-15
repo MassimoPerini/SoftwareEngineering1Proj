@@ -1,13 +1,4 @@
-package it.polimi.ingsw.GC_06.ViewController.CmdViewController;
-
-import de.vandermeer.asciitable.AsciiTable;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
-import it.polimi.ingsw.GC_06.ViewController.ViewController;
-import it.polimi.ingsw.GC_06.model.Board.*;
-import it.polimi.ingsw.GC_06.model.Card.Requirement;
-import it.polimi.ingsw.GC_06.model.State.Game;
-
-import java.util.List;
+package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 
 /**
  * Created by massimo on 01/06/17.

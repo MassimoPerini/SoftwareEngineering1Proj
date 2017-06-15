@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.ViewController.FxViewController.Main;
+package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Main;
 
 import com.airhacks.afterburner.views.FXMLView;
 

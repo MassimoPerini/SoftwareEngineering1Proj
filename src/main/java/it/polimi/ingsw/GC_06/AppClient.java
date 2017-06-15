@@ -1,13 +1,14 @@
 package it.polimi.ingsw.GC_06;
 
 
+import it.polimi.ingsw.GC_06.Client.ClientInputController;
 import it.polimi.ingsw.GC_06.Client.Network.ClientOrchestrator;
-import it.polimi.ingsw.GC_06.Client.Network.ClientSocket;
-import it.polimi.ingsw.GC_06.ViewController.CmdViewController.LoginViewController;
-import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.Client.View.CmdView;
+import it.polimi.ingsw.GC_06.Client.View.CommandView;
+import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.ConnectionTypeViewController;
+import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.LoginViewController;
 
 import java.io.IOException;
-import java.net.Socket;
 
 /**
  * Hello world!
@@ -21,13 +22,23 @@ public class AppClient {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("Che connessione vuoi?");
+        CommandView commandView = new CmdView();
+        commandView.addLocalizedText("Che interfaccia vuoi? 0: CLI, 1: GUI");
+        int view = commandView.getInt(0,1);
+        ClientOrchestrator clientOrchestrator;
 
-        ClientOrchestrator clientOrchestrator = new ClientOrchestrator(new ClientSocket(new Socket("127.0.0.1", 1337)));
-        LoginViewController loginViewController = new LoginViewController(clientOrchestrator);
+        if (view == 0)
+        {
+            ConnectionTypeViewController connectionTypeViewController = new ConnectionTypeViewController();
+            connectionTypeViewController.viewWillAppear();
+            clientOrchestrator = connectionTypeViewController.getAnswer();
 
-        //TODO Implement FIX: https://futurestud.io/tutorials/how-to-deserialize-a-list-of-polymorphic-objects-with-gson
-        //TODO http://stackoverflow.com/questions/19588020/gson-serialize-a-list-of-polymorphic-objects
+            ClientInputController clientInputController = new ClientInputController();
+            clientOrchestrator.addObserver(clientInputController);
 
+            LoginViewController loginViewController = new LoginViewController(clientOrchestrator);
+            loginViewController.viewWillAppear();
+            System.out.println("Sarà avvenuto il login?");
+        }
     }
 }

@@ -1,6 +1,6 @@
-package it.polimi.ingsw.GC_06.ViewController.FxViewController;
+package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController;
 
-import it.polimi.ingsw.GC_06.ViewController.FxViewController.Main.MainView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Main.MainView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -6,7 +6,7 @@ import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Server.Message.Client.Login;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import it.polimi.ingsw.GC_06.Server.Message.Server.ChangeStatus;
+import it.polimi.ingsw.GC_06.Server.Message.Server.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -22,7 +22,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
 
     @NotNull private final Socket socket;
     @NotNull private final BufferedReader socketIn;
-    @NotNull private final OutputStreamWriter socketOut;
+    @NotNull private final PrintWriter socketOut;
     @NotNull private final ExecutorService executor;
     @NotNull private final Gson readGson;
     @NotNull private final Gson writeGson;
@@ -46,13 +46,19 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     public ServerPlayerSocket(@NotNull Socket socket, LoginHub loginHub) throws IOException {
         this.socket = socket;
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.socketOut = new OutputStreamWriter(socket.getOutputStream());
+        this.socketOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
         this.executor = Executors.newFixedThreadPool(1);
         this.loginHub = loginHub;
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageClient.class, "type").registerSubtype(Login.class);
         readGson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
-        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type");//.registerSubtype(BoardActionOnTower.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
+                .registerSubtype(MessageAddCard.class)
+                .registerSubtype(MessageAddMemberOnTower.class)
+                .registerSubtype(MessageClearBoard.class)
+                .registerSubtype(MessageNewCards.class)
+                .registerSubtype(MessageRemoveCard.class)
+                .registerSubtype(MessageUpdateResource.class);
         writeGson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
     }
 
@@ -62,18 +68,22 @@ public class ServerPlayerSocket extends Observable implements Runnable {
         try{
             String input;
             //Expected login here
-            while (((input = socketIn.readLine()) != null) && player == null)
+            System.out.println("ServerPlayerSocket: waiting login...");
+            while ( player == null)
             {
-                try {
-                    loginHub.addUser(input);
-                    player = input;
-                }catch (Exception e)
-                {
-                    send(new ChangeStatus());
+                input = socketIn.readLine();
+                if(input != null) {
+                    System.out.println("SERVER: RECEIVED "+input);
+                    try {
+                        loginHub.addUser(input);
+                        player = input;
+                    } catch (Exception e) {
+                        System.out.println("Non va bene!");
+                    }
                 }
             }
 
-
+            System.out.println("ServerPlayerSocket: LOGGED: "+player+"\nNow listening commands...");
             while (true)
             {
                 while ((input = socketIn.readLine()) != null)
@@ -88,19 +98,15 @@ public class ServerPlayerSocket extends Observable implements Runnable {
         }
         catch(IOException e)
         {
-
+            System.out.println("Ti sei sloggato!");
         }
     }
 
     public void send(MessageServer messageServer) throws IOException {
         executor.submit (() -> {
-            try {
                 String res = writeGson.toJson(messageServer);
-                socketOut.write(res);
+                socketOut.println(res);
                 socketOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         });
     }
 
