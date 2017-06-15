@@ -29,6 +29,13 @@ public class ServerOrchestrator extends Observable implements Observer {
         server.addObserver(this);
     }
 
+    public void start()
+    {
+        for (Server server : servers) {
+            server.start();
+        }
+    }
+
     public void startGame(Map<String, Player> players, int id)
     {
         List<Server> servers = new LinkedList<>();

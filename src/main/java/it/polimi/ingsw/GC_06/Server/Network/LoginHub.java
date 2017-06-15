@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.Server.Network;
 
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.*;
@@ -19,18 +20,18 @@ public class LoginHub {
     private Game game;
     Timer timer = new Timer();
 
-    public static LoginHub instance = new LoginHub();
+    //public static LoginHub instance = new LoginHub();
 
-    ServerOrchestrator serverOrchestrator = new ServerOrchestrator();
+    private final ServerOrchestrator serverOrchestrator;
 
 
-    private LoginHub() {
-
+    public LoginHub(@NotNull ServerOrchestrator serverOrchestrator) {
+        this.serverOrchestrator = serverOrchestrator;
     }
 
-    public static LoginHub getInstance() {
+   /*public static LoginHub getInstance() {
         return instance;
-    }
+    }*/
     /**
      * @param username
      *
@@ -108,15 +109,9 @@ public class LoginHub {
 
         /** la lista contiene l'elenco di tutti i giocatori effettivamente registrati a tutti i giochi  quindi */
 
-        if (totPlayers.contains(user)) {
-            return false;
-        }
-        return true;
+        return !totPlayers.contains(user);
     }
 
-    public void setServerOrchestrator(ServerOrchestrator serverOrchestrator) {
-        this.serverOrchestrator = serverOrchestrator;
-    }
 
     /**
      *

@@ -19,6 +19,7 @@ public class SocketServer extends Server implements Observer {
     private final List<ServerPlayerSocket> socketList;
     @NotNull private final Map<String, ServerPlayerSocket> socketFromId;
     @NotNull private final Map<Integer, List<ServerPlayerSocket>> socketsFromGame;
+    @NotNull private LoginHub loginHub;
 
     public SocketServer() {
         this.socketList = new ArrayList<>();
@@ -29,7 +30,7 @@ public class SocketServer extends Server implements Observer {
     @Override
     public void start(){
         ExecutorService executor = Executors.newCachedThreadPool();
-        SocketListener socketListener = new SocketListener(this);
+        SocketListener socketListener = new SocketListener(this, loginHub);
         executor.submit(socketListener);
     }
 
@@ -61,6 +62,11 @@ public class SocketServer extends Server implements Observer {
         for (ServerPlayerSocket socket : sockets) {
             socket.send((MessageServer) o);     //TODO fix it
         }
+    }
+
+    @Override
+    public void setLoginHub(LoginHub loginHub) {
+        this.loginHub = loginHub;
     }
 
     @Override

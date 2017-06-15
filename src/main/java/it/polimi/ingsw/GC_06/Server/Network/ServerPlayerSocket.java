@@ -26,6 +26,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     @NotNull private final ExecutorService executor;
     @NotNull private final Gson readGson;
     @NotNull private final Gson writeGson;
+    @NotNull private final LoginHub loginHub;
 
     private String player;
     private int game;
@@ -42,11 +43,12 @@ public class ServerPlayerSocket extends Observable implements Runnable {
         this.game = game;
     }
 
-    public ServerPlayerSocket(@NotNull Socket socket) throws IOException {
+    public ServerPlayerSocket(@NotNull Socket socket, LoginHub loginHub) throws IOException {
         this.socket = socket;
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.socketOut = new OutputStreamWriter(socket.getOutputStream());
         this.executor = Executors.newFixedThreadPool(1);
+        this.loginHub = loginHub;
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageClient.class, "type").registerSubtype(Login.class);
         readGson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
@@ -63,7 +65,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
             while (((input = socketIn.readLine()) != null) && player == null)
             {
                 try {
-                    LoginHub.getInstance().addUser(input);
+                    loginHub.addUser(input);
                     player = input;
                 }catch (Exception e)
                 {

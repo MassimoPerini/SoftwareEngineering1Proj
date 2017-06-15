@@ -12,10 +12,12 @@ public class SocketListener implements Runnable {
 
     private static final int PORT = 1337;
     private SocketServer socketServer;
+    private LoginHub loginHub;
 
-    public SocketListener (SocketServer socketServer)
+    public SocketListener (SocketServer socketServer, LoginHub loginHub)
     {
         this.socketServer = socketServer;
+        this.loginHub = loginHub;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class SocketListener implements Runnable {
                 //Waits for a new client to connect
                 Socket inputSocket = serverSocket.accept();
                 // creates the view (server side) associated with the new client
-                ServerPlayerSocket serverPlayerSocket = new ServerPlayerSocket(inputSocket);
+                ServerPlayerSocket serverPlayerSocket = new ServerPlayerSocket(inputSocket, loginHub);
                 // a new thread handle the connection with the view
                 executor.submit(serverPlayerSocket);
 
