@@ -10,7 +10,7 @@ import java.util.*;
 public class GameList {
 
     private static GameList instance = new GameList();
-    private Map<Game,List<String>> gameMap = new HashMap<>();
+    private Map<Game,List<String>> gameMap = new HashMap<>(); /** game and associated players */
 
     private GameList(){}
 
@@ -42,6 +42,18 @@ public class GameList {
             }
         }
         return null;
+    }
+
+    public void add(Game game, List<String> usernames){
+        gameMap.put(game,usernames);
+    }
+
+    /**
+     * it should eliminate the player from this list
+     * @param gameID
+     */
+    public void remove(int gameID,String username){
+        gameMap.get(gameID).remove(username);
     }
 
 }

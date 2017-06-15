@@ -4,10 +4,7 @@ import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 
 /**
@@ -19,6 +16,7 @@ public class LoginHub {
     private List<String> loggedPlayers = new ArrayList<>();
     private Trash playerTrash = new Trash();
     private int delay  = Integer.parseInt(Setting.getInstance().getProperty("timer"));
+    private Game game;
     Timer timer = new Timer();
 
     public static LoginHub instance = new LoginHub();
@@ -63,10 +61,10 @@ public class LoginHub {
         totPlayers.remove(username);
         /** qui mi fai ritornare il game id così io lo rimuovo dalla lista sul game */
         int gameID = GameList.getInstance().getGame(username);
-
         playerTrash.add(username,gameID);
+        /** abbiamo rimosso il player dalla partita*/
         GameList.getInstance().getGameId(gameID).remove(username);
-
+        GameList.getInstance().remove(gameID,username);
     }
 
     public void addUser(String user) throws IllegalArgumentException, IOException {
@@ -81,30 +79,25 @@ public class LoginHub {
             totPlayers.add(user);
             loggedPlayers.add(user);
 
-            Game game = new Game();
-
-            if(loggedPlayers.size() == Integer.parseInt((Setting.getInstance().getProperty("min_playes")))){
-
+            if(loggedPlayers.size() == 2 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
+                game = new Game();
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-
-
                             uploadPlayers(game,loggedPlayers);
                             game.start();
-
+                            GameList.getInstance().add(game,loggedPlayers);
                     }
                 },delay);
-
             }
             if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 timer.cancel();
-                for (String username : loggedPlayers) {
-                    game.addPlayer(username);
-                    game.start();
-                    /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
+                uploadPlayers(game,loggedPlayers);
+                game.start();
+                GameList.getInstance().add(game,loggedPlayers);
+
+                /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
                    // serverOrchestrator.startGame(game);
-                }
                 loggedPlayers = new ArrayList<>();
             }
 
@@ -159,6 +152,7 @@ public class LoginHub {
         for(String username : players){
             game.addPlayer(username);
         }
+        players = new LinkedList<>();
     }
 
 
