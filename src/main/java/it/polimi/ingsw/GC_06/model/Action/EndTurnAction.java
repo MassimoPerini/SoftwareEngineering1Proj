@@ -21,27 +21,7 @@ public class EndTurnAction implements Action {
     @Override
     public void execute() {
 
-        /*
-        for(String colour : cardColours ) {
 
-            /**prendo le carte di un certo colore possedute da un giocatore
-            int numbOfCards = (player.getPlayerBoard().getColouredCards(colour)).size();
-
-            /**prendo i valori di conversione associati a quella tipologia di carte (identificate dal colore)
-            ArrayList<Integer> conversionValues = conversionTable.getConversionTable().get(colour);
-
-            /** se ho meno valori di conversione che carte. Il mio numero di carte sarà uguale
-             * alla dimensione dell'array di concersione
-
-
-            if(numbOfCards > conversionValues.size()){
-                numbOfCards = conversionValues.size();
-            }
-            /** uso numbOfCards come indice per individuare la quantità di punti bonus che riceverò su una certa risorsa
-            int amount = conversionValues.get(numbOfCards);
-            player.getResourceSet().variateResource(resource,amount);
-
-        }*/
 
         game.endTurn();
     }

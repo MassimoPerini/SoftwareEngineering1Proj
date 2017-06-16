@@ -75,10 +75,10 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 if(input != null) {
                     System.out.println("SERVER: RECEIVED "+input);
                     try {
-                        loginHub.addUser(input);
+                        loginHub.loginHandler(input);
                         player = input;
                     } catch (Exception e) {
-                        System.out.println("Non va bene!");
+                        e.printStackTrace();
                     }
                 }
             }

@@ -16,7 +16,7 @@ public class LoginHub {
     private List<String> totPlayers = new ArrayList<>(); /** tutti i giocatori iscritti alle partire */
     private List<String> loggedPlayers = new ArrayList<>();
     private Trash playerTrash = new Trash();
-    private int delay  = Integer.parseInt(Setting.getInstance().getProperty("timer"));
+    private int delay  = 1000*20;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
     private Game game;
     Timer timer = new Timer();
 
@@ -75,8 +75,10 @@ public class LoginHub {
 
         System.out.println("LoginHub: tentativo di loggare l'utente: "+user);
 
-        if(access(user)) {
-
+        if(!access(user)) {
+            throw new IllegalStateException();
+        }
+            System.out.println("ti sto loggando");
             totPlayers.add(user);
             loggedPlayers.add(user);
 
@@ -86,6 +88,7 @@ public class LoginHub {
                     @Override
                     public void run() {
                             uploadPlayers(game,loggedPlayers);
+                        System.out.println("Sto creando il gioco");
                             game.start();
                             GameList.getInstance().add(game,loggedPlayers);
                     }
@@ -93,6 +96,7 @@ public class LoginHub {
             }
             if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 timer.cancel();
+                timer = new Timer();
                 uploadPlayers(game,loggedPlayers);
                 game.start();
                 GameList.getInstance().add(game,loggedPlayers);
@@ -102,7 +106,6 @@ public class LoginHub {
                 loggedPlayers = new ArrayList<>();
             }
 
-        }
     }
 
     public boolean access(String user) {

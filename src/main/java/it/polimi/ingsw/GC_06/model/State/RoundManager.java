@@ -92,6 +92,7 @@ public class RoundManager {
 
     private void newTurn()
     {
+        // resetBonusMalus
         shuffleCards();
     }
 

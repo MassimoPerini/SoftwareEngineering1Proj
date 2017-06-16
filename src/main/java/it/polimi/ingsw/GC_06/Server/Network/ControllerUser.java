@@ -25,6 +25,7 @@ public class ControllerUser implements Observer {
     public void start()
     {
         game.getStatuses().get(StateName.CHOOSING_CARD).addObserver(this);
+        //finiamo questo
     }
 
     @Override

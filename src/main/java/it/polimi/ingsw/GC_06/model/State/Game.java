@@ -21,7 +21,7 @@ public class Game {
     private final Board board;
     private final DiceSet diceSet;
     private final RoundManager roundManager;
-    private static Game game;
+
 
     //params
     private final int neutralFamilyMembers;
