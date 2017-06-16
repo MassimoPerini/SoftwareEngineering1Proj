@@ -38,12 +38,14 @@ public class FileLoader {
     private static final String DEFAULT_RES = "default_resource_path";
     private static final String DICES = "dices_path";
     private static final String PLAYER_BOARD = "player_board_path";
+   // private static final String GAME_MAP = "end_game_map";
 
 
     private String cardsRootPath;
     private String boardRootPath;
     private String defaultResourceRootPath;
     private String dicePath;
+   // private String endGameMap;
     private String playerBoardPath;
     private Gson gson;
 
@@ -57,6 +59,7 @@ public class FileLoader {
         defaultResourceRootPath = Setting.getInstance().getProperty(DEFAULT_RES);
         dicePath = Setting.getInstance().getProperty(DICES);
         playerBoardPath = Setting.getInstance().getProperty(PLAYER_BOARD);
+//        endGameMap = Setting.getInstance().getProperty(GAME_MAP);
     }
 
     public static FileLoader getFileLoader ()
@@ -87,6 +90,19 @@ public class FileLoader {
         gson.toJson(diceSet, fw);
         fw.close();
     }
+
+    /**public void writeEndMap() throws IOException {
+        FileWriter fw = new FileWriter("src/main/resources/model/end_game_map.txt");
+        Map<String,List<Integer>> endGameMap = new HashMap<>();
+        List list = new ArrayList();
+        list.addAll(Arrays.asList(1,2,3,4,5));
+        endGameMap.put("BLUE",list);
+        endGameMap.put("GREEN",list);
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        gson.toJson(endGameMap, fw);
+        fw.close();
+    }*/
+
 
     public DiceSet loadDiceSet() throws IOException {
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(dicePath));

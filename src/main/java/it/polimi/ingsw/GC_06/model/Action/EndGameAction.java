@@ -18,18 +18,22 @@ public class EndGameAction  implements Action{
     private Game game;
     private Player player;
     private it.polimi.ingsw.GC_06.model.Resource.Resource resource;
+    private int coeffiecient;
+    private Map<String,List<Integer>> conversionTable = new HashMap<>();
 
     public EndGameAction(Game game, Player player, it.polimi.ingsw.GC_06.model.Resource.Resource resource) {
         this.game = game;
         this.player = player;
         this.resource = resource;
+        coeffiecient = Integer.parseInt(Setting.getInstance().getProperty("end_game_coefficient"));
+        Map<String, List<Integer>> conversionTable = new HashMap<>();/**Setting.getInstance().getProperty("conversion_table")*/;
     }
 
     @Override
     public void execute() {
 
         /** ho la mappa delle conversioni delle carte che deve essere caricata da file*/
-        Map<String, List<Integer>> conversionTable = new HashMap<>();/**Setting.getInstance().getProperty("conversion_table")*/;
+
 
         Set<String> colours = conversionTable.keySet();
 
