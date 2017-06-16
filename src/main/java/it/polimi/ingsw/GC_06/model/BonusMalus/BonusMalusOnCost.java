@@ -15,7 +15,6 @@ public class BonusMalusOnCost {
     private ResourceSet bonusMalusEntity;
     private String colourTarget;
     private ActionType actionType;
-    private boolean permanent;
     private boolean ON;
 
     public BonusMalusOnCost(ResourceSet bonusMalusEntity, String colourTarget, ActionType actionType) {
@@ -31,5 +30,13 @@ public class BonusMalusOnCost {
 
         // qui semplicemente avviene la modifica del costo di una carta
         //developmentCard.getRequirements(). arriveremo ad un .variateResource(bonusMalusEntity)
+    }
+
+    public void setON(boolean ON) {
+        this.ON = ON;
+    }
+
+    public boolean isON() {
+        return ON;
     }
 }

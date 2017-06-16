@@ -6,7 +6,7 @@ package it.polimi.ingsw.GC_06.model.BonusMalus;
 public class BonusMalusOnAccess {
 
     private ActionType actionType;
-    private boolean permanent;
+    private boolean ON;
 
     public void  modify(boolean result){
         result = !result;
@@ -17,6 +17,10 @@ public class BonusMalusOnAccess {
     }
 
     public boolean isPermanent() {
-        return permanent;
+        return ON;
+    }
+
+    public void setON(boolean ON) {
+        this.ON = ON;
     }
 }

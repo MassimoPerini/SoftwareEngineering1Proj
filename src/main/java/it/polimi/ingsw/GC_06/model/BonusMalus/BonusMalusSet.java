@@ -10,16 +10,19 @@ import java.util.HashMap;
 public class BonusMalusSet {
 
     /** secondome va un po' ripensato*/
-    HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
-    HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnAction;
-    HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnConditions;
-    HashMap<String,ArrayList<BonusMalusOnEnd>> bonusMalusOnEnd;
-    HashMap<String,ArrayList<BonusMalusOnAccess>> bonusMalusOnAccess;
+    private  HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
+    private HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnAction;
+    private HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnConditions;
+    private HashMap<String,ArrayList<BonusMalusOnEnd>> bonusMalusOnEnd;
+    private HashMap<String,ArrayList<BonusMalusOnAccess>> bonusMalusOnAccess;
+    private HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnCost;
+
     public BonusMalusSet() {
         this.bonusMalusOnResources = new HashMap<String,ArrayList<BonusMalusOnResources>>();
         this.bonusMalusOnAction = new HashMap<String,ArrayList<BonusMalusOnAction>>();
         this.bonusMalusOnConditions = new HashMap<String,ArrayList<BonusMalusOnCost>>();
         this.bonusMalusOnEnd = new HashMap<>();
+        this.bonusMalusOnCost = new HashMap<>();
     }
 
     public HashMap<String, ArrayList<BonusMalusOnResources>> getBonusMalusOnResources() {
@@ -70,11 +73,32 @@ public class BonusMalusSet {
         return bonusMalusOnAccess;
     }
 
+    private void resetBonusMalus(){
+
+        for(BonusMalusOnAccess bonusMalus : this.bonusMalusOnAccess.get("ACCESS")){
+            bonusMalus.setON(true);
+        }
+
+        for(BonusMalusOnEnd bonusMalus : this.bonusMalusOnEnd.get("ENDMALUS")){
+            bonusMalus.setON(true);
+        }
+        for(BonusMalusOnResources bonusMalusOnResource : this.bonusMalusOnResources.get("RESOURCEMALUS")){
+            bonusMalusOnResource.setON(true);
+        }
+        for(BonusMalusOnAction bonusMalusOnAction : this.bonusMalusOnAction.get("ACTIONBONUSMALUS")){
+            bonusMalusOnAction.setON(true);
+        }
+
+        for(BonusMalusOnCost bonusMalusOnCost : this.bonusMalusOnCost.get("COSTBONUSMALUS")){
+            bonusMalusOnCost.setON(true);
+        }
+    }
+
     public int removeBonusMalusAction(ArrayList<BonusMalusOnAction> actions, int i){
 
         if(!actions.get(i).isPermanent()){
             actions.remove(i);
-           return  i--;
+            return  i--;
         }
         return i;
     }
