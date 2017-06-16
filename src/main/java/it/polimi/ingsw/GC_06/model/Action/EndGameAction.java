@@ -1,48 +1,47 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
-import it.polimi.ingsw.GC_06.model.Loader.Setting;
+import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
+import it.polimi.ingsw.GC_06.model.playerTools.RankingPlayer;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * Created by giuseppe on 6/16/17.
  */
-public class EndGameAction  implements Action{
+public class EndGameAction  implements Action {
 
-    private Game game;
-    private Player player;
+    private EndGameMap endGameMap;
+    private List<Player> players;
     private it.polimi.ingsw.GC_06.model.Resource.Resource resource;
-    private int coeffiecient;
-    private Map<String,List<Integer>> conversionTable = new HashMap<>();
+    private it.polimi.ingsw.GC_06.model.Resource.Resource extraResources;
+    private Game game;
 
-    public EndGameAction(Game game, Player player, it.polimi.ingsw.GC_06.model.Resource.Resource resource) {
-        this.game = game;
-        this.player = player;
+    public EndGameAction(EndGameMap endGameMap, List<Player> players, it.polimi.ingsw.GC_06.model.Resource.Resource resource) {
+        this.endGameMap = endGameMap;
+        this.players = players;
         this.resource = resource;
-        coeffiecient = Integer.parseInt(Setting.getInstance().getProperty("end_game_coefficient"));
-        Map<String, List<Integer>> conversionTable = new HashMap<>();/**Setting.getInstance().getProperty("conversion_table")*/;
     }
 
     @Override
     public void execute() {
 
-        /** ho la mappa delle conversioni delle carte che deve essere caricata da file*/
+        /** aggiungiamo i punti provenienti da endGameMap per tutti i giocatori */
 
-
-        Set<String> colours = conversionTable.keySet();
-
-        for(String colour : colours){
-           int numbOfcard =  player.getPlayerBoard().getDevelopmentCards(colour).size();
-           int bonus = conversionTable.get(colour).get(numbOfcard -1);
-           player.getResourceSet().variateResource(resource,bonus);
+        for(Player player : players){
+            this.turnCardsIntoPoints(player);
+            this.turnResourceIntoPoint(player);
+            this.addFinalPoint(player);
         }
 
+        this.getPointsFromRanking();
+
+        /** vorrei anche che questa classe mi dicesse chi ha vinto */
 
     }
 
@@ -52,4 +51,38 @@ public class EndGameAction  implements Action{
     public boolean isAllowed() {
         return false;
     }
+
+    private void turnCardsIntoPoints(Player player){
+
+        Set<String> colours = endGameMap.getEndGameMap().keySet();
+
+        for(String colour : colours){
+            int numbOfCards = player.getPlayerBoard().getDevelopmentCards(colour).size();
+            int endPoint = endGameMap.getEndGameMap().get(colour).get(numbOfCards);
+            player.getResourceSet().variateResource(resource, endPoint);
+        }
+
+    }
+
+    private void turnResourceIntoPoint(Player player){
+       int endPoint =  player.getResourceSet().totalResourceQuantity();
+       player.getResourceSet().variateResource(resource, endPoint);
+    }
+
+    private void addFinalPoint(Player player){
+
+        int endPoint = player.getResourceSet().getResourceAmount(resource);
+        player.getResourceSet().variateResource(resource,endPoint);
+    }
+
+    private void getPointsFromRanking(){
+        List<Player> ranking = RankingPlayer.getRanking(this.players,this.extraResources);
+
+        for(int i = 0; i < ranking.size(); i++){
+            int endPoints = this.endGameMap.getEndGameResourceMap().get(this.extraResources).get(i);
+            ranking.get(i).getResourceSet().variateResource(this.resource,endPoints);
+
+        }
+    }
+
 }
