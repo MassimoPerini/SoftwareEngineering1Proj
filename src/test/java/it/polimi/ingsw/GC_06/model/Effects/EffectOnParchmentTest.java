@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.StateName;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,10 +22,11 @@ public class EffectOnParchmentTest {
     private EffectOnParchment effectOnParchment;
     private ArrayList<ResourceSet> parchments;
     private Player player;
+    private Game game;
 
     @Before
     public void setUp() throws IOException {
-        Game game = new Game();
+        game = new Game();
         game.addPlayer("gabriele");
         player = game.getGameStatus().getPlayers().get("gabriele");
         parchments = new ArrayList<>();
@@ -52,9 +54,14 @@ public class EffectOnParchmentTest {
 
     @Test
     public void correctTransition() {
-        //effectOnParchment.execute(player);
-        //assertTrue(Game.getInstance().getGameStatus().getCurrentStatus()== StateName.IDLE);
-        //TODO capire come aggiungere le transizioni necessarie alla tabella
+        game.getGameStatus().changeState(TransitionType.ACTION_ON_MARKETCOUNSIL);
+        effectOnParchment.execute(player, game);
+        assertTrue(game.getGameStatus().getCurrentStatus().getID()==StateName.CHOOSING_PARCHMENT);
     }
+
+    /*@Test (expected =IllegalStateException.class)
+    public void incorrectTransition() {
+        effectOnParchment.execute(player, game);
+    }*/
 
 }

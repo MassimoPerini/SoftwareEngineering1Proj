@@ -97,4 +97,6 @@ public class GameStatus {
     public int getMinPlayers() {
         return minPlayers;
     }
+
+    public FsmNode getCurrentStatus() {return currentStatus;}
 }
