@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
@@ -17,6 +19,8 @@ public class BoardActionOnTower implements Action {
     private Action pickCard;
     private FamilyMember familyMember;
     private Game game;
+    private Player player;
+    private final ActionType ACTION_TYPE = ActionType.TOWER_ACTION;
 
     public BoardActionOnTower(Player player, int index, Tower tower, FamilyMember familyMember) {
         super();
@@ -28,6 +32,7 @@ public class BoardActionOnTower implements Action {
         this.tower = tower;
         this.familyMember = familyMember;
         this.pickCard = new PickCard(player, tower, index, familyMember.getValue());
+        this.player = player;
     }
 
     @Override
@@ -44,6 +49,8 @@ public class BoardActionOnTower implements Action {
         //this.familyMember.getValue() = super.getValueAction();
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
+        // qui modifichiamo il valore dell'azione prima che si compia
+        BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
 
         if (!isAllowed())
             throw new IllegalStateException();

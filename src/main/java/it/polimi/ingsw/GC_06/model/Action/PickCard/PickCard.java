@@ -49,6 +49,7 @@ public class PickCard implements Action {
         if (!tower.isNoPenalityAllowed()) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
             player.variateResource(malusResources);
+            //TODO INSERIAMO QUA LA CHIAMATA A FILTER CHE CI DIRÀ SE NON DOBBIAMO PAGARE PIÙ
         }
 
         //Apply ActionSpace effects

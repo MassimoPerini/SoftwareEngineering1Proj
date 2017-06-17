@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.BonusMalus;
 
+import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -78,6 +79,19 @@ public class BonusMalusHandler {
     }
 
     /** ultimo filtro è quello sui costi*/
+
+    public static void filter(Player player, ActionType actionType, DevelopmentCard developmentCard){
+        ArrayList<BonusMalusOnCost> bonusMalusOnCosts = player.getBonusMalusSet().getBonusMalusOnCost().get("BONUSMALUSONCOST");
+
+        for(int i = 0; i < bonusMalusOnCosts.size();i++){
+            BonusMalusOnCost bonusMalusOnCost = bonusMalusOnCosts.get(i);
+            if(bonusMalusOnCost.getActionType().equals(actionType)){
+                bonusMalusOnCost.modify(developmentCard);
+                player.getBonusMalusSet().removeBonusMalusCost(bonusMalusOnCosts,i);
+            }
+        }
+
+    }
 
     /** filtro per attivare tutti i bonus una volta per turno della carta */
     /** filtri sull'accesso*/

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -17,6 +19,7 @@ public class PayCard implements Action {
 
     private final Player player;
     private final DevelopmentCard developmentCard;
+    private final ActionType ACTION_TYPE = ActionType.PAYCARDACTION;
     private Game game;
 
     public PayCard(DevelopmentCard developmentCard, Player player)
@@ -36,6 +39,11 @@ public class PayCard implements Action {
 
         List<Requirement> satisfiedRequirements = new LinkedList<>();
         /** we must control if the player can afford the card */
+
+        //MODIFICHIAMO QUI LA CARTA
+
+        BonusMalusHandler.filter(player,ACTION_TYPE,developmentCard);
+
         for(Requirement requirement : developmentCard.getRequirements()){
             if(requirement.isSatisfied(player.getResourceSet()))
                 satisfiedRequirements.add(requirement);

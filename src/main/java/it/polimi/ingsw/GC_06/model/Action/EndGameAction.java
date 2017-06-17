@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import it.polimi.ingsw.GC_06.model.playerTools.RankingPlayer;
@@ -21,6 +23,7 @@ public class EndGameAction  implements Action {
     private it.polimi.ingsw.GC_06.model.Resource.Resource resource;
     private it.polimi.ingsw.GC_06.model.Resource.Resource extraResources;
     private Game game;
+    private final ActionType ACTION_TYPE = ActionType.END_GAME;
 
     public EndGameAction(EndGameMap endGameMap, List<Player> players, it.polimi.ingsw.GC_06.model.Resource.Resource resource) {
         this.endGameMap = endGameMap;
@@ -59,6 +62,7 @@ public class EndGameAction  implements Action {
         for(String colour : colours){
             int numbOfCards = player.getPlayerBoard().getDevelopmentCards(colour).size();
             int endPoint = endGameMap.getEndGameMap().get(colour).get(numbOfCards);
+            BonusMalusHandler.filter(player,ACTION_TYPE,endPoint,colour);
             player.getResourceSet().variateResource(resource, endPoint);
         }
 

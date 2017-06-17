@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action;
 
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
@@ -17,7 +19,9 @@ public class BoardActionOnMarketCouncil implements Action {
     private final int index;
     private final FamilyMember familyMember;
     private final ExecuteEffects executeEffects;
+    private Player player;
     private Game game;
+    private final ActionType ACTION_TYPE = ActionType.MARKET_ACTION;
 
     public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player)
     {
@@ -51,6 +55,7 @@ public class BoardActionOnMarketCouncil implements Action {
     @Override
     public boolean isAllowed() {
         boolean result =  marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed();
+        BonusMalusHandler.filter(player,ACTION_TYPE,result);
         return result;
     }
 }

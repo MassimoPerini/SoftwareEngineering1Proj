@@ -19,12 +19,14 @@ public class BonusMalusOnCost {
     private ResourceSet bonusMalusEntity;
     private List<String> colourTarget;
     private ActionType actionType;
+    private boolean permanent;
     private boolean ON;
 
-    public BonusMalusOnCost(ResourceSet bonusMalusEntity, List<String> colourTarget, ActionType actionType) {
+    public BonusMalusOnCost(ResourceSet bonusMalusEntity, List<String> colourTarget, ActionType actionType,boolean permanent) {
         this.bonusMalusEntity = bonusMalusEntity;
         this.colourTarget = colourTarget;
         this.actionType = actionType;
+        this.permanent = permanent;
     }
 
     /** chiediamo a massi questa cosa perchè non ricordo la struttura delle carte */
@@ -56,11 +58,19 @@ public class BonusMalusOnCost {
         return false;
     }
 
+    public ActionType getActionType() {
+        return actionType;
+    }
+
     public void setON(boolean ON) {
         this.ON = ON;
     }
 
     public boolean isON() {
         return ON;
+    }
+
+    public boolean isPermanent() {
+        return permanent;
     }
 }

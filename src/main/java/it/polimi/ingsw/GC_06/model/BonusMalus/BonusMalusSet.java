@@ -152,6 +152,14 @@ public class BonusMalusSet {
 
     }
 
+    public int removeBonusMalusCost(ArrayList<BonusMalusOnCost> bonusMalusOnCosts,int i){
+        if(!bonusMalusOnCosts.get(i).isPermanent()){
+            bonusMalusOnCosts.remove(i);
+            return i--;
+        }
+        return i;
+    }
+
 }
 
 

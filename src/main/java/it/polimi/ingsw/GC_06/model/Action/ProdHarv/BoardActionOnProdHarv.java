@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
@@ -22,6 +24,7 @@ public class BoardActionOnProdHarv implements Action {
     private final FamilyMember familyMember;
     private final StartProdHarv startProdHarv;
     private Game game;
+    private ActionType actionType;
 
     /**
      *
@@ -33,13 +36,14 @@ public class BoardActionOnProdHarv implements Action {
      * @param familyMember The family member placed
      */
 
-    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ProdHarvFilterCard selectProdHarvCard, AskUserCard askUserCardFilter , FamilyMember familyMember)
+    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ProdHarvFilterCard selectProdHarvCard, AskUserCard askUserCardFilter , FamilyMember familyMember,ActionType actionType)
     {
         super();
         if (player == null || prodHarvArea == null || familyMember == null || askUserCardFilter==null || selectProdHarvCard == null)
             throw new NullPointerException();
 
         this.prodHarvArea = prodHarvArea;
+        this.actionType = actionType;
         this.player = player;
         this.index = index;
         this.familyMember = familyMember;
@@ -54,6 +58,8 @@ public class BoardActionOnProdHarv implements Action {
     public void execute() {
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
+
+        BonusMalusHandler.filter(player,actionType,familyMember);
 
         if (!isAllowed())
             throw new IllegalStateException();
