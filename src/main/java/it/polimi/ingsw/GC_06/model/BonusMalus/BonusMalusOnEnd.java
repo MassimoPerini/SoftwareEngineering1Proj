@@ -3,31 +3,31 @@ package it.polimi.ingsw.GC_06.model.BonusMalus;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
+import java.util.List;
+
 
 /**
  * Created by giuseppe on 6/6/17.
  */
 public class BonusMalusOnEnd {
 
-    private Resource bonusMalusTarget;
-    private String colour;
+    private int bonusMalusEntity;
+    private int coefficient;
+    private List<String> colours;
     private ActionType actionType;
     private boolean permanent;
     private boolean ON;
 
-    public BonusMalusOnEnd(Resource bonusMalusTarget,String colour, ActionType actionType) {
-        this.bonusMalusTarget = bonusMalusTarget;
-
-        this.colour = colour;
+    public BonusMalusOnEnd(int bonusMalusEntity, int coefficient,List<String> colours, ActionType actionType) {
+        this.coefficient = coefficient;
+        this.colours = colours;
         this.actionType = actionType;
+        this.ON = true;
     }
 
-    public void modify(ResourceSet targetResourceSet){
+    public void modify(int endPoints){
 
-        if(targetResourceSet.isIncluded(bonusMalusTarget)){
-            int variation = targetResourceSet.getResources().get(bonusMalusTarget);
-            targetResourceSet.variateResource(bonusMalusTarget,variation);
-        }
+        endPoints = this.bonusMalusEntity;
 
     }
 
@@ -35,8 +35,8 @@ public class BonusMalusOnEnd {
         return actionType;
     }
 
-    public String getColour() {
-        return colour;
+    public List<String> getColour() {
+        return colours;
     }
 
     public boolean isPermanent() {

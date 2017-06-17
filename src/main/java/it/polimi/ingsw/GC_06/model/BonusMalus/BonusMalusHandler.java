@@ -64,14 +64,14 @@ public class BonusMalusHandler {
         }
     }
     /**filtro sui bonus e i malus di fine turno*/
-    public static void filter(Player player,ActionType actionType,ResourceSet resourceSet, String colour){
+    public static void filter(Player player,ActionType actionType,int endpoints, String colour){
 
         ArrayList<BonusMalusOnEnd> bonusMalusOnEnds = player.getBonusMalusSet().getBonusMalusOnEnd().get("ENDBONUSMALUS");
 
         for(int i = 0; i < bonusMalusOnEnds.size(); i++){
             BonusMalusOnEnd bonusMalusOnEnd = bonusMalusOnEnds.get(i);
-            if(bonusMalusOnEnd.getActionType().equals(actionType) && bonusMalusOnEnd.getColour().equals(colour)){
-                bonusMalusOnEnd.modify(resourceSet);
+            if(bonusMalusOnEnd.getColour().contains(colour) && bonusMalusOnEnd.getActionType().equals(actionType)){
+                bonusMalusOnEnd.modify(endpoints);
                 player.getBonusMalusSet().removeBonusMalusEnd(bonusMalusOnEnds,i);
             }
         }
