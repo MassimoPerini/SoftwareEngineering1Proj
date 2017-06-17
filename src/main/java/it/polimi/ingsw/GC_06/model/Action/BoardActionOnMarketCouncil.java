@@ -55,7 +55,7 @@ public class BoardActionOnMarketCouncil implements Action {
     @Override
     public boolean isAllowed() {
         boolean result =  marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed();
-        BonusMalusHandler.filter(player,ACTION_TYPE,result);
+        //BonusMalusHandler.filter(player,ACTION_TYPE,result);
         return result;
     }
 }

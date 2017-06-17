@@ -40,7 +40,7 @@ public class BonusMalusOnCostTest {
         coloursTarget.add("GREEN");
         coloursTarget.add("PURPLE");
         card = new DevelopmentCard("Peppe",1,requirementList,effectList,colour,effectMap);
-        bonusMalusOnCost = new BonusMalusOnCost(bonusMalusEntity,coloursTarget, ActionType.PAYCARDACTION);
+        bonusMalusOnCost = new BonusMalusOnCost(bonusMalusEntity,coloursTarget, ActionType.PAYCARDACTION,true);
     }
 
     @Test
