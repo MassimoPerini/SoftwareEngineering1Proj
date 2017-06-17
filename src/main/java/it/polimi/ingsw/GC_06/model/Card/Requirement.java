@@ -52,6 +52,10 @@ public class Requirement {
         player.variateResource(cost);
     }
 
+    public ResourceSet getCost() {
+        return cost;
+    }
+
     @Override
     public String toString() {
         return "Requirement{" +

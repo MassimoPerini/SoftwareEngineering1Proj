@@ -73,19 +73,23 @@ public class DevelopmentCard extends Card
         return false;
     }
 
+    public int getEra() {
+        return era;
+    }
+
+    public List<Requirement> getRequirements() {
+        return requirements;
+    }
+
     public List<Effect> getImmediateEffects() {
-    	return Collections.unmodifiableList(this.immediateEffects);
+        return immediateEffects;
     }
 
     public String getIdColour() {
         return idColour;
     }
 
-    public List<Requirement> getRequirements() {
-        return Collections.unmodifiableList(requirements);
-    }
-
-    public int getEra() {
-        return era;
+    public Map<Integer, List<ProdHarvEffect>> getProdHarvEffects() {
+        return prodHarvEffects;
     }
 }
