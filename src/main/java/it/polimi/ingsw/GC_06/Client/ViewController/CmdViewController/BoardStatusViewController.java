@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 /**
  * Created by massimo on 01/06/17.
  */
-public class BoardStatusViewController /**implements ViewController*/ {
+public class BoardStatusViewController /**implements ViewPresenterCLI*/ {
     /**
     AsciiTable at;
 

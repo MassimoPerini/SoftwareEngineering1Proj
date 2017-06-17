@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Login;
 
-import it.polimi.ingsw.GC_06.Client.Network.ClientOrchestrator;
+import it.polimi.ingsw.GC_06.Client.ClientInputController;
+import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,31 +18,27 @@ import java.util.ResourceBundle;
 /**
  * Created by massimo on 15/06/17.
  */
-public class LoginPresenter implements Observer, Initializable{
+public class LoginPresenter {
 
     @FXML private TextField inputUsernameLogin;
     @FXML private Label statusLogin;
-    @Inject private ClientOrchestrator clientOrchestrator;
+    @Inject private ClientInputController clientInputController;
 
     public void handleSubmitLogin(ActionEvent event) {
         //Invoked when user wants to login
         String username = inputUsernameLogin.getText();
-        clientOrchestrator.send(username);
+        clientInputController.getClientNetworkOrchestrator().send(username);
+        statusLogin.setText("Sarà avvenuto il login?");
 
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        //
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        //Init the presenter...
-    }
 
     @PostConstruct
     public void init() {
         System.out.println("Init after Dep. Injection");
+    /*    clientInputController.getMainClientModel().getClientStates().get(ClientStateName.LOGIN_FAIL).addObserver(this);
+        clientInputController.getMainClientModel().getClientStates().get(ClientStateName.LOGIN_SUCCESS).addObserver(this);
+        */
     }
+
 }

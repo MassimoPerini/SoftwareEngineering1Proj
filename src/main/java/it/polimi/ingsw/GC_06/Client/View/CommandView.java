@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.Client.View;
 /**
  * Created by massimo on 27/05/17.
  */
-public interface CommandView {
+public interface CommandView extends Runnable{
 
     void addLocalizedText(String string);
     void flush();
@@ -11,5 +11,7 @@ public interface CommandView {
     void print();
     int getInt(int start, int end);
     String getString();
+    void sleep();
+    void unload();
 
 }

@@ -3,10 +3,10 @@ package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 /**
  * Created by massimo on 27/05/17.
  */
-public class StartViewController /**implements ViewController*/{
+public class StartViewController /**implements ViewPresenterCLI*/{
 /**
     private CommandView commandView;
-    private ViewController [] nextController = new ViewController[6];
+    private ViewPresenterCLI [] nextController = new ViewPresenterCLI[6];
 
 
     public StartViewController()

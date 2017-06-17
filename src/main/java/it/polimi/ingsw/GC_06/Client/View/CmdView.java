@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class CmdView implements CommandView {
 
     private Scanner input;
-    String text;
+    private String text;
 
 
     public CmdView()
@@ -19,22 +19,22 @@ public class CmdView implements CommandView {
     }
 
     @Override
-    public void addLocalizedText(String string) {
+    public synchronized void addLocalizedText(String string) {
         text = text.concat(string);
     }
 
     @Override
-    public void flush() {
+    public synchronized void flush() {
         text="";
     }
 
     @Override
-    public void addText(String string) {
+    public synchronized void addText(String string) {
         text = text.concat(string);
     }
 
     @Override
-    public void print() {
+    public synchronized void print() {
         System.out.println(text);
         flush();
     }
@@ -70,5 +70,22 @@ public class CmdView implements CommandView {
     public String getString() {
         print();
         return input.next();
+    }
+
+    @Override
+    public void sleep() {
+
+    }
+
+    @Override
+    public void unload() {
+
+    }
+
+    @Override
+    public void run() {
+
+        System.out.print(text);
+        this.flush();
     }
 }

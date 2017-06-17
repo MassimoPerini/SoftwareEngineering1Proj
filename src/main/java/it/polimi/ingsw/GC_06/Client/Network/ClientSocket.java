@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -30,11 +31,16 @@ public class ClientSocket extends Client {
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.socketOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
         this.pool = Executors.newCachedThreadPool();
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageServer.class, "type"); //.registerSubtype(.class);
-        readGson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
+                .registerSubtype(MessageAddCard.class)
+                .registerSubtype(MessageClearBoard.class)
+                .registerSubtype(MessageAddMemberOnTower.class)
+                .registerSubtype(MessageUpdateView.class)
+                .registerSubtype(MessageNewCards.class);
+        readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageClient.class, "type"); //.registerSubtype(.class);
-        writeGson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
+        writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();
     }
 
     @Override
@@ -47,6 +53,7 @@ public class ClientSocket extends Client {
 
                 while ((input = socketIn.readLine()) != null)
                 {
+                    System.out.println("CLIENT RECEIVED: "+input);
                     MessageServer messageServer = readGson.fromJson(input, MessageServer.class);
                     setChanged();
                     notifyObservers(messageServer);
@@ -63,8 +70,10 @@ public class ClientSocket extends Client {
         pool.submit(() -> {
             //Serializzazione e invio
             try {
-                socketOut.write(writeGson.toJson(action));
+                String serialized = writeGson.toJson(action, MessageClient.class);
+                socketOut.write(serialized);
                 socketOut.flush();
+                System.out.println("CLIENT: SENY "+serialized);
             }
             catch(Exception e)
             {

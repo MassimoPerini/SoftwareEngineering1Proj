@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 /**
  * Created by massimo on 27/05/17.
  */
-public class PowerUpFamilyMemberViewController /**implements ViewController*/ {
+public class PowerUpFamilyMemberViewController /**implements ViewPresenterCLI*/ {
 
     /**private CommandView commandView;
     private Player player;
@@ -47,7 +47,7 @@ public class PowerUpFamilyMemberViewController /**implements ViewController*/ {
         }
 
         int points = Integer.parseInt(input);
-        ClientOrchestrator mainController = new ClientOrchestrator();
+        ClientNetworkOrchestrator mainController = new ClientNetworkOrchestrator();
         Action action = new PowerUpFamilyMember(player,points,familyMember);;
 
         if (action.isAllowed())

@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 /**
  * Created by massimo on 27/05/17.
  */
-public class PlayerStatusViewController /**implements ViewController*/ {
+public class PlayerStatusViewController /**implements ViewPresenterCLI*/ {
 
     /**private CommandView commandView;
 
