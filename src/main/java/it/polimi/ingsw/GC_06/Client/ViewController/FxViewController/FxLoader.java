@@ -1,9 +1,12 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController;
 
 import com.airhacks.afterburner.views.FXMLView;
+import it.polimi.ingsw.GC_06.Client.View.CommandView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.ConnectionMethod.ConnectionMethodView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Login.LoginView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Main.MainView;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -16,7 +19,8 @@ import javafx.stage.Stage;
  */
 public class FxLoader extends Application {
 
-    private Stage primaryStage;
+    private Stage primaryStage1;
+    private Scene currentScene;
 
     public FxLoader()
     {
@@ -30,20 +34,21 @@ public class FxLoader extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        FXMLView loginView = new LoginView();
-        Scene scene = new Scene( loginView.getView() );
         primaryStage.setTitle( "Lorenzo il Magnifico" );
-        primaryStage.setScene( scene );
+        Scene scene = new Scene(new ConnectionMethodView().getView());
+        primaryStage.setScene( scene);
+        primaryStage1 = primaryStage;
         primaryStage.show();
+        currentScene = scene;
+        primaryStage1 = primaryStage;
     }
 
-    public void change(FXMLView view)
+    public void changeView(Parent view)
     {
-        Scene scene = new Scene( view.getView() );
-        primaryStage.setTitle( "Lorenzo il Magnifico" );
-        primaryStage.setScene( scene );
-        primaryStage.show();
+    //    Stage stage = (Stage) currentScene.getWindow();
+    //    stage.setScene(new Scene(view));
+    /*    primaryStage1.getScene().setRoot(view);
+        primaryStage1.sizeToScene();*/
     }
 
 }

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
+import javafx.beans.property.SimpleListProperty;
+
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +9,7 @@ import java.util.Map;
  * Created by giuseppe on 6/14/17.
  */
 public class ClientBoardGame {
-    private Map<String, List<ClientTowerFloor>> towersClient;
+    private Map<String, SimpleListProperty<ClientTowerFloor>> towersClient;
     private List<List<ClientSpaceAction>> productionHarvest;
     private List<List<ClientSpaceAction>> marketCouncil;
 

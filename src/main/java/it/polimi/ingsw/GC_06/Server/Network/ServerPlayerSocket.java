@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Server.Network;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.Client.Login;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
@@ -51,15 +52,16 @@ public class ServerPlayerSocket extends Observable implements Runnable {
         this.loginHub = loginHub;
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageClient.class, "type").registerSubtype(Login.class);
-        readGson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        readGson=new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory2).create();
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
                 .registerSubtype(MessageAddCard.class)
                 .registerSubtype(MessageAddMemberOnTower.class)
                 .registerSubtype(MessageClearBoard.class)
                 .registerSubtype(MessageNewCards.class)
+                .registerSubtype(MessageUpdateView.class)
                 .registerSubtype(MessageRemoveCard.class)
                 .registerSubtype(MessageUpdateResource.class);
-        writeGson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory).create();
+        writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }
 
     @Override
@@ -77,8 +79,10 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                     try {
                         loginHub.loginHandler(input);
                         player = input;
+                        this.send(new MessageUpdateView(null, "Login OK, please wait"));
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        System.out.println("Error login!");
+                        this.send(new MessageUpdateView(ClientStateName.LOGIN, "Error, please login again"));
                     }
                 }
             }
@@ -104,7 +108,8 @@ public class ServerPlayerSocket extends Observable implements Runnable {
 
     public void send(MessageServer messageServer) throws IOException {
         executor.submit (() -> {
-                String res = writeGson.toJson(messageServer);
+                String res = writeGson.toJson(messageServer, MessageServer.class);
+                System.out.println("SERVER: SENDING "+res);
                 socketOut.println(res);
                 socketOut.flush();
         });

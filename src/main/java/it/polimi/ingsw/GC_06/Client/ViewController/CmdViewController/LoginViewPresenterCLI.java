@@ -1,26 +1,23 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 
-import it.polimi.ingsw.GC_06.Client.Network.ClientOrchestrator;
+import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
-import it.polimi.ingsw.GC_06.Client.ViewController.ViewController;
+import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by massimo on 09/06/17.
  */
-public class LoginViewController implements ViewController, Observer {
+public class LoginViewPresenterCLI implements ViewPresenterCLI {
 
     @NotNull private CommandView commandView;
-    @NotNull private ClientOrchestrator clientOrchestrator;
+    @NotNull private ClientNetworkOrchestrator clientNetworkOrchestrator;
 
-    public LoginViewController(@NotNull ClientOrchestrator clientOrchestrator)
+    public LoginViewPresenterCLI(ClientNetworkOrchestrator clientNetworkOrchestrator)
     {
         this.commandView = new CmdView();
-        this.clientOrchestrator = clientOrchestrator;
+        this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
     @Override
@@ -30,11 +27,12 @@ public class LoginViewController implements ViewController, Observer {
         commandView.addText("\n");
         commandView.addLocalizedText("username");
         String username = commandView.getString();
-        clientOrchestrator.send(username);
+        clientNetworkOrchestrator.send(username);
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        System.out.println("L'username non è valido");
+    public void addText(String txt) {
+        commandView.addLocalizedText(txt);
+        commandView.print();
     }
 }

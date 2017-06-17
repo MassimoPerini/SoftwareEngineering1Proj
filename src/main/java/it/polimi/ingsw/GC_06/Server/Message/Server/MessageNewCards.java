@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server;
 
+import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
@@ -28,7 +29,7 @@ public class MessageNewCards implements MessageServer {
     }
 
     @Override
-    public void execute(MainClientModel mainClientModel) {
-        mainClientModel.getClientBoardGame().setNewTowerCards(tower, cards);
+    public void execute(ClientController clientController) {
+        clientController.getMainClientModel().getClientBoardGame().setNewTowerCards(tower, cards);
     }
 }

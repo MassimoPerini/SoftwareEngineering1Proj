@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server;
 
+import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientPlayerBoard;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
@@ -23,8 +24,8 @@ public class MessageAddCard implements MessageServer {
     }
 
     @Override
-    public void execute(MainClientModel mainClientModel) {
-        ClientPlayerBoard clientPlayerBoard = mainClientModel.getClientPlayerBoard(username);
+    public void execute(ClientController clientController) {
+        ClientPlayerBoard clientPlayerBoard = clientController.getMainClientModel().getClientPlayerBoard(username);
         clientPlayerBoard.addCard(color, developmentCard);
     }
 }
