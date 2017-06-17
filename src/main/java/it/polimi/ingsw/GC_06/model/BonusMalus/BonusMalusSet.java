@@ -57,6 +57,7 @@ public class BonusMalusSet {
         //this.add3(bonusMalusSet.bonusMalusOnConditions);
         this.addAccessBonusMalus(bonusMalusSet.bonusMalusOnAccess.get("BONUSMALUSONACCESS"));
         this.addCostBonusMalus(bonusMalusSet.bonusMalusOnCost.get("BONUSMALUSONCOST"));
+        System.out.println();
     }
 
     public void addActionBonusMalus(List<BonusMalusOnAction> bonusMalusOnActions){
