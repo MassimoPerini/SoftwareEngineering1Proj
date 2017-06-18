@@ -16,7 +16,7 @@ public class LoginHub {
     private List<String> totPlayers = new ArrayList<>(); /** tutti i giocatori iscritti alle partire */
     private List<String> loggedPlayers = new ArrayList<>();
     private Trash playerTrash = new Trash();
-    private int delay  = 1000*20;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
+    private int delay  = 1000*10;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
     private Game game;
     private static Timer timer;
     private int id = 0;
@@ -84,24 +84,26 @@ public class LoginHub {
 
             loggedPlayers.add(user);
 
+            System.out.println("this is the size of logged player " + loggedPlayers.size());
+
             if(loggedPlayers.size() == 2 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
 
                 game = new Game(id);
                 id++;
-                /**timer.schedule(new TimerTask() {
+                timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
                             uploadPlayers(game,loggedPlayers);
-                        System.out.println("Sto creando il gioco");
+                            System.out.println("Sto creando il gioco");
                             game.start();
                             GameList.getInstance().add(game,loggedPlayers);
                     }
-                },delay);*/
+                },delay);
 
-                myTimer(game);
+                //this.myTimer(game);
             }
             if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
-                update();
+                timer.cancel();
                 uploadPlayers(game,loggedPlayers);
                 game.start();
                 GameList.getInstance().add(game,loggedPlayers);
@@ -168,7 +170,7 @@ public class LoginHub {
             public void run() {
                 System.out.println("create the game");
                 game.start();
-                update();
+                timer.cancel();
             }
         };
 
@@ -176,10 +178,7 @@ public class LoginHub {
         timer.schedule(timerTask,delay);
     }
 
-    public void update(){
 
-        timer.cancel();
-    }
 
 
 
