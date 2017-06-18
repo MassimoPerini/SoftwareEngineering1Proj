@@ -21,7 +21,7 @@ public class PickCardTest {
 
     @Before
     public void setUp() throws Exception {
-        game = new Game();
+        game = new Game(1);
         game.addPlayer("massimo");
         game.addPlayer("pinco");
         game.start();

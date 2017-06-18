@@ -18,7 +18,7 @@ public class GameAndGameStatusTest {
     @Before
     public void setUp() throws Exception {
         //TODO to remove
-        game = new Game();
+        game = new Game(1);
     }
 
 

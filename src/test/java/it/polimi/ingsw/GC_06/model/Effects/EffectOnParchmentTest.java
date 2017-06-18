@@ -26,7 +26,7 @@ public class EffectOnParchmentTest {
 
     @Before
     public void setUp() throws IOException {
-        game = new Game();
+        game = new Game(1);
         game.addPlayer("gabriele");
         player = game.getGameStatus().getPlayers().get("gabriele");
         parchments = new ArrayList<>();

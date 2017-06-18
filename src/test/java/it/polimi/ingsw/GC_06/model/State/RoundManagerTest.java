@@ -21,7 +21,7 @@ public class RoundManagerTest {
 
     @Before
     public void setUp() throws Exception {
-        game = new Game();
+        game = new Game(1);
 
     }
 

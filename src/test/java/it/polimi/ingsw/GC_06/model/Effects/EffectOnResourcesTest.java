@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
 public class EffectOnResourcesTest {
     private Player player;
     private ResourceSet resourceSet;
-    Game game = new Game();
+    Game game = new Game(1);
 
     public EffectOnResourcesTest() throws IOException {
     }

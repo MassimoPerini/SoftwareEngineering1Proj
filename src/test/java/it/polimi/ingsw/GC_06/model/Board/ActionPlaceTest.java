@@ -33,7 +33,7 @@ public class ActionPlaceTest {
     public void setUp() throws Exception {
     //    Game.clearForTesting();
 
-        game = new Game();
+        game = new Game(1);
 
         game.addPlayer("massimo");
         player = game.getGameStatus().getPlayers().get("massimo");

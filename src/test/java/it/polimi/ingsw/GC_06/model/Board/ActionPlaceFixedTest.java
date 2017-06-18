@@ -18,7 +18,7 @@ public class ActionPlaceFixedTest {
 
     @Before
     public void setUp() throws Exception {
-        Game game = new Game();
+        Game game = new Game(1);
         game.addPlayer("massimo");
         player = game.getGameStatus().getPlayers().get("massimo");
         game.roll();

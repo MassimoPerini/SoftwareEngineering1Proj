@@ -36,7 +36,7 @@ public class Game {
      * Load from file the needed values. If it can't do this, throws an exception
      * @throws IOException
      */
-    public Game() throws IOException {
+    public Game(int id) throws IOException {
         FileLoader f = FileLoader.getFileLoader();
         board = f.loadBoard();
         diceSet = f.loadDiceSet();
@@ -46,7 +46,7 @@ public class Game {
         this.generateStatuses();
         gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
         roundManager = new RoundManager(board, neutralFamilyMembers+diceSet.getDices().length);
-        id = 1;     //TODO
+        this.id = id;
     }
 
     public void addPlayer (String p) throws IllegalStateException, IllegalArgumentException

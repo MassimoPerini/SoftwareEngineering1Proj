@@ -23,7 +23,7 @@ public class DefaultProdHarvEffectTest {
     @Before
     public void setUp() throws IOException {
 
-        Game game = new Game();
+        Game game = new Game(1);
         game.addPlayer("gabriele");
         player = game.getGameStatus().getPlayers().get("gabriele");
         resourceSetPlayer = new ResourceSet();

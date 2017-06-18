@@ -48,7 +48,6 @@ public class ServerPlayerSocket extends Observable implements Runnable {
         this.socket = socket;
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.socketOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-    //    this.socketOut = new ObjectOutputStream(socket.getOutputStream());
         this.executor = Executors.newFixedThreadPool(1);
         this.loginHub = loginHub;
 
@@ -61,9 +60,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageNewCards.class)
                 .registerSubtype(MessageUpdateView.class)
                 .registerSubtype(MessageRemoveCard.class)
-                .registerSubtype(MessageUpdateResource.class)
-                .registerSubtype(MessageChangePlayer.class)
-                .registerSubtype(MessageGameStarted.class);
+                .registerSubtype(MessageUpdateResource.class);
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }
 
@@ -80,12 +77,14 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 if(input != null) {
                     System.out.println("SERVER: RECEIVED "+input);
                     try {
-                        player = input;
-                        if(!loginHub.loginHandler(input)) {
-                            this.send(new MessageUpdateView(null, "Login OK, please wait"));
+                        if(!loginHub.access(input)){
+                            throw new IllegalStateException();
                         }
+                        player = input;
+                        loginHub.loginHandler(input);
+                        System.out.println(player);
+                        this.send(new MessageUpdateView(null, "Login OK, please wait"));
                     } catch (Exception e) {
-                        player = null;
                         System.out.println("Error login!");
                         this.send(new MessageUpdateView(ClientStateName.LOGIN, "Error, please login again"));
                     }
@@ -112,14 +111,12 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     }
 
     public void send(MessageServer messageServer) throws IOException {
-    //    executor.submit (() -> {
+        executor.submit (() -> {
                 String res = writeGson.toJson(messageServer, MessageServer.class);
-                res+="\n";
                 System.out.println("SERVER: SENDING "+res);
-       //         socketOut.println(res);
-                socketOut.write(res);
+                socketOut.println(res);
                 socketOut.flush();
-   //     });
+        });
     }
 
     public void finish() throws IOException {
