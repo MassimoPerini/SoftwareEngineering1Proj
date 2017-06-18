@@ -18,7 +18,7 @@ public class LoginHub {
     private Trash playerTrash = new Trash();
     private int delay  = 1000*20;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
     private Game game;
-    Timer timer = new Timer();
+    private static Timer timer;
 
     //public static LoginHub instance = new LoginHub();
 
@@ -84,7 +84,7 @@ public class LoginHub {
 
             if(loggedPlayers.size() == 2 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
                 game = new Game();
-                timer.schedule(new TimerTask() {
+                /**timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
                             uploadPlayers(game,loggedPlayers);
@@ -92,11 +92,12 @@ public class LoginHub {
                             game.start();
                             GameList.getInstance().add(game,loggedPlayers);
                     }
-                },delay);
+                },delay);*/
+
+                myTimer(game);
             }
             if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
-                timer.cancel();
-                timer = new Timer();
+                update();
                 uploadPlayers(game,loggedPlayers);
                 game.start();
                 GameList.getInstance().add(game,loggedPlayers);
@@ -152,6 +153,29 @@ public class LoginHub {
         }
         players = new LinkedList<>();
     }
+
+    public void myTimer(Game game){
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("create the game");
+                game.start();
+                update();
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(timerTask,delay);
+    }
+
+    public void update(){
+
+        timer.cancel();
+    }
+
+
+
 
 
     public List<String> getTotPlayers() {
