@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_06.Client.Model;
 
 import javafx.beans.property.SimpleListProperty;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,10 +11,57 @@ import java.util.Map;
  * Created by giuseppe on 6/14/17.
  */
 public class ClientBoardGame {
-    private Map<String, SimpleListProperty<ClientTowerFloor>> towersClient;
+    private Map<String, List<ClientTowerFloor>> towersClient;
     private List<List<ClientSpaceAction>> productionHarvest;
-    private List<List<ClientSpaceAction>> marketCouncil;
+    private List<List<ClientSpaceAction>> market;
+    private List<List<ClientSpaceAction>> council;
 
+
+    public ClientBoardGame()
+    {
+        towersClient = new HashMap<>();
+        productionHarvest = new ArrayList<>();
+        market = new ArrayList<>();
+        council = new ArrayList<>();
+    }
+
+
+    public void createTower(String color, int floors)
+    {
+        List<ClientTowerFloor> list = new ArrayList<>();
+        for (int i=0;i<floors;i++) {
+            list.add(new ClientTowerFloor());
+        }
+        towersClient.put(color, list);
+    }
+
+    public void createProdHarv(int position, int spaces)
+    {
+        List<ClientSpaceAction> item = generateBoardItems(spaces);
+        productionHarvest.add(position, item);
+    }
+
+    public void createMarket(int position, int spaces)
+    {
+        List<ClientSpaceAction> item = generateBoardItems(spaces);
+        market.add(position, item);
+    }
+
+    public void createCouncil(int position, int spaces)
+    {
+        List<ClientSpaceAction> item = generateBoardItems(spaces);
+        council.add(position, item);
+    }
+
+
+    private List<ClientSpaceAction> generateBoardItems(int items)
+    {
+        List list = new ArrayList();
+        for (int i=0;i<items;i++) {
+            list.add(new ClientTowerFloor());
+        }
+        return list;
+    }
 
     public void removeCard(String tower, int plane)
     {
@@ -48,14 +97,17 @@ public class ClientBoardGame {
             }
         }
 
-        for (List<ClientSpaceAction> clientSpaceActions : marketCouncil) {
+        for (List<ClientSpaceAction> clientSpaceActions : market) {
             for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
                 clientSpaceAction.reset();
             }
         }
 
-
-
+        for (List<ClientSpaceAction> clientSpaceActions : council) {
+            for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
+                clientSpaceAction.reset();
+            }
+        }
     }
 
 }

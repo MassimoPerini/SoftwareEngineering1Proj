@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageChangePlayer;
 import it.polimi.ingsw.GC_06.model.Board.Board;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
@@ -14,7 +15,7 @@ import java.util.*;
 /**
  * Created by massimo on 06/06/17.
  */
-public class RoundManager {
+public class RoundManager extends Observable {
 
     private int currentPlayer,familyMembersPlaced, turn, era, nMaxFamilyMembers;
     private List<Player> players;
@@ -79,6 +80,12 @@ public class RoundManager {
             familyMembersPlaced = newFamilyMemberPlaced;
         }
         currentPlayer = newPlayer;
+
+
+        MessageChangePlayer messageChangePlayer = new MessageChangePlayer(this.getCurrentPlayer().getPLAYER_ID(), era, turn);
+        setChanged();
+        notifyObservers(messageChangePlayer);
+
 //        Game.getInstance().getGameStatus().changeState(TransitionType.ROUNDFINISHED);
     }
 
@@ -157,8 +164,13 @@ public class RoundManager {
         {
             player.variateResource(startResources[i]);
         }
-        disposeCards();
-        shuffleCards();
+        reset();
+        newEra();
+        newTurn();
+
+        MessageChangePlayer messageChangePlayer = new MessageChangePlayer(this.getCurrentPlayer().getPLAYER_ID(), era, turn);
+        setChanged();
+        notifyObservers(messageChangePlayer);
 
     }
     public Player getCurrentPlayer()

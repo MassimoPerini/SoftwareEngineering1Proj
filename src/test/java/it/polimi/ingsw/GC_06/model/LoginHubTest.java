@@ -28,12 +28,12 @@ public class LoginHubTest {
 
     }
 
-    @Test
+/*    @Test
     public void firstTest(){
 
         assertTrue(5 == loginHub.getTotPlayers().size());
         assertTrue(1 == loginHub.getLoggedPlayers().size());
         assertFalse(loginHub.access("Peppe"));
-
     }
+    */
 }

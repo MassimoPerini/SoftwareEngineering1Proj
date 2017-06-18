@@ -172,7 +172,7 @@ public class Game {
 
     }
 
-    RoundManager getRoundManager() {
+    public RoundManager getRoundManager() {
         return roundManager;
     }
 

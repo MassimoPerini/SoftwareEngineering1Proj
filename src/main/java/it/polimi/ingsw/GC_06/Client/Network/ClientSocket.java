@@ -29,14 +29,19 @@ public class ClientSocket extends Client {
     public ClientSocket(@NotNull Socket socket) throws IOException {
         this.socket = socket;
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+     //   this.socketIn = new ObjectInputStream(socket.getInputStream());
         this.socketOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
         this.pool = Executors.newCachedThreadPool();
         RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
                 .registerSubtype(MessageAddCard.class)
-                .registerSubtype(MessageClearBoard.class)
                 .registerSubtype(MessageAddMemberOnTower.class)
+                .registerSubtype(MessageClearBoard.class)
+                .registerSubtype(MessageNewCards.class)
                 .registerSubtype(MessageUpdateView.class)
-                .registerSubtype(MessageNewCards.class);
+                .registerSubtype(MessageRemoveCard.class)
+                .registerSubtype(MessageUpdateResource.class)
+                .registerSubtype(MessageChangePlayer.class)
+                .registerSubtype(MessageGameStarted.class);
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageClient.class, "type"); //.registerSubtype(.class);
@@ -46,23 +51,25 @@ public class ClientSocket extends Client {
     @Override
     public void run() {
 
-        try {
-            while (true)
-            {
-                String input;
-
-                while ((input = socketIn.readLine()) != null)
-                {
-                    System.out.println("CLIENT RECEIVED: "+input);
-                    MessageServer messageServer = readGson.fromJson(input, MessageServer.class);
-                    setChanged();
-                    notifyObservers(messageServer);
+            while (true) {
+                try {
+       /*         String input = (String)socketIn.readUnshared();
+                System.out.println("CLIENT RECEIVED: "+input);
+                MessageServer messageServer = readGson.fromJson(input, MessageServer.class);
+                setChanged();
+                notifyObservers(messageServer);
+*/
+                    String input;
+                    while ((input = socketIn.readLine()) != null) {
+                        System.out.println("CLIENT RECEIVED: " + input);
+                        MessageServer messageServer = readGson.fromJson(input, MessageServer.class);
+                        setChanged();
+                        notifyObservers(messageServer);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -71,9 +78,10 @@ public class ClientSocket extends Client {
             //Serializzazione e invio
             try {
                 String serialized = writeGson.toJson(action, MessageClient.class);
+                serialized+="\n";
                 socketOut.write(serialized);
                 socketOut.flush();
-                System.out.println("CLIENT: SENY "+serialized);
+                System.out.println("CLIENT: SENT "+serialized);
             }
             catch(Exception e)
             {

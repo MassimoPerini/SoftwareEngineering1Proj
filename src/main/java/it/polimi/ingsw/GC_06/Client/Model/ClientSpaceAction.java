@@ -9,6 +9,11 @@ import java.util.List;
 public class ClientSpaceAction {
     private List<ClientFamilyMember> familyMembers;
 
+    public ClientSpaceAction()
+    {
+        familyMembers = new LinkedList<>();
+    }
+
     void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
     }
 

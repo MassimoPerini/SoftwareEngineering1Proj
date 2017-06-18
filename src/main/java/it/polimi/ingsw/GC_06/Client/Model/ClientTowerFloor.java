@@ -7,6 +7,12 @@ public class ClientTowerFloor {
     private String card;
     private ClientSpaceAction spaceAction;
 
+    public ClientTowerFloor()
+    {
+        card="";
+        spaceAction = new ClientSpaceAction();
+    }
+
     void removeCard()
     {
         card = null;

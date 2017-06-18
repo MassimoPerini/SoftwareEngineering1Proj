@@ -1,7 +1,9 @@
 package it.polimi.ingsw.GC_06.Client.ViewController;
 
+import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
+import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.BoardStatusViewController;
 import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.ConnectionTypeViewPresenterCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.LoginViewPresenterCLI;
 
@@ -16,14 +18,16 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
     private Map<ClientStateName, ViewPresenterCLI> clientStates;
     private ClientStateName currentState = ClientStateName.START;
     private ClientNetworkOrchestrator clientNetworkOrchestrator;
+    private ClientBoardGame clientBoardGame;
 
-    public ViewOrchestratorCLI(ClientNetworkOrchestrator clientNetworkOrchestrator)
+    public ViewOrchestratorCLI(ClientNetworkOrchestrator clientNetworkOrchestrator, ClientBoardGame clientBoardGame)
     {
         this.clientStates = new HashMap<>();
         for (ClientStateName stateName : ClientStateName.values()) {
             this.clientStates.put(stateName, null);
         }
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
+        this.clientBoardGame = clientBoardGame;
         this.generateViewCli();
     }
 
@@ -31,6 +35,8 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
     {
         clientStates.put(ClientStateName.LOGIN, new LoginViewPresenterCLI(clientNetworkOrchestrator));
         clientStates.put(ClientStateName.START, new ConnectionTypeViewPresenterCLI(clientNetworkOrchestrator));
+        clientStates.put(ClientStateName.GAME_START, new BoardStatusViewController(clientBoardGame));     //TEST, Observer?
+
     }
 
     @Override

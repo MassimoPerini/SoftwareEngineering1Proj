@@ -51,11 +51,11 @@ public class ServerOrchestrator extends Observable implements Observer {
 
     public void startGame(Map<String, Player> players, int id)
     {
-        List<Server> servers = new LinkedList<>();
+        List<Server> serversContainer = new LinkedList<>();
         for (Server server : servers) {
             if (server.startGame(players, id))
             {
-                servers.add(server);
+                serversContainer.add(server);
                 for (String s : players.keySet()) {
                     if (server.isPlayerManaged(s))
                     {
@@ -64,7 +64,7 @@ public class ServerOrchestrator extends Observable implements Observer {
                 }
             }
         }
-        this.serverByGame.put(id, servers);
+        this.serverByGame.put(id, serversContainer);
     }
 
     public void send(String playerId, Object o) throws IOException {

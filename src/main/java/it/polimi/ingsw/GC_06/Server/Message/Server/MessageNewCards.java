@@ -19,12 +19,9 @@ public class MessageNewCards implements MessageServer {
     public MessageNewCards(List<DevelopmentCard> cards, String tower)
     {
         this.tower = tower;
-        int i=0;
         this.cards = new LinkedList<>();
-        cards = new LinkedList<>();
         for (DevelopmentCard card : cards) {
-            this.cards.add(cards.get(i).getPath());
-            i++;
+            this.cards.add(card.getPath());
         }
     }
 

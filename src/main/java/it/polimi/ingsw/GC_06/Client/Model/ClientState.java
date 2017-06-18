@@ -6,6 +6,7 @@ import java.util.Observable;
 
 /**
  * Created by giuseppe on 6/14/17.
+ * @deprecated
  */
 public class ClientState extends Observable {
 

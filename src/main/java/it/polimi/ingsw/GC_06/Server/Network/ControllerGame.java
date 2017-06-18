@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageGameStarted;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
@@ -46,9 +47,21 @@ public class ControllerGame implements Observer {
         for (Player player : players.values()) {
             player.addObserver(this);
         }
+        game.getRoundManager().addObserver(this);
 
         serverOrchestrator.startGame(game.getGameStatus().getPlayers(), id);
         controllerUser.start();
+
+
+        //---- Notificare l'init
+        MessageGameStarted messageGameStarted = new MessageGameStarted(game);
+        //In futuro da togliere
+        try {
+            serverOrchestrator.send(id, messageGameStarted);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //------- END MESSAGE
 
         /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
         this.game.start();

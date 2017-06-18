@@ -16,9 +16,9 @@ public class LoginHub {
     private List<String> totPlayers = new ArrayList<>(); /** tutti i giocatori iscritti alle partire */
     private List<String> loggedPlayers = new ArrayList<>();
     private Trash playerTrash = new Trash();
-    private int delay  = 1000*20;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
+    private int delay  = 1000*500;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
     private Game game;
-    private static Timer timer;
+    Timer timer = new Timer();
 
     //public static LoginHub instance = new LoginHub();
 
@@ -36,7 +36,7 @@ public class LoginHub {
      * @param username
      *
      */
-    public void loginHandler(String username) throws IOException {
+    public boolean loginHandler(String username) throws IOException {
 
         if (searchTrash(username)) {
 
@@ -44,11 +44,12 @@ public class LoginHub {
 
             restoreInTheGame(username,playerTrash.getGameID(username));
             totPlayers.add(username);
+            return false;       //forse
         }
         else{
             /** chiamo immediatamente il login */
 
-            addUser(username);
+            return addUser(username);
         }
 
     }
@@ -68,7 +69,7 @@ public class LoginHub {
         GameList.getInstance().remove(gameID,username);
     }
 
-    public void addUser(String user) throws IllegalArgumentException, IOException {
+    public boolean addUser(String user) throws IllegalArgumentException, IOException {
 
 
         /** qui faccio il controllo anche sul fatto che un giocatore non può essere registrato su più partite */
@@ -78,34 +79,41 @@ public class LoginHub {
         if(!access(user)) {
             throw new IllegalStateException();
         }
-            System.out.println("ti sto loggando");
-            totPlayers.add(user);
-            loggedPlayers.add(user);
+        System.out.println("ti sto loggando");
+        totPlayers.add(user);
+        loggedPlayers.add(user);
 
-            if(loggedPlayers.size() == 2 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
+            //Create new GameController
+
+        if(loggedPlayers.size() == 10 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
+            game = new Game();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    uploadPlayers(game,loggedPlayers);
+                    System.out.println("Sto creando il gioco");
+                    ControllerGame controllerGame = new ControllerGame(game, serverOrchestrator, 1);        //TODO Cambia l'ID!!!! (lo gestirai, immagino) (anche per 4)
+                    //NO! game.start();
+                    GameList.getInstance().add(game,loggedPlayers);
+                    controllerGame.start();     //Il gioco lo avvia lui
+                }
+            },delay);
+        }
+
+            if (loggedPlayers.size() == 1){ // Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/
                 game = new Game();
-                /**timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                            uploadPlayers(game,loggedPlayers);
-                        System.out.println("Sto creando il gioco");
-                            game.start();
-                            GameList.getInstance().add(game,loggedPlayers);
-                    }
-                },delay);*/
-
-                myTimer(game);
-            }
-            if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
-                update();
+                timer.cancel();
+                timer = new Timer();
                 uploadPlayers(game,loggedPlayers);
-                game.start();
+                ControllerGame controllerGame = new ControllerGame(game, serverOrchestrator, 1);
                 GameList.getInstance().add(game,loggedPlayers);
 
                 /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
-                   // serverOrchestrator.startGame(game);
-                loggedPlayers = new ArrayList<>();
+                loggedPlayers = new ArrayList<>();  //cos'è?
+                controllerGame.start();
+                return true;
             }
+            return false;
 
     }
 
@@ -153,29 +161,6 @@ public class LoginHub {
         }
         players = new LinkedList<>();
     }
-
-    public void myTimer(Game game){
-
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println("create the game");
-                game.start();
-                update();
-            }
-        };
-
-        timer = new Timer();
-        timer.schedule(timerTask,delay);
-    }
-
-    public void update(){
-
-        timer.cancel();
-    }
-
-
-
 
 
     public List<String> getTotPlayers() {

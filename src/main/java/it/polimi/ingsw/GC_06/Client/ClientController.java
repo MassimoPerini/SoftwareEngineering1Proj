@@ -13,8 +13,6 @@ public class ClientController {
     private final MainClientModel mainClientModel;
     private ViewOrchestrator viewOrchestrator;
 
-
-
     public ClientController() {
         this.mainClientModel = new MainClientModel();
     }

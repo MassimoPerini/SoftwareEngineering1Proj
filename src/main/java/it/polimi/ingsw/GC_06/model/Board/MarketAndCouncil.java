@@ -38,4 +38,7 @@ public class MarketAndCouncil extends Observable
 		}
 	}
 
+	public List<ActionPlace> getActionPlaces() {
+		return Collections.unmodifiableList(actionPlaces);
+	}
 }
