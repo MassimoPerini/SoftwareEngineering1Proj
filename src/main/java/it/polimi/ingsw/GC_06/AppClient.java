@@ -44,7 +44,9 @@ public class AppClient {
 
         if (view==0) {
             ViewOrchestratorCLI viewOrchestratorCLI = new ViewOrchestratorCLI(clientInputController.getClientNetworkOrchestrator(),
-                                                                                clientController.getMainClientModel().getClientBoardGame());
+                                                                                clientController.getMainClientModel().getClientBoardGame(),
+                    clientController.getMainClientModel().getClientPlayerBoard()
+            );
             clientController.setViewOrchestrator(viewOrchestratorCLI);
         }
         else{

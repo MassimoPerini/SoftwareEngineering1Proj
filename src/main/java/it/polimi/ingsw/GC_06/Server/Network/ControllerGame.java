@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -46,6 +47,11 @@ public class ControllerGame implements Observer {
         Map<String, Player> players = game.getGameStatus().getPlayers();
         for (Player player : players.values()) {
             player.addObserver(this);
+        }
+        for (Player player : game.getGameStatus().getPlayers().values()) {
+            for (FamilyMember familyMember : player.getFamilyMembers()) {
+                familyMember.addObserver(this);
+            }
         }
         game.getRoundManager().addObserver(this);
 

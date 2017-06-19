@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.model.playerTools;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageFamilyMember;
 import it.polimi.ingsw.GC_06.model.Dice.DiceColor;
 
 import java.util.Observable;
@@ -8,7 +10,7 @@ import java.util.Observer;
 /**
  * Created by massimo on 12/05/17.
  */
-public class FamilyMember implements Observer {
+public class FamilyMember extends Observable implements Observer {
 
     private int value;
     private String diceColor;
@@ -54,5 +56,10 @@ public class FamilyMember implements Observer {
     public void setValue(int value) {
 
         this.value = value;
+
+        MessageServer messageServer = new MessageFamilyMember(value, diceColor, playerUserName);
+
+        setChanged();
+        notifyObservers(messageServer);
     }
 }

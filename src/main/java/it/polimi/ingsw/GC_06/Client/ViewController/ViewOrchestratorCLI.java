@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Client.ViewController;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
+import it.polimi.ingsw.GC_06.Client.Model.ClientPlayerBoard;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.BoardStatusViewController;
@@ -19,8 +20,9 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
     private ClientStateName currentState = ClientStateName.START;
     private ClientNetworkOrchestrator clientNetworkOrchestrator;
     private ClientBoardGame clientBoardGame;
+    private Map<String, ClientPlayerBoard> clientPlayerBoard;
 
-    public ViewOrchestratorCLI(ClientNetworkOrchestrator clientNetworkOrchestrator, ClientBoardGame clientBoardGame)
+    public ViewOrchestratorCLI(ClientNetworkOrchestrator clientNetworkOrchestrator, ClientBoardGame clientBoardGame, Map<String, ClientPlayerBoard> clientPlayerBoard)
     {
         this.clientStates = new HashMap<>();
         for (ClientStateName stateName : ClientStateName.values()) {
@@ -28,6 +30,9 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
         }
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
         this.clientBoardGame = clientBoardGame;
+        this.clientPlayerBoard = clientPlayerBoard;
+
+
         this.generateViewCli();
     }
 
@@ -35,7 +40,7 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
     {
         clientStates.put(ClientStateName.LOGIN, new LoginViewPresenterCLI(clientNetworkOrchestrator));
         clientStates.put(ClientStateName.START, new ConnectionTypeViewPresenterCLI(clientNetworkOrchestrator));
-        clientStates.put(ClientStateName.GAME_START, new BoardStatusViewController(clientBoardGame));     //TEST, Observer?
+        clientStates.put(ClientStateName.GAME_START, new BoardStatusViewController(clientBoardGame, clientPlayerBoard, clientNetworkOrchestrator));     //TEST, Observer?
 
     }
 

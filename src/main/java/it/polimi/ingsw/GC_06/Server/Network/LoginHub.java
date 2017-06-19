@@ -85,7 +85,7 @@ public class LoginHub {
 
             System.out.println("this is the size of logged player " + loggedPlayers.size());
 
-        if(loggedPlayers.size() == 2 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
+        if(loggedPlayers.size() == 10 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
 
             timer.schedule(new TimerTask() {
                     @Override
@@ -109,7 +109,7 @@ public class LoginHub {
 
                 //this.myTimer(game);
             }
-            if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+            if (loggedPlayers.size() == 1 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game(id);
                 ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
                 timer.cancel();

@@ -12,7 +12,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 19/06/17.
  */
-public class BoardActionTower implements MessageClient{
+public class MessageBoardActionTower implements MessageClient{
 
     private String tower;
     private int floor;
@@ -20,7 +20,7 @@ public class BoardActionTower implements MessageClient{
     private int game;
     private String player;
 
-    public BoardActionTower(String tower, int floor, int familyMember)
+    public MessageBoardActionTower(String tower, int floor, int familyMember)
     {
         this.tower = tower;
         this.floor = floor;

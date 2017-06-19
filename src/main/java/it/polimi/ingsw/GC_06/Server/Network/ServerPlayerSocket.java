@@ -4,7 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
-import it.polimi.ingsw.GC_06.Server.Message.Client.Login;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.*;
@@ -51,7 +52,10 @@ public class ServerPlayerSocket extends Observable implements Runnable {
         this.executor = Executors.newFixedThreadPool(1);
         this.loginHub = loginHub;
 
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageClient.class, "type").registerSubtype(Login.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageClient.class, "type")
+                .registerSubtype(MessageBoardActionTower.class)
+                .registerSubtype(MessageThrowDice.class)
+                ;
         readGson=new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory2).create();
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
                 .registerSubtype(MessageAddCard.class)
@@ -62,6 +66,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageRemoveCard.class)
                 .registerSubtype(MessageChangePlayer.class)
                 .registerSubtype(MessageGameStarted.class)
+                .registerSubtype(MessageFamilyMember.class)
                 .registerSubtype(MessageUpdateResource.class);
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }
@@ -98,6 +103,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
             {
                 while ((input = socketIn.readLine()) != null)
                 {
+                    System.out.println("SERVER: from "+player+" :" +input);
                     MessageClient messageClient = readGson.fromJson(input, MessageClient.class);
                     messageClient.setGame(game);
                     messageClient.setPlayer(player);

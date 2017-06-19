@@ -97,7 +97,7 @@ public class MessageGameStarted implements MessageServer {
             }
         }
 
-        clientController.getViewOrchestrator().change(ClientStateName.GAME_START, "");
+     //   clientController.getViewOrchestrator().change(ClientStateName.GAME_START, "");
 
     }
 }
