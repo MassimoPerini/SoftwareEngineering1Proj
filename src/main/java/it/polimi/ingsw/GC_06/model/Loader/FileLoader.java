@@ -8,14 +8,12 @@ import it.polimi.ingsw.GC_06.model.Card.Card;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
-import it.polimi.ingsw.GC_06.model.Effect.Effect;
-import it.polimi.ingsw.GC_06.model.Effect.EffectOnAction;
-import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
-import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
+import it.polimi.ingsw.GC_06.model.Effect.*;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoard;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoardSlot;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -335,6 +333,64 @@ public class FileLoader {
 
         FileWriter fw = new FileWriter("src/main/resources/model/cards.txt");
         gson2.toJson(cards, fw);
+        fw.close();
+    }
+
+    public void writeGreenCard() throws IOException {
+        int requiredValue = 1;
+        int era = 1;
+        String name = "devcards_f_en_c_1";
+        List requirements = new ArrayList();
+        List effects = new ArrayList();
+        String idColour = "GREEN";
+        List immediateEffects = new ArrayList();
+        List bonusEffects = new ArrayList();
+        List malusEffects = new ArrayList();
+        List prodHarvEffects = new ArrayList();
+        Map<Integer, List<ProdHarvEffect>> requestedMap = new HashMap<>();
+        ResourceSet variation = new ResourceSet();
+        variation.variateResource(Resource.MONEY, 1);
+        EffectOnResourcesHarvProduction effect = new EffectOnResourcesHarvProduction(requiredValue, variation);
+        bonusEffects.add(effect);
+        ProdHarvEffect prodHarvEffect = new ProdHarvEffect(malusEffects, bonusEffects);
+        prodHarvEffects.add(prodHarvEffect);
+        requestedMap.put(requiredValue, prodHarvEffects);
+        DevelopmentCard card = new DevelopmentCard(name,era, requirements, immediateEffects, idColour, requestedMap);
+
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+
+        FileWriter fw = new FileWriter("src/main/resources/model/cards2.txt");
+        gson2.toJson(card, fw);
+        fw.close();
+    }
+
+    public void writeYellowCard() throws IOException {
+        int requiredValue = 1;
+        int era = 1;
+        String name = "devcards_f_en_c_25";
+        List requirements = new ArrayList();
+        List effects = new ArrayList();
+        String idColour = "YELLOW";
+        List immediateEffects = new ArrayList();
+        List bonusEffects = new ArrayList();
+        List malusEffects = new ArrayList();
+        List prodHarvEffects = new ArrayList();
+        Map<Integer, List<ProdHarvEffect>> requestedMap = new HashMap<>();
+        ResourceSet variation = new ResourceSet();
+        variation.variateResource(Resource.MONEY, 1);
+        EffectOnResourcesHarvProduction effect = new EffectOnResourcesHarvProduction(requiredValue, variation);
+        bonusEffects.add(effect);
+        ProdHarvEffect prodHarvEffect = new ProdHarvEffect(malusEffects, bonusEffects);
+        prodHarvEffects.add(prodHarvEffect);
+        requestedMap.put(requiredValue, prodHarvEffects);
+        DevelopmentCard card = new DevelopmentCard(name,era, requirements, immediateEffects, idColour, requestedMap);
+
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+
+        FileWriter fw = new FileWriter("src/main/resources/model/cards2.txt");
+        gson2.toJson(card, fw);
         fw.close();
     }
 

@@ -23,6 +23,7 @@ public class DevelopmentCard extends Card
     private final List<Requirement> requirements;
     private final List<Effect> immediateEffects;
     private final String idColour;
+    // l'intero rappresenta il required value per l'azione di produzione o raccolto
     private final Map<Integer, List<ProdHarvEffect>> prodHarvEffects;
 
 //    private ResourceSet immediateRequirement;
@@ -39,7 +40,7 @@ public class DevelopmentCard extends Card
     public DevelopmentCard(String name, int era, List<Requirement> requirements, List<Effect> immediate, String idColour, Map<Integer, List<ProdHarvEffect>> prodHarvEffects)
     {
         super(name);
-        if (requirements==null || immediate==null || idColour==null)
+        if (/*requirements==null ||*/ immediate==null || idColour==null)
             throw new NullPointerException();
         this.immediateEffects = immediate;
         this.era = era;
