@@ -27,13 +27,14 @@ public class PickCard implements Action {
     private final int valueFamilyMember;
     private Game game;
 
-    public PickCard(@NotNull Player player, @NotNull Tower tower, int towerFloor, int valueFamilyMember)
+    public PickCard(@NotNull Player player, @NotNull Tower tower, int towerFloor, int valueFamilyMember,Game game)
     {
         super();
         this.player = player;
         this.towerFloor = towerFloor;
         this.tower = tower;
         this.valueFamilyMember = valueFamilyMember;
+        this.game = game;
     }
 
     @Override
@@ -41,7 +42,6 @@ public class PickCard implements Action {
 
         if (!isAllowed())
             throw new IllegalStateException();
-        game.getGameStatus().changeState(TransitionType.PICK_CARD);
 
 
         /**if we are in the real action we add the family member in the correct position*/
@@ -62,11 +62,13 @@ public class PickCard implements Action {
         player.addCard(c);
 
         //pay the card
-        PayCard payCard = new PayCard(c, player);
+        PayCard payCard = new PayCard(c, player,game);
         payCard.execute();
 
         executeEffects = new ExecuteEffects(c.getImmediateEffects(), player,game);
         executeEffects.execute();
+
+        game.getGameStatus().changeState(TransitionType.PICK_CARD);
 
     }
 
@@ -119,9 +121,9 @@ public class PickCard implements Action {
         }
 
         //Can I pay?
-        PayCard payClone = new PayCard( tower.getTowerFloor().get(towerFloor).getCard(), pClone);
+        PayCard payClone = new PayCard( tower.getTowerFloor().get(towerFloor).getCard(), pClone,game);
 
-        if(payClone.isAllowed())
+        if(!payClone.isAllowed())
         {
             return false;
         }

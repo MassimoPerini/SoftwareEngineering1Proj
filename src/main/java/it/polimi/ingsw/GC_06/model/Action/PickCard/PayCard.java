@@ -22,11 +22,12 @@ public class PayCard implements Action {
     private final ActionType ACTION_TYPE = ActionType.PAYCARDACTION;
     private Game game;
 
-    public PayCard(DevelopmentCard developmentCard, Player player)
+    public PayCard(DevelopmentCard developmentCard, Player player,Game game)
     {
         super();
         this.player = player;
         this.developmentCard = developmentCard;
+        this.game = game;
     }
 
     @Override

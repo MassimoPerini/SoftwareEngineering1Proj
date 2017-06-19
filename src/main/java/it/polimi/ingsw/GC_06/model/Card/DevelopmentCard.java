@@ -65,12 +65,14 @@ public class DevelopmentCard extends Card
      */
     public boolean isSatisfied(ResourceSet resourceSet)
     {
+        boolean result = true;
         for (Requirement requirement:requirements)
         {
+            result = false;
             if (requirement.isSatisfied(resourceSet))
                 return true;
         }
-        return false;
+        return result;
     }
 
     public int getEra() {

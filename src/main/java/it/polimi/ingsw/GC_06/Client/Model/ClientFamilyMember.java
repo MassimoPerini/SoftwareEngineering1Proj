@@ -19,6 +19,7 @@ public class ClientFamilyMember {
     }
 
     public void setValue(int value) {
+        this.value = value;
     }
 
 

@@ -22,7 +22,7 @@ public class BoardActionOnTower implements Action {
     private Player player;
     private final ActionType ACTION_TYPE = ActionType.TOWER_ACTION;
 
-    public BoardActionOnTower(Player player, int index, Tower tower, FamilyMember familyMember) {
+    public BoardActionOnTower(Player player, int index, Tower tower, FamilyMember familyMember,Game game) {
         super();
         if (player==null || tower==null)
             throw new NullPointerException();
@@ -31,7 +31,7 @@ public class BoardActionOnTower implements Action {
         this.index = index;
         this.tower = tower;
         this.familyMember = familyMember;
-        this.pickCard = new PickCard(player, tower, index, familyMember.getValue());
+        this.pickCard = new PickCard(player, tower, index, familyMember.getValue(),game);
         this.player = player;
     }
 
@@ -50,15 +50,15 @@ public class BoardActionOnTower implements Action {
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
         // qui modifichiamo il valore dell'azione prima che si compia
-        BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
+        //BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
 
         if (!isAllowed())
             throw new IllegalStateException();
 
+        pickCard.execute();
+
         // qui faccio il malus
         tower.addFamilyMember(familyMember, index);
-
-        pickCard.execute();
 
     }
 

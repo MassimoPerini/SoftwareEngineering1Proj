@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06;
 
+import it.polimi.ingsw.GC_06.Server.Message.ActionController;
 import it.polimi.ingsw.GC_06.Server.Network.LoginHub;
 import it.polimi.ingsw.GC_06.Server.Network.Server;
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
@@ -23,6 +24,8 @@ public class AppServer {
         Server server = new SocketServer();
         server.setLoginHub(loginHub);
         serverOrchestrator.addServer(server);
+        ActionController actionController = new ActionController();
+        serverOrchestrator.addObserver(actionController);
         serverOrchestrator.start();
 
         System.out.println("Server ended...");

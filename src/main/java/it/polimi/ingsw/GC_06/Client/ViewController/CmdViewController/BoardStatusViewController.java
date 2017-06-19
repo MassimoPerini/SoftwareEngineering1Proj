@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 import it.polimi.ingsw.GC_06.Client.Model.*;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
@@ -104,6 +105,14 @@ public class BoardStatusViewController implements ViewPresenterCLI {
         if (input.equals("TIRA DADI")){
             MessageThrowDice messageThrowDice = new MessageThrowDice();
             clientNetworkOrchestrator.send(messageThrowDice);
+        }
+
+        if(input.equals("BA")){
+            String inp = JOptionPane.showInputDialog("Torre Piano Familiare");
+            String[] inpList;
+            inpList = inp.split(" ");
+            MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(inpList[0],Integer.parseInt(inpList[1]),Integer.parseInt(inpList[2]));
+            clientNetworkOrchestrator.send(messageBoardActionTower);
         }
 
     }

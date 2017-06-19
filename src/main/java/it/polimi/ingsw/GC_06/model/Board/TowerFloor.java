@@ -50,6 +50,7 @@ public class TowerFloor {
     void addFamilyMember(FamilyMember familyMember) {
         if (!isAllowed(familyMember))
             throw new IllegalStateException();
+        actionPlace.addFamilyMember(familyMember);
     }
 
     void removeFamilyMembers()

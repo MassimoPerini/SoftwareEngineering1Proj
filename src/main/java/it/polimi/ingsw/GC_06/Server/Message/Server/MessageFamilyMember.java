@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
 /**
  * Created by giuseppe on 6/19/17.
+ *
  */
 public class MessageFamilyMember implements MessageServer{
 

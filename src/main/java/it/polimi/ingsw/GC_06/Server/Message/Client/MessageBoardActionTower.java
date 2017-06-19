@@ -35,7 +35,8 @@ public class MessageBoardActionTower implements MessageClient{
         FamilyMember familyMember = currentPlayer.getFamilyMembers()[clientFamilyMember];
         Tower currentTower = currentGame.getBoard().getTowers().get(tower);
 
-        BoardActionOnTower boardActionOnTower = new BoardActionOnTower(currentPlayer, floor, currentTower, familyMember);
+        BoardActionOnTower boardActionOnTower = new BoardActionOnTower(currentPlayer, floor, currentTower, familyMember,currentGame);
+        boardActionOnTower.setGame(currentGame);
         if (!boardActionOnTower.isAllowed())
         {
             System.out.println("Errore eccezione");
