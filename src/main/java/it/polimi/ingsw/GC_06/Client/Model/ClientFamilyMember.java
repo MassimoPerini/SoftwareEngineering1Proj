@@ -14,6 +14,10 @@ public class ClientFamilyMember {
         this.color = color;
     }
 
+    public String getColor() {
+        return color;
+    }
+
     public void setValue(int value) {
     }
 }

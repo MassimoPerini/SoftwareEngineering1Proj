@@ -12,6 +12,7 @@ public class ClientPlayerBoard extends Observable{
     private List<String> excommunication;
     private Map<Resource, Integer> resourceSet;
     private String playerUsername;
+    private List<ClientFamilyMember> familyMembers;
 
     public ClientPlayerBoard(String username)
     {
