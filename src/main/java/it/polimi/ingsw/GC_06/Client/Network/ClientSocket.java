@@ -44,6 +44,7 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageUpdateResource.class)
                 .registerSubtype(MessageChangePlayer.class)
                 .registerSubtype(MessageFamilyMember.class)
+                .registerSubtype(MessageLoggedIn.class)
                 .registerSubtype(MessageGameStarted.class);
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 

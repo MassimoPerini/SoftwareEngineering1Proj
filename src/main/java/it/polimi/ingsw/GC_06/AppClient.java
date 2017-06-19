@@ -43,11 +43,9 @@ public class AppClient {
         clientNetworkOrchestrator.addObserver(clientInputController);
 
         if (view==0) {
-            ViewOrchestratorCLI viewOrchestratorCLI = new ViewOrchestratorCLI(clientInputController.getClientNetworkOrchestrator(),
-                                                                                clientController.getMainClientModel().getClientBoardGame(),
-                    clientController.getMainClientModel().getClientPlayerBoard()
-            );
+            ViewOrchestratorCLI viewOrchestratorCLI = new ViewOrchestratorCLI(clientInputController.getClientNetworkOrchestrator(), clientController.getMainClientModel());
             clientController.setViewOrchestrator(viewOrchestratorCLI);
+            clientController.getMainClientModel().addObserver(viewOrchestratorCLI);
         }
         else{
             ViewOrchestratorFx viewOrchestratorFx = new ViewOrchestratorFx();

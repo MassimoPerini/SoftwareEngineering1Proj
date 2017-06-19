@@ -67,6 +67,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageChangePlayer.class)
                 .registerSubtype(MessageGameStarted.class)
                 .registerSubtype(MessageFamilyMember.class)
+                .registerSubtype(MessageLoggedIn.class)
                 .registerSubtype(MessageUpdateResource.class);
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }
@@ -83,18 +84,14 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 input = socketIn.readLine();
                 if(input != null) {
                     System.out.println("SERVER: RECEIVED "+input);
-                    try {
                         if(!loginHub.access(input)){
                             this.send(new MessageUpdateView(ClientStateName.LOGIN, "Error, please login again"));
                         }
                         else {
                             player = input;
-                            this.send(new MessageUpdateView(null, "Login OK, please wait"));
+                            this.send(new MessageLoggedIn(input));
                             loginHub.loginHandler(input);
                         }
-                    } catch (Exception e) {
-                        System.out.println("Error login!");
-                    }
                 }
             }
 

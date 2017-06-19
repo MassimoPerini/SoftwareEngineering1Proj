@@ -24,6 +24,7 @@ public class ClientController {
     }
 
 
+
     public void setViewOrchestrator(ViewOrchestrator viewOrchestrator) {
         this.viewOrchestrator = viewOrchestrator;
     }

@@ -5,11 +5,12 @@ import javafx.beans.property.SimpleListProperty;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 
 /**
  * Created by giuseppe on 6/14/17.
  */
-public class MainClientModel {
+public class MainClientModel extends Observable{
     private final Map<String, ClientPlayerBoard> clientPlayerBoard;
     private final ClientBoardGame clientBoardGame;
     private int era, turn;
@@ -23,12 +24,18 @@ public class MainClientModel {
         this.myUsername = "";
     }
 
+    public void setMyUsername(String myUsername) {
+        this.myUsername = myUsername;
+    }
 
     public void updateStatus(int turn, int era, String username)
     {
         this.turn = turn;
         this.era = era;
         this.currentPlayer = username;
+
+        setChanged();
+        notifyObservers(username);
     }
 
     public void generateNewPlayerBoard(String username)

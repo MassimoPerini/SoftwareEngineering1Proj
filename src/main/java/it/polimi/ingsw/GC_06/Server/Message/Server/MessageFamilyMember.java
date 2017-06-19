@@ -26,6 +26,6 @@ public class MessageFamilyMember implements MessageServer{
 
         //CANCELLARE!!!!!
 
-        clientController.getViewOrchestrator().change(ClientStateName.GAME_START, "");
+        // clientController.getViewOrchestrator().change(ClientStateName.GAME_START, "");
     }
 }

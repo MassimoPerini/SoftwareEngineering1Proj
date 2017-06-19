@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_06.Client.View;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
@@ -7,7 +10,7 @@ import java.util.Scanner;
  */
 public class CmdView implements CommandView {
 
-    private Scanner input;
+    private BufferedReader input;
     private String text;
 
 
@@ -15,7 +18,7 @@ public class CmdView implements CommandView {
     {
         super();
         text = "";
-        input = new Scanner (System.in);
+        input =  new BufferedReader(new InputStreamReader(System.in));
     }
 
     @Override
@@ -48,7 +51,15 @@ public class CmdView implements CommandView {
         do {
             ok = true;
             try {
-                res = input.nextInt();
+
+                while (!input.ready() && !Thread.currentThread().isInterrupted()) {
+                    Thread.sleep(200);
+                }
+                if (Thread.currentThread().isInterrupted())
+                {
+                    return -1;
+                }
+                res = Integer.parseInt(input.readLine());
                 if (res<start || res > end)
                 {
                     this.addLocalizedText("error_input");
@@ -69,7 +80,17 @@ public class CmdView implements CommandView {
     @Override
     public String getString() {
         print();
-        return input.next();
+
+        try {
+            while (!input.ready() && !Thread.currentThread().isInterrupted()) {
+                Thread.sleep(200);
+            }
+            return input.readLine();
+        }
+        catch (InterruptedException e) {
+        } catch (IOException e) {
+        }
+        return null;
     }
 
     @Override
