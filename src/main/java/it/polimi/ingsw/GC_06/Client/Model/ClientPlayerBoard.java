@@ -20,8 +20,13 @@ public class ClientPlayerBoard extends Observable{
         excommunication = new LinkedList<>();
         resourceSet = new HashMap<>();
         playerUsername = username;
+        familyMembers = new LinkedList<>();
     }
 
+    public void addFamilyMember(ClientFamilyMember clientFamilyMember)
+    {
+        this.familyMembers.add(clientFamilyMember);
+    }
 
     public void addCard(String colour, String card) {
         this.cards.get(colour).add(card);

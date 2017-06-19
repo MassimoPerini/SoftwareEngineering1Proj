@@ -60,6 +60,8 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageNewCards.class)
                 .registerSubtype(MessageUpdateView.class)
                 .registerSubtype(MessageRemoveCard.class)
+                .registerSubtype(MessageChangePlayer.class)
+                .registerSubtype(MessageGameStarted.class)
                 .registerSubtype(MessageUpdateResource.class);
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }
@@ -78,15 +80,15 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                     System.out.println("SERVER: RECEIVED "+input);
                     try {
                         if(!loginHub.access(input)){
-                            throw new IllegalStateException();
+                            this.send(new MessageUpdateView(ClientStateName.LOGIN, "Error, please login again"));
                         }
-                        player = input;
-                        loginHub.loginHandler(input);
-                        System.out.println(player);
-                        this.send(new MessageUpdateView(null, "Login OK, please wait"));
+                        else {
+                            player = input;
+                            this.send(new MessageUpdateView(null, "Login OK, please wait"));
+                            loginHub.loginHandler(input);
+                        }
                     } catch (Exception e) {
                         System.out.println("Error login!");
-                        this.send(new MessageUpdateView(ClientStateName.LOGIN, "Error, please login again"));
                     }
                 }
             }
@@ -111,12 +113,12 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     }
 
     public void send(MessageServer messageServer) throws IOException {
-        executor.submit (() -> {
+     //   executor.submit (() -> {
                 String res = writeGson.toJson(messageServer, MessageServer.class);
                 System.out.println("SERVER: SENDING "+res);
                 socketOut.println(res);
                 socketOut.flush();
-        });
+    //    });
     }
 
     public void finish() throws IOException {

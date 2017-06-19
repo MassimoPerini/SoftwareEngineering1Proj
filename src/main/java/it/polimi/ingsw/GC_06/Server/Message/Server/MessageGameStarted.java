@@ -2,11 +2,13 @@ package it.polimi.ingsw.GC_06.Server.Message.Server;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
+import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
 import java.util.*;
 
@@ -20,6 +22,7 @@ public class MessageGameStarted implements MessageServer {
     private List<Integer> prodHarv;
     private List<Integer> market;
     private List<String> players;
+    private Map<String, List<ClientFamilyMember>> familyMembers;
 
     //Remind: gestire solo valori primitivi e non modificabili! Altrimenti è pericoloso mandare reference con RMI
 
@@ -30,9 +33,22 @@ public class MessageGameStarted implements MessageServer {
         prodHarv = new LinkedList<>();
         market = new LinkedList<>();
         players = new LinkedList<>();
+        familyMembers = new HashMap<>();
 
         for (String s : game.getGameStatus().getPlayers().keySet()) {
             players.add(s);
+
+            int sizeFamMemb = game.getGameStatus().getPlayers().get(s).getFamilyMembers().length;
+            List<ClientFamilyMember> clientFamilyMembers = new LinkedList<>();
+            for (int i=0;i<sizeFamMemb;i++)
+            {
+                FamilyMember familyMember = game.getGameStatus().getPlayers().get(s).getFamilyMembers()[i];
+                ClientFamilyMember clientFamilyMember = new ClientFamilyMember(s, familyMember.getValue(), familyMember.getDiceColor());
+                clientFamilyMembers.add(clientFamilyMember);
+            }
+            familyMembers.put(s, clientFamilyMembers);
+
+
         }
 
         for (String s : game.getBoard().getTowers().keySet()) {
@@ -50,6 +66,7 @@ public class MessageGameStarted implements MessageServer {
         for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarket()) {
             market.add(marketAndCouncil.getActionPlaces().size());
         }
+
     }
 
     @Override
@@ -72,6 +89,12 @@ public class MessageGameStarted implements MessageServer {
 
         for (String player : players) {
             clientController.getMainClientModel().generateNewPlayerBoard(player);
+        }
+
+        for (String s : familyMembers.keySet()) {
+            for (ClientFamilyMember clientFamilyMember : familyMembers.get(s)) {
+                clientController.getMainClientModel().getClientPlayerBoard(s).addFamilyMember(clientFamilyMember);
+            }
         }
 
         clientController.getViewOrchestrator().change(ClientStateName.GAME_START, "");
