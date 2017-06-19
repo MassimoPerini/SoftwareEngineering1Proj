@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -22,7 +23,7 @@ import java.util.Observable;
 public class Player extends Observable {
 
     private final PlayerBoard playerBoard;
-    private final Map<String, FamilyMember> familyMembers;
+    private final FamilyMember[] familyMembers;
     private final ResourceSet resourceSet;
     private final String PLAYER_ID;
     private ArrayList<Effect> bonusMalus;
@@ -31,7 +32,7 @@ public class Player extends Observable {
 
     //TODO sistemare la questione dei malus e bonus sul player
 
-    public Player(String PLAYER_ID, Map<String, FamilyMember> familyMembers) {
+    public Player(String PLAYER_ID,FamilyMember[] familyMembers) {
 
 
         this.PLAYER_ID = PLAYER_ID;
@@ -67,7 +68,7 @@ public class Player extends Observable {
 
 
 
-    public Map<String, FamilyMember> getFamilyMembers() {
+    public FamilyMember[] getFamilyMembers() {
         return familyMembers;
     }
 

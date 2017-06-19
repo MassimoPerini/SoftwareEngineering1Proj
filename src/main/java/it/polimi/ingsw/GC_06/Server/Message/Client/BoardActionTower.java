@@ -16,11 +16,11 @@ public class BoardActionTower implements MessageClient{
 
     private String tower;
     private int floor;
-    private ClientFamilyMember clientFamilyMember;
+    private int clientFamilyMember;
     private int game;
     private String player;
 
-    public BoardActionTower(String tower, int floor, ClientFamilyMember familyMember)
+    public BoardActionTower(String tower, int floor, int familyMember)
     {
         this.tower = tower;
         this.floor = floor;
@@ -32,7 +32,7 @@ public class BoardActionTower implements MessageClient{
 
         Game currentGame = GameList.getInstance().getGameId(game);
         Player currentPlayer = currentGame.getGameStatus().getPlayers().get(player);
-        FamilyMember familyMember = currentPlayer.getFamilyMembers().get(clientFamilyMember.getColor());
+        FamilyMember familyMember = currentPlayer.getFamilyMembers()[clientFamilyMember];
         Tower currentTower = currentGame.getBoard().getTowers().get(tower);
 
         BoardActionOnTower boardActionOnTower = new BoardActionOnTower(currentPlayer, floor, currentTower, familyMember);
