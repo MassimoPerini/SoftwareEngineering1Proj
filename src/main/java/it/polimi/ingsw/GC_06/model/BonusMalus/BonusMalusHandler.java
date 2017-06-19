@@ -21,7 +21,7 @@ public class BonusMalusHandler {
 
         ArrayList<BonusMalusOnAction> bonusMalusOnActions = player.getBonusMalusSet().getBonusMalusOnAction().get("ACTIONBONUSMALUS");
 
-
+        System.out.println("ciao");
         for(int i=0; i<bonusMalusOnActions.size();i++){
             BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
             if(bonusMalusOnAction.getActionType().equals(actionType) && bonusMalusOnAction.getColourTarget().equals(towerColour)
