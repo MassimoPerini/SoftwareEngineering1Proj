@@ -23,6 +23,7 @@ public class DiceSet {
     {
         for (Dice dice : dices)
             dice.roll();
+
     }
 
 }

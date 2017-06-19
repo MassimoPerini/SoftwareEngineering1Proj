@@ -38,7 +38,7 @@ public class FamilyMember implements Observer {
     public void update(Observable obs, Object args)
     {
         Integer val =(Integer) args;
-        this.value = val.intValue();
+        setValue(val.intValue());
     }
 
 
@@ -52,6 +52,7 @@ public class FamilyMember implements Observer {
     }
 
     public void setValue(int value) {
+
         this.value = value;
     }
 }

@@ -40,6 +40,15 @@ public class ClientPlayerBoard extends Observable{
         this.resourceSet = resourceSet;
     }
 
+    public void changeValueFamilyMember(String color, int newVal)
+    {
+        for (ClientFamilyMember familyMember : familyMembers) {
+            if (familyMember.getColor().equals(color)){
+                familyMember.setValue(newVal);
+            }
+        }
+    }
+
 
     //*******
 
