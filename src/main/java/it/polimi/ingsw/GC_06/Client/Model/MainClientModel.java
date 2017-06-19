@@ -20,6 +20,7 @@ public class MainClientModel {
     {
         clientPlayerBoard = new HashMap<>();
         this.clientBoardGame = new ClientBoardGame();
+        this.myUsername = "";
     }
 
 
@@ -41,5 +42,29 @@ public class MainClientModel {
 
     public ClientBoardGame getClientBoardGame() {
         return clientBoardGame;
+    }
+
+
+    //*******
+
+
+    public Map<String, ClientPlayerBoard> getClientPlayerBoard() {
+        return clientPlayerBoard;
+    }
+
+    public int getEra() {
+        return era;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public String getMyUsername() {
+        return myUsername;
     }
 }

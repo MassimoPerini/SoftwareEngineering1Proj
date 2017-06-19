@@ -11,10 +11,10 @@ import java.util.Map;
  * Created by giuseppe on 6/14/17.
  */
 public class ClientBoardGame {
-    private Map<String, List<ClientTowerFloor>> towersClient;
-    private List<List<ClientSpaceAction>> productionHarvest;
-    private List<List<ClientSpaceAction>> market;
-    private List<List<ClientSpaceAction>> council;
+    private final Map<String, List<ClientTowerFloor>> towersClient;
+    private final List<List<ClientSpaceAction>> productionHarvest;
+    private final List<List<ClientSpaceAction>> market;
+    private final List<List<ClientSpaceAction>> council;
 
 
     public ClientBoardGame()
@@ -58,7 +58,7 @@ public class ClientBoardGame {
     {
         List list = new ArrayList();
         for (int i=0;i<items;i++) {
-            list.add(new ClientTowerFloor());
+            list.add(new ClientSpaceAction());
         }
         return list;
     }
@@ -110,4 +110,23 @@ public class ClientBoardGame {
         }
     }
 
+    //*******
+
+
+
+    public Map<String, List<ClientTowerFloor>> getTowersClient() {
+        return towersClient;
+    }
+
+    public List<List<ClientSpaceAction>> getProductionHarvest() {
+        return productionHarvest;
+    }
+
+    public List<List<ClientSpaceAction>> getMarket() {
+        return market;
+    }
+
+    public List<List<ClientSpaceAction>> getCouncil() {
+        return council;
+    }
 }

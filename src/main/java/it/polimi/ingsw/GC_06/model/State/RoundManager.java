@@ -163,6 +163,7 @@ public class RoundManager extends Observable {
         for (Player player:this.players)
         {
             player.variateResource(startResources[i]);
+            i++;
         }
         reset();
         newEra();

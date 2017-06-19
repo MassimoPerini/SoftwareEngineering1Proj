@@ -20,4 +20,16 @@ public class ClientFamilyMember {
 
     public void setValue(int value) {
     }
+
+
+    //*******
+
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public int getValue() {
+        return value;
+    }
 }

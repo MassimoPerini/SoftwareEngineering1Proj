@@ -39,4 +39,28 @@ public class ClientPlayerBoard extends Observable{
     public void updateResourceSet(Map<Resource, Integer> resourceSet) {
         this.resourceSet = resourceSet;
     }
+
+
+    //*******
+
+
+    public Map<String, List<String>> getCards() {
+        return cards;
+    }
+
+    public List<String> getExcommunication() {
+        return excommunication;
+    }
+
+    public Map<Resource, Integer> getResourceSet() {
+        return resourceSet;
+    }
+
+    public String getPlayerUsername() {
+        return playerUsername;
+    }
+
+    public List<ClientFamilyMember> getFamilyMembers() {
+        return familyMembers;
+    }
 }

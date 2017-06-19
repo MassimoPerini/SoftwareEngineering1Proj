@@ -32,5 +32,11 @@ public class ClientController {
         return viewOrchestrator;
     }
 
-
+    @Override
+    public String toString() {
+        return "ClientController{" +
+                "mainClientModel=" + mainClientModel +
+                ", viewOrchestrator=" + viewOrchestrator +
+                '}';
+    }
 }

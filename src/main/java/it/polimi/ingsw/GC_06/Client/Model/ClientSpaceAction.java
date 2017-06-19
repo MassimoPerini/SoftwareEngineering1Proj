@@ -21,4 +21,10 @@ public class ClientSpaceAction {
         familyMembers = new LinkedList<>();
         //notify
     }
+
+    //*******
+
+    public List<ClientFamilyMember> getFamilyMembers() {
+        return familyMembers;
+    }
 }

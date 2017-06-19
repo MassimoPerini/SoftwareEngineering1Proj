@@ -30,4 +30,16 @@ public class ClientTowerFloor {
     {
         this.card = card;
     }
+
+
+    //*******
+
+
+    public String getCard() {
+        return card;
+    }
+
+    public ClientSpaceAction getSpaceAction() {
+        return spaceAction;
+    }
 }

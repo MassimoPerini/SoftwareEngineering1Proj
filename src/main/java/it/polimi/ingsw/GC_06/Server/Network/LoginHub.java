@@ -16,7 +16,7 @@ public class LoginHub {
     private List<String> totPlayers = new ArrayList<>(); /** tutti i giocatori iscritti alle partire */
     private List<String> loggedPlayers = new ArrayList<>();
     private Trash playerTrash = new Trash();
-    private int delay  = 1000*10*10000;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
+    private int delay  = 1000*15;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
     private Timer timer = new Timer();
     private int id = 0;
 
@@ -70,8 +70,7 @@ public class LoginHub {
 
     public void addUser(String user) throws IllegalArgumentException, IOException {
 
-        Game game = new Game(id);
-        ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
+
         /** qui faccio il controllo anche sul fatto che un giocatore non può essere registrato su più partite */
 
         System.out.println("LoginHub: tentativo di loggare l'utente: "+user);
@@ -86,23 +85,33 @@ public class LoginHub {
 
             System.out.println("this is the size of logged player " + loggedPlayers.size());
 
-        if(loggedPlayers.size() == 1 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
+        if(loggedPlayers.size() == 2 /**Integer.parseInt((Setting.getInstance().getProperty("min_playes")))*/){
 
             timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                            uploadPlayers(game,loggedPlayers);
+                        try {
+                            Game game = new Game(id);
+                            ControllerGame controllerGame = new ControllerGame(game, serverOrchestrator, id);
+                            uploadPlayers(game, loggedPlayers);
                             System.out.println("Sto creando il gioco");
-                            GameList.getInstance().add(game,loggedPlayers);
+                            GameList.getInstance().add(game, loggedPlayers);
                             controllerGame.start();
                             //Il gioco lo avvia lui
                             id++;
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
                 },delay);
 
                 //this.myTimer(game);
             }
-            if (loggedPlayers.size() == 2 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+            if (loggedPlayers.size() == 4 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+                Game game = new Game(id);
+                ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
                 timer.cancel();
                 uploadPlayers(game,loggedPlayers);
                 controllerGame.start();     //Il gioco lo avvia lui
