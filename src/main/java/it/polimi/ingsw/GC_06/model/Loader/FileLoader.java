@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.model.Board.*;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.Card;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
@@ -17,6 +18,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoardSlot;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -242,11 +244,12 @@ public class FileLoader {
 
         //Generate production/harvest
         ArrayList<ProdHarvZone> prodHarvZones = new ArrayList<>();
+        ActionType[] actionTypes = {ActionType.PRODUCTION_ACTION,ActionType.HARVEST_ACTION};
         for (int i=0;i<2;i++) {
             ArrayList<ActionPlace> prodHarvActionPlaces = new ArrayList<>();
             prodHarvActionPlaces.add(new ActionPlaceFixed(new ArrayList<Effect>(), 1, 1));
             prodHarvActionPlaces.add(new ActionPlace(new ArrayList<Effect>(), 1));
-            ProdHarvZone prodHarvZone = new ProdHarvZone(prodHarvActionPlaces);
+            ProdHarvZone prodHarvZone = new ProdHarvZone(prodHarvActionPlaces,actionTypes[i]);
             prodHarvZones.add(prodHarvZone);
         }
 

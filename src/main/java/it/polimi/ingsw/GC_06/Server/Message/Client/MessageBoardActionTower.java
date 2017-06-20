@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
+import it.polimi.ingsw.GC_06.model.Action.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -19,12 +20,14 @@ public class MessageBoardActionTower implements MessageClient{
     private int clientFamilyMember;
     private int game;
     private String player;
+    private int powerUpValue; /** the value that we want from the user to increase the servant value*/
 
-    public MessageBoardActionTower(String tower, int floor, int familyMember)
+    public MessageBoardActionTower(String tower, int floor, int familyMember, int powerUpValue)
     {
         this.tower = tower;
         this.floor = floor;
         this.clientFamilyMember = familyMember;
+        this.powerUpValue = powerUpValue;
     }
 
     @Override
@@ -37,12 +40,27 @@ public class MessageBoardActionTower implements MessageClient{
 
         BoardActionOnTower boardActionOnTower = new BoardActionOnTower(currentPlayer, floor, currentTower, familyMember,currentGame);
         boardActionOnTower.setGame(currentGame);
-        if (!boardActionOnTower.isAllowed())
-        {
+
+
+
+        PowerUpFamilyMember powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,powerUpValue);
+
+        if(powerUpFamilyMember.isAllowed()){
+            powerUpFamilyMember.execute();
+        }
+
+        /** rollBack */
+        if(!boardActionOnTower.isAllowed()){
             System.out.println("Azione non consentita");
+            int newPowerUpValue = -powerUpValue;
+            powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,newPowerUpValue);
+            powerUpFamilyMember.setCoefficient(0);
             return;
         }
-        boardActionOnTower.execute();
+        else{
+
+            boardActionOnTower.execute();
+        }
 
     }
 

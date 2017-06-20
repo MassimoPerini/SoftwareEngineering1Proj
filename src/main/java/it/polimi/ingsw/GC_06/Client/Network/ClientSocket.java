@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
@@ -46,12 +48,15 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageChangePlayer.class)
                 .registerSubtype(MessageFamilyMember.class)
                 .registerSubtype(MessageLoggedIn.class)
-                .registerSubtype(MessageGameStarted.class);
+                .registerSubtype(MessageGameStarted.class)
+                ;
+
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageClient.class, "type")
                 .registerSubtype(MessageBoardActionTower.class)
                 .registerSubtype(MessageThrowDice.class)
+                .registerSubtype(MessageProdHarv.class)
                 .registerSubtype(MessageEndTurn.class)
                 ; //.registerSubtype(.class);
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();

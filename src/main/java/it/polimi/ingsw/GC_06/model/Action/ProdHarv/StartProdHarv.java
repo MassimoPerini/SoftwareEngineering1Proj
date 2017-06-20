@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.Action.ExecuteEffects;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
@@ -23,17 +24,17 @@ public class StartProdHarv implements Action {
     private final int value;
     private final Player player;
     private Game game;
+    private ActionType actionType;
 
     /**
      *
      * @param cardList List of cards
-     * @param prodHarvFilter The functions that filters the useful cards
      * @param askUserCardFilter The functions that choose the cards we need to ask
      * @param value The value of the production/harvest
      * @param player The player that started the Action
      */
 
-    public StartProdHarv(List<DevelopmentCard> cardList, ProdHarvFilterCard prodHarvFilter, AskUserCard askUserCardFilter, int value, Player player)   //It should check if there is at least a "resource transformation" effect
+    public StartProdHarv(List<DevelopmentCard> cardList, ActionType actionType, AskUserCard askUserCardFilter, int value, Player player)   //It should check if there is at least a "resource transformation" effect
     {
         super();
         if (cardList==null || askUserCardFilter==null)
@@ -43,7 +44,7 @@ public class StartProdHarv implements Action {
 
         for (DevelopmentCard developmentCard : cardList)
         {
-            if (prodHarvFilter.isSatisfiable(developmentCard))
+            if (askUser(developmentCard,value))
             {
                 this.developmentCards.add(developmentCard);
             }
@@ -52,6 +53,7 @@ public class StartProdHarv implements Action {
         this.prodHarvFilterCard = askUserCardFilter;
         this.value = value;
         this.player = player;
+        this.actionType = actionType;
     }
 
     /**
@@ -124,6 +126,18 @@ public class StartProdHarv implements Action {
             executeEffects.execute();
         }
 
+    }
+
+    public boolean askUser(DevelopmentCard card, int points) {
+        List<ProdHarvEffect> effects = card.getProdHarvEffects(points);
+        for (ProdHarvEffect effect : effects)
+        {
+            if (effect.getMalusEffect().size() > 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setGame(Game game) {

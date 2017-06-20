@@ -22,9 +22,6 @@ public class HeroCard extends Card {
     private ArrayList<Effect> effectList;
     private BonusMalusSet bonusMalusSet;
     private boolean permanent,ON;
-    private ArrayList<BonusMalusOnAction> bonusMalusOnActions;
-    private ArrayList <SpecialBonusMalus> specialBonusMaluses;
-
 
 
     public HeroCard(String path, HashMap<String, Integer> cardConditions, ResourceSet resourceConditions, ArrayList<Effect> effectList,boolean permanent,

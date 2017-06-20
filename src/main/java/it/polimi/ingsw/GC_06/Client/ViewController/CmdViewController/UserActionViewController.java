@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 
@@ -52,6 +53,8 @@ public class UserActionViewController implements ViewPresenterCLI {
     public void run() {
         System.out.println("CLIENTBOARDGAME INVOKED");
         while(true) {
+            commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta," +
+                    "Se vuoi eseguire il raccolto o la produzione scrivi prod");
             commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta, l per cambiare turno");
             String input = commandView.getString();
 
@@ -69,9 +72,17 @@ public class UserActionViewController implements ViewPresenterCLI {
                 TutorialPickCard tutorialPickCard = new TutorialPickCard(commandView, mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()));        //Probabilmente l'interfaccia è inutile
                 String [] answers = tutorialPickCard.viewWillAppear();
                 if (answers!=null) {
-                    MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(answers[0], Integer.parseInt(answers[1]), Integer.parseInt(answers[2]));
+                    MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(answers[0], Integer.parseInt(answers[1]), Integer.parseInt(answers[2]),Integer.parseInt(answers[3]));
                     clientNetworkOrchestrator.send(messageBoardActionTower);
                 }
+            }
+
+            if(input.equals("prod")){
+
+                commandView.addLocalizedText("Dammi i dati");
+                String[] inp = commandView.getString().split(" ");
+
+                MessageProdHarv messageProdHarv = new MessageProdHarv(Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]),Integer.parseInt(inp[3]));
             }
             if (input.equals("l"))
             {

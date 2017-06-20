@@ -87,7 +87,7 @@ public class PlayerBoard {
 
         Set<String> colourRequirements = requirements.keySet();
         for(String colour : colourRequirements){
-            if(requirements.get(colour) < this.cards.get(colour).size()){
+            if(requirements.get(colour) > this.cards.get(colour).size()){
                 return false;
             }
         }

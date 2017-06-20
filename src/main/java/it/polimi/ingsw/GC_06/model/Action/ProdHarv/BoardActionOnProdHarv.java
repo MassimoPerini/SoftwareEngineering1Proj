@@ -31,23 +31,22 @@ public class BoardActionOnProdHarv implements Action {
      * @param player The player that invoked the action
      * @param index Index of the field of the production/harvest area
      * @param prodHarvArea The production/harvest area
-     * @param selectProdHarvCard The function that selects the production/harvest cards
+     *
      * @param askUserCardFilter The function that selects the cards that we have to ask
      * @param familyMember The family member placed
      */
 
-    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ProdHarvFilterCard selectProdHarvCard, AskUserCard askUserCardFilter , FamilyMember familyMember,ActionType actionType)
+    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ActionType actionType, AskUserCard askUserCardFilter , FamilyMember familyMember)
     {
         super();
-        if (player == null || prodHarvArea == null || familyMember == null || askUserCardFilter==null || selectProdHarvCard == null)
+        if (player == null || prodHarvArea == null || familyMember == null || askUserCardFilter==null || actionType == null)
             throw new NullPointerException();
-
-        this.prodHarvArea = prodHarvArea;
         this.actionType = actionType;
+        this.prodHarvArea = prodHarvArea;
         this.player = player;
         this.index = index;
         this.familyMember = familyMember;
-        this.startProdHarv = new StartProdHarv(player.getPlayerBoard().getDevelopmentCards(), selectProdHarvCard, askUserCardFilter ,familyMember.getValue(), player);
+        this.startProdHarv = new StartProdHarv(player.getPlayerBoard().getDevelopmentCards(), actionType, askUserCardFilter ,familyMember.getValue(), player);
     }
 
     /**
@@ -59,7 +58,7 @@ public class BoardActionOnProdHarv implements Action {
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
 
-        BonusMalusHandler.filter(player,actionType,familyMember);
+        //BonusMalusHandler.filter(player,actionType,familyMember);
 
         if (!isAllowed())
             throw new IllegalStateException();
@@ -78,6 +77,8 @@ public class BoardActionOnProdHarv implements Action {
     public void setGame(Game game) {
         this.game = game;
     }
+
+
 
     @Override
     public boolean isAllowed() {

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
@@ -10,11 +11,13 @@ import java.util.Observable;
 
 public class ProdHarvZone extends Observable{
 
-	private final ArrayList <ActionPlace> actionPlaces;
+	private final List <ActionPlace> actionPlaces;
 	private int maxSamePlayerFamilyMember;
+	private ActionType actionType;
 
-	public ProdHarvZone (ArrayList<ActionPlace> actionPlaces) {
+	public ProdHarvZone (List<ActionPlace> actionPlaces,ActionType actionType) {
 		this.actionPlaces = actionPlaces;
+		this.actionType = actionType;
 	}
 
 	public void addFamilyMember(FamilyMember familyMember, int index)
@@ -22,6 +25,11 @@ public class ProdHarvZone extends Observable{
 		if (!isAllowed(familyMember, index))
 			throw new IllegalStateException();
 		actionPlaces.get(index).addFamilyMember(familyMember);
+	}
+
+
+	public ActionType getActionType() {
+		return actionType;
 	}
 
 	public boolean isAllowed(FamilyMember familyMember, int index)
