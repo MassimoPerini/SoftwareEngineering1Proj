@@ -1,0 +1,45 @@
+[
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_25"
+  }
+]

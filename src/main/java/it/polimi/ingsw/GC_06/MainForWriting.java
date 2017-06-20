@@ -15,8 +15,8 @@ public class MainForWriting {
 
     public static void main(String[] args) throws IOException {
         fileLoader = FileLoader.getFileLoader();
-        fileLoader.writeGreenCard();
-        System.out.println("factored green cards");
+        /*fileLoader.writeGreenCard();
+        System.out.println("factored green cards");*/
 
         /*ResourceSet parchment1 = new ResourceSet();
         parchment1.variateResource(Resource.STONE, 1);
@@ -32,5 +32,8 @@ public class MainForWriting {
         ResourceSet [] parchments = {parchment1, parchment2, parchment3, parchment4, parchment5};
         fileLoader.writeResourceSet(parchments);
         System.out.println("factored parchments");*/
+
+        fileLoader.writeYellowCard();
+        System.out.println("factored yellow cards");
     }
 }

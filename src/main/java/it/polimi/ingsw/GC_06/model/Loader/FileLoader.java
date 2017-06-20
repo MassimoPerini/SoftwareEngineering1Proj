@@ -552,29 +552,41 @@ public class FileLoader {
 
     public void writeYellowCard() throws IOException {
         List cards = new ArrayList();
-        int requiredValue = 1;
+        int requiredValue = 5;
         int era = 1;
         String name = "devcards_f_en_c_25";
-        List requirements = new ArrayList();
-        List effects = new ArrayList();
+        ResourceSet cost = new ResourceSet();
         String idColour = "YELLOW";
-        List immediateEffects = new ArrayList();
+        List<Requirement> requirements = new ArrayList<>();
+        List<Effect> immediateEffects = new ArrayList<>();
         List bonusEffects = new ArrayList();
         List malusEffects = new ArrayList();
         List prodHarvEffects = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap = new HashMap<>();
-        ResourceSet variation = new ResourceSet();
-        variation.variateResource(Resource.MONEY, 1);
-        EffectOnResources effect = new EffectOnResources(variation);
-        bonusEffects.add(effect);
+        EffectOnConditions effectOnCondition = new EffectOnConditions(Resource.MONEY, 1, "YELLOW");
+        bonusEffects.add(effectOnCondition);
         ProdHarvEffect prodHarvEffect = new ProdHarvEffect(malusEffects, bonusEffects);
         prodHarvEffects.add(prodHarvEffect);
         requestedMap.put(requiredValue, prodHarvEffects);
+        cost.variateResource(Resource.WOOD, 1);
+        cost.variateResource(Resource.STONE, 3);
+        ResourceSet demiRequirement = new ResourceSet();
+        Requirement requirement = new Requirement(demiRequirement, cost);
+        requirements.add(requirement);
+        ResourceSet immediate = new ResourceSet();
+        immediate.variateResource(Resource.VICTORYPOINT, 5);
+        EffectOnResources immediateEffect = new EffectOnResources(immediate);
+        immediateEffects.add(immediateEffect);
         DevelopmentCard card = new DevelopmentCard(name,era, requirements, immediateEffects, idColour, requestedMap);
+        cards.add(card);
 
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        FileWriter fw = new FileWriter("src/main/resources/model/cards2.txt");
-        gson.toJson(card, fw);
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class);
+
+        Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        FileWriter fw = new FileWriter("src/main/resources/model/cards3.txt");
+        gson.toJson(cards, fw);
         fw.close();
     }
 
