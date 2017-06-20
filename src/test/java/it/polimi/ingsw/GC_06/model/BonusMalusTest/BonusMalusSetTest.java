@@ -19,7 +19,7 @@ import static junit.framework.TestCase.assertTrue;
  */
 public class BonusMalusSetTest {
 
-    /**private HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
+    private HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
     private HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources1;
     private HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnActionMap;
     private ArrayList<BonusMalusOnAction> listBonusMalusOnAction;
@@ -33,8 +33,8 @@ public class BonusMalusSetTest {
     public void setUp(){
 
 
-        bonusMalusOnAction = new BonusMalusOnAction("yellow",5,ActionType.PAYCARDACTION, new LinkedList<String>());
-        bonusMalusOnAction1 = new BonusMalusOnAction("green",5,ActionType.ENDACTION,new LinkedList<String>());
+        bonusMalusOnAction = new BonusMalusOnAction("yellow", new LinkedList<String>(),ActionType.PAYCARDACTION,false,5);
+        bonusMalusOnAction1 = new BonusMalusOnAction("green",new LinkedList<String>(),ActionType.ENDACTION,false,5);
         listBonusMalusOnAction = new ArrayList<>();
         listBonusMalusOnAction.add(bonusMalusOnAction);
         listBonusMalusOnAction.add(bonusMalusOnAction1);
@@ -46,7 +46,7 @@ public class BonusMalusSetTest {
 
     }
 
-/**
+
     @Test
 
     public void additionTest(){
@@ -57,12 +57,12 @@ public class BonusMalusSetTest {
         bonusMalusSet1.addActionBonusMalus(listBonusMalusOnAction);
         assertTrue(4 == bonusMalusSet1.getBonusMalusOnAction().get("BONUSMALUSONACTION").size());
 
-    }*/
+    }
 
-  /**  public void joinTest(){
+  public void joinTest(){
 
         bonusMalusSet.joinSet(bonusMalusSet1);
 
         assertTrue(6 == bonusMalusSet.getBonusMalusOnAction().get("BONUSMALUSONACTION").size());
-    }*/
+    }
 }

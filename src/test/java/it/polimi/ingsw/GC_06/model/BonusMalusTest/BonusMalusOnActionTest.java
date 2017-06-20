@@ -13,7 +13,7 @@ import java.util.LinkedList;
 /**
  * Created by giuseppe on 6/21/17.
  */
-public class BonusMalusTest {
+public class BonusMalusOnActionTest {
 
     private LinkedList<String> colours = new LinkedList<>();
     private BonusMalusOnAction bonusMalusOnAction;
@@ -31,9 +31,8 @@ public class BonusMalusTest {
     }
 
     @Test
-
     public void firstTest(){
         bonusMalusOnAction.modify(familyMember);
-        assertTrue(5 == familyMember.getValue());
+        assertTrue(10 == familyMember.getValue());
     }
 }
