@@ -33,7 +33,13 @@ public class MainForWriting {
         fileLoader.writeResourceSet(parchments);
         System.out.println("factored parchments");*/
 
-        fileLoader.writeYellowCard();
-        System.out.println("factored yellow cards");
+        /*fileLoader.writeYellowCard();
+        System.out.println("factored yellow cards");*/
+
+        fileLoader.writePurpleCard();
+        System.out.println("factored Yellow cards");
+
+        fileLoader.writeBlueCard();
+        System.out.println("factored blue cards");
     }
 }

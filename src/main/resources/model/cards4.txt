@@ -1,0 +1,40 @@
+[
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_73"
+  }
+]

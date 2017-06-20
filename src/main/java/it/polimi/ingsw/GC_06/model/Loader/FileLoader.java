@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.Card;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
@@ -589,6 +591,89 @@ public class FileLoader {
 
         Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
         FileWriter fw = new FileWriter("src/main/resources/model/cards3.txt");
+        gson.toJson(cards, fw);
+        fw.close();
+    }
+
+    public void writePurpleCard() throws IOException {
+        List cards = new ArrayList();
+        int era = 1;
+        int requiredValue = 0;
+        String name = "devcards_f_en_c_73";
+        ResourceSet cost = new ResourceSet();
+        ResourceSet requirement = new ResourceSet();
+        String idColour = "PURPLE";
+        List<Requirement> requirements = new ArrayList<>();
+        List<Effect> immediateEffects = new ArrayList<>();
+        Map<Integer, List<ProdHarvEffect>> requestedMap = new HashMap<>();
+        List prodHarvEffects = new ArrayList();
+        ResourceSet immediate = new ResourceSet();
+        immediate.variateResource(Resource.MILITARYPOINT, 5);
+        EffectOnResources immediateEffect = new EffectOnResources(immediate);
+        immediateEffects.add(immediateEffect);
+        ResourceSet onEnd = new ResourceSet();
+        onEnd.variateResource(Resource.VICTORYPOINT, 4);
+        EffectOnEnd effectOnEnd = new EffectOnEnd(onEnd);
+        immediateEffects.add(effectOnEnd);
+        cost.variateResource(Resource.MONEY, 4);
+        Requirement require = new Requirement(requirement, cost );
+        requirements.add(require);
+        requestedMap.put(requiredValue, prodHarvEffects);
+        DevelopmentCard card = new DevelopmentCard(name, era, requirements, immediateEffects, idColour,  requestedMap);
+        cards.add(card);
+
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class);
+
+        Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        FileWriter fw = new FileWriter("src/main/resources/model/cards4.txt");
+        gson.toJson(cards, fw);
+        fw.close();
+
+    }
+
+    public void writeBlueCard() throws IOException {
+        List cards = new ArrayList();
+        int era = 1;
+        int requiredValue = 0;
+        String name = "devcards_f_en_c_49";
+        ResourceSet cost = new ResourceSet();
+        ResourceSet requirement = new ResourceSet();
+        String idColour = "PURPLE";
+        List<Requirement> requirements = new ArrayList<>();
+        List<Effect> immediateEffects = new ArrayList<>();
+        Map<Integer, List<ProdHarvEffect>> requestedMap = new HashMap<>();
+        List prodHarvEffects = new ArrayList();
+        ResourceSet immediate = new ResourceSet();
+        immediate.variateResource(Resource.MILITARYPOINT, 3);
+        EffectOnResources immediateEffect = new EffectOnResources(immediate);
+        immediateEffects.add(immediateEffect);
+        LinkedList<String> familyMemberColours = new LinkedList<>();
+        familyMemberColours.add("WHITE");
+        familyMemberColours.add("RED");
+        familyMemberColours.add("BLACK");
+        boolean permanent = true;
+        BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction("GREEN", familyMemberColours, ActionType.TOWER_ACTION, permanent, 2 );
+        BonusMalusSet bonusMalusSet = new BonusMalusSet();
+        List<BonusMalusOnAction> bonusMalusOnActions = new ArrayList<>();
+        bonusMalusOnActions.add(bonusMalusOnAction);
+        bonusMalusSet.addActionBonusMalus(bonusMalusOnActions);
+        DonateBonusMalusEffect donateBonusMalusEffect = new DonateBonusMalusEffect(bonusMalusSet);
+        immediateEffects.add(donateBonusMalusEffect);
+        cost.variateResource(Resource.MONEY, 2);
+        Requirement require = new Requirement(requirement, cost );
+        requirements.add(require);
+        requestedMap.put(requiredValue, prodHarvEffects);
+        DevelopmentCard card = new DevelopmentCard(name, era, requirements, immediateEffects, idColour,  requestedMap);
+        cards.add(card);
+
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+
+        Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        FileWriter fw = new FileWriter("src/main/resources/model/cards5.txt");
         gson.toJson(cards, fw);
         fw.close();
     }

@@ -1,0 +1,67 @@
+[
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_49"
+  }
+]
