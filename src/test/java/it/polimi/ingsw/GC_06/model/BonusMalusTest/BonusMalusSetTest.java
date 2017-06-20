@@ -41,7 +41,6 @@ public class BonusMalusSetTest {
 
 
 
-
         bonusMalusSet = new BonusMalusSet();
         bonusMalusSet1 = new BonusMalusSet();
 

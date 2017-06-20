@@ -18,6 +18,8 @@ import static org.junit.Assert.assertFalse;
 /**
  * Created by giuseppe on 6/17/17.
  */
+
+/**
 public class BonusMalusOnCostTest {
     private ResourceSet resourceSet = new ResourceSet();
     private ResourceSet bonusMalusEntity = new ResourceSet();
@@ -62,4 +64,6 @@ public class BonusMalusOnCostTest {
                 getResourceAmount(it.polimi.ingsw.GC_06.model.Resource.Resource.MILITARYPOINT));
         System.out.println(card.getRequirements().get(0).getCost(). getResourceAmount(it.polimi.ingsw.GC_06.model.Resource.Resource.MONEY));
     }
-}
+
+    */
+

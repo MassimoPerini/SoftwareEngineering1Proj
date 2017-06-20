@@ -53,6 +53,10 @@ public class FamilyMember extends Observable implements Observer {
         this.value+=variate;
     }
 
+    public void imposta(int value){
+        this.value = value;
+    }
+
     public void setValue(int value) {
 
         this.value = value;
