@@ -13,7 +13,6 @@ import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoard;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoardSlot;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -68,7 +67,7 @@ public class FileLoader {
     }
 
     public void writeResourceSet(ResourceSet [] resourceSet) throws IOException {
-        FileWriter fw = new FileWriter("src/main/resources/model/default_res.txt");
+        FileWriter fw = new FileWriter("src/main/resources/model/parchments.txt");
         Gson gson=new GsonBuilder().setPrettyPrinting().create();
         gson.toJson(resourceSet, fw);
         fw.close();
@@ -468,7 +467,7 @@ public class FileLoader {
         ResourceSet immediateVariation6 = new ResourceSet();
         immediateVariation6.variateResource(Resource.MILITARYPOINT, 2);
         immediateVariation6.variateResource(Resource.SERVANT, 1);
-        EffectOnResources effectOnResources6 = new EffectOnResources(variation6);
+        EffectOnResources effectOnResources6 = new EffectOnResources(immediateVariation6);
         immediateEffects6.add(effectOnResources6);
         EffectOnResources effect6 = new EffectOnResources( variation6);
         bonusEffects6.add(effect6);
@@ -501,6 +500,34 @@ public class FileLoader {
         requestedMap7.put(requiredValue7, prodHarvEffects7);
         DevelopmentCard card7 = new DevelopmentCard(name7,era7, requirements7, immediateEffects7, idColour7, requestedMap7);
         cards.add(card7);
+        int requiredValue8 = 6;
+        int era8 = 1;
+        String name8 = "devcards_f_en_c_8";
+        List requirements8 = new ArrayList();
+        List effects8 = new ArrayList();
+        String idColour8 = "GREEN";
+        List<Effect> immediateEffects8 = new ArrayList<>();
+        List bonusEffects8 = new ArrayList();
+        List malusEffects8 = new ArrayList();
+        List prodHarvEffects8 = new ArrayList();
+        Map<Integer, List<ProdHarvEffect>> requestedMap8 = new HashMap<>();
+        ResourceSet variation8 = new ResourceSet();
+        variation8.variateResource(Resource.MILITARYPOINT, 2);
+        variation8.variateResource(Resource.STONE, 1);
+        List<ResourceSet> parchments = new ArrayList<>();
+        parchments.add(variation8);
+        EffectOnParchment variationParchment = new EffectOnParchment(parchments);
+        ResourceSet immediateVariation8 = new ResourceSet();
+        immediateVariation8.variateResource(Resource.MONEY, 3);
+        EffectOnResources immediateEffect = new EffectOnResources(immediateVariation8);
+        immediateEffects8.add(immediateEffect);
+        EffectOnResources effect8 = new EffectOnResources( variation8);
+        bonusEffects8.add(variationParchment);
+        ProdHarvEffect prodHarvEffect8 = new ProdHarvEffect(malusEffects8, bonusEffects8);
+        prodHarvEffects8.add(prodHarvEffect8);
+        requestedMap8.put(requiredValue8, prodHarvEffects8);
+        DevelopmentCard card8 = new DevelopmentCard(name8,era8, requirements8, immediateEffects8, idColour8, requestedMap8);
+        cards.add(card8);
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)

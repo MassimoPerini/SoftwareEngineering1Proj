@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.model.Action.Action;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -43,7 +42,7 @@ public class PayCard implements Action {
 
         //MODIFICHIAMO QUI LA CARTA
 
-        BonusMalusHandler.filter(player,ACTION_TYPE,developmentCard);
+    //    BonusMalusHandler.filter(player,ACTION_TYPE,developmentCard);
 
         for(Requirement requirement : developmentCard.getRequirements()){
             if(requirement.isSatisfied(player.getResourceSet()))
@@ -53,7 +52,7 @@ public class PayCard implements Action {
         if(satisfiedRequirements.size() == 1){
             satisfiedRequirements.get(0).doIt(player);
         }
-        else{
+        else if (satisfiedRequirements.size()>1){
             game.getGameStatus().changeState(TransitionType.ASK_PAYMENT, satisfiedRequirements);
         }
     }

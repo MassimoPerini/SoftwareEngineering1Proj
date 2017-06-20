@@ -1,212 +1,212 @@
 [
-   {
-      "era": 1,
-      "requirements": [],
-      "immediateEffects": [],
-      "idColour": "GREEN",
-      "prodHarvEffects": {
-        "1": [
-          {
-            "malusEffect": [],
-            "bonusEffect": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {
-                    "MONEY": 1
-                  }
+ {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1
                 }
               }
-            ]
-          }
-        ]
-      },
-      "path": "devcards_f_en_c_1"
-    },
-    {
-      "era": 1,
-      "requirements": [],
-      "immediateEffects": [
-        {
-          "type": "EffectOnResources",
-          "resourceSet": {
-            "resources": {
-              "WOOD": 1
             }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_1"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 1
           }
         }
-      ],
-      "idColour": "GREEN",
-      "prodHarvEffects": {
-        "2": [
-          {
-            "malusEffect": [],
-            "bonusEffect": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {
-                    "WOOD": 1
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "path": "devcards_f_en_c_2"
-    },
-    {
-      "era": 1,
-      "requirements": [],
-      "immediateEffects": [],
-      "idColour": "GREEN",
-      "prodHarvEffects": {
-        "3": [
-          {
-            "malusEffect": [],
-            "bonusEffect": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {
-                    "MONEY": 1,
-                    "SERVANT": 1
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "path": "devcards_f_en_c_3"
-    },
-    {
-      "era": 1,
-      "requirements": [],
-      "immediateEffects": [
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "2": [
         {
-          "type": "EffectOnResources",
-          "resourceSet": {
-            "resources": {
-              "STONE": 2
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 1
+                }
+              }
             }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_2"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "3": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1,
+                  "SERVANT": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_3"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "STONE": 2
           }
         }
-      ],
-      "idColour": "GREEN",
-      "prodHarvEffects": {
-        "4": [
-          {
-            "malusEffect": [],
-            "bonusEffect": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {
-                    "STONE": 2
-                  }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 2
                 }
               }
-            ]
-          }
-        ]
-      },
-      "path": "devcards_f_en_c_4"
-    },
-    {
-      "era": 1,
-      "requirements": [],
-      "immediateEffects": [
-        {
-          "type": "EffectOnResources",
-          "resourceSet": {
-            "resources": {
-              "WOOD": 3
             }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_4"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 3
           }
         }
-      ],
-      "idColour": "GREEN",
-      "prodHarvEffects": {
-        "5": [
-          {
-            "malusEffect": [],
-            "bonusEffect": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {
-                    "WOOD": 3
-                  }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 3
                 }
               }
-            ]
-          }
-        ]
-      },
-      "path": "devcards_f_en_c_5"
-    },
-    {
-      "era": 1,
-      "requirements": [],
-      "immediateEffects": [
-        {
-          "type": "EffectOnResources",
-          "resourceSet": {
-            "resources": {
-              "FAITHPOINT": 1,
-              "STONE": 1
             }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_5"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1,
+            "STONE": 1
           }
         }
-      ],
-      "idColour": "GREEN",
-      "prodHarvEffects": {
-        "6": [
-          {
-            "malusEffect": [],
-            "bonusEffect": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {
-                    "FAITHPOINT": 1,
-                    "STONE": 1
-                  }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "6": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "FAITHPOINT": 1,
+                  "STONE": 1
                 }
               }
-            ]
-          }
-        ]
-      },
-      "path": "devcards_f_en_c_6"
+            }
+          ]
+        }
+      ]
     },
-    {
-      "era": 1,
-      "requirements": [],
-      "immediateEffects": [],
-      "idColour": "GREEN",
-      "prodHarvEffects": {
-        "5": [
-          {
-            "malusEffect": [],
-            "bonusEffect": [
-              {
-                "type": "EffectOnResources",
-                "resourceSet": {
-                  "resources": {
-                    "MILITARYPOINT": 2,
-                    "STONE": 1
-                  }
+    "path": "devcards_f_en_c_6"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MILITARYPOINT": 2,
+                  "STONE": 1
                 }
               }
-            ]
-          }
-        ]
-      },
-      "path": "devcards_f_en_c_7"
+            }
+          ]
+        }
+      ]
     },
+    "path": "devcards_f_en_c_7"
+  },
   {
     "era": 1,
     "requirements": [],
@@ -308,32 +308,208 @@
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1011"
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_1"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "2": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_2"
   },
   {
     "era": 1,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1111"
+    "prodHarvEffects": {
+      "3": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1,
+                  "SERVANT": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_3"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "STONE": 2
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_4"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 3
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_5"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1,
+            "STONE": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "6": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "FAITHPOINT": 1,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_6"
   },
   {
     "era": 1,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1211"
-  },
-  {
-    "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1311"
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MILITARYPOINT": 2,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_7"
   },
   {
     "era": 1,

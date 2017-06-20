@@ -1,12 +1,10 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
-import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Created by massimo on 13/06/17.
@@ -109,7 +107,7 @@ public class LoginHub {
 
                 //this.myTimer(game);
             }
-            if (loggedPlayers.size() == 2 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+            if (loggedPlayers.size() == 1 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game(id);
                 ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
                 timer.cancel();

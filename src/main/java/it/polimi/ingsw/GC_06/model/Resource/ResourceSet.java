@@ -106,7 +106,7 @@ public class ResourceSet {
     public boolean isIncluded(Resource resource, int amount) {
         Integer myQty = this.resources.get(resource);
         if (myQty == null) {
-            return amount > 0;
+            return amount >= 0;
         }
         return (myQty.intValue() + amount) >= 0;
     }
