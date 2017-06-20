@@ -55,6 +55,7 @@ public class AppClient {
             customProperties.put("clientInputController", clientInputController);
             customProperties.put("viewOrchestratorFx", viewOrchestratorFx);
             customProperties.put("clientNetworkOrchestrator", clientNetworkOrchestrator);
+            customProperties.put("mainClientModel", clientController.getMainClientModel());
 
             Injector.setConfigurationSource(customProperties::get);
             clientController.setViewOrchestrator(viewOrchestratorFx);

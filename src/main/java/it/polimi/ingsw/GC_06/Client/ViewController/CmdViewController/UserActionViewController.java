@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 
 import java.util.Map;
@@ -51,7 +52,7 @@ public class UserActionViewController implements ViewPresenterCLI {
     public void run() {
         System.out.println("CLIENTBOARDGAME INVOKED");
         while(true) {
-            commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta");
+            commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta, l per cambiare turno");
             String input = commandView.getString();
 
             if (input.equals("s")) {
@@ -71,6 +72,11 @@ public class UserActionViewController implements ViewPresenterCLI {
                     MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(answers[0], Integer.parseInt(answers[1]), Integer.parseInt(answers[2]));
                     clientNetworkOrchestrator.send(messageBoardActionTower);
                 }
+            }
+            if (input.equals("l"))
+            {
+                MessageEndTurn messageEndTurn = new MessageEndTurn();
+                clientNetworkOrchestrator.send(messageEndTurn);
             }
         }
     }
