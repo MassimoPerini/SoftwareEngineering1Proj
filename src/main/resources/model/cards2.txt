@@ -155,8 +155,8 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "FAITHPOINT": 1,
-            "STONE": 1
+            "MILITARYPOINT": 2,
+            "SERVANT": 1
           }
         }
       }
@@ -206,5 +206,41 @@
       ]
     },
     "path": "devcards_f_en_c_7"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 3
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "6": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnParchment",
+              "parchments": [
+                {
+                  "resources": {
+                    "MILITARYPOINT": 2,
+                    "STONE": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_8"
   }
 ]

@@ -31,6 +31,7 @@ public class FileLoader {
     private static FileLoader instance;
 
     private static final String CARDS_PATH = "cards_path";
+    private static final String PARCHMENTS_PATH = "parchments_path";
     private static final String BOARD_PATH = "board_path";
     private static final String DEFAULT_RES = "default_resource_path";
     private static final String DICES = "dices_path";
@@ -39,6 +40,7 @@ public class FileLoader {
 
 
     private String cardsRootPath;
+    private String parchmentsPath;
     private String boardRootPath;
     private String defaultResourceRootPath;
     private String dicePath;
@@ -51,6 +53,7 @@ public class FileLoader {
     {
         super();
         this.gson = new Gson();
+        parchmentsPath = Setting.getInstance().getProperty(PARCHMENTS_PATH);
         cardsRootPath = Setting.getInstance().getProperty(CARDS_PATH);
         boardRootPath = Setting.getInstance().getProperty(BOARD_PATH);
         defaultResourceRootPath = Setting.getInstance().getProperty(DEFAULT_RES);
@@ -79,6 +82,18 @@ public class FileLoader {
         ResourceSet [] defaultResourceSets = gson.fromJson(fr , ResourceSet [].class);
         fr.close();
         return defaultResourceSets;
+    }
+
+    public ResourceSet[] loadParchments() {
+        InputStreamReader sr = new InputStreamReader(this.getClass().getResourceAsStream(parchmentsPath));
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        ResourceSet [] parchments = gson.fromJson(sr, ResourceSet [].class);
+        try {
+            sr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return parchments;
     }
 
     public void writeDiceSet(DiceSet diceSet) throws IOException {
@@ -512,11 +527,7 @@ public class FileLoader {
         List prodHarvEffects8 = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap8 = new HashMap<>();
         ResourceSet variation8 = new ResourceSet();
-        variation8.variateResource(Resource.MILITARYPOINT, 2);
-        variation8.variateResource(Resource.STONE, 1);
-        List<ResourceSet> parchments = new ArrayList<>();
-        parchments.add(variation8);
-        EffectOnParchment variationParchment = new EffectOnParchment(parchments);
+        EffectOnParchment variationParchment = new EffectOnParchment();
         ResourceSet immediateVariation8 = new ResourceSet();
         immediateVariation8.variateResource(Resource.MONEY, 3);
         EffectOnResources immediateEffect = new EffectOnResources(immediateVariation8);

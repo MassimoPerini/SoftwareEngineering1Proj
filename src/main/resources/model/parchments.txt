@@ -1,0 +1,28 @@
+[
+  {
+    "resources": {
+      "WOOD": 1,
+      "STONE": 1
+    }
+  },
+  {
+    "resources": {
+      "SERVANT": 2
+    }
+  },
+  {
+    "resources": {
+      "MONEY": 2
+    }
+  },
+  {
+    "resources": {
+      "MILITARYPOINT": 2
+    }
+  },
+  {
+    "resources": {
+      "FAITHPOINT": 1
+    }
+  }
+]
