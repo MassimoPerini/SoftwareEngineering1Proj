@@ -82,5 +82,8 @@ public class ViewOrchestratorCLI implements ViewOrchestrator, Observer{
         {
             this.change(ClientStateName.MY_TURN, "");
         }
+        else{
+            this.change(ClientStateName.GAME_START, "");
+        }
     }
 }
