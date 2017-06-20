@@ -19,7 +19,7 @@ import static junit.framework.TestCase.assertTrue;
  */
 public class BonusMalusSetTest {
 
-    private HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
+    /**private HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources;
     private HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources1;
     private HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnActionMap;
     private ArrayList<BonusMalusOnAction> listBonusMalusOnAction;
@@ -40,30 +40,30 @@ public class BonusMalusSetTest {
         listBonusMalusOnAction.add(bonusMalusOnAction1);
 
 
-        /**creo il mio prima malus set */
+
 
         bonusMalusSet = new BonusMalusSet();
         bonusMalusSet1 = new BonusMalusSet();
 
     }
 
-
+/**
     @Test
 
     public void additionTest(){
-        /** questo mi verifica le aggiunzione al set */
+
         bonusMalusSet.addActionBonusMalus(listBonusMalusOnAction);
         assertTrue(2==bonusMalusSet.getBonusMalusOnAction().get("BONUSMALUSONACTION").size());
         bonusMalusSet1.addActionBonusMalus(listBonusMalusOnAction);
         bonusMalusSet1.addActionBonusMalus(listBonusMalusOnAction);
         assertTrue(4 == bonusMalusSet1.getBonusMalusOnAction().get("BONUSMALUSONACTION").size());
 
-    }
+    }*/
 
-    public void joinTest(){
+  /**  public void joinTest(){
 
         bonusMalusSet.joinSet(bonusMalusSet1);
 
         assertTrue(6 == bonusMalusSet.getBonusMalusOnAction().get("BONUSMALUSONACTION").size());
-    }
+    }*/
 }

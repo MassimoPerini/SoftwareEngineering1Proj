@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class BonusMalusOnActionTest {
 
-    private FamilyMember familyMember;
+   /** private FamilyMember familyMember;
     private LinkedList<String> familyMemberColour = new LinkedList<>();
     private BonusMalusOnAction bonusMalusOnAction;
 
@@ -29,17 +29,19 @@ public class BonusMalusOnActionTest {
 
         familyMember = new FamilyMember("Orange","peppe");
         familyMember.setValue(5);
-        bonusMalusOnAction = new BonusMalusOnAction("Neuter",-4, ActionType.TOWERACTION,familyMemberColour);
+        bonusMalusOnAction = new BonusMalusOnAction("",familyMemberColour,ActionType.ENDACTION,false,4);
+        //bonusMalusOnAction.setBonusMalusEntity(5);
+        //bonusMalusOnAction.modify(familyMember);
+       // System.out.println(familyMember.getValue());
 
     }
 
     @Test
-    public void secondTest(){
+    public void firstTest(){
+        assertTrue(5 == familyMember.getValue());
+    }*/
 
-        bonusMalusOnAction.modify(familyMember);
-        assertTrue(familyMember.getValue()==1);
-       // assertTrue(bonusMalusOnAction.checkFamilyMember(familyMember));
-    }
+
 
 
 

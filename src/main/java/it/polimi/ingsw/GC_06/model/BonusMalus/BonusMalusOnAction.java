@@ -12,26 +12,30 @@ public class BonusMalusOnAction {
     /** serve se viene fatta una azione torre*/
     private String colourTarget;
     private LinkedList<String> familyMemberColours; /** i colori dei familiari su cui questo bonus impatta */
-    private int bonusMalusEntity;
     /** actionType serve ad identificare l'azione sulla quale il bonus o il malus agirà*/
     private ActionType actionType;
     private boolean permanent;
-    private boolean ON;
+    private int value;
 
-    public BonusMalusOnAction(String colourTarget, int malusEntity,ActionType actionType,LinkedList<String> familyMemberColours) {
+    public BonusMalusOnAction(String colourTarget, LinkedList<String> familyMemberColours, ActionType actionType, boolean permanent,int value) {
         this.colourTarget = colourTarget;
-        this.bonusMalusEntity = malusEntity;
-        this.actionType = actionType;
         this.familyMemberColours = familyMemberColours;
+        this.actionType = actionType;
+        this.permanent = permanent;
+        this.value = value;
     }
 
-        /** con questo metodo riduciamo il valore dell'azione, cambiando il punteggio del familiare*/
+    /** con questo metodo riduciamo il valore dell'azione, cambiando il punteggio del familiare*/
     public void modify(FamilyMember familyMember) {
-        int newValue = familyMember.getValue() + bonusMalusEntity;
+        int newValue = familyMember.getValue() + value;
         familyMember.setValue(newValue);
     }
 
-    public boolean isAllowed(FamilyMember familyMember,ActionType actionType){
+    public void setBonusMalusEntity(int bonusMalusEntity) {
+        this.value = bonusMalusEntity;
+    }
+
+    public boolean isAllowed(FamilyMember familyMember, ActionType actionType){
         if(checkFamilyMember(familyMember) && checkCompatibility(actionType)){
             return true;
         }
@@ -58,27 +62,14 @@ public class BonusMalusOnAction {
         }
     }
 
-    public ActionType getActionType() {
-        return actionType;
-    }
-
-    public void setColourTarget(String colourTarget) {
-        this.colourTarget = colourTarget;
-    }
 
     public String getColourTarget() {
         return colourTarget;
     }
 
-    public boolean isON() {
-        return ON;
-    }
 
     public boolean isPermanent() {
         return permanent;
     }
 
-    public void setON(boolean ON) {
-        this.ON = ON;
-    }
 }
