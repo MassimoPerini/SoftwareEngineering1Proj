@@ -48,7 +48,7 @@ public class EffectOnParchmentTest {
         ResourceSet parchment5 = new ResourceSet();
         parchment5.variateResource(Resource.FAITHPOINT,1);
         parchment5.variateResource(Resource.MONEY,1);
-        effectOnParchment = new EffectOnParchment(parchments);
+        effectOnParchment = new EffectOnParchment();
 
     }
 
