@@ -39,7 +39,7 @@ public class MessageBoardActionTower implements MessageClient{
         boardActionOnTower.setGame(currentGame);
         if (!boardActionOnTower.isAllowed())
         {
-            System.out.println("Errore eccezione");
+            System.out.println("Azione non consentita");
             return;
         }
         boardActionOnTower.execute();

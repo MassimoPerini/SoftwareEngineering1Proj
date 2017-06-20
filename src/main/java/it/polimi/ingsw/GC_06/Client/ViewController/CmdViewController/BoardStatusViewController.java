@@ -1,15 +1,11 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 
 import it.polimi.ingsw.GC_06.Client.Model.*;
-import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -23,16 +19,14 @@ public class BoardStatusViewController implements ViewPresenterCLI {
 
     private ClientBoardGame clientBoardGame;
     private Map<String, ClientPlayerBoard> clientPlayerBoard;
-    private ClientNetworkOrchestrator clientNetworkOrchestrator;
     private Future future;
     private final CommandView commandView;
 
 
-    public BoardStatusViewController(ClientBoardGame clientBoardGame, Map<String, ClientPlayerBoard> clientPlayerBoard, ClientNetworkOrchestrator clientNetworkOrchestrator)
+    public BoardStatusViewController(ClientBoardGame clientBoardGame, Map<String, ClientPlayerBoard> clientPlayerBoard)
     {
         this.clientBoardGame = clientBoardGame;
         this.clientPlayerBoard = clientPlayerBoard;
-        this.clientNetworkOrchestrator = clientNetworkOrchestrator;
         this.commandView = new CmdView();
     }
 

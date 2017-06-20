@@ -43,8 +43,8 @@ public class ViewOrchestratorCLI implements ViewOrchestrator, Observer{
     {
         clientStates.put(ClientStateName.LOGIN, new LoginViewPresenterCLI(clientNetworkOrchestrator));
         clientStates.put(ClientStateName.START, new ConnectionTypeViewPresenterCLI(clientNetworkOrchestrator));
-        clientStates.put(ClientStateName.GAME_START, new BoardStatusViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard(), clientNetworkOrchestrator));     //TEST, Observer?
-        clientStates.put(ClientStateName.MY_TURN, new UserActionViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard(), clientNetworkOrchestrator));
+        clientStates.put(ClientStateName.GAME_START, new BoardStatusViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard()));     //TEST, Observer?
+        clientStates.put(ClientStateName.MY_TURN, new UserActionViewController(mainClientModel, clientNetworkOrchestrator));
     }
 
     @Override

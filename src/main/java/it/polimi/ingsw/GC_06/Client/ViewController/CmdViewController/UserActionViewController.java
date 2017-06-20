@@ -7,10 +7,7 @@ import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
-import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
-import javax.swing.*;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,17 +18,15 @@ import java.util.concurrent.Future;
  */
 public class UserActionViewController implements ViewPresenterCLI {
 
-    private ClientBoardGame clientBoardGame;
-    private Map<String, ClientPlayerBoard> clientPlayerBoard;
-    private ClientNetworkOrchestrator clientNetworkOrchestrator;
+    private final MainClientModel mainClientModel;
+    private final ClientNetworkOrchestrator clientNetworkOrchestrator;
     private Future future;
     private final CommandView commandView;
 
 
-    public UserActionViewController(ClientBoardGame clientBoardGame, Map<String, ClientPlayerBoard> clientPlayerBoard, ClientNetworkOrchestrator clientNetworkOrchestrator)
+    public UserActionViewController(MainClientModel mainClientModel, ClientNetworkOrchestrator clientNetworkOrchestrator)
     {
-        this.clientBoardGame = clientBoardGame;
-        this.clientPlayerBoard = clientPlayerBoard;
+        this.mainClientModel = mainClientModel;
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
         this.commandView = new CmdView();
     }
@@ -60,7 +55,7 @@ public class UserActionViewController implements ViewPresenterCLI {
             String input = commandView.getString();
 
             if (input.equals("s")) {
-                BoardStatusViewController boardStatusViewController = new BoardStatusViewController(clientBoardGame, clientPlayerBoard, clientNetworkOrchestrator);
+                BoardStatusViewController boardStatusViewController = new BoardStatusViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard());
                 boardStatusViewController.showStatus();        //NON AVERE UN ALTRO THREAD!!!
             }
 
@@ -70,11 +65,12 @@ public class UserActionViewController implements ViewPresenterCLI {
             }
 
             if (input.equals("p")) {
-                String inp = JOptionPane.showInputDialog("Torre Piano Familiare");
-                String[] inpList;
-                inpList = inp.split(" ");
-                MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(inpList[0], Integer.parseInt(inpList[1]), Integer.parseInt(inpList[2]));
-                clientNetworkOrchestrator.send(messageBoardActionTower);
+                TutorialPickCard tutorialPickCard = new TutorialPickCard(commandView, mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()));        //Probabilmente l'interfaccia è inutile
+                String [] answers = tutorialPickCard.viewWillAppear();
+                if (answers!=null) {
+                    MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(answers[0], Integer.parseInt(answers[1]), Integer.parseInt(answers[2]));
+                    clientNetworkOrchestrator.send(messageBoardActionTower);
+                }
             }
         }
     }

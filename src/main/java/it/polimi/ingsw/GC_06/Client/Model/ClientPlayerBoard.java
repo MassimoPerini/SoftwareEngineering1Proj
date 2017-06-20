@@ -29,7 +29,12 @@ public class ClientPlayerBoard extends Observable{
     }
 
     public void addCard(String colour, String card) {
-        this.cards.get(colour).add(card);
+        List<String> cardsColour = this.cards.get(colour);
+        if (cardsColour==null) {
+            cardsColour = new ArrayList<>();
+            cards.put(colour, cardsColour);
+        }
+        cardsColour.add(card);
     }
 
     public void addExcommunication(String excommunication) {
