@@ -15,8 +15,8 @@ import java.net.ServerSocket;
  */
 public class AppServer {
 
-
     public static void main( String[] args ) throws IOException {
+
         System.out.println("Server started...");
 
         ServerOrchestrator serverOrchestrator = new ServerOrchestrator();

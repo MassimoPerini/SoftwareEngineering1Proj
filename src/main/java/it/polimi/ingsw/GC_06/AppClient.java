@@ -14,6 +14,7 @@ import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorFx;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.*;
+import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
 import java.io.IOException;
@@ -30,8 +31,8 @@ public class AppClient {
     //http://stackoverflow.com/questions/34712885/how-to-load-an-external-properties-file-from-a-maven-java-project
     //http://www.avajava.com/tutorials/lessons/how-do-i-read-a-properties-file-with-a-resource-bundle.html
 
-
     public static void main(String[] args) throws IOException {
+
 
         CommandView commandView = new CmdView();
         commandView.addLocalizedText("Che interfaccia vuoi? 0: CLI, 1: GUI");
