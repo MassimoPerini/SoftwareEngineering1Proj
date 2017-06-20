@@ -20,7 +20,7 @@ public class BonusMalusOnResourcesTest {
      * 2) Dato un resource set ( come malus entity) levo al mio targetSet la somma delle quantità
      * 3) Ti levo 1 per ogni tot di risorse che mi passi
      */
-/**
+
     private BonusMalusOnResources bonusMalusOnResources;
     private BonusMalusOnResources bonusMalusOnResources1;
     private Resource bonusMalusTarget;
@@ -38,15 +38,15 @@ public class BonusMalusOnResourcesTest {
     @Before
     public void setUp(){
 
-        /** settaggi riferiti al 1)
+        /** settaggi riferiti al 1)*/
         bonusMalusTarget = Resource.MONEY;
         bonusMalusSet.variateResource(Resource.MONEY,1);
         coefficient = -1;
         targetResourceSet.variateResource(Resource.MONEY,10);
         targetResourceSet.variateResource(Resource.MILITARYPOINT,15);
-        bonusMalusOnResources = new BonusMalusOnResources(bonusMalusSet,coefficient,ActionType.RESOURCEACTION,Resource.MONEY);*/
+        bonusMalusOnResources = new BonusMalusOnResources(bonusMalusSet,coefficient,ActionType.RESOURCEACTION,Resource.MONEY);
 
-        /** settaggi riferiti al secondo test
+        /** settaggi riferiti al secondo test*/
 
         Resource bonusMalusTarget1 = Resource.FAITHPOINT;
         bonusMalusSet1.variateResource(Resource.MILITARYPOINT,10);
@@ -61,9 +61,9 @@ public class BonusMalusOnResourcesTest {
 
     }
 
-    /** riferito al bonusmalus1 */
 
-        /**
+
+
     @Test
     public void firstTest(){
 
@@ -72,14 +72,14 @@ public class BonusMalusOnResourcesTest {
         assertTrue(targetResourceSet.getResourceAmount(Resource.MONEY) == 9);
        // assertTrue(targetResourceSet.getResourceAmount(Resource.MILITARYPOINT) == 9);
 
-        /** seconda tipologia di malus o bonus
+
         bonusMalusOnResources1.modify(targetSet);
         assertTrue(20 == targetSet.getResourceAmount(Resource.FAITHPOINT));
 
 
         bonusMalusOnResources3.modify(targetSet2);
         assertTrue(40 == targetSet2.getResourceAmount(Resource.FAITHPOINT));
-    }*/
+    }
 
 
 }
