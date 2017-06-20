@@ -4,32 +4,196 @@
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1001"
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "requiredValue": 1,
+              "variateResource": {
+                "resources": {
+                  "MONEY": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_1"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "resources": {
+          "WOOD": 1
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "2": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "requiredValue": 2,
+              "variateResource": {
+                "resources": {
+                  "WOOD": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_2"
   },
   {
     "era": 1,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1101"
+    "prodHarvEffects": {
+      "3": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "requiredValue": 3,
+              "variateResource": {
+                "resources": {
+                  "MONEY": 1,
+                  "SERVANT": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_3"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "resources": {
+          "STONE": 2
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "requiredValue": 4,
+              "variateResource": {
+                "resources": {
+                  "STONE": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_4"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "resources": {
+          "WOOD": 1
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "requiredValue": 5,
+              "variateResource": {
+                "resources": {
+                  "WOOD": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_5"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "resources": {
+          "MILITARYPOINT": 2,
+          "SERVANT": 1
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "6": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "requiredValue": 6,
+              "variateResource": {
+                "resources": {
+                  "FAITHPOINT": 1,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_6"
   },
   {
     "era": 1,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1201"
-  },
-  {
-    "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1301"
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "requiredValue": 5,
+              "variateResource": {
+                "resources": {
+                  "MILITARYPOINT": 2,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_7"
   },
   {
     "era": 1,
@@ -767,4 +931,5 @@
     "prodHarvEffects": {},
     "path": "devcards_f_en_c_96313"
   }
+
 ]

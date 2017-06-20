@@ -112,8 +112,9 @@ public class FileLoader {
 
     public DevelopmentCard[] loadCards() throws IOException {
 
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
-        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(EffectOnResources.class);        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
 
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(cardsRootPath));
         DevelopmentCard [] cards = gson2.fromJson(fr , DevelopmentCard [].class);
@@ -328,7 +329,9 @@ public class FileLoader {
 
         //TODO FIX HERE (relative path!)
 
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class).registerSubtype(EffectOnAction.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class);
         Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
 
         FileWriter fw = new FileWriter("src/main/resources/model/cards.txt");
@@ -495,7 +498,11 @@ public class FileLoader {
         DevelopmentCard card7 = new DevelopmentCard(name7,era7, requirements7, immediateEffects7, idColour7, requestedMap7);
         cards.add(card7);
 
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(EffectOnResources.class);
+
+        Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
         FileWriter fw = new FileWriter("src/main/resources/model/cards2.txt");
         gson.toJson(cards, fw);
         fw.close();
