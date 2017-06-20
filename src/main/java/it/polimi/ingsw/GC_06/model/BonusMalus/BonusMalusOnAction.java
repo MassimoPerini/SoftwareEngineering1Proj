@@ -31,10 +31,31 @@ public class BonusMalusOnAction {
         familyMember.setValue(newValue);
     }
 
-    public boolean checkFamilyMember(FamilyMember familyMember){
+    public boolean isAllowed(FamilyMember familyMember,ActionType actionType){
+        if(checkFamilyMember(familyMember) && checkCompatibility(actionType)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean checkFamilyMember(FamilyMember familyMember){
 
         return this.familyMemberColours.contains(familyMember.getDiceColor());
 
+    }
+
+    private boolean  checkCompatibility(ActionType actionType){
+        if(this.actionType.equals(ActionType.GENERAL)){
+            return true;
+        }
+        else{
+            if(!this.actionType.equals(actionType)){
+                return false;
+            }
+            return  true;
+        }
     }
 
     public ActionType getActionType() {

@@ -12,6 +12,15 @@ public class BonusMalusOnAccess {
         result = !result;
     }
 
+    public boolean isAllowed(ActionType actionType){
+        if(actionType.equals(actionType)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public ActionType getActionType() {
         return actionType;
     }

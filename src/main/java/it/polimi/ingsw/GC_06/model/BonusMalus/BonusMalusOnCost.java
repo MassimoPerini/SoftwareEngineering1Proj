@@ -58,6 +58,14 @@ public class BonusMalusOnCost {
         return false;
     }
 
+    public boolean isAllowed(ActionType actionType){
+        if(this.actionType.equals(actionType)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public ActionType getActionType() {
         return actionType;
     }

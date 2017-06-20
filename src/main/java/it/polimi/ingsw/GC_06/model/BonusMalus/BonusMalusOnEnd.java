@@ -31,6 +31,13 @@ public class BonusMalusOnEnd {
 
     }
 
+    public boolean isAllowed(String colour,ActionType actionType){
+        if(colours.contains(colour) && this.actionType.equals(actionType)){
+            return true;
+        }
+        return false;
+    }
+
     public ActionType getActionType() {
         return actionType;
     }

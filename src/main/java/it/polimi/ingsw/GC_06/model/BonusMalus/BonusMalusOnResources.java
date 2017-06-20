@@ -48,9 +48,13 @@ public class BonusMalusOnResources{
         }
     }
 
-    public boolean isEmpty(){
-        return this.bonusMalusEntity.isEmpty();
+    public boolean isAllowed(ActionType actionType){
+        if(this.actionType.equals(actionType)){
+            return true;
+        }
+        return false;
     }
+
 
     public ActionType getActionType() {
         return actionType;
@@ -60,13 +64,6 @@ public class BonusMalusOnResources{
         return permanent;
     }
 
-    public boolean isON() {
-        return ON;
-    }
-
-    public void setON(boolean ON) {
-        this.ON = ON;
-    }
 }
 
 
