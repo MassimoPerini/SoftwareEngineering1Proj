@@ -23,7 +23,7 @@ public class BonusMalusTest {
     @Before
     public void setUp(){
         colours.add("WHITE");
-
+        colours.add("ORANGE");
         familyMember = new FamilyMember("WHITE","peppe");
         familyMember.imposta(5);
         bonusMalusOnAction = new BonusMalusOnAction("",colours, ActionType.PAYCARDACTION,false,5);
