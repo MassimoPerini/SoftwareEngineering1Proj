@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effects;
 
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
-import it.polimi.ingsw.GC_06.model.Effect.DefaultProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
@@ -18,7 +17,6 @@ import java.io.IOException;
 public class DefaultProdHarvEffectTest {
     private Player player;
     private ResourceSet resourceSetPlayer;
-    private DefaultProdHarvEffect defaultProdHarvEffect;
 
     @Before
     public void setUp() throws IOException {

@@ -114,7 +114,7 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(EffectOnResources.class);        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+                .registerSubtype(EffectOnParchment.class);        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
 
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(cardsRootPath));
         DevelopmentCard [] cards = gson2.fromJson(fr , DevelopmentCard [].class);
@@ -347,14 +347,14 @@ public class FileLoader {
         List requirements = new ArrayList();
         List effects = new ArrayList();
         String idColour = "GREEN";
-        List immediateEffects = new ArrayList();
+        List<Effect> immediateEffects = new ArrayList<>();
         List bonusEffects = new ArrayList();
         List malusEffects = new ArrayList();
         List prodHarvEffects = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap = new HashMap<>();
         ResourceSet variation = new ResourceSet();
         variation.variateResource(Resource.MONEY, 1);
-        EffectOnResourcesHarvProduction effect = new EffectOnResourcesHarvProduction(requiredValue, variation);
+        EffectOnResources effect = new EffectOnResources(variation);
         bonusEffects.add(effect);
         ProdHarvEffect prodHarvEffect = new ProdHarvEffect(malusEffects, bonusEffects);
         prodHarvEffects.add(prodHarvEffect);
@@ -367,15 +367,16 @@ public class FileLoader {
         List requirements2 = new ArrayList();
         List effects2 = new ArrayList();
         String idColour2 = "GREEN";
-        List immediateEffects2 = new ArrayList();
+        List<Effect> immediateEffects2 = new ArrayList<>();
         List bonusEffects2 = new ArrayList();
         List malusEffects2 = new ArrayList();
         List prodHarvEffects2 = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap2 = new HashMap<>();
         ResourceSet variation2 = new ResourceSet();
         variation2.variateResource(Resource.WOOD, 1);
-        immediateEffects2.add(variation2);
-        EffectOnResourcesHarvProduction effect2 = new EffectOnResourcesHarvProduction(requiredValue2, variation2);
+        EffectOnResources effectOnResources2 = new EffectOnResources(variation2);
+        immediateEffects2.add(effectOnResources2);
+        EffectOnResources effect2 = new EffectOnResources( variation2);
         bonusEffects2.add(effect2);
         ProdHarvEffect prodHarvEffect2 = new ProdHarvEffect(malusEffects2, bonusEffects2);
         prodHarvEffects2.add(prodHarvEffect2);
@@ -388,7 +389,7 @@ public class FileLoader {
         List requirements3 = new ArrayList();
         List effects3 = new ArrayList();
         String idColour3 = "GREEN";
-        List immediateEffects3 = new ArrayList();
+        List<Effect> immediateEffects3 = new ArrayList<>();
         List bonusEffects3 = new ArrayList();
         List malusEffects3 = new ArrayList();
         List prodHarvEffects3 = new ArrayList();
@@ -397,7 +398,7 @@ public class FileLoader {
         variation3.variateResource(Resource.MONEY, 1);
         variation3.variateResource(Resource.SERVANT, 1);
         //immediateEffects.add(variation);
-        EffectOnResourcesHarvProduction effect3 = new EffectOnResourcesHarvProduction(requiredValue3, variation3);
+        EffectOnResources effect3 = new EffectOnResources( variation3);
         bonusEffects3.add(effect3);
         ProdHarvEffect prodHarvEffect3 = new ProdHarvEffect(malusEffects3, bonusEffects3);
         prodHarvEffects3.add(prodHarvEffect3);
@@ -410,15 +411,16 @@ public class FileLoader {
         List requirements4 = new ArrayList();
         List effects4 = new ArrayList();
         String idColour4 = "GREEN";
-        List immediateEffects4 = new ArrayList();
+        List<Effect> immediateEffects4 = new ArrayList<>();
         List bonusEffects4 = new ArrayList();
         List malusEffects4 = new ArrayList();
         List prodHarvEffects4 = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap4 = new HashMap<>();
         ResourceSet variation4 = new ResourceSet();
         variation4.variateResource(Resource.STONE, 2);
-        immediateEffects4.add(variation4);
-        EffectOnResourcesHarvProduction effect4 = new EffectOnResourcesHarvProduction(requiredValue4, variation4);
+        EffectOnResources effectOnResources4 = new EffectOnResources(variation4);
+        immediateEffects4.add(effectOnResources4);
+        EffectOnResources effect4 = new EffectOnResources( variation4);
         bonusEffects4.add(effect4);
         ProdHarvEffect prodHarvEffect4 = new ProdHarvEffect(malusEffects4, bonusEffects4);
         prodHarvEffects4.add(prodHarvEffect4);
@@ -431,7 +433,7 @@ public class FileLoader {
         List requirements5 = new ArrayList();
         List effects5 = new ArrayList();
         String idColour5 = "GREEN";
-        List immediateEffects5 = new ArrayList();
+        List<Effect> immediateEffects5 = new ArrayList<>();
         List bonusEffects5 = new ArrayList();
         List malusEffects5 = new ArrayList();
         List prodHarvEffects5 = new ArrayList();
@@ -440,8 +442,9 @@ public class FileLoader {
         variation5.variateResource(Resource.WOOD, 3);
         ResourceSet immediateVariation5 = new ResourceSet();
         immediateVariation5.variateResource(Resource.WOOD, 1);
-        immediateEffects5.add(immediateVariation5);
-        EffectOnResourcesHarvProduction effect5 = new EffectOnResourcesHarvProduction(requiredValue5, variation5);
+        EffectOnResources effectOnResources5 = new EffectOnResources(variation5);
+        immediateEffects5.add(effectOnResources5);
+        EffectOnResources effect5 = new EffectOnResources(variation5);
         bonusEffects5.add(effect5);
         ProdHarvEffect prodHarvEffect5 = new ProdHarvEffect(malusEffects5, bonusEffects5);
         prodHarvEffects5.add(prodHarvEffect5);
@@ -454,7 +457,7 @@ public class FileLoader {
         List requirements6 = new ArrayList();
         List effects6 = new ArrayList();
         String idColour6 = "GREEN";
-        List immediateEffects6 = new ArrayList();
+        List<Effect> immediateEffects6 = new ArrayList<>();
         List bonusEffects6 = new ArrayList();
         List malusEffects6 = new ArrayList();
         List prodHarvEffects6 = new ArrayList();
@@ -465,8 +468,9 @@ public class FileLoader {
         ResourceSet immediateVariation6 = new ResourceSet();
         immediateVariation6.variateResource(Resource.MILITARYPOINT, 2);
         immediateVariation6.variateResource(Resource.SERVANT, 1);
-        immediateEffects6.add(immediateVariation6);
-        EffectOnResourcesHarvProduction effect6 = new EffectOnResourcesHarvProduction(requiredValue6, variation6);
+        EffectOnResources effectOnResources6 = new EffectOnResources(variation6);
+        immediateEffects6.add(effectOnResources6);
+        EffectOnResources effect6 = new EffectOnResources( variation6);
         bonusEffects6.add(effect6);
         ProdHarvEffect prodHarvEffect6 = new ProdHarvEffect(malusEffects6, bonusEffects6);
         prodHarvEffects6.add(prodHarvEffect6);
@@ -479,7 +483,7 @@ public class FileLoader {
         List requirements7 = new ArrayList();
         List effects7 = new ArrayList();
         String idColour7 = "GREEN";
-        List immediateEffects7 = new ArrayList();
+        List<Effect> immediateEffects7 = new ArrayList<>();
         List bonusEffects7 = new ArrayList();
         List malusEffects7 = new ArrayList();
         List prodHarvEffects7 = new ArrayList();
@@ -490,7 +494,7 @@ public class FileLoader {
         //ResourceSet immediateVariation7 = new ResourceSet();
         //immediateVariation5.variateResource(Resource.WOOD, 1);
         //immediateEffects7.add(immediateVariation7);
-        EffectOnResourcesHarvProduction effect7 = new EffectOnResourcesHarvProduction(requiredValue7, variation7);
+        EffectOnResources effect7 = new EffectOnResources( variation7);
         bonusEffects7.add(effect7);
         ProdHarvEffect prodHarvEffect7 = new ProdHarvEffect(malusEffects7, bonusEffects7);
         prodHarvEffects7.add(prodHarvEffect7);
@@ -500,7 +504,7 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(EffectOnResources.class);
+                .registerSubtype(EffectOnParchment.class);
 
         Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
         FileWriter fw = new FileWriter("src/main/resources/model/cards2.txt");
@@ -523,7 +527,7 @@ public class FileLoader {
         Map<Integer, List<ProdHarvEffect>> requestedMap = new HashMap<>();
         ResourceSet variation = new ResourceSet();
         variation.variateResource(Resource.MONEY, 1);
-        EffectOnResourcesHarvProduction effect = new EffectOnResourcesHarvProduction(requiredValue, variation);
+        EffectOnResources effect = new EffectOnResources(variation);
         bonusEffects.add(effect);
         ProdHarvEffect prodHarvEffect = new ProdHarvEffect(malusEffects, bonusEffects);
         prodHarvEffects.add(prodHarvEffect);
