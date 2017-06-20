@@ -1,15 +1,12 @@
-package it.polimi.ingsw.GC_06.model.Action;
+package it.polimi.ingsw.GC_06.model.Action.Actions;
 
-import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import it.polimi.ingsw.GC_06.model.playerTools.RankingPlayer;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +17,7 @@ public class EndGameAction  implements Action {
 
     private EndGameMap endGameMap;
     private List<Player> players;
-    private it.polimi.ingsw.GC_06.model.Resource.Resource resource;
+    private Resource resource; /** saranno i punti fede*/
     private it.polimi.ingsw.GC_06.model.Resource.Resource extraResources;
     private Game game;
     private final ActionType ACTION_TYPE = ActionType.END_GAME;
@@ -39,7 +36,7 @@ public class EndGameAction  implements Action {
         for(Player player : players){
             this.turnCardsIntoPoints(player);
             this.turnResourceIntoPoint(player);
-            this.addFinalPoint(player);
+            //this.addFinalPoint(player);
         }
 
         this.getPointsFromRanking();
@@ -68,16 +65,18 @@ public class EndGameAction  implements Action {
 
     }
 
+    /** dovrebbe fare anche l'aggiunzione dei punti finali */
+
     private void turnResourceIntoPoint(Player player){
-       int endPoint =  player.getResourceSet().totalResourceQuantity();
+       int endPoint =  player.getResourceSet().totalResourceQuantity() - player.getResourceSet().getResourceAmount(resource);
        player.getResourceSet().variateResource(resource, endPoint);
     }
 
-    private void addFinalPoint(Player player){
+   /** private void addFinalPoint(Player player){
 
         int endPoint = player.getResourceSet().getResourceAmount(resource);
         player.getResourceSet().variateResource(resource,endPoint);
-    }
+    }*/
 
     private void getPointsFromRanking(){
         List<Player> ranking = RankingPlayer.getRanking(this.players,this.extraResources);

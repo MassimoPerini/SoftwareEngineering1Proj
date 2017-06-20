@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.model.Action;
+package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;

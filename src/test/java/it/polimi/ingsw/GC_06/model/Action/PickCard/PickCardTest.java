@@ -1,16 +1,9 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
-import it.polimi.ingsw.GC_06.model.Action.Action;
-import it.polimi.ingsw.GC_06.model.Board.Board;
-import it.polimi.ingsw.GC_06.model.Board.Tower;
-import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by massimo on 06/06/17.

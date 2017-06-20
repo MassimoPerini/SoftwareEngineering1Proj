@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Cancel;
 
-import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 
 /**
  * Created by massimo on 26/05/17.

@@ -1,11 +1,6 @@
-package it.polimi.ingsw.GC_06.model.Action;
+package it.polimi.ingsw.GC_06.model.Action.Actions;
 
-import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.playerTools.ConversionTable;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
-
-import java.util.ArrayList;
 
 /**
  * Created by giuseppe on 5/31/17.

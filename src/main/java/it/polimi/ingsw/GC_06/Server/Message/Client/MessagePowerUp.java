@@ -2,8 +2,7 @@ package it.polimi.ingsw.GC_06.Server.Message.Client;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
-import it.polimi.ingsw.GC_06.model.Action.PowerUpFamilyMember;
-import it.polimi.ingsw.GC_06.model.Action.ProdHarv.BoardActionOnProdHarv;
+import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;

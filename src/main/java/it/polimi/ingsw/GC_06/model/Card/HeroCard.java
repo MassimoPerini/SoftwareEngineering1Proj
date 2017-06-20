@@ -2,11 +2,7 @@ package it.polimi.ingsw.GC_06.model.Card;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
-import it.polimi.ingsw.GC_06.model.BonusMalus.SpecialBonusMalus;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -20,49 +16,48 @@ public class HeroCard extends Card {
     private HashMap<String,Integer> cardConditions;
     private ResourceSet resourceConditions;
     private ArrayList<Effect> effectList;
-    private BonusMalusSet bonusMalusSet;
-    private boolean permanent,ON;
+    private String cardType;
+    private boolean CardStatus;
+    private boolean permanent;
 
 
-    public HeroCard(String path, HashMap<String, Integer> cardConditions, ResourceSet resourceConditions, ArrayList<Effect> effectList,boolean permanent,
-                    BonusMalusSet bonusMaluSet) {
+
+    public HeroCard(String path, HashMap<String, Integer> cardConditions, ResourceSet resourceConditions, ArrayList<Effect> effectList,
+                    boolean permanent,String cardType) {
         super(path);
         this.cardConditions = cardConditions;
         this.resourceConditions = resourceConditions;
         this.effectList = effectList;
-        this.permanent = permanent;
-        this.ON = true;
-        this.bonusMalusSet = bonusMaluSet;
+        this.CardStatus = true;
+        this.cardType = cardType;
     }
 
-    public HashMap<String, Integer> getCardConditions() {
-        return cardConditions;
+
+
+    public boolean isActivable(Player player){
+        if(this.CardStatus = true & resourceConditions.isIncluded(player.getResourceSet()) && player.getPlayerBoard().isIncluded(this.cardConditions)){
+           return true;
+        }
+        return false;
     }
 
-    public ResourceSet getResourceConditions() {
-        return resourceConditions;
+    public void setCardStatus(boolean cardStatus) {
+        this.CardStatus = cardStatus;
     }
 
     public ArrayList<Effect> getEffectList() {
         return effectList;
     }
 
-    public boolean isActivable(Player player){
-        if(this.ON = true & resourceConditions.isIncluded(player.getResourceSet()) && player.getPlayerBoard().isIncluded(this.cardConditions)){
-           return true;
-        }
-        return false;
+    public String getCardType() {
+        return cardType;
     }
 
-    public boolean isPermanent() {
-        return permanent;
+    public ResourceSet getResourceConditions() {
+        return resourceConditions;
     }
 
-    public BonusMalusSet getBonusMalusSet() {
-        return bonusMalusSet;
-    }
-
-    public void setON(boolean ON) {
-        this.ON = ON;
+    public HashMap<String, Integer> getCardConditions() {
+        return cardConditions;
     }
 }

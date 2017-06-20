@@ -93,6 +93,9 @@ public class BonusMalusSet {
         return bonusMalusOnAccess;
     }
 
+    /**
+     * @deprecated
+     */
     private void resetBonusMalus(){
 
         for(BonusMalusOnAccess bonusMalus : this.bonusMalusOnAccess.get("BONUSMALUSONACCESS")){

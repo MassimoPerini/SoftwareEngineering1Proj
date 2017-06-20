@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.State;
 
-import it.polimi.ingsw.GC_06.model.Action.Action;
+import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 
 import java.util.List;
 

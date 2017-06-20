@@ -1,12 +1,8 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
-import it.polimi.ingsw.GC_06.model.Action.Action;
-
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-
-import java.util.ArrayList;
 
 /**
  * Created by giuseppe on 5/22/17.

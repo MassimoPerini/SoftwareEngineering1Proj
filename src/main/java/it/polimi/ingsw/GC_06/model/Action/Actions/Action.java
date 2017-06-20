@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.model.Action;
+package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 /**
  * Created by massimo on 05/06/17.

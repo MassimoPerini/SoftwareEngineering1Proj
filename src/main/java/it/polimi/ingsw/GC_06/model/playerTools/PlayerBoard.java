@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.playerTools;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.*;
@@ -18,10 +19,12 @@ public class PlayerBoard {
      */
 
     private final Map<String,List<PlayerBoardSlot>> cards;
+    private List<HeroCard> heroCards;
 
     public PlayerBoard (Map<String,List<PlayerBoardSlot>> cards)
     {
         this.cards = cards;
+        heroCards = new ArrayList<>();
     }
 
 
