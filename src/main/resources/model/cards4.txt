@@ -36,5 +36,99 @@
       "0": []
     },
     "path": "devcards_f_en_c_73"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 4
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_80"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_84"
   }
 ]

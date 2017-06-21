@@ -14,6 +14,7 @@ import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.*;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoard;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoardSlot;
 
@@ -214,7 +215,7 @@ public class FileLoader {
         Map<String, Tower> towers = new HashMap<>();
 
         //Generate towers
-        //TODO una torre contiene carte solo di un solo tipo
+        //TODO una torre contiene carte solo di un tipo
         Resource [] resources = {Resource.WOOD, Resource.STONE, Resource.MILITARYPOINT, Resource.MONEY};
 
         String colors [] = {"GREEN", "BLUE", "YELLOW", "PURPLE"};
@@ -621,6 +622,65 @@ public class FileLoader {
         requestedMap.put(requiredValue, prodHarvEffects);
         DevelopmentCard card = new DevelopmentCard(name, era, requirements, immediateEffects, idColour,  requestedMap);
         cards.add(card);
+        int era2 = 1;
+        int requiredValue2 = 0;
+        String name2 = "devcards_f_en_c_80";
+        ResourceSet cost2 = new ResourceSet();
+        ResourceSet cost2b = new ResourceSet();
+        ResourceSet requirement2 = new ResourceSet();
+        ResourceSet requirement2b = new ResourceSet();
+        String idColour2 = "PURPLE";
+        List<Requirement> requirements2 = new ArrayList<>();
+        List<Effect> immediateEffects2 = new ArrayList<>();
+        Map<Integer, List<ProdHarvEffect>> requestedMap2 = new HashMap<>();
+        List prodHarvEffects2 = new ArrayList();
+        ResourceSet immediate2 = new ResourceSet();
+        immediate2.variateResource(Resource.FAITHPOINT, 3);
+        EffectOnResources immediateEffect2 = new EffectOnResources(immediate2);
+        immediateEffects2.add(immediateEffect2);
+        ResourceSet onEnd2 = new ResourceSet();
+        onEnd2.variateResource(Resource.VICTORYPOINT, 1);
+        EffectOnEnd effectOnEnd2 = new EffectOnEnd(onEnd);
+        immediateEffects2.add(effectOnEnd2);
+        cost2.variateResource(Resource.MONEY, 2);
+        cost2.variateResource(Resource.STONE, 1);
+        cost2.variateResource(Resource.WOOD, 1);
+        Requirement require2 = new Requirement(requirement2, cost2 );
+        requirements2.add(require);
+        cost2b.variateResource(Resource.MILITARYPOINT, 2);
+        requirement2b.variateResource(Resource.MILITARYPOINT, 4);
+        Requirement require2b = new Requirement(requirement2b, cost2b);
+        requirements2.add(require2b);
+        requestedMap2.put(requiredValue2, prodHarvEffects2);
+        DevelopmentCard card2 = new DevelopmentCard(name2, era2, requirements2, immediateEffects2, idColour2,  requestedMap2);
+        cards.add(card2);
+        int era3 = 2;
+        int requiredValue3 = 0;
+        String name3 = "devcards_f_en_c_84";
+        ResourceSet cost3 = new ResourceSet();
+        ResourceSet requirement3 = new ResourceSet();
+        String idColour3 = "PURPLE";
+        List<Requirement> requirements3 = new ArrayList<>();
+        List<Effect> immediateEffects3 = new ArrayList<>();
+        Map<Integer, List<ProdHarvEffect>> requestedMap3 = new HashMap<>();
+        List prodHarvEffects3 = new ArrayList();
+        ResourceSet immediate3 = new ResourceSet();
+        immediate3.variateResource(Resource.MONEY, 5);
+        EffectOnResources immediateEffect3 = new EffectOnResources(immediate3);
+        immediateEffects3.add(immediateEffect3);
+        EffectOnParchment immediateParchment = new EffectOnParchment();
+        immediateEffects3.add(immediateParchment);
+        ResourceSet onEnd3 = new ResourceSet();
+        onEnd3.variateResource(Resource.VICTORYPOINT, 3);
+        EffectOnEnd effectOnEnd3 = new EffectOnEnd(onEnd3);
+        immediateEffects3.add(effectOnEnd3);
+        cost3.variateResource(Resource.MILITARYPOINT, 3);
+        requirement3.variateResource(Resource.MILITARYPOINT, 6);
+        Requirement require3 = new Requirement(requirement3, cost3 );
+        requirements3.add(require3);
+        requestedMap3.put(requiredValue3, prodHarvEffects3);
+        DevelopmentCard card3 = new DevelopmentCard(name3, era3, requirements3, immediateEffects3, idColour3,  requestedMap3);
+        cards.add(card3);
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
@@ -640,7 +700,7 @@ public class FileLoader {
         String name = "devcards_f_en_c_49";
         ResourceSet cost = new ResourceSet();
         ResourceSet requirement = new ResourceSet();
-        String idColour = "PURPLE";
+        String idColour = "BLUE";
         List<Requirement> requirements = new ArrayList<>();
         List<Effect> immediateEffects = new ArrayList<>();
         Map<Integer, List<ProdHarvEffect>> requestedMap = new HashMap<>();
@@ -667,6 +727,30 @@ public class FileLoader {
         requestedMap.put(requiredValue, prodHarvEffects);
         DevelopmentCard card = new DevelopmentCard(name, era, requirements, immediateEffects, idColour,  requestedMap);
         cards.add(card);
+        int era2 = 2;
+        int requiredValue2 = 0;
+        String name2 = "devcards_f_en_c_57";
+        ResourceSet cost2 = new ResourceSet();
+        ResourceSet requirement2 = new ResourceSet();
+        String idColour2 = "BLUE";
+        List<Requirement> requirements2 = new ArrayList<>();
+        List<Effect> immediateEffects2 = new ArrayList<>();
+        Map<Integer, List<ProdHarvEffect>> requestedMap2 = new HashMap<>();
+        List prodHarvEffects2 = new ArrayList();
+        ResourceSet immediate2 = new ResourceSet();
+        immediate2.variateResource(Resource.MILITARYPOINT, 2);
+        EffectOnResources immediateEffect2 = new EffectOnResources(immediate2);
+        immediateEffects2.add(immediateEffect2);
+        String targetColour = "GREEN";
+        EffectOnAction immediateAction = new EffectOnAction(TransitionType.ACTION_ON_TOWER, targetColour);
+        immediateEffects2.add(immediateAction);
+        cost2.variateResource(Resource.MONEY, 4);
+        Requirement require2 = new Requirement(requirement2, cost2);
+        requirements2.add(require2);
+        requestedMap.put(requiredValue2, prodHarvEffects2);
+        DevelopmentCard card2 = new DevelopmentCard(name2, era2, requirements2, immediateEffects2, idColour2, requestedMap2);
+        cards.add(card2);
+
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)

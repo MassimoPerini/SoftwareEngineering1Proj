@@ -37,7 +37,7 @@ public class MainForWriting {
         System.out.println("factored yellow cards");*/
 
         fileLoader.writePurpleCard();
-        System.out.println("factored Yellow cards");
+        System.out.println("factored Purple cards");
 
         fileLoader.writeBlueCard();
         System.out.println("factored blue cards");

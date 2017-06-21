@@ -58,10 +58,43 @@
         }
       }
     ],
-    "idColour": "PURPLE",
+    "idColour": "BLUE",
     "prodHarvEffects": {
       "0": []
     },
     "path": "devcards_f_en_c_49"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
+    "idColour": "BLUE",
+    "prodHarvEffects": {},
+    "path": "devcards_f_en_c_57"
   }
 ]
