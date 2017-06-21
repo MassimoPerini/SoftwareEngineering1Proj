@@ -15,6 +15,7 @@ public class ClientSpaceAction {
     }
 
     void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
+        familyMembers.add(clientFamilyMember);
     }
 
     void reset() {

@@ -1,10 +1,10 @@
 package it.polimi.ingsw.GC_06.model.Action.Actions;
 
+import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
-import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by massimo on 06/06/17.
  */
-public class BoardActionOnMarketCouncil implements Action {
+public class BoardActionOnMarketCouncil implements Action, Runnable {
 
     private final MarketAndCouncil marketAndCouncil;
     private final int index;
@@ -56,5 +56,11 @@ public class BoardActionOnMarketCouncil implements Action {
         boolean result =  marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed();
         //BonusMalusHandler.filter(player,ACTION_TYPE,result);
         return result;
+    }
+
+    @Override
+    public void run() {
+        if (isAllowed())
+            execute();
     }
 }

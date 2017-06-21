@@ -1,6 +1,10 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChoosePayment;
+import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
+import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
@@ -17,7 +21,7 @@ import java.util.List;
 /**
  * Created by massimo on 29/05/17.
  */
-public class PayCard implements Action {
+public class PayCard implements Action, Blocking, Runnable {
 
     private final Player player;
     private final ActionType ACTION_TYPE = ActionType.PAYCARDACTION;
@@ -25,6 +29,7 @@ public class PayCard implements Action {
     private final Tower tower;
     private final int floor;
     private final Game game;
+    private List optionalParams;
 
     public PayCard(Tower tower, int floor,Player player, Game game)
     {
@@ -36,29 +41,31 @@ public class PayCard implements Action {
         pickCard = new PickCard(player, tower, floor,game);
     }
 
-    @Override
-    public void execute() {
-
-
+    private List<Requirement> getRequirements()
+    {
         List<Requirement> satisfiedRequirements = new LinkedList<>();
         /** we must control if the player can afford the card */
 
         //MODIFICHIAMO QUI LA CARTA
         DevelopmentCard developmentCard = tower.getTowerFloor().get(floor).getCard();
 
-    //    BonusMalusHandler.filter(player,ACTION_TYPE,developmentCard);
+        //    BonusMalusHandler.filter(player,ACTION_TYPE,developmentCard);
         for(Requirement requirement : developmentCard.getRequirements()){
             if(requirement.isSatisfied(player.getResourceSet()))
                 satisfiedRequirements.add(requirement);
         }
+        return satisfiedRequirements;
+    }
 
-        if (satisfiedRequirements.size()>1){
-            game.getGameStatus().changeState(TransitionType.ASK_PAYMENT, satisfiedRequirements);
-            return;
-        }
+    @Override
+    public void execute() {
 
-        else if(satisfiedRequirements.size() == 1){
+        List<Requirement> satisfiedRequirements = this.getRequirements();
+        if(satisfiedRequirements.size() == 1){
             satisfiedRequirements.get(0).doIt(player);
+        }
+        else if (satisfiedRequirements.size()>1){
+            satisfiedRequirements.get((Integer) optionalParams.get(0)).doIt(player);
         }
         game.getGameStatus().changeState(TransitionType.PAY_CARD);
         pickCard.execute();
@@ -66,7 +73,7 @@ public class PayCard implements Action {
 
     @Override
     public boolean isAllowed() {
-
+        GameList.getInstance().setCurrentBlocking(game, this);
         Player pClone = new Player(player);     //CLONE (I hope...) TODO
 
         //Test tower penality BEFORE adding money from the actionspace
@@ -99,9 +106,35 @@ public class PayCard implements Action {
             return false;
         }
 
+        // check optional value
+
+        List<Requirement> satisfiedRequirements = this.getRequirements();
+        MessageServer messageServer = new MessageChoosePayment(satisfiedRequirements);
+
+        if (satisfiedRequirements.size()>1){
+            game.getGameStatus().sendMessage(messageServer);
+            while (optionalParams==null) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         return pickCard.isAllowed();
     }
 
 
+    @Override
+    public void run() {
+        if (isAllowed())
+            execute();
+    }
 
+    @Override
+    public synchronized void setOptionalParams(List list) {
+        optionalParams = list;
+        notifyAll();
+    }
 }

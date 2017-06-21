@@ -1,8 +1,12 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
+import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.State.Game;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by giuseppe on 6/14/17.
@@ -11,6 +15,7 @@ public class GameList {
 
     private static GameList instance = new GameList();
     private Map<Game,List<String>> gameMap = new HashMap<>(); /** game and associated players */
+    private Map<Game, Blocking> gameBlocking=new HashMap<>();
 
     private GameList(){}
 
@@ -18,6 +23,7 @@ public class GameList {
         return instance;
     }
 
+    //Non serve a nulla, in game ci sono già i giocatori associati, rivedi la struttura!
     public int getGame(String username){
         int gameId = -1;
         for(Game game : gameMap.keySet()){
@@ -26,6 +32,19 @@ public class GameList {
             }
         }
         return gameId;
+    }
+
+    public void setCurrentBlocking(Game game, Blocking action)
+    {
+        if (gameBlocking.get(game)==null)
+            gameBlocking.put(game, action);
+        else
+            gameBlocking.replace(game, action);
+    }
+
+    public Blocking getCurrentBlocking(Game game)
+    {
+        return gameBlocking.get(game);
     }
 
     /**

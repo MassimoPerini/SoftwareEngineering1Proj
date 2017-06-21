@@ -29,7 +29,7 @@ public class TutorialPickCard implements TutorialCLI {
         if (commandView.getString().equals("e"))
                 return null;
 
-        commandView.addLocalizedText("Ok, questi sono i tuoi familiari:");
+        commandView.addLocalizedText("Ok, questi sono i tuoi familiari:\n");
         int a = 1;
         for (ClientFamilyMember clientFamilyMember : clientPlayerBoard.getFamilyMembers()) {
             commandView.addText(clientFamilyMember.getColor()+ " "+clientFamilyMember.getValue()+"\n");
@@ -42,22 +42,24 @@ public class TutorialPickCard implements TutorialCLI {
         commandView.addLocalizedText("Ok, queste sono le torri con le loro carte:");
         int i=1;
         for (String tower : clientBoardGame.getTowersClient().keySet()) {
+            commandView.addLocalizedText("Torre: "+i+"\n");
             towers[i-1] = tower;
             List<ClientTowerFloor> clientTowerFloors = clientBoardGame.getTowersClient().get(tower);
-            commandView.addText(String.valueOf(i)+": \n");
             int j=1;
             for (ClientTowerFloor clientTowerFloor : clientTowerFloors) {
-                if (j>maxFloor)
-                    maxFloor=j;
+                if (j>maxFloor) {
+                    maxFloor = j;
+                }
                 commandView.addText(j+" Card: "+clientTowerFloor.getCard()+" players: ");
                 for (ClientFamilyMember clientFamilyMember : clientTowerFloor.getSpaceAction().getFamilyMembers()) {
                     commandView.addText(clientFamilyMember.getPlayer());
                 }
+                j++;
             }
             i++;
         }
 
-        String [] res = new String [3];
+        String [] res = new String [4];
 
         int max = clientBoardGame.getTowersClient().size();
         commandView.addLocalizedText("Che torre vuoi? [1-"+max+"]");
@@ -67,6 +69,8 @@ public class TutorialPickCard implements TutorialCLI {
         res[1] = String.valueOf(commandView.getInt(1, maxFloor)-1);
         commandView.addLocalizedText("Con che familiare? [1-"+a+"]");
         res[2] = String.valueOf(commandView.getInt(1, a)-1);
+        commandView.addLocalizedText("Di quanto il power-up");
+        res[3] = String.valueOf(commandView.getInt(0));
 
         return res;
     }

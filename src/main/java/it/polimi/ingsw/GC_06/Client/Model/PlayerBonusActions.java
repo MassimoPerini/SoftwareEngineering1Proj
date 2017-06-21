@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
+import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class PlayerBonusActions {
 
     private List<ResourceSet> parchmentList;
     private Map<String, List<Integer>>  pickAnotherCard;
-    private List<ResourceSet> requirementCard;
+    private List<Requirement> requirementCard;
     private Map<String, List<Integer>> prodHarvAsk;
 
     public PlayerBonusActions()
@@ -34,7 +35,7 @@ public class PlayerBonusActions {
         this.pickAnotherCard = clientTowerFloors;
     }
 
-    public void setRequirementCard(List<ResourceSet> requirementCard) {
+    public void setRequirementCard(List<Requirement> requirementCard) {
         this.requirementCard = requirementCard;
     }
 
@@ -50,7 +51,7 @@ public class PlayerBonusActions {
         return pickAnotherCard;
     }
 
-    public List<ResourceSet> getRequirementCard() {
+    public List<Requirement> getRequirementCard() {
         return requirementCard;
     }
 

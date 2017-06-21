@@ -9,6 +9,10 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 /**
  * Created by massimo on 19/06/17.
  */
@@ -39,15 +43,19 @@ public class MessageBoardActionTower implements MessageClient{
 
         BoardActionOnTower boardActionOnTower = new BoardActionOnTower(currentPlayer, floor, currentTower, familyMember,currentGame);
 
-
-
         PowerUpFamilyMember powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,powerUpValue);
 
         if(powerUpFamilyMember.isAllowed()){
             powerUpFamilyMember.execute();
         }
 
-        /** rollBack */
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Future f = executor.submit(boardActionOnTower);
+        // if (f.get() == null)  per vedere se è ok
+
+        //TODO FIX IT!
+
+      /*  /** rollBack
         if(!boardActionOnTower.isAllowed()){
             System.out.println("Azione non consentita");
             int newPowerUpValue = -powerUpValue;
@@ -57,8 +65,8 @@ public class MessageBoardActionTower implements MessageClient{
         }
         else{
 
-            boardActionOnTower.execute();
-        }
+         //   boardActionOnTower.execute();
+        }*/
 
     }
 

@@ -10,6 +10,7 @@ public interface CommandView extends Runnable{
     void addText(String string);
     void print();
     int getInt(int start, int end);
+    int getInt(int start);
     String getString();
     void sleep();
     void unload();

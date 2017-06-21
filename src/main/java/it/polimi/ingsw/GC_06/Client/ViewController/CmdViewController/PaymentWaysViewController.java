@@ -5,8 +5,7 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
-import it.polimi.ingsw.GC_06.model.Resource.Resource;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.Card.Requirement;
 
 /**
  * Created by massimo on 21/06/17.
@@ -28,11 +27,13 @@ public class PaymentWaysViewController implements ViewPresenterCLI {
     public void viewWillAppear() {
         commandView.addLocalizedText("Puoi scegliere diversi metodi di pagamento!");
         int i=0;
-        for (ResourceSet resourceSet : playerBonusActions.getRequirementCard()) {
+        for (Requirement requirement : playerBonusActions.getRequirementCard()) {
+            /*
             for (Resource resource : resourceSet.getResources().keySet()) {
                 commandView.addLocalizedText(resource.toString()+": "+resourceSet.getResources().get(resource)+", ");
             }
             i++;
+            */
         }
         int answ = commandView.getInt(0, i);
 

@@ -11,7 +11,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class BoardActionOnTower implements Action {
+public class BoardActionOnTower implements Action, Runnable {
 
     private final Tower tower;
     private final int index;
@@ -71,5 +71,12 @@ public class BoardActionOnTower implements Action {
 
         return payCard.isAllowed();
 
+    }
+
+    @Override
+    public void run() {
+        System.out.println("ACTION STARTED");
+        if (this.isAllowed())
+            this.execute();
     }
 }

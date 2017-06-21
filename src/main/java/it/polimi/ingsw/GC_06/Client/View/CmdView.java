@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_06.Client.View;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 /**
  * Created by massimo on 16/05/17.
@@ -44,37 +43,43 @@ public class CmdView implements CommandView {
 
     @Override
     public int getInt(int start, int end) {
+        boolean ok = true;
+        int res=getInt(start);
+        while (res > end)
+        {
+            this.addLocalizedText("error_input");
+            this.print();
+            res = getInt(start);
+        }
+        return res;
+
+    }
+
+    @Override
+    public int getInt(int start) {
         this.print();
         boolean ok = true;
-        int res=0;
-
+        int res = 0;
         do {
-            ok = true;
+            ok=true;
             try {
-
                 while (!input.ready() && !Thread.currentThread().isInterrupted()) {
                     Thread.sleep(200);
                 }
-                if (Thread.currentThread().isInterrupted())
-                {
+                if (Thread.currentThread().isInterrupted()) {
                     return -1;
                 }
                 res = Integer.parseInt(input.readLine());
-                if (res<start || res > end)
-                {
-                    this.addLocalizedText("error_input");
-                    this.print();
-                    ok = false;
-                }
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 this.addLocalizedText("error_input");
                 this.print();
                 ok = false;
             }
-        }while(!ok);
-
+        }
+        while (!ok);
         return res;
-
     }
 
     @Override

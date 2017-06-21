@@ -67,7 +67,7 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
                     System.out.println("CARTA PIANO " + clientTowerFloor.getCard());
                     System.out.println("FAMILY MEMBERS: ");
                     for (ClientFamilyMember clientFamilyMember : clientTowerFloor.getSpaceAction().getFamilyMembers()) {
-                        System.out.println("FAMILY MEMBER");
+                        System.out.println("FAMILY MEMBER: "+clientFamilyMember.getPlayer()+" "+clientFamilyMember.getValue()+" "+clientFamilyMember.getColor());
                     }
                 }
 

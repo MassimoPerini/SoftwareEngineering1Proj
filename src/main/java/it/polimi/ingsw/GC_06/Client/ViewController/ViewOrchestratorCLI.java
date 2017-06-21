@@ -1,14 +1,10 @@
 package it.polimi.ingsw.GC_06.Client.ViewController;
 
-import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
 import it.polimi.ingsw.GC_06.Client.Model.ClientPlayerBoard;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
-import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.BoardStatusViewController;
-import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.ConnectionTypeViewPresenterCLI;
-import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.LoginViewPresenterCLI;
-import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.UserActionViewController;
+import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +41,13 @@ public class ViewOrchestratorCLI implements ViewOrchestrator, Observer{
         clientStates.put(ClientStateName.START, new ConnectionTypeViewPresenterCLI(clientNetworkOrchestrator));
         clientStates.put(ClientStateName.GAME_START, new BoardStatusViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard()));     //TEST, Observer?
         clientStates.put(ClientStateName.MY_TURN, new UserActionViewController(mainClientModel, clientNetworkOrchestrator));
+    //    clientStates.put(ClientStateName.ASK_PRODHARV_CARDS);
+        clientStates.put(ClientStateName.CHOOSE_NEW_CARD, new PickOtherCardViewController(mainClientModel.getPlayerBonusActions(), mainClientModel.getClientBoardGame(), clientNetworkOrchestrator));
+        clientStates.put(ClientStateName.MULTIPLE_PAYMENT, new PaymentWaysViewController(clientNetworkOrchestrator, mainClientModel.getPlayerBonusActions()));
+        clientStates.put(ClientStateName.PARCHMENT, new ParchmentViewController(clientNetworkOrchestrator, mainClientModel.getPlayerBonusActions()));
+
+
+
     }
 
     @Override

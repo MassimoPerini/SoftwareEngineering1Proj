@@ -35,7 +35,7 @@ public class LoginViewPresenterCLI implements ViewPresenterCLI {
 
     public synchronized void viewWillDisappear()
     {
-        this.future.cancel(true);
+ //       this.future.cancel(true);
     }
 
     @Override

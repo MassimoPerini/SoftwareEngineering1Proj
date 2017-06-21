@@ -33,6 +33,12 @@ public class Requirement {
         this.cost = cost;
     }
 
+    public Requirement(Requirement requirement)
+    {
+        this.requirements = new ResourceSet(requirement.requirements);
+        this.cost = new ResourceSet(requirement.cost);
+    }
+
     /**
      * Is this requirement satisfied?
      * @param resourceSet

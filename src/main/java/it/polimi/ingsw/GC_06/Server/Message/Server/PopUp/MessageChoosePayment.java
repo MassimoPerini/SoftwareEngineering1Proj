@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.Server.Message.Server.PopUp;
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.Card.Requirement;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,18 +13,18 @@ import java.util.List;
  */
 public class MessageChoosePayment implements MessageServer {
 
-    private List<ResourceSet> resourceSets;
+    private List<Requirement> requirements;
 
-    public MessageChoosePayment(List<ResourceSet> resourceSets) {
-        this.resourceSets = new LinkedList<>();
-        for (ResourceSet resourceSet : resourceSets) {
-            this.resourceSets.add(new ResourceSet(resourceSet));
+    public MessageChoosePayment(List<Requirement> resourceSets) {
+        this.requirements = new LinkedList<>();
+        for (Requirement requirement : resourceSets) {
+            this.requirements.add(new Requirement(requirement));
         }
     }
 
     @Override
     public void execute(ClientController clientController) {
-        clientController.getMainClientModel().getPlayerBonusActions().setRequirementCard(resourceSets);
+        clientController.getMainClientModel().getPlayerBonusActions().setRequirementCard(requirements);
         clientController.getViewOrchestrator().change(ClientStateName.MULTIPLE_PAYMENT, "");
     }
 
