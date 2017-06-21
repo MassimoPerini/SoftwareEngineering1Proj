@@ -6,7 +6,6 @@ import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -29,7 +28,8 @@ public class LoginViewPresenterCLI implements ViewPresenterCLI {
     @Override
     public void viewWillAppear() {
         ExecutorService executor = Executors.newCachedThreadPool();
-        this.future = executor.submit(this);
+     //   this.future = executor.submit(this);
+        run();
 
     }
 
@@ -44,7 +44,6 @@ public class LoginViewPresenterCLI implements ViewPresenterCLI {
         commandView.print();
     }
 
-    @Override
     public void run() {
             commandView.addLocalizedText("msg_login_start");
             commandView.addText("\n");

@@ -1,11 +1,13 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
-import it.polimi.ingsw.GC_06.model.playerTools.*;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 
 /**
  * Created by giuseppe on 5/19/17.
@@ -15,7 +17,7 @@ import java.util.Map;
  * This class is the main status of the game.
  * Contains the current status, the turn of the game and the players order.
  */
-public class GameStatus {
+public class GameStatus extends Observable {
 
     private FsmNode currentStatus;
     private final Map<String, Player> players;
@@ -68,6 +70,13 @@ public class GameStatus {
      * @param type
      * @param o
      */
+
+    public void sendMessage(MessageServer serverMessage)
+    {
+        setChanged();
+        notifyObservers(serverMessage);
+    }
+
     public void changeState(TransitionType type, Object o)
     {
         if (!currentStatus.canConsume(type)){

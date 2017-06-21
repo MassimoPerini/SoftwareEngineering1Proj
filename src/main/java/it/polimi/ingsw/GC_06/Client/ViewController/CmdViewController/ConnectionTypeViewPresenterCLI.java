@@ -5,8 +5,6 @@ import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
@@ -51,8 +49,4 @@ public class ConnectionTypeViewPresenterCLI implements ViewPresenterCLI {
      //   this.future.cancel(true);
     }
 
-    @Override
-    public void run() {
-
-    }
 }

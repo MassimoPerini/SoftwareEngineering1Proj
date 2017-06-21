@@ -25,6 +25,9 @@ public class ControllerUser implements Observer {
     public void start()
     {
         game.getStatuses().get(StateName.CHOOSING_CARD).addObserver(this);
+        game.getStatuses().get(StateName.CHOOSING_PAYMENT).addObserver(this);
+        game.getStatuses().get(StateName.CHOOSING_CARD).addObserver(this);
+        game.getGameStatus().addObserver(this);
         //finiamo questo
     }
 

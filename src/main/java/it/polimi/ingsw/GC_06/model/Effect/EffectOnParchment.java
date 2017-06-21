@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChooseParchment;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.Arrays;
@@ -29,7 +28,8 @@ public class EffectOnParchment implements Effect {
         FileLoader fileLoader = FileLoader.getFileLoader();
         parchments = Arrays.asList(fileLoader.loadParchments());
         MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments);
-        game.getGameStatus().changeState(TransitionType.CHOOSE_PARCHMENT, messageChooseParchment);
+        game.getGameStatus().sendMessage(messageChooseParchment);
+     //   game.getGameStatus().changeState(TransitionType.CHOOSE_PARCHMENT, messageChooseParchment);
         }
 
     public void setDifferent(boolean different) {
