@@ -10,8 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 
@@ -31,7 +30,14 @@ public class EffectOnNeweCardsTest {
         player = game.getGameStatus().getPlayers().get("gabriele");
         selectableCards = new ArrayList<>();
         selectableCards = game.getBoard().getTowers().get("GREEN").getTowerFloor();
-        effectOnNewCards = new EffectOnNewCards(selectableCards);
+        Map<String, List<Integer>> res= new HashMap<>();
+        List<Integer> list = new LinkedList<>();
+        for(int i=0;i<selectableCards.size();i++)
+        {
+            list.add(i);
+        }
+        res.put("GREEN", list);
+        effectOnNewCards = new EffectOnNewCards(res);
     }
 
     @Test
