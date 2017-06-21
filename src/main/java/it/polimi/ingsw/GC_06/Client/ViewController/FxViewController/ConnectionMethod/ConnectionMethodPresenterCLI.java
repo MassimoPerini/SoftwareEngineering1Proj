@@ -1,14 +1,14 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.ConnectionMethod;
 
-import it.polimi.ingsw.GC_06.Client.ClientInputController;
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
-import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Login.LoginView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorFx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -33,16 +33,15 @@ public class ConnectionMethodPresenterCLI {
 
     public void handleSocketConnection(ActionEvent event) throws IOException {
         clientNetworkOrchestrator.useSocket();
-        viewOrchestratorFx.change(ClientStateName.LOGIN, "");
+    //    viewOrchestratorFx.change(ClientStateName.LOGIN, "");
 
-        /*
-        clientInputController.socketConnection();
+
         Stage stage=(Stage)socket.getScene().getWindow();
         LoginView loginView = new LoginView();
         Scene scene = new Scene(loginView.getView());
         stage.setScene(scene);
         stage.show();
-        */
+
     }
 
     public void handleRMIConnection(ActionEvent event) {

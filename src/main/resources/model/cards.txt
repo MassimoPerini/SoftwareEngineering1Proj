@@ -217,35 +217,199 @@
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
     "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65101"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "BonusSuPrendiAltraCarta1"
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
     "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65201"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "bonusSuPrendiAltraCarta2"
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
     "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65301"
+    "path": "prendiAltraCarta"
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "YELLOW",
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
+    "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47001"
+    "path": "PrendiAltraCartaDaAlmeno6_2"
   },
   {
     "era": 1,
@@ -513,19 +677,101 @@
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
     "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65011"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "BonusSuPrendiAltraCarta1_5"
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
     "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65111"
+    "path": "PrendiAltraCartaDaAlmeno6_7"
   },
   {
     "era": 1,
@@ -541,31 +787,316 @@
     "immediateEffects": [],
     "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65311"
+    "path": "devcards_f_en_c_65312"
   },
   {
     "era": 1,
     "requirements": [],
     "immediateEffects": [],
-    "idColour": "YELLOW",
+    "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47011"
+    "path": "devcards_f_en_c_65313"
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
     "idColour": "YELLOW",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47111"
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione"
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
     "idColour": "YELLOW",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47211"
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione2"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione4"
+  },
+{
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione3"
+  },
+{
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione2"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione4"
+  },
+{
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione3"
   },
   {
     "era": 1,
@@ -575,69 +1106,567 @@
     "prodHarvEffects": {},
     "path": "devcards_f_en_c_47311"
   },
-  {
+    {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
     "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96011"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate"
   },
   {
     "era": 1,
     "requirements": [],
     "immediateEffects": [],
-    "idColour": "PURPLE",
+    "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96111"
+    "path": "devcards_f_en_c_47311"
+  },
+    {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate2"
+  },
+    {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate2"
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 4
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
     "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96211"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "multipleCost1"
   },
   {
     "era": 1,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 4
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
     "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96311"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "multipleCost2"
+  },
+{
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena1"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena2"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena2"
   },
   {
     "era": 2,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1002"
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_1"
+  },
+  {
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "2": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_2"
   },
   {
     "era": 2,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1102"
+    "prodHarvEffects": {
+      "3": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1,
+                  "SERVANT": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_3"
+  },
+  {
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "STONE": 2
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_4"
+  },
+  {
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 3
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_5"
+  },
+  {
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1,
+            "STONE": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "6": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "FAITHPOINT": 1,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_6"
   },
   {
     "era": 2,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1202"
-  },
-  {
-    "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1302"
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MILITARYPOINT": 2,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_7"
   },
   {
     "era": 2,
@@ -645,31 +1674,203 @@
     "immediateEffects": [],
     "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65002"
+    "path": "devcards_f_en_c_65001"
   },
   {
     "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
     "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65102"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "BonusSuPrendiAltraCarta1"
   },
   {
     "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
     "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65202"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "bonusSuPrendiAltraCarta2"
   },
   {
     "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
     "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65302"
+    "path": "prendiAltraCarta"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
+    "idColour": "BLUE",
+    "prodHarvEffects": {},
+    "path": "PrendiAltraCartaDaAlmeno6_2"
   },
   {
     "era": 2,
@@ -677,7 +1878,7 @@
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47002"
+    "path": "devcards_f_en_c_47101"
   },
   {
     "era": 2,
@@ -685,7 +1886,7 @@
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47102"
+    "path": "devcards_f_en_c_47201"
   },
   {
     "era": 2,
@@ -693,15 +1894,7 @@
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47202"
-  },
-  {
-    "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "YELLOW",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47302"
+    "path": "devcards_f_en_c_47301"
   },
   {
     "era": 2,
@@ -709,7 +1902,7 @@
     "immediateEffects": [],
     "idColour": "PURPLE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96002"
+    "path": "devcards_f_en_c_96001"
   },
   {
     "era": 2,
@@ -717,7 +1910,7 @@
     "immediateEffects": [],
     "idColour": "PURPLE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96102"
+    "path": "devcards_f_en_c_96101"
   },
   {
     "era": 2,
@@ -725,7 +1918,7 @@
     "immediateEffects": [],
     "idColour": "PURPLE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96202"
+    "path": "devcards_f_en_c_96201"
   },
   {
     "era": 2,
@@ -733,39 +1926,313 @@
     "immediateEffects": [],
     "idColour": "PURPLE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96302"
+    "path": "devcards_f_en_c_96301"
   },
   {
     "era": 2,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1012"
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_1"
+  },
+  {
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "2": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_2"
   },
   {
     "era": 2,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1112"
+    "prodHarvEffects": {
+      "3": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1,
+                  "SERVANT": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_3"
+  },
+  {
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "STONE": 2
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_4"
+  },
+  {
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 3
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_5"
+  },
+  {
+    "era": 2,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1,
+            "STONE": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "6": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "FAITHPOINT": 1,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_6"
   },
   {
     "era": 2,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1212"
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MILITARYPOINT": 2,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_7"
   },
   {
     "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
+    "idColour": "BLUE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "BonusSuPrendiAltraCarta1_5"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
+    "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1312"
+    "path": "PrendiAltraCartaDaAlmeno6_7"
   },
   {
     "era": 2,
@@ -773,23 +2240,7 @@
     "immediateEffects": [],
     "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65012"
-  },
-  {
-    "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65112"
-  },
-  {
-    "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65212"
+    "path": "devcards_f_en_c_65211"
   },
   {
     "era": 2,
@@ -803,9 +2254,310 @@
     "era": 2,
     "requirements": [],
     "immediateEffects": [],
-    "idColour": "YELLOW",
+    "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47012"
+    "path": "devcards_f_en_c_65313"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione2"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione4"
+  },
+{
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione3"
+  },
+{
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione2"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione4"
+  },
+{
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione3"
   },
   {
     "era": 2,
@@ -813,7 +2565,45 @@
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47112"
+    "path": "devcards_f_en_c_47311"
+  },
+    {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate"
   },
   {
     "era": 2,
@@ -821,111 +2611,735 @@
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47212"
+    "path": "devcards_f_en_c_47311"
+  },
+    {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate2"
+  },
+    {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate2"
   },
   {
     "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 4
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "multipleCost1"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 4
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "multipleCost2"
+  },
+{
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena1"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena2"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena2"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_1"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "2": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_2"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "3": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1,
+                  "SERVANT": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_3"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "STONE": 2
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_4"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 3
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_5"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1,
+            "STONE": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "6": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "FAITHPOINT": 1,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_6"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MILITARYPOINT": 2,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_7"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "BLUE",
+    "prodHarvEffects": {},
+    "path": "devcards_f_en_c_65001"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
+    "idColour": "BLUE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "BonusSuPrendiAltraCarta1"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
+    "idColour": "BLUE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "bonusSuPrendiAltraCarta2"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
+    "idColour": "BLUE",
+    "prodHarvEffects": {},
+    "path": "prendiAltraCarta"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
+    "idColour": "BLUE",
+    "prodHarvEffects": {},
+    "path": "PrendiAltraCartaDaAlmeno6_2"
+  },
+  {
+    "era": 3,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47312"
-  },
-  {
-    "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96012"
-  },
-  {
-    "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96112"
-  },
-  {
-    "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96212"
-  },
-  {
-    "era": 2,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96312"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1003"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1103"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1203"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1303"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65003"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65103"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65203"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65303"
+    "path": "devcards_f_en_c_47101"
   },
   {
     "era": 3,
@@ -933,7 +3347,7 @@
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47003"
+    "path": "devcards_f_en_c_47201"
   },
   {
     "era": 3,
@@ -941,23 +3355,7 @@
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47103"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "YELLOW",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47203"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "YELLOW",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47303"
+    "path": "devcards_f_en_c_47301"
   },
   {
     "era": 3,
@@ -965,7 +3363,7 @@
     "immediateEffects": [],
     "idColour": "PURPLE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96003"
+    "path": "devcards_f_en_c_96001"
   },
   {
     "era": 3,
@@ -973,7 +3371,7 @@
     "immediateEffects": [],
     "idColour": "PURPLE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96103"
+    "path": "devcards_f_en_c_96101"
   },
   {
     "era": 3,
@@ -981,7 +3379,7 @@
     "immediateEffects": [],
     "idColour": "PURPLE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96203"
+    "path": "devcards_f_en_c_96201"
   },
   {
     "era": 3,
@@ -989,39 +3387,313 @@
     "immediateEffects": [],
     "idColour": "PURPLE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96303"
+    "path": "devcards_f_en_c_96301"
   },
   {
     "era": 3,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1013"
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_1"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "2": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_2"
   },
   {
     "era": 3,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1113"
+    "prodHarvEffects": {
+      "3": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1,
+                  "SERVANT": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_3"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "STONE": 2
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_4"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 3
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "WOOD": 3
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_5"
+  },
+  {
+    "era": 3,
+    "requirements": [],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1,
+            "STONE": 1
+          }
+        }
+      }
+    ],
+    "idColour": "GREEN",
+    "prodHarvEffects": {
+      "6": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "FAITHPOINT": 1,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_6"
   },
   {
     "era": 3,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "GREEN",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1213"
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MILITARYPOINT": 2,
+                  "STONE": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "path": "devcards_f_en_c_7"
   },
   {
     "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "GREEN",
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "TOWER_ACTION",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnConditions": {
+            "BONUSMALUSONCONDITIONS": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          }
+        }
+      }
+    ],
+    "idColour": "BLUE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "BonusSuPrendiAltraCarta1_5"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnAction",
+        "action": "ACTION_ON_TOWER",
+        "object": "GREEN"
+      }
+    ],
+    "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_1313"
+    "path": "PrendiAltraCartaDaAlmeno6_7"
   },
   {
     "era": 3,
@@ -1029,7 +3701,7 @@
     "immediateEffects": [],
     "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65013"
+    "path": "devcards_f_en_c_65211"
   },
   {
     "era": 3,
@@ -1037,15 +3709,7 @@
     "immediateEffects": [],
     "idColour": "BLUE",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65113"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "BLUE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_65213"
+    "path": "devcards_f_en_c_65312"
   },
   {
     "era": 3,
@@ -1057,11 +3721,350 @@
   },
   {
     "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione2"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione4"
+  },
+{
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione3"
+  },
+{
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione2"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione4"
+  },
+{
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "5": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnConditions",
+              "modifiedResource": "MONEY",
+              "multiplier": 1,
+              "colour": "YELLOW"
+            }
+          ]
+        }
+      ]
+    },
+    "path": "1MonetaPerCartaGiallaProduzione3"
+  },
+  {
+    "era": 3,
     "requirements": [],
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47013"
+    "path": "devcards_f_en_c_47311"
+  },
+    {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate"
   },
   {
     "era": 3,
@@ -1069,55 +4072,314 @@
     "immediateEffects": [],
     "idColour": "YELLOW",
     "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47113"
+    "path": "devcards_f_en_c_47311"
   },
-  {
+    {
     "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "YELLOW",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47213"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
-    "idColour": "YELLOW",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47313"
-  },
-  {
-    "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
     "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96013"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate2"
+  },
+    {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "endEImmediate2"
   },
   {
     "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 4
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
     "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96113"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "multipleCost1"
   },
   {
     "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 4
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
     "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96213"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "multipleCost2"
+  },
+{
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena1"
   },
   {
     "era": 3,
-    "requirements": [],
-    "immediateEffects": [],
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
     "idColour": "PURPLE",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_96313"
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena2"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "pergamena2"
   }
-
 ]

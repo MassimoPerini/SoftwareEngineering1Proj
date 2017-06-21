@@ -2,6 +2,8 @@ package it.polimi.ingsw.GC_06.Client.ViewController;
 
 import com.airhacks.afterburner.views.FXMLView;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board.BoardPresenter;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board.BoardView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.ConnectionMethod.ConnectionMethodView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Login.LoginView;
 import javafx.application.Application;
@@ -44,6 +46,14 @@ public class ViewOrchestratorFx extends Application implements ViewOrchestrator 
 
     @Override
     public void change(ClientStateName state, String property) {
+        //to remove
+        if (state!=null && state.equals(ClientStateName.GAME_START))
+        {
+            BoardView boardView = new BoardView();
+            BoardPresenter boardPresenter =(BoardPresenter) boardView.getPresenter();
+            clientStates.put(ClientStateName.GAME_START, boardView);
+        }
+
         if (property!=null) {
             this.property.setValue(property);
         }

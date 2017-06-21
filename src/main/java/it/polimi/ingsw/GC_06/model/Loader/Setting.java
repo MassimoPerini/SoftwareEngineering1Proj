@@ -20,6 +20,7 @@ public class Setting {
     {
         super();
         rb = ResourceBundle.getBundle(PATH);
+        System.out.println("Settings init");
     }
 
     public static Setting getInstance()
