@@ -14,7 +14,6 @@ public class BonusMalusSet {
 
     private  HashMap<String,ArrayList<BonusMalusOnResources>> bonusMalusOnResources = new HashMap<>();
     private HashMap<String,ArrayList<BonusMalusOnAction>> bonusMalusOnAction= new HashMap<>();
-    private HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnConditions= new HashMap<>();
     private HashMap<String,ArrayList<BonusMalusOnEnd>> bonusMalusOnEnd= new HashMap<>();
     private HashMap<String,ArrayList<BonusMalusOnAccess>> bonusMalusOnAccess= new HashMap<>();
     private HashMap<String,ArrayList<BonusMalusOnCost>> bonusMalusOnCost= new HashMap<>();
@@ -24,7 +23,6 @@ public class BonusMalusSet {
     public BonusMalusSet() {
         this.bonusMalusOnResources.put("BONUSMALUSONRESOURCE",new ArrayList<>());
         this.bonusMalusOnAction .put("BONUSMALUSONACTION",new ArrayList<>());
-        this.bonusMalusOnConditions.put("BONUSMALUSONCONDITIONS",new ArrayList<>());
         this.bonusMalusOnEnd.put("BONUSMALUSONEND",new ArrayList<>());
         this.bonusMalusOnCost.put("BONUSMALUSONCOST",new ArrayList<>());
         this.bonusMalusOnAccess.put("BONUSMALUSONACCESS",new ArrayList<>());
@@ -39,11 +37,7 @@ public class BonusMalusSet {
     }
 
     public HashMap<String, ArrayList<BonusMalusOnCost>> getBonusMalusOnCost() {
-        return bonusMalusOnConditions;
-    }
-
-    public HashMap<String, ArrayList<BonusMalusOnCost>> getBonusMalusOnConditions() {
-        return bonusMalusOnConditions;
+        return bonusMalusOnCost;
     }
 
     public HashMap<String, ArrayList<BonusMalusOnEnd>> getBonusMalusOnEnd() {
@@ -53,9 +47,8 @@ public class BonusMalusSet {
 
     public void joinSet(BonusMalusSet bonusMalusSet){
         this.addActionBonusMalus(bonusMalusSet.bonusMalusOnAction.get("BONUSMALUSONACTION"));
-        this.addResourceBonusMalus(bonusMalusSet.bonusMalusOnResources.get("BONUSMALUSONRESOURCES"));
+        this.addResourceBonusMalus(bonusMalusSet.bonusMalusOnResources.get("BONUSMALUSONRESOURCE"));
         this.addEndBonusMalus(bonusMalusSet.bonusMalusOnEnd.get("BONUSMALUSONEND"));
-        //this.add3(bonusMalusSet.bonusMalusOnConditions);
         this.addAccessBonusMalus(bonusMalusSet.bonusMalusOnAccess.get("BONUSMALUSONACCESS"));
         this.addCostBonusMalus(bonusMalusSet.bonusMalusOnCost.get("BONUSMALUSONCOST"));
 
@@ -67,26 +60,33 @@ public class BonusMalusSet {
             this.bonusMalusOnAction.get(bonusMaluskey).addAll(bonusMalusOnActions);
         }
     }
-    private void addResourceBonusMalus(List<BonusMalusOnResources> bonusMalusOnResources){
+    public void addResourceBonusMalus(List<BonusMalusOnResources> bonusMalusOnResources){
 
-        for(String bonusMalusKey : this.bonusMalusOnResources.keySet()){
-            this.bonusMalusOnResources.get(bonusMalusKey).addAll(bonusMalusOnResources);
+
+            for (String bonusMalusKey : this.bonusMalusOnResources.keySet()) {
+                this.bonusMalusOnResources.get(bonusMalusKey).addAll(bonusMalusOnResources);
         }
 
     }
-    private void addEndBonusMalus(List<BonusMalusOnEnd>  bonusMalusOnEnd){
-        for(String bonusMalusKey : this.bonusMalusOnEnd.keySet()){
-            this.bonusMalusOnEnd.get(bonusMalusKey).addAll(bonusMalusOnEnd);
+    public void addEndBonusMalus(List<BonusMalusOnEnd>  bonusMalusOnEnd){
+        if(bonusMalusOnEnd.size()!= 0) {
+            for (String bonusMalusKey : this.bonusMalusOnEnd.keySet()) {
+                this.bonusMalusOnEnd.get(bonusMalusKey).addAll(bonusMalusOnEnd);
+            }
         }
     }
-    private void addCostBonusMalus(List<BonusMalusOnCost> bonusMalusOnCost){
-        for(String bonusMalusKey : this.bonusMalusOnCost.keySet()){
-            this.bonusMalusOnCost.get(bonusMalusKey).addAll(bonusMalusOnCost);
+    public void addCostBonusMalus(List<BonusMalusOnCost> bonusMalusOnCost){
+        if(bonusMalusOnCost.size()!= 0) {
+            for (String bonusMalusKey : this.bonusMalusOnCost.keySet()) {
+                this.bonusMalusOnCost.get(bonusMalusKey).addAll(bonusMalusOnCost);
+            }
         }
     }
-    private void addAccessBonusMalus(List<BonusMalusOnAccess> bonusMalusOnAccess){
-        for(String bonusMalusKey : this.bonusMalusOnCost.keySet()){
-            this.bonusMalusOnAccess.get(bonusMalusKey).addAll(bonusMalusOnAccess);
+    public void addAccessBonusMalus(List<BonusMalusOnAccess> bonusMalusOnAccess){
+        if(bonusMalusOnAccess.size()!= 0) {
+            for (String bonusMalusKey : this.bonusMalusOnCost.keySet()) {
+                this.bonusMalusOnAccess.get(bonusMalusKey).addAll(bonusMalusOnAccess);
+            }
         }
     }
 
@@ -137,7 +137,8 @@ public class BonusMalusSet {
     public int removeBonusMalusCost(ArrayList<BonusMalusOnCost> bonusMalusOnCosts,int i){
         if(!bonusMalusOnCosts.get(i).isPermanent()){
             bonusMalusOnCosts.remove(i);
-            return i--;
+            i = i-1;
+            return i;
         }
         return i;
     }
