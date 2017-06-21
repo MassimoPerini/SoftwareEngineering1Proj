@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessagePickAnotherCard;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -20,6 +21,7 @@ public class EffectOnNewCards implements Effect {
 
     @Override
     public void execute(Player player,Game game) {
-        game.getGameStatus().changeState(TransitionType.BONUS_CARD, towerFloors);
+        MessagePickAnotherCard messagePickAnotherCard = new MessagePickAnotherCard(towerFloors);
+        game.getGameStatus().changeState(TransitionType.BONUS_CARD, messagePickAnotherCard);
     }
 }

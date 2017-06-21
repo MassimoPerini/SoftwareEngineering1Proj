@@ -1,16 +1,14 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChooseParchment;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 
@@ -19,7 +17,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public class EffectOnParchment implements Effect {
 
-    private ResourceSet[] parchments;
+    private List<ResourceSet> parchments;
     private boolean isDifferent;
 
     public EffectOnParchment() {
@@ -29,8 +27,9 @@ public class EffectOnParchment implements Effect {
     @Override
     public void execute (Player player,Game game) {
         FileLoader fileLoader = FileLoader.getFileLoader();
-        parchments = fileLoader.loadParchments();
-        game.getGameStatus().changeState(TransitionType.CHOOSE_PARCHMENT, parchments);
+        parchments = Arrays.asList(fileLoader.loadParchments());
+        MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments);
+        game.getGameStatus().changeState(TransitionType.CHOOSE_PARCHMENT, messageChooseParchment);
         }
 
     public void setDifferent(boolean different) {

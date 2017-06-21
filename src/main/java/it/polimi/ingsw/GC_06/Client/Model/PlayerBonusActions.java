@@ -2,8 +2,10 @@ package it.polimi.ingsw.GC_06.Client.Model;
 
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by massimo on 20/06/17.
@@ -11,14 +13,14 @@ import java.util.List;
 public class PlayerBonusActions {
 
     private List<ResourceSet> parchmentList;
-    private List<ClientTowerFloor> pickAnotherCard;
+    private Map<String, List<Integer>>  pickAnotherCard;
     private List<ResourceSet> requirementCard;
-    private List<String> prodHarvAsk;
+    private Map<String, List<Integer>> prodHarvAsk;
 
     public PlayerBonusActions()
     {
         parchmentList = new LinkedList<>();
-        pickAnotherCard = new LinkedList<>();
+        pickAnotherCard = new HashMap<>();
         requirementCard = new LinkedList<>();
     }
 
@@ -27,7 +29,7 @@ public class PlayerBonusActions {
         this.parchmentList = parchmentList;
     }
 
-    public void setPickAnotherCard(List<ClientTowerFloor> clientTowerFloors)
+    public void setPickAnotherCard(Map<String, List<Integer>> clientTowerFloors)
     {
         this.pickAnotherCard = clientTowerFloors;
     }
@@ -36,7 +38,7 @@ public class PlayerBonusActions {
         this.requirementCard = requirementCard;
     }
 
-    public void setProdHarvAsk(List<String> prodHarvAsk) {
-        this.prodHarvAsk = prodHarvAsk;
+    public void setProdHarvAsk(Map<String, List<Integer>> cards) {
+        this.prodHarvAsk = cards;
     }
 }

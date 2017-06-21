@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
@@ -23,24 +22,19 @@ public class PickCard implements Action {
     private final Player player;
     private final int towerFloor;
     private final Tower tower;
-    private final int valueFamilyMember;
-    private Game game;
+    private final Game game;
 
-    public PickCard(@NotNull Player player, @NotNull Tower tower, int towerFloor, int valueFamilyMember,Game game)
+    public PickCard(@NotNull Player player, @NotNull Tower tower, int towerFloor,Game game)
     {
         super();
         this.player = player;
         this.towerFloor = towerFloor;
         this.tower = tower;
-        this.valueFamilyMember = valueFamilyMember;
         this.game = game;
     }
 
     @Override
     public void execute() {
-
-        if (!isAllowed())
-            throw new IllegalStateException();
 
 
         /**if we are in the real action we add the family member in the correct position*/
@@ -59,75 +53,22 @@ public class PickCard implements Action {
         /**we are adding the card to the player board*/
         DevelopmentCard c = tower.pickCard(towerFloor);
         player.addCard(c);
-
-        //pay the card
-        PayCard payCard = new PayCard(c, player,game);
-        payCard.execute();
-
         executeEffects = new ExecuteEffects(c.getImmediateEffects(), player,game);
-        executeEffects.execute();
 
         game.getGameStatus().changeState(TransitionType.PICK_CARD);
 
-    }
+        executeEffects.execute();
 
-    public void setGame(Game game) {
-        this.game = game;
     }
-    public void setGame (int game){}
-    public void setPlayer(String player){}
 
     @Override
     public boolean isAllowed() {
-        //Can add in PlayerBoard
-        FamilyMember familyMemberTest = new FamilyMember(null, player.getPLAYER_ID());
-        familyMemberTest.setValue(this.valueFamilyMember);
-
-        if (!tower.isAllowed(familyMemberTest, towerFloor))
-            return false;
 
         /** controllo se il player può aggiungere la carta */
         if (!player.canAdd(tower.getTowerFloor().get(towerFloor).getCard()))
             return false;
 
-        //clone player
-        Player pClone = new Player(player);     //CLONE (I hope...) TODO
-
-        //Test tower penality
-
-        if (!tower.isNoPenalityAllowed()) {
-            ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
-
-            try {
-                pClone.variateResource(malusResources);
-            }
-            catch (IllegalArgumentException e)
-            {
-                //Non posso sottrarre risorse
-                return false;
-            }
-        }
-
-        //Check requirements (add plane and...)
-        //Start effect plane!
-
-        //Apply ActionSpace effects to clone
-        List<Effect> effects = tower.getTowerFloor().get(towerFloor).getActionPlace().getEffects();
-
-        for(Effect effect: effects)
-        {
-            effect.execute(pClone,game);
-        }
-
-        //Can I pay?
-        PayCard payClone = new PayCard( tower.getTowerFloor().get(towerFloor).getCard(), pClone,game);
-
-        if(!payClone.isAllowed())
-        {
-            return false;
-        }
-
-        ExecuteEffects executeEffects = new ExecuteEffects( tower.getTowerFloor().get(towerFloor).getCard().getImmediateEffects(), pClone,game);
+        ExecuteEffects executeEffects = new ExecuteEffects( tower.getTowerFloor().get(towerFloor).getCard().getImmediateEffects(), player,game);
 
         return executeEffects.isAllowed();
     }

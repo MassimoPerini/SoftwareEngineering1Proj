@@ -28,7 +28,7 @@ public class MessagePickAnotherCard implements MessageServer {
                 result.add(clientController.getMainClientModel().getClientBoardGame().getTowersClient().get(s).get(index));
             }
         }
-        clientController.getMainClientModel().getPlayerBonusActions().setPickAnotherCard(result);
+        clientController.getMainClientModel().getPlayerBonusActions().setPickAnotherCard(floors);
         clientController.getViewOrchestrator().change(ClientStateName.CHOOSE_NEW_CARD, "");
     }
 }

@@ -1,11 +1,11 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
-import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
@@ -13,25 +13,25 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public class BoardActionOnTower implements Action {
 
-    private Tower tower;
-    private int index;
-    private Action pickCard;
-    private FamilyMember familyMember;
-    private Game game;
-    private Player player;
+    private final Tower tower;
+    private final int index;
+    private final Action payCard;
+    private final FamilyMember familyMember;
+    private final Game game;
+    private final Player player;
     private final ActionType ACTION_TYPE = ActionType.TOWER_ACTION;
 
-    public BoardActionOnTower(Player player, int index, Tower tower, FamilyMember familyMember,Game game) {
+    public BoardActionOnTower(Player player, int floor, Tower tower, FamilyMember familyMember,Game game) {
         super();
         if (player==null || tower==null)
             throw new NullPointerException();
 
         this.familyMember = familyMember;
-        this.index = index;
+        this.index = floor;
         this.tower = tower;
-        this.familyMember = familyMember;
-        this.pickCard = new PickCard(player, tower, index, familyMember.getValue(),game);
+        this.payCard = new PayCard(tower,floor, player, game);
         this.player = player;
+        this.game = game;
     }
 
     @Override
@@ -47,22 +47,16 @@ public class BoardActionOnTower implements Action {
 
         //this.familyMember.getValue() = super.getValueAction();
 
+        // qui faccio il malus
+        tower.addFamilyMember(familyMember, index);
+
         game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
         // qui modifichiamo il valore dell'azione prima che si compia
         //BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
 
-        if (!isAllowed())
-            throw new IllegalStateException();
+        payCard.execute();
 
-        pickCard.execute();
 
-        // qui faccio il malus
-        tower.addFamilyMember(familyMember, index);
-
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
     }
 
     @Override
@@ -70,7 +64,12 @@ public class BoardActionOnTower implements Action {
 
         /** è permessa solo quando non c'è un familiare sulla torre*/
 
-        return pickCard.isAllowed();
+        //Can add in PlayerBoard
+
+        if (!tower.isAllowed(familyMember, index))
+            return false;
+
+        return payCard.isAllowed();
 
     }
 }

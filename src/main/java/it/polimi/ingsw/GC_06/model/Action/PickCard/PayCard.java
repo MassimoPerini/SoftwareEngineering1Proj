@@ -1,9 +1,12 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
+import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
+import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -17,49 +20,86 @@ import java.util.List;
 public class PayCard implements Action {
 
     private final Player player;
-    private final DevelopmentCard developmentCard;
     private final ActionType ACTION_TYPE = ActionType.PAYCARDACTION;
-    private Game game;
+    private final PickCard pickCard;
+    private final Tower tower;
+    private final int floor;
+    private final Game game;
 
-    public PayCard(DevelopmentCard developmentCard, Player player,Game game)
+    public PayCard(Tower tower, int floor,Player player, Game game)
     {
         super();
         this.player = player;
-        this.developmentCard = developmentCard;
         this.game = game;
+        this.tower = tower;
+        this.floor = floor;
+        pickCard = new PickCard(player, tower, floor,game);
     }
 
     @Override
     public void execute() {
 
-        if (!isAllowed())
-            throw new IllegalStateException();
-
-        game.getGameStatus().changeState(TransitionType.PAY_CARD);
 
         List<Requirement> satisfiedRequirements = new LinkedList<>();
         /** we must control if the player can afford the card */
 
         //MODIFICHIAMO QUI LA CARTA
+        DevelopmentCard developmentCard = tower.getTowerFloor().get(floor).getCard();
 
     //    BonusMalusHandler.filter(player,ACTION_TYPE,developmentCard);
-
         for(Requirement requirement : developmentCard.getRequirements()){
             if(requirement.isSatisfied(player.getResourceSet()))
                 satisfiedRequirements.add(requirement);
         }
 
-        if(satisfiedRequirements.size() == 1){
+        if (satisfiedRequirements.size()>1){
+            game.getGameStatus().changeState(TransitionType.ASK_PAYMENT, satisfiedRequirements);
+            return;
+        }
+
+        else if(satisfiedRequirements.size() == 1){
             satisfiedRequirements.get(0).doIt(player);
         }
-        else if (satisfiedRequirements.size()>1){
-            game.getGameStatus().changeState(TransitionType.ASK_PAYMENT, satisfiedRequirements);
-        }
+        game.getGameStatus().changeState(TransitionType.PAY_CARD);
+        pickCard.execute();
     }
 
     @Override
     public boolean isAllowed() {
-        return developmentCard.isSatisfied(player.getResourceSet());
+
+        Player pClone = new Player(player);     //CLONE (I hope...) TODO
+
+        //Test tower penality BEFORE adding money from the actionspace
+
+        if (!tower.isNoPenalityAllowed()) {
+            ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
+            try {
+                pClone.variateResource(malusResources);
+            }
+            catch (IllegalArgumentException e)
+            {
+                //Non posso sottrarre risorse
+                return false;
+            }
+        }
+
+        //Check requirements (add plane and...)
+        //Start effect plane!
+
+        //Apply ActionSpace effects to clone
+        List<Effect> effects = tower.getTowerFloor().get(floor).getActionPlace().getEffects();
+
+        for(Effect effect: effects)
+        {
+            effect.execute(pClone,game);
+        }
+
+        if (!tower.getTowerFloor().get(floor).getCard().isSatisfied(player.getResourceSet()))
+        {
+            return false;
+        }
+
+        return pickCard.isAllowed();
     }
 
 

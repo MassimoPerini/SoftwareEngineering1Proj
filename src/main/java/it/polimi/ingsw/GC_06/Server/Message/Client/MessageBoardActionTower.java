@@ -2,8 +2,8 @@ package it.polimi.ingsw.GC_06.Server.Message.Client;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
-import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
 import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
+import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -38,7 +38,6 @@ public class MessageBoardActionTower implements MessageClient{
         Tower currentTower = currentGame.getBoard().getTowers().get(tower);
 
         BoardActionOnTower boardActionOnTower = new BoardActionOnTower(currentPlayer, floor, currentTower, familyMember,currentGame);
-        boardActionOnTower.setGame(currentGame);
 
 
 
