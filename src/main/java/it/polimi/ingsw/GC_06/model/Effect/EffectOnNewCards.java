@@ -1,21 +1,19 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
-import it.polimi.ingsw.GC_06.model.Board.TowerFloor;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
 
 /**
  * Created by gabri on 06/06/2017.
  */
 public class EffectOnNewCards implements Effect {
-    private List<TowerFloor> towerFloors;
+    private Map<String, List<Integer>> towerFloors;
 
-    public EffectOnNewCards(List<TowerFloor> towerFloors) {
+    public EffectOnNewCards(Map<String, List<Integer>> towerFloors) {
         super();
         this.towerFloors = towerFloors;
     }

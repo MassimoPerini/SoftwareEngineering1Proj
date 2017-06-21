@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
-import it.polimi.ingsw.GC_06.Client.Model.*;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
 /**
@@ -21,14 +20,5 @@ public class MessageChangePlayer implements MessageServer {
     @Override
     public void execute(ClientController clientController) {
         clientController.getMainClientModel().updateStatus(turn, era, newPlayer);
-
-        //CANCELLARE!!!!!
-
-        //clientController.getViewOrchestrator().change(ClientStateName.GAME_START, "");
-
-
-
-
-
     }
 }

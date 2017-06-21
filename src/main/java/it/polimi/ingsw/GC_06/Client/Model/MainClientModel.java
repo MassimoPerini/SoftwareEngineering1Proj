@@ -1,9 +1,6 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
-import javafx.beans.property.SimpleListProperty;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
@@ -13,12 +10,14 @@ import java.util.Observable;
 public class MainClientModel extends Observable{
     private final Map<String, ClientPlayerBoard> clientPlayerBoard;
     private final ClientBoardGame clientBoardGame;
+    private final PlayerBonusActions playerBonusActions;
     private int era, turn;
     private String currentPlayer;
     private String myUsername;
 
     public MainClientModel()
     {
+        playerBonusActions = new PlayerBonusActions();
         clientPlayerBoard = new HashMap<>();
         this.clientBoardGame = new ClientBoardGame();
         this.myUsername = "";
@@ -51,6 +50,9 @@ public class MainClientModel extends Observable{
         return clientBoardGame;
     }
 
+    public PlayerBonusActions getPlayerBonusActions() {
+        return playerBonusActions;
+    }
 
     //*******
 
