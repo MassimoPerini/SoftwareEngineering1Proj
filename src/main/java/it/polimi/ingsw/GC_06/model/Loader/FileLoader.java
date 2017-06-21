@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Loader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
@@ -133,7 +134,7 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class);        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
 
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(cardsRootPath));
         DevelopmentCard [] cards = gson2.fromJson(fr , DevelopmentCard [].class);
@@ -207,6 +208,10 @@ public class FileLoader {
         gson2.toJson(playerBoard, fw);
         fw.close();
 
+    }
+
+    public void writeBoardWithEffects() throws IOException {
+        Map<String, Tower> towers = new HashMap<>();
     }
 
     public void writeBoard() throws IOException {
@@ -548,7 +553,7 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class);
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
 
         Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
         FileWriter fw = new FileWriter("src/main/resources/model/cards2.txt");
@@ -588,7 +593,7 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class);
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
 
         Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
         FileWriter fw = new FileWriter("src/main/resources/model/cards3.txt");
@@ -684,7 +689,7 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class);
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
 
         Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
         FileWriter fw = new FileWriter("src/main/resources/model/cards4.txt");
@@ -761,6 +766,8 @@ public class FileLoader {
         gson.toJson(cards, fw);
         fw.close();
     }
+
+
 
 
 }
