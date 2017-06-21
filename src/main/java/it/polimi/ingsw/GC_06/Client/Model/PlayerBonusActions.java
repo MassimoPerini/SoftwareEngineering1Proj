@@ -41,4 +41,20 @@ public class PlayerBonusActions {
     public void setProdHarvAsk(Map<String, List<Integer>> cards) {
         this.prodHarvAsk = cards;
     }
+
+    public List<ResourceSet> getParchmentList() {
+        return parchmentList;
+    }
+
+    public Map<String, List<Integer>> getPickAnotherCard() {
+        return pickAnotherCard;
+    }
+
+    public List<ResourceSet> getRequirementCard() {
+        return requirementCard;
+    }
+
+    public Map<String, List<Integer>> getProdHarvAsk() {
+        return prodHarvAsk;
+    }
 }

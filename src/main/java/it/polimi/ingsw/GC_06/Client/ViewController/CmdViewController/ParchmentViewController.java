@@ -1,0 +1,55 @@
+package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
+
+import it.polimi.ingsw.GC_06.Client.Model.PlayerBonusActions;
+import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
+import it.polimi.ingsw.GC_06.Client.View.CmdView;
+import it.polimi.ingsw.GC_06.Client.View.CommandView;
+import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.AnswerParchment;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+
+/**
+ * Created by massimo on 21/06/17.
+ */
+public class ParchmentViewController implements ViewPresenterCLI {
+
+    private final CommandView commandView;
+    private final ClientNetworkOrchestrator clientNetworkOrchestrator;
+    private final PlayerBonusActions playerBonusActions;
+
+    public ParchmentViewController(ClientNetworkOrchestrator clientNetworkOrchestrator, PlayerBonusActions playerBonusActions) {
+        this.commandView = new CmdView();
+        this.clientNetworkOrchestrator = clientNetworkOrchestrator;
+        this.playerBonusActions = playerBonusActions;
+    }
+
+
+    @Override
+    public void viewWillAppear() {
+        commandView.addLocalizedText("Ti è stato concesso un privilegio del consiglio\n");
+        int i=0;
+        for (ResourceSet resourceSet : playerBonusActions.getParchmentList()) {
+            commandView.addLocalizedText("Scelta "+i+":\n");
+            for (Resource resource : resourceSet.getResources().keySet()) {
+                commandView.addText(resource.toString()+": "+resourceSet.getResources().get(resource)+", ");
+            }
+            i++;
+        }
+
+        int answ = commandView.getInt(0, i);
+        AnswerParchment answerParchment = new AnswerParchment(answ);
+        clientNetworkOrchestrator.send(answerParchment);
+
+    }
+
+    @Override
+    public void addText(String txt) {
+
+    }
+
+    @Override
+    public void viewWillDisappear() {
+
+    }
+}

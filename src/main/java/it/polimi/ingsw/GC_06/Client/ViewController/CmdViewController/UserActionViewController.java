@@ -1,16 +1,15 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 
-import it.polimi.ingsw.GC_06.Client.Model.*;
+import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -18,7 +17,7 @@ import java.util.concurrent.Future;
 /**
  * Created by massimo on 19/06/17.
  */
-public class UserActionViewController implements ViewPresenterCLI {
+public class UserActionViewController implements ViewPresenterCLI, Runnable {
 
     private final MainClientModel mainClientModel;
     private final ClientNetworkOrchestrator clientNetworkOrchestrator;

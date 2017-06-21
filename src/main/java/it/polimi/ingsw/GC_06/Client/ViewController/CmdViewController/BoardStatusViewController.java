@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 /**
  * Created by massimo on 01/06/17.
  */
-public class BoardStatusViewController implements ViewPresenterCLI {
+public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
 
     private ClientBoardGame clientBoardGame;
     private Map<String, ClientPlayerBoard> clientPlayerBoard;
