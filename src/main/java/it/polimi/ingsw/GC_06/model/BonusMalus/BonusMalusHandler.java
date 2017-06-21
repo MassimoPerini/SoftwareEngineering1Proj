@@ -26,7 +26,7 @@ public class BonusMalusHandler {
             BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
             if(bonusMalusOnAction.isAllowed(familyMember,actionType)&& bonusMalusOnAction.getColourTarget().equals(towerColour)){
                 bonusMalusOnAction.modify(familyMember);
-                player.getBonusMalusSet().removeBonusMalusAction(bonusMalusOnActions,i);
+                i = player.getBonusMalusSet().removeBonusMalusAction(bonusMalusOnActions,i);
             }
         }
 

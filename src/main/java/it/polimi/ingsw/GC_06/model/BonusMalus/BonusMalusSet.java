@@ -100,7 +100,8 @@ public class BonusMalusSet {
 
         if(!actions.get(i).isPermanent()){
             actions.remove(i);
-            return  i--;
+            i = i -1;
+            return  i;
         }
         return i;
     }

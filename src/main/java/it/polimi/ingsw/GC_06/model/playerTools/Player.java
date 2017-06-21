@@ -39,6 +39,7 @@ public class Player extends Observable {
         this.resourceSet = new ResourceSet();
         this.playerBoard = FileLoader.getFileLoader().loadPlayerBoard();
         this.familyMembers = familyMembers;
+        this.bonusMalusSet = new BonusMalusSet();
     }
 
     public Player (Player p)

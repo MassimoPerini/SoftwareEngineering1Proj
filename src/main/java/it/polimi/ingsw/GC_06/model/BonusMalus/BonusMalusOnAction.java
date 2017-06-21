@@ -30,6 +30,9 @@ public class BonusMalusOnAction {
     /** con questo metodo riduciamo il valore dell'azione, cambiando il punteggio del familiare*/
     public void modify(FamilyMember familyMember) {
         int newValue = familyMember.getValue() + value;
+        if(newValue < 0 ){
+            newValue = 0;
+        }
         familyMember.setValue(newValue);
     }
 
