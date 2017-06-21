@@ -1,52 +1,92 @@
 [
   {
     "resources": {
-      "MONEY": 5
+      "SERVANT": 100,
+      "STONE": 100,
+      "MILITARYPOINT": 100,
+      "MONEY": 100,
+      "WOOD": 100
     }
   },
   {
     "resources": {
-      "MONEY": 6
+      "SERVANT": 101,
+      "STONE": 101,
+      "MILITARYPOINT": 101,
+      "MONEY": 101,
+      "WOOD": 101
     }
   },
   {
     "resources": {
-      "MONEY": 7
+      "SERVANT": 102,
+      "STONE": 102,
+      "MILITARYPOINT": 102,
+      "MONEY": 102,
+      "WOOD": 102
     }
   },
   {
     "resources": {
-      "MONEY": 8
+      "SERVANT": 103,
+      "STONE": 103,
+      "MILITARYPOINT": 103,
+      "MONEY": 103,
+      "WOOD": 103
     }
   },
   {
     "resources": {
-      "MONEY": 9
+      "SERVANT": 104,
+      "STONE": 104,
+      "MILITARYPOINT": 104,
+      "MONEY": 104,
+      "WOOD": 104
     }
   },
   {
     "resources": {
-      "MONEY": 10
+      "SERVANT": 105,
+      "STONE": 105,
+      "MILITARYPOINT": 105,
+      "MONEY": 105,
+      "WOOD": 105
     }
   },
   {
     "resources": {
-      "MONEY": 11
+      "SERVANT": 106,
+      "STONE": 106,
+      "MILITARYPOINT": 106,
+      "MONEY": 106,
+      "WOOD": 106
     }
   },
   {
     "resources": {
-      "MONEY": 12
+      "SERVANT": 107,
+      "STONE": 107,
+      "MILITARYPOINT": 107,
+      "MONEY": 107,
+      "WOOD": 107
     }
   },
   {
     "resources": {
-      "MONEY": 13
+      "SERVANT": 108,
+      "STONE": 108,
+      "MILITARYPOINT": 108,
+      "MONEY": 108,
+      "WOOD": 108
     }
   },
   {
     "resources": {
-      "MONEY": 14
+      "SERVANT": 109,
+      "STONE": 109,
+      "MILITARYPOINT": 109,
+      "MONEY": 109,
+      "WOOD": 109
     }
   }
 ]
