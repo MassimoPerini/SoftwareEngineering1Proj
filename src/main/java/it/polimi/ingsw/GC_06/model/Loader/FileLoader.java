@@ -369,7 +369,7 @@ public class FileLoader {
         int requiredValue = 1;
         int era = 1;
         String name = "devcards_f_en_c_1";
-        List requirements = new ArrayList();
+        List<Requirement> requirements = new ArrayList<>();
         List effects = new ArrayList();
         String idColour = "GREEN";
         List<Effect> immediateEffects = new ArrayList<>();
@@ -579,8 +579,8 @@ public class FileLoader {
         ProdHarvEffect prodHarvEffect = new ProdHarvEffect(malusEffects, bonusEffects);
         prodHarvEffects.add(prodHarvEffect);
         requestedMap.put(requiredValue, prodHarvEffects);
-        cost.variateResource(Resource.WOOD, 1);
-        cost.variateResource(Resource.STONE, 3);
+        cost.variateResource(Resource.WOOD, -1);
+        cost.variateResource(Resource.STONE, -3);
         ResourceSet demiRequirement = new ResourceSet();
         Requirement requirement = new Requirement(demiRequirement, cost);
         requirements.add(requirement);
@@ -621,7 +621,7 @@ public class FileLoader {
         onEnd.variateResource(Resource.VICTORYPOINT, 4);
         EffectOnEnd effectOnEnd = new EffectOnEnd(onEnd);
         immediateEffects.add(effectOnEnd);
-        cost.variateResource(Resource.MONEY, 4);
+        cost.variateResource(Resource.MONEY, -4);
         Requirement require = new Requirement(requirement, cost );
         requirements.add(require);
         requestedMap.put(requiredValue, prodHarvEffects);
@@ -647,12 +647,12 @@ public class FileLoader {
         onEnd2.variateResource(Resource.VICTORYPOINT, 1);
         EffectOnEnd effectOnEnd2 = new EffectOnEnd(onEnd);
         immediateEffects2.add(effectOnEnd2);
-        cost2.variateResource(Resource.MONEY, 2);
-        cost2.variateResource(Resource.STONE, 1);
-        cost2.variateResource(Resource.WOOD, 1);
+        cost2.variateResource(Resource.MONEY, -2);
+        cost2.variateResource(Resource.STONE, -1);
+        cost2.variateResource(Resource.WOOD, -1);
         Requirement require2 = new Requirement(requirement2, cost2 );
         requirements2.add(require);
-        cost2b.variateResource(Resource.MILITARYPOINT, 2);
+        cost2b.variateResource(Resource.MILITARYPOINT, -2);
         requirement2b.variateResource(Resource.MILITARYPOINT, 4);
         Requirement require2b = new Requirement(requirement2b, cost2b);
         requirements2.add(require2b);
@@ -679,7 +679,7 @@ public class FileLoader {
         onEnd3.variateResource(Resource.VICTORYPOINT, 3);
         EffectOnEnd effectOnEnd3 = new EffectOnEnd(onEnd3);
         immediateEffects3.add(effectOnEnd3);
-        cost3.variateResource(Resource.MILITARYPOINT, 3);
+        cost3.variateResource(Resource.MILITARYPOINT, -3);
         requirement3.variateResource(Resource.MILITARYPOINT, 6);
         Requirement require3 = new Requirement(requirement3, cost3 );
         requirements3.add(require3);
@@ -726,7 +726,7 @@ public class FileLoader {
         bonusMalusSet.addActionBonusMalus(bonusMalusOnActions);
         DonateBonusMalusEffect donateBonusMalusEffect = new DonateBonusMalusEffect(bonusMalusSet);
         immediateEffects.add(donateBonusMalusEffect);
-        cost.variateResource(Resource.MONEY, 2);
+        cost.variateResource(Resource.MONEY, -2);
         Requirement require = new Requirement(requirement, cost );
         requirements.add(require);
         requestedMap.put(requiredValue, prodHarvEffects);
@@ -749,7 +749,7 @@ public class FileLoader {
         String targetColour = "GREEN";
         EffectOnAction immediateAction = new EffectOnAction(TransitionType.ACTION_ON_TOWER, targetColour);
         immediateEffects2.add(immediateAction);
-        cost2.variateResource(Resource.MONEY, 4);
+        cost2.variateResource(Resource.MONEY, -4);
         Requirement require2 = new Requirement(requirement2, cost2);
         requirements2.add(require2);
         requestedMap.put(requiredValue2, prodHarvEffects2);
