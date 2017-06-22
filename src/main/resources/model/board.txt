@@ -42,7 +42,9 @@
               {
                 "type": "EffectOnResources",
                 "resourceSet": {
-                  "resources": {}
+                  "resources": {
+                    "STONE": 1
+                  }
                 }
               }
             ],
@@ -59,13 +61,13 @@
                 "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {
-                    "STONE": 1
+                    "STONE": 2
                   }
                 }
               }
             ],
             "members": [],
-            "price": 7
+            "price": 5
           }
         }
       ],
@@ -122,7 +124,9 @@
               {
                 "type": "EffectOnResources",
                 "resourceSet": {
-                  "resources": {}
+                  "resources": {
+                    "MILITARYPOINT": 1
+                  }
                 }
               }
             ],
@@ -139,13 +143,13 @@
                 "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {
-                    "MILITARYPOINT": 1
+                    "MILITARYPOINT": 2
                   }
                 }
               }
             ],
             "members": [],
-            "price": 7
+            "price": 5
           }
         }
       ],
@@ -202,7 +206,9 @@
               {
                 "type": "EffectOnResources",
                 "resourceSet": {
-                  "resources": {}
+                  "resources": {
+                    "MONEY": 1
+                  }
                 }
               }
             ],
@@ -219,13 +225,13 @@
                 "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {
-                    "MONEY": 1
+                    "MONEY": 2
                   }
                 }
               }
             ],
             "members": [],
-            "price": 7
+            "price": 5
           }
         }
       ],
@@ -282,7 +288,9 @@
               {
                 "type": "EffectOnResources",
                 "resourceSet": {
-                  "resources": {}
+                  "resources": {
+                    "WOOD": 1
+                  }
                 }
               }
             ],
@@ -299,13 +307,13 @@
                 "type": "EffectOnResources",
                 "resourceSet": {
                   "resources": {
-                    "WOOD": 1
+                    "WOOD": 2
                   }
                 }
               }
             ],
             "members": [],
-            "price": 7
+            "price": 5
           }
         }
       ],
@@ -327,35 +335,63 @@
         {
           "type": "ActionPlaceFixed",
           "maxFamilyMembers": 1,
-          "effects": [],
+          "effects": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 5
+                }
+              }
+            }
+          ],
           "members": [],
           "price": 1
         },
         {
           "type": "ActionPlaceFixed",
           "maxFamilyMembers": 1,
-          "effects": [],
+          "effects": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 5
+                }
+              }
+            }
+          ],
           "members": [],
           "price": 1
         },
         {
           "type": "ActionPlaceFixed",
-          "maxFamilyMembers": 1,
-          "effects": [],
+          "maxFamilyMembers": 4,
+          "effects": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MILITARYPOINT": 3,
+                  "MONEY": 2
+                }
+              }
+            }
+          ],
           "members": [],
           "price": 1
         },
         {
           "type": "ActionPlaceFixed",
-          "maxFamilyMembers": 1,
-          "effects": [],
-          "members": [],
-          "price": 1
-        },
-        {
-          "type": "ActionPlaceFixed",
-          "maxFamilyMembers": 1,
-          "effects": [],
+          "maxFamilyMembers": 4,
+          "effects": [
+            {
+              "type": "EffectOnParchment",
+              "different": true,
+              "lock": {},
+              "quantity": 2
+            }
+          ],
           "members": [],
           "price": 1
         }
@@ -376,7 +412,38 @@
         },
         {
           "type": "ActionPlace",
-          "effects": [],
+          "effects": [
+            {
+              "type": "DonateBonusMalusEffect",
+              "bonusMalusSet": {
+                "bonusMalusOnResources": {
+                  "BONUSMALUSONRESOURCE": []
+                },
+                "bonusMalusOnAction": {
+                  "BONUSMALUSONACTION": [
+                    {
+                      "colourTarget": "",
+                      "familyMemberColours": [
+                        ""
+                      ],
+                      "actionType": "PRODUCTION_ACTION",
+                      "permanent": false,
+                      "value": -3
+                    }
+                  ]
+                },
+                "bonusMalusOnEnd": {
+                  "BONUSMALUSONEND": []
+                },
+                "bonusMalusOnAccess": {
+                  "BONUSMALUSONACCESS": []
+                },
+                "bonusMalusOnCost": {
+                  "BONUSMALUSONCOST": []
+                }
+              }
+            }
+          ],
           "members": [],
           "price": 1
         }
@@ -397,13 +464,44 @@
         },
         {
           "type": "ActionPlace",
-          "effects": [],
+          "effects": [
+            {
+              "type": "DonateBonusMalusEffect",
+              "bonusMalusSet": {
+                "bonusMalusOnResources": {
+                  "BONUSMALUSONRESOURCE": []
+                },
+                "bonusMalusOnAction": {
+                  "BONUSMALUSONACTION": [
+                    {
+                      "colourTarget": "",
+                      "familyMemberColours": [
+                        ""
+                      ],
+                      "actionType": "HARVEST_ACTION",
+                      "permanent": false,
+                      "value": -3
+                    }
+                  ]
+                },
+                "bonusMalusOnEnd": {
+                  "BONUSMALUSONEND": []
+                },
+                "bonusMalusOnAccess": {
+                  "BONUSMALUSONACCESS": []
+                },
+                "bonusMalusOnCost": {
+                  "BONUSMALUSONCOST": []
+                }
+              }
+            }
+          ],
           "members": [],
           "price": 1
         }
       ],
       "maxSamePlayerFamilyMember": 0,
-      "actionType": "HARVEST_ACTION",
+      "actionType": "PRODUCTION_ACTION",
       "changed": false,
       "obs": []
     }
@@ -413,7 +511,22 @@
       "actionPlaces": [
         {
           "type": "ActionPlace",
-          "effects": [],
+          "effects": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1
+                }
+              }
+            },
+            {
+              "type": "EffectOnParchment",
+              "different": false,
+              "lock": {},
+              "quantity": 1
+            }
+          ],
           "members": [],
           "price": 1
         }
