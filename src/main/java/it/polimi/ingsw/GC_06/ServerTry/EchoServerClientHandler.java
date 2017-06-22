@@ -5,8 +5,6 @@ package it.polimi.ingsw.GC_06.ServerTry;
  */
 
 
-import it.polimi.ingsw.GC_06.model.Controller.*;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -20,7 +18,6 @@ public class EchoServerClientHandler implements Runnable, LoginManager {
     private BufferedReader input;
     private PrintWriter output;
     int delay = 10000;
-    private ModelController modelController;
 
     public EchoServerClientHandler(Socket socket) {
         this.socket = socket;

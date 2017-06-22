@@ -17,6 +17,6 @@ public class EffectOnEnd implements Effect{
 
     @Override
     public void execute(Player player, Game game) {
-        player.getAddAtTheEnd().variateResource(endResourceAddiction);
+        player.variateResource(endResourceAddiction);
     }
 }

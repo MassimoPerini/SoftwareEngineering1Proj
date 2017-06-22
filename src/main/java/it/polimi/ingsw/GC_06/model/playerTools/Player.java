@@ -9,10 +9,8 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -26,15 +24,16 @@ public class Player extends Observable {
     private final FamilyMember[] familyMembers;
     private final ResourceSet resourceSet;
     private final String PLAYER_ID;
-    private ArrayList<Effect> bonusMalus;
-    private ResourceSet addAtTheEnd;
+    private List<Effect> bonusMalus;
+    private final ResourceSet addAtTheEnd;
     private BonusMalusSet bonusMalusSet;
 
     //TODO sistemare la questione dei malus e bonus sul player
 
     public Player(String PLAYER_ID,FamilyMember[] familyMembers) {
 
-
+        this.bonusMalus = new ArrayList<>();
+        this.addAtTheEnd = new ResourceSet();
         this.PLAYER_ID = PLAYER_ID;
         this.resourceSet = new ResourceSet();
         this.playerBoard = FileLoader.getFileLoader().loadPlayerBoard();
@@ -48,6 +47,7 @@ public class Player extends Observable {
         this.PLAYER_ID = p.getPLAYER_ID();
         this.playerBoard = p.playerBoard;
         this.familyMembers = p.familyMembers;
+        this.addAtTheEnd = new ResourceSet(p.addAtTheEnd);
         //TODO complete here...
     }
 
@@ -78,7 +78,7 @@ public class Player extends Observable {
         if (this.getResourceSet().isIncluded(resourceSet)) {
             this.getResourceSet().variateResource(resourceSet);
 
-            MessageServer messageServer = new MessageUpdateResource(PLAYER_ID, resourceSet);
+            MessageServer messageServer = new MessageUpdateResource(PLAYER_ID, this.resourceSet);
             setChanged();
             notifyObservers(messageServer);
         }
@@ -101,8 +101,8 @@ public class Player extends Observable {
         return playerBoard.canAdd(cardId, resourceSet);
     }
 
-    public ResourceSet getAddAtTheEnd() {
-        return addAtTheEnd;
+    public void variateAddAtTheEnd(ResourceSet resourceSet) {
+        this.addAtTheEnd.variateResource(resourceSet);
     }
 
 }
