@@ -14,6 +14,8 @@ import java.util.List;
 public class MessageChooseParchment implements MessageServer {
 
     private List<ResourceSet> resourceSets;
+    private int quantity;
+    private boolean different;
 
     public MessageChooseParchment(List<ResourceSet> resourceSets) {
         this.resourceSets = new LinkedList<>();

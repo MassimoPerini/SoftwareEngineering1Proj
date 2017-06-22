@@ -9,6 +9,8 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -19,9 +21,10 @@ import java.util.List;
 public class EffectOnParchment implements Effect, Blocking {
 
     private List<ResourceSet> parchments;
-    private boolean isDifferent;
+    private boolean different;
     private List choosen;
     private final Object lock = new Object();
+    private int quantity;
 
     public EffectOnParchment() {
         super();
@@ -32,11 +35,31 @@ public class EffectOnParchment implements Effect, Blocking {
         GameList.getInstance().setCurrentBlocking(game, this);
         FileLoader fileLoader = FileLoader.getFileLoader();
         parchments = Arrays.asList(fileLoader.loadParchments());
-        MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments);
-        game.getGameStatus().sendMessage(messageChooseParchment);
+        List<Integer> alreadyChoosed = new LinkedList<>();
 
-        while(choosen==null)
-        {
+        for (int i=0;i<quantity;i++) {
+            MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments);
+            game.getGameStatus().sendMessage(messageChooseParchment);
+            waitAnswer();
+            System.out.println("THREAD ATTIVO!");
+            int choice = ((Integer) choosen.get(0)).intValue();
+            int isAlreadySelected = Collections.binarySearch(alreadyChoosed, choice);
+            if (isAlreadySelected!=-1 && different)
+            {
+                //Todo messaggio errore, deve averli diversi
+                waitAnswer();
+                i--;
+            }
+            else {
+                player.variateResource(parchments.get(choice));
+                choosen = null;
+            }
+        }
+    }
+
+    private void waitAnswer()
+    {
+        while (choosen == null) {
             try {
                 synchronized (lock) {
                     lock.wait();
@@ -46,13 +69,10 @@ public class EffectOnParchment implements Effect, Blocking {
                 e.printStackTrace();
             }
         }
-        System.out.println("THREAD ATTIVO!");
-        player.variateResource(parchments.get((Integer) choosen.get(0)));
-        choosen=null;
     }
 
     public void setDifferent(boolean different) {
-        isDifferent = different;
+        different = different;
     }
 
     @Override
