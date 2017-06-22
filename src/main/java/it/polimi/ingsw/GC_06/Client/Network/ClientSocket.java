@@ -13,6 +13,7 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.*;
 import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChooseParchment;
 import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChoosePayment;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessagePickAnotherCard;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -49,6 +50,7 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageUpdateResource.class)
                 .registerSubtype(MessageChangePlayer.class)
                 .registerSubtype(MessageChoosePayment.class)
+                .registerSubtype(MessagePickAnotherCard.class)
                 .registerSubtype(MessageChooseParchment.class)
                 .registerSubtype(MessageFamilyMember.class)
                 .registerSubtype(MessageLoggedIn.class)

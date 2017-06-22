@@ -14,21 +14,24 @@ import java.util.Map;
  */
 public class MessagePickAnotherCard implements MessageServer {
 
-    private Map<String, List<Integer>> floors;
+    private List<Map<String, Integer>> floors;
 
-    public MessagePickAnotherCard(Map<String, List<Integer>> floors) {
+    public MessagePickAnotherCard(List<Map<String, Integer>> floors) {
         this.floors = floors;
     }
 
     @Override
     public void execute(ClientController clientController) {
-        List<ClientTowerFloor> result = new LinkedList<>();
-        for (String s : floors.keySet()) {
-            for (Integer index : floors.get(s)) {
-                result.add(clientController.getMainClientModel().getClientBoardGame().getTowersClient().get(s).get(index));
+        List<ClientTowerFloor> clientTowerFloors = new LinkedList<>();
+
+        for (Map<String, Integer> floor : floors) {
+            for (String s : floor.keySet()) {
+                List<ClientTowerFloor> towerFloors = clientController.getMainClientModel().getClientBoardGame().getTowersClient().get(s);
+                ClientTowerFloor clientTowerFloor = towerFloors.get(floor.get(s));
+                clientTowerFloors.add(clientTowerFloor);
             }
         }
-        clientController.getMainClientModel().getPlayerBonusActions().setPickAnotherCard(floors);
+        clientController.getMainClientModel().getPlayerBonusActions().setPickAnotherCard(clientTowerFloors);
         clientController.getViewOrchestrator().change(ClientStateName.CHOOSE_NEW_CARD, "");
     }
 }

@@ -7,10 +7,9 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
-import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.AnswerPickOtherCard;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by massimo on 21/06/17.
@@ -38,16 +37,14 @@ public class PickOtherCardViewController implements ViewPresenterCLI {
         {
             return;
         }
-        Map<String, List<Integer>> towers = playerBonusActions.getPickAnotherCard();
-
-        for (String tower : towers.keySet()) {
-            commandView.addLocalizedText("TORRE "+tower+"\n");
-            List<Integer> floors = towers.get(tower);
-            for (Integer floor : floors) {
-                ClientTowerFloor clientTowerFloor = clientBoardGame.getTowersClient().get(tower).get(floor.intValue());
-                commandView.addLocalizedText("PIANO "+floor+"CARTA: "+clientTowerFloor.getCard()+"\n");
-            }
+        int i=0;
+       List<ClientTowerFloor> floors = playerBonusActions.getPickAnotherCard();
+        for (ClientTowerFloor floor : floors) {
+            commandView.addLocalizedText("Scelta "+i+":");
+            commandView.addLocalizedText(floor.getCard()+"\n");
+            i++;
         }
+        /*
 
         commandView.addLocalizedText("Inserisci la torre");
         String tower = commandView.getString();
@@ -58,10 +55,11 @@ public class PickOtherCardViewController implements ViewPresenterCLI {
             commandView.addLocalizedText("Scelta "+i+": "+String.valueOf(floor.intValue())+"\n");
             i++;
         }
-        commandView.addLocalizedText("INDICE della tua scelta: ");
+        */
+        commandView.addLocalizedText("\nINDICE della tua scelta: ");
         int floor = commandView.getInt(0, i);
-        AnswerPickOtherCard answerPickOtherCard = new AnswerPickOtherCard(floors.get(floor), tower);
-        clientNetworkOrchestrator.send(answerPickOtherCard);
+        DefaultAnswer defaultAnswer = new DefaultAnswer(floor);
+        clientNetworkOrchestrator.send(defaultAnswer);
     }
 
     @Override

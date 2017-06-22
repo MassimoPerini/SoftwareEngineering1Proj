@@ -12,7 +12,6 @@ import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.LinkedList;
@@ -67,13 +66,12 @@ public class PayCard implements Action, Blocking, Runnable {
         else if (satisfiedRequirements.size()>1){
             satisfiedRequirements.get((Integer) optionalParams.get(0)).doIt(player);
         }
-        game.getGameStatus().changeState(TransitionType.PAY_CARD);
+     //   game.getGameStatus().changeState(TransitionType.PAY_CARD);
         pickCard.execute();
     }
 
     @Override
-    public boolean isAllowed() {
-        GameList.getInstance().setCurrentBlocking(game, this);
+    public synchronized boolean isAllowed() {
         Player pClone = new Player(player);     //CLONE (I hope...) TODO
 
         //Test tower penality BEFORE adding money from the actionspace
@@ -109,9 +107,15 @@ public class PayCard implements Action, Blocking, Runnable {
         // check optional value
 
         List<Requirement> satisfiedRequirements = this.getRequirements();
-        MessageServer messageServer = new MessageChoosePayment(satisfiedRequirements);
+
+        //Card requirements not success
+        if (satisfiedRequirements.size()==0 && tower.getTowerFloor().get(floor).getCard().getRequirements().size()!=0) {
+            return false;
+        }
 
         if (satisfiedRequirements.size()>1){
+            GameList.getInstance().setCurrentBlocking(game, this);
+            MessageServer messageServer = new MessageChoosePayment(satisfiedRequirements);
             game.getGameStatus().sendMessage(messageServer);
             while (optionalParams==null) {
                 try {

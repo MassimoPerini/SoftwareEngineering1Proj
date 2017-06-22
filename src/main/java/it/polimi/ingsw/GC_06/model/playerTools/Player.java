@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateResource;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
@@ -71,6 +72,11 @@ public class Player extends Observable {
 
     public FamilyMember[] getFamilyMembers() {
         return familyMembers;
+    }
+
+    public void variateResource(Requirement requirement)
+    {
+        this.variateResource(requirement.getCost());
     }
 
     public void variateResource(ResourceSet resourceSet) throws IllegalArgumentException

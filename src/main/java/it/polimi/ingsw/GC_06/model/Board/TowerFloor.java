@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
 
 /**
@@ -79,5 +79,9 @@ public class TowerFloor {
         return actionPlace.isAllowed(familyMember) && card != null;
     }
 
+    public boolean isEmpty()
+    {
+        return card==null;
+    }
 
 }

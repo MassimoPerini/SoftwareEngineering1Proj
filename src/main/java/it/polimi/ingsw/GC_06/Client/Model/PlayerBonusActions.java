@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_06.Client.Model;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -14,14 +13,14 @@ import java.util.Map;
 public class PlayerBonusActions {
 
     private List<ResourceSet> parchmentList;
-    private Map<String, List<Integer>>  pickAnotherCard;
+    private List<ClientTowerFloor>  pickAnotherCard;
     private List<Requirement> requirementCard;
     private Map<String, List<Integer>> prodHarvAsk;
 
     public PlayerBonusActions()
     {
         parchmentList = new LinkedList<>();
-        pickAnotherCard = new HashMap<>();
+        pickAnotherCard = new LinkedList<>();
         requirementCard = new LinkedList<>();
     }
 
@@ -30,7 +29,7 @@ public class PlayerBonusActions {
         this.parchmentList = parchmentList;
     }
 
-    public void setPickAnotherCard(Map<String, List<Integer>> clientTowerFloors)
+    public void setPickAnotherCard(List<ClientTowerFloor> clientTowerFloors)
     {
         this.pickAnotherCard = clientTowerFloors;
     }
@@ -47,7 +46,7 @@ public class PlayerBonusActions {
         return parchmentList;
     }
 
-    public Map<String, List<Integer>> getPickAnotherCard() {
+    public List<ClientTowerFloor> getPickAnotherCard() {
         return pickAnotherCard;
     }
 

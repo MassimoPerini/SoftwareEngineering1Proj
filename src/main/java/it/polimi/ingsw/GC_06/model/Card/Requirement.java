@@ -52,6 +52,7 @@ public class Requirement {
     /**
      * It applies the costs. //TODO change the name
      * @param player
+     * @deprecated //TODO USE Player.variateResource(Requirement)
      */
     public void doIt (Player player)
     {

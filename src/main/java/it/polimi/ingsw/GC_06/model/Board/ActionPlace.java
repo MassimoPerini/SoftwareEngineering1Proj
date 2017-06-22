@@ -1,11 +1,11 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
+import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
-import it.polimi.ingsw.GC_06.model.Effect.Effect;
 
 /**
  * @author massimo
@@ -70,5 +70,9 @@ public class ActionPlace {
 
 	public List<Effect> getEffects() {
 		return Collections.unmodifiableList(effects);
+	}
+
+	public int getPrice() {
+		return price;
 	}
 }

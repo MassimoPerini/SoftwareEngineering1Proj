@@ -40,7 +40,7 @@ public class FileLoader {
     private static final String DEFAULT_RES = "default_resource_path";
     private static final String DICES = "dices_path";
     private static final String PLAYER_BOARD = "player_board_path";
-   // private static final String GAME_MAP = "end_game_map";
+    // private static final String GAME_MAP = "end_game_map";
 
 
     private String cardsRootPath;
@@ -48,7 +48,7 @@ public class FileLoader {
     private String boardRootPath;
     private String defaultResourceRootPath;
     private String dicePath;
-   // private String endGameMap;
+    // private String endGameMap;
     private String playerBoardPath;
     private Gson gson;
 
@@ -108,16 +108,16 @@ public class FileLoader {
     }
 
     /**public void writeEndMap() throws IOException {
-        FileWriter fw = new FileWriter("src/main/resources/model/end_game_map.txt");
-        Map<String,List<Integer>> endGameMap = new HashMap<>();
-        List list = new ArrayList();
-        list.addAll(Arrays.asList(1,2,3,4,5));
-        endGameMap.put("BLUE",list);
-        endGameMap.put("GREEN",list);
-        Gson gson=new GsonBuilder().setPrettyPrinting().create();
-        gson.toJson(endGameMap, fw);
-        fw.close();
-    }*/
+     FileWriter fw = new FileWriter("src/main/resources/model/end_game_map.txt");
+     Map<String,List<Integer>> endGameMap = new HashMap<>();
+     List list = new ArrayList();
+     list.addAll(Arrays.asList(1,2,3,4,5));
+     endGameMap.put("BLUE",list);
+     endGameMap.put("GREEN",list);
+     Gson gson=new GsonBuilder().setPrettyPrinting().create();
+     gson.toJson(endGameMap, fw);
+     fw.close();
+     }*/
 
 
     public DiceSet loadDiceSet() throws IOException {
@@ -126,6 +126,61 @@ public class FileLoader {
         DiceSet diceSet = gson.fromJson(fr , DiceSet.class);
         fr.close();
         return diceSet;
+    }
+
+    //TODO remove it
+    public void testCard() throws IOException {
+
+        DevelopmentCard [] developmentCards = new DevelopmentCard[10];
+        for (int i=0;i<10;i++) {
+            ResourceSet requirement = new ResourceSet();
+            requirement.variateResource(Resource.MILITARYPOINT, -10);
+            requirement.variateResource(Resource.SERVANT, -5);
+
+            ResourceSet cost = new ResourceSet();
+            cost.variateResource(Resource.WOOD, -8);
+            cost.variateResource(Resource.MONEY, -12);
+
+            //----
+
+            ResourceSet requirement2 = new ResourceSet();
+            requirement2.variateResource(Resource.MILITARYPOINT, -15);
+            requirement2.variateResource(Resource.SERVANT, -8);
+
+            ResourceSet cost2 = new ResourceSet();
+            cost2.variateResource(Resource.WOOD, -10);
+            cost2.variateResource(Resource.STONE, -18);
+
+
+            List<Requirement> requirements = new LinkedList<>();
+            requirements.add(new Requirement(requirement, cost));
+            requirements.add(new Requirement(requirement2, cost2));
+
+            developmentCards[i] = new DevelopmentCard("Risorse multiple", 1, requirements, new LinkedList<>(), "GREEN", new HashMap<>());
+        }
+/*
+        for (int i=0;i<10;i++) {
+            Map<String, Integer> take = new HashMap<>();
+            take.put("GREEN", 7);
+            take.put("YELLOW", 5);
+            take.put("BLUE", 3);
+            take.put("PURPLE", 7);
+            EffectOnNewCards effectOnNewCards = new EffectOnNewCards(take);
+            List<Effect> effects = new LinkedList();
+            effects.add(effectOnNewCards);
+            DevelopmentCard developmentCard = new DevelopmentCard("Prendi qualche carta!", 1, new LinkedList<>(), effects, "BLUE", new HashMap<>());
+            developmentCards[i] = developmentCard;
+        }
+*/
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class);
+        Gson gson2 = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+
+        FileWriter fw = new FileWriter("src/main/resources/model/testCardsMultipleRequirements.txt");
+        gson2.toJson(developmentCards, fw);
+        fw.close();
+
     }
 
     public DevelopmentCard[] loadCards() throws IOException {
@@ -138,7 +193,7 @@ public class FileLoader {
         DevelopmentCard [] cards = gson2.fromJson(fr , DevelopmentCard [].class);
         fr.close();
         return cards;
-    //    System.out.println(cards[3].toString());
+        //    System.out.println(cards[3].toString());
     }
 
     public Board loadBoard() throws IOException {
