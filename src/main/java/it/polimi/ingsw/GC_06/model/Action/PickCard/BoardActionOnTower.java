@@ -48,14 +48,13 @@ public class BoardActionOnTower implements Action, Runnable {
         //this.familyMember.getValue() = super.getValueAction();
 
         // qui faccio il malus
-        tower.addFamilyMember(familyMember, index);
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
         // qui modifichiamo il valore dell'azione prima che si compia
         //BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
 
         payCard.execute();
-
+        tower.addFamilyMember(familyMember, index);
 
     }
 

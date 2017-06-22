@@ -5,12 +5,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.*;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChooseParchment;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChoosePayment;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -58,6 +61,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageBoardActionTower.class)
                 .registerSubtype(MessageThrowDice.class)
                 .registerSubtype(MessageProdHarv.class)
+                .registerSubtype(DefaultAnswer.class)
                 .registerSubtype(MessageEndTurn.class)
                 ;
         readGson=new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory2).create();
@@ -70,8 +74,10 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageRemoveCard.class)
                 .registerSubtype(MessageChangePlayer.class)
                 .registerSubtype(MessageGameStarted.class)
+                .registerSubtype(MessageChoosePayment.class)
                 .registerSubtype(MessageFamilyMember.class)
                 .registerSubtype(MessageLoggedIn.class)
+                .registerSubtype(MessageChooseParchment.class)
                 .registerSubtype(MessageUpdateResource.class);
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }

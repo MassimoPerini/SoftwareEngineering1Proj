@@ -62,6 +62,10 @@ public class Requirement {
         return cost;
     }
 
+    public ResourceSet getRequirements() {
+        return requirements;
+    }
+
     @Override
     public String toString() {
         return "Requirement{" +

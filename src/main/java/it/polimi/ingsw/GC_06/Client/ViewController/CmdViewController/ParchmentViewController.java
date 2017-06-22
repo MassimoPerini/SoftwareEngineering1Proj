@@ -5,7 +5,7 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
-import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.AnswerParchment;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
@@ -38,8 +38,8 @@ public class ParchmentViewController implements ViewPresenterCLI {
         }
 
         int answ = commandView.getInt(0, i);
-        AnswerParchment answerParchment = new AnswerParchment(answ);
-        clientNetworkOrchestrator.send(answerParchment);
+        DefaultAnswer defaultAnswer = new DefaultAnswer(answ);
+        clientNetworkOrchestrator.send(defaultAnswer);
 
     }
 

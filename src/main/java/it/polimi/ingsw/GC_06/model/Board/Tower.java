@@ -5,8 +5,8 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnTower;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageNewCards;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageRemoveCard;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -46,7 +46,7 @@ public class Tower extends Observable{
      */
     public boolean isNoPenalityAllowed()
     {
-        int familyMemberCount = 0;
+        int familyMemberCount = 1;
         for (TowerFloor towerFloor : towerFloors)
         {
             for (FamilyMember familyMember1 : towerFloor.getActionPlace().getMembers()) {     //Se ci sono + familiari per effetto di carte eroe...

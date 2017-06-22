@@ -21,6 +21,7 @@ public class EffectOnParchment implements Effect, Blocking {
     private List<ResourceSet> parchments;
     private boolean isDifferent;
     private List choosen;
+    private final Object lock = new Object();
 
     public EffectOnParchment() {
         super();
@@ -33,16 +34,22 @@ public class EffectOnParchment implements Effect, Blocking {
         parchments = Arrays.asList(fileLoader.loadParchments());
         MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments);
         game.getGameStatus().sendMessage(messageChooseParchment);
+
         while(choosen==null)
         {
             try {
-                wait();
+                synchronized (lock) {
+                    lock.wait();
+                    System.out.println("Thread svegliato");
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-     //   game.getGameStatus().changeState(TransitionType.CHOOSE_PARCHMENT, messageChooseParchment);
-        }
+        System.out.println("THREAD ATTIVO!");
+        player.variateResource(parchments.get((Integer) choosen.get(0)));
+        choosen=null;
+    }
 
     public void setDifferent(boolean different) {
         isDifferent = different;
@@ -50,7 +57,9 @@ public class EffectOnParchment implements Effect, Blocking {
 
     @Override
     public void setOptionalParams(List list) {
-        this.choosen = list;
-        notifyAll();
+        synchronized (lock) {
+            this.choosen = list;
+            lock.notifyAll();
+        }
     }
 }

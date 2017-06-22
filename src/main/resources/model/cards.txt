@@ -1233,23 +1233,13 @@
     "requirements": [
       {
         "requirements": {
-          "resources": {}
-        },
-        "cost": {
           "resources": {
-            "MONEY": 4
-          }
-        }
-      },
-      {
-        "requirements": {
-          "resources": {
-            "MILITARYPOINT": 4
+            "MILITARYPOINT": 6
           }
         },
         "cost": {
           "resources": {
-            "MILITARYPOINT": 2
+            "MILITARYPOINT": 3
           }
         }
       }
@@ -1259,15 +1249,19 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "FAITHPOINT": 3
+            "MONEY": 5
           }
         }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
       },
       {
         "type": "EffectOnEnd",
         "endResourceAddiction": {
           "resources": {
-            "VICTORYPOINT": 4
+            "VICTORYPOINT": 3
           }
         }
       }
@@ -1276,30 +1270,20 @@
     "prodHarvEffects": {
       "0": []
     },
-    "path": "multipleCost1"
+    "path": "pergamena1"
   },
   {
     "era": 1,
     "requirements": [
       {
         "requirements": {
-          "resources": {}
-        },
-        "cost": {
           "resources": {
-            "MONEY": 4
-          }
-        }
-      },
-      {
-        "requirements": {
-          "resources": {
-            "MILITARYPOINT": 4
+            "MILITARYPOINT": 6
           }
         },
         "cost": {
           "resources": {
-            "MILITARYPOINT": 2
+            "MILITARYPOINT": 3
           }
         }
       }
@@ -1309,15 +1293,19 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "FAITHPOINT": 3
+            "MONEY": 5
           }
         }
+      },
+      {
+        "type": "EffectOnParchment",
+        "isDifferent": false
       },
       {
         "type": "EffectOnEnd",
         "endResourceAddiction": {
           "resources": {
-            "VICTORYPOINT": 4
+            "VICTORYPOINT": 3
           }
         }
       }
@@ -1326,7 +1314,7 @@
     "prodHarvEffects": {
       "0": []
     },
-    "path": "multipleCost2"
+    "path": "pergamena1"
   },
 {
     "era": 1,

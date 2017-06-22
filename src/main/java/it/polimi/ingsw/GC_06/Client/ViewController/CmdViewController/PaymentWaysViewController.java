@@ -5,7 +5,9 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
 /**
  * Created by massimo on 21/06/17.
@@ -28,15 +30,17 @@ public class PaymentWaysViewController implements ViewPresenterCLI {
         commandView.addLocalizedText("Puoi scegliere diversi metodi di pagamento!");
         int i=0;
         for (Requirement requirement : playerBonusActions.getRequirementCard()) {
-            /*
-            for (Resource resource : resourceSet.getResources().keySet()) {
-                commandView.addLocalizedText(resource.toString()+": "+resourceSet.getResources().get(resource)+", ");
+            commandView.addLocalizedText(i+" Requirement: ");
+            for (Resource resource : requirement.getRequirements().getResources().keySet()) {
+                commandView.addLocalizedText("Resource "+resource.toString()+" value"+requirement.getRequirements().getResources().get(resource));
+            }
+            for (Resource resource : requirement.getCost().getResources().keySet()) {
+                commandView.addLocalizedText("Cost "+resource.toString()+" value"+requirement.getCost().getResources().get(resource));
             }
             i++;
-            */
         }
         int answ = commandView.getInt(0, i);
-
+        clientNetworkOrchestrator.send(new DefaultAnswer(answ));
     }
 
     @Override
