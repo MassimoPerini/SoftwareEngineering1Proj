@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_06.model.Loader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
@@ -22,7 +21,6 @@ import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoardSlot;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -538,7 +536,7 @@ public class FileLoader {
         List prodHarvEffects8 = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap8 = new HashMap<>();
         ResourceSet variation8 = new ResourceSet();
-        EffectOnParchment variationParchment = new EffectOnParchment();
+        EffectOnParchment variationParchment = new EffectOnParchment(1, false);
         ResourceSet immediateVariation8 = new ResourceSet();
         immediateVariation8.variateResource(Resource.MONEY, 3);
         EffectOnResources immediateEffect = new EffectOnResources(immediateVariation8);
@@ -673,7 +671,7 @@ public class FileLoader {
         immediate3.variateResource(Resource.MONEY, 5);
         EffectOnResources immediateEffect3 = new EffectOnResources(immediate3);
         immediateEffects3.add(immediateEffect3);
-        EffectOnParchment immediateParchment = new EffectOnParchment();
+        EffectOnParchment immediateParchment = new EffectOnParchment(1, false);
         immediateEffects3.add(immediateParchment);
         ResourceSet onEnd3 = new ResourceSet();
         onEnd3.variateResource(Resource.VICTORYPOINT, 3);
