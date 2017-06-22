@@ -26,8 +26,10 @@ public class EffectOnParchment implements Effect, Blocking {
     private final Object lock = new Object();
     private int quantity;
 
-    public EffectOnParchment() {
+    public EffectOnParchment(int numbers, boolean different) {
         super();
+        this.quantity = numbers;
+        this.different = different;
     }
 
     @Override
@@ -38,7 +40,7 @@ public class EffectOnParchment implements Effect, Blocking {
         List<Integer> alreadyChoosed = new LinkedList<>();
 
         for (int i=0;i<quantity;i++) {
-            MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments);
+            MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
             game.getGameStatus().sendMessage(messageChooseParchment);
             waitAnswer();
             System.out.println("THREAD ATTIVO!");
@@ -46,9 +48,10 @@ public class EffectOnParchment implements Effect, Blocking {
             int isAlreadySelected = Collections.binarySearch(alreadyChoosed, choice);
             if (isAlreadySelected!=-1 && different)
             {
-                //Todo messaggio errore, deve averli diversi
-                waitAnswer();
+                messageChooseParchment = new MessageChooseParchment(parchments, "Presente, devono essere diversi");
+                game.getGameStatus().sendMessage(messageChooseParchment);
                 i--;
+                waitAnswer();
             }
             else {
                 player.variateResource(parchments.get(choice));
@@ -69,10 +72,6 @@ public class EffectOnParchment implements Effect, Blocking {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void setDifferent(boolean different) {
-        different = different;
     }
 
     @Override

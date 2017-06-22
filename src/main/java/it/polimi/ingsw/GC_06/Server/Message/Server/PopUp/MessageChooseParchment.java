@@ -16,17 +16,19 @@ public class MessageChooseParchment implements MessageServer {
     private List<ResourceSet> resourceSets;
     private int quantity;
     private boolean different;
+    private String message;
 
-    public MessageChooseParchment(List<ResourceSet> resourceSets) {
+    public MessageChooseParchment(List<ResourceSet> resourceSets, String message) {
         this.resourceSets = new LinkedList<>();
         for (ResourceSet resourceSet : resourceSets) {
             this.resourceSets.add(new ResourceSet(resourceSet));
         }
+        this.message = message;
     }
 
     @Override
     public void execute(ClientController clientController) {
         clientController.getMainClientModel().getPlayerBonusActions().changeParchment(resourceSets);
-        clientController.getViewOrchestrator().change(ClientStateName.PARCHMENT, "");
+        clientController.getViewOrchestrator().change(ClientStateName.PARCHMENT, message);
     }
 }
