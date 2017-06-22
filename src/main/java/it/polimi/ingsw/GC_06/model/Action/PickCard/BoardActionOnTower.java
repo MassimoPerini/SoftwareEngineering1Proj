@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -49,7 +50,7 @@ public class BoardActionOnTower implements Action, Runnable {
         // qui faccio il malus
 
 
-    //    game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
+        game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
 
 
         // qui modifichiamo il valore dell'azione prima che si compia

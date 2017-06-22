@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -54,7 +55,7 @@ public class PickCard implements Action {
         player.addCard(c);
         executeEffects = new ExecuteEffects(c.getImmediateEffects(), player,game);
 
-    //    game.getGameStatus().changeState(TransitionType.PICK_CARD);
+        game.getGameStatus().changeState(TransitionType.PICK_CARD);
 
         executeEffects.execute();
 

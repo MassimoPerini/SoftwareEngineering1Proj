@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -44,6 +45,7 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
         if(isAllowed()) {
             marketAndCouncil.addFamilyMember(familyMember, index);
             executeEffects.execute();
+            game.getGameStatus().changeState(TransitionType.ACTION_ON_MARKETCOUNSIL);
         }
     }
 

@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.LinkedList;
@@ -66,7 +67,7 @@ public class PayCard implements Action, Blocking, Runnable {
         else if (satisfiedRequirements.size()>1){
             satisfiedRequirements.get((Integer) optionalParams.get(0)).doIt(player);
         }
-     //   game.getGameStatus().changeState(TransitionType.PAY_CARD);
+        game.getGameStatus().changeState(TransitionType.PAY_CARD);
         pickCard.execute();
     }
 
