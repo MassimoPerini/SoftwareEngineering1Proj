@@ -8,7 +8,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": 2
+            "MONEY": -2
           }
         }
       }
@@ -43,9 +43,6 @@
               }
             ]
           },
-          "bonusMalusOnConditions": {
-            "BONUSMALUSONCONDITIONS": []
-          },
           "bonusMalusOnEnd": {
             "BONUSMALUSONEND": []
           },
@@ -73,7 +70,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": 4
+            "MONEY": -4
           }
         }
       }

@@ -228,14 +228,9 @@
           "bonusEffect": [
             {
               "type": "EffectOnParchment",
-              "parchments": [
-                {
-                  "resources": {
-                    "MILITARYPOINT": 2,
-                    "STONE": 1
-                  }
-                }
-              ]
+              "different": false,
+              "lock": {},
+              "quantity": 1
             }
           ]
         }

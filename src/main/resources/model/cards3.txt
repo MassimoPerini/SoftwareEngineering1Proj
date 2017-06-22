@@ -8,8 +8,8 @@
         },
         "cost": {
           "resources": {
-            "WOOD": 1,
-            "STONE": 3
+            "STONE": -3,
+            "WOOD": -1
           }
         }
       }

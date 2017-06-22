@@ -8,7 +8,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": 4
+            "MONEY": -4
           }
         }
       }
@@ -46,7 +46,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": 4
+            "MONEY": -4
           }
         }
       },
@@ -58,7 +58,7 @@
         },
         "cost": {
           "resources": {
-            "MILITARYPOINT": 2
+            "MILITARYPOINT": -2
           }
         }
       }
@@ -98,7 +98,7 @@
         },
         "cost": {
           "resources": {
-            "MILITARYPOINT": 3
+            "MILITARYPOINT": -3
           }
         }
       }
@@ -114,7 +114,9 @@
       },
       {
         "type": "EffectOnParchment",
-        "isDifferent": false
+        "different": false,
+        "lock": {},
+        "quantity": 1
       },
       {
         "type": "EffectOnEnd",
