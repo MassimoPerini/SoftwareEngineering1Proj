@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
+import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
@@ -45,7 +46,7 @@ public class BoardActionOnProdHarv implements Action, Runnable {
         this.game = game;
         this.index = index;
         this.familyMember = familyMember;
-        this.startProdHarv = new StartProdHarv(player.getPlayerBoard().getDevelopmentCards(), actionType, askUserCardFilter ,familyMember.getValue(), player, game);
+        this.startProdHarv = new StartProdHarv(actionType, askUserCardFilter ,familyMember.getValue(), player, game);
     }
 
     /**
@@ -57,17 +58,12 @@ public class BoardActionOnProdHarv implements Action, Runnable {
 
     //    game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
 
-        //BonusMalusHandler.filter(player,actionType,familyMember);
-
-
-        prodHarvArea.addFamilyMember(familyMember, index);
         List<Effect> effects = prodHarvArea.getEffect(index);
-        for (Effect effect : effects)
-        {
-            effect.execute(player,game);
-        }
+        ExecuteEffects executeEffects = new ExecuteEffects(effects, player, game);
+        executeEffects.execute();
 
         startProdHarv.execute();
+        prodHarvArea.addFamilyMember(familyMember, index);
         game.endTurn();
 
     }
@@ -76,12 +72,16 @@ public class BoardActionOnProdHarv implements Action, Runnable {
 
     @Override
     public boolean isAllowed() {
-        return !prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed();
+        return prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed();
     }
 
     @Override
     public void run() {
-        if (isAllowed())
+        if (isAllowed()) {
             execute();
+        }
+        else{
+            System.out.println("AZIONE NON CONSENTITA");
+        }
     }
 }

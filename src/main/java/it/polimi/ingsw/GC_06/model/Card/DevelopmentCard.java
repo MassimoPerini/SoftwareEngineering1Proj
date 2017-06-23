@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.model.Card;
 
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -63,9 +62,10 @@ public class DevelopmentCard extends Card
 
     /**
      * Check if is satisfied at least one requirement of the card (useful when if you want to take it)
-     * @param resourceSet
+     * @param
      * @return
      */
+    /*
     public boolean isSatisfied(ResourceSet resourceSet)
     {
         boolean result = true;
@@ -77,7 +77,7 @@ public class DevelopmentCard extends Card
         }
         return result;
     }
-
+    */
     public int getEra() {
         return era;
     }

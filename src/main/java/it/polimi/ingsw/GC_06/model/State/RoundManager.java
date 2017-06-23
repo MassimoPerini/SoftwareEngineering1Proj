@@ -106,6 +106,9 @@ public class RoundManager extends Observable {
     private void newEra()
     {
         disposeCards();
+        //Vaticano
+
+
     }
 
     private void endGame()

@@ -93,6 +93,18 @@ public class Player extends Observable {
         }
     }
 
+
+    public boolean isAllowedVariate(List<Requirement> requirements) {
+        boolean result = true;
+        for (Requirement requirement:requirements)
+        {
+            result = false;
+            if (requirement.isSatisfied(resourceSet))
+                return true;
+        }
+        return result;
+    }
+
     public void addCard(DevelopmentCard developmentCard)
     {
         playerBoard.addCard(developmentCard, resourceSet);

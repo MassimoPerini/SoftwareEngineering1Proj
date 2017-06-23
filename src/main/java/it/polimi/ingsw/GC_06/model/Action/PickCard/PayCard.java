@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChoosePayment;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
+import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by massimo on 29/05/17.
  */
-public class PayCard implements Action, Blocking, Runnable {
+public class PayCard implements Action, Blocking {
 
     private final Player player;
     private final ActionType ACTION_TYPE = ActionType.PAYCARDACTION;
@@ -40,7 +41,7 @@ public class PayCard implements Action, Blocking, Runnable {
         pickCard = new PickCard(player, tower, floor,game);
     }
 
-    private List<Requirement> getRequirements()
+    private List<Requirement> getRequirements(Player player)
     {
         List<Requirement> satisfiedRequirements = new LinkedList<>();
         /** we must control if the player can afford the card */
@@ -57,17 +58,29 @@ public class PayCard implements Action, Blocking, Runnable {
     }
 
     @Override
-    public void execute() {
+    public synchronized void execute() {
+        //Execute tower penality
+        if (tower.shouldThrowPenality(player.getPLAYER_ID())) {
+            ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
+            player.variateResource(malusResources);
+            //TODO INSERIAMO QUA LA CHIAMATA A FILTER CHE CI DIRÀ SE NON DOBBIAMO PAGARE PIÙ
+        }
 
-        List<Requirement> satisfiedRequirements = this.getRequirements();
+        //Execute actionspace effects
+        List<Effect> effects = tower.getTowerFloor().get(floor).getActionPlace().getEffects();
+        ExecuteEffects executeEffects = new ExecuteEffects(effects, player,game);
+        executeEffects.execute();
+
+        //executing card requirements
+
+        List<Requirement> satisfiedRequirements = this.getRequirements(player);
         if(satisfiedRequirements.size() == 1){
-            satisfiedRequirements.get(0).doIt(player);
+            player.variateResource(satisfiedRequirements.get(0));
         }
-        else if (satisfiedRequirements.size()>1){
+        else if (satisfiedRequirements.size()>1) {
             player.variateResource(satisfiedRequirements.get(optionalParams));
-        //    satisfiedRequirements.get(optionalParams).doIt(player); OLD WAY
         }
-     //   game.getGameStatus().changeState(TransitionType.PAY_CARD);
+
         pickCard.execute();
     }
 
@@ -77,14 +90,14 @@ public class PayCard implements Action, Blocking, Runnable {
 
         //Test tower penality BEFORE adding money from the actionspace
 
-        if (tower.throwPenality(player.getPLAYER_ID())) {
+        if (tower.shouldThrowPenality(player.getPLAYER_ID())) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
             try {
                 pClone.variateResource(malusResources);
             }
             catch (IllegalArgumentException e)
             {
-                //Non posso sottrarre risorse
+                //Non posso sottrarre risorse del malus
                 return false;
             }
         }
@@ -95,24 +108,25 @@ public class PayCard implements Action, Blocking, Runnable {
         //Apply ActionSpace effects to clone
         List<Effect> effects = tower.getTowerFloor().get(floor).getActionPlace().getEffects();
 
-        for(Effect effect: effects)
-        {
-            effect.execute(pClone,game);
-        }
+        ExecuteEffects executeEffects = new ExecuteEffects(effects, pClone,game);
+        executeEffects.execute();
 
-        if (!tower.getTowerFloor().get(floor).getCard().isSatisfied(player.getResourceSet()))
+        //Are the card requirement ok?
+        if (!pClone.isAllowedVariate(tower.getTowerFloor().get(floor).getCard().getRequirements()))
         {
             return false;
         }
 
-        // check optional value
+        // check multiple requirement
 
-        List<Requirement> satisfiedRequirements = this.getRequirements();
+        List<Requirement> satisfiedRequirements = this.getRequirements(pClone);
 
-        //Card requirements not success
+        //Card requirements not success NOT NEEDED
+        /*
         if (satisfiedRequirements.size()==0 && tower.getTowerFloor().get(floor).getCard().getRequirements().size()!=0) {
             return false;
         }
+        */
 
         if (satisfiedRequirements.size()>1){
             MessageServer messageServer = new MessageChoosePayment(satisfiedRequirements);
@@ -129,12 +143,6 @@ public class PayCard implements Action, Blocking, Runnable {
         return pickCard.isAllowed();
     }
 
-
-    @Override
-    public void run() {
-        if (isAllowed())
-            execute();
-    }
 
     @Override
     public synchronized void setOptionalParams(Object list) {

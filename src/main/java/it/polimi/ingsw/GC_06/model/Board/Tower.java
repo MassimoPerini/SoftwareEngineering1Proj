@@ -49,9 +49,9 @@ public class Tower extends Observable{
 
 
 
-    public boolean throwPenality(String playerUsername)
+    public boolean shouldThrowPenality(String playerUsername)
     {
-        int familyMemberCount = 0;
+        int familyMemberCount = 1;      //I'm not adding it (but I'm checking)
         for (TowerFloor towerFloor : towerFloors)
         {
             for (FamilyMember familyMember1 : towerFloor.getActionPlace().getMembers()) {     //Se ci sono + familiari per effetto di carte eroe...
@@ -66,13 +66,18 @@ public class Tower extends Observable{
 
     /**
      * Check if the player can add the family member to a floor. It doesn't manage the malus when a player is added
+     * Neutral family member doesn't count
      * @param familyMember
      * @param towerFloorUser
      * @return
      */
     public boolean isAllowed(FamilyMember familyMember, int towerFloorUser) {
 
-        int samePlayerFamilyMember = 0;
+        if (familyMember.isNeutral()) {
+            return towerFloors.get(towerFloorUser).isAllowed(familyMember);
+        }
+
+        int samePlayerFamilyMember = 1;     //I'm checking, but you have not added it
 
         for (TowerFloor towerFloor : towerFloors)
         {
@@ -85,7 +90,7 @@ public class Tower extends Observable{
             }
         }
 
-        if (samePlayerFamilyMember >= maxSamePlayerFamilyMember)
+        if (samePlayerFamilyMember > maxSamePlayerFamilyMember)
             return false;
         return towerFloors.get(towerFloorUser).isAllowed(familyMember);
     }

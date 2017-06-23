@@ -14,9 +14,10 @@ public class ProdHarvZone extends Observable{
 	private int maxSamePlayerFamilyMember;
 	private ActionType actionType;
 
-	public ProdHarvZone (List<ActionPlace> actionPlaces,ActionType actionType) {
+	public ProdHarvZone (List<ActionPlace> actionPlaces,ActionType actionType, int maxSamePlayerFamilyMember) {
 		this.actionPlaces = actionPlaces;
 		this.actionType = actionType;
+		this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
 	}
 
 	public void addFamilyMember(FamilyMember familyMember, int index)
@@ -31,7 +32,12 @@ public class ProdHarvZone extends Observable{
 
 	public boolean isAllowed(FamilyMember familyMember, int index)
 	{
-		int samePlayerFamilyMembers = 0;
+		if (familyMember.isNeutral())
+		{
+			return actionPlaces.get(index).isAllowed(familyMember);
+		}
+
+		int samePlayerFamilyMembers = 1;		//Check also the current
 		for (ActionPlace actionPlace : actionPlaces)
 		{
 			for (FamilyMember familyMember1 : actionPlace.getMembers())
@@ -43,7 +49,7 @@ public class ProdHarvZone extends Observable{
 			}
 		}
 
-		if (samePlayerFamilyMembers >= maxSamePlayerFamilyMember){
+		if (samePlayerFamilyMembers > maxSamePlayerFamilyMember){
 			return false;
 		}
 

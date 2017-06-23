@@ -877,22 +877,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -920,22 +984,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -963,22 +1091,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -1006,22 +1198,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -1049,22 +1305,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -1092,22 +1412,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -1135,22 +1519,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -1178,22 +1626,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -1221,22 +1733,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },
@@ -1264,22 +1840,86 @@
           "bonusEffect": []
         },
         {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        },
+        {
           "malusEffect": [
             {
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MONEY": -18,
-                  "MILITARYPOINT": -3
+                  "MONEY": -20,
+                  "MILITARYPOINT": -30
                 }
               }
             }
           ],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
         },
         {
           "malusEffect": [],
-          "bonusEffect": []
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "STONE": 15,
+                  "WOOD": 10
+                }
+              }
+            }
+          ]
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "4": [
+        {
+          "malusEffect": [],
+          "bonusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 50,
+                  "MILITARYPOINT": 100
+                }
+              }
+            }
+          ]
         }
       ]
     },

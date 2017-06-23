@@ -13,7 +13,6 @@ public class DonateProdHarv implements Effect {
 
     private int value;
     private ActionType actionType;
-    private Integer powerUp;
 
     public DonateProdHarv(int value, ActionType actionType) {
         this.value = value;
@@ -25,7 +24,7 @@ public class DonateProdHarv implements Effect {
         PowerUp powerUpAction = new PowerUp();
         value += powerUpAction.execute(game, player);
 
-        StartProdHarv startProdHarv = new StartProdHarv(player.getPlayerBoard().getDevelopmentCards(), actionType, new DefaultAskUserSelector(), value, player, game);
+        StartProdHarv startProdHarv = new StartProdHarv( actionType, new DefaultAskUserSelector(), value, player, game);
         if (startProdHarv.isAllowed())
             startProdHarv.execute();
 

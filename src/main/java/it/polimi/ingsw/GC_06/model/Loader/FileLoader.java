@@ -134,9 +134,14 @@ public class FileLoader {
         DevelopmentCard [] developmentCards = new DevelopmentCard[10];
         for (int i=0;i<10;i++)
         {
+            Map <Integer, List<ProdHarvEffect>> effettiProdRaccolto = new HashMap<>();
+
+
             List<ProdHarvEffect> prodHarvEffects1 = new LinkedList<>();
 
             List<ProdHarvMalusEffect> prodHarvMalusEffects = new LinkedList<>();
+
+            //malus per 1
 
             ResourceSet resourceSet = new ResourceSet();
             resourceSet.variateResource(Resource.MONEY, -10);
@@ -153,13 +158,37 @@ public class FileLoader {
 
             prodHarvEffects1.add(prodHarvEffect);
 
-            //----- ----- ------- ------ ---------------------- ---------------
+            // ---- ------ -----
+            //bonus per 4
+            ResourceSet resourceSet1 = new ResourceSet();
+            resourceSet1.variateResource(Resource.MILITARYPOINT, 100);
+            resourceSet1.variateResource(Resource.SERVANT, 50);
+            EffectOnResources effectOnResources1 = new EffectOnResources(resourceSet1);
+            LinkedList<Effect> effectOnResources2 = new LinkedList<>();
+            effectOnResources2.add(effectOnResources1);
+            prodHarvEffect =new ProdHarvEffect(new LinkedList<>(), effectOnResources2);
+            LinkedList<ProdHarvEffect> effectOnResources3 = new LinkedList<>();
+            effectOnResources3.add(prodHarvEffect);
+            effettiProdRaccolto.put(4, effectOnResources3);
 
+            //----- ----- ------- ------ ---------------------- ---------------
+            //Bonus per 1
+
+            resourceSet1 = new ResourceSet();
+            resourceSet1.variateResource(Resource.MILITARYPOINT, 100);
+            resourceSet1.variateResource(Resource.SERVANT, 50);
+            effectOnResources1 = new EffectOnResources(resourceSet1);
+            effectOnResources2 = new LinkedList<>();
+            effectOnResources2.add(effectOnResources1);
+            prodHarvEffect =new ProdHarvEffect(new LinkedList<>(), effectOnResources2);
+            prodHarvEffects1.add(prodHarvEffect);
+
+            //----------
             prodHarvMalusEffects = new LinkedList<>();
 
             resourceSet = new ResourceSet();
-            resourceSet.variateResource(Resource.MONEY, -18);
-            resourceSet.variateResource(Resource.MILITARYPOINT, -3);
+            resourceSet.variateResource(Resource.MONEY, -20);
+            resourceSet.variateResource(Resource.MILITARYPOINT, -30);
             effectOnResources = new EffectOnResources(resourceSet);
             prodHarvMalusEffects.add(effectOnResources);
 
@@ -167,6 +196,8 @@ public class FileLoader {
             resourceSet = new ResourceSet();
             resourceSet.variateResource(Resource.WOOD, 10);
             resourceSet.variateResource(Resource.STONE, 15);
+            EffectOnResources effectOnResources4 = new EffectOnResources(resourceSet);
+            prodHarvEffects.add(effectOnResources4);
 
             prodHarvEffect = new ProdHarvEffect(prodHarvMalusEffects, prodHarvEffects);
             prodHarvEffects1.add(prodHarvEffect);
@@ -174,7 +205,20 @@ public class FileLoader {
             prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), prodHarvEffects);
             prodHarvEffects1.add(prodHarvEffect);
 
-            Map <Integer, List<ProdHarvEffect>> effettiProdRaccolto = new HashMap<>();
+
+            //------ ------
+
+            resourceSet1 = new ResourceSet();
+            resourceSet1.variateResource(Resource.MILITARYPOINT, 100);
+            resourceSet1.variateResource(Resource.SERVANT, 50);
+            effectOnResources1 = new EffectOnResources(resourceSet1);
+            effectOnResources2 = new LinkedList<>();
+            effectOnResources2.add(effectOnResources1);
+            prodHarvEffect =new ProdHarvEffect(new LinkedList<>(), effectOnResources2);
+            prodHarvEffects1.add(prodHarvEffect);
+
+            //------ -------
+
             effettiProdRaccolto.put(1, prodHarvEffects1);
             developmentCards[i] = new DevelopmentCard("Produzione problematica", 1, new LinkedList<Requirement>(), new LinkedList<Effect>(), "YELLOW", effettiProdRaccolto);
         }
@@ -447,7 +491,7 @@ public class FileLoader {
         List<Effect> effectsBigSpaceProd = new ArrayList<>();
         effectsBigSpaceProd.add(malusOnProduction);
         prodActionPlaces.add(new ActionPlace(effectsBigSpaceProd, 1));
-        ProdHarvZone prodZone = new ProdHarvZone(prodActionPlaces, actionType);
+        ProdHarvZone prodZone = new ProdHarvZone(prodActionPlaces, actionType, 1);
         prodHarvZones.add(prodZone);
         //adesso genero la zona raccolto
         ActionType actionType1 = ActionType.HARVEST_ACTION;
@@ -464,7 +508,7 @@ public class FileLoader {
         List<Effect> effectsBigSpaceHarv = new ArrayList<>();
         effectsBigSpaceHarv.add(malusOnHarvest);
         harvActionPlaces.add(new ActionPlace(effectsBigSpaceHarv, 1));
-        ProdHarvZone harvZone = new ProdHarvZone(harvActionPlaces, actionType);
+        ProdHarvZone harvZone = new ProdHarvZone(harvActionPlaces, actionType, 1);
         prodHarvZones.add(harvZone);
         //adesso genero il mercato con gli actionPlace differenziati
         ArrayList<MarketAndCouncil> markets = new ArrayList<>();
@@ -571,7 +615,7 @@ public class FileLoader {
             ArrayList<ActionPlace> prodHarvActionPlaces = new ArrayList<>();
             prodHarvActionPlaces.add(new ActionPlaceFixed(new ArrayList<Effect>(), 1, 1));
             prodHarvActionPlaces.add(new ActionPlace(new ArrayList<Effect>(), 1));
-            ProdHarvZone prodHarvZone = new ProdHarvZone(prodHarvActionPlaces,actionTypes[i]);
+            ProdHarvZone prodHarvZone = new ProdHarvZone(prodHarvActionPlaces,actionTypes[i], 1);
             prodHarvZones.add(prodHarvZone);
         }
 

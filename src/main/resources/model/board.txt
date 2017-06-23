@@ -388,7 +388,6 @@
             {
               "type": "EffectOnParchment",
               "different": true,
-              "lock": {},
               "quantity": 2
             }
           ],
@@ -432,14 +431,17 @@
                     }
                   ]
                 },
-                "bonusMalusOnEnd": {
-                  "BONUSMALUSONEND": []
+                "bonusMalusOnSetting": {
+                  "BONUSMALUSONSETTING": []
                 },
                 "bonusMalusOnAccess": {
                   "BONUSMALUSONACCESS": []
                 },
                 "bonusMalusOnCost": {
                   "BONUSMALUSONCOST": []
+                },
+                "bonusMalusOnEnd": {
+                  "BONUSMALUSONEND": []
                 }
               }
             }
@@ -448,7 +450,7 @@
           "price": 1
         }
       ],
-      "maxSamePlayerFamilyMember": 0,
+      "maxSamePlayerFamilyMember": 1,
       "actionType": "PRODUCTION_ACTION",
       "changed": false,
       "obs": []
@@ -484,14 +486,17 @@
                     }
                   ]
                 },
-                "bonusMalusOnEnd": {
-                  "BONUSMALUSONEND": []
+                "bonusMalusOnSetting": {
+                  "BONUSMALUSONSETTING": []
                 },
                 "bonusMalusOnAccess": {
                   "BONUSMALUSONACCESS": []
                 },
                 "bonusMalusOnCost": {
                   "BONUSMALUSONCOST": []
+                },
+                "bonusMalusOnEnd": {
+                  "BONUSMALUSONEND": []
                 }
               }
             }
@@ -500,7 +505,7 @@
           "price": 1
         }
       ],
-      "maxSamePlayerFamilyMember": 0,
+      "maxSamePlayerFamilyMember": 1,
       "actionType": "PRODUCTION_ACTION",
       "changed": false,
       "obs": []
@@ -523,7 +528,6 @@
             {
               "type": "EffectOnParchment",
               "different": false,
-              "lock": {},
               "quantity": 1
             }
           ],

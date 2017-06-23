@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -41,20 +40,7 @@ public class BoardActionOnTower implements Action, Runnable {
         // al momento modifichiamo il valore dell'azione che per come sono strutturate le azioni non cambia i controlli
 
 
-     //   super.getBonusMalusHandler().filter(super.getPlayer(),super.getPlayType(),this);
-
-        // soluzione temporanea = in questa azione di fatto posizioniamo soltanto il familiare
-
-        //this.familyMember.getValue() = super.getValueAction();
-
-        // qui faccio il malus
-
-
-        game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
-
-
         // qui modifichiamo il valore dell'azione prima che si compia
-        //BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
 
         payCard.execute();
         tower.addFamilyMember(familyMember, index);
@@ -65,7 +51,7 @@ public class BoardActionOnTower implements Action, Runnable {
     @Override
     public boolean isAllowed() {
 
-        /** è permessa solo quando non c'è un familiare sulla torre*/
+        /** è permessa solo quando non c'è un familiare NON NEUTRO sulla torre*/
 
         //Can add in PlayerBoard
 
@@ -79,7 +65,11 @@ public class BoardActionOnTower implements Action, Runnable {
     @Override
     public void run() {
         System.out.println("ACTION STARTED");
-        if (this.isAllowed())
+        if (this.isAllowed()) {
             this.execute();
+        }
+        else{
+            System.out.println("ERRORE, NON POSSO ESEGUIRE L'AZIONE");
+        }
     }
 }

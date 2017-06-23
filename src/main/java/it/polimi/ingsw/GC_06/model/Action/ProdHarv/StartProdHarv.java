@@ -30,20 +30,19 @@ public class StartProdHarv implements Action, Blocking {
     private Map<String, Integer> userActivateEffect;
     private ActionType actionType;
     private ProdHarvFilterCard prodHarvFilterCard;
-    private  Map<String, DevelopmentCard> userAsk = new HashMap<>();
+    private  Map<String, DevelopmentCard> cardMap = new HashMap<>();
 
     /**
      *
-     * @param cardList List of cards
      * @param askUserCardFilter The functions that choose the cards we need to ask
      * @param value The value of the production/harvest
      * @param player The player that started the Action
      */
 
-    public StartProdHarv(List<DevelopmentCard> cardList, ActionType actionType, AskUserCard askUserCardFilter, int value, Player player, Game game)   //It should check if there is at least a "resource transformation" effect
+    public StartProdHarv(ActionType actionType, AskUserCard askUserCardFilter, int value, Player player, Game game)   //It should check if there is at least a "resource transformation" effect
     {
         super();
-        if (cardList==null || askUserCardFilter==null)
+        if (askUserCardFilter==null)
             throw new NullPointerException();
 
         this.game = game;
@@ -51,6 +50,7 @@ public class StartProdHarv implements Action, Blocking {
         this.value = value;
         this.player = player;
         this.actionType = actionType;
+
         if (actionType.equals(ActionType.HARVEST_ACTION))
         {
             prodHarvFilterCard = new DefaultHarverstCardSelector();
@@ -75,20 +75,22 @@ public class StartProdHarv implements Action, Blocking {
 
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {
-            if (prodHarvFilterCard.isSatisfiable(developmentCard)) {
-                List<ProdHarvEffect> askUserEffects = this.askUser.askUser(developmentCard, value, player);
+            if (prodHarvFilterCard.isSatisfiable(developmentCard)) {    //If is Yellow/Green
+                List<ProdHarvEffect> askUserEffects = this.askUser.askUser(developmentCard, value, player); //The effects of the card I should ask
                 List<Integer> userOptions = new LinkedList<>();
 
-                if (askUserEffects.size() > 0)     //I need to ask
+                if (askUserEffects.size() > 0)     //I need to ask at least one effect
                 {
-                    userAsk.put(developmentCard.getPath(), developmentCard);        //name card -> developmentCard
+                    cardMap.put(developmentCard.getPath(), developmentCard);        //name card -> developmentCard
                     List<ProdHarvEffect> allEffects = developmentCard.getProdHarvEffects(value);
                     int i = 0;
                     for (ProdHarvEffect effect : allEffects) {      //CArds with auto execute + ask user
-                        if (!askUserEffects.contains(effect)) {
-                            autoExecute.add(effect);
-                        } else {
-                            userOptions.add(i);
+                        if (effect.isAllowed(player)) {
+                            if (!askUserEffects.contains(effect)) {     //The allowed effects that are not in the "ask user" list are auto-execute
+                                autoExecute.add(effect);
+                            } else {
+                                userOptions.add(i);     //i is the index of the "total effect" on the card (ex. 0 is automatic, 1 is user-enabled, so it saves 1)
+                            }
                         }
                         i++;
                     }
@@ -110,10 +112,7 @@ public class StartProdHarv implements Action, Blocking {
         for (ProdHarvEffect effect : autoExecute)
         {
             for (ProdHarvMalusEffect malusEffect : effect.getMalusEffect()) {
-                if (malusEffect.isAllowed(player))
-                {
-                    temp.add(malusEffect);          //I have to execute the malus because it is not optional
-                }
+                temp.add(malusEffect);          //I have to execute the malus because it is not optional
             }
          //   temp.addAll(effect.getMalusEffect());
         }
@@ -125,60 +124,61 @@ public class StartProdHarv implements Action, Blocking {
         }
 
         //Ask the cards
+        List<ProdHarvEffect> userProdHarvEffects = new LinkedList<>();
 
-        if (askUser.size()>0)
-        {
+
+        while (askUser.size()>0 && userActivateEffect == null) {
             MessageChooseProdHarv messageChooseProdHarv = new MessageChooseProdHarv(askUser);
             GameList.getInstance().setCurrentBlocking(game, this, messageChooseProdHarv);
-            //stiamo mandando le carte fra cui scegliere allo stato che poi le manderà al controller e poi al client
 
-            while (userActivateEffect == null)
-            {
+            while (userActivateEffect == null) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-         //   game.getGameStatus().changeState(TransitionType.START_PRODHARV, askUser);
-        }
+            //   game.getGameStatus().changeState(TransitionType.START_PRODHARV, askUser);
 
-        List<ProdHarvEffect> userProdHarvEffects = new LinkedList<>();
 
-        for (String s : userActivateEffect.keySet()) {
-            int userChoice = userActivateEffect.get(s);
-            Integer i = askUser.get(s).get(userChoice);       //user choosen option
 
-            DevelopmentCard developmentCard = userAsk.get(s);
-            ProdHarvEffect prodHarvEffect = developmentCard.getProdHarvEffects(value).get(i);
-            userProdHarvEffects.add(prodHarvEffect);
-        }
+            for (String s : userActivateEffect.keySet()) {
+                int userChoice = userActivateEffect.get(s);     //user: for xyz I want the 2 choice. What is the real index?
+                Integer i = askUser.get(s).get(userChoice);       //I get the real effect index
 
-        //Check if are all allowed
+                DevelopmentCard developmentCard = cardMap.get(s);
+                ProdHarvEffect prodHarvEffect = developmentCard.getProdHarvEffects(value).get(i);   //get the user effect
+                userProdHarvEffects.add(prodHarvEffect);
+            }
 
-        Player testPlayer = new Player(player);
-        for (ProdHarvEffect prodHarvEffect : userProdHarvEffects) {
-            for (ProdHarvMalusEffect malusEffect : prodHarvEffect.getMalusEffect()) {
-                if (malusEffect.isAllowed(testPlayer))
-                {
-                    malusEffect.execute(testPlayer, game);
+            //Check if are all allowed
+
+            Player testPlayer = new Player(player);
+            for (ProdHarvEffect prodHarvEffect : userProdHarvEffects) {
+                for (ProdHarvMalusEffect malusEffect : prodHarvEffect.getMalusEffect()) {
+                    if (malusEffect.isAllowed(testPlayer)) {
+                        malusEffect.execute(testPlayer, game);      //executing all the malus the user choosen
+                    } else {
+                        //ask again, user input not valid
+                        userActivateEffect = null;
+                        break;
+                    }
                 }
-                else
-                {
-                    //TODO ask again
+                if (userActivateEffect == null) {
+                    break;
                 }
             }
+
         }
 
-
-        //Se ho passato tutti i controlli eseguo le azioni automatiche
+        //Checks OK, execute all
 
 
         //Apply the auto-bonus
         temp = new LinkedList<>();
         for (ProdHarvEffect effect : autoExecute)
         {
-            temp.addAll(effect.getBonusEffect());
+            temp.addAll(effect.getBonusEffect());       //malus effects already applied
         }
         for (ProdHarvEffect userProdHarvEffect : userProdHarvEffects) {
             temp.addAll(userProdHarvEffect.getBonusEffect());

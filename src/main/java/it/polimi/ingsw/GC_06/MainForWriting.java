@@ -13,7 +13,7 @@ public class MainForWriting {
     public static void main(String[] args) throws IOException {
         fileLoader = FileLoader.getFileLoader();
 
-        fileLoader.testCard();
+        fileLoader.writeBoardWithEffects();
         /*
         fileLoader.writeGreenCard();
         System.out.println("factored green cards");

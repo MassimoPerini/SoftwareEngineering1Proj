@@ -14,11 +14,11 @@ public class DefaultAskUserSelector implements AskUserCard {
 
     @Override
     public List<ProdHarvEffect> askUser(DevelopmentCard card, int points, Player player) {
-        List<ProdHarvEffect> effects = card.getProdHarvEffects(points);
+        List<ProdHarvEffect> effects = card.getProdHarvEffects(points);     //The effect that needs <= points
         List<ProdHarvEffect> userEffects = new LinkedList<>();
         for (ProdHarvEffect effect : effects)
         {
-            if (effect.getMalusEffect().size() > 0 && effect.isAllowed(player))
+            if (effect.getMalusEffect().size() > 0 && effect.isAllowed(player))     //Allowed malus
             {
                 userEffects.add(effect);
             }
