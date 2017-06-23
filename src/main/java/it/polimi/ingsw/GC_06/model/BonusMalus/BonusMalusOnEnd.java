@@ -1,60 +1,75 @@
 package it.polimi.ingsw.GC_06.model.BonusMalus;
 
+import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.List;
 
-
 /**
- * Created by giuseppe on 6/6/17.
+ * Created by giuseppe on 6/22/17.
  */
 public class BonusMalusOnEnd {
 
-    private int bonusMalusEntity;
+    private Resource resourceTarget;
+    /**
+     * questa è la risorsa da diminuire
+     */
+    private List<Resource> activeResourceList;
+    private Action actionType;
     private int coefficient;
-    private List<String> colours;
-    private ActionType actionType;
     private boolean permanent;
-    private boolean ON;
 
-    public BonusMalusOnEnd(int bonusMalusEntity, int coefficient,List<String> colours, ActionType actionType) {
-        this.coefficient = coefficient;
-        this.colours = colours;
+    public BonusMalusOnEnd(Resource resourceTarget, List<Resource> activeResourceList, Action actionType,int coefficient,boolean permanent) {
+        this.resourceTarget = resourceTarget;
+        this.activeResourceList= activeResourceList;
         this.actionType = actionType;
-        this.ON = true;
+        this.coefficient = coefficient;
+        this.permanent = permanent;
     }
 
-    public void modify(int endPoints){
+    /**
+     * il resourceSet è quello in base a cui cambier
+     */
+    public void modify(Player player, ResourceSet activeResourceSet) {
 
-        endPoints = this.bonusMalusEntity;
+        int totalAmount = 0;
+        for (Resource resource : activeResourceList) {
+            int tmp = activeResourceSet.getResourceAmount(resource);
+            totalAmount = tmp + totalAmount;
+        }
+
+        totalAmount = totalAmount*coefficient;
+        ResourceSet variationSet = new ResourceSet();
+        variationSet.variateResource(resourceTarget,totalAmount);
+
+        player.variateResource(variationSet);
 
     }
 
-    public boolean isAllowed(String colour,ActionType actionType){
-        if(colours.contains(colour) && this.actionType.equals(actionType)){
+    private boolean isAllowed(ResourceSet resourceSet) {
+
+        for (Resource resource : activeResourceList) {
+            if (!resourceSet.getResources().keySet().contains(resource)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public boolean check(ActionType actionType,ResourceSet resourceSet){
+        if(this.actionType.equals(actionType) && isAllowed(resourceSet)){
             return true;
         }
-        return false;
-    }
-
-    public ActionType getActionType() {
-        return actionType;
-    }
-
-    public List<String> getColour() {
-        return colours;
+        else
+            return false;
     }
 
     public boolean isPermanent() {
         return permanent;
     }
-
-    public boolean isON() {
-        return ON;
-    }
-
-    public void setON(boolean ON) {
-        this.ON = ON;
-    }
 }
+
+

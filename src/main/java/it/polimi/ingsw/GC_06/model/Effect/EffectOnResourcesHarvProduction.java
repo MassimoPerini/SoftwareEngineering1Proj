@@ -21,6 +21,7 @@ public class EffectOnResourcesHarvProduction{
     public void execute(Player player, int points) {
         if (points >= requiredValue)
         {
+
             player.getResourceSet().variateResource(variateResource);
         }
     }

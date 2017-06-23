@@ -9,44 +9,28 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 public class BonusMalusOnResources{
     /** i malus o bonus sulle risorse attaccano una risorsa per volta*/
 
-    private Resource bonusMalusTarget;
-    private ResourceSet bonusMalusEntity;
+
+    private Resource bonusMalusResource;
+    private int bonusMalusEntity;
     private ActionType actionType;
     /** questo coefficiente è un termine proporzionale per individuare la quantità di risorse da aggiungere o sottrarre*/
-    private double coefficient;
     private boolean permanent;
-    private boolean ON;
 
-    public BonusMalusOnResources(ResourceSet bonusMalusEntity, double coefficient,  ActionType actionType, Resource bonusMalusTarget) {
+    public BonusMalusOnResources(Resource bonusMalusResource, int bonusMalusEntity, ActionType actionType, boolean permanent) {
+        this.bonusMalusResource = bonusMalusResource;
         this.bonusMalusEntity = bonusMalusEntity;
-        this.coefficient = coefficient;
         this.actionType = actionType;
-        this.bonusMalusTarget = bonusMalusTarget;
+        this.permanent = permanent;
     }
 
+    /** targetResourseSet è quello dell'effetto*/
     public void modify(ResourceSet targetResourceSet) {
 
-
-        // il target del mio bonus malus coincide con le risorse dell'effeto che stiamo attivando allora lo lanciamo
-    //    if (targetResourceSet.getResources().containsKey(bonusMalusTarget)) {
-        if (bonusMalusEntity.isIncluded(targetResourceSet)){
-
-            // adesso dobbiamo prendere l'amount del bonusMalusEntity;
-            // adesso prendiamo la somma di tutte le quantità di ciascuna risorsa
-            int totalAmount = bonusMalusEntity.totalResourceQuantity();
-
-            int variation = (int) (totalAmount*coefficient);
-            System.out.println("This is variation " + variation);
-
-
-
-            /** otteniamo la quantità di cose da sottrarre dal targetResourceSet*/
-
-            targetResourceSet.variateResource(bonusMalusTarget, variation);
-
-            /** trovato il modo devo solo scriverlo e poi dovrebbe funzionare */
+            if(targetResourceSet.isIncluded(bonusMalusResource)){
+                targetResourceSet.variateResource(bonusMalusResource,bonusMalusEntity);
+            }
         }
-    }
+
 
     public boolean isAllowed(ActionType actionType){
         if(this.actionType.equals(actionType)){

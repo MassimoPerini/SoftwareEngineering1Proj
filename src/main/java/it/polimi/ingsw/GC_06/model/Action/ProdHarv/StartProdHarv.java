@@ -6,12 +6,14 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvMalusEffect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.HashMap;
@@ -25,7 +27,7 @@ import java.util.Map;
 public class StartProdHarv implements Action, Blocking {
 
     private final AskUserCard prodHarvFilterCard;
-    private final int value;
+    private int value;
     private final Player player;
     private Game game;
     private Map<String, Integer> userActivateEffect;
@@ -63,6 +65,11 @@ public class StartProdHarv implements Action, Blocking {
         Map<String, List<ProdHarvEffect>> askUser = new HashMap<>();
 
         //Select the cards we need to ask
+    /**FamilyMember familyMember = new FamilyMember("","");
+        familyMember.setValue(value);
+        BonusMalusHandler.filter(player,actionType,familyMember);
+        value = familyMember.getValue(); */
+
 
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {
