@@ -24,8 +24,8 @@ import java.util.Observable;
 public class Tower extends Observable{
 
     private final List<TowerFloor> towerFloors;
-    private int maxSamePlayerFamilyMember;
-    private int minFamilyMembersMalus;
+    private int maxSamePlayerFamilyMember; /** massimo family member che il giocatore può piazzare */
+    private int minFamilyMembersMalus; /**numero al di sopra del quale applichiamo il malus sulle risorse */
     private List<DevelopmentCard> cards;
     private ResourceSet malusOnMultipleFamilyMembers;
     private String color;
@@ -44,16 +44,23 @@ public class Tower extends Observable{
      * TODO DO IT!
      * @return
      */
-    public boolean isNoPenalityAllowed()
+
+
+
+
+
+    public boolean throwPenality(String playerUsername)
     {
-        int familyMemberCount = 1;
+        int familyMemberCount = 0;
         for (TowerFloor towerFloor : towerFloors)
         {
             for (FamilyMember familyMember1 : towerFloor.getActionPlace().getMembers()) {     //Se ci sono + familiari per effetto di carte eroe...
-                familyMemberCount++;
+                if(familyMember1.getPlayerUserName().equals(playerUsername)){
+                    familyMemberCount++;
+                }
             }
         }
-        return familyMemberCount < minFamilyMembersMalus;
+        return familyMemberCount > minFamilyMembersMalus;
 
     }
 

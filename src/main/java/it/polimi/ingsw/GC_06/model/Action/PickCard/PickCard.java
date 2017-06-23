@@ -39,7 +39,7 @@ public class PickCard implements Action {
 
         /**if we are in the real action we add the family member in the correct position*/
         //Tower penality
-        if (!tower.isNoPenalityAllowed()) {
+        if (tower.throwPenality(player.getPLAYER_ID())) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
             player.variateResource(malusResources);
             //TODO INSERIAMO QUA LA CHIAMATA A FILTER CHE CI DIRÀ SE NON DOBBIAMO PAGARE PIÙ

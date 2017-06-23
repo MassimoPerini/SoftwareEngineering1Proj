@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author massimo
@@ -14,7 +15,7 @@ public class ActionPlaceFixed extends ActionPlace {
 
 	private int maxFamilyMembers;
 
-	public ActionPlaceFixed(ArrayList<Effect> effect, int price, int maxFamilyMembers) {
+	public ActionPlaceFixed(List<Effect> effect, int price, int maxFamilyMembers) {
 		super(effect, price);
 		this.maxFamilyMembers = maxFamilyMembers;
 	//	maxFamilyMembers = Integer.parseInt(Setting.getInstance().getProperty("max_family_members"));		//Default = 1

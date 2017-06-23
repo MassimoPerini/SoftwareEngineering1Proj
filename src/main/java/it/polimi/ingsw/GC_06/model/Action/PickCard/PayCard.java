@@ -78,7 +78,7 @@ public class PayCard implements Action, Blocking, Runnable {
 
         //Test tower penality BEFORE adding money from the actionspace
 
-        if (!tower.isNoPenalityAllowed()) {
+        if (tower.throwPenality(player.getPLAYER_ID())) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
             try {
                 pClone.variateResource(malusResources);
