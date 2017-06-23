@@ -134,27 +134,25 @@ public class Game {
         State memberOnMarketCounsil = new State(StateName.MEMBER_ON_MARKETCOUNSIL);
         State choosingParchment = new State(StateName.CHOOSING_PARCHMENT);
         State choosingSupportVatican = new State(StateName.CHOOSING_SUPPORT_VATICAN);
+        State turnActionCompleted = new State(StateName.TURN_ACTION_COMPLETED);
 
         idle.addTransition(TransitionType.EXECUTE_EFFECT, idle);
         idle.addTransition(TransitionType.ACTION_ON_TOWER, memberOnTower);
         idle.addTransition(TransitionType.ACTION_ON_PRODHARV, memberOnProdHarv);
-        idle.addTransition(TransitionType.ACTION_ON_MARKETCOUNSIL, memberOnMarketCounsil);
+        idle.addTransition(TransitionType.ACTION_ON_MARKETCOUNSIL, turnActionCompleted);
         idle.addTransition(TransitionType.SIDE_WITH_VATICAN, choosingSupportVatican);
         memberOnTower.addTransition(TransitionType.ASK_PAYMENT, choosingPayment);
         memberOnTower.addTransition(TransitionType.PAY_CARD, cardReady);
         choosingPayment.addTransition(TransitionType.PAY_CARD, cardReady);
         cardReady.addTransition(TransitionType.PICK_CARD, cardToUser);
-        cardToUser.addTransition(TransitionType.BONUS_CARD, choosingCard);
-        cardToUser.addTransition(TransitionType.EXECUTE_EFFECT, idle);
-        choosingCard.addTransition(TransitionType.EXECUTE_EFFECT, idle);
+        cardToUser.addTransition(TransitionType.EXECUTE_EFFECT, turnActionCompleted);
+        choosingCard.addTransition(TransitionType.EXECUTE_EFFECT, turnActionCompleted);
         memberOnProdHarv.addTransition(TransitionType.START_PRODHARV, choosingProdHarvCards);
-        memberOnProdHarv.addTransition(TransitionType.PRODHARV, idle);
-        choosingProdHarvCards.addTransition(TransitionType.PRODHARV, idle);
-        memberOnMarketCounsil.addTransition(TransitionType.EXECUTE_EFFECT, idle);
-        memberOnMarketCounsil.addTransition(TransitionType.CHOOSE_PARCHMENT, choosingParchment);
-        choosingParchment.addTransition(TransitionType.PARCHMENT_CHOICE_DONE, idle);
-        choosingSupportVatican.addTransition(TransitionType.PAY_VATICAN, idle);
-        choosingSupportVatican.addTransition(TransitionType.GET_EXCOMUNICATION, idle);
+        memberOnProdHarv.addTransition(TransitionType.PRODHARV, turnActionCompleted);
+        choosingProdHarvCards.addTransition(TransitionType.PRODHARV, turnActionCompleted);
+        choosingSupportVatican.addTransition(TransitionType.PAY_VATICAN, turnActionCompleted);
+        choosingSupportVatican.addTransition(TransitionType.GET_EXCOMUNICATION, turnActionCompleted);
+        turnActionCompleted.addTransition(TransitionType.ENDTURN, idle);
 
         statuses.put(idle.getID(), idle);
         statuses.put(memberOnTower.getID(), memberOnTower);
@@ -167,6 +165,7 @@ public class Game {
         statuses.put(memberOnMarketCounsil.getID(), memberOnMarketCounsil);
         statuses.put(choosingParchment.getID(), choosingParchment);
         statuses.put(choosingSupportVatican.getID(), choosingSupportVatican);
+        statuses.put(turnActionCompleted.getID(), turnActionCompleted);
 
         return idle;
 
