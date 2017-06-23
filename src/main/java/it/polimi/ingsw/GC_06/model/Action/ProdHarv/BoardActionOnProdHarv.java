@@ -34,7 +34,7 @@ public class BoardActionOnProdHarv implements Action, Runnable {
      * @param familyMember The family member placed
      */
 
-    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ActionType actionType, AskUserCard askUserCardFilter , FamilyMember familyMember)
+    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ActionType actionType, AskUserCard askUserCardFilter , FamilyMember familyMember, Game game)
     {
         super();
         if (player == null || prodHarvArea == null || familyMember == null || askUserCardFilter==null || actionType == null)
@@ -42,6 +42,7 @@ public class BoardActionOnProdHarv implements Action, Runnable {
         this.actionType = actionType;
         this.prodHarvArea = prodHarvArea;
         this.player = player;
+        this.game = game;
         this.index = index;
         this.familyMember = familyMember;
         this.startProdHarv = new StartProdHarv(player.getPlayerBoard().getDevelopmentCards(), actionType, askUserCardFilter ,familyMember.getValue(), player, game);
@@ -69,10 +70,6 @@ public class BoardActionOnProdHarv implements Action, Runnable {
         startProdHarv.execute();
         game.endTurn();
 
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
     }
 
 

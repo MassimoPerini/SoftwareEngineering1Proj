@@ -44,7 +44,7 @@ public class MessageProdHarv implements MessageClient{
 
 
 
-        BoardActionOnProdHarv boardActionOnProdHarv = new BoardActionOnProdHarv(currentPlayer,index,prodHarvZone,prodHarvZone.getActionType(),defaultAskUserSelector,familyMember);
+        BoardActionOnProdHarv boardActionOnProdHarv = new BoardActionOnProdHarv(currentPlayer,index,prodHarvZone,prodHarvZone.getActionType(),defaultAskUserSelector,familyMember, currentGame);
         PowerUpFamilyMember powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,powerUpValue);
 
         if(powerUpFamilyMember.isAllowed()){

@@ -26,7 +26,7 @@ public class StartProdHarv implements Action, Blocking {
     private final AskUserCard askUser;
     private final int value;
     private final Player player;
-    private Game game;
+    private final Game game;
     private Map<String, Integer> userActivateEffect;
     private ActionType actionType;
     private ProdHarvFilterCard prodHarvFilterCard;
@@ -81,7 +81,7 @@ public class StartProdHarv implements Action, Blocking {
 
                 if (askUserEffects.size() > 0)     //I need to ask
                 {
-                    userAsk.put(developmentCard.getPath(), developmentCard);
+                    userAsk.put(developmentCard.getPath(), developmentCard);        //name card -> developmentCard
                     List<ProdHarvEffect> allEffects = developmentCard.getProdHarvEffects(value);
                     int i = 0;
                     for (ProdHarvEffect effect : allEffects) {      //CArds with auto execute + ask user
@@ -92,7 +92,7 @@ public class StartProdHarv implements Action, Blocking {
                         }
                         i++;
                     }
-                    askUser.put(developmentCard.getPath(), userOptions);
+                    askUser.put(developmentCard.getPath(), userOptions);        //askUser: card to ask -> effect to execute from user (only one)
                 } else {             //Otherwise if it is allowed I will execute it
                     List<ProdHarvEffect> effects = developmentCard.getProdHarvEffects(value);
                     for (ProdHarvEffect effect : effects) {
@@ -200,5 +200,6 @@ public class StartProdHarv implements Action, Blocking {
     @Override
     public synchronized void setOptionalParams(Object object) {
         this.userActivateEffect = (Map<String, Integer>) object;
+        notifyAll();
     }
 }

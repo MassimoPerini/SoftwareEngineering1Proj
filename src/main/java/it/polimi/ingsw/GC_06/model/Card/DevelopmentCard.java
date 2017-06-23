@@ -54,7 +54,9 @@ public class DevelopmentCard extends Card
         List<ProdHarvEffect> resultEffects = new LinkedList<>();
 
         for (int i=0; i<=value; i++) {
-            resultEffects.addAll(this.prodHarvEffects.get(value));
+            if (prodHarvEffects.get(i) != null) {
+                resultEffects.addAll(this.prodHarvEffects.get(i));
+            }
         }
         return Collections.unmodifiableList(resultEffects);
     }

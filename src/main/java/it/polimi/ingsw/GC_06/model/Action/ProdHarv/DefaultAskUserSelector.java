@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,13 +15,14 @@ public class DefaultAskUserSelector implements AskUserCard {
     @Override
     public List<ProdHarvEffect> askUser(DevelopmentCard card, int points, Player player) {
         List<ProdHarvEffect> effects = card.getProdHarvEffects(points);
+        List<ProdHarvEffect> userEffects = new LinkedList<>();
         for (ProdHarvEffect effect : effects)
         {
             if (effect.getMalusEffect().size() > 0 && effect.isAllowed(player))
             {
-                effects.add(effect);
+                userEffects.add(effect);
             }
         }
-        return effects;
+        return userEffects;
     }
 }
