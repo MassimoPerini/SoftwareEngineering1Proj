@@ -1,6 +1,9 @@
 package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChooseProdHarv;
+import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
+import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
@@ -11,19 +14,21 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by massimo on 05/06/17.
  */
-public class StartProdHarv implements Action {
+public class StartProdHarv implements Action, Blocking {
 
-    private final List<DevelopmentCard> developmentCards;
     private final AskUserCard prodHarvFilterCard;
     private final int value;
     private final Player player;
     private Game game;
+    private Map<String, Integer> userActivateEffect;
     private ActionType actionType;
 
     /**
@@ -34,22 +39,13 @@ public class StartProdHarv implements Action {
      * @param player The player that started the Action
      */
 
-    public StartProdHarv(List<DevelopmentCard> cardList, ActionType actionType, AskUserCard askUserCardFilter, int value, Player player)   //It should check if there is at least a "resource transformation" effect
+    public StartProdHarv(List<DevelopmentCard> cardList, ActionType actionType, AskUserCard askUserCardFilter, int value, Player player, Game game)   //It should check if there is at least a "resource transformation" effect
     {
         super();
         if (cardList==null || askUserCardFilter==null)
             throw new NullPointerException();
 
-        this.developmentCards = new LinkedList<>();
-
-        for (DevelopmentCard developmentCard : cardList)
-        {
-            if (askUser(developmentCard,value))
-            {
-                this.developmentCards.add(developmentCard);
-            }
-        }
-
+        this.game = game;
         this.prodHarvFilterCard = askUserCardFilter;
         this.value = value;
         this.player = player;
@@ -60,20 +56,27 @@ public class StartProdHarv implements Action {
      * Starts a production/harvest
      */
     @Override
-    public void execute() {
+    public synchronized void execute() {
         game.getGameStatus().changeState(TransitionType.START_PRODHARV);
 
-
         List<ProdHarvEffect> autoExecute = new LinkedList<>();
-        List<DevelopmentCard> askUser = new LinkedList<>();
+        Map<String, List<ProdHarvEffect>> askUser = new HashMap<>();
 
         //Select the cards we need to ask
 
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {
-            if (prodHarvFilterCard.askUser(developmentCard, value))     //I need to ask
+            List<ProdHarvEffect> askUserEffects = prodHarvFilterCard.askUser(developmentCard, value, player);
+            if (askUserEffects.size()>0)     //I need to ask
             {
-                askUser.add(developmentCard);
+                List<ProdHarvEffect> allEffects = developmentCard.getProdHarvEffects(value);
+                for (ProdHarvEffect effect : allEffects) {      //CArds with auto execute + ask user
+                    if (!askUserEffects.contains(effect))
+                    {
+                        autoExecute.add(effect);
+                    }
+                }
+                askUser.put(developmentCard.getPath(), askUserEffects);
             }
             else {             //Otherwise if it is allowed I will execute it
                 List<ProdHarvEffect> effects = developmentCard.getProdHarvEffects(value);
@@ -82,7 +85,6 @@ public class StartProdHarv implements Action {
                         autoExecute.add(effect);
                     }
                 }
-
             }
         }
 
@@ -97,7 +99,7 @@ public class StartProdHarv implements Action {
                     temp.add(malusEffect);          //I have to execute the malus because it is not optional
                 }
             }
-            temp.addAll(effect.getMalusEffect());
+         //   temp.addAll(effect.getMalusEffect());
         }
 
         ExecuteEffects executeEffects = new ExecuteEffects(temp, player,game);
@@ -110,9 +112,48 @@ public class StartProdHarv implements Action {
 
         if (askUser.size()>0)
         {
+            MessageChooseProdHarv messageChooseProdHarv = new MessageChooseProdHarv(askUser);
+            GameList.getInstance().setCurrentBlocking(game, this, messageChooseProdHarv);
             //stiamo mandando le carte fra cui scegliere allo stato che poi le manderà al controller e poi al client
-            game.getGameStatus().changeState(TransitionType.START_PRODHARV, askUser);
+
+            while (userActivateEffect == null)
+            {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+         //   game.getGameStatus().changeState(TransitionType.START_PRODHARV, askUser);
         }
+
+        List<ProdHarvEffect> userProdHarvEffects = new LinkedList<>();
+
+        for (String s : userActivateEffect.keySet()) {
+            int elem = userActivateEffect.get(s);
+            ProdHarvEffect prodHarvEffect = askUser.get(s).get(elem);
+            userProdHarvEffects.add(prodHarvEffect);
+        }
+
+        //Check if are all allowed
+
+        Player testPlayer = new Player(player);
+        for (ProdHarvEffect prodHarvEffect : userProdHarvEffects) {
+            for (ProdHarvMalusEffect malusEffect : prodHarvEffect.getMalusEffect()) {
+                if (malusEffect.isAllowed(testPlayer))
+                {
+                    malusEffect.execute(testPlayer, game);
+                }
+                else
+                {
+                    //TODO ask again
+                }
+            }
+        }
+
+
+        //Se ho passato tutti i controlli eseguo le azioni automatiche
+
 
         //Apply the auto-bonus
         temp = new LinkedList<>();
@@ -120,32 +161,25 @@ public class StartProdHarv implements Action {
         {
             temp.addAll(effect.getBonusEffect());
         }
+        for (ProdHarvEffect userProdHarvEffect : userProdHarvEffects) {
+            temp.addAll(userProdHarvEffect.getBonusEffect());
+            temp.addAll(userProdHarvEffect.getMalusEffect());
+        }
         executeEffects = new ExecuteEffects(temp, player,game);
         if (executeEffects.isAllowed())
         {
             executeEffects.execute();
         }
-
     }
 
-    public boolean askUser(DevelopmentCard card, int points) {
-        List<ProdHarvEffect> effects = card.getProdHarvEffects(points);
-        for (ProdHarvEffect effect : effects)
-        {
-            if (effect.getMalusEffect().size() > 0)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
 
     @Override
     public boolean isAllowed() {
         return true;
+    }
+
+    @Override
+    public synchronized void setOptionalParams(Object object) {
+        this.userActivateEffect = (Map<String, Integer>) object;
     }
 }

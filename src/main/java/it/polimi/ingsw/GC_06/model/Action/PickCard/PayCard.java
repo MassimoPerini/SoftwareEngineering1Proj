@@ -28,7 +28,7 @@ public class PayCard implements Action, Blocking, Runnable {
     private final Tower tower;
     private final int floor;
     private final Game game;
-    private List optionalParams;
+    private Integer optionalParams;
 
     public PayCard(Tower tower, int floor,Player player, Game game)
     {
@@ -64,7 +64,8 @@ public class PayCard implements Action, Blocking, Runnable {
             satisfiedRequirements.get(0).doIt(player);
         }
         else if (satisfiedRequirements.size()>1){
-            satisfiedRequirements.get((Integer) optionalParams.get(0)).doIt(player);
+            player.variateResource(satisfiedRequirements.get(optionalParams));
+        //    satisfiedRequirements.get(optionalParams).doIt(player); OLD WAY
         }
      //   game.getGameStatus().changeState(TransitionType.PAY_CARD);
         pickCard.execute();
@@ -114,9 +115,8 @@ public class PayCard implements Action, Blocking, Runnable {
         }
 
         if (satisfiedRequirements.size()>1){
-            GameList.getInstance().setCurrentBlocking(game, this);
             MessageServer messageServer = new MessageChoosePayment(satisfiedRequirements);
-            game.getGameStatus().sendMessage(messageServer);
+            GameList.getInstance().setCurrentBlocking(game, this, messageServer);
             while (optionalParams==null) {
                 try {
                     wait();
@@ -137,8 +137,8 @@ public class PayCard implements Action, Blocking, Runnable {
     }
 
     @Override
-    public synchronized void setOptionalParams(List list) {
-        optionalParams = list;
+    public synchronized void setOptionalParams(Object list) {
+        optionalParams = (Integer) list;
         notifyAll();
     }
 }

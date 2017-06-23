@@ -1,12 +1,12 @@
 package it.polimi.ingsw.GC_06.model.Action.ProdHarv;
 
-import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class BoardActionOnProdHarv implements Action {
         this.player = player;
         this.index = index;
         this.familyMember = familyMember;
-        this.startProdHarv = new StartProdHarv(player.getPlayerBoard().getDevelopmentCards(), actionType, askUserCardFilter ,familyMember.getValue(), player);
+        this.startProdHarv = new StartProdHarv(player.getPlayerBoard().getDevelopmentCards(), actionType, askUserCardFilter ,familyMember.getValue(), player, game);
     }
 
     /**

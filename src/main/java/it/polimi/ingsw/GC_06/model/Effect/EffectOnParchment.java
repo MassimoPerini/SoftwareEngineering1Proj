@@ -22,8 +22,7 @@ public class EffectOnParchment implements Effect, Blocking {
 
     private List<ResourceSet> parchments;
     private boolean different;
-    private List choosen;
-    private final Object lock = new Object();
+    private Integer choosen;
     private int quantity;
 
     public EffectOnParchment(int numbers, boolean different) {
@@ -34,7 +33,6 @@ public class EffectOnParchment implements Effect, Blocking {
 
     @Override
     public void execute (Player player,Game game) {
-        GameList.getInstance().setCurrentBlocking(game, this);
         FileLoader fileLoader = FileLoader.getFileLoader();
         parchments = Arrays.asList(fileLoader.loadParchments());
         List<Integer> alreadyChoosed = new LinkedList<>();
@@ -42,14 +40,14 @@ public class EffectOnParchment implements Effect, Blocking {
         for (int i=0;i<quantity;i++) {
             MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
             game.getGameStatus().sendMessage(messageChooseParchment);
-            waitAnswer();
+            GameList.getInstance().setCurrentBlocking(game, this, messageChooseParchment);
             System.out.println("THREAD ATTIVO!");
-            int choice = ((Integer) choosen.get(0)).intValue();
+            int choice = choosen;
             int isAlreadySelected = Collections.binarySearch(alreadyChoosed, choice);
             if (isAlreadySelected!=-1 && different)
             {
                 messageChooseParchment = new MessageChooseParchment(parchments, "Presente, devono essere diversi");
-                game.getGameStatus().sendMessage(messageChooseParchment);
+                GameList.getInstance().setCurrentBlocking(game, this, messageChooseParchment);
                 i--;
                 waitAnswer();
             }
@@ -64,21 +62,18 @@ public class EffectOnParchment implements Effect, Blocking {
     {
         while (choosen == null) {
             try {
-                synchronized (lock) {
-                    lock.wait();
-                    System.out.println("Thread svegliato");
-                }
+                wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("Thread svegliato");
         }
     }
 
     @Override
-    public void setOptionalParams(List list) {
-        synchronized (lock) {
-            this.choosen = list;
-            lock.notifyAll();
-        }
+    public void setOptionalParams(Object list) {
+            this.choosen = (Integer) list;
+            notifyAll();
     }
+
 }

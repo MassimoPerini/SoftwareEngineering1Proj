@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.State.Game;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ public class GameList {
     private static GameList instance = new GameList();
     private Map<Game,List<String>> gameMap = new HashMap<>(); /** game and associated players */
     private Map<Game, Blocking> gameBlocking=new HashMap<>();
+    private ServerOrchestrator serverOrchestrator;
 
     private GameList(){}
 
@@ -34,17 +37,26 @@ public class GameList {
         return gameId;
     }
 
-    public void setCurrentBlocking(Game game, Blocking action)
+    public void setServerOrchestrator(ServerOrchestrator serverOrchestrator) {
+        this.serverOrchestrator = serverOrchestrator;
+    }
+
+    public void setCurrentBlocking(Game game, Blocking action, MessageServer messageServer)
     {
         if (gameBlocking.get(game)==null)
             gameBlocking.put(game, action);
         else
             gameBlocking.replace(game, action);
+        try {
+            serverOrchestrator.send(game.getCurrentPlayer().getPLAYER_ID(), messageServer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Blocking getCurrentBlocking(Game game)
+    public void unlock(Game game, Object object)
     {
-        return gameBlocking.get(game);
+        gameBlocking.get(game).setOptionalParams(object);
     }
 
     /**

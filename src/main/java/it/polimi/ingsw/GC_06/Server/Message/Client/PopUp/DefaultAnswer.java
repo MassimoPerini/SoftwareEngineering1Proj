@@ -3,9 +3,6 @@ package it.polimi.ingsw.GC_06.Server.Message.Client.PopUp;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Created by massimo on 21/06/17.
  */
@@ -22,9 +19,8 @@ public class DefaultAnswer implements MessageClient {
 
     @Override
     public void execute() {
-        List<Integer> optPar = new LinkedList();
-        optPar.add(choice);
-        GameList.getInstance().getCurrentBlocking(GameList.getInstance().getGameId(game)).setOptionalParams(optPar);
+        Integer integer = choice;
+        GameList.getInstance().unlock(GameList.getInstance().getGameId(game), integer);
     }
 
     @Override

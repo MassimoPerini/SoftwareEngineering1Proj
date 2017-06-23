@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class EffectOnNewCards implements Effect, Blocking {
     private Map<String, Integer> towerFloors;
-    private List inputParams;
+    private Integer inputParams;
     private List<Map<String, Integer>> toAsk = new LinkedList();
 
     public EffectOnNewCards(Map<String, Integer> towerFloors) { //Integer è il punteggio max
@@ -29,7 +29,6 @@ public class EffectOnNewCards implements Effect, Blocking {
     @Override
     public synchronized void execute(Player player,Game game) {
 
-        GameList.getInstance().setCurrentBlocking(game, this);
         for (String s : game.getBoard().getTowers().keySet()) {
             int i=0;
             for (TowerFloor towerFloor : game.getBoard().getTowers().get(s).getTowerFloor()) {
@@ -44,8 +43,7 @@ public class EffectOnNewCards implements Effect, Blocking {
         }
 
         MessagePickAnotherCard messagePickAnotherCard = new MessagePickAnotherCard(toAsk);
-        GameList.getInstance().setCurrentBlocking(game, this);
-        game.getGameStatus().sendMessage(messagePickAnotherCard);
+        GameList.getInstance().setCurrentBlocking(game, this, messagePickAnotherCard);
         while (inputParams ==null) {
             try {
                 wait();
@@ -55,7 +53,7 @@ public class EffectOnNewCards implements Effect, Blocking {
         }
 
         //inputParams =
-        int towerChoose = (Integer) inputParams.get(0);
+        int towerChoose = inputParams;
         Map<String, Integer> answer = toAsk.get(towerChoose);
         String tower = "";
         for (String s : answer.keySet()) {
@@ -69,8 +67,8 @@ public class EffectOnNewCards implements Effect, Blocking {
     //Intero della scelta
 
     @Override
-    public synchronized void setOptionalParams(List list) {
-        this.inputParams = list;
+    public synchronized void setOptionalParams(Object o) {
+        this.inputParams = (Integer) o;
         notifyAll();
     }
 }
