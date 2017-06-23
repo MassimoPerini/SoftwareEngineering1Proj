@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class ExecuteEffects implements Action {
     @Override
     public void execute() {
 
-        game.getGameStatus().changeState(TransitionType.EXECUTE_EFFECT);
+     //   game.getGameStatus().changeState(TransitionType.EXECUTE_EFFECT);
 
         for(Effect effect: effects)
         {

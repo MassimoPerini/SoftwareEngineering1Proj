@@ -8,12 +8,11 @@ import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.ProdHarvAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.*;
-import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChooseParchment;
-import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageChoosePayment;
-import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessagePickAnotherCard;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -46,17 +45,18 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageClearBoard.class)
                 .registerSubtype(MessageNewCards.class)
                 .registerSubtype(MessageUpdateView.class)
+                .registerSubtype(MessageChoosePowerUp.class)
                 .registerSubtype(MessageRemoveCard.class)
-                .registerSubtype(MessageUpdateResource.class)
                 .registerSubtype(MessageChangePlayer.class)
-                .registerSubtype(MessageChoosePayment.class)
+                .registerSubtype(MessageGameStarted.class)
                 .registerSubtype(MessagePickAnotherCard.class)
-                .registerSubtype(MessageChooseParchment.class)
+                .registerSubtype(MessageChooseProdHarv.class)
+                .registerSubtype(MessageChoosePayment.class)
                 .registerSubtype(MessageFamilyMember.class)
                 .registerSubtype(MessageLoggedIn.class)
-                .registerSubtype(MessageGameStarted.class)
+                .registerSubtype(MessageChooseParchment.class)
+                .registerSubtype(MessageUpdateResource.class)
                 ;
-
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageClient.class, "type")
@@ -65,7 +65,8 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageProdHarv.class)
                 .registerSubtype(DefaultAnswer.class)
                 .registerSubtype(MessageEndTurn.class)
-                ; //.registerSubtype(.class);
+                .registerSubtype(ProdHarvAnswer.class)
+                ;
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();
     }
 

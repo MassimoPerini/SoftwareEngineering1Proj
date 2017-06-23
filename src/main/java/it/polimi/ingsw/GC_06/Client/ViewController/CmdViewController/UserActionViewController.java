@@ -80,8 +80,9 @@ public class UserActionViewController implements ViewPresenterCLI, Runnable {
 
                 commandView.addLocalizedText("Dammi i dati");
                 String[] inp = commandView.getString().split(" ");
-
                 MessageProdHarv messageProdHarv = new MessageProdHarv(Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]),Integer.parseInt(inp[3]));
+                clientNetworkOrchestrator.send(messageProdHarv);
+
             }
             if (input.equals("l"))
             {

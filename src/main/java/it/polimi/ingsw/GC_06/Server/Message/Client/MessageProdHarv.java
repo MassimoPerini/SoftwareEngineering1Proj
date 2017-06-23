@@ -10,6 +10,10 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 /**
  * Created by giuseppe on 6/20/17.
  */
@@ -47,7 +51,14 @@ public class MessageProdHarv implements MessageClient{
             powerUpFamilyMember.execute();
         }
 
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Future f = executor.submit(boardActionOnProdHarv);
+
+        //TODO fix it
+
         /** rollBack */
+
+        /*
         if(!boardActionOnProdHarv.isAllowed()){
            int newPowerUpValue = -powerUpValue;
            powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,newPowerUpValue);
@@ -57,6 +68,7 @@ public class MessageProdHarv implements MessageClient{
         else{
             boardActionOnProdHarv.execute();
         }
+        */
     }
 
     @Override

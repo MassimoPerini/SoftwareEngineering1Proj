@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 
@@ -31,16 +31,16 @@ public class PowerUpFamilyMember implements Action {
     public void execute() {
 
         ResourceSet variateResources = new ResourceSet();
-        variateResources.variateResource(resource,value*coefficient);
+        variateResources.variateResource(resource,value*coefficient*-1);
         player.variateResource(variateResources);
-        familyMember.variateValue(value);
+        familyMember.setValue(value+familyMember.getValue());
 
     }
 
     @Override
     public boolean isAllowed() {
 
-        return ! player.getResourceSet().isIncluded(variateResources);
+        return player.getResourceSet().isIncluded(variateResources);
 
     }
 

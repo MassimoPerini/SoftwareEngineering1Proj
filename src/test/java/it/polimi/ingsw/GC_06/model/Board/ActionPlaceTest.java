@@ -1,19 +1,16 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
-import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
-
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,7 +42,7 @@ public class ActionPlaceTest {
     public void nullEffects() throws Exception {
         actionPlace = new ActionPlace(null, 5);
     }
-
+/*
     @Test
     public void checkValueFamilyMember() throws IOException {
         int val = player.getFamilyMembers()[0].getValue();
@@ -54,6 +51,7 @@ public class ActionPlaceTest {
         assertEquals(player.getFamilyMembers()[0].getDiceColor(), (FileLoader.getFileLoader().loadDiceSet().getDices()[0].getColor()));
 
     }
+    */
 
     @Test
     public void checkForbiddenActionPlace(){
@@ -88,19 +86,19 @@ public class ActionPlaceTest {
         assertEquals(actionPlace.getEffects().get(0), effect);
 
     }
-
+/*
     @Test (expected=NullPointerException.class)
     public void checkNullFamilyMemberActionPlace(){
         actionPlace = new ActionPlace(new LinkedList<>(), -1);
         actionPlace.addFamilyMember(null);
     }
-
+/*
     @Test (expected=IllegalArgumentException.class)
     public void notAllowedAddActionPlace(){
         actionPlace = new ActionPlace(new LinkedList<>(), 20000);
         game.roll();
         actionPlace.addFamilyMember(player.getFamilyMembers()[0]);
     }
-
+*/
 
 }

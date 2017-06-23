@@ -6,14 +6,11 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvMalusEffect;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.TransitionType;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.HashMap;
@@ -26,12 +23,14 @@ import java.util.Map;
  */
 public class StartProdHarv implements Action, Blocking {
 
-    private final AskUserCard prodHarvFilterCard;
-    private int value;
+    private final AskUserCard askUser;
+    private final int value;
     private final Player player;
     private Game game;
     private Map<String, Integer> userActivateEffect;
     private ActionType actionType;
+    private ProdHarvFilterCard prodHarvFilterCard;
+    private  Map<String, DevelopmentCard> userAsk = new HashMap<>();
 
     /**
      *
@@ -48,10 +47,17 @@ public class StartProdHarv implements Action, Blocking {
             throw new NullPointerException();
 
         this.game = game;
-        this.prodHarvFilterCard = askUserCardFilter;
+        this.askUser = askUserCardFilter;
         this.value = value;
         this.player = player;
         this.actionType = actionType;
+        if (actionType.equals(ActionType.HARVEST_ACTION))
+        {
+            prodHarvFilterCard = new DefaultHarverstCardSelector();
+        }
+        else{
+            prodHarvFilterCard = new DefaultProductionCardSelector();
+        }
     }
 
     /**
@@ -59,37 +65,40 @@ public class StartProdHarv implements Action, Blocking {
      */
     @Override
     public synchronized void execute() {
-        game.getGameStatus().changeState(TransitionType.START_PRODHARV);
+     //   game.getGameStatus().changeState(TransitionType.START_PRODHARV);
 
         List<ProdHarvEffect> autoExecute = new LinkedList<>();
-        Map<String, List<ProdHarvEffect>> askUser = new HashMap<>();
+        Map<String, List<Integer>> askUser = new HashMap<>();
+
 
         //Select the cards we need to ask
-    /**FamilyMember familyMember = new FamilyMember("","");
-        familyMember.setValue(value);
-        BonusMalusHandler.filter(player,actionType,familyMember);
-        value = familyMember.getValue(); */
-
 
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {
-            List<ProdHarvEffect> askUserEffects = prodHarvFilterCard.askUser(developmentCard, value, player);
-            if (askUserEffects.size()>0)     //I need to ask
-            {
-                List<ProdHarvEffect> allEffects = developmentCard.getProdHarvEffects(value);
-                for (ProdHarvEffect effect : allEffects) {      //CArds with auto execute + ask user
-                    if (!askUserEffects.contains(effect))
-                    {
-                        autoExecute.add(effect);
+            if (prodHarvFilterCard.isSatisfiable(developmentCard)) {
+                List<ProdHarvEffect> askUserEffects = this.askUser.askUser(developmentCard, value, player);
+                List<Integer> userOptions = new LinkedList<>();
+
+                if (askUserEffects.size() > 0)     //I need to ask
+                {
+                    userAsk.put(developmentCard.getPath(), developmentCard);
+                    List<ProdHarvEffect> allEffects = developmentCard.getProdHarvEffects(value);
+                    int i = 0;
+                    for (ProdHarvEffect effect : allEffects) {      //CArds with auto execute + ask user
+                        if (!askUserEffects.contains(effect)) {
+                            autoExecute.add(effect);
+                        } else {
+                            userOptions.add(i);
+                        }
+                        i++;
                     }
-                }
-                askUser.put(developmentCard.getPath(), askUserEffects);
-            }
-            else {             //Otherwise if it is allowed I will execute it
-                List<ProdHarvEffect> effects = developmentCard.getProdHarvEffects(value);
-                for (ProdHarvEffect effect : effects) {
-                    if (effect.isAllowed(player)){
-                        autoExecute.add(effect);
+                    askUser.put(developmentCard.getPath(), userOptions);
+                } else {             //Otherwise if it is allowed I will execute it
+                    List<ProdHarvEffect> effects = developmentCard.getProdHarvEffects(value);
+                    for (ProdHarvEffect effect : effects) {
+                        if (effect.isAllowed(player)) {
+                            autoExecute.add(effect);
+                        }
                     }
                 }
             }
@@ -137,8 +146,11 @@ public class StartProdHarv implements Action, Blocking {
         List<ProdHarvEffect> userProdHarvEffects = new LinkedList<>();
 
         for (String s : userActivateEffect.keySet()) {
-            int elem = userActivateEffect.get(s);
-            ProdHarvEffect prodHarvEffect = askUser.get(s).get(elem);
+            int userChoice = userActivateEffect.get(s);
+            Integer i = askUser.get(s).get(userChoice);       //user choosen option
+
+            DevelopmentCard developmentCard = userAsk.get(s);
+            ProdHarvEffect prodHarvEffect = developmentCard.getProdHarvEffects(value).get(i);
             userProdHarvEffects.add(prodHarvEffect);
         }
 

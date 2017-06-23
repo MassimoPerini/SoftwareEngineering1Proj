@@ -3,8 +3,8 @@ package it.polimi.ingsw.GC_06.Server.Message.Server.PopUp;
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,15 +15,9 @@ public class MessageChooseProdHarv implements MessageServer{
 
     private Map<String, List<Integer>> cards;
 
-    public MessageChooseProdHarv(Map<String, List<ProdHarvEffect>> prodHarvEffects) {
+    public MessageChooseProdHarv(Map<String, List<Integer>> prodHarvEffects) {
 
-        for (String card : prodHarvEffects.keySet()) {
-            List<ProdHarvEffect> prodHarvEffects1 = prodHarvEffects.get(card);
-
-        }
-
-        
-        this.cards = cards;
+        cards = new HashMap<>(prodHarvEffects);
     }
 
     @Override

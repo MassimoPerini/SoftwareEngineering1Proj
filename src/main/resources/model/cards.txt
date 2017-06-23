@@ -860,8 +860,430 @@
     "requirements": [],
     "immediateEffects": [],
     "idColour": "YELLOW",
-    "prodHarvEffects": {},
-    "path": "devcards_f_en_c_47201"
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
+  },
+  {
+    "era": 1,
+    "requirements": [],
+    "immediateEffects": [],
+    "idColour": "YELLOW",
+    "prodHarvEffects": {
+      "1": [
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -10,
+                  "MILITARYPOINT": -15
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": -18,
+                  "MILITARYPOINT": -3
+                }
+              }
+            }
+          ],
+          "bonusEffect": []
+        },
+        {
+          "malusEffect": [],
+          "bonusEffect": []
+        }
+      ]
+    },
+    "path": "Produzione problematica"
   },
   {
     "era": 1,

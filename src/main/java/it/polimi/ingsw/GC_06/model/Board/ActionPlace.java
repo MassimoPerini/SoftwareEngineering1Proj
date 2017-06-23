@@ -55,8 +55,6 @@ public class ActionPlace {
 	 */
     public List<Effect> addFamilyMember(FamilyMember familyMember)
 	{
-		if (!isAllowed(familyMember))
-			throw new IllegalArgumentException();
 		this.members.add(familyMember);
 		return effects;
 	}

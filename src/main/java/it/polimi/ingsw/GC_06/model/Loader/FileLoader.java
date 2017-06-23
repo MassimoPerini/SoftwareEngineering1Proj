@@ -132,6 +132,55 @@ public class FileLoader {
     public void testCard() throws IOException {
 
         DevelopmentCard [] developmentCards = new DevelopmentCard[10];
+        for (int i=0;i<10;i++)
+        {
+            List<ProdHarvEffect> prodHarvEffects1 = new LinkedList<>();
+
+            List<ProdHarvMalusEffect> prodHarvMalusEffects = new LinkedList<>();
+
+            ResourceSet resourceSet = new ResourceSet();
+            resourceSet.variateResource(Resource.MONEY, -10);
+            resourceSet.variateResource(Resource.MILITARYPOINT, -15);
+            EffectOnResources effectOnResources = new EffectOnResources(resourceSet);
+            prodHarvMalusEffects.add(effectOnResources);
+
+            List<Effect> prodHarvEffects = new LinkedList<>();
+            resourceSet = new ResourceSet();
+            resourceSet.variateResource(Resource.WOOD, 10);
+            resourceSet.variateResource(Resource.STONE, 15);
+
+            ProdHarvEffect prodHarvEffect = new ProdHarvEffect(prodHarvMalusEffects, prodHarvEffects);
+
+            prodHarvEffects1.add(prodHarvEffect);
+
+            //----- ----- ------- ------ ---------------------- ---------------
+
+            prodHarvMalusEffects = new LinkedList<>();
+
+            resourceSet = new ResourceSet();
+            resourceSet.variateResource(Resource.MONEY, -18);
+            resourceSet.variateResource(Resource.MILITARYPOINT, -3);
+            effectOnResources = new EffectOnResources(resourceSet);
+            prodHarvMalusEffects.add(effectOnResources);
+
+            prodHarvEffects = new LinkedList<>();
+            resourceSet = new ResourceSet();
+            resourceSet.variateResource(Resource.WOOD, 10);
+            resourceSet.variateResource(Resource.STONE, 15);
+
+            prodHarvEffect = new ProdHarvEffect(prodHarvMalusEffects, prodHarvEffects);
+            prodHarvEffects1.add(prodHarvEffect);
+
+            prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), prodHarvEffects);
+            prodHarvEffects1.add(prodHarvEffect);
+
+            Map <Integer, List<ProdHarvEffect>> effettiProdRaccolto = new HashMap<>();
+            effettiProdRaccolto.put(1, prodHarvEffects1);
+            developmentCards[i] = new DevelopmentCard("Produzione problematica", 1, new LinkedList<Requirement>(), new LinkedList<Effect>(), "YELLOW", effettiProdRaccolto);
+        }
+
+/*
+        DevelopmentCard [] developmentCards = new DevelopmentCard[10];
         for (int i=0;i<10;i++) {
             ResourceSet requirement = new ResourceSet();
             requirement.variateResource(Resource.MILITARYPOINT, -10);
@@ -157,7 +206,7 @@ public class FileLoader {
             requirements.add(new Requirement(requirement2, cost2));
 
             developmentCards[i] = new DevelopmentCard("Risorse multiple", 1, requirements, new LinkedList<>(), "GREEN", new HashMap<>());
-        }
+        }*/
 /*
         for (int i=0;i<10;i++) {
             Map<String, Integer> take = new HashMap<>();
@@ -175,9 +224,10 @@ public class FileLoader {
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
                 .registerSubtype(EffectOnParchment.class);
-        Gson gson2 = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        RuntimeTypeAdapterFactory typeAdapterFactory3 = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
+        Gson gson2 = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory3).create();
 
-        FileWriter fw = new FileWriter("src/main/resources/model/testCardsMultipleRequirements.txt");
+        FileWriter fw = new FileWriter("src/main/resources/model/testCardsMultipleProduction.txt");
         gson2.toJson(developmentCards, fw);
         fw.close();
 
@@ -187,7 +237,11 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+
+
+        RuntimeTypeAdapterFactory typeAdapterFactory3 = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
+        Gson gson2 = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory3).create();
 
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(cardsRootPath));
         DevelopmentCard [] cards = gson2.fromJson(fr , DevelopmentCard [].class);

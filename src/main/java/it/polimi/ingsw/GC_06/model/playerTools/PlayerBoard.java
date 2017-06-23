@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_06.model.playerTools;
 
-import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
@@ -42,8 +40,15 @@ public class PlayerBoard {
 
     public List<DevelopmentCard> getDevelopmentCards()
     {
-        List list = new ArrayList();
-        list.addAll(cards.values());
+        List<DevelopmentCard> list = new ArrayList();
+        for (String card : cards.keySet()) {
+            for (PlayerBoardSlot playerBoardSlot : cards.get(card)) {
+                if (playerBoardSlot.getDevelopmentCard() != null)
+                {
+                    list.add(playerBoardSlot.getDevelopmentCard());
+                }
+            }
+        }
         return Collections.unmodifiableList(list);
     }
 

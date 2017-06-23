@@ -5,7 +5,6 @@ import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -15,7 +14,7 @@ import java.util.List;
 /**
  * Created by massimo on 01/06/17.
  */
-public class BoardActionOnProdHarv implements Action {
+public class BoardActionOnProdHarv implements Action, Runnable {
 
     private final int index;
     private final Player player;
@@ -55,12 +54,10 @@ public class BoardActionOnProdHarv implements Action {
     @Override
     public void execute() {
 
-        game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
+    //    game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
 
         //BonusMalusHandler.filter(player,actionType,familyMember);
 
-        if (!isAllowed())
-            throw new IllegalStateException();
 
         prodHarvArea.addFamilyMember(familyMember, index);
         List<Effect> effects = prodHarvArea.getEffect(index);
@@ -70,6 +67,7 @@ public class BoardActionOnProdHarv implements Action {
         }
 
         startProdHarv.execute();
+        game.endTurn();
 
     }
 
@@ -82,5 +80,11 @@ public class BoardActionOnProdHarv implements Action {
     @Override
     public boolean isAllowed() {
         return !prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed();
+    }
+
+    @Override
+    public void run() {
+        if (isAllowed())
+            execute();
     }
 }

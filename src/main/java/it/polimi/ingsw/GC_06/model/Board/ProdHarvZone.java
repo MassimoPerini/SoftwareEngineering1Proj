@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
@@ -22,8 +21,6 @@ public class ProdHarvZone extends Observable{
 
 	public void addFamilyMember(FamilyMember familyMember, int index)
 	{
-		if (!isAllowed(familyMember, index))
-			throw new IllegalStateException();
 		actionPlaces.get(index).addFamilyMember(familyMember);
 	}
 

@@ -388,7 +388,6 @@
             {
               "type": "EffectOnParchment",
               "different": true,
-              "lock": {},
               "quantity": 2
             }
           ],
@@ -523,7 +522,6 @@
             {
               "type": "EffectOnParchment",
               "different": false,
-              "lock": {},
               "quantity": 1
             }
           ],

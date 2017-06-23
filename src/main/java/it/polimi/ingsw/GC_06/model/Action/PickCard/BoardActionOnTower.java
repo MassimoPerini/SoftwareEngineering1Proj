@@ -58,6 +58,7 @@ public class BoardActionOnTower implements Action, Runnable {
 
         payCard.execute();
         tower.addFamilyMember(familyMember, index);
+        game.endTurn();
 
     }
 

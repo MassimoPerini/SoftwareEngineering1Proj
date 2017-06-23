@@ -1,11 +1,8 @@
 package it.polimi.ingsw.GC_06;
 
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
-import it.polimi.ingsw.GC_06.model.Resource.Resource;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 
 /**
  * Created by gabri on 20/06/2017.
@@ -15,6 +12,9 @@ public class MainForWriting {
 
     public static void main(String[] args) throws IOException {
         fileLoader = FileLoader.getFileLoader();
+
+        fileLoader.testCard();
+        /*
         fileLoader.writeGreenCard();
         System.out.println("factored green cards");
 
@@ -32,7 +32,7 @@ public class MainForWriting {
         ResourceSet [] parchments = {parchment1, parchment2, parchment3, parchment4, parchment5};
         fileLoader.writeResourceSet(parchments);
         System.out.println("factored parchments");*/
-
+/*
         fileLoader.writeYellowCard();
         System.out.println("factored yellow cards");
 
@@ -43,6 +43,6 @@ public class MainForWriting {
         System.out.println("factored blue cards");
 
         fileLoader.writeBoardWithEffects();
-        System.out.println("factored fucking board");
+        System.out.println("factored fucking board");*/
     }
 }

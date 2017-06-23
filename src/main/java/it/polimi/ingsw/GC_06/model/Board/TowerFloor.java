@@ -48,8 +48,6 @@ public class TowerFloor {
      * @param familyMember
      */
     void addFamilyMember(FamilyMember familyMember) {
-        if (!isAllowed(familyMember))
-            throw new IllegalStateException();
         actionPlace.addFamilyMember(familyMember);
     }
 

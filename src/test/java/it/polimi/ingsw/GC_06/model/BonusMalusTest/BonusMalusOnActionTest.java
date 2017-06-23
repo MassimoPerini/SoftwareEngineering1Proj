@@ -5,8 +5,10 @@ import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 import java.util.LinkedList;
+
+import static org.junit.Assert.assertTrue;
 
 
 
@@ -25,7 +27,7 @@ public class BonusMalusOnActionTest {
         colours.add("WHITE");
 
         familyMember = new FamilyMember("WHITE","peppe");
-        familyMember.imposta(5);
+        familyMember.setValue(5);
         bonusMalusOnAction = new BonusMalusOnAction("",colours, ActionType.PAYCARDACTION,false,5);
 
     }

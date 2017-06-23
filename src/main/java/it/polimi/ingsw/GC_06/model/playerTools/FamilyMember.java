@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.model.playerTools;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageFamilyMember;
-import it.polimi.ingsw.GC_06.model.Dice.DiceColor;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -46,15 +45,6 @@ public class FamilyMember extends Observable implements Observer {
 
     public int getValue() {
         return value;
-    }
-
-    public void variateValue(int variate)
-    {
-        this.value+=variate;
-    }
-
-    public void imposta(int value){
-        this.value = value;
     }
 
     public void setValue(int value) {

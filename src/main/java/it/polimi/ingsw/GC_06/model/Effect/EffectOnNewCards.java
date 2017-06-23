@@ -4,8 +4,8 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessagePickAnotherCard;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.PayCard;
-import it.polimi.ingsw.GC_06.model.Board.TowerFloor;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.HashMap;
@@ -29,10 +29,17 @@ public class EffectOnNewCards implements Effect, Blocking {
     @Override
     public synchronized void execute(Player player,Game game) {
 
+        PowerUp powerUp = new PowerUp();
+        int valuePowerUp = powerUp.execute(game, player);
+
         for (String s : game.getBoard().getTowers().keySet()) {
             int i=0;
-            for (TowerFloor towerFloor : game.getBoard().getTowers().get(s).getTowerFloor()) {
-                if (!towerFloor.isEmpty() && towerFloor.getActionPlace().getPrice() <= towerFloors.get(s))
+            FamilyMember familyMember = new FamilyMember("", "");
+            familyMember.setValue(towerFloors.get(s)+valuePowerUp);
+
+            for (int j=0;j<game.getBoard().getTowers().get(s).getTowerFloor().size();j++)
+            {
+                if (game.getBoard().getTowers().get(s).isAllowed(familyMember, j))
                 {
                     Map<String, Integer> tmpMap = new HashMap<>();
                     tmpMap.put(s, i);
