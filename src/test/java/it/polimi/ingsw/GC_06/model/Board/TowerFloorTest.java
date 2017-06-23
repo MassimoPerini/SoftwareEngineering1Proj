@@ -31,7 +31,7 @@ public class TowerFloorTest {
     }
 
 
-
+/*
     @Test(expected = IllegalStateException.class)
     public void putFamilyMemberTest(){
 
@@ -40,7 +40,7 @@ public class TowerFloorTest {
         assertTrue(actionPlace.getMembers().size() == 1);
 
     }
-
+*/
     @Test
     public void putFamilyMemberTest2(){
         FamilyMember familyMember = new FamilyMember("YELLOW","Peppe");
@@ -48,7 +48,7 @@ public class TowerFloorTest {
         towerFloor.addFamilyMember(familyMember);
         assertTrue(actionPlace.getMembers().size() == 1);
     }
-
+/*
     @Test(expected = IllegalStateException.class)
     public void denyAccessTest(){
         FamilyMember familyMember = new FamilyMember("YELLOW","Peppe");
@@ -60,7 +60,7 @@ public class TowerFloorTest {
 
         assertTrue(2 == actionPlace.getMembers().size() );
     }
-
+*/
     @Test
     public void removeFamilyMemberTest(){
         FamilyMember familyMember = new FamilyMember("YELLOW","Peppe");
