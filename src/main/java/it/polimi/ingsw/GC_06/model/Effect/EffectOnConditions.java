@@ -10,21 +10,33 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 public class EffectOnConditions implements Effect{
 
     private Resource modifiedResource;
-    private int multiplier;
-    private String colour;
+    private double multiplier;
+    private String conditioningObject;
 
-    public EffectOnConditions(Resource modifiedResource, int multiplier, String colour) {
+    public EffectOnConditions(Resource modifiedResource, double multiplier, String conditioningObject) {
         this.modifiedResource = modifiedResource;
         this.multiplier = multiplier;
-        this.colour = colour;
+        this.conditioningObject = conditioningObject;
 
     }
 
     @Override
     public void execute(Player player,Game game) {
-        int size = (player.getPlayerBoard().getDevelopmentCards(colour)).size();
-        int variation = multiplier * size;
-        player.getResourceSet().variateResource(modifiedResource,variation);
+        if (conditioningObject!="MILITARYPOINTS" && conditioningObject!="FAITHPOINTS") {
+            int size = (player.getPlayerBoard().getDevelopmentCards(conditioningObject)).size();
+            int variation = (int)(multiplier * size);
+            player.getResourceSet().variateResource(modifiedResource,variation);
+        }
+        else if (conditioningObject=="MILITARYPOINTS") {
+            int size = (player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT));
+            int variation = (int)(multiplier * size);
+            player.getResourceSet().variateResource(modifiedResource,variation);
+        }
+        else {
+            int size = (player.getResourceSet().getResourceAmount(Resource.FAITHPOINT));
+            int variation = (int)(multiplier * size);
+            player.getResourceSet().variateResource(modifiedResource,variation);
+        }
 
     }
 
