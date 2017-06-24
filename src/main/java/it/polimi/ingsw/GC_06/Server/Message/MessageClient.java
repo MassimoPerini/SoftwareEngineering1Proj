@@ -7,5 +7,5 @@ public interface MessageClient {
     void execute();
     void setGame (int game);
     void setPlayer(String player);
-
+    String getPlayer();
 }

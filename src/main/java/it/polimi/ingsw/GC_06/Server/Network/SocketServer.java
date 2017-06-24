@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,7 +18,6 @@ public class SocketServer extends Server implements Observer {
     private final List<ServerPlayerSocket> socketList;
     @NotNull private final Map<String, ServerPlayerSocket> socketFromId;
     @NotNull private final Map<Integer, List<ServerPlayerSocket>> socketsFromGame;
-    @NotNull private LoginHub loginHub;
 
     public SocketServer() {
         this.socketList = new ArrayList<>();
@@ -30,7 +28,7 @@ public class SocketServer extends Server implements Observer {
     @Override
     void start(){
         ExecutorService executor = Executors.newCachedThreadPool();
-        SocketListener socketListener = new SocketListener(this, loginHub);
+        SocketListener socketListener = new SocketListener(this, LoginHub.getInstance());
         executor.submit(socketListener);
     }
 
@@ -64,10 +62,6 @@ public class SocketServer extends Server implements Observer {
         }
     }
 
-    @Override
-    public void setLoginHub(LoginHub loginHub) {
-        this.loginHub = loginHub;
-    }
 
     @Override
     void stop() throws IOException {

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
+import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
+import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import org.junit.After;
 import org.junit.Before;
@@ -17,7 +19,7 @@ public class PickCardTest {
         game = new Game(1);
         game.addPlayer("massimo");
         game.addPlayer("pinco");
-        game.start();
+        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
     }
 
 

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +56,7 @@ public class GameAndGameStatusTest {
         game.addPlayer("pinco");
         game.addPlayer("pallino");
         game.addPlayer("massimo");
-        game.start();
+        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
         int i=0;
         Player currentPlayer = game.getCurrentPlayer();
 

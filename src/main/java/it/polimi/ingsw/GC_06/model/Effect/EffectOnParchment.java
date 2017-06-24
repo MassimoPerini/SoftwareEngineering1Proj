@@ -9,7 +9,6 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,42 +23,36 @@ public class EffectOnParchment implements Effect, Blocking {
     private boolean different;
     private Integer choosen;
     private int quantity;
+    List<Integer> alreadyChoosed;
 
     public EffectOnParchment(int numbers, boolean different) {
         super();
         this.quantity = numbers;
         this.different = different;
+        alreadyChoosed = new LinkedList<>();
     }
 
     @Override
-    public void execute (Player player,Game game) {
+    public synchronized void execute (Player player,Game game) {
         FileLoader fileLoader = FileLoader.getFileLoader();
         parchments = Arrays.asList(fileLoader.loadParchments());
-        List<Integer> alreadyChoosed = new LinkedList<>();
 
         for (int i=0;i<quantity;i++) {
-            MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
-            game.getGameStatus().sendMessage(messageChooseParchment);
-            GameList.getInstance().setCurrentBlocking(game, this, messageChooseParchment);
-            System.out.println("THREAD ATTIVO!");
-            int choice = choosen;
-            int isAlreadySelected = Collections.binarySearch(alreadyChoosed, choice);
-            if (isAlreadySelected!=-1 && different)
-            {
-                messageChooseParchment = new MessageChooseParchment(parchments, "Presente, devono essere diversi");
-                GameList.getInstance().setCurrentBlocking(game, this, messageChooseParchment);
-                i--;
-                waitAnswer();
+
+            do{
+                MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
+                waitAnswer(game, messageChooseParchment);
             }
-            else {
-                player.variateResource(parchments.get(choice));
-                choosen = null;
-            }
+            while(alreadyChoosed.contains(choosen) && different);
+            player.variateResource(parchments.get(choosen));
+            choosen = null;
+
         }
     }
 
-    private void waitAnswer()
+    private synchronized void waitAnswer(Game game, MessageChooseParchment messageChooseParchment)
     {
+        GameList.getInstance().setCurrentBlocking(game, this, messageChooseParchment);
         while (choosen == null) {
             try {
                 wait();
@@ -71,9 +64,26 @@ public class EffectOnParchment implements Effect, Blocking {
     }
 
     @Override
-    public void setOptionalParams(Object list) {
+    public synchronized void setOptionalParams(Object list) {
             this.choosen = (Integer) list;
             notifyAll();
+    }
+
+    @Override
+    public synchronized void userLoggedOut(String user) {
+        for (int i=0;i<parchments.size();i++)
+        {
+            if (!alreadyChoosed.contains(i))
+            {
+                this.choosen = i;
+                notifyAll();
+                return;
+            }
+        }
+        //Non dovrebbe succedere di avere + di n privilegi del consiglio tutti diversi se n < numero totale privilegi consiglio
+        this.choosen = 0;
+        notifyAll();
+        return;
     }
 
 }

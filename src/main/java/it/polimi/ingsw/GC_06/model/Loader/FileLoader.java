@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Loader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
@@ -21,6 +22,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoardSlot;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.*;
 
 /**
@@ -40,6 +42,7 @@ public class FileLoader {
     private static final String DEFAULT_RES = "default_resource_path";
     private static final String DICES = "dices_path";
     private static final String PLAYER_BOARD = "player_board_path";
+    private static final String CHURCH = "church";
     // private static final String GAME_MAP = "end_game_map";
 
 
@@ -50,6 +53,7 @@ public class FileLoader {
     private String dicePath;
     // private String endGameMap;
     private String playerBoardPath;
+    private String church;
     private Gson gson;
 
 
@@ -63,6 +67,7 @@ public class FileLoader {
         defaultResourceRootPath = Setting.getInstance().getProperty(DEFAULT_RES);
         dicePath = Setting.getInstance().getProperty(DICES);
         playerBoardPath = Setting.getInstance().getProperty(PLAYER_BOARD);
+        church = Setting.getInstance().getProperty(CHURCH);
 //        endGameMap = Setting.getInstance().getProperty(GAME_MAP);
     }
 
@@ -119,6 +124,52 @@ public class FileLoader {
      fw.close();
      }*/
 
+    public void writeChurchRequirement() throws IOException {
+
+
+        FileWriter fw = new FileWriter("src/main/resources/model/churchRequirement.txt");
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        Map<Integer, ResourceSet> requirements = new HashMap<>();
+
+        ResourceSet start = new ResourceSet();
+        start.variateResource(Resource.FAITHPOINT, 3);
+        requirements.put(1, start);
+
+        start = new ResourceSet();
+        start.variateResource(Resource.FAITHPOINT, 4);
+        requirements.put(2, start);
+
+        start = new ResourceSet();
+        start.variateResource(Resource.FAITHPOINT, 5);
+        requirements.put(3, start);
+
+/*
+        JsonElement jsonTree = gson.toJsonTree(requirements, Map.class);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("ChurchRequirement", jsonTree);
+*/
+        gson.toJson(requirements, fw);
+
+        fw.close();
+    }
+
+    public Map<Integer, ResourceSet> loadChurchRequirement()
+    {
+        InputStreamReader sr = new InputStreamReader(this.getClass().getResourceAsStream(church));
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Type mapType = new TypeToken<Map<Integer, ResourceSet>>(){}.getType();
+
+        Map<Integer, ResourceSet> son = gson.fromJson(sr, mapType);
+
+                //new Gson().fromJson(easyString, mapType);
+/*
+        JsonElement jelement = new JsonParser().parse(sr);
+        JsonObject  jobject = jelement.getAsJsonObject();
+        jobject = jobject.getAsJsonObject("ChurchRequirement");
+*/
+        return son;
+    }
 
     public DiceSet loadDiceSet() throws IOException {
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(dicePath));

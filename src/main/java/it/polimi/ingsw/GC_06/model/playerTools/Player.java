@@ -28,6 +28,7 @@ public class Player extends Observable {
     private List<Effect> bonusMalus;
     private final ResourceSet addAtTheEnd;
     private BonusMalusSet bonusMalusSet;
+    private boolean connected;
 
     //TODO sistemare la questione dei malus e bonus sul player
 
@@ -40,6 +41,7 @@ public class Player extends Observable {
         this.playerBoard = FileLoader.getFileLoader().loadPlayerBoard();
         this.familyMembers = familyMembers;
         this.bonusMalusSet = new BonusMalusSet();
+        this.connected = true;
     }
 
     public Player (Player p)
@@ -105,7 +107,11 @@ public class Player extends Observable {
         return result;
     }
 
-    public void addCard(DevelopmentCard developmentCard)
+    public boolean isAllowedVariate(ResourceSet requirement) {
+        return this.resourceSet.isIncluded(requirement);
+    }
+
+        public void addCard(DevelopmentCard developmentCard)
     {
         playerBoard.addCard(developmentCard, resourceSet);
 
@@ -123,4 +129,26 @@ public class Player extends Observable {
         this.addAtTheEnd.variateResource(resourceSet);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+        return PLAYER_ID.equals(player.PLAYER_ID);
+    }
+
+
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public void setConnected(boolean disconnected) {
+        this.connected = disconnected;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

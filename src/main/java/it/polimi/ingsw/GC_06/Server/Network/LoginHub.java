@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
 import it.polimi.ingsw.GC_06.model.State.Game;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.*;
@@ -15,21 +14,26 @@ public class LoginHub {
     private List<String> loggedPlayers = new ArrayList<>();
     private Trash playerTrash = new Trash();
     private int delay  = 1000*15;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
-    private Timer timer = new Timer();
+    private Timer timer = new Timer(true);
     private int id = 0;
 
-    //public static LoginHub instance = new LoginHub();
+    public static LoginHub instance = new LoginHub();
 
-    private final ServerOrchestrator serverOrchestrator;
+    private ServerOrchestrator serverOrchestrator;
 
 
-    public LoginHub(@NotNull ServerOrchestrator serverOrchestrator) {
-        this.serverOrchestrator = serverOrchestrator;
+    private LoginHub() {
+        super();
     }
 
-   /*public static LoginHub getInstance() {
+    public void setServerOrchestrator(ServerOrchestrator serverOrchestrator) {
+        this.serverOrchestrator = serverOrchestrator;
+        GameList.getInstance().setServerOrchestrator(serverOrchestrator);
+    }
+
+    public static LoginHub getInstance() {
         return instance;
-    }*/
+    }
     /**
      * @param username
      *
@@ -55,14 +59,14 @@ public class LoginHub {
      * lista del gioco in cui stava giocando
      * @param username
      */
-    public void ManageLogOut(String username){
+    public void manageLogOut(String username){
 
         totPlayers.remove(username);
         /** qui mi fai ritornare il game id così io lo rimuovo dalla lista sul game */
         int gameID = GameList.getInstance().getGame(username);
         playerTrash.add(username,gameID);
         /** abbiamo rimosso il player dalla partita*/
-        GameList.getInstance().getGameId(gameID).remove(username);
+    //    GameList.getInstance().getGameId(gameID).remove(username);
         GameList.getInstance().remove(gameID,username);
     }
 

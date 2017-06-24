@@ -32,4 +32,9 @@ public class DefaultAnswer implements MessageClient {
     public void setPlayer(String player) {
         this.player = player;
     }
+
+    @Override
+    public String getPlayer() {
+        return player;
+    }
 }

@@ -22,6 +22,12 @@ public class PowerUp implements Blocking {
         notifyAll();
     }
 
+    @Override
+    public synchronized void userLoggedOut(String user) {
+        powerUp = 0;
+        notifyAll();
+    }
+
     public synchronized int execute(Game game, Player player) {
 
         MessageServer messageServer = new MessageChoosePowerUp();

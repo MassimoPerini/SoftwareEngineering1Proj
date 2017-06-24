@@ -25,6 +25,7 @@ public class RoundManager extends Observable {
     private final ResourceSet[] startResources;
     private final List<DevelopmentCard> developmentCards;
     private final Board board;
+    private GameEventManager gameEventManager;
 
     private final int maxEras;
     private final int maxTurns;
@@ -39,7 +40,10 @@ public class RoundManager extends Observable {
         startResources = FileLoader.getFileLoader().loadDefaultResourceSets();
         this.nMaxFamilyMembers = nFamilyMembersMax;
         this.board = board;
+    }
 
+    public void setGameEventManager(GameEventManager gameEventManager) {
+        this.gameEventManager = gameEventManager;
     }
 
     private void reset()
@@ -50,12 +54,36 @@ public class RoundManager extends Observable {
         familyMembersPlaced = 0;
     }
 
+    private int nextPlayer(){
+        int oldPlayer = currentPlayer;
+        int nextPlayer;
+        do {
+             nextPlayer = (oldPlayer + 1) % players.size();
+            if (players.get(nextPlayer).isConnected())
+            {
+                return nextPlayer;
+            }
+            oldPlayer = nextPlayer;
+        }
+        while (currentPlayer != nextPlayer);
+        if (players.get(oldPlayer).isConnected())
+            return oldPlayer;
+        return -1;
+    }
+
     void endTurn()
     {
         if (players.size()==0)
             throw new IllegalStateException();
 
-        int newPlayer = (currentPlayer+1) % players.size();
+        int newPlayer = nextPlayer();
+        if (newPlayer==-1)
+        {
+            endGame();
+            reset();
+            return;
+        }
+
         if (currentPlayer >= newPlayer)      //means that I'm starting again the "cycle"
         {
             int newFamilyMemberPlaced = (++familyMembersPlaced) % nMaxFamilyMembers;
@@ -71,7 +99,7 @@ public class RoundManager extends Observable {
                         reset();
                         return;
                     } else {
-                        newEra();       //A new era started
+                        this.newEra();       //A new era started
                     }
                 }
                 turn = newTurn;
@@ -101,12 +129,14 @@ public class RoundManager extends Observable {
     {
         // resetBonusMalus
         shuffleCards();
+        this.players = gameEventManager.newTurn(turn);
     }
 
     private void newEra()
     {
         disposeCards();
         //Vaticano
+        gameEventManager.newEra(era);
 
 
     }
@@ -114,6 +144,7 @@ public class RoundManager extends Observable {
     private void endGame()
     {
         System.out.println("ENDGAME REACHED!!!");
+        gameEventManager.endGame();
     //    Game.getInstance().getGameStatus().changeState(TransitionType.ROUNDFINISHED);
 
     }
@@ -156,6 +187,10 @@ public class RoundManager extends Observable {
     void addPlayer (Player player)
     {
         this.players.add(player);
+    }
+    void removePlayer(Player player)
+    {
+        this.players.remove(player);
     }
 
     void start()
@@ -204,5 +239,9 @@ public class RoundManager extends Observable {
 
     public int getMaxTurns() {
         return maxTurns;
+    }
+
+    List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 }

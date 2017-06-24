@@ -4,12 +4,12 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.MessageGameStarted;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
+import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -62,15 +62,12 @@ public class ControllerGame implements Observer {
         //---- Notificare l'init
         MessageGameStarted messageGameStarted = new MessageGameStarted(game);
         //In futuro da togliere
-        try {
-            serverOrchestrator.send(id, messageGameStarted);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        serverOrchestrator.send(id, messageGameStarted);
+
         //------- END MESSAGE
 
         /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
-        this.game.start();
+        this.game.start(new DefaultEventManager(serverOrchestrator, game));
     }
 
     public void stop()
@@ -80,10 +77,6 @@ public class ControllerGame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        try {
-            serverOrchestrator.send(id, arg);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        serverOrchestrator.send(id, arg);
     }
 }

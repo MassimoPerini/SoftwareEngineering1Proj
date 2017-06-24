@@ -1,14 +1,15 @@
 package it.polimi.ingsw.GC_06.model.State;
 
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.Board;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by massimo on 27/05/17.
@@ -59,7 +60,8 @@ public class Game {
 
     }
 
-    public void start(){
+    public void start(GameEventManager gameEventManager){
+        roundManager.setGameEventManager(gameEventManager);
         gameStatus.start();
         roundManager.start();
     }
@@ -100,9 +102,6 @@ public class Game {
         return familyMembers;
     }
 
-    public void remove(String username){
-        this.gameStatus.getPlayers().remove(username);
-    }
 
     public int getId() {
         return id;

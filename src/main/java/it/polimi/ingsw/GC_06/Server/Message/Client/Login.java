@@ -26,4 +26,9 @@ public class Login implements MessageClient {
     public void setPlayer(String player) {
 
     }
+
+    @Override
+    public String getPlayer() {
+        return username;
+    }
 }

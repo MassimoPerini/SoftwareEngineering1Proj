@@ -1,29 +1,24 @@
 package it.polimi.ingsw.GC_06.model;
 
 import it.polimi.ingsw.GC_06.Server.Network.LoginHub;
-import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.io.IOException;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by giuseppe on 6/16/17.
  */
 public class LoginHubTest {
 
-    private LoginHub loginHub = new LoginHub(new ServerOrchestrator());
+    private LoginHub loginHub;
 
     @Before
     public void setUp() throws IOException {
-        loginHub.addUser("Peppe");
-        loginHub.addUser("Massi");
-        loginHub.addUser("Gabri");
-        loginHub.addUser("boh");
-        loginHub.addUser("cdsdfv");
+        LoginHub.getInstance().addUser("Peppe");
+        LoginHub.getInstance().addUser("Massi");
+        LoginHub.getInstance().addUser("Gabri");
+        LoginHub.getInstance().addUser("boh");
+        LoginHub.getInstance().addUser("cdsdfv");
         //loginHub.addUser("Peppe");
 
     }

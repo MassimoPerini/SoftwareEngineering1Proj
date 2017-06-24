@@ -1,7 +1,10 @@
 package it.polimi.ingsw.GC_06;
 
 import it.polimi.ingsw.GC_06.Server.Message.ActionController;
-import it.polimi.ingsw.GC_06.Server.Network.*;
+import it.polimi.ingsw.GC_06.Server.Network.LoginHub;
+import it.polimi.ingsw.GC_06.Server.Network.Server;
+import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
+import it.polimi.ingsw.GC_06.Server.Network.SocketServer;
 
 import java.io.IOException;
 
@@ -15,10 +18,8 @@ public class AppServer {
         System.out.println("Server started...");
 
         ServerOrchestrator serverOrchestrator = new ServerOrchestrator();
-        GameList.getInstance().setServerOrchestrator(serverOrchestrator);
-        LoginHub loginHub = new LoginHub(serverOrchestrator);
+        LoginHub.getInstance().setServerOrchestrator(serverOrchestrator);
         Server server = new SocketServer();
-        server.setLoginHub(loginHub);
         serverOrchestrator.addServer(server);
         ActionController actionController = new ActionController();
         serverOrchestrator.addObserver(actionController);

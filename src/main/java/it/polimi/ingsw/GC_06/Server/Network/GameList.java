@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.State.Game;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,15 +42,17 @@ public class GameList {
 
     public void setCurrentBlocking(Game game, Blocking action, MessageServer messageServer)
     {
+        setCurrentBlocking(game, action);
+        serverOrchestrator.send(game.getCurrentPlayer().getPLAYER_ID(), messageServer);
+
+    }
+
+    public void setCurrentBlocking(Game game, Blocking action)
+    {
         if (gameBlocking.get(game)==null)
             gameBlocking.put(game, action);
         else
             gameBlocking.replace(game, action);
-        try {
-            serverOrchestrator.send(game.getCurrentPlayer().getPLAYER_ID(), messageServer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void unlock(Game game, Object object)

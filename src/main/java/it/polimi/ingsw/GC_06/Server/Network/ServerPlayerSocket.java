@@ -19,8 +19,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.net.Socket;
 import java.util.Observable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 12/06/17.
@@ -30,7 +28,6 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     @NotNull private final Socket socket;
     @NotNull private final BufferedReader socketIn;
     @NotNull private final PrintWriter socketOut;
-    @NotNull private final ExecutorService executor;
     @NotNull private final Gson readGson;
     @NotNull private final Gson writeGson;
     @NotNull private final LoginHub loginHub;
@@ -54,7 +51,6 @@ public class ServerPlayerSocket extends Observable implements Runnable {
         this.socket = socket;
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.socketOut = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-        this.executor = Executors.newFixedThreadPool(1);
         this.loginHub = loginHub;
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageClient.class, "type")
@@ -124,18 +120,23 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 }
             }
         }
-        catch(IOException e)
+        catch(Exception e)
         {
-            System.out.println("Ti sei sloggato!");
+            loginHub.manageLogOut(player);
         }
     }
 
-    public void send(MessageServer messageServer) throws IOException {
+    public void send(MessageServer messageServer){
      //   executor.submit (() -> {
-                String res = writeGson.toJson(messageServer, MessageServer.class);
-                System.out.println("SERVER: SENDING "+res);
-                socketOut.println(res);
-                socketOut.flush();
+            String res = writeGson.toJson(messageServer, MessageServer.class);
+            System.out.println("SERVER: SENDING " + res);
+            socketOut.println(res);
+            socketOut.flush();
+            if (socketOut.checkError())
+            {
+                loginHub.manageLogOut(player);
+            }
+
     //    });
     }
 

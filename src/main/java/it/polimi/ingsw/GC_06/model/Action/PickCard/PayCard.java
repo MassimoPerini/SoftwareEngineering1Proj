@@ -139,6 +139,10 @@ public class PayCard implements Action, Blocking {
                 }
             }
         }
+        if (optionalParams!= null && optionalParams==-1)
+        {
+            return false;
+        }
 
         return pickCard.isAllowed();
     }
@@ -147,6 +151,13 @@ public class PayCard implements Action, Blocking {
     @Override
     public synchronized void setOptionalParams(Object list) {
         optionalParams = (Integer) list;
+        notifyAll();
+    }
+
+    //Carta pagabile in più modi
+    @Override
+    public void userLoggedOut(String user) {
+        optionalParams = -1;
         notifyAll();
     }
 }

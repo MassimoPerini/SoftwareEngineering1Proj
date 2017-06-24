@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.StateName;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -33,10 +32,6 @@ public class ControllerUser implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        try {
-            serverOrchestrator.send(game.getCurrentPlayer().getPLAYER_ID(), arg);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        serverOrchestrator.send(game.getCurrentPlayer().getPLAYER_ID(), arg);
     }
 }

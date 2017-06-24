@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
-import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,6 +16,5 @@ public abstract class Server extends Observable {
     abstract boolean isPlayerManaged(@NotNull String player);
     abstract void sendMessageToPlayer(@NotNull String player, @NotNull Object o) throws IOException;
     abstract void sendMessageToGame(int game, @NotNull Object o) throws IOException;
-    public abstract void setLoginHub(LoginHub loginHub);
     abstract void stop() throws IOException;
 }

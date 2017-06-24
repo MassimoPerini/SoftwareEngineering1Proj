@@ -1,16 +1,14 @@
 package it.polimi.ingsw.GC_06.model.State;
 
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
+import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
-import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by massimo on 06/06/17.
@@ -29,7 +27,7 @@ public class RoundManagerTest {
     public void testInitValues()
     {
         game.addPlayer("Massimo");
-        game.start();
+        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
         checkInitValues();
     }
 
@@ -46,7 +44,7 @@ public class RoundManagerTest {
     @Test (expected=IllegalArgumentException.class)
     public void testNoPlayers()
     {
-        game.start();
+        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
         RoundManager roundManager = game.getRoundManager();
 
         testValues(1, roundManager);
@@ -56,7 +54,7 @@ public class RoundManagerTest {
     public void testOnePlayer()
     {
         game.addPlayer("Massimo");
-        game.start();
+        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
         RoundManager roundManager = game.getRoundManager();
         testValues(1, roundManager);
     }
@@ -67,7 +65,7 @@ public class RoundManagerTest {
         game.addPlayer("Massimo");
         game.addPlayer("Perini");
         game.addPlayer("ciao");
-        game.start();
+        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
         RoundManager roundManager = game.getRoundManager();
 
         testValues(3, roundManager);
@@ -104,7 +102,7 @@ public class RoundManagerTest {
         game.addPlayer("Massimo");
         game.addPlayer("Perini");
         game.addPlayer("ciao");
-        game.start();
+        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
         RoundManager roundManager = game.getRoundManager();
 
         assertTrue(roundManager.getCurrentPlayer().getResourceSet().isIncluded(resourceSets[0]));

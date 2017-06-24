@@ -4,20 +4,29 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.State.Game;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Created by massimo on 19/06/17.
+ * Created by massimo on 24/06/17.
  */
-public class MessageThrowDice implements MessageClient {
+public class PlayerChoiceExcommunication implements MessageClient {
 
     private int game;
     private String player;
+    private final boolean activateExcommunication;
 
-
+    public PlayerChoiceExcommunication(boolean activateExcommunication)
+    {
+        this.activateExcommunication = activateExcommunication;
+    }
 
     @Override
     public void execute() {
         Game currGame = GameList.getInstance().getGameId(game);
-        currGame.roll();
+        Map<String, Boolean> choice = new HashMap<>();
+        choice.put(player, activateExcommunication);
+        GameList.getInstance().unlock(currGame, choice);
     }
 
     @Override

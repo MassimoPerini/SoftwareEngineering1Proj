@@ -5,4 +5,5 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
  */
 public interface Blocking {
     void setOptionalParams(Object object);
+    void userLoggedOut(String user);
 }

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by gabri on 06/06/2017.
+ *
  */
 public class EffectOnNewCards implements Effect, Blocking {
     private Map<String, Integer> towerFloors;
@@ -59,6 +59,10 @@ public class EffectOnNewCards implements Effect, Blocking {
             }
         }
 
+        if (inputParams==-1)
+        {
+            return;
+        }
         //inputParams =
         int towerChoose = inputParams;
         Map<String, Integer> answer = toAsk.get(towerChoose);
@@ -76,6 +80,12 @@ public class EffectOnNewCards implements Effect, Blocking {
     @Override
     public synchronized void setOptionalParams(Object o) {
         this.inputParams = (Integer) o;
+        notifyAll();
+    }
+
+    @Override
+    public synchronized void userLoggedOut(String user) {
+        inputParams = -1;
         notifyAll();
     }
 }

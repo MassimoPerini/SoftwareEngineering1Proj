@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
-import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.*;
@@ -12,15 +12,20 @@ import java.util.*;
  */
 public class ServerOrchestrator extends Observable implements Observer {
 
-    @NotNull private final List<Server> servers;
-    @NotNull private final Map<String, Server> serverByString;
-    @NotNull private final Map<Integer, List<Server>> serverByGame;
+    private final List<Server> servers;
+    private final Map<String, Server> serverByString;
+    private final Map<Integer, List<Server>> serverByGame;
+    private final Map<String, Timer> userTimer;
+    private final int timeout;
+    private final static String TIMEOUT_KEY = "timeout";
 
 
     public ServerOrchestrator() {
         this.servers = new ArrayList<>();
         this.serverByString = new HashMap<>();
         this.serverByGame = new HashMap<>();
+        this.userTimer = new HashMap<>();
+        this.timeout = Integer.parseInt(Setting.getInstance().getProperty(TIMEOUT_KEY));
     }
 
     public void addServer(Server server)
@@ -67,21 +72,60 @@ public class ServerOrchestrator extends Observable implements Observer {
         this.serverByGame.put(id, serversContainer);
     }
 
-    public void send(String playerId, Object o) throws IOException {
-        Server server = serverByString.get(playerId);
-        server.sendMessageToPlayer(playerId, o);
-    }
+    //Manda e attendi risposta
+    public void send(String playerId, Object o)  {
+        try {
+            Server server = serverByString.get(playerId);
+            server.sendMessageToPlayer(playerId, o);
 
-    public void send (int game, Object o) throws IOException {
-        List<Server> servers = serverByGame.get(game);
-        for (Server server : servers) {
-            server.sendMessageToGame(game, o);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    try {
+                        LoginHub.getInstance().manageLogOut(playerId);
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            },timeout);
+
+            userTimer.put(playerId, timer);
+
+        }catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
+    public void send (int game, Object o)  {
+        try {
+            List<Server> servers = serverByGame.get(game);
+            for (Server server : servers) {
+                server.sendMessageToGame(game, o);
+            }
+        }
+        catch (IOException e) {
+        e.printStackTrace();
+        }
+    }
+
+    //Stop timer
     @Override
     public void update(Observable o, Object arg) {
         //A server called me;
+
+        MessageClient messageClient = (MessageClient) arg;
+
+        String player = messageClient.getPlayer();
+        Timer timer = userTimer.get(player);
+        if (timer != null)
+        {
+            timer.cancel();
+        }
+
         setChanged();
         // trigger notification
         notifyObservers(arg);

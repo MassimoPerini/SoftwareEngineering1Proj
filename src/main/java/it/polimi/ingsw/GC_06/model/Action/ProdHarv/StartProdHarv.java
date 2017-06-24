@@ -31,6 +31,7 @@ public class StartProdHarv implements Action, Blocking {
     private ActionType actionType;
     private ProdHarvFilterCard prodHarvFilterCard;
     private  Map<String, DevelopmentCard> cardMap = new HashMap<>();
+    private Map<String, List<Integer>> cardToAskUser = new HashMap<>();
 
     /**
      *
@@ -68,7 +69,6 @@ public class StartProdHarv implements Action, Blocking {
      //   game.getGameStatus().changeState(TransitionType.START_PRODHARV);
 
         List<ProdHarvEffect> autoExecute = new LinkedList<>();
-        Map<String, List<Integer>> askUser = new HashMap<>();
 
 
         //Select the cards we need to ask
@@ -94,7 +94,7 @@ public class StartProdHarv implements Action, Blocking {
                         }
                         i++;
                     }
-                    askUser.put(developmentCard.getPath(), userOptions);        //askUser: card to ask -> effect to execute from user (only one)
+                    cardToAskUser.put(developmentCard.getPath(), userOptions);        //askUser: card to ask -> effect to execute from user (only one)
                 } else {             //Otherwise if it is allowed I will execute it
                     List<ProdHarvEffect> effects = developmentCard.getProdHarvEffects(value);
                     for (ProdHarvEffect effect : effects) {
@@ -127,8 +127,8 @@ public class StartProdHarv implements Action, Blocking {
         List<ProdHarvEffect> userProdHarvEffects = new LinkedList<>();
 
 
-        while (askUser.size()>0 && userActivateEffect == null) {
-            MessageChooseProdHarv messageChooseProdHarv = new MessageChooseProdHarv(askUser);
+        while (cardToAskUser.size()>0 && userActivateEffect == null) {
+            MessageChooseProdHarv messageChooseProdHarv = new MessageChooseProdHarv(cardToAskUser);
             GameList.getInstance().setCurrentBlocking(game, this, messageChooseProdHarv);
 
             while (userActivateEffect == null) {
@@ -144,7 +144,11 @@ public class StartProdHarv implements Action, Blocking {
 
             for (String s : userActivateEffect.keySet()) {
                 int userChoice = userActivateEffect.get(s);     //user: for xyz I want the 2 choice. What is the real index?
-                Integer i = askUser.get(s).get(userChoice);       //I get the real effect index
+                if (userChoice==-1)
+                {
+                    continue;
+                }
+                Integer i = cardToAskUser.get(s).get(userChoice);       //I get the real effect index
 
                 DevelopmentCard developmentCard = cardMap.get(s);
                 ProdHarvEffect prodHarvEffect = developmentCard.getProdHarvEffects(value).get(i);   //get the user effect
@@ -200,6 +204,15 @@ public class StartProdHarv implements Action, Blocking {
     @Override
     public synchronized void setOptionalParams(Object object) {
         this.userActivateEffect = (Map<String, Integer>) object;
+        notifyAll();
+    }
+
+    @Override
+    public synchronized void userLoggedOut(String user) {
+        this.userActivateEffect = new HashMap<>();
+        for (String card : cardToAskUser.keySet()) {
+            this.userActivateEffect.put(card, -1);
+        }
         notifyAll();
     }
 }
