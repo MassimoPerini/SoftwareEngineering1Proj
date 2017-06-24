@@ -68,7 +68,9 @@ public class PayCard implements Action, Blocking {
 
         //Execute actionspace effects
         List<Effect> effects = tower.getTowerFloor().get(floor).getActionPlace().getEffects();
+        // cancello questa lista
         ExecuteEffects executeEffects = new ExecuteEffects(effects, player,game);
+
         executeEffects.execute();
 
         //executing card requirements
