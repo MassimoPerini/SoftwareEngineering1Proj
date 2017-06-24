@@ -1,0 +1,17 @@
+{
+  "2": {
+    "resources": {
+      "FAITHPOINT": -3
+    }
+  },
+  "3": {
+    "resources": {
+      "FAITHPOINT": -4
+    }
+  },
+  "4": {
+    "resources": {
+      "FAITHPOINT": -5
+    }
+  }
+}
