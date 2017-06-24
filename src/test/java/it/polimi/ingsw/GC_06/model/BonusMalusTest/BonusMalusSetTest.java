@@ -116,7 +116,8 @@ public class BonusMalusSetTest {
         bonusMalusSet.removeBonusMalusResources(bonusMalusSet.getBonusMalusOnResources().get(BonusMalusType.BONUSMALUSONRESOURCE),1);
 
         assertTrue(i == 0);
-        assertTrue(1 == bonusMalusSet.getBonusMalusOnCost().get(BonusMalusType.BONUSMALUSONCOST).size());
+        assertTrue(1
+                == bonusMalusSet.getBonusMalusOnCost().get(BonusMalusType.BONUSMALUSONCOST).size());
         assertTrue(3 == bonusMalusSet.getBonusMalusOnAction().get(BonusMalusType.BONUSMALUSONACTION).size());
         assertTrue(1 == bonusMalusSet.getBonusMalusOnEnd().get(BonusMalusType.BONUSMALUSONEND).size());
         assertTrue(1 == bonusMalusSet.getBonusMalusOnResources().get(BonusMalusType.BONUSMALUSONRESOURCE).size());
