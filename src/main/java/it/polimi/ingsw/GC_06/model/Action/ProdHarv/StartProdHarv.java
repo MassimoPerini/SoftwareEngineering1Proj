@@ -71,7 +71,7 @@ public class StartProdHarv implements Action, Blocking {
         List<ProdHarvEffect> autoExecute = new LinkedList<>();
 
 
-        //Select the cards we need to ask
+
 
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {

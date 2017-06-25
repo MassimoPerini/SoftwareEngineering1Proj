@@ -10,6 +10,9 @@ import java.util.List;
 /**
  * Created by giuseppe on 6/22/17.
  */
+
+/** queste sono le ultime 4 carte della colonna III delle scomuniche */
+
 public class BonusMalusOnEnd {
 
     private Resource resourceTarget;
@@ -17,11 +20,11 @@ public class BonusMalusOnEnd {
      * questa è la risorsa da diminuire
      */
     private List<Resource> activeResourceList;
-    private Action actionType;
+    private ActionType actionType;
     private int coefficient;
     private boolean permanent;
 
-    public BonusMalusOnEnd(Resource resourceTarget, List<Resource> activeResourceList, Action actionType,int coefficient,boolean permanent) {
+    public BonusMalusOnEnd(Resource resourceTarget, List<Resource> activeResourceList, ActionType actionType,int coefficient,boolean permanent) {
         this.resourceTarget = resourceTarget;
         this.activeResourceList= activeResourceList;
         this.actionType = actionType;

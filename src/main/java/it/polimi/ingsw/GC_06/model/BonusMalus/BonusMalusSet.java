@@ -37,9 +37,10 @@ public class BonusMalusSet {
     public void joinSet(BonusMalusSet bonusMalusSet){
         this.addActionBonusMalus(bonusMalusSet.bonusMalusOnAction.get(BONUSMALUSONACTION));
         this.addResourceBonusMalus(bonusMalusSet.bonusMalusOnResources.get(BONUSMALUSONRESOURCE));
-        this.addEndBonusMalus(bonusMalusSet.bonusMalusOnSetting.get(BONUSMALUSONSETTING));
+        this.addEndBonusMalus(bonusMalusSet.bonusMalusOnEnd.get(BONUSMALUSONEND));
         this.addAccessBonusMalus(bonusMalusSet.bonusMalusOnAccess.get(BONUSMALUSONACCESS));
         this.addCostBonusMalus(bonusMalusSet.bonusMalusOnCost.get(BONUSMALUSONCOST));
+        this.addBonusMalusOnSettings(bonusMalusSet.bonusMalusOnSetting.get(BONUSMALUSONSETTING));
 
     }
 
@@ -59,10 +60,18 @@ public class BonusMalusSet {
 
     }
 
-    public void addEndBonusMalus(List<BonusMalusOnSettings>  bonusMalusOnEnd){
+    public void addEndBonusMalus(List<BonusMalusOnEnd>  bonusMalusOnEnd){
         if(bonusMalusOnEnd.size()!= 0) {
-            for (BonusMalusType bonusMalusKey : this.bonusMalusOnSetting.keySet()) {
-                this.bonusMalusOnSetting.get(bonusMalusKey).addAll(bonusMalusOnEnd);
+            for (BonusMalusType bonusMalusKey : this.bonusMalusOnEnd.keySet()) {
+                this.bonusMalusOnEnd.get(bonusMalusKey).addAll(bonusMalusOnEnd);
+            }
+        }
+    }
+
+    public void addBonusMalusOnSettings(List<BonusMalusOnSettings> bonusMalusOnSettings){
+        if(bonusMalusOnSettings.size() != 0){
+            for(BonusMalusType bonusMalusOnSettings1 :this.bonusMalusOnSetting.keySet()){
+                this.bonusMalusOnSetting.get(bonusMalusOnSettings1).addAll(bonusMalusOnSettings);
             }
         }
     }

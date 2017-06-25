@@ -151,4 +151,8 @@ public class Player extends Observable {
     public int hashCode() {
         return 0;
     }
+
+    public void setBonusMalusSet(BonusMalusSet bonusMalusSet) {
+        this.bonusMalusSet = bonusMalusSet;
+    }
 }
