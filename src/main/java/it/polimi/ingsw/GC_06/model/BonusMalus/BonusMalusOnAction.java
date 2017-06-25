@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.model.BonusMalus;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
 import java.util.LinkedList;
-
+import java.util.List;
 
 
 /**
@@ -13,13 +13,13 @@ public class BonusMalusOnAction {
 
     /** serve se viene fatta una azione torre*/
     private String colourTarget;
-    private LinkedList<String> familyMemberColours; /** i colori dei familiari su cui questo bonus impatta */
+    private List<String> familyMemberColours; /** i colori dei familiari su cui questo bonus impatta */
     /** actionType serve ad identificare l'azione sulla quale il bonus o il malus agirà*/
     private ActionType actionType;
     private boolean permanent;
     private int value;
 
-    public BonusMalusOnAction(String colourTarget, LinkedList<String> familyMemberColours, ActionType actionType, boolean permanent,int value) {
+    public BonusMalusOnAction(String colourTarget, List<String> familyMemberColours, ActionType actionType, boolean permanent,int value) {
         this.colourTarget = colourTarget;
         this.familyMemberColours = familyMemberColours;
         this.actionType = actionType;
@@ -50,7 +50,9 @@ public class BonusMalusOnAction {
     }
 
     private boolean checkFamilyMember(FamilyMember familyMember){
-
+        if(familyMember.getDiceColor() == null){
+            return true;
+        }
         return this.familyMemberColours.contains(familyMember.getDiceColor());
 
     }

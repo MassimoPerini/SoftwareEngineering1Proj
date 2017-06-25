@@ -6,11 +6,13 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvMalusEffect;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.HashMap;
@@ -24,7 +26,7 @@ import java.util.Map;
 public class StartProdHarv implements Action, Blocking {
 
     private final AskUserCard askUser;
-    private final int value;
+    private int value;
     private final Player player;
     private final Game game;
     private Map<String, Integer> userActivateEffect;
@@ -32,6 +34,7 @@ public class StartProdHarv implements Action, Blocking {
     private ProdHarvFilterCard prodHarvFilterCard;
     private  Map<String, DevelopmentCard> cardMap = new HashMap<>();
     private Map<String, List<Integer>> cardToAskUser = new HashMap<>();
+    private String familyMemberColour;
 
     /**
      *
@@ -71,7 +74,12 @@ public class StartProdHarv implements Action, Blocking {
         List<ProdHarvEffect> autoExecute = new LinkedList<>();
 
 
+        FamilyMember fakeFamilyMember = new FamilyMember(familyMemberColour,"");
+        fakeFamilyMember.setValue(value);
 
+        BonusMalusHandler.filter(player,actionType,fakeFamilyMember);
+
+        value = fakeFamilyMember.getValue();
 
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {
@@ -214,5 +222,13 @@ public class StartProdHarv implements Action, Blocking {
             this.userActivateEffect.put(card, -1);
         }
         notifyAll();
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setFamilyMember(String familyMemberColour) {
+        this.familyMemberColour = familyMemberColour;
     }
 }

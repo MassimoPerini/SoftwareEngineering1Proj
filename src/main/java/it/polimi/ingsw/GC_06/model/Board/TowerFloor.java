@@ -34,7 +34,7 @@ public class TowerFloor {
     public DevelopmentCard getCard() {
         return card;
     }
-    void setCard(DevelopmentCard c)
+    public void setCard(DevelopmentCard c)
     {
         this.card = c;
     }
@@ -81,5 +81,7 @@ public class TowerFloor {
     {
         return card==null;
     }
+
+
 
 }

@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -74,10 +75,14 @@ public class BoardActionOnTower implements Action, Runnable {
     @Override
     public void run() {
         System.out.println("ACTION STARTED");
+        int originalValue = familyMember.getValue();
+        BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
         if (this.isAllowed()) {
             this.execute();
+            // devo rimuovere il bonus o il malus che ho utilizzato
         }
         else{
+            familyMember.setValue(originalValue);
             System.out.println("ERRORE, NON POSSO ESEGUIRE L'AZIONE");
         }
     }

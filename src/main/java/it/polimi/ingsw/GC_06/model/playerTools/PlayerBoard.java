@@ -33,7 +33,9 @@ public class PlayerBoard {
     {
         LinkedList <DevelopmentCard> list = new LinkedList();
         for (PlayerBoardSlot playerBoardSlot : cards.get(color)) {
+            if(playerBoardSlot.getDevelopmentCard() != null){
             list.add(playerBoardSlot.getDevelopmentCard());
+            }
         }
         return Collections.unmodifiableList(list);
     }
