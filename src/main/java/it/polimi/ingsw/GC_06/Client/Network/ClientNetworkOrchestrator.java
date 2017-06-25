@@ -56,7 +56,7 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
         executor.submit(client);
     }
 
-    public void send(MessageClient messageClient)
+    public synchronized void send(MessageClient messageClient)
     {
         client.submit(messageClient);
     }
@@ -67,7 +67,7 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public synchronized void update(Observable o, Object arg) {
         System.out.println("ClientNetworkOrch. Notified from input");
         setChanged();
         notifyObservers(arg);

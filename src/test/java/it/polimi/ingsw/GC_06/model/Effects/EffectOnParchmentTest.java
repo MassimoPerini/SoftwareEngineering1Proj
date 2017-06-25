@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_06.model.Effect.EffectOnParchment;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +50,6 @@ public class EffectOnParchmentTest {
 
     @Test
     public void correctTransition() {
-        game.getGameStatus().changeState(TransitionType.ACTION_ON_MARKETCOUNSIL);
      //   effectOnParchment.execute(player, game);
      //   assertTrue(game.getGameStatus().getCurrentStatus().getID()==StateName.CHOOSING_PARCHMENT);
     }

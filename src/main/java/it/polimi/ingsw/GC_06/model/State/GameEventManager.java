@@ -12,5 +12,6 @@ public interface GameEventManager {
     List<Player> newTurn(int turn);
     void newEra (int era);
     void endGame();
+    void start();
 
 }

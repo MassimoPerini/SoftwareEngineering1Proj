@@ -3,11 +3,7 @@ package it.polimi.ingsw.GC_06.Server.Network;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
+import it.polimi.ingsw.GC_06.Server.Message.Client.*;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.ProdHarvAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
@@ -60,23 +56,24 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(DefaultAnswer.class)
                 .registerSubtype(MessageEndTurn.class)
                 .registerSubtype(ProdHarvAnswer.class)
-
+                .registerSubtype(PlayerChoiceExcommunication.class)
                 ;
         readGson=new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory2).create();
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
                 .registerSubtype(MessageAddMemberOnTower.class)
                 .registerSubtype(MessageClearBoard.class)
-                .registerSubtype(MessageNewCards.class)
-                .registerSubtype(MessageUpdateView.class)
+                .registerSubtype(MessageNewCardOnTower.class)
+                .registerSubtype(MessageUpdateState.class)
                 .registerSubtype(MessageChoosePowerUp.class)
                 .registerSubtype(MessageAddCard.class)
-                .registerSubtype(MessageRemoveCard.class)
+                .registerSubtype(MessageRemoveCardOnTower.class)
                 .registerSubtype(MessageChangePlayer.class)
                 .registerSubtype(MessageGameStarted.class)
+                .registerSubtype(MessageError.class)
                 .registerSubtype(MessagePickAnotherCard.class)
                 .registerSubtype(MessageChooseProdHarv.class)
                 .registerSubtype(MessageChoosePayment.class)
-                .registerSubtype(MessageFamilyMember.class)
+                .registerSubtype(UpdateValueFamilyMember.class)
                 .registerSubtype(MessageLoggedIn.class)
                 .registerSubtype(MessageChooseParchment.class)
                 .registerSubtype(MessageUpdateResource.class);
@@ -96,7 +93,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 if(input != null) {
                     System.out.println("SERVER: RECEIVED "+input);
                         if(!loginHub.access(input)){
-                            this.send(new MessageUpdateView(ClientStateName.LOGIN, "Error, please login again"));
+                            this.send(new MessageError("Error, please login again"));
                         }
                         else {
                             player = input;
@@ -109,14 +106,16 @@ public class ServerPlayerSocket extends Observable implements Runnable {
             System.out.println("ServerPlayerSocket: LOGGED: "+player+"\nNow listening commands...");
             while (true)
             {
-                while ((input = socketIn.readLine()) != null)
-                {
-                    System.out.println("SERVER: from "+player+" :" +input);
-                    MessageClient messageClient = readGson.fromJson(input, MessageClient.class);
-                    messageClient.setGame(game);
-                    messageClient.setPlayer(player);
-                    setChanged();
-                    notifyObservers(messageClient);
+                System.out.println("SOCKET di "+player);
+                if(socketIn.ready()) {
+                    if ((input = socketIn.readLine()) != null) {
+                        System.out.println("SERVER: from " + player + " :" + input);
+                        MessageClient messageClient = readGson.fromJson(input, MessageClient.class);
+                        messageClient.setGame(game);
+                        messageClient.setPlayer(player);
+                        setChanged();
+                        notifyObservers(messageClient);
+                    }
                 }
             }
         }
@@ -129,7 +128,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     public void send(MessageServer messageServer){
      //   executor.submit (() -> {
             String res = writeGson.toJson(messageServer, MessageServer.class);
-            System.out.println("SERVER: SENDING " + res);
+            System.out.println("SERVER: SENDING " + res+" TO "+player+" SOCKET");
             socketOut.println(res);
             socketOut.flush();
             if (socketOut.checkError())

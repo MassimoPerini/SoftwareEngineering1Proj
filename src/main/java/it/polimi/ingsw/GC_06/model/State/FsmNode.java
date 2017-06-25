@@ -10,7 +10,6 @@ public abstract class FsmNode extends Observable {
     public abstract FsmNode consume(TransitionType type);
     public abstract void addTransition (TransitionType type, FsmNode nextState);
     public abstract void sendNotify();
-    public abstract void sendNotify(Object o);
     public abstract StateName getID();
  //   void setPrevNode (FsmNode node);
 

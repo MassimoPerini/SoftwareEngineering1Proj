@@ -13,7 +13,7 @@ public class Setting {
     //check http://stackoverflow.com/questions/17977539/static-resourcebundle
 
     private final static String PATH = "settings/bundle";
-    private static Setting instance;
+    private static volatile Setting instance;
     private ResourceBundle rb;
 
     private Setting()

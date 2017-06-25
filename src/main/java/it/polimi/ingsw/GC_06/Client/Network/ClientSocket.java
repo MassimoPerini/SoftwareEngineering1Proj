@@ -3,10 +3,7 @@ package it.polimi.ingsw.GC_06.Client.Network;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
+import it.polimi.ingsw.GC_06.Server.Message.Client.*;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.ProdHarvAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
@@ -43,16 +40,16 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageAddCard.class)
                 .registerSubtype(MessageAddMemberOnTower.class)
                 .registerSubtype(MessageClearBoard.class)
-                .registerSubtype(MessageNewCards.class)
-                .registerSubtype(MessageUpdateView.class)
+                .registerSubtype(MessageNewCardOnTower.class)
+                .registerSubtype(MessageUpdateState.class)
                 .registerSubtype(MessageChoosePowerUp.class)
-                .registerSubtype(MessageRemoveCard.class)
+                .registerSubtype(MessageRemoveCardOnTower.class)
                 .registerSubtype(MessageChangePlayer.class)
                 .registerSubtype(MessageGameStarted.class)
                 .registerSubtype(MessagePickAnotherCard.class)
                 .registerSubtype(MessageChooseProdHarv.class)
                 .registerSubtype(MessageChoosePayment.class)
-                .registerSubtype(MessageFamilyMember.class)
+                .registerSubtype(UpdateValueFamilyMember.class)
                 .registerSubtype(MessageLoggedIn.class)
                 .registerSubtype(MessageChooseParchment.class)
                 .registerSubtype(MessageUpdateResource.class)
@@ -66,6 +63,7 @@ public class ClientSocket extends Client {
                 .registerSubtype(DefaultAnswer.class)
                 .registerSubtype(MessageEndTurn.class)
                 .registerSubtype(ProdHarvAnswer.class)
+                .registerSubtype(PlayerChoiceExcommunication.class)
                 ;
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();
     }
@@ -95,8 +93,8 @@ public class ClientSocket extends Client {
     }
 
     @Override
-    public void submit(MessageClient action) {
-        pool.submit(() -> {
+    public synchronized void submit(MessageClient action) {
+    //    pool.submit(() -> {
             //Serializzazione e invio
             try {
                 String serialized = writeGson.toJson(action, MessageClient.class);
@@ -109,7 +107,7 @@ public class ClientSocket extends Client {
             {
                 e.printStackTrace();
             }
-        });
+    //    });
     }
 
     @Override

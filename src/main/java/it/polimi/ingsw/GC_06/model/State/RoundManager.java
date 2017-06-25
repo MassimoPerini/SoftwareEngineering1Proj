@@ -195,6 +195,11 @@ public class RoundManager extends Observable {
 
     void start()
     {
+        //TUTTO DENTRO EVENTMANAGER
+        if (players.size()==0)
+        {
+            throw new IllegalArgumentException();
+        }
         Collections.shuffle(this.players);
         int i = 0;
 
@@ -204,8 +209,10 @@ public class RoundManager extends Observable {
             i++;
         }
         reset();
-        newEra();
-        newTurn();
+        disposeCards();
+        shuffleCards();
+
+        gameEventManager.start();
 
         MessageChangePlayer messageChangePlayer = new MessageChangePlayer(this.getCurrentPlayer().getPLAYER_ID(), era, turn);
         setChanged();

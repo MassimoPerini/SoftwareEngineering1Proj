@@ -42,11 +42,13 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
 
     @Override
     public void execute() {
-        if(isAllowed()) {
-            marketAndCouncil.addFamilyMember(familyMember, index);
-            executeEffects.execute();
-            game.getGameStatus().changeState(TransitionType.ACTION_ON_MARKETCOUNSIL);
-        }
+
+        game.getGameStatus().changeState(TransitionType.ACTION_ON_MARKETCOUNSIL);
+
+        marketAndCouncil.addFamilyMember(familyMember, index);
+        executeEffects.execute();
+
+        game.getGameStatus().changeState(TransitionType.END_ACTION);
     }
 
     public void setGame(Game game) {
@@ -55,9 +57,8 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
 
     @Override
     public boolean isAllowed() {
-        boolean result =  marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed();
+        return  marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_MARKETCOUNSIL);
         //BonusMalusHandler.filter(player,ACTION_TYPE,result);
-        return result;
     }
 
     @Override

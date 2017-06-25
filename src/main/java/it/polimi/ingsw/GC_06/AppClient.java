@@ -2,9 +2,6 @@ package it.polimi.ingsw.GC_06;
 
 
 import com.airhacks.afterburner.injection.Injector;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.ClientInputController;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
@@ -12,10 +9,7 @@ import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorFx;
-import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import it.polimi.ingsw.GC_06.Server.Message.Server.*;
-import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
+import it.polimi.ingsw.GC_06.Client.ViewController.ViewPopupCLI;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -47,6 +41,11 @@ public class AppClient {
             ViewOrchestratorCLI viewOrchestratorCLI = new ViewOrchestratorCLI(clientInputController.getClientNetworkOrchestrator(), clientController.getMainClientModel());
             clientController.setViewOrchestrator(viewOrchestratorCLI);
             clientController.getMainClientModel().addObserver(viewOrchestratorCLI);
+
+            ViewPopupCLI viewPopupCLI = new ViewPopupCLI(clientController.getMainClientModel(), clientNetworkOrchestrator, viewOrchestratorCLI);
+            clientController.getMainClientModel().getPlayerBonusActions().addObserver(viewPopupCLI);
+
+            clientController.getViewOrchestrator().execute(args);
         }
         else{
             ViewOrchestratorFx viewOrchestratorFx = new ViewOrchestratorFx();
@@ -59,8 +58,9 @@ public class AppClient {
 
             Injector.setConfigurationSource(customProperties::get);
             clientController.setViewOrchestrator(viewOrchestratorFx);
+            clientController.getViewOrchestrator().execute(args);
+
         }
-        clientController.getViewOrchestrator().execute(args);
     }
 
 }

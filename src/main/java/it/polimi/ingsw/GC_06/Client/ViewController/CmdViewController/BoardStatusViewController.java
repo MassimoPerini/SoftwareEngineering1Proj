@@ -50,15 +50,25 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
     @Override
     public void run() {
         System.out.println("CLIENTBOARDGAME INVOKED");
-        while(true) {
-            showStatus();
+        try {
+            while (!Thread.currentThread().isInterrupted()) {
+                showStatus();
+                Thread.sleep(200);
+            }
+        }
+        catch (InterruptedException e)
+        {
+            System.out.println("ELIMINANDO VIEW ATTESA");
+            return;
         }
     }
 
-    void showStatus()
-    {
+    void showStatus() throws InterruptedException {
         commandView.addLocalizedText("Sei in sola lettura. Inserire b per vedere la board, p per vedere le board dei players");
         String answ = commandView.getString();
+        if(answ==null){
+            return;
+        }
 
         if (answ.equals("b")) {
             for (String s : clientBoardGame.getTowersClient().keySet()) {

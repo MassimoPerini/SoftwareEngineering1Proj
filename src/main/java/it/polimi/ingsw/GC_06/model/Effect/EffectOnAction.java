@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by giuseppe on 5/22/17.
+ * @deprecated
  */
 public class EffectOnAction implements Effect {
 
@@ -23,6 +24,6 @@ public class EffectOnAction implements Effect {
     @Override
     public void execute(Player player,Game game) {
 
-        game.getGameStatus().changeState(action, object);
+    //    game.getGameStatus().changeState(action, object);
     }
 }

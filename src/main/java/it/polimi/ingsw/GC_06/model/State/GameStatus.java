@@ -1,13 +1,11 @@
 package it.polimi.ingsw.GC_06.model.State;
 
-import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Observable;
 
 /**
  * Created by giuseppe on 5/19/17.
@@ -17,7 +15,7 @@ import java.util.Observable;
  * This class is the main status of the game.
  * Contains the current status, the turn of the game and the players order.
  */
-public class GameStatus extends Observable {
+public class GameStatus{
 
     private FsmNode currentStatus;
     private final Map<String, Player> players;
@@ -62,6 +60,7 @@ public class GameStatus extends Observable {
     void start() {
         if (players.size() < minPlayers)
             throw new IllegalArgumentException();
+        currentStatus.sendNotify();
     }
 
     /**
@@ -71,20 +70,6 @@ public class GameStatus extends Observable {
      * @param o
      */
 
-    public void sendMessage(MessageServer serverMessage)
-    {
-        setChanged();
-        notifyObservers(serverMessage);
-    }
-
-    public void changeState(TransitionType type, Object o)
-    {
-        if (!currentStatus.canConsume(type)){
-            throw new IllegalStateException();
-        }
-        this.currentStatus = currentStatus.consume(type);
-        currentStatus.sendNotify(o);
-    }
 
     public void changeState(TransitionType type)
     {
@@ -94,6 +79,7 @@ public class GameStatus extends Observable {
         this.currentStatus = currentStatus.consume(type);
         currentStatus.sendNotify();
     }
+
 
     public Map<String, Player> getPlayers() {
         return players;

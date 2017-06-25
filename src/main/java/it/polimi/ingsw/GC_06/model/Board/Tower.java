@@ -2,8 +2,8 @@ package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnTower;
-import it.polimi.ingsw.GC_06.Server.Message.Server.MessageNewCards;
-import it.polimi.ingsw.GC_06.Server.Message.Server.MessageRemoveCard;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageNewCardOnTower;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageRemoveCardOnTower;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -119,7 +119,7 @@ public class Tower extends Observable{
             cards.remove(0);
         }
 
-        MessageServer messageServer = new MessageNewCards(addedCards, this.color);
+        MessageServer messageServer = new MessageNewCardOnTower(addedCards, this.color);
         setChanged();
         notifyObservers(messageServer);
     }
@@ -128,7 +128,7 @@ public class Tower extends Observable{
     public DevelopmentCard pickCard(int indexFloor)
     {
         DevelopmentCard res = towerFloors.get(indexFloor).pickCard();
-        MessageServer message = new MessageRemoveCard(this.color, indexFloor);
+        MessageServer message = new MessageRemoveCardOnTower(this.color, indexFloor);
         setChanged();
         notifyObservers(message);
         return res;

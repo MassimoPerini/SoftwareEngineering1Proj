@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
 import it.polimi.ingsw.GC_06.model.Board.Board;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
@@ -45,9 +47,10 @@ public class Game {
         //load from file
         this.statuses = new HashMap<>();
         this.generateStatuses();
-        gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
         roundManager = new RoundManager(board, neutralFamilyMembers+diceSet.getDices().length);
         this.id = id;
+        //THE LAST
+        gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
     }
 
     public void addPlayer (String p) throws IllegalStateException, IllegalArgumentException
@@ -62,8 +65,8 @@ public class Game {
 
     public void start(GameEventManager gameEventManager){
         roundManager.setGameEventManager(gameEventManager);
-        gameStatus.start();
         roundManager.start();
+        gameStatus.start();
     }
 
     public int getPlayerNumber(){
@@ -73,6 +76,7 @@ public class Game {
     public void endTurn()
     {
         roundManager.endTurn();
+        getGameStatus().changeState(TransitionType.NEXT_PLAYER);
     }
 
 
@@ -119,52 +123,34 @@ public class Game {
 
     private FsmNode generateStatuses()
     {
-        //Loaded from file?
-
         //Init states and state transition table for each state
-        State idle  = new State(StateName.IDLE);
-        State memberOnTower = new State(StateName.MEMBER_ON_TOWER);
-        State choosingPayment = new State(StateName.CHOOSING_PAYMENT);
-        State cardReady = new State(StateName.CARD_READY);
-        State cardToUser = new State(StateName.CARD_TO_USER);
-        State choosingCard = new State(StateName.CHOOSING_CARD);
-        State memberOnProdHarv = new State(StateName.MEMBER_ON_PROFHARV);
-        State choosingProdHarvCards = new State(StateName.CHOOSING_PRODHARV_CARDS);
-        State memberOnMarketCounsil = new State(StateName.MEMBER_ON_MARKETCOUNSIL);
-        State choosingParchment = new State(StateName.CHOOSING_PARCHMENT);
+        State idle  = new State(StateName.IDLE, new MessageUpdateState(ClientStateName.MY_TURN));
+        State pickedCard = new State(StateName.PICKED_CARD);
+        State productionHarvest = new State(StateName.PRODUCED_HARVESTED);
+        State marketCouncil = new State(StateName.MARKET_COUNCIL);
         State choosingSupportVatican = new State(StateName.CHOOSING_SUPPORT_VATICAN);
-        State turnActionCompleted = new State(StateName.TURN_ACTION_COMPLETED);
+        State turnActionCompleted = new State(StateName.TURN_ACTION_COMPLETED, new MessageUpdateState(ClientStateName.ACTION_FINISHED));
 
-        idle.addTransition(TransitionType.EXECUTE_EFFECT, idle);
-        idle.addTransition(TransitionType.ACTION_ON_TOWER, memberOnTower);
-        idle.addTransition(TransitionType.ACTION_ON_PRODHARV, memberOnProdHarv);
-        idle.addTransition(TransitionType.ACTION_ON_MARKETCOUNSIL, turnActionCompleted);
-        idle.addTransition(TransitionType.SIDE_WITH_VATICAN, choosingSupportVatican);
-        memberOnTower.addTransition(TransitionType.ASK_PAYMENT, choosingPayment);
-        memberOnTower.addTransition(TransitionType.PAY_CARD, cardReady);
-        choosingPayment.addTransition(TransitionType.PAY_CARD, cardReady);
-        cardReady.addTransition(TransitionType.PICK_CARD, cardToUser);
-        cardToUser.addTransition(TransitionType.EXECUTE_EFFECT, turnActionCompleted);
-        choosingCard.addTransition(TransitionType.EXECUTE_EFFECT, turnActionCompleted);
-        memberOnProdHarv.addTransition(TransitionType.START_PRODHARV, choosingProdHarvCards);
-        memberOnProdHarv.addTransition(TransitionType.PRODHARV, turnActionCompleted);
-        choosingProdHarvCards.addTransition(TransitionType.PRODHARV, turnActionCompleted);
-        choosingSupportVatican.addTransition(TransitionType.PAY_VATICAN, turnActionCompleted);
-        choosingSupportVatican.addTransition(TransitionType.GET_EXCOMUNICATION, turnActionCompleted);
-        turnActionCompleted.addTransition(TransitionType.ENDTURN, idle);
+        idle.addTransition(TransitionType.ACTION_ON_TOWER, pickedCard);
+        idle.addTransition(TransitionType.ACTION_ON_PRODHARV, productionHarvest);
+        idle.addTransition(TransitionType.ACTION_ON_MARKETCOUNSIL, marketCouncil);
 
-        statuses.put(idle.getID(), idle);
-        statuses.put(memberOnTower.getID(), memberOnTower);
-        statuses.put(choosingPayment.getID(), choosingPayment);
-        statuses.put(cardReady.getID(), cardReady);
-        statuses.put(cardToUser.getID(), cardToUser);
-        statuses.put(choosingCard.getID(), choosingCard);
-        statuses.put(memberOnProdHarv.getID(), memberOnProdHarv);
-        statuses.put(choosingProdHarvCards.getID(), choosingProdHarvCards);
-        statuses.put(memberOnMarketCounsil.getID(), memberOnMarketCounsil);
-        statuses.put(choosingParchment.getID(), choosingParchment);
-        statuses.put(choosingSupportVatican.getID(), choosingSupportVatican);
-        statuses.put(turnActionCompleted.getID(), turnActionCompleted);
+        pickedCard.addTransition(TransitionType.END_ACTION, turnActionCompleted);
+        productionHarvest.addTransition(TransitionType.END_ACTION, turnActionCompleted);
+        marketCouncil.addTransition(TransitionType.END_ACTION, turnActionCompleted);
+
+        turnActionCompleted.addTransition(TransitionType.START_VATICAN, choosingSupportVatican);
+        turnActionCompleted.addTransition(TransitionType.NEXT_PLAYER, idle);
+        idle.addTransition(TransitionType.START_VATICAN, choosingSupportVatican);
+        idle.addTransition(TransitionType.NEXT_PLAYER, idle);
+        choosingSupportVatican.addTransition(TransitionType.NEXT_PLAYER, idle);
+
+        statuses.put(StateName.CHOOSING_SUPPORT_VATICAN, choosingSupportVatican);
+        statuses.put(StateName.MARKET_COUNCIL, marketCouncil);
+        statuses.put(StateName.TURN_ACTION_COMPLETED, turnActionCompleted);
+        statuses.put(StateName.IDLE, idle);
+        statuses.put(StateName.PICKED_CARD, pickedCard);
+        statuses.put(StateName.PRODUCED_HARVESTED, productionHarvest);
 
         return idle;
 

@@ -24,7 +24,7 @@ public class TutorialPickCard implements TutorialCLI {
     }
 
     @Override
-    public String[] viewWillAppear() {
+    public String[] viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Vuoi prendere una carta... premi e se hai sbagliato, altrimenti premi qualsiasi altra cosa");
         if (commandView.getString().equals("e"))
                 return null;

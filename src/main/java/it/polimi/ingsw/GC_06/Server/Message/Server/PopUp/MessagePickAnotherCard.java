@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server.PopUp;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.ClientTowerFloor;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
@@ -32,6 +31,5 @@ public class MessagePickAnotherCard implements MessageServer {
             }
         }
         clientController.getMainClientModel().getPlayerBonusActions().setPickAnotherCard(clientTowerFloors);
-        clientController.getViewOrchestrator().change(ClientStateName.CHOOSE_NEW_CARD, "");
     }
 }

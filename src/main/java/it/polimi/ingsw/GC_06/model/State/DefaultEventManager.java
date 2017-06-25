@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
-import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateView;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
@@ -33,10 +33,16 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         this.requirements = FileLoader.getFileLoader().loadChurchRequirement();
     }
 
+    public void start()
+    {
+        game.roll();
+    }
+
     @Override
     public synchronized List<Player> newTurn(int turn)
     {
         //reset bonus malus o altro
+        game.roll();
 
         //Handle the new order
         List<FamilyMember> familyMembersCouncil = game.getBoard().getCouncils().get(0).getActionPlaces().get(0).getMembers();
@@ -82,6 +88,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     private synchronized void handleExcomm()
     {
+        game.getGameStatus().changeState(TransitionType.START_VATICAN);
         ResourceSet excomm = this.requirements.get(lastEra);
         if (excomm==null)
         {
@@ -92,7 +99,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             Player realPlayer = game.getGameStatus().getPlayers().get(player);
             if (realPlayer.isAllowedVariate(excomm) && realPlayer.isConnected())
             {
-                serverOrchestrator.send(player, new MessageUpdateView(ClientStateName.EXCOMMUNICATION, ""));
+                serverOrchestrator.send(player, new MessageUpdateState(ClientStateName.EXCOMMUNICATION));
                 playerAskExcomm++;
             }
             else

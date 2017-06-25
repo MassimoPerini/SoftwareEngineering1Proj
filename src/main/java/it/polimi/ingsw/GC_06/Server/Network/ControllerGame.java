@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.StateName;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.jetbrains.annotations.NotNull;
@@ -53,6 +54,12 @@ public class ControllerGame implements Observer {
                 familyMember.addObserver(this);
             }
         }
+
+        game.getStatuses().get(StateName.CHOOSING_SUPPORT_VATICAN).addObserver(this);
+        game.getStatuses().get(StateName.MARKET_COUNCIL).addObserver(this);
+        game.getStatuses().get(StateName.PICKED_CARD).addObserver(this);
+
+
         game.getRoundManager().addObserver(this);
 
         serverOrchestrator.startGame(game.getGameStatus().getPlayers(), id);

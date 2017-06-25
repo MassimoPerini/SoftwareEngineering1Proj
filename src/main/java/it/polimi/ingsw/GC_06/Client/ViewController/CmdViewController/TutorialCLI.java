@@ -5,6 +5,6 @@ package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
  */
 public interface TutorialCLI {
 
-    String [] viewWillAppear();
+    String [] viewWillAppear() throws InterruptedException;
 
 }

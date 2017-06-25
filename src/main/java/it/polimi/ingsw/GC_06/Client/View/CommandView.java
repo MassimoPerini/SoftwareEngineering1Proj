@@ -11,7 +11,7 @@ public interface CommandView extends Runnable{
     void print();
     int getInt(int start, int end);
     int getInt(int start);
-    String getString();
+    String getString() throws InterruptedException;
     void sleep();
     void unload();
 

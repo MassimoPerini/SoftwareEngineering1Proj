@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server.PopUp;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 
@@ -25,7 +24,6 @@ public class MessageChoosePayment implements MessageServer {
     @Override
     public void execute(ClientController clientController) {
         clientController.getMainClientModel().getPlayerBonusActions().setRequirementCard(requirements);
-        clientController.getViewOrchestrator().change(ClientStateName.MULTIPLE_PAYMENT, "");
     }
 
 }

@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Observable;
 
 /**
  * Created by massimo on 03/06/17.
@@ -19,11 +20,19 @@ class State extends FsmNode {
     private Map<TransitionType, FsmNode> transitionTable;
   //  private FsmNode prevNode;
     private StateName ID;
+    private MessageServer messageServer;
 
     public State(StateName ID)
     {
+        super();
         this.ID = ID;
         transitionTable = new HashMap<>();
+    }
+
+    public State(StateName ID, MessageServer messageServer)
+    {
+        this(ID);
+        this.messageServer = messageServer;
     }
 
     @Override
@@ -48,15 +57,12 @@ class State extends FsmNode {
 
     @Override
     public void sendNotify() {
-        setChanged();
-        notifyObservers(ID);
+        if (messageServer!=null) {
+            setChanged();
+            notifyObservers(messageServer);
+        }
     }
 
-    @Override
-    public void sendNotify(Object o) {
-        setChanged();
-        notifyObservers(o);
-    }
 
  /*   @Override
     public void setPrevNode(FsmNode node) {

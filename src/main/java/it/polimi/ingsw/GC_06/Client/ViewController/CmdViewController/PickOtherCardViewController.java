@@ -30,7 +30,8 @@ public class PickOtherCardViewController implements ViewPresenterCLI {
 
 
     @Override
-    public void viewWillAppear() {
+    public void viewWillAppear() throws InterruptedException {
+
         commandView.addLocalizedText("Puoi prendere un'altra carta (se non la vuoi, premi z, altrimenti premi qualcos'altro)!");
         String answ = commandView.getString();
         if (answ.equals("z"))

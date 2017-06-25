@@ -34,7 +34,7 @@ import java.util.*;
 
 public class FileLoader {
 
-    private static FileLoader instance;
+    private static volatile FileLoader instance;
 
     private static final String CARDS_PATH = "cards_path";
     private static final String PARCHMENTS_PATH = "parchments_path";

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
+import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
 /**
@@ -17,6 +18,6 @@ public class MessageLoggedIn implements MessageServer {
     @Override
     public void execute(ClientController clientController) {
         clientController.getMainClientModel().setMyUsername(username);
-        clientController.getViewOrchestrator().change(null, "LOGGED");
+        clientController.getMainClientModel().changeMyState(ClientStateName.LOGGED);
     }
 }

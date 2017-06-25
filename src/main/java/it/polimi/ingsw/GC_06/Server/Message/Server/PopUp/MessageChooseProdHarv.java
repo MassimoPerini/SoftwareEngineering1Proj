@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server.PopUp;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
 import java.util.HashMap;
@@ -23,6 +22,5 @@ public class MessageChooseProdHarv implements MessageServer{
     @Override
     public void execute(ClientController clientController) {
         clientController.getMainClientModel().getPlayerBonusActions().setProdHarvAsk(cards);
-        clientController.getViewOrchestrator().change(ClientStateName.ASK_PRODHARV_CARDS, "");
     }
 }

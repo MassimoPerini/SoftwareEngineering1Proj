@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -58,13 +59,18 @@ public class BoardActionOnProdHarv implements Action, Runnable {
 
     //    game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
 
+        game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
+
+
         List<Effect> effects = prodHarvArea.getEffect(index);
         ExecuteEffects executeEffects = new ExecuteEffects(effects, player, game);
         executeEffects.execute();
 
         startProdHarv.execute();
         prodHarvArea.addFamilyMember(familyMember, index);
-        game.endTurn();
+
+        game.getGameStatus().changeState(TransitionType.END_ACTION);
+
 
     }
 
@@ -72,7 +78,7 @@ public class BoardActionOnProdHarv implements Action, Runnable {
 
     @Override
     public boolean isAllowed() {
-        return prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed();
+        return prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_PRODHARV);
     }
 
     @Override

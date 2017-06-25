@@ -21,7 +21,7 @@ public class GameList {
 
     private GameList(){}
 
-    public static GameList getInstance(){
+    public synchronized static GameList getInstance(){
         return instance;
     }
 
@@ -36,18 +36,18 @@ public class GameList {
         return gameId;
     }
 
-    public void setServerOrchestrator(ServerOrchestrator serverOrchestrator) {
+    public synchronized void setServerOrchestrator(ServerOrchestrator serverOrchestrator) {
         this.serverOrchestrator = serverOrchestrator;
     }
 
-    public void setCurrentBlocking(Game game, Blocking action, MessageServer messageServer)
+    public synchronized void setCurrentBlocking(Game game, Blocking action, MessageServer messageServer)
     {
         setCurrentBlocking(game, action);
         serverOrchestrator.send(game.getCurrentPlayer().getPLAYER_ID(), messageServer);
 
     }
 
-    public void setCurrentBlocking(Game game, Blocking action)
+    public synchronized void setCurrentBlocking(Game game, Blocking action)
     {
         if (gameBlocking.get(game)==null)
             gameBlocking.put(game, action);
@@ -55,7 +55,7 @@ public class GameList {
             gameBlocking.replace(game, action);
     }
 
-    public void unlock(Game game, Object object)
+    public synchronized void unlock(Game game, Object object)
     {
         gameBlocking.get(game).setOptionalParams(object);
     }

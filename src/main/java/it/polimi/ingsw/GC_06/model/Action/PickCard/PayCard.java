@@ -156,7 +156,7 @@ public class PayCard implements Action, Blocking {
 
     //Carta pagabile in più modi
     @Override
-    public void userLoggedOut(String user) {
+    public synchronized void userLoggedOut(String user) {
         optionalParams = -1;
         notifyAll();
     }

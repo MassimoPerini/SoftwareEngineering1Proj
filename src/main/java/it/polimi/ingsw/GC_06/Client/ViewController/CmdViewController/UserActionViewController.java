@@ -8,16 +8,13 @@ import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageThrowDice;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
  * Created by massimo on 19/06/17.
  */
-public class UserActionViewController implements ViewPresenterCLI, Runnable {
+public class UserActionViewController implements ViewPresenterCLI {
 
     private final MainClientModel mainClientModel;
     private final ClientNetworkOrchestrator clientNetworkOrchestrator;
@@ -33,9 +30,10 @@ public class UserActionViewController implements ViewPresenterCLI, Runnable {
     }
 
     @Override
-    public void viewWillAppear() {
-        ExecutorService executor = Executors.newCachedThreadPool();
-        this.future = executor.submit(this);
+    public void viewWillAppear() throws InterruptedException {
+    //    ExecutorService executor = Executors.newCachedThreadPool();
+    //    this.future = executor.submit(this);
+        run();
     }
 
     @Override
@@ -45,13 +43,13 @@ public class UserActionViewController implements ViewPresenterCLI, Runnable {
 
     @Override
     public void viewWillDisappear() {
-        this.future.cancel(true);
+    //    this.future.cancel(true);
     }
 
-    @Override
-    public void run() {
+    public void run() throws InterruptedException{
         System.out.println("CLIENTBOARDGAME INVOKED");
-        while(true) {
+        boolean ok = false;
+        while(!ok) {
             commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta," +
                     "Se vuoi eseguire il raccolto o la produzione scrivi prod");
             commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta, l per cambiare turno");
@@ -62,10 +60,10 @@ public class UserActionViewController implements ViewPresenterCLI, Runnable {
                 boardStatusViewController.showStatus();        //NON AVERE UN ALTRO THREAD!!!
             }
 
-            if (input.equals("d")) {
+          /*  if (input.equals("d")) {
                 MessageThrowDice messageThrowDice = new MessageThrowDice();
                 clientNetworkOrchestrator.send(messageThrowDice);
-            }
+            }*/
 
             if (input.equals("p")) {
                 TutorialPickCard tutorialPickCard = new TutorialPickCard(commandView, mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()));        //Probabilmente l'interfaccia è inutile
@@ -74,6 +72,7 @@ public class UserActionViewController implements ViewPresenterCLI, Runnable {
                     MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(answers[0], Integer.parseInt(answers[1]), Integer.parseInt(answers[2]),Integer.parseInt(answers[3]));
                     clientNetworkOrchestrator.send(messageBoardActionTower);
                 }
+                ok = true;
             }
 
             if(input.equals("prod")){
@@ -82,12 +81,13 @@ public class UserActionViewController implements ViewPresenterCLI, Runnable {
                 String[] inp = commandView.getString().split(" ");
                 MessageProdHarv messageProdHarv = new MessageProdHarv(Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]),Integer.parseInt(inp[3]));
                 clientNetworkOrchestrator.send(messageProdHarv);
-
+                ok = true;
             }
             if (input.equals("l"))
             {
                 MessageEndTurn messageEndTurn = new MessageEndTurn();
                 clientNetworkOrchestrator.send(messageEndTurn);
+                ok = true;
             }
         }
     }

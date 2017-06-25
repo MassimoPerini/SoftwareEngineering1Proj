@@ -3,14 +3,16 @@ package it.polimi.ingsw.GC_06.Server.Message.Server;
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by massimo on 17/06/17.
@@ -96,8 +98,7 @@ public class MessageGameStarted implements MessageServer {
                 clientController.getMainClientModel().getClientPlayerBoard(s).addFamilyMember(clientFamilyMember);
             }
         }
-
-        clientController.getViewOrchestrator().change(ClientStateName.GAME_START, "");
+     //   clientController.getMainClientModel().changeMyState(ClientStateName.WAIT_TURN);
 
     }
 }

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server.PopUp;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
 /**
@@ -15,6 +14,6 @@ public class MessageChoosePowerUp implements MessageServer {
 
     @Override
     public void execute(ClientController clientController) {
-        clientController.getViewOrchestrator().change(ClientStateName.POWERUP, "");
+        clientController.getMainClientModel().getPlayerBonusActions().changePowerUp(true);
     }
 }

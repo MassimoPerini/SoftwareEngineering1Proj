@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -42,9 +43,12 @@ public class BoardActionOnTower implements Action, Runnable {
 
         // qui modifichiamo il valore dell'azione prima che si compia
 
+        game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
+
         payCard.execute();
         tower.addFamilyMember(familyMember, index);
-        game.endTurn();
+
+        game.getGameStatus().changeState(TransitionType.END_ACTION);
 
     }
 
@@ -54,6 +58,11 @@ public class BoardActionOnTower implements Action, Runnable {
         /** è permessa solo quando non c'è un familiare NON NEUTRO sulla torre*/
 
         //Can add in PlayerBoard
+
+        if (!game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_TOWER))
+        {
+            return false;
+        }
 
         if (!tower.isAllowed(familyMember, index))
             return false;

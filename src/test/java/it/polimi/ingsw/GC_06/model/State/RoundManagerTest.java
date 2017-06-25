@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,7 +55,13 @@ public class RoundManagerTest {
     public void testOnePlayer()
     {
         game.addPlayer("Massimo");
+
         game.start(new DefaultEventManager(new ServerOrchestrator(), game));
+
+        ResourceSet resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.FAITHPOINT, -5);
+        game.getGameStatus().getPlayers().get("Massimo").variateResource(resourceSet);
+
         RoundManager roundManager = game.getRoundManager();
         testValues(1, roundManager);
     }
@@ -65,10 +72,19 @@ public class RoundManagerTest {
         game.addPlayer("Massimo");
         game.addPlayer("Perini");
         game.addPlayer("ciao");
+
         game.start(new DefaultEventManager(new ServerOrchestrator(), game));
+
+
+        ResourceSet resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.FAITHPOINT, -5);
+        game.getRoundManager().getCurrentPlayer().variateResource(resourceSet);
+
+        game.getRoundManager().getPlayers().get(1).setConnected(false);
+
         RoundManager roundManager = game.getRoundManager();
 
-        testValues(3, roundManager);
+        testValues(2, roundManager);
     }
 
 
@@ -84,7 +100,8 @@ public class RoundManagerTest {
                 {
                     assertTrue(roundManager.getFamilyMembersPlaced() == k);
                     for (int a=0;a<nPlayers;a++){
-                        roundManager.endTurn();
+                        game.endTurn();
+                     //   roundManager.endTurn();
                     }
                 }
                 assertTrue(roundManager.getFamilyMembersPlaced() == 0);

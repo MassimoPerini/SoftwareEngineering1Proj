@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.model.playerTools;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import it.polimi.ingsw.GC_06.Server.Message.Server.MessageFamilyMember;
+import it.polimi.ingsw.GC_06.Server.Message.Server.UpdateValueFamilyMember;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -51,7 +51,7 @@ public class FamilyMember extends Observable implements Observer {
 
         this.value = value;
 
-        MessageServer messageServer = new MessageFamilyMember(value, diceColor, playerUserName);
+        MessageServer messageServer = new UpdateValueFamilyMember(value, diceColor, playerUserName);
 
         setChanged();
         notifyObservers(messageServer);

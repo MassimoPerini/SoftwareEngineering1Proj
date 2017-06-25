@@ -20,17 +20,16 @@ public class ViewOrchestratorCLI implements ViewOrchestrator, Observer{
     private ClientStateName currentState = ClientStateName.START;
     private ClientNetworkOrchestrator clientNetworkOrchestrator;
     private MainClientModel mainClientModel;
+    private ViewPresenterCLI currentView;
     private Map<String, ClientPlayerBoard> clientPlayerBoard;
 
     public ViewOrchestratorCLI(ClientNetworkOrchestrator clientNetworkOrchestrator, MainClientModel mainClientModel)
     {
         this.clientStates = new HashMap<>();
-        for (ClientStateName stateName : ClientStateName.values()) {
-            this.clientStates.put(stateName, null);
-        }
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
         this.mainClientModel = mainClientModel;
 
+        mainClientModel.addObserver(this);
 
         this.generateViewCli();
     }
@@ -39,55 +38,68 @@ public class ViewOrchestratorCLI implements ViewOrchestrator, Observer{
     {
         clientStates.put(ClientStateName.LOGIN, new LoginViewPresenterCLI(clientNetworkOrchestrator));
         clientStates.put(ClientStateName.START, new ConnectionTypeViewPresenterCLI(clientNetworkOrchestrator));
-        clientStates.put(ClientStateName.GAME_START, new BoardStatusViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard()));     //TEST, Observer?
+        clientStates.put(ClientStateName.LOGGED, new SimpleViewController("LOGGED"));
+        clientStates.put(ClientStateName.WAIT_TURN, new BoardStatusViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard()));     //TEST, Observer?
         clientStates.put(ClientStateName.MY_TURN, new UserActionViewController(mainClientModel, clientNetworkOrchestrator));
-    //    clientStates.put(ClientStateName.ASK_PRODHARV_CARDS);
-        clientStates.put(ClientStateName.CHOOSE_NEW_CARD, new PickOtherCardViewController(mainClientModel.getPlayerBonusActions(), mainClientModel.getClientBoardGame(), clientNetworkOrchestrator));
-        clientStates.put(ClientStateName.MULTIPLE_PAYMENT, new PaymentWaysViewController(clientNetworkOrchestrator, mainClientModel.getPlayerBonusActions()));
-        clientStates.put(ClientStateName.PARCHMENT, new ParchmentViewController(clientNetworkOrchestrator, mainClientModel.getPlayerBonusActions()));
-        clientStates.put(ClientStateName.ASK_PRODHARV_CARDS, new AskUserProdHarv(mainClientModel.getPlayerBonusActions(), clientNetworkOrchestrator));
-        clientStates.put(ClientStateName.POWERUP, new AskUserPowerUp(clientNetworkOrchestrator));
+        clientStates.put(ClientStateName.ACTION_FINISHED, new MainActionFinished(clientNetworkOrchestrator));
+        clientStates.put(ClientStateName.EXCOMMUNICATION, new ExcommunicationViewController(clientNetworkOrchestrator));        //POPUP
 
+    }
 
+    public void suspend()
+    {
+        if (currentView instanceof Runnable)
+        {
+            currentView.viewWillDisappear();
+        }
+    }
+
+    public void resume()
+    {
+        if (currentView instanceof Runnable)
+        {
+            try {
+                currentView.viewWillAppear();
+            } catch (InterruptedException e) {
+                return;
+            }
+        }
     }
 
     @Override
     public void change(ClientStateName state, String property) {
-        try {
-            if (state == null) {
-                if (property != null) {
-                    clientStates.get(currentState).addText(property);
-                }
-                return;
-            }
-            clientStates.get(currentState).viewWillDisappear();
-            currentState = state;
-            if (property != null)
-                clientStates.get(currentState).addText(property);
-            clientStates.get(currentState).viewWillAppear();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
     public void execute(String [] args)
     {
-        clientStates.get(currentState).viewWillAppear();
-        this.change(ClientStateName.LOGIN, null);
+        try {
+            clientStates.get(currentState).viewWillAppear();
+            currentState = ClientStateName.LOGIN;
+            currentView = clientStates.get(currentState);
+            currentView.viewWillAppear();
+        }
+        catch (InterruptedException e)
+        {
+            return;
+        }
     }
 
     //L'era o qualcos'altro è finita
     @Override
     public void update(Observable o, Object arg) {
-        if (mainClientModel.getCurrentPlayer().equals(mainClientModel.getMyUsername()))
-        {
-            this.change(ClientStateName.MY_TURN, "");
+
+        ClientStateName state = (ClientStateName) arg;
+
+        try {
+            clientStates.get(currentState).viewWillDisappear();
+            this.currentState = state;
+            clientStates.get(currentState).viewWillAppear();
         }
-        else{
-            this.change(ClientStateName.GAME_START, "");
+        catch (InterruptedException e)
+        {
+            return;
         }
     }
 }

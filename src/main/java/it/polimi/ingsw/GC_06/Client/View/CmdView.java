@@ -83,7 +83,7 @@ public class CmdView implements CommandView {
     }
 
     @Override
-    public String getString() {
+    public String getString() throws InterruptedException {
         print();
 
         try {
@@ -93,6 +93,7 @@ public class CmdView implements CommandView {
             return input.readLine();
         }
         catch (InterruptedException e) {
+            throw new InterruptedException();
         } catch (IOException e) {
         }
         return null;
@@ -109,9 +110,7 @@ public class CmdView implements CommandView {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
 
-        System.out.print(text);
-        this.flush();
     }
 }

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
-import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 
@@ -11,12 +10,12 @@ import java.util.List;
 /**
  * Created by massimo on 15/06/17.
  */
-public class MessageNewCards implements MessageServer {
+public class MessageNewCardOnTower implements MessageServer {
 
     private final List<String> cards;
     private final String tower;
 
-    public MessageNewCards(List<DevelopmentCard> cards, String tower)
+    public MessageNewCardOnTower(List<DevelopmentCard> cards, String tower)
     {
         this.tower = tower;
         this.cards = new LinkedList<>();
