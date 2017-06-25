@@ -106,16 +106,13 @@ public class ServerPlayerSocket extends Observable implements Runnable {
             System.out.println("ServerPlayerSocket: LOGGED: "+player+"\nNow listening commands...");
             while (true)
             {
-                System.out.println("SOCKET di "+player);
-                if(socketIn.ready()) {
-                    if ((input = socketIn.readLine()) != null) {
-                        System.out.println("SERVER: from " + player + " :" + input);
-                        MessageClient messageClient = readGson.fromJson(input, MessageClient.class);
-                        messageClient.setGame(game);
-                        messageClient.setPlayer(player);
-                        setChanged();
-                        notifyObservers(messageClient);
-                    }
+                while ((input = socketIn.readLine()) != null) {
+                    System.out.println("SERVER: from " + player + " :" + input);
+                    MessageClient messageClient = readGson.fromJson(input, MessageClient.class);
+                    messageClient.setGame(game);
+                    messageClient.setPlayer(player);
+                    setChanged();
+                    notifyObservers(messageClient);
                 }
             }
         }
