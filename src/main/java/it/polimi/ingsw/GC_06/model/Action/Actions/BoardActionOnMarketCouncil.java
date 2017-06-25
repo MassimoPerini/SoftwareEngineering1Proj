@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
@@ -21,13 +22,15 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
     private final ExecuteEffects executeEffects;
     private Player player;
     private Game game;
-    private final ActionType ACTION_TYPE = ActionType.MARKET_ACTION;
+    private ActionType actionType;
 
-    public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player)
+    public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player,ActionType actionType)
     {
         super();
-        if (marketAndCouncil==null || familyMember==null || player==null)
+        this.actionType = actionType;
+        if (marketAndCouncil==null || familyMember==null || player==null) {
             throw new NullPointerException();
+        }
 
         this.marketAndCouncil = marketAndCouncil;
         this.index = index;
@@ -36,6 +39,7 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
 
         if (effectList==null)
             throw new NullPointerException();
+
 
         this.executeEffects = new ExecuteEffects(effectList, player,game);
     }
@@ -57,8 +61,9 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
 
     @Override
     public boolean isAllowed() {
-        return  marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_MARKETCOUNSIL);
-        //BonusMalusHandler.filter(player,ACTION_TYPE,result);
+        boolean value = marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_MARKETCOUNSIL);
+        BonusMalusHandler.filter(player,actionType,value);
+        return value;
     }
 
     @Override

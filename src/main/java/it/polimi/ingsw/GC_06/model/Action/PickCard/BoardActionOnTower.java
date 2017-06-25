@@ -9,6 +9,9 @@ import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by giuseppe on 5/20/17.
  */
@@ -76,10 +79,13 @@ public class BoardActionOnTower implements Action, Runnable {
     public void run() {
         System.out.println("ACTION STARTED");
         int originalValue = familyMember.getValue();
-        BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
+        List<Integer> nonPermanentBonusMalus = BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
         if (this.isAllowed()) {
             this.execute();
             // devo rimuovere il bonus o il malus che ho utilizzato
+            for (Integer permanentBonusMalus : nonPermanentBonusMalus) {
+                player.getBonusMalusSet().removeBonusMalusAction(permanentBonusMalus);
+            }
         }
         else{
             familyMember.setValue(originalValue);

@@ -45,6 +45,12 @@ public class BonusMalusOnEnd {
 
         totalAmount = totalAmount*coefficient;
         ResourceSet variationSet = new ResourceSet();
+
+        /* non mi permette di dare un valore minore di zero */
+        if(player.getResourceSet().getResourceAmount(resourceTarget) + totalAmount < 0){
+            totalAmount = player.getResourceSet().getResourceAmount(resourceTarget)*(-1);
+        }
+
         variationSet.variateResource(resourceTarget,totalAmount);
 
         player.variateResource(variationSet);

@@ -89,13 +89,10 @@ public class BonusMalusSet {
             }
         }
     }
-    public int removeBonusMalusAction(ArrayList<BonusMalusOnAction> actions, int i){
+    public void removeBonusMalusAction(int i){
 
-        if(!actions.get(i).isPermanent()){
-            actions.remove(i);
-            return  --i;
-        }
-        return i;
+        this.bonusMalusOnAction.get(BonusMalusType.BONUSMALUSONACTION).remove(i);
+
     }
 
 

@@ -27,13 +27,18 @@ public class BonusMalusOnSettings {
         this.ON = true;
     }
 
-    public void modify(int endPoints){
+    public int modify(int endPoints){
 
         endPoints = this.bonusMalusEntity;
+        return endPoints;
 
     }
 
     public boolean isAllowed(String colour,ActionType actionType){
+
+        if(colour == null){
+            return  true;
+        }
         if(colours.contains(colour) && this.actionType.equals(actionType)){
             return true;
         }

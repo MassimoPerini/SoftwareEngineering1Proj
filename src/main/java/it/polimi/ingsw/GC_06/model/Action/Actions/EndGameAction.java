@@ -70,6 +70,7 @@ public class EndGameAction  implements Action {
     private void turnResourceIntoPoint(Player player){
        int endPoint =  player.getResourceSet().totalResourceQuantity() - player.getResourceSet().getResourceAmount(resource);
        player.getResourceSet().variateResource(resource, endPoint);
+       BonusMalusHandler.filter(player,player.getResourceSet(),ACTION_TYPE);
     }
 
    /** private void addFinalPoint(Player player){

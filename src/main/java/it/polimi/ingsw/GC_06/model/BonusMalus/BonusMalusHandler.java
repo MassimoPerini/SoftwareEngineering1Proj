@@ -7,6 +7,8 @@ import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by giuseppe on 6/4/17.
@@ -17,18 +19,23 @@ public class BonusMalusHandler {
 
     /** filtro sulle azioni torre e specifiche per un colore */
 
-    public static void filter(Player player, ActionType actionType, String towerColour, FamilyMember familyMember){
+    public static List<Integer> filter(Player player, ActionType actionType, String towerColour, FamilyMember familyMember){
 
         ArrayList<BonusMalusOnAction> bonusMalusOnActions = player.getBonusMalusSet().getBonusMalusOnAction().get(BonusMalusType.BONUSMALUSONACTION);
-
+        List<Integer> nonPermanentMalus = new LinkedList<>();
         System.out.println("ciao");
         for(int i=0; i<bonusMalusOnActions.size();i++){
             BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
             if(bonusMalusOnAction.isAllowed(familyMember,actionType)&& bonusMalusOnAction.getColourTarget().equals(towerColour)){
                 bonusMalusOnAction.modify(familyMember);
-                i = player.getBonusMalusSet().removeBonusMalusAction(bonusMalusOnActions,i);
+                if(!bonusMalusOnAction.isPermanent()){
+                    /** questa è la lista dei non permanent malus che sono stati lanciati durante l'azione del giocoatore */
+                    nonPermanentMalus.add(i);
+                }
             }
         }
+
+        return nonPermanentMalus;
 
     }
 
@@ -43,7 +50,6 @@ public class BonusMalusHandler {
             BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
             if(bonusMalusOnAction.isAllowed(familyMember,actionType)){
                 bonusMalusOnAction.modify(familyMember);
-                player.getBonusMalusSet().removeBonusMalusAction(bonusMalusOnActions,i);
             }
         }
     }
@@ -64,17 +70,19 @@ public class BonusMalusHandler {
         }
     }
     /**filtro sui bonussui settaggi*/
-    public static void filter(Player player,ActionType actionType,int endpoints, String colour){
+    public static int filter(Player player,ActionType actionType,int endpoints, String colour){
 
         ArrayList<BonusMalusOnSettings> bonusMalusOnSettings = player.getBonusMalusSet().getBonusMalusOnSetting().get(BonusMalusType.BONUSMALUSONSETTING);
-
+        int newValue = endpoints;
         for(int i = 0; i < bonusMalusOnSettings.size(); i++){
             BonusMalusOnSettings bonusMalusOnEnd = bonusMalusOnSettings.get(i);
             if(bonusMalusOnEnd.isAllowed(colour,actionType)){
-                bonusMalusOnEnd.modify(endpoints);
+               newValue =  bonusMalusOnEnd.modify(endpoints);
                 i = player.getBonusMalusSet().removeBonusMalusSetting(bonusMalusOnSettings,i);
             }
         }
+
+        return newValue;
     }
 
     /** ultimo filtro è quello sui costi*/
