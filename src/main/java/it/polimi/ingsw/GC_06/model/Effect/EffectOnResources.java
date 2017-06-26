@@ -13,7 +13,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 public class EffectOnResources implements ProdHarvMalusEffect {
 
     private ResourceSet resourceSet;
-    private final ActionType ACTION_TYPE = ActionType.RESOURCEACTION;
+    //private final ActionType ACTION_TYPE = ActionType.RESOURCEACTION;
     
     public EffectOnResources(ResourceSet resourceSet) {
     	super();
@@ -22,7 +22,7 @@ public class EffectOnResources implements ProdHarvMalusEffect {
     }
 
     public void execute(Player player,Game game){
-        BonusMalusHandler.filter(player,ACTION_TYPE,this.resourceSet);
+        BonusMalusHandler.filter(player,ActionType.RESOURCEACTION,this.resourceSet);
         player.variateResource(this.resourceSet);
     }
 

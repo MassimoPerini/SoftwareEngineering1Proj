@@ -107,7 +107,7 @@ public class BonusMalusHandlerTest {
 
 
 
-        BonusMalusHandler.filter(player,ActionType.MARKET_ACTION,familyMember);
+        BonusMalusHandler.filter(player,ActionType.BOARD_ACTION_ON_MARKET,familyMember);
         assertTrue(0 == familyMember.getValue());
 //        assertTrue(player.getBonusMalusSet().getBonusMalusOnAction().get(BonusMalusType.BONUSMALUSONACTION).size() == 3);
 

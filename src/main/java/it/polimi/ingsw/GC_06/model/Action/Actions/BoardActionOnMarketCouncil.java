@@ -27,6 +27,7 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
     public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player,ActionType actionType)
     {
         super();
+        this.player = player;
         this.actionType = actionType;
         if (marketAndCouncil==null || familyMember==null || player==null) {
             throw new NullPointerException();
@@ -76,6 +77,9 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
         if (BonusMalusHandler.filter(player,actionType,position)){
             execute();
             player.getBonusMalusSet().removeBonusMalusAccess(actionType,position);
+        }
+        else{
+            throw new IllegalStateException();
         }
     }
 }
