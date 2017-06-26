@@ -32,4 +32,9 @@ public class MessageThrowDice implements MessageClient {
     public String getPlayer() {
         return player;
     }
+
+    @Override
+    public void run() {
+        execute();
+    }
 }

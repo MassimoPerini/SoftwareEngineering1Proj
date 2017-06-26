@@ -9,10 +9,6 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
 /**
  * Created by massimo on 19/06/17.
  */
@@ -49,8 +45,16 @@ public class MessageBoardActionTower implements MessageClient{
             powerUpFamilyMember.execute();
         }
 
-        ExecutorService executor = Executors.newCachedThreadPool();
-        Future f = executor.submit(boardActionOnTower);
+        try {
+            if (boardActionOnTower.isAllowed()) {
+                boardActionOnTower.execute();
+            }
+        }
+        catch (InterruptedException e)
+        {
+            return;
+        }
+
         // if (f.get() == null)  per vedere se è ok
 
         //TODO FIX IT!
@@ -83,5 +87,10 @@ public class MessageBoardActionTower implements MessageClient{
     @Override
     public String getPlayer() {
         return player;
+    }
+
+    @Override
+    public void run() {
+        execute();
     }
 }

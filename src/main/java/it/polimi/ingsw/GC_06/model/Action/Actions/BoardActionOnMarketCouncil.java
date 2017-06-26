@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * Created by massimo on 06/06/17.
  */
-public class BoardActionOnMarketCouncil implements Action, Runnable {
+public class BoardActionOnMarketCouncil implements Action {
 
     private final MarketAndCouncil marketAndCouncil;
     private final int index;
@@ -46,7 +45,7 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException {
 
 
 
@@ -71,7 +70,9 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
         return value;
     }
 
-    @Override
+
+/*
+//TODO BONUSMALUS
     public void run() {
         boolean position = this.isAllowed();
         if (BonusMalusHandler.filter(player,actionType,position)){
@@ -82,4 +83,6 @@ public class BoardActionOnMarketCouncil implements Action, Runnable {
             throw new IllegalStateException();
         }
     }
+
+    */
 }

@@ -5,7 +5,7 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 /**
  * Created by massimo on 25/06/17.
  */
-public class EndTurn implements Action, Runnable {
+public class EndTurn implements Action {
 
     private final Game game;
 
@@ -25,9 +25,4 @@ public class EndTurn implements Action, Runnable {
         return true;
     }
 
-    @Override
-    public void run() {
-        if (isAllowed())
-            execute();
-    }
 }

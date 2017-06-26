@@ -1,14 +1,12 @@
 package it.polimi.ingsw.GC_06.model.State;
 
-import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
-
-import java.util.List;
-
 /**
  * Created by massimo on 03/06/17.
+ * @deprecated
  */
-public class ActionHandler {
 
+public class ActionHandler {
+    /*
     private List<Action> actions;
 
 
@@ -41,5 +39,5 @@ public class ActionHandler {
     {
         return actions.size();
     }
-
+*/
 }

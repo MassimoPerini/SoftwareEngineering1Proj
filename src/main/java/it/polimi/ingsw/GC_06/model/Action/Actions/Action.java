@@ -5,6 +5,6 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
  */
 public interface Action{
 
-    void execute();
-    boolean isAllowed();
+    void execute() throws InterruptedException;
+    boolean isAllowed() throws InterruptedException;
 }

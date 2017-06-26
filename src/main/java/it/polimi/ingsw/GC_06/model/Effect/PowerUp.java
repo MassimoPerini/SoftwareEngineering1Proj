@@ -28,7 +28,7 @@ public class PowerUp implements Blocking {
         notifyAll();
     }
 
-    public synchronized int execute(Game game, Player player) {
+    public synchronized int execute(Game game, Player player) throws InterruptedException {
 
         MessageServer messageServer = new MessageChoosePowerUp();
         GameList.getInstance().setCurrentBlocking(game, this, messageServer);
@@ -38,7 +38,7 @@ public class PowerUp implements Blocking {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new InterruptedException();
             }
         }
 

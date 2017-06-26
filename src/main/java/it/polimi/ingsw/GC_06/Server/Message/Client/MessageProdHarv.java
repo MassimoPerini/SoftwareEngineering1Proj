@@ -10,10 +10,6 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
 /**
  * Created by giuseppe on 6/20/17.
  */
@@ -46,14 +42,35 @@ public class MessageProdHarv implements MessageClient{
 
         BoardActionOnProdHarv boardActionOnProdHarv = new BoardActionOnProdHarv(currentPlayer,index,prodHarvZone,prodHarvZone.getActionType(),defaultAskUserSelector,familyMember, currentGame);
         PowerUpFamilyMember powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,powerUpValue);
-
+/*
+        System.out.println("ACTION STARTED");
+        int originalValue = familyMember.getValue();
+        BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
+        if (this.isAllowed()) {
+            this.execute();
+            // devo rimuovere il bonus o il malus che ho utilizzato
+        }
+        else{
+            familyMember.setValue(originalValue);
+            System.out.println("ERRORE, NON POSSO ESEGUIRE L'AZIONE");
+        }
+*/
+        try {
+            if (powerUpFamilyMember.isAllowed())
+                powerUpFamilyMember.execute();
+            if (boardActionOnProdHarv.isAllowed()) {
+                boardActionOnProdHarv.execute();
+            }
+        }
+        catch (InterruptedException e)
+        {
+            return;
+        }
+        /*
         if(powerUpFamilyMember.isAllowed()){
             powerUpFamilyMember.execute();
         }
-
-        ExecutorService executor = Executors.newCachedThreadPool();
-        Future f = executor.submit(boardActionOnProdHarv);
-
+        */
         //TODO fix it
 
         /** rollBack */
@@ -85,5 +102,10 @@ public class MessageProdHarv implements MessageClient{
     @Override
     public String getPlayer() {
         return player;
+    }
+
+    @Override
+    public void run() {
+        execute();
     }
 }

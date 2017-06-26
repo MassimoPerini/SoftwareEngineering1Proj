@@ -59,7 +59,7 @@ public class PayCard implements Action, Blocking {
     }
 
     @Override
-    public synchronized void execute() {
+    public synchronized void execute() throws InterruptedException {
         //Execute tower penality
         if (tower.shouldThrowPenality(player.getPLAYER_ID())) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
@@ -90,7 +90,7 @@ public class PayCard implements Action, Blocking {
     }
 
     @Override
-    public synchronized boolean isAllowed() {
+    public synchronized boolean isAllowed() throws InterruptedException {
         Player pClone = new Player(player);     //CLONE (I hope...) TODO
 
         //Test tower penality BEFORE adding money from the actionspace
@@ -141,7 +141,7 @@ public class PayCard implements Action, Blocking {
                 try {
                     wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    return false;
                 }
             }
         }

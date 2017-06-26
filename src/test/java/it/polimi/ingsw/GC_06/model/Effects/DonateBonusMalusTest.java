@@ -45,6 +45,10 @@ public class DonateBonusMalusTest {
 
     @Test
     public void firstTest(){
-        donateBonusMalus.execute(player,game);
+        try {
+            donateBonusMalus.execute(player,game);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

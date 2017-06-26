@@ -6,24 +6,24 @@ import it.polimi.ingsw.GC_06.model.Action.PickCard.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.AskUserCard;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.DefaultAskUserSelector;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.StartProdHarv;
-import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.*;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.State.GameEventManager;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -69,7 +69,7 @@ public class StartProdHarvTest {
     }
 
     @Test
-    public void bonusMalusTest(){
+    public void bonusMalusTest() throws InterruptedException {
 
        int military =  player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT);
         HashMap<Integer,List<ProdHarvEffect>> map = new HashMap<>();
@@ -93,8 +93,8 @@ public class StartProdHarvTest {
         game.getBoard().getTowers().get("YELLOW").getTowerFloor().get(0).setCard(developmentCard);
 
         Action pickCard0 = new PickCard(player,game.getBoard().getTowers().get("YELLOW"),0,game);
-
-        pickCard0.execute();
+        if(pickCard0.isAllowed())
+            pickCard0.execute();
         StartProdHarv startProdHarv = new StartProdHarv(ActionType.PRODUCTION_ACTION, new DefaultAskUserSelector(),5,player,game);
         startProdHarv.execute();
 

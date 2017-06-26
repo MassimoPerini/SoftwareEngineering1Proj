@@ -58,6 +58,9 @@ public class AppClient {
 
             Injector.setConfigurationSource(customProperties::get);
             clientController.setViewOrchestrator(viewOrchestratorFx);
+
+            clientController.getMainClientModel().addObserver(clientController.getViewOrchestrator());
+
             clientController.getViewOrchestrator().execute(args);
 
         }

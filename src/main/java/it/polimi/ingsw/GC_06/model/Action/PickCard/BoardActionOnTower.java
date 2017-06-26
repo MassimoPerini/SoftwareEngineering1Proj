@@ -3,19 +3,15 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Created by giuseppe on 5/20/17.
  */
-public class BoardActionOnTower implements Action, Runnable {
+public class BoardActionOnTower implements Action {
 
     private final Tower tower;
     private final int index;
@@ -39,7 +35,7 @@ public class BoardActionOnTower implements Action, Runnable {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException {
 
         // farei l'eventuale modifica dell'azione qui tramite i bonus e malus
         // al momento modifichiamo il valore dell'azione che per come sono strutturate le azioni non cambia i controlli
@@ -57,7 +53,7 @@ public class BoardActionOnTower implements Action, Runnable {
     }
 
     @Override
-    public boolean isAllowed() {
+    public boolean isAllowed() throws InterruptedException {
 
         /** è permessa solo quando non c'è un familiare NON NEUTRO sulla torre*/
 
@@ -75,9 +71,12 @@ public class BoardActionOnTower implements Action, Runnable {
 
     }
 
-    @Override
+//TODO BONUSMALUS
+
     public void run() {
         System.out.println("ACTION STARTED");
+
+        /*
         int originalValue = familyMember.getValue();
         boolean position = this.isAllowed();
         List<Integer> nonPermanentBonusMalus = BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
@@ -94,5 +93,6 @@ public class BoardActionOnTower implements Action, Runnable {
             familyMember.setValue(originalValue);
             System.out.println("ERRORE, NON POSSO ESEGUIRE L'AZIONE");
         }
+        */
     }
 }

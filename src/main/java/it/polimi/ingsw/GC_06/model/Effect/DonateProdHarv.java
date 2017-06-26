@@ -20,7 +20,7 @@ public class DonateProdHarv implements Effect {
     }
 
     @Override
-    public void execute(Player player, Game game) {
+    public void execute(Player player, Game game) throws InterruptedException {
         PowerUp powerUpAction = new PowerUp();
         value += powerUpAction.execute(game, player);
 

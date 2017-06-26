@@ -25,7 +25,7 @@ public class ExecuteEffects implements Action {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException {
 
      //   game.getGameStatus().changeState(TransitionType.EXECUTE_EFFECT);
 

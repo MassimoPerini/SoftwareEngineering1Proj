@@ -4,8 +4,6 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
@@ -18,7 +16,7 @@ import java.util.List;
 /**
  * Created by massimo on 01/06/17.
  */
-public class BoardActionOnProdHarv implements Action, Runnable {
+public class BoardActionOnProdHarv implements Action {
 
     private final int index;
     private final Player player;
@@ -57,7 +55,7 @@ public class BoardActionOnProdHarv implements Action, Runnable {
      */
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException {
 
     //    game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
 
@@ -83,7 +81,8 @@ public class BoardActionOnProdHarv implements Action, Runnable {
         return prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_PRODHARV);
     }
 
-    @Override
+    //TODO BONUSMALUS
+/*
     public void run() {
 
         int originalValue = familyMember.getValue();
@@ -98,4 +97,5 @@ public class BoardActionOnProdHarv implements Action, Runnable {
             System.out.println("AZIONE NON CONSENTITA");
         }
     }
+    */
 }

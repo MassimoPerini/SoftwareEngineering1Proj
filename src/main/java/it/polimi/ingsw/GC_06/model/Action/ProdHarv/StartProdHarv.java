@@ -68,7 +68,7 @@ public class StartProdHarv implements Action, Blocking {
      * Starts a production/harvest
      */
     @Override
-    public synchronized void execute() {
+    public synchronized void execute() throws InterruptedException {
      //   game.getGameStatus().changeState(TransitionType.START_PRODHARV);
 
         List<ProdHarvEffect> autoExecute = new LinkedList<>();
@@ -143,7 +143,7 @@ public class StartProdHarv implements Action, Blocking {
                 try {
                     wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    throw new InterruptedException();
                 }
             }
             //   game.getGameStatus().changeState(TransitionType.START_PRODHARV, askUser);
@@ -169,7 +169,11 @@ public class StartProdHarv implements Action, Blocking {
             for (ProdHarvEffect prodHarvEffect : userProdHarvEffects) {
                 for (ProdHarvMalusEffect malusEffect : prodHarvEffect.getMalusEffect()) {
                     if (malusEffect.isAllowed(testPlayer)) {
-                        malusEffect.execute(testPlayer, game);      //executing all the malus the user choosen
+                        try {
+                            malusEffect.execute(testPlayer, game);      //executing all the malus the user choosen
+                        } catch (InterruptedException e) {
+                            return;
+                        }
                     } else {
                         //ask again, user input not valid
                         userActivateEffect = null;

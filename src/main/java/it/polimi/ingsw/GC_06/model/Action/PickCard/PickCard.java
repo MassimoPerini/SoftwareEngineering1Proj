@@ -28,7 +28,7 @@ public class PickCard implements Action {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException {
 
 
         /**we are adding the card to the player board*/

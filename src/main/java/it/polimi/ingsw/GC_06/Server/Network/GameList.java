@@ -85,7 +85,17 @@ public class GameList {
      * @param gameID
      */
     public void remove(int gameID,String username){
-        gameMap.get(gameID).remove(username);
+        Game g = null;
+        for (Game game : gameMap.keySet()) {
+            if (game.getId() == gameID)
+            {
+                g = game;
+            }
+        }
+
+        g.getGameStatus().getPlayers().get(username).setConnected(false);
+        //this.gameMap.get(g).remove()
+
     }
 
 }

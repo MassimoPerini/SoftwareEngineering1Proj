@@ -9,12 +9,11 @@ import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by massimo on 16/06/17.
  */
-public class ViewOrchestratorCLI implements ViewOrchestrator, Observer{
+public class ViewOrchestratorCLI implements ViewOrchestrator{
 
     private Map<ClientStateName, ViewPresenterCLI> clientStates;
     private ClientStateName currentState = ClientStateName.START;

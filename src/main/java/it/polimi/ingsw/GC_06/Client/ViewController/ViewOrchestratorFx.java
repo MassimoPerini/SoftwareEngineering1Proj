@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 
 /**
  * Created by massimo on 16/06/17.
@@ -21,6 +22,7 @@ public class ViewOrchestratorFx extends Application implements ViewOrchestrator 
     private ClientStateName currentState = ClientStateName.START;
     private static Stage stage;
     private SimpleStringProperty property;
+    private ViewPresenterFx currentPresenter;
 
     public ViewOrchestratorFx()
     {
@@ -71,7 +73,13 @@ public class ViewOrchestratorFx extends Application implements ViewOrchestrator 
         stage.setTitle( "Lorenzo il Magnifico" );
         FXMLView view = new ConnectionMethodView();
         Scene scene = new Scene(view.getView());
+        currentPresenter = (ViewPresenterFx) view.getPresenter();
         stage.setScene( scene);
         stage.show();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        ClientStateName clientStateName = (ClientStateName) arg;
     }
 }

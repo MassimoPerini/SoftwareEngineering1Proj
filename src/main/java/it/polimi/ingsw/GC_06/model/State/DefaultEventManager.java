@@ -113,7 +113,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                playerAskExcomm--;
             }
         }
 

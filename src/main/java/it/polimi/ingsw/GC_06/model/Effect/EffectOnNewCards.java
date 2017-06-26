@@ -27,7 +27,7 @@ public class EffectOnNewCards implements Effect, Blocking {
     }
 
     @Override
-    public synchronized void execute(Player player,Game game) {
+    public synchronized void execute(Player player,Game game) throws InterruptedException {
 
         PowerUp powerUp = new PowerUp();
         int valuePowerUp = powerUp.execute(game, player);
@@ -55,7 +55,7 @@ public class EffectOnNewCards implements Effect, Blocking {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new InterruptedException();
             }
         }
 

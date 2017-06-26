@@ -1,14 +1,13 @@
 package it.polimi.ingsw.GC_06.model.Cancel;
 
-import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
-
 /**
  * Created by massimo on 26/05/17.
  */
 /**@deprecated */
-public class TestAdapter implements NetworkAdapter {
+public class TestAdapter {
+    /*
     @Override
     public void send(Action action) {
         action.execute();
-    }
+    }*/
 }

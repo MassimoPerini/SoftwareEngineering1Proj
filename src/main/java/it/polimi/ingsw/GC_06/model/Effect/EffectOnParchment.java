@@ -33,7 +33,7 @@ public class EffectOnParchment implements Effect, Blocking {
     }
 
     @Override
-    public synchronized void execute (Player player,Game game) {
+    public synchronized void execute (Player player,Game game) throws InterruptedException {
         FileLoader fileLoader = FileLoader.getFileLoader();
         parchments = Arrays.asList(fileLoader.loadParchments());
 
@@ -41,7 +41,11 @@ public class EffectOnParchment implements Effect, Blocking {
 
             do{
                 MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
-                waitAnswer(game, messageChooseParchment);
+                try {
+                    waitAnswer(game, messageChooseParchment);
+                } catch (InterruptedException e) {
+                    throw new InterruptedException();
+                }
             }
             while(alreadyChoosed.contains(choosen) && different);
             player.variateResource(parchments.get(choosen));
@@ -50,14 +54,13 @@ public class EffectOnParchment implements Effect, Blocking {
         }
     }
 
-    private synchronized void waitAnswer(Game game, MessageChooseParchment messageChooseParchment)
-    {
+    private synchronized void waitAnswer(Game game, MessageChooseParchment messageChooseParchment) throws InterruptedException {
         GameList.getInstance().setCurrentBlocking(game, this, messageChooseParchment);
         while (choosen == null) {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new InterruptedException();
             }
             System.out.println("Thread svegliato");
         }
