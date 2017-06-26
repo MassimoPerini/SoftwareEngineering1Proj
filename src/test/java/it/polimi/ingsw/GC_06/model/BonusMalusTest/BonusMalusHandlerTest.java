@@ -2,11 +2,8 @@ package it.polimi.ingsw.GC_06.model.BonusMalusTest;
 
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
-import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
+import it.polimi.ingsw.GC_06.model.BonusMalus.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHeroCard.BonusMalusType;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -35,6 +32,8 @@ public class BonusMalusHandlerTest {
     private BonusMalusOnAction bonusMalusOnAction2;
     private BonusMalusOnAction bonusMalusOnAction3;
     private ResourceSet resourceSet = new ResourceSet();
+    private BonusMalusOnAccess bonusMalusOnAccess;
+    private BonusMalusOnAccess bonusMalusOnAccess1;
 
     private List<BonusMalusOnResources> bonusMalusOnResourcesList = new ArrayList<>();
     private BonusMalusOnResources bonusMalusOnResources;
@@ -49,11 +48,15 @@ public class BonusMalusHandlerTest {
         colours.add("WHITE");
         bonusMalusOnAction = new BonusMalusOnAction("YELLOW",colours,ActionType.BOARD_ACTION_ON_TOWER,false,5);
         bonusMalusOnAction1 = new BonusMalusOnAction("YELLOW",colours,ActionType.BOARD_ACTION_ON_TOWER,true ,5);
+        bonusMalusOnAccess = new BonusMalusOnAccess(ActionType.TOWER_ACTION,true,false);
+        bonusMalusOnAccess1 = new BonusMalusOnAccess(ActionType.TOWER_ACTION,true,true);
 
         bonusMalusOnAction2 = new BonusMalusOnAction("BLUE",colours,ActionType.BOARD_ACTION_ON_TOWER,false,5);
         bonusMalusOnAction3 = new BonusMalusOnAction("YELLOW",colours,ActionType.GENERAL,false,-100);
 
-
+        List<BonusMalusOnAccess> bonusMalusOnAccesses = new LinkedList<>();
+        bonusMalusOnAccesses.add(bonusMalusOnAccess);
+        bonusMalusOnAccesses.add(bonusMalusOnAccess1);
         resourceSet.variateResource(Resource.MONEY,10);
         resourceSet.variateResource(Resource.MILITARYPOINT,5);
 
@@ -70,6 +73,7 @@ public class BonusMalusHandlerTest {
         player = new Player("peppe", familyMembers);
         player.getBonusMalusSet().addActionBonusMalus(bonusMalusOnActions);
         player.getBonusMalusSet().addResourceBonusMalus(bonusMalusOnResourcesList);
+        player.getBonusMalusSet().addAccessBonusMalus(bonusMalusOnAccesses);
 
         ResourceSet malusSet = new ResourceSet();
          malusSet.variateResource(Resource.MONEY,-4);
@@ -119,6 +123,16 @@ public class BonusMalusHandlerTest {
         assertTrue(0 == player.getBonusMalusSet().getBonusMalusOnResources().get(BonusMalusType.BONUSMALUSONRESOURCE).size());
         assertTrue(0 == resourceSet.getResourceAmount(Resource.MILITARYPOINT));
         assertTrue(10 == resourceSet.getResourceAmount(Resource.MONEY));
+
+    }
+
+    @Test
+    public void accessFilter(){
+
+        boolean result = false;
+        result = BonusMalusHandler.filter(player,ActionType.TOWER_ACTION,result);
+
+        assertTrue(result);
 
     }
 }

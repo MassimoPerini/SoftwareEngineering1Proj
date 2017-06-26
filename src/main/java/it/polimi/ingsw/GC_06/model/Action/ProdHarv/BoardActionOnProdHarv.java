@@ -87,9 +87,10 @@ public class BoardActionOnProdHarv implements Action, Runnable {
     public void run() {
 
         int originalValue = familyMember.getValue();
-        BonusMalusHandler.filter(player,actionType,familyMember);
-        if (isAllowed()) {
+        boolean position = this.isAllowed();
+        if (BonusMalusHandler.filter(player,actionType,position)) {
             execute();
+            player.getBonusMalusSet().removeBonusMalusAccess(actionType,position);
             //
         }
         else{

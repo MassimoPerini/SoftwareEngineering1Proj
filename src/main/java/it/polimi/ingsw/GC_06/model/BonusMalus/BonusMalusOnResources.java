@@ -33,6 +33,10 @@ public class BonusMalusOnResources{
 
 
     public boolean isAllowed(ActionType actionType){
+        if(actionType == null){
+            return false;
+        }
+
         if(this.actionType.equals(actionType)){
             return true;
         }

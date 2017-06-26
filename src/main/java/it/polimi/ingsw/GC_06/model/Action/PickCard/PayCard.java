@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
@@ -62,6 +63,8 @@ public class PayCard implements Action, Blocking {
         //Execute tower penality
         if (tower.shouldThrowPenality(player.getPLAYER_ID())) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
+            // qua abbiamo levato tre monete
+            BonusMalusHandler.filter(player,ACTION_TYPE,malusResources);
             player.variateResource(malusResources);
             //TODO INSERIAMO QUA LA CHIAMATA A FILTER CHE CI DIRÀ SE NON DOBBIAMO PAGARE PIÙ
         }
@@ -91,6 +94,7 @@ public class PayCard implements Action, Blocking {
         Player pClone = new Player(player);     //CLONE (I hope...) TODO
 
         //Test tower penality BEFORE adding money from the actionspace
+
 
         if (tower.shouldThrowPenality(player.getPLAYER_ID())) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();

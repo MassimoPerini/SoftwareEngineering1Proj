@@ -51,6 +51,7 @@ public class Player extends Observable {
         this.playerBoard = p.playerBoard;
         this.familyMembers = p.familyMembers;
         this.addAtTheEnd = new ResourceSet(p.addAtTheEnd);
+        this.bonusMalusSet = p.bonusMalusSet;
         //TODO complete here...
     }
 

@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import it.polimi.ingsw.GC_06.model.playerTools.RankingPlayer;
@@ -33,7 +34,11 @@ public class EndGameAction  implements Action {
 
         /** aggiungiamo i punti provenienti da endGameMap per tutti i giocatori */
 
+        //prima di fare il calcolo del punteggio vittoria dobbiamo sottrarre vari punteggi
+
         for(Player player : players){
+            // qui eliminiamo per tutti i giocatori i punti dovuti al proprio resource set
+            BonusMalusHandler.filter(player,player.getResourceSet(),ACTION_TYPE);
             this.turnCardsIntoPoints(player);
             this.turnResourceIntoPoint(player);
             //this.addFinalPoint(player);
@@ -59,7 +64,7 @@ public class EndGameAction  implements Action {
         for(String colour : colours){
             int numbOfCards = player.getPlayerBoard().getDevelopmentCards(colour).size();
             int endPoint = endGameMap.getEndGameMap().get(colour).get(numbOfCards);
-            BonusMalusHandler.filter(player,ACTION_TYPE,endPoint,colour);
+            endPoint = BonusMalusHandler.filter(player,ACTION_TYPE,endPoint,colour);
             player.getResourceSet().variateResource(resource, endPoint);
         }
 
@@ -69,7 +74,12 @@ public class EndGameAction  implements Action {
 
     private void turnResourceIntoPoint(Player player){
        int endPoint =  player.getResourceSet().totalResourceQuantity() - player.getResourceSet().getResourceAmount(resource);
+        ResourceSet resourceSet = new ResourceSet();
+        // sono inclusi anche i punti accumulati durante la partita
+        resourceSet.variateResource(resource,endPoint);
+        player.variateResource(resourceSet);
        player.getResourceSet().variateResource(resource, endPoint);
+       // qui dovremmo essere riusciti a modificare l'attribuzione dei punti al player
        BonusMalusHandler.filter(player,player.getResourceSet(),ACTION_TYPE);
     }
 

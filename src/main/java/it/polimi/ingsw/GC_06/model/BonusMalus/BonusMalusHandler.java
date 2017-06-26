@@ -103,17 +103,20 @@ public class BonusMalusHandler {
     /** filtro per attivare tutti i bonus una volta per turno della carta */
     /** filtri sull'accesso*/
 
-    public static void filter(Player player,ActionType actionType,boolean result){
+    public static boolean filter(Player player,ActionType actionType,boolean result){
         ArrayList<BonusMalusOnAccess> bonusMalusOnAccesses = player.getBonusMalusSet().getBonusMalusOnAccess().get(BonusMalusType.BONUSMALUSONACCESS);
+        boolean value = result;
         for(int i = 0; i < bonusMalusOnAccesses.size();i++){
             BonusMalusOnAccess bonusMalusOnAccess = bonusMalusOnAccesses.get(i);
 
-            if(bonusMalusOnAccess.isAllowed(actionType)){
-                bonusMalusOnAccess.modify(result);
-                i = player.getBonusMalusSet().removeBonusMalusAccess(bonusMalusOnAccesses,i);
+            if(bonusMalusOnAccess.isAllowed(actionType,result)){
+                 value = bonusMalusOnAccess.modify(result);
+
             }
 
         }
+
+        return value;
     }
 
     /**filtro per attivare i bonus e malus di fine turno*/
@@ -124,7 +127,7 @@ public class BonusMalusHandler {
 
         for (BonusMalusOnEnd bonusMalusOnEnd : bonusMalusOnEnds) {
             for(int i = 0; i< bonusMalusOnEnds.size();i++){
-                if(bonusMalusOnEnd.check(actionType,resourceSet)){
+                if(bonusMalusOnEnd.check(actionType,resourceSet) && player.getBonusMalusSet().getBonusMalusOnEnd().get(BonusMalusType.BONUSMALUSONEND).size() != 0){
                     bonusMalusOnEnd.modify(player,resourceSet);
                     i = player.getBonusMalusSet().removeBonusMalusEnd(bonusMalusOnEnds,i);
                 }

@@ -79,13 +79,16 @@ public class BoardActionOnTower implements Action, Runnable {
     public void run() {
         System.out.println("ACTION STARTED");
         int originalValue = familyMember.getValue();
+        boolean position = this.isAllowed();
         List<Integer> nonPermanentBonusMalus = BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
-        if (this.isAllowed()) {
+        if (BonusMalusHandler.filter(player,ACTION_TYPE,position)) {
             this.execute();
             // devo rimuovere il bonus o il malus che ho utilizzato
             for (Integer permanentBonusMalus : nonPermanentBonusMalus) {
                 player.getBonusMalusSet().removeBonusMalusAction(permanentBonusMalus);
             }
+            player.getBonusMalusSet().removeBonusMalusAccess(ACTION_TYPE,position);
+
         }
         else{
             familyMember.setValue(originalValue);

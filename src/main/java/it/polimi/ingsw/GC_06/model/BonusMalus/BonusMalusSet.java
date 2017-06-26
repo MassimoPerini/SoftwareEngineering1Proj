@@ -84,7 +84,7 @@ public class BonusMalusSet {
     }
     public void addAccessBonusMalus(List<BonusMalusOnAccess> bonusMalusOnAccess){
         if(bonusMalusOnAccess.size()!= 0) {
-            for (BonusMalusType bonusMalusKey : this.bonusMalusOnCost.keySet()) {
+            for (BonusMalusType bonusMalusKey : this.bonusMalusOnAccess.keySet()) {
                 this.bonusMalusOnAccess.get(bonusMalusKey).addAll(bonusMalusOnAccess);
             }
         }
@@ -107,12 +107,18 @@ public class BonusMalusSet {
 
     }
 
-    public int removeBonusMalusAccess(ArrayList<BonusMalusOnAccess> accesses, int i){
-        if(!accesses.get(i).isPermanent()){
-            accesses.remove(i);
-            return  --i;
+    public void removeBonusMalusAccess( ActionType actionType,boolean position){
+
+        ArrayList<BonusMalusOnAccess> bonusMalusOnAccesses = this.bonusMalusOnAccess.get(BonusMalusType.BONUSMALUSONACCESS);
+
+        for(int i = 0; i < bonusMalusOnAccesses.size();i++){
+
+            if(bonusMalusOnAccesses.get(i).getActionType().equals(actionType) && bonusMalusOnAccesses.get(i).isModifiedAccess() == !position){
+                bonusMalusOnAccesses.remove(i);
+                i--;
+            }
+
         }
-        return i;
 
     }
 
