@@ -15,8 +15,8 @@ import java.util.List;
 /**
  * Created by massimo on 27/06/17.
  */
-public class PersonalBonusChoiceHandler /*implements Blocking*/ {
-/**
+public class PersonalBonusChoiceHandler implements Blocking {
+
     private List<Player> players;
     Integer choice;
 
@@ -66,5 +66,5 @@ public class PersonalBonusChoiceHandler /*implements Blocking*/ {
     @Override
     public void userLoggedOut(String user) {
 
-    }*/
+    }
 }
