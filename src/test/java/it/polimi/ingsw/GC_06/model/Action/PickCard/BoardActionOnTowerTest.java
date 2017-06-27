@@ -49,7 +49,7 @@ public class BoardActionOnTowerTest {
     @Test
     public void bonusMalusTest(){
 
-        LinkedList<String> colours = new LinkedList<>();
+        /*LinkedList<String> colours = new LinkedList<>();
         colours.add(familyMember.getDiceColor());
         BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction("YELLOW",colours, ActionType.BOARD_ACTION_ON_TOWER,true,-3);
         List<BonusMalusOnAction> bonusMalusOnActions = new LinkedList<>();
@@ -67,7 +67,7 @@ public class BoardActionOnTowerTest {
 
         assertTrue((game.getBoard().getTowers().get("YELLOW").getTowerFloor().get(2).getCard()) == null);
         assertTrue(1 == game.getGameStatus().getPlayers().get("peppe").getPlayerBoard().getDevelopmentCards("YELLOW").size());
-
+*/
     }
 
 
