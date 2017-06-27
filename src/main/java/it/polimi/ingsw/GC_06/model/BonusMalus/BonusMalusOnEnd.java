@@ -33,7 +33,7 @@ public class BonusMalusOnEnd {
     }
 
     /**
-     * il resourceSet è quello in base a cui cambier
+     * il resourceSet è quello in base a cui cambiare
      */
     public void modify(Player player, ResourceSet activeResourceSet) {
 

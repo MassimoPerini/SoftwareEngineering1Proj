@@ -19,7 +19,7 @@ public class BoardActionOnTower implements Action {
     private final FamilyMember familyMember;
     private final Game game;
     private final Player player;
-    private final ActionType ACTION_TYPE = ActionType.TOWER_ACTION;
+    private final ActionType ACTION_TYPE = ActionType.BOARD_ACTION_ON_TOWER;
 
     public BoardActionOnTower(Player player, int floor, Tower tower, FamilyMember familyMember,Game game) {
         super();
