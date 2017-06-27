@@ -51,7 +51,7 @@ public class BoardActionOnTowerTest {
 
         LinkedList<String> colours = new LinkedList<>();
         colours.add(familyMember.getDiceColor());
-        BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction("YELLOW",colours, ActionType.TOWER_ACTION,true,-3);
+        BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction("YELLOW",colours, ActionType.BOARD_ACTION_ON_TOWER,true,-3);
         List<BonusMalusOnAction> bonusMalusOnActions = new LinkedList<>();
         bonusMalusOnActions.add(bonusMalusOnAction);
         game.getGameStatus().getPlayers().get("peppe").getBonusMalusSet().addActionBonusMalus(bonusMalusOnActions);
