@@ -14,7 +14,6 @@ import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.*;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoard;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoardSlot;
 
@@ -42,17 +41,19 @@ public class FileLoader {
     private static final String DICES = "dices_path";
     private static final String PLAYER_BOARD = "player_board_path";
     private static final String CHURCH = "church";
+    private static final String EXCOMMUNICATION = "excomm";
     // private static final String GAME_MAP = "end_game_map";
 
 
-    private String cardsRootPath;
-    private String parchmentsPath;
-    private String boardRootPath;
-    private String defaultResourceRootPath;
-    private String dicePath;
+    private final String cardsRootPath;
+    private final String parchmentsPath;
+    private final String boardRootPath;
+    private final String defaultResourceRootPath;
+    private final String dicePath;
     // private String endGameMap;
-    private String playerBoardPath;
-    private String church;
+    private final String playerBoardPath;
+    private final String church;
+    private final String excommunication;
     private Gson gson;
 
 
@@ -67,6 +68,7 @@ public class FileLoader {
         dicePath = Setting.getInstance().getProperty(DICES);
         playerBoardPath = Setting.getInstance().getProperty(PLAYER_BOARD);
         church = Setting.getInstance().getProperty(CHURCH);
+        excommunication = Setting.getInstance().getProperty(EXCOMMUNICATION);
 //        endGameMap = Setting.getInstance().getProperty(GAME_MAP);
     }
 
@@ -3664,6 +3666,26 @@ public class FileLoader {
         fw.close();
     }
 
+
+    public ExcomunicationCard [] loadExcommunication()
+    {
+        try {
+            RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                    .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                    .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream(excommunication));
+
+
+            ExcomunicationCard[] excomunicationCard = gson.fromJson(inputStreamReader, ExcomunicationCard[].class);
+            inputStreamReader.close();
+            return excomunicationCard;
+        }
+        catch (IOException e)
+        {}
+        return null;
+    }
 
 
 

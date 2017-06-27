@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.playerTools;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateResource;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
@@ -12,6 +13,7 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 
 /**
@@ -29,6 +31,7 @@ public class Player extends Observable {
     private final ResourceSet addAtTheEnd;
     private BonusMalusSet bonusMalusSet;
     private boolean connected;
+    private Map<ActionType, Map<Integer, Effect>> personalBonus;
 
     //TODO sistemare la questione dei malus e bonus sul player
 
@@ -155,5 +158,13 @@ public class Player extends Observable {
 
     public void setBonusMalusSet(BonusMalusSet bonusMalusSet) {
         this.bonusMalusSet = bonusMalusSet;
+    }
+
+    public Map<ActionType, Map<Integer, Effect>> getPersonalBonus() {
+        return personalBonus;
+    }
+
+    public void setPersonalBonus(Map<ActionType, Map<Integer, Effect>> personalBonus) {
+        this.personalBonus = personalBonus;
     }
 }

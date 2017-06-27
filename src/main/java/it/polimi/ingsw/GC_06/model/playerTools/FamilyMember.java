@@ -14,6 +14,7 @@ public class FamilyMember extends Observable implements Observer {
     private int value;
     private String diceColor;
     private String playerUserName;
+    private boolean alreadyUsed;
 
     public String getPlayerUserName() {
         return playerUserName;
@@ -25,6 +26,7 @@ public class FamilyMember extends Observable implements Observer {
         super();
         this.diceColor=diceColor;
         this.playerUserName = playerUserName;
+        alreadyUsed = false;
     }
 
     public String getDiceColor() {
@@ -40,6 +42,7 @@ public class FamilyMember extends Observable implements Observer {
     {
         Integer val =(Integer) args;
         setValue(val.intValue());
+        this.alreadyUsed = false;
     }
 
 
@@ -55,5 +58,15 @@ public class FamilyMember extends Observable implements Observer {
 
         setChanged();
         notifyObservers(messageServer);
+    }
+
+    public boolean isAllowed()
+    {
+        return !alreadyUsed;
+    }
+
+    public void useIt()
+    {
+        alreadyUsed = true;
     }
 }

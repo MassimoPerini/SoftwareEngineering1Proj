@@ -6,7 +6,7 @@
       "MILITARYPOINT": 100,
       "MONEY": 100,
       "WOOD": 100,
-      "FAITHPOINT": 5
+      "FAITHPOINT": 0
     }
   },
   {
@@ -16,7 +16,7 @@
       "MILITARYPOINT": 101,
       "MONEY": 101,
       "WOOD": 101,
-      "FAITHPOINT": 4
+      "FAITHPOINT": 0
     }
   },
   {
