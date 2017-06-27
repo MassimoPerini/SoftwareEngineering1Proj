@@ -6,7 +6,7 @@
       "MILITARYPOINT": 100,
       "MONEY": 100,
       "WOOD": 100,
-      "FAITHPOINT": 0
+      "FAITHPOINT": 10
     }
   },
   {

@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMarketCouncil;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 
 import java.util.concurrent.Future;
@@ -51,8 +52,7 @@ public class UserActionViewController implements ViewPresenterCLI {
         boolean ok = false;
         while(!ok) {
             commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta," +
-                    "Se vuoi eseguire il raccolto o la produzione scrivi prod");
-            commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta, l per cambiare turno");
+                    "Se vuoi eseguire il raccolto o la produzione scrivi prod, se vuoi posizionare il familiare nello aspazio consiglio/mercato scrivi m");
             String input = commandView.getString();
 
             if (input.equals("s")) {
@@ -87,6 +87,14 @@ public class UserActionViewController implements ViewPresenterCLI {
             {
                 MessageEndTurn messageEndTurn = new MessageEndTurn();
                 clientNetworkOrchestrator.send(messageEndTurn);
+                ok = true;
+            }
+            if (input.equals("m"))
+            {
+                commandView.addLocalizedText("slotMarketCouncil indiceSlot familiare");
+                String[] inp = commandView.getString().split(" ");
+                MessageMarketCouncil messageMarketCouncil = new MessageMarketCouncil(Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]));
+                clientNetworkOrchestrator.send(messageMarketCouncil);
                 ok = true;
             }
         }

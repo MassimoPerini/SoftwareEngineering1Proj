@@ -55,6 +55,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageProdHarv.class)
                 .registerSubtype(DefaultAnswer.class)
                 .registerSubtype(MessageEndTurn.class)
+                .registerSubtype(MessageMarketCouncil.class)
                 .registerSubtype(ProdHarvAnswer.class)
                 .registerSubtype(PlayerChoiceExcommunication.class)
                 ;

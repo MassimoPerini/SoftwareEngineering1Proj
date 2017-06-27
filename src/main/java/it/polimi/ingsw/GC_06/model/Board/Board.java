@@ -4,7 +4,10 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageClearBoard;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
 
 /**
  * Created by massimo on 13/05/17.
@@ -64,7 +67,7 @@ public class Board extends Observable{
         return Collections.unmodifiableList(prodHarvZones);
     }
 
-    public List<MarketAndCouncil> getCouncils() {
+    public List<MarketAndCouncil> getMarketAndCouncils() {
         return Collections.unmodifiableList(councils);
     }
 }

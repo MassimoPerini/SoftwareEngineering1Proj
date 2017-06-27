@@ -41,7 +41,6 @@ public class BoardActionOnMarketCouncil implements Action {
         if (effectList==null)
             throw new NullPointerException();
 
-
         this.executeEffects = new ExecuteEffects(effectList, player,game);
     }
 
@@ -55,7 +54,9 @@ public class BoardActionOnMarketCouncil implements Action {
         game.getGameStatus().changeState(TransitionType.ACTION_ON_MARKETCOUNSIL);
 
         marketAndCouncil.addFamilyMember(familyMember, index);
-        executeEffects.execute();
+        if (executeEffects.isAllowed()) {
+            executeEffects.execute();
+        }
 
         game.getGameStatus().changeState(TransitionType.END_ACTION);
         player.getBonusMalusSet().removeBonusMalusAction(actionType,null);
@@ -78,7 +79,6 @@ public class BoardActionOnMarketCouncil implements Action {
         boolean value = marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_MARKETCOUNSIL);
         familyMember.setValue(originalValue);
         return BonusMalusHandler.filter(player,actionType,value);
-
     }
 
 

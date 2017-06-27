@@ -49,6 +49,9 @@ public class MessageBoardActionTower implements MessageClient{
             if (boardActionOnTower.isAllowed()) {
                 boardActionOnTower.execute();
             }
+            else{
+                System.out.println("AZIONE NON VALIDA");
+            }
         }
         catch (InterruptedException e)
         {

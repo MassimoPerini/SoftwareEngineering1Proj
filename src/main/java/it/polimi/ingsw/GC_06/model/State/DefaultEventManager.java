@@ -59,7 +59,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
         List<Player> players = game.getRoundManager().getPlayers();
         PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
-        personalBonusChoiceHandler.execute(game, serverOrchestrator);
+    //    personalBonusChoiceHandler.execute(game, serverOrchestrator);
 
         game.roll();
 
@@ -83,7 +83,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         game.roll();
 
         //Handle the new order
-        List<FamilyMember> familyMembersCouncil = game.getBoard().getCouncils().get(0).getActionPlaces().get(0).getMembers();
+        List<FamilyMember> familyMembersCouncil = game.getBoard().getMarketAndCouncils().get(0).getActionPlaces().get(0).getMembers();
         List<String> playersTurn = new LinkedList<>();
         //Save the name of the players inside the council
         for (FamilyMember familyMember : familyMembersCouncil) {
@@ -174,7 +174,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     private void giveExcummunication(Player player)
     {
         try {
-            List<ExcomunicationCard> excomunicationCard = excomunicationCards.get(lastEra);
+            List<ExcomunicationCard> excomunicationCard = excomunicationCards.get(lastEra-1);       //Ricevo la nuova era (es. alla fine della prima ho 2)
             for (ExcomunicationCard card : excomunicationCard) {
                 List<Effect> effects = card.getEffects();
                 ExecuteEffects executor = new ExecuteEffects(effects, player, game);

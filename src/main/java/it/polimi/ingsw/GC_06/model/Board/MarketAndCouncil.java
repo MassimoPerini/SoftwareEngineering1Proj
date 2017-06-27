@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
@@ -12,9 +13,11 @@ import java.util.Observable;
 public class MarketAndCouncil extends Observable
 {
 	private final ArrayList<ActionPlace> actionPlaces;
+	private final ActionType actionType;
 	
-	public MarketAndCouncil(ArrayList<ActionPlace> places) {
+	public MarketAndCouncil(ArrayList<ActionPlace> places, ActionType actionType) {
 		this.actionPlaces = places;
+		this.actionType = actionType;
 	}
 
 	public void addFamilyMember(FamilyMember familyMember, int index) {
@@ -36,6 +39,10 @@ public class MarketAndCouncil extends Observable
 		for (ActionPlace actionPlace : actionPlaces) {
 			actionPlace.removeFamilyMembers();
 		}
+	}
+
+	public ActionType getActionType() {
+		return actionType;
 	}
 
 	public List<ActionPlace> getActionPlaces() {

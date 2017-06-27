@@ -57,7 +57,7 @@ public class MessageGameStarted implements MessageServer {
             towers.put(s, game.getBoard().getTowers().get(s).getTowerFloor().size());       //Color - tower floors
         }
 
-        for (MarketAndCouncil marketAndCouncil : game.getBoard().getCouncils()) {
+        for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarketAndCouncils()) {
             councils.add(marketAndCouncil.getActionPlaces().size());            //Il primo council ha x actionplaces...
         }
 

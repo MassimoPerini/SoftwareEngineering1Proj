@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.*;
+import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.PlayerBoard;
@@ -42,6 +43,7 @@ public class FileLoader {
     private static final String PLAYER_BOARD = "player_board_path";
     private static final String CHURCH = "church";
     private static final String EXCOMMUNICATION = "excomm";
+    private static final String PERSONAL_BONUS = "personal_bonus";
     // private static final String GAME_MAP = "end_game_map";
 
 
@@ -54,6 +56,7 @@ public class FileLoader {
     private final String playerBoardPath;
     private final String church;
     private final String excommunication;
+    private final String personalBonus;
     private Gson gson;
 
 
@@ -69,6 +72,7 @@ public class FileLoader {
         playerBoardPath = Setting.getInstance().getProperty(PLAYER_BOARD);
         church = Setting.getInstance().getProperty(CHURCH);
         excommunication = Setting.getInstance().getProperty(EXCOMMUNICATION);
+        personalBonus = Setting.getInstance().getProperty(PERSONAL_BONUS);
 //        endGameMap = Setting.getInstance().getProperty(GAME_MAP);
     }
 
@@ -179,6 +183,7 @@ public class FileLoader {
         fr.close();
         return diceSet;
     }
+
 
     //TODO remove it
     public void testCard() throws IOException {
@@ -592,7 +597,7 @@ public class FileLoader {
         marketEffects4.add(marketEffect4);
         ActionPlaceFixed market4 = new ActionPlaceFixed(marketEffects4, 1, 4);
         placesMarket.add(market4);
-        MarketAndCouncil market = new MarketAndCouncil(placesMarket);
+        MarketAndCouncil market = new MarketAndCouncil(placesMarket, ActionType.BOARD_ACTION_ON_MARKET);
         markets.add(market);
         //adesso genero lo spazio del consiglio
         ArrayList<MarketAndCouncil> counsils = new ArrayList<>();
@@ -606,7 +611,7 @@ public class FileLoader {
         counsilEffects.add(cousilEffect);
         ActionPlace cousilPlace = new ActionPlace(counsilEffects, 1);
         placesCounsil.add(cousilPlace);
-        MarketAndCouncil counsil = new MarketAndCouncil(placesCounsil);
+        MarketAndCouncil counsil = new MarketAndCouncil(placesCounsil, ActionType.COUNCIL_ACTION);
         counsils.add(counsil);
         //posso finalmente creare una board per poi scriverla
         Board board = new Board(towers, markets, prodHarvZones, counsils);
@@ -677,12 +682,12 @@ public class FileLoader {
         {
             marketActionPlaces.add(new ActionPlaceFixed(new ArrayList<>(), 1, 1));    //TODO EFFECT???
         }
-        marketAndCouncils.add(new MarketAndCouncil(marketActionPlaces));
+        marketAndCouncils.add(new MarketAndCouncil(marketActionPlaces, ActionType.BOARD_ACTION_ON_MARKET));
 
         ArrayList<MarketAndCouncil> councils = new ArrayList<>();
         ArrayList<ActionPlace> actionPlaces = new ArrayList<ActionPlace>();
         actionPlaces.add(new ActionPlace(new ArrayList<Effect>(), 1));
-        councils.add(new MarketAndCouncil(actionPlaces));
+        councils.add(new MarketAndCouncil(actionPlaces, ActionType.COUNCIL_ACTION));
 
         Board b = new Board(towers, marketAndCouncils, prodHarvZones, councils);
 
@@ -2850,6 +2855,129 @@ public class FileLoader {
         gson.toJson(cards, fw);
         fw.close();
 
+    }
+
+
+
+    public List<PersonalBonusTile> loadPersonalBonus()
+    {
+        InputStreamReader sr = new InputStreamReader(this.getClass().getResourceAsStream(personalBonus));
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+        Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        PersonalBonusTile [] bonusTiles = gson.fromJson(sr, PersonalBonusTile[].class);
+        return Arrays.asList(bonusTiles);
+    }
+
+
+    public void writePersonalBonus() throws IOException {
+        Map<ActionType, Map<Integer, Effect>> personalEffects = new HashMap<>();
+        Map<Integer, Effect> effects = new HashMap<>();
+
+        ResourceSet resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.MILITARYPOINT, 1);
+        resourceSet.variateResource(Resource.MONEY, 2);
+        Effect effect = new EffectOnResources(resourceSet);
+
+        effects.put(1, effect);
+        personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
+
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.WOOD, 1);
+        resourceSet.variateResource(Resource.STONE, 1);
+        resourceSet.variateResource(Resource.SERVANT, 1);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.HARVEST_ACTION, effects);
+
+        PersonalBonusTile [] personalBonusTile = new PersonalBonusTile [5];
+        personalBonusTile[0] = new PersonalBonusTile("personalbonustile_1", personalEffects);
+
+        ////-----
+        personalEffects = new HashMap<>();
+        effects = new HashMap<>();
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.MONEY, 1);
+        resourceSet.variateResource(Resource.SERVANT, 2);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.WOOD, 1);
+        resourceSet.variateResource(Resource.STONE, 1);
+        resourceSet.variateResource(Resource.MILITARYPOINT, 1);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.HARVEST_ACTION, effects);
+        personalBonusTile[1] = new PersonalBonusTile("personalbonustile_2", personalEffects);
+
+        ///------
+
+        personalEffects = new HashMap<>();
+        effects = new HashMap<>();
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.MILITARYPOINT, 2);
+        resourceSet.variateResource(Resource.MONEY, 1);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.WOOD, 1);
+        resourceSet.variateResource(Resource.STONE, 1);
+        resourceSet.variateResource(Resource.SERVANT, 1);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.HARVEST_ACTION, effects);
+        personalBonusTile[2] = new PersonalBonusTile("personalbonustile_3", personalEffects);
+
+        ////----
+
+        personalEffects = new HashMap<>();
+        effects = new HashMap<>();
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.SERVANT, 1);
+        resourceSet.variateResource(Resource.MONEY, 2);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.WOOD, 1);
+        resourceSet.variateResource(Resource.STONE, 1);
+        resourceSet.variateResource(Resource.MILITARYPOINT, 1);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.HARVEST_ACTION, effects);
+        personalBonusTile[3] = new PersonalBonusTile("personalbonustile_4", personalEffects);
+
+        ///////
+
+        personalEffects = new HashMap<>();
+        effects = new HashMap<>();
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.SERVANT, 1);
+        resourceSet.variateResource(Resource.MILITARYPOINT, 2);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
+        resourceSet = new ResourceSet();
+        resourceSet.variateResource(Resource.WOOD, 1);
+        resourceSet.variateResource(Resource.STONE, 1);
+        resourceSet.variateResource(Resource.MONEY, 1);
+        effect = new EffectOnResources(resourceSet);
+        effects.put(1, effect);
+        personalEffects.put(ActionType.HARVEST_ACTION, effects);
+        personalBonusTile[4] = new PersonalBonusTile("personalbonustile_5", personalEffects);
+
+
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+
+        Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        FileWriter fw = new FileWriter("src/main/resources/model/personal_bonus.txt");
+        gson.toJson(personalBonusTile, fw);
+        fw.close();
     }
 
     public void writeBlueCard() throws IOException {
