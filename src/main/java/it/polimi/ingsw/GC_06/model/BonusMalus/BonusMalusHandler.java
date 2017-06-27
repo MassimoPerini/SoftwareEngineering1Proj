@@ -93,7 +93,7 @@ public class BonusMalusHandler {
         for(int i = 0; i < bonusMalusOnCosts.size();i++){
             BonusMalusOnCost bonusMalusOnCost = bonusMalusOnCosts.get(i);
             if(bonusMalusOnCost.isAllowed(actionType)){
-                bonusMalusOnCost.modify(developmentCard);
+                developmentCard = bonusMalusOnCost.modify(developmentCard);
                 i = player.getBonusMalusSet().removeBonusMalusCost(bonusMalusOnCosts,i);
             }
         }

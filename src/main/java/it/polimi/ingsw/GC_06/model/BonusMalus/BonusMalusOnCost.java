@@ -33,19 +33,15 @@ public class BonusMalusOnCost {
     public DevelopmentCard modify(DevelopmentCard developmentCard){
 
         /** voglio modifciare solo fakeCard non il resto */
-        DevelopmentCard fakeCard = new DevelopmentCard("",developmentCard.getEra(),developmentCard.getRequirements(),
-                developmentCard.getImmediateEffects(),developmentCard.getIdColour(),
-                developmentCard.getProdHarvEffects());
-
-        if(isAllowed(fakeCard)){
-            for(Requirement requirement : fakeCard.getRequirements()){
+        if(isAllowed(developmentCard)){
+            for(Requirement requirement : developmentCard.getRequirements()){
                requirement.getCost().variateResource(bonusMalusEntity);
             }
 
 
         }
 
-        return fakeCard;
+        return developmentCard;
     }
 
     public boolean isAllowed(DevelopmentCard developmentCard){
