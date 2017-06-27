@@ -77,7 +77,9 @@ public class BoardActionOnTower implements Action {
             return false;
         }
 
-        if (!tower.isAllowed(familyMember, index)){
+        boolean actionPermitted = BonusMalusHandler.filter(player,ACTION_TYPE,tower.isAllowed(familyMember, index));
+
+        if (!actionPermitted){
             familyMember.setValue(originalValue);
             return false;}
 

@@ -16,7 +16,8 @@ import java.util.Map;
  * @author massimo
  * This class is a DevelopmentCard
  */
-public class DevelopmentCard extends Card
+public class
+DevelopmentCard extends Card
 {
     private int era;
     private List<Requirement> requirements;

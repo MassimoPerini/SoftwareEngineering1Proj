@@ -43,7 +43,7 @@ public class ActionPlaceTest {
         actionPlace = new ActionPlace(null, 5);
     }
 /*
-    @Test
+    @TowerActionTest
     public void checkValueFamilyMember() throws IOException {
         int val = player.getFamilyMembers()[0].getValue();
         assertTrue(val <= (FileLoader.getFileLoader().loadDiceSet().getDices()[0].getMaxPoint()));
@@ -87,13 +87,13 @@ public class ActionPlaceTest {
 
     }
 /*
-    @Test (expected=NullPointerException.class)
+    @TowerActionTest (expected=NullPointerException.class)
     public void checkNullFamilyMemberActionPlace(){
         actionPlace = new ActionPlace(new LinkedList<>(), -1);
         actionPlace.addFamilyMember(null);
     }
 /*
-    @Test (expected=IllegalArgumentException.class)
+    @TowerActionTest (expected=IllegalArgumentException.class)
     public void notAllowedAddActionPlace(){
         actionPlace = new ActionPlace(new LinkedList<>(), 20000);
         game.roll();

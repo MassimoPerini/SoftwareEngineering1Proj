@@ -16,8 +16,8 @@ import java.util.Map;
 /**
  * Created by massimo on 27/06/17.
  */
-public class PersonalBonusChoiceHandler implements Blocking {
-
+public class PersonalBonusChoiceHandler /*implements Blocking*/ {
+/**
     private List<Player> players;
     Integer choice;
 
@@ -39,7 +39,7 @@ public class PersonalBonusChoiceHandler implements Blocking {
         {
             choice = null;
             MessageServer messageServer = new MessageChoosePersonalBonus(freeIndexes);
-            serverOrchestrator.send(players.get(i).getPLAYER_ID(), messageServer);
+  //TODO da sistemare con urgenza!!!!             serverOrchestrator.send(players.get(i).getPLAYER_ID(), messageServer);
             GameList.getInstance().setCurrentBlocking(game, this);
             try {
                 while (choice != null) {
@@ -67,5 +67,5 @@ public class PersonalBonusChoiceHandler implements Blocking {
     @Override
     public void userLoggedOut(String user) {
 
-    }
+    }*/
 }

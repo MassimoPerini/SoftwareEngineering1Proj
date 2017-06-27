@@ -16,8 +16,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
+
 
 /**
  * Created by giuseppe on 6/26/17.
@@ -30,7 +31,11 @@ public class BoardActionOnMarketCouncilTest {
     private Player player;
     private BoardActionOnMarketCouncil action;
 
-    @Before
+
+
+
+
+    @org.junit.Before
     public void setUp() throws IOException {
 
         game = new Game(0);
@@ -52,6 +57,8 @@ public class BoardActionOnMarketCouncilTest {
         // adesso vediamo se sono stati dati correttamente gli effetti
 
     }
+
+
 
     @Test
     public void resourceBonusTest() throws InterruptedException {

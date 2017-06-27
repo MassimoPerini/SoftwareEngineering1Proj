@@ -105,6 +105,16 @@ public class PlayerBoard {
 
     }
 
+    public List<HeroCard> getHeroCards() {
+        return heroCards;
+    }
+
+    public void resetHeroCard(){
+        for (HeroCard heroCard : this.heroCards) {
+            heroCard.setCardStatus(true);
+        }
+    }
+
     /** ritorna il numero di carte di un certo colore possedute da un giocatore*/
 
 }

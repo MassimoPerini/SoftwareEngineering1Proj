@@ -28,7 +28,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     private final Map<Integer, ResourceSet> requirements;
     private int lastEra;
     private Map<String, Boolean> answersExcommunication = new HashMap<>();
-    private final Map<Integer, List<ExcomunicationCard>> excomunicationCards;
+   // private final Map<Integer, List<ExcomunicationCard>> excomunicationCards;
     private List<Map<ActionType, Map<Integer, Effect>>> boards;
 
 
@@ -38,7 +38,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         this.game = game;
         this.requirements = FileLoader.getFileLoader().loadChurchRequirement();
 
-
+ /**
         List<ExcomunicationCard> excommCards = Arrays.asList(FileLoader.getFileLoader().loadExcommunication());
 
         excomunicationCards = new HashMap<>();
@@ -52,7 +52,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             excomunicationCardList.add(excommCard);
         }
 
-
+*/
     }
 
     public void start()
@@ -60,11 +60,11 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         //Scegli i bonus personali
 
         List<Player> players = game.getRoundManager().getPlayers();
-        PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
-        personalBonusChoiceHandler.execute(game, serverOrchestrator);
+        //PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
+       // personalBonusChoiceHandler.execute(game, serverOrchestrator);
 
         game.roll();
-
+/**
         for (Integer integer : excomunicationCards.keySet()) {
             List<ExcomunicationCard> excomunicationCardList = excomunicationCards.get(integer);
             Random random = new Random();
@@ -74,7 +74,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             List<ExcomunicationCard> choosenCards = new LinkedList<>();
             choosenCards.add(sortedCard);
             excomunicationCards.replace(integer, choosenCards);
-        }
+        }*/
 
     }
 
@@ -120,6 +120,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             }
         }
 
+        for (Player player : players) {
+            player.getPlayerBoard().resetHeroCard();
+        }
+
         return players;
     }
 
@@ -156,7 +160,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             else
             {
                 //Execute excommunications
-                giveExcummunication(realPlayer);
+                //giveExcummunication(realPlayer);
             }
         }
         while (answersExcommunication.size()<playerAskExcomm)
@@ -184,7 +188,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         answersExcommunication = new HashMap<>();
     }
 
-    private void giveExcummunication(Player player)
+   /** private void giveExcummunication(Player player)
     {
         try {
             List<ExcomunicationCard> excomunicationCard = excomunicationCards.get(lastEra);
@@ -195,7 +199,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             }
         }
         catch (InterruptedException e){}
-    }
+    }*/
 
     @Override
     public synchronized void setOptionalParams(Object object) {

@@ -53,14 +53,14 @@ public class ActionPlaceFixedTest {
         actionPlace.addFamilyMember(familyMember);
     }
 /*
-    @Test (expected=IllegalArgumentException.class)
+    @TowerActionTest (expected=IllegalArgumentException.class)
     public void notAllowedWithZero() {
         ActionPlace actionPlace = new ActionPlaceFixed(new ArrayList<>(), -1, 0);
         FamilyMember familyMember = player.getFamilyMembers()[0];
         actionPlace.addFamilyMember(familyMember);
     }
 
-    @Test (expected=IllegalArgumentException.class)
+    @TowerActionTest (expected=IllegalArgumentException.class)
     public void notAllowed() {
         ActionPlace actionPlace = new ActionPlaceFixed(new ArrayList<>(), -1, 3);
         FamilyMember familyMember = player.getFamilyMembers()[0];
@@ -71,7 +71,7 @@ public class ActionPlaceFixedTest {
     }
 
 
-    @Test (expected=IllegalArgumentException.class)
+    @TowerActionTest (expected=IllegalArgumentException.class)
     public void priceTooHigh() {
         ActionPlace actionPlace = new ActionPlaceFixed(new ArrayList<>(), 9000, 2);
         FamilyMember familyMember = player.getFamilyMembers()[0];
