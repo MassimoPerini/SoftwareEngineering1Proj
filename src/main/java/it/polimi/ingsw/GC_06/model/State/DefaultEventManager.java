@@ -5,6 +5,8 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -69,6 +71,17 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         for (String namePlayer : playersTurn) {
             players.add(game.getGameStatus().getPlayers().get(namePlayer));
         }
+
+        for (Player player : players) {
+
+            int lenght =  player.getFamilyMembers().length;
+            for(int i = 0; i < lenght; i++){
+                FamilyMember familyMember = player.getFamilyMembers()[i];
+                int value = BonusMalusHandler.filter(player, ActionType.STARTING_SETTING,familyMember.getValue(),familyMember.getDiceColor());
+                familyMember.setValue(value);
+            }
+        }
+
         return players;
     }
 

@@ -17,14 +17,14 @@ public class ActionPlace {
     private final List<Effect> effects;
 	private List<FamilyMember> members;
 	private int price;
-	
-	public ActionPlace(List<Effect> effect, int price) {
+
+	public ActionPlace(List<Effect> effect, int price ) {
 		if (effect == null)
 			throw new NullPointerException();
 		this.effects = effect;
 		this.members = new ArrayList<>();
 		this.price = price;
-		
+
 	}
 
 	//TODO N.B. Sarebbe meglio una delega???
@@ -69,6 +69,8 @@ public class ActionPlace {
 	public List<Effect> getEffects() {
 		return Collections.unmodifiableList(effects);
 	}
+
+
 
 	public int getPrice() {
 		return price;
