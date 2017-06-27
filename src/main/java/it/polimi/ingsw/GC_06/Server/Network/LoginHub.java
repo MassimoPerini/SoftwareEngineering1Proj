@@ -38,7 +38,7 @@ public class LoginHub {
      * @param username
      *
      */
-    public synchronized void loginHandler(String username) throws IOException {
+    public synchronized void loginHandler(String username) {
 
         if (searchTrash(username)) {
 
@@ -49,8 +49,11 @@ public class LoginHub {
         }
         else{
             /** chiamo immediatamente il login */
-
-            addUser(username);
+            try {
+                addUser(username);
+            }
+            catch (Exception e)
+            {}
         }
 
     }

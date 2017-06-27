@@ -1,23 +1,13 @@
 package it.polimi.ingsw.GC_06.Client.Network;
 
-import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
- * Created by massimo on 12/06/17.
+ * Created by massimo on 26/06/17.
  */
-public class ClientRMI extends Client {
-    @Override
-    public void submit(MessageClient action) {
-        //Invio azioni
-    }
-
-    @Override
-    public void submit(String string) {
-
-    }
-
-    @Override
-    public void run() {
-        //Ascolto e ricevo azioni
-    }
+public interface ClientRMI extends Remote {
+    void receive(MessageServer messageServer) throws RemoteException;
 }

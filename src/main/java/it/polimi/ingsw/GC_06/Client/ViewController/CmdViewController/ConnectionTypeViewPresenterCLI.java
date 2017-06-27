@@ -27,7 +27,7 @@ public class ConnectionTypeViewPresenterCLI implements ViewPresenterCLI {
     public void viewWillAppear() {
 
         commandView.addLocalizedText("Come vuoi connetterti? 0:Socket, 1: RMI Tanto puoi scegliere solo socket...");
-        answer = commandView.getInt(0,0);
+        answer = commandView.getInt(0,1);
         if (answer==0)
             clientNetworkOrchestrator.useSocket();
         else

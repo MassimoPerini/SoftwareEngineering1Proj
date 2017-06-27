@@ -58,7 +58,7 @@ public class BoardActionOnProdHarv implements Action {
     public void execute() throws InterruptedException {
 
     //    game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
-
+        familyMember.useIt();
         game.getGameStatus().changeState(TransitionType.ACTION_ON_PRODHARV);
 
 
@@ -78,7 +78,9 @@ public class BoardActionOnProdHarv implements Action {
 
     @Override
     public boolean isAllowed() {
-        return prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_PRODHARV);
+
+        return familyMember.isAllowed() && prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_PRODHARV);
+
     }
 
     //TODO BONUSMALUS

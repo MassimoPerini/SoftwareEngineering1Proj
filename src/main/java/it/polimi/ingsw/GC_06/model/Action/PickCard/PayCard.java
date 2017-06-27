@@ -44,11 +44,14 @@ public class PayCard implements Action, Blocking {
 
     private List<Requirement> getRequirements(Player player)
     {
+
         List<Requirement> satisfiedRequirements = new LinkedList<>();
         /** we must control if the player can afford the card */
 
         //MODIFICHIAMO QUI LA CARTA
         DevelopmentCard developmentCard = tower.getTowerFloor().get(floor).getCard();
+
+        BonusMalusHandler.filter(player,ACTION_TYPE, developmentCard);
 
         //    BonusMalusHandler.filter(player,ACTION_TYPE,developmentCard);
         for(Requirement requirement : developmentCard.getRequirements()){
@@ -61,6 +64,7 @@ public class PayCard implements Action, Blocking {
     @Override
     public synchronized void execute() throws InterruptedException {
         //Execute tower penality
+
         if (tower.shouldThrowPenality(player.getPLAYER_ID())) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
             // qua abbiamo levato tre monete
@@ -118,8 +122,19 @@ public class PayCard implements Action, Blocking {
         executeEffects.execute();
 
         //Are the card requirement ok?
-        if (!pClone.isAllowedVariate(tower.getTowerFloor().get(floor).getCard().getRequirements()))
+
+        DevelopmentCard developmentCard = tower.getTowerFloor().get(floor).getCard();
+
+
+        //salviamo i requisiti(costi) della carta per eventualmente restaurarli se dopo il bonus falliamo l'acquisto della carta
+        List<Requirement> originalRequirement = new LinkedList<>();
+        for (Requirement requirement : developmentCard.getRequirements()) {
+            originalRequirement.add(new Requirement(requirement));
+        }
+
+        if (!pClone.isAllowedVariate(developmentCard.getRequirements()))
         {
+            resetCost(developmentCard, originalRequirement);
             return false;
         }
 
@@ -141,18 +156,26 @@ public class PayCard implements Action, Blocking {
                 try {
                     wait();
                 } catch (InterruptedException e) {
+                    resetCost(developmentCard, originalRequirement);
                     return false;
                 }
             }
         }
         if (optionalParams!= null && optionalParams==-1)
         {
+            resetCost(developmentCard, originalRequirement);
             return false;
         }
-
-        return pickCard.isAllowed();
+        boolean res = pickCard.isAllowed();
+        resetCost(developmentCard, originalRequirement);
+        return res;
     }
 
+    private void resetCost(DevelopmentCard developmentCard,List<Requirement> originalRequirements){
+
+           developmentCard.setRequirements(originalRequirements);
+
+    }
 
     @Override
     public synchronized void setOptionalParams(Object list) {

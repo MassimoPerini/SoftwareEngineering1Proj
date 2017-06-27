@@ -24,6 +24,8 @@ public class RoundManager extends Observable {
     private static final String MAXTURNS = "turns";
     private final ResourceSet[] startResources;
     private final List<DevelopmentCard> developmentCards;
+
+
     private final Board board;
     private GameEventManager gameEventManager;
 
@@ -34,6 +36,8 @@ public class RoundManager extends Observable {
     public RoundManager(Board board, int nFamilyMembersMax) throws IOException {
         reset();
         developmentCards = Arrays.asList(FileLoader.getFileLoader().loadCards());
+
+
         maxEras = Integer.parseInt(Setting.getInstance().getProperty(MAXERA));
         maxTurns = Integer.parseInt(Setting.getInstance().getProperty(MAXTURNS));
         this.players = new ArrayList<>();
@@ -213,6 +217,8 @@ public class RoundManager extends Observable {
         shuffleCards();
 
         gameEventManager.start();
+
+
 
         MessageChangePlayer messageChangePlayer = new MessageChangePlayer(this.getCurrentPlayer().getPLAYER_ID(), era, turn);
         setChanged();

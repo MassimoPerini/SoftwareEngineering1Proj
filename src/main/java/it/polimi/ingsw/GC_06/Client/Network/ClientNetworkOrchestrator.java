@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutorService;
@@ -47,7 +48,8 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
 
     public void useRMI()
     {
-
+        client = new ClientRMIHandler();
+        client.addObserver(this);
     }
 
     public void start()
@@ -58,12 +60,20 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
 
     public synchronized void send(MessageClient messageClient)
     {
-        client.submit(messageClient);
+        try {
+            client.submit(messageClient);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     public void send(String string)
     {
-        client.submit(string);
+        try {
+            client.submit(string);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

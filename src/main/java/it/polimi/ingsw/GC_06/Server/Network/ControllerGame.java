@@ -59,7 +59,6 @@ public class ControllerGame implements Observer {
         game.getStatuses().get(StateName.MARKET_COUNCIL).addObserver(this);
         game.getStatuses().get(StateName.PICKED_CARD).addObserver(this);
 
-
         game.getRoundManager().addObserver(this);
 
         serverOrchestrator.startGame(game.getGameStatus().getPlayers(), id);

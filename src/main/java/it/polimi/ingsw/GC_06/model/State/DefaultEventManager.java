@@ -5,15 +5,16 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
+import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
+import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by massimo on 24/06/17.
@@ -25,17 +26,54 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     private final Map<Integer, ResourceSet> requirements;
     private int lastEra;
     private Map<String, Boolean> answersExcommunication = new HashMap<>();
+    private final Map<Integer, List<ExcomunicationCard>> excomunicationCards;
+    private List<Map<ActionType, Map<Integer, Effect>>> boards;
+
 
     public DefaultEventManager(ServerOrchestrator serverOrchestrator, Game game)
     {
         this.serverOrchestrator = serverOrchestrator;
         this.game = game;
         this.requirements = FileLoader.getFileLoader().loadChurchRequirement();
+
+
+        List<ExcomunicationCard> excommCards = Arrays.asList(FileLoader.getFileLoader().loadExcommunication());
+
+        excomunicationCards = new HashMap<>();
+        for (ExcomunicationCard excommCard : excommCards) {
+            List<ExcomunicationCard> excomunicationCardList = this.excomunicationCards.get(excommCard.getEra());
+            if (excomunicationCardList ==null)
+            {
+                excomunicationCardList = new ArrayList<>();
+                excomunicationCards.put(excommCard.getEra(), excomunicationCardList);
+            }
+            excomunicationCardList.add(excommCard);
+        }
+
+
     }
 
     public void start()
     {
+        //Scegli i bonus personali
+
+        List<Player> players = game.getRoundManager().getPlayers();
+        PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
+        personalBonusChoiceHandler.execute(game, serverOrchestrator);
+
         game.roll();
+
+        for (Integer integer : excomunicationCards.keySet()) {
+            List<ExcomunicationCard> excomunicationCardList = excomunicationCards.get(integer);
+            Random random = new Random();
+            int rndVal = random.nextInt(excomunicationCardList.size());
+
+            ExcomunicationCard sortedCard = excomunicationCardList.get(rndVal);
+            List<ExcomunicationCard> choosenCards = new LinkedList<>();
+            choosenCards.add(sortedCard);
+            excomunicationCards.replace(integer, choosenCards);
+        }
+
     }
 
     @Override
@@ -104,7 +142,8 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             }
             else
             {
-                // TODO ATTIVA SCOMUNICA AL GIOCATORE
+                //Execute excommunications
+                giveExcummunication(realPlayer);
             }
         }
         while (answersExcommunication.size()<playerAskExcomm)
@@ -121,7 +160,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             Player currPlayer = game.getGameStatus().getPlayers().get(player);
             if (answersExcommunication.get(player))
             {
-                //TODO l'utente vuole essere scomunicato
+                giveExcummunication(currPlayer);
             }
             else
             {
@@ -130,6 +169,19 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             }
         }
         answersExcommunication = new HashMap<>();
+    }
+
+    private void giveExcummunication(Player player)
+    {
+        try {
+            List<ExcomunicationCard> excomunicationCard = excomunicationCards.get(lastEra);
+            for (ExcomunicationCard card : excomunicationCard) {
+                List<Effect> effects = card.getEffects();
+                ExecuteEffects executor = new ExecuteEffects(effects, player, game);
+                executor.execute();
+            }
+        }
+        catch (InterruptedException e){}
     }
 
     @Override

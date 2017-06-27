@@ -44,6 +44,7 @@ public class BoardActionOnTower implements Action {
 
         // qui modifichiamo il valore dell'azione prima che si compia
         // immagino che questa viene eseguita se è stata superata la isAllowe
+        familyMember.useIt();
         BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
@@ -64,6 +65,10 @@ public class BoardActionOnTower implements Action {
         /** è permessa solo quando non c'è un familiare NON NEUTRO sulla torre*/
 
         //Can add in PlayerBoard
+        if (!familyMember.isAllowed())
+        {
+            return false;
+        }
         int originalValue = familyMember.getValue();
         BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
         if (!game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_TOWER))

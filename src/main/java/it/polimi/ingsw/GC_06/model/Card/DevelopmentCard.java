@@ -19,7 +19,7 @@ import java.util.Map;
 public class DevelopmentCard extends Card
 {
     private int era;
-    private final List<Requirement> requirements;
+    private List<Requirement> requirements;
     private final List<Effect> immediateEffects;
     private final String idColour;
     // l'intero rappresenta il required value per l'azione di produzione o raccolto
@@ -96,5 +96,9 @@ public class DevelopmentCard extends Card
 
     public Map<Integer, List<ProdHarvEffect>> getProdHarvEffects() {
         return prodHarvEffects;
+    }
+
+    public void setRequirements(List<Requirement> requirements) {
+        this.requirements = requirements;
     }
 }

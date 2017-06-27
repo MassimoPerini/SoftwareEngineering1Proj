@@ -48,7 +48,7 @@ public class BoardActionOnMarketCouncil implements Action {
     @Override
     public void execute() throws InterruptedException {
 
-
+        familyMember.useIt();
 
         BonusMalusHandler.filter(player,actionType,familyMember);
 
@@ -69,6 +69,10 @@ public class BoardActionOnMarketCouncil implements Action {
 
     @Override
     public boolean isAllowed() {
+        if (!familyMember.isAllowed())
+        {
+            return false;
+        }
         int originalValue = familyMember.getValue();
         BonusMalusHandler.filter(player,actionType,familyMember);
         boolean value = marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_MARKETCOUNSIL);

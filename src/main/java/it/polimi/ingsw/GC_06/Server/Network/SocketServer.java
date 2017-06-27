@@ -14,10 +14,9 @@ import java.util.concurrent.Executors;
  */
 public class SocketServer extends Server implements Observer {
 
-    @NotNull
     private final List<ServerPlayerSocket> socketList;
-    @NotNull private final Map<String, ServerPlayerSocket> socketFromId;
-    @NotNull private final Map<Integer, List<ServerPlayerSocket>> socketsFromGame;
+    private final Map<String, ServerPlayerSocket> socketFromId;
+    private final Map<Integer, List<ServerPlayerSocket>> socketsFromGame;
 
     public SocketServer() {
         this.socketList = new ArrayList<>();
@@ -71,7 +70,7 @@ public class SocketServer extends Server implements Observer {
     }
 
     @Override
-    synchronized boolean startGame(@NotNull Map<String, Player> players, int id)
+    synchronized boolean startGame(Map<String, Player> players, int id)
     {
         boolean result = false;
         List <ServerPlayerSocket> gamePlayers = new ArrayList();
