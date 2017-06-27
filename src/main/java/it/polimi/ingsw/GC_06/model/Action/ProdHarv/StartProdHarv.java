@@ -81,6 +81,9 @@ public class StartProdHarv implements Action, Blocking {
 
         value = fakeFamilyMember.getValue();
 
+        // se il bonus avviene una volta per turno lo elimino una volta iniziata l'azione
+        player.getBonusMalusSet().removeBonusMalusAction(actionType,null);
+
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {
             if (prodHarvFilterCard.isSatisfiable(developmentCard)) {    //If is Yellow/Green

@@ -79,4 +79,7 @@ public class BonusMalusOnAction {
         return permanent;
     }
 
+    public ActionType getActionType() {
+        return actionType;
+    }
 }

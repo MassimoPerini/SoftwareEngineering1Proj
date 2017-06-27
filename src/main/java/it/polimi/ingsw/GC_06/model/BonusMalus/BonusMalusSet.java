@@ -89,13 +89,17 @@ public class BonusMalusSet {
             }
         }
     }
-    public void removeBonusMalusAction(int i){
+    public void removeBonusMalusAction(ActionType actionType,String colour) {
 
-        this.bonusMalusOnAction.get(BonusMalusType.BONUSMALUSONACTION).remove(i);
+        for (int i = 0; i < this.bonusMalusOnAction.get(BonusMalusType.BONUSMALUSONACTION).size(); i++) {
+                BonusMalusOnAction bonusMalusOnAction = this.bonusMalusOnAction.get(BonusMalusType.BONUSMALUSONACTION).get(i);
+            if(!bonusMalusOnAction.isPermanent() && bonusMalusOnAction.getActionType().equals(actionType) && (colour == null ||bonusMalusOnAction.getColourTarget().equals(colour))){
+                this.bonusMalusOnAction.get(BonusMalusType.BONUSMALUSONACTION).remove(i);
+            }
+
+        }
 
     }
-
-
 
     public int removeBonusMalusResources(ArrayList<BonusMalusOnResources> resources, int i){
 

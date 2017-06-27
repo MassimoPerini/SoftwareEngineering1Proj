@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
@@ -49,6 +50,7 @@ public class BoardActionOnMarketCouncil implements Action {
 
 
 
+        BonusMalusHandler.filter(player,actionType,familyMember);
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_MARKETCOUNSIL);
 
@@ -56,6 +58,7 @@ public class BoardActionOnMarketCouncil implements Action {
         executeEffects.execute();
 
         game.getGameStatus().changeState(TransitionType.END_ACTION);
+        player.getBonusMalusSet().removeBonusMalusAction(actionType,null);
 
     }
 
@@ -66,8 +69,12 @@ public class BoardActionOnMarketCouncil implements Action {
 
     @Override
     public boolean isAllowed() {
+        int originalValue = familyMember.getValue();
+        BonusMalusHandler.filter(player,actionType,familyMember);
         boolean value = marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_MARKETCOUNSIL);
-        return value;
+        familyMember.setValue(originalValue);
+        return BonusMalusHandler.filter(player,actionType,value);
+
     }
 
 

@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -34,9 +35,9 @@ public class BoardActionOnMarketCouncilTest {
 
         game = new Game(0);
         game.addPlayer("peppe");
-        game.start(new DefaultEventManager(new ServerOrchestrator(),game));
+        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
         player = game.getGameStatus().getPlayers().get("peppe");
-        action = new BoardActionOnMarketCouncil(game.getBoard().getMarket().get(0),1,player.getFamilyMembers()[0],player,ActionType.BOARD_ACTION_ON_MARKET);
+        action = new BoardActionOnMarketCouncil(game.getBoard().getMarket().get(0), 1, player.getFamilyMembers()[0], player, ActionType.BOARD_ACTION_ON_MARKET);
         action.setGame(game);
 
     }
@@ -47,7 +48,7 @@ public class BoardActionOnMarketCouncilTest {
         if (action.isAllowed())
             action.execute();
         assertTrue((game.getBoard().getMarket().get(0).getActionPlaces().get(1).getMembers().get(0).getPlayerUserName().equals("peppe")));
-        assertTrue(oldServantQuantity + 5 == player.getResourceSet().getResourceAmount(Resource.SERVANT) );
+        assertTrue(oldServantQuantity + 5 == player.getResourceSet().getResourceAmount(Resource.SERVANT));
         // adesso vediamo se sono stati dati correttamente gli effetti
 
     }
@@ -57,8 +58,8 @@ public class BoardActionOnMarketCouncilTest {
 
         int oldServantQuantity = player.getResourceSet().getResourceAmount(Resource.SERVANT);
 
-        BonusMalusOnResources bonusMalusOnResources = new BonusMalusOnResources(Resource.MILITARYPOINT,-5,ActionType.RESOURCEACTION,false);
-        BonusMalusOnResources bonusMalusOnResources1 = new BonusMalusOnResources(Resource.SERVANT,-2,ActionType.RESOURCEACTION,true);
+        BonusMalusOnResources bonusMalusOnResources = new BonusMalusOnResources(Resource.MILITARYPOINT, -5, ActionType.RESOURCEACTION, false);
+        BonusMalusOnResources bonusMalusOnResources1 = new BonusMalusOnResources(Resource.SERVANT, -2, ActionType.RESOURCEACTION, true);
 
         List<BonusMalusOnResources> bonusMalusOnResourcesList = new LinkedList<>();
         bonusMalusOnResourcesList.add(bonusMalusOnResources);
@@ -68,23 +69,21 @@ public class BoardActionOnMarketCouncilTest {
         if (action.isAllowed())
             action.execute();
 
-        assertTrue(oldServantQuantity +3  == player.getResourceSet().getResourceAmount(Resource.SERVANT));
+        assertTrue(oldServantQuantity + 3 == player.getResourceSet().getResourceAmount(Resource.SERVANT));
         assertTrue(player.getBonusMalusSet().getBonusMalusOnResources().get(BonusMalusType.BONUSMALUSONRESOURCE).size() == 1);
 
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test
     public void accesMalusTest() throws InterruptedException {
 
-        BonusMalusOnAccess bonusMalusOnAccess = new BonusMalusOnAccess(ActionType.BOARD_ACTION_ON_MARKET,false,true);
+        BonusMalusOnAccess bonusMalusOnAccess = new BonusMalusOnAccess(ActionType.BOARD_ACTION_ON_MARKET, false, true);
         List<BonusMalusOnAccess> bonusMalusOnAccesses = new LinkedList<>();
         bonusMalusOnAccesses.add(bonusMalusOnAccess);
 
         player.getBonusMalusSet().addAccessBonusMalus(bonusMalusOnAccesses);
-        if (action.isAllowed())
-            action.execute();
+        assertFalse(action.isAllowed());
+
+
     }
-
-
-
 }

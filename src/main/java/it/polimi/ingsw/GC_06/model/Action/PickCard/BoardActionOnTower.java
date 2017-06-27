@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Action.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -42,11 +43,16 @@ public class BoardActionOnTower implements Action {
 
 
         // qui modifichiamo il valore dell'azione prima che si compia
+        // immagino che questa viene eseguita se è stata superata la isAllowe
+        BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_TOWER);
 
         payCard.execute();
         tower.addFamilyMember(familyMember, index);
+
+        // qui potrebbe essere un buon momento per eliminarli
+        player.getBonusMalusSet().removeBonusMalusAction(ACTION_TYPE,tower.getColor());
 
         game.getGameStatus().changeState(TransitionType.END_ACTION);
 
@@ -58,15 +64,19 @@ public class BoardActionOnTower implements Action {
         /** è permessa solo quando non c'è un familiare NON NEUTRO sulla torre*/
 
         //Can add in PlayerBoard
-
+        int originalValue = familyMember.getValue();
+        BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
         if (!game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_TOWER))
         {
+            familyMember.setValue(originalValue);
             return false;
         }
 
-        if (!tower.isAllowed(familyMember, index))
-            return false;
+        if (!tower.isAllowed(familyMember, index)){
+            familyMember.setValue(originalValue);
+            return false;}
 
+        familyMember.setValue(originalValue);
         return payCard.isAllowed();
 
     }
