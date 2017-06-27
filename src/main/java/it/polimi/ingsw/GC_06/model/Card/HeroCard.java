@@ -35,7 +35,7 @@ public class HeroCard extends Card {
 
 
     public boolean isActivable(Player player){
-        if(this.CardStatus = true & resourceConditions.isIncluded(player.getResourceSet()) && player.getPlayerBoard().isIncluded(this.cardConditions)){
+        if(this.CardStatus = true && resourceConditions.isIncluded(player.getResourceSet()) && player.getPlayerBoard().isIncluded(this.cardConditions)){
            return true;
         }
         return false;
@@ -51,6 +51,14 @@ public class HeroCard extends Card {
 
     public String getCardType() {
         return cardType;
+    }
+
+    public boolean isCardStatus() {
+        return CardStatus;
+    }
+
+    public boolean isPermanent() {
+        return permanent;
     }
 
     public ResourceSet getResourceConditions() {

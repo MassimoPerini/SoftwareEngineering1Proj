@@ -66,6 +66,7 @@ public class BoardActionOnProdHarv implements Action {
         ExecuteEffects executeEffects = new ExecuteEffects(effects, player, game);
         executeEffects.execute();
 
+
         startProdHarv.execute();
         prodHarvArea.addFamilyMember(familyMember, index);
 
@@ -73,6 +74,8 @@ public class BoardActionOnProdHarv implements Action {
 
 
     }
+
+
 
 
 

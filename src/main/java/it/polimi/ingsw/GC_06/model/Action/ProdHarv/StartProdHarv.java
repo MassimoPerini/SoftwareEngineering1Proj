@@ -231,6 +231,10 @@ public class StartProdHarv implements Action, Blocking {
         notifyAll();
     }
 
+    public void setValue(int value) {
+        this.value = value;
+    }
+
     public int getValue() {
         return value;
     }

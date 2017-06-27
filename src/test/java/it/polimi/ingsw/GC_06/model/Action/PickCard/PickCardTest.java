@@ -1,46 +1,52 @@
 package it.polimi.ingsw.GC_06.model.Action.PickCard;
 
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
+import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
+import it.polimi.ingsw.GC_06.model.Board.Board;
+import it.polimi.ingsw.GC_06.model.Board.Tower;
+import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
 import it.polimi.ingsw.GC_06.model.State.Game;
-import org.junit.After;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
+
 /**
- * Created by massimo on 06/06/17.
+ * Created by giuseppe on 6/27/17.
  */
 public class PickCardTest {
 
     private Game game;
+    private Player player;
+    private PickCard pickCard;
 
     @Before
     public void setUp() throws Exception {
         game = new Game(1);
-        game.addPlayer("massimo");
-        game.addPlayer("pinco");
+        game.addPlayer("peppe");
         game.start(new DefaultEventManager(new ServerOrchestrator(), game));
+
+
+
+
+        player = game.getGameStatus().getPlayers().get("peppe");
+        Tower tower = game.getBoard().getTowers().get("YELLOW");
+
+        pickCard = new PickCard(player,tower,0,game);
     }
 
 
     @Test
-    public void pickCard()
-    {
-    /*    Player player = game.getCurrentPlayer();
-        Board board = game.getBoard();
-        DevelopmentCard pickingCard = board.getTowers().get(0).getTowerFloor().get(0).getCard();
-        Tower tower = board.getTowers().get(0);
-        Action pickCard = new PickCard(player,tower, tower.getTowerFloor().get(0), 10);
+    public void pickCard() throws InterruptedException {
+
+        assertTrue(pickCard.isAllowed());
+
+
         pickCard.execute();
         assertTrue(player.getPlayerBoard().getDevelopmentCards().size() == 1);
-        assertTrue(player.getPlayerBoard().getDevelopmentCards().get(0) == pickingCard);*/
     }
-
-
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
-
 }

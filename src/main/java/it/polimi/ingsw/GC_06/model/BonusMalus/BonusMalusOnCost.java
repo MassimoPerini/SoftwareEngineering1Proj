@@ -66,6 +66,7 @@ public class BonusMalusOnCost {
         return actionType;
     }
 
+
     public void setON(boolean ON) {
         this.ON = ON;
     }

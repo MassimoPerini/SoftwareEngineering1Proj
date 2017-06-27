@@ -40,7 +40,6 @@ public class BonusMalusHandlerTest {
 
 
     @Before
-
     public void setUp(){
         LinkedList<String> colours = new LinkedList<>();
         colours.add("WHITE");

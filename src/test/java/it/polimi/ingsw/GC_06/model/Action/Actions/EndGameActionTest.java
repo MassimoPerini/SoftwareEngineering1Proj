@@ -16,7 +16,7 @@ import java.io.IOException;
  * Created by giuseppe on 6/26/17.
  */
 public class EndGameActionTest {
-
+/**
     private Game game;
     private Player player;
     private BoardActionOnTower boardActionOnTower;
@@ -45,6 +45,6 @@ public class EndGameActionTest {
 
        boardActionOnTower.run();
        boardActionOnTower1.run();
-    }
+    }*/
 }
 

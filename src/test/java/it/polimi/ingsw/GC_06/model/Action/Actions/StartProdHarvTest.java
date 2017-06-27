@@ -1,7 +1,10 @@
-package it.polimi.ingsw.GC_06.model.Actions;
+package it.polimi.ingsw.GC_06.model.Action.Actions;
+
+/**
+ * Created by giuseppe on 6/28/17.
+ */
 
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
-import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.AskUserCard;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.DefaultAskUserSelector;
@@ -24,6 +27,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -71,7 +75,7 @@ public class StartProdHarvTest {
     @Test
     public void bonusMalusTest() throws InterruptedException {
 
-       int military =  player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT);
+        int military =  player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT);
         HashMap<Integer,List<ProdHarvEffect>> map = new HashMap<>();
 
         ResourceSet resourceSet = new ResourceSet();

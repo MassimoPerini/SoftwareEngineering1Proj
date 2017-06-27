@@ -78,7 +78,6 @@ public class BonusMalusHandler {
             BonusMalusOnSettings bonusMalusOnEnd = bonusMalusOnSettings.get(i);
             if(bonusMalusOnEnd.isAllowed(colour,actionType)){
                newValue =  bonusMalusOnEnd.modify(endpoints);
-                i = player.getBonusMalusSet().removeBonusMalusSetting(bonusMalusOnSettings,i);
             }
         }
 
@@ -87,16 +86,20 @@ public class BonusMalusHandler {
 
     /** ultimo filtro è quello sui costi*/
 
-    public static void filter(Player player, ActionType actionType, DevelopmentCard developmentCard){
+    public static List<Integer> filter(Player player, ActionType actionType, DevelopmentCard developmentCard){
         ArrayList<BonusMalusOnCost> bonusMalusOnCosts = player.getBonusMalusSet().getBonusMalusOnCost().get(BonusMalusType.BONUSMALUSONCOST);
-
+        List<Integer> nonPermanentBonusMalus = new LinkedList<>();
         for(int i = 0; i < bonusMalusOnCosts.size();i++){
             BonusMalusOnCost bonusMalusOnCost = bonusMalusOnCosts.get(i);
             if(bonusMalusOnCost.isAllowed(actionType)){
                 developmentCard = bonusMalusOnCost.modify(developmentCard);
-                i = player.getBonusMalusSet().removeBonusMalusCost(bonusMalusOnCosts,i);
+                if(!bonusMalusOnCost.isPermanent()){
+                    nonPermanentBonusMalus.add(i);
+                }
             }
         }
+
+        return nonPermanentBonusMalus;
 
     }
 
@@ -105,21 +108,20 @@ public class BonusMalusHandler {
 
     public static boolean filter(Player player,ActionType actionType,boolean result){
         ArrayList<BonusMalusOnAccess> bonusMalusOnAccesses = player.getBonusMalusSet().getBonusMalusOnAccess().get(BonusMalusType.BONUSMALUSONACCESS);
-        boolean value = result;
         for(int i = 0; i < bonusMalusOnAccesses.size();i++){
             BonusMalusOnAccess bonusMalusOnAccess = bonusMalusOnAccesses.get(i);
 
             if(bonusMalusOnAccess.isAllowed(actionType,result)){
-                 value = bonusMalusOnAccess.modify(result);
+                 result = bonusMalusOnAccess.modify(result);
 
             }
 
         }
 
-        return value;
+        return result;
     }
 
-    /**filtro per attivare i bonus e malus di fine turno*/
+    /**filtro per attivare i bonus e malus di fine gioco*/
 
     public static void filter(Player player, ResourceSet resourceSet,ActionType actionType){
 
