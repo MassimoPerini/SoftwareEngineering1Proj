@@ -133,22 +133,27 @@ public class RoundManager extends Observable {
     {
         // resetBonusMalus
         shuffleCards();
-        this.players = gameEventManager.newTurn(turn);
+        if (gameEventManager!=null) {
+            this.players = gameEventManager.newTurn(turn);
+        }
     }
 
     private void newEra()
     {
         disposeCards();
         //Vaticano
-        gameEventManager.newEra(era);
-
+        if (gameEventManager!=null) {
+            gameEventManager.newEra(era);
+        }
 
     }
 
     private void endGame()
     {
         System.out.println("ENDGAME REACHED!!!");
-        gameEventManager.endGame();
+        if (gameEventManager!=null) {
+            gameEventManager.endGame();
+        }
     //    Game.getInstance().getGameStatus().changeState(TransitionType.ROUNDFINISHED);
 
     }
@@ -216,8 +221,9 @@ public class RoundManager extends Observable {
         disposeCards();
         shuffleCards();
 
-        gameEventManager.start();
-
+        if (gameEventManager!=null) {
+            gameEventManager.start();
+        }
 
 
         MessageChangePlayer messageChangePlayer = new MessageChangePlayer(this.getCurrentPlayer().getPLAYER_ID(), era, turn);
