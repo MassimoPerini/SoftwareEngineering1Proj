@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Resource;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Set;
  * @author massimo
  * This class is a Set of Resources.
  */
-public class ResourceSet {
+public class ResourceSet implements Serializable {
 
     private HashMap<Resource, Integer> resources;
 

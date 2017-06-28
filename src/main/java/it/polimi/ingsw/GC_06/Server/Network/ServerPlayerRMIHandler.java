@@ -7,6 +7,8 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.util.Observable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static java.rmi.server.UnicastRemoteObject.unexportObject;
 
@@ -29,39 +31,43 @@ public class ServerPlayerRMIHandler extends Observable implements ServerPlayerRM
         }*/
     }
 
-    public void send(MessageServer messageServer)
+    synchronized public void send(MessageServer messageServer)
     {
         try {
+            System.out.println("RMI SERVER SENDING..."+messageServer.toString());
             clientRMI.receive(messageServer);
-            System.out.println("RMI SERVER SENDING...");
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    public void logout() throws RemoteException
+    synchronized public void logout() throws RemoteException
     {
         unexportObject(this, true);
     }
 
-    public void unreferenced() throws NoSuchObjectException {
+    synchronized public void unreferenced() throws NoSuchObjectException {
         unexportObject(this, true); // needs to be in a try/catch block of course
     }
 
     @Override
-    public void receive(MessageClient messageClient)throws RemoteException {
+    synchronized public void receive(MessageClient messageClient)throws RemoteException {
         System.out.println("RMI SERVER RECEIVING..."+messageClient.toString());
         if (game<0)
         {
             return;
         }
-        messageClient.setGame(game);
-        messageClient.setPlayer(username);
-        setChanged();
-        notifyObservers(messageClient);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.submit(() -> {
+            messageClient.setGame(game);
+            messageClient.setPlayer(username);
+            setChanged();
+            notifyObservers(messageClient);
+        });
+
     }
 
-    public void setGame(int game)
+    synchronized public void setGame(int game)
     {
         this.game = game;
     }

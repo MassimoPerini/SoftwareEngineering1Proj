@@ -9,6 +9,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 12/06/17.
@@ -34,8 +36,9 @@ public class ClientRMIHandler extends Client implements ClientRMI {
     }
 
     @Override
-    public void submit(MessageClient action) throws RemoteException {
+    synchronized public void submit(MessageClient action) throws RemoteException {
         try {
+            System.out.println("CLIENT RMI SENDING: "+action.toString());
             serverPlayerRMIClient.receive(action);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -43,10 +46,11 @@ public class ClientRMIHandler extends Client implements ClientRMI {
     }
 
     @Override
-    public void submit(String string) throws RemoteException {
+    synchronized public void submit(String string) throws RemoteException {
         //Sono all'inizio
         try {
          //   rmiListener.login("max", null);
+            System.out.println("CLIENT RMI SENDING: "+string);
             ServerPlayerRMIClient serverPlayerRMIClient = rmiListener.login(string, this);
             if (serverPlayerRMIClient == null) {
                 return;
@@ -59,14 +63,18 @@ public class ClientRMIHandler extends Client implements ClientRMI {
     }
 
     @Override
-    public void run() {
+    synchronized public void run() {
         //Ascolto e ricevo azioni
     }
 
     @Override
-    public void receive(MessageServer messageServer) throws RemoteException{
+    synchronized public void receive(MessageServer messageServer) throws RemoteException{
         System.out.println("RMI CLIENT IN RICEZIONE "+messageServer.toString());
-        setChanged();
-        notifyObservers(messageServer);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.submit(() -> {
+            setChanged();
+            notifyObservers(messageServer);
+        });
+
     }
 }

@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_06.model.Card;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
+import java.io.Serializable;
+
 /**
  * Created by massimo on 18/05/17.
  */
@@ -12,7 +14,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  * Created by massimo on 18/05/17.
  * @author massimo
  */
-public class Requirement {
+public class Requirement implements Serializable {
 
     //TODO TEST!!!
     private final ResourceSet requirements;

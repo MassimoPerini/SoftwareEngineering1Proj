@@ -25,7 +25,7 @@ public class SocketServer extends Server implements Observer {
     }
 
     @Override
-    void start(){
+    synchronized void start(){
         ExecutorService executor = Executors.newCachedThreadPool();
         SocketListener socketListener = new SocketListener(this, LoginHub.getInstance());
         executor.submit(socketListener);
@@ -37,13 +37,13 @@ public class SocketServer extends Server implements Observer {
         serverPlayerSocket.addObserver(this);       //I'm the observer of the socket's client
     }
     @Override
-    boolean isPlayerManaged(@NotNull String player)
+    synchronized boolean isPlayerManaged(@NotNull String player)
     {
         return socketFromId.get(player) != null;
     }
 
     @Override
-    void sendMessageToPlayer(@NotNull String player, @NotNull Object o) throws IOException
+    synchronized void sendMessageToPlayer(@NotNull String player, @NotNull Object o) throws IOException
     {
         if (!isPlayerManaged(player))
             throw new IllegalArgumentException();
@@ -51,7 +51,7 @@ public class SocketServer extends Server implements Observer {
     }
 
     @Override
-    void sendMessageToGame(int game, @NotNull Object o) throws IOException {
+    synchronized void sendMessageToGame(int game, @NotNull Object o) throws IOException {
         if (socketsFromGame.get(game)==null)
             return;
 
@@ -63,7 +63,7 @@ public class SocketServer extends Server implements Observer {
 
 
     @Override
-    void stop() throws IOException {
+    synchronized void stop() throws IOException {
         for (ServerPlayerSocket serverPlayerSocket : socketList) {
             serverPlayerSocket.finish();
         }
@@ -88,7 +88,7 @@ public class SocketServer extends Server implements Observer {
     }
 
     @Override
-    public void update(Observable o, @NotNull Object arg) {
+    synchronized public void update(Observable o, @NotNull Object arg) {
         //A player called me
         setChanged();
         // trigger notification

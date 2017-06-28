@@ -25,7 +25,7 @@ public class LoginListener extends UnicastRemoteObject implements RMIListener {
     }
 
     @Override
-    public ServerPlayerRMIClient login(String username, ClientRMI clientRMI) throws RemoteException{
+    public synchronized ServerPlayerRMIClient login(String username, ClientRMI clientRMI) throws RemoteException{
 
         //LoginHandler call
         boolean ok = LoginHub.getInstance().access(username);
@@ -47,9 +47,13 @@ public class LoginListener extends UnicastRemoteObject implements RMIListener {
         ServerPlayerRMIHandler serverPlayerRMIClient = new ServerPlayerRMIHandler(username, clientRMI);
         UnicastRemoteObject.exportObject(serverPlayerRMIClient, 0);
         rmiServer.addPlayerRMI(serverPlayerRMIClient, username);
-        serverPlayerRMIClient.send(new MessageLoggedIn(username));
 
-        LoginHub.getInstance().loginHandler(username);
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        executorService.submit(() -> {
+            serverPlayerRMIClient.send(new MessageLoggedIn(username));
+            LoginHub.getInstance().loginHandler(username);
+        });
+
         return serverPlayerRMIClient;
     }
 }

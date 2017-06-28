@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -9,28 +10,24 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 26/06/17.
  */
 public class RMIServer extends Server implements Observer {
 
-    private final ExecutorService executorService;
     private final Map<String, ServerPlayerRMIHandler> playerRMI;
     private final Map<Integer, List<ServerPlayerRMIHandler>> playerFromGame;
 
 
     public RMIServer ()
     {
-        executorService = Executors.newCachedThreadPool();
         playerRMI = new HashMap<>();
         playerFromGame = new HashMap<>();
     }
 
     @Override
-    void start() {
+    synchronized void start() {
 
         try {
             Registry registry = LocateRegistry.createRegistry(5299);
@@ -47,14 +44,14 @@ public class RMIServer extends Server implements Observer {
 
     }
 
-    void addPlayerRMI(ServerPlayerRMIHandler serverPlayerRMIClient, String player)
+    synchronized void addPlayerRMI(ServerPlayerRMIHandler serverPlayerRMIClient, String player)
     {
         this.playerRMI.put(player, serverPlayerRMIClient);
         serverPlayerRMIClient.addObserver(this);
     }
 
     @Override
-    boolean startGame(Map<String, Player> players, int id) {
+    synchronized boolean startGame(Map<String, Player> players, int id) {
 
         boolean result = false;
         List<ServerPlayerRMIHandler> gamePlayers = new ArrayList();
@@ -78,12 +75,12 @@ public class RMIServer extends Server implements Observer {
     }
 
     @Override
-    boolean isPlayerManaged(String player) {
+    synchronized boolean isPlayerManaged(String player) {
         return playerRMI.get(player)!=null;
     }
 
     @Override
-    void sendMessageToPlayer(String player, Object o) throws IOException {
+    synchronized void sendMessageToPlayer(String player, Object o) throws IOException {
 
         MessageServer messageServer = (MessageServer) o;
         ServerPlayerRMIHandler serverPlayerRMIClient = playerRMI.get(player);
@@ -95,7 +92,7 @@ public class RMIServer extends Server implements Observer {
     }
 
     @Override
-    void sendMessageToGame(int game, Object o) throws IOException {
+    synchronized void sendMessageToGame(int game, Object o) throws IOException {
 
         MessageServer messageServer = (MessageServer) o;
         List<ServerPlayerRMIHandler> players = playerFromGame.get(game);
@@ -107,7 +104,7 @@ public class RMIServer extends Server implements Observer {
     }
 
     @Override
-    void stop() throws IOException {
+    synchronized void stop() throws IOException {
 
         for (String s : playerRMI.keySet()) {
             playerRMI.get(s).logout();
@@ -115,8 +112,17 @@ public class RMIServer extends Server implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        setChanged();
-        notifyObservers(arg);
+    synchronized public void update(Observable o, Object arg) {
+        try {
+            MessageClient messageClient = (MessageClient) arg;
+            System.out.println("INVOKING SETCHANGED");
+            setChanged();
+            System.out.println("ERROE");
+            notifyObservers(messageClient);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

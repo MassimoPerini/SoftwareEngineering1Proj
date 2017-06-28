@@ -20,11 +20,6 @@ public class PlayerBonusActions extends Observable {
     private ClientStateName currentState;
     private List<String> personalBonusOptions;
 
-
-    public List<String> getPersonalBonusOptions() {
-        return personalBonusOptions;
-    }
-
     public PlayerBonusActions()
     {
         parchmentList = new LinkedList<>();
@@ -91,5 +86,9 @@ public class PlayerBonusActions extends Observable {
 
     public Map<String, List<Integer>> getProdHarvAsk() {
         return prodHarvAsk;
+    }
+
+    public List<String> getPersonalBonusOptions() {
+        return personalBonusOptions;
     }
 }

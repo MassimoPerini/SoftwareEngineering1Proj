@@ -16,6 +16,7 @@ public class MessageChoosePayment implements MessageServer {
 
     public MessageChoosePayment(List<Requirement> resourceSets) {
         this.requirements = new LinkedList<>();
+
         for (Requirement requirement : resourceSets) {
             this.requirements.add(new Requirement(requirement));
         }

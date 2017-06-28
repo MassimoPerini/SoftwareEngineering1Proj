@@ -6,6 +6,8 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 13/06/17.
@@ -18,6 +20,7 @@ public class ServerOrchestrator extends Observable implements Observer {
     private final Map<String, Timer> userTimer;
     private final int timeout;
     private final static String TIMEOUT_KEY = "timeout";
+    private final ExecutorService executorService;
 
 
     public ServerOrchestrator() {
@@ -26,22 +29,23 @@ public class ServerOrchestrator extends Observable implements Observer {
         this.serverByGame = new HashMap<>();
         this.userTimer = new HashMap<>();
         this.timeout = Integer.parseInt(Setting.getInstance().getProperty(TIMEOUT_KEY));
+        executorService = Executors.newCachedThreadPool();
     }
 
-    public void addServer(Server server)
+    synchronized public void addServer(Server server)
     {
         servers.add(server);
         server.addObserver(this);
     }
 
-    public void start()
+    synchronized public void start()
     {
         for (Server server : servers) {
             server.start();
         }
     }
 
-    public void stop()
+    synchronized public void stop()
     {
         try {
             for (Server server : servers) {
@@ -54,7 +58,7 @@ public class ServerOrchestrator extends Observable implements Observer {
         }
     }
 
-    public void startGame(Map<String, Player> players, int id)
+    synchronized public void startGame(Map<String, Player> players, int id)
     {
         List<Server> serversContainer = new LinkedList<>();
         for (Server server : servers) {
@@ -73,10 +77,16 @@ public class ServerOrchestrator extends Observable implements Observer {
     }
 
     //Manda e attendi risposta
-    public void send(String playerId, Object o)  {
-        try {
-            Server server = serverByString.get(playerId);
-            server.sendMessageToPlayer(playerId, o);
+    synchronized public void send(final String playerId, final Object o)  {
+            final Server server = serverByString.get(playerId);
+     //       executorService.submit(() -> {
+                try {
+                    server.sendMessageToPlayer(playerId, o);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+      //      });
+
 
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
@@ -93,14 +103,9 @@ public class ServerOrchestrator extends Observable implements Observer {
             },timeout);
 
             userTimer.put(playerId, timer);
-
-        }catch (IOException e)
-        {
-            e.printStackTrace();
-        }
     }
 
-    public void send (int game, Object o)  {
+    synchronized public void send (int game, Object o)  {
         try {
             List<Server> servers = serverByGame.get(game);
             for (Server server : servers) {
@@ -114,20 +119,19 @@ public class ServerOrchestrator extends Observable implements Observer {
 
     //Stop timer
     @Override
-    public void update(Observable o, Object arg) {
+    synchronized public void update(Observable o, Object arg) {
         //A server called me;
+        System.out.println("ServerOrcherstrator---");
+            MessageClient messageClient = (MessageClient) arg;
 
-        MessageClient messageClient = (MessageClient) arg;
+            String player = messageClient.getPlayer();
+            Timer timer = userTimer.get(player);
+            if (timer != null) {
+                timer.cancel();
+            }
 
-        String player = messageClient.getPlayer();
-        Timer timer = userTimer.get(player);
-        if (timer != null)
-        {
-            timer.cancel();
-        }
-
-        setChanged();
-        // trigger notification
-        notifyObservers(arg);
+            setChanged();
+            // trigger notification
+            notifyObservers(arg);
     }
 }
