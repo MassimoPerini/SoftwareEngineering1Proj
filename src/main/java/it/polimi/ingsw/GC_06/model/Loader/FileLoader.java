@@ -6,10 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.*;
-import it.polimi.ingsw.GC_06.model.Card.Card;
-import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
-import it.polimi.ingsw.GC_06.model.Card.Requirement;
+import it.polimi.ingsw.GC_06.model.Card.*;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.*;
 import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
@@ -3844,6 +3841,32 @@ public class FileLoader {
         fw.close();
     }
 
+    public void writeHeroCards() throws IOException {
+        String nameHe1 = "card_He1";
+        List cards = new ArrayList();
+        HashMap<String, Integer> cardConditionsHe1 = new HashMap<>();
+        ResourceSet resourcesConditionHe1 = new ResourceSet();
+        ArrayList<Effect> effectListHe1 = new ArrayList<>();
+        String cardTypeHe1 = "HEROES";
+        boolean permanentHe1 = true;
+        cardConditionsHe1.put("PURPLE", 5);
+        DonateProdHarv effectHe1 = new DonateProdHarv(1, ActionType.HARVEST_ACTION);
+        effectListHe1.add(effectHe1);
+        HeroCard cardHe1 = new HeroCard(nameHe1, cardConditionsHe1, resourcesConditionHe1, effectListHe1, permanentHe1, cardTypeHe1);
+        cards.add(cardHe1);
+
+
+
+
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+
+        Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        FileWriter fw = new FileWriter("src/main/resources/model/heroCards.txt");
+        gson.toJson(cards, fw);
+        fw.close();
+    }
 
     public ExcomunicationCard [] loadExcommunication()
     {
@@ -3864,7 +3887,6 @@ public class FileLoader {
         {}
         return null;
     }
-
 
 
 }

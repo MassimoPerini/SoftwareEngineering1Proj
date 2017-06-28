@@ -30,6 +30,7 @@ public class HeroCard extends Card {
         this.effectList = effectList;
         this.CardStatus = true;
         this.cardType = cardType;
+        this.permanent = permanent;
     }
 
 
