@@ -4,12 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Board.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.*;
-import it.polimi.ingsw.GC_06.model.Card.Card;
-import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
-import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
-import it.polimi.ingsw.GC_06.model.Card.Requirement;
+import it.polimi.ingsw.GC_06.model.Card.*;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.*;
 import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
@@ -3844,6 +3842,72 @@ public class FileLoader {
         fw.close();
     }
 
+    public void writeHeroCards() throws IOException {
+        List cards = new ArrayList();
+        String nameHe1 = "card_He1_Francesco_Sforza";
+        HashMap<String, Integer> cardConditionsHe1 = new HashMap<>();
+        ResourceSet resourcesConditionHe1 = new ResourceSet();
+        ArrayList<Effect> effectListHe1 = new ArrayList<>();
+        String cardTypeHe1 = "HEROES";
+        boolean permanentHe1 = true;
+        cardConditionsHe1.put("PURPLE", 5);
+        DonateProdHarv effectHe1 = new DonateProdHarv(1, ActionType.HARVEST_ACTION);
+        effectListHe1.add(effectHe1);
+        HeroCard cardHe1 = new HeroCard(nameHe1, cardConditionsHe1, resourcesConditionHe1, effectListHe1, permanentHe1, cardTypeHe1);
+        cards.add(cardHe1);
+        String nameHe2 = "card_He2_Lucrezia_Borgia";
+        HashMap<String, Integer> cardConditionsHe2 = new HashMap<>();
+        ResourceSet resourcesConditionHe2 = new ResourceSet();
+        ArrayList<Effect> effectListHe2 = new ArrayList<>();
+        String cardTypeHe2 = "HEROES";
+        boolean permanentHe2 = true;
+        cardConditionsHe2.put("PURPLE", 6);
+        cardConditionsHe2.put("GREEN", 6);
+        cardConditionsHe2.put("YELLOW", 6);
+        cardConditionsHe2.put("BLUE", 6);
+        LinkedList<String> targetColoursHe2 = new LinkedList<>();
+        targetColoursHe2.add("BLACK");
+        targetColoursHe2.add("WHITE");
+        targetColoursHe2.add("RED");
+        targetColoursHe2.add("");
+        BonusMalusOnAction bonusMalusHe2 = new BonusMalusOnAction("", targetColoursHe2, ActionType.GENERAL, true, 2);
+        BonusMalusSet bonusMalusSetHe2 = new BonusMalusSet();
+        List<BonusMalusOnAction> bonusMalusListHe2 = new ArrayList<>();
+        bonusMalusListHe2.add(bonusMalusHe2);
+        bonusMalusSetHe2.addActionBonusMalus(bonusMalusListHe2);
+        DonateBonusMalusEffect effectHe2 = new DonateBonusMalusEffect(bonusMalusSetHe2);
+        effectListHe2.add(effectHe2);
+        HeroCard cardHe2 = new HeroCard(nameHe2, cardConditionsHe2, resourcesConditionHe2, effectListHe2, permanentHe2, cardTypeHe2);
+        cards.add(cardHe2);
+        String nameHe3 = "card_He3_Ludovico_Ariosto";
+        HashMap<String, Integer> cardConditionsHe3 = new HashMap<>();
+        ResourceSet resourcesConditionHe3 = new ResourceSet();
+        ArrayList<Effect> effectListHe3 = new ArrayList<>();
+        String cardTypeHe3 = "HEROES";
+        boolean permanentHe3 = true;
+        cardConditionsHe3.put("BLUE", 5);
+        BonusMalusOnAccess bonusMalusHe3 = new BonusMalusOnAccess(ActionType.GENERAL, true, true);
+        BonusMalusSet bonusMalusSetHe3 = new BonusMalusSet();
+        List<BonusMalusOnAccess> bonusMalusListHe3 = new ArrayList<>();
+        bonusMalusListHe3.add(bonusMalusHe3);
+        bonusMalusSetHe3.addAccessBonusMalus(bonusMalusListHe3);
+        DonateBonusMalusEffect effectHe3 = new DonateBonusMalusEffect(bonusMalusSetHe3);
+        effectListHe3.add(effectHe3);
+        HeroCard cardHe3 = new HeroCard(nameHe3, cardConditionsHe3, resourcesConditionHe3, effectListHe3, permanentHe3, cardTypeHe3);
+        cards.add(cardHe3);
+
+
+
+
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+
+        Gson gson=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        FileWriter fw = new FileWriter("src/main/resources/model/heroCards.txt");
+        gson.toJson(cards, fw);
+        fw.close();
+    }
 
     public ExcomunicationCard [] loadExcommunication()
     {
@@ -3865,6 +3929,25 @@ public class FileLoader {
         return null;
     }
 
+    public HeroCard [] loadHeroCards()
+    {
+        try {
+            RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                    .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                    .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("src/main/resources/model/heroCards.txt"));
+
+
+            HeroCard[] heroCards = gson.fromJson(inputStreamReader, HeroCard[].class);
+            inputStreamReader.close();
+            return heroCards;
+        }
+        catch (IOException e)
+        {}
+        return null;
+    }
 
 
 }
