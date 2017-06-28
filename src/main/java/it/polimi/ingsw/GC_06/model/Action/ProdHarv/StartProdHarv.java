@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvMalusEffect;
+import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -84,6 +85,7 @@ public class StartProdHarv implements Action, Blocking {
         // se il bonus avviene una volta per turno lo elimino una volta iniziata l'azione
         player.getBonusMalusSet().removeBonusMalusAction(actionType,null);
 
+
         for (DevelopmentCard developmentCard: player.getPlayerBoard().getDevelopmentCards())
         {
             if (prodHarvFilterCard.isSatisfiable(developmentCard)) {    //If is Yellow/Green
@@ -118,6 +120,25 @@ public class StartProdHarv implements Action, Blocking {
         }
 
         //Apply the auto-maluses
+
+
+        //Eseguo il personal malus scelto
+
+        List<Effect> personalBonusEffects = new LinkedList<>();
+
+        for (PersonalBonusTile personalBonusTile : player.getPersonalBonus()) {
+            List <ProdHarvEffect> bonus = personalBonusTile.getBonus(actionType, value);
+
+            for (ProdHarvEffect persProdHarvEff : bonus) {
+                for (ProdHarvMalusEffect prodHarvMalusEffect : persProdHarvEff.getMalusEffect()) {
+                    if (prodHarvMalusEffect.isAllowed(player))
+                    {
+                        prodHarvMalusEffect.execute(player, game);
+                    }
+                }
+                personalBonusEffects.addAll(persProdHarvEff.getBonusEffect());
+            }
+        }
 
         List <Effect> temp = new LinkedList<>();
         for (ProdHarvEffect effect : autoExecute)
@@ -195,6 +216,9 @@ public class StartProdHarv implements Action, Blocking {
 
         //Apply the auto-bonus
         temp = new LinkedList<>();
+        if (personalBonusEffects!=null) {
+            temp.addAll(personalBonusEffects);
+        }
         for (ProdHarvEffect effect : autoExecute)
         {
             temp.addAll(effect.getBonusEffect());       //malus effects already applied

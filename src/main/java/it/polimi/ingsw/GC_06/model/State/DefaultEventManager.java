@@ -59,7 +59,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
         List<Player> players = game.getRoundManager().getPlayers();
         PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
-    //    personalBonusChoiceHandler.execute(game, serverOrchestrator);
+        personalBonusChoiceHandler.execute(game, serverOrchestrator);
 
         game.roll();
 

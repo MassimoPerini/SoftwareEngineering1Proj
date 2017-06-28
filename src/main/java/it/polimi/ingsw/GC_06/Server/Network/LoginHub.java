@@ -119,10 +119,10 @@ public class LoginHub {
                 ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
                 timer.cancel();
                 uploadPlayers(game,loggedPlayers);
-                controllerGame.start();     //Il gioco lo avvia lui
                 GameList.getInstance().add(game,loggedPlayers);
-
                 id++;
+                controllerGame.start();     //Il gioco lo avvia lui
+
                 /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
                    // serverOrchestrator.startGame(game);
                 loggedPlayers = new ArrayList<>();

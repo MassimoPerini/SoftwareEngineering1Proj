@@ -45,6 +45,7 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageChoosePowerUp.class)
                 .registerSubtype(MessageRemoveCardOnTower.class)
                 .registerSubtype(MessageChangePlayer.class)
+                .registerSubtype(MessageChoosePersonalBonus.class)
                 .registerSubtype(MessageGameStarted.class)
                 .registerSubtype(MessagePickAnotherCard.class)
                 .registerSubtype(MessageChooseProdHarv.class)

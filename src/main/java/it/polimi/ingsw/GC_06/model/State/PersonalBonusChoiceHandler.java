@@ -27,29 +27,36 @@ public class PersonalBonusChoiceHandler implements Blocking {
 
     public synchronized void execute(Game game, ServerOrchestrator serverOrchestrator){
         List<PersonalBonusTile> boards = FileLoader.getFileLoader().loadPersonalBonus();
-        List<Integer> freeIndexes = new LinkedList<>();
+        List<String> freeIndexes = new LinkedList<>();
 
         for (int i=0;i<boards.size();i++)
         {
-            freeIndexes.add(i);
+            freeIndexes.add(boards.get(i).getId());
         }
 
         for (int i=players.size()-1;i>=0;i--)
         {
             choice = null;
             MessageServer messageServer = new MessageChoosePersonalBonus(freeIndexes);
-  //TODO da sistemare con urgenza!!!!             serverOrchestrator.send(players.get(i).getPLAYER_ID(), messageServer);
+            serverOrchestrator.send(players.get(i).getPLAYER_ID(), messageServer);
             GameList.getInstance().setCurrentBlocking(game, this);
             try {
-                while (choice != null) {
+                while (choice == null) {
                     wait();
                 }
             }catch (InterruptedException e)
             {
-
+                continue;
             }
-        //    Map<ActionType, Map<Integer, Effect>> choosen = boards.get(freeIndexes.get(choice));
-        //    players.get(i).setPersonalBonus(choosen);
+
+            for (PersonalBonusTile board : boards) {
+                if (board.getId().equals(freeIndexes.get(choice)))
+                {
+                    players.get(i).addPersonalBonus(board);
+                    freeIndexes.remove(board.getId());
+                    break;
+                }
+            }
         }
 
 

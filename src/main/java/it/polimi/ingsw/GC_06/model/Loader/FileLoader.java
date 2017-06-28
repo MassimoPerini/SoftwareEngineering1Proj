@@ -2872,15 +2872,19 @@ public class FileLoader {
 
 
     public void writePersonalBonus() throws IOException {
-        Map<ActionType, Map<Integer, Effect>> personalEffects = new HashMap<>();
-        Map<Integer, Effect> effects = new HashMap<>();
+        Map<ActionType, Map<Integer, ProdHarvEffect>> personalEffects = new HashMap<>();
+        Map<Integer, ProdHarvEffect> effects = new HashMap<>();
 
         ResourceSet resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.MILITARYPOINT, 1);
         resourceSet.variateResource(Resource.MONEY, 2);
         Effect effect = new EffectOnResources(resourceSet);
 
-        effects.put(1, effect);
+        List<Effect> bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        ProdHarvEffect prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
 
         resourceSet = new ResourceSet();
@@ -2888,7 +2892,12 @@ public class FileLoader {
         resourceSet.variateResource(Resource.STONE, 1);
         resourceSet.variateResource(Resource.SERVANT, 1);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.HARVEST_ACTION, effects);
 
         PersonalBonusTile [] personalBonusTile = new PersonalBonusTile [5];
@@ -2901,14 +2910,25 @@ public class FileLoader {
         resourceSet.variateResource(Resource.MONEY, 1);
         resourceSet.variateResource(Resource.SERVANT, 2);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
+
         personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
         resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.WOOD, 1);
         resourceSet.variateResource(Resource.STONE, 1);
         resourceSet.variateResource(Resource.MILITARYPOINT, 1);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.HARVEST_ACTION, effects);
         personalBonusTile[1] = new PersonalBonusTile("personalbonustile_2", personalEffects);
 
@@ -2920,14 +2940,24 @@ public class FileLoader {
         resourceSet.variateResource(Resource.MILITARYPOINT, 2);
         resourceSet.variateResource(Resource.MONEY, 1);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
         resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.WOOD, 1);
         resourceSet.variateResource(Resource.STONE, 1);
         resourceSet.variateResource(Resource.SERVANT, 1);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.HARVEST_ACTION, effects);
         personalBonusTile[2] = new PersonalBonusTile("personalbonustile_3", personalEffects);
 
@@ -2939,14 +2969,24 @@ public class FileLoader {
         resourceSet.variateResource(Resource.SERVANT, 1);
         resourceSet.variateResource(Resource.MONEY, 2);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
         resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.WOOD, 1);
         resourceSet.variateResource(Resource.STONE, 1);
         resourceSet.variateResource(Resource.MILITARYPOINT, 1);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.HARVEST_ACTION, effects);
         personalBonusTile[3] = new PersonalBonusTile("personalbonustile_4", personalEffects);
 
@@ -2958,14 +2998,24 @@ public class FileLoader {
         resourceSet.variateResource(Resource.SERVANT, 1);
         resourceSet.variateResource(Resource.MILITARYPOINT, 2);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.PRODUCTION_ACTION, effects);
         resourceSet = new ResourceSet();
         resourceSet.variateResource(Resource.WOOD, 1);
         resourceSet.variateResource(Resource.STONE, 1);
         resourceSet.variateResource(Resource.MONEY, 1);
         effect = new EffectOnResources(resourceSet);
-        effects.put(1, effect);
+
+        bonusEffects = new LinkedList<>();
+        bonusEffects.add(effect);
+        prodHarvEffect = new ProdHarvEffect(new LinkedList<>(), bonusEffects);
+
+        effects.put(1, prodHarvEffect);
         personalEffects.put(ActionType.HARVEST_ACTION, effects);
         personalBonusTile[4] = new PersonalBonusTile("personalbonustile_5", personalEffects);
 

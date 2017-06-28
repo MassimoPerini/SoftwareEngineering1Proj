@@ -41,7 +41,7 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
         clientStates.put(ClientStateName.WAIT_TURN, new BoardStatusViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard()));     //TEST, Observer?
         clientStates.put(ClientStateName.MY_TURN, new UserActionViewController(mainClientModel, clientNetworkOrchestrator));
         clientStates.put(ClientStateName.ACTION_FINISHED, new MainActionFinished(clientNetworkOrchestrator));
-        clientStates.put(ClientStateName.EXCOMMUNICATION, new ExcommunicationViewController(clientNetworkOrchestrator));        //POPUP
+        clientStates.put(ClientStateName.EXCOMMUNICATION, new ExcommunicationViewController(clientNetworkOrchestrator));//POPUP
 
     }
 

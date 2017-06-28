@@ -3,18 +3,15 @@ package it.polimi.ingsw.GC_06.model.playerTools;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateResource;
-import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Observable;
+import java.util.*;
 
 /**
  * Created by giuseppe on 5/19/17.
@@ -31,7 +28,7 @@ public class Player extends Observable {
     private final ResourceSet addAtTheEnd;
     private BonusMalusSet bonusMalusSet;
     private boolean connected;
-    private Map<ActionType, Map<Integer, Effect>> personalBonus;
+    private final List<PersonalBonusTile> personalBonus;
 
     //TODO sistemare la questione dei malus e bonus sul player
 
@@ -44,6 +41,7 @@ public class Player extends Observable {
         this.playerBoard = FileLoader.getFileLoader().loadPlayerBoard();
         this.familyMembers = familyMembers;
         this.bonusMalusSet = new BonusMalusSet();
+        this.personalBonus = new LinkedList<>();
         this.connected = true;
     }
 
@@ -55,6 +53,7 @@ public class Player extends Observable {
         this.familyMembers = p.familyMembers;
         this.addAtTheEnd = new ResourceSet(p.addAtTheEnd);
         this.bonusMalusSet = p.bonusMalusSet;
+        this.personalBonus = p.getPersonalBonus();  //FIX IT
         //TODO complete here...
     }
 
@@ -160,11 +159,11 @@ public class Player extends Observable {
         this.bonusMalusSet = bonusMalusSet;
     }
 
-    public Map<ActionType, Map<Integer, Effect>> getPersonalBonus() {
-        return personalBonus;
+    public List<PersonalBonusTile> getPersonalBonus() {
+        return Collections.unmodifiableList(personalBonus);
     }
 
-    public void setPersonalBonus(Map<ActionType, Map<Integer, Effect>> personalBonus) {
-        this.personalBonus = personalBonus;
+    public void addPersonalBonus(PersonalBonusTile personalBonusTile) {
+        this.personalBonus.add(personalBonusTile);
     }
 }

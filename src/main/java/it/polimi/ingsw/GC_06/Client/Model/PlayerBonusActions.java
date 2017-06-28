@@ -18,12 +18,26 @@ public class PlayerBonusActions extends Observable {
     private List<Requirement> requirementCard;
     private Map<String, List<Integer>> prodHarvAsk;
     private ClientStateName currentState;
+    private List<String> personalBonusOptions;
+
+
+    public List<String> getPersonalBonusOptions() {
+        return personalBonusOptions;
+    }
 
     public PlayerBonusActions()
     {
         parchmentList = new LinkedList<>();
         pickAnotherCard = new LinkedList<>();
         requirementCard = new LinkedList<>();
+    }
+
+    public void setPersonalBonusOptions (List<String> personalBonusOptions)
+    {
+        this.personalBonusOptions = personalBonusOptions;
+        this.currentState = ClientStateName.CHOOSE_PERSONAL_BONUS;
+        setChanged();
+        notifyObservers(currentState);
     }
 
     public void changePowerUp(boolean powerUpQuestion)

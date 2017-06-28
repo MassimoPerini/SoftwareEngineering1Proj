@@ -15,6 +15,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.net.Socket;
 import java.util.Observable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 12/06/17.
@@ -65,6 +67,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageClearBoard.class)
                 .registerSubtype(MessageNewCardOnTower.class)
                 .registerSubtype(MessageUpdateState.class)
+                .registerSubtype(MessageChoosePersonalBonus.class)
                 .registerSubtype(MessageChoosePowerUp.class)
                 .registerSubtype(MessageAddCard.class)
                 .registerSubtype(MessageRemoveCardOnTower.class)
@@ -98,8 +101,10 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                         }
                         else {
                             player = input;
+                            final String tmpString = input;
                             this.send(new MessageLoggedIn(input));
-                            loginHub.loginHandler(input);
+                            ExecutorService executorService = Executors.newSingleThreadExecutor();
+                            executorService.submit(() -> loginHub.loginHandler(tmpString));
                         }
                 }
             }

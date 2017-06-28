@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
 import java.util.List;
@@ -11,19 +10,17 @@ import java.util.List;
  */
 public class MessageChoosePersonalBonus implements MessageServer {
 
-    private List<Integer> playerBoard;
+    private List<String> playerBoard;
 
-    public MessageChoosePersonalBonus(List<Integer> playerBoard)
+    public MessageChoosePersonalBonus(List<String> playerBoard)
     {
         this.playerBoard = playerBoard;
     }
 
     @Override
     public void execute(ClientController clientController) {
-
         //Set playerBoard
-
-        clientController.getMainClientModel().changeMyState(ClientStateName.CHOOSE_PERSONAL_BONUS);
+        clientController.getMainClientModel().getPlayerBonusActions().setPersonalBonusOptions(playerBoard);
 
     }
 }
