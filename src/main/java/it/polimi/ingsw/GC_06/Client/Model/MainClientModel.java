@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
@@ -48,9 +49,9 @@ public class MainClientModel extends Observable{
         notifyObservers(myStatus);
     }
 
-    public synchronized void generateNewPlayerBoard(String username)
+    public synchronized void generateNewPlayerBoard(String username, List<String> customResources)
     {
-        clientPlayerBoard.put(username, new ClientPlayerBoard(username));
+        clientPlayerBoard.put(username, new ClientPlayerBoard(username, customResources));
     }
 
     public synchronized ClientPlayerBoard getClientPlayerBoard(String name) {

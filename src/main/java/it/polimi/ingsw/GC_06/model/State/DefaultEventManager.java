@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageGameStarted;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
@@ -60,6 +61,13 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         List<Player> players = game.getRoundManager().getPlayers();
         PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
         personalBonusChoiceHandler.execute(game, serverOrchestrator);
+
+        //---- Notificare l'init
+        MessageGameStarted messageGameStarted = new MessageGameStarted(game);
+        //In futuro da togliere
+        serverOrchestrator.send(game.getId(), messageGameStarted);
+
+        //------- END MESSAGE
 
         game.roll();
 

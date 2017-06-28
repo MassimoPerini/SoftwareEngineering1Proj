@@ -13,14 +13,16 @@ public class ClientPlayerBoard extends Observable{
     private Map<Resource, Integer> resourceSet;
     private String playerUsername;
     private List<ClientFamilyMember> familyMembers;
+    private List<String> playerProdHarvBonus;
 
-    public ClientPlayerBoard(String username)
+    public ClientPlayerBoard(String username, List<String> playerProdHarvBonus)
     {
         cards = new HashMap<>();
         excommunication = new LinkedList<>();
         resourceSet = new HashMap<>();
         playerUsername = username;
         familyMembers = new LinkedList<>();
+        this.playerProdHarvBonus = playerProdHarvBonus;
     }
 
     public void addFamilyMember(ClientFamilyMember clientFamilyMember)
@@ -57,6 +59,10 @@ public class ClientPlayerBoard extends Observable{
 
     //*******
 
+
+    public List<String> getPlayerProdHarvBonus() {
+        return playerProdHarvBonus;
+    }
 
     public Map<String, List<String>> getCards() {
         return cards;

@@ -122,6 +122,11 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
             for (String s : clientPlayerBoard.keySet()) {
                 System.out.println("GIOCATORE :" + s);
 
+                System.out.println("BONUS SCELTO: ");
+                for (String bonus : clientPlayerBoard.get(s).getPlayerProdHarvBonus()) {
+                    System.out.print(bonus+", ");
+                }
+
                 System.out.println("RISORSE :");
                 for (Resource resource : clientPlayerBoard.get(s).getResourceSet().keySet()) {
                     System.out.println("RISORSA :" + resource.name() + " QUANTITA': " + clientPlayerBoard.
