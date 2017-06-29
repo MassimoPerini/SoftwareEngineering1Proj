@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorFx;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPopupCLI;
+import it.polimi.ingsw.GC_06.Client.ViewController.ViewPopupFx;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -55,13 +56,18 @@ public class AppClient {
             customProperties.put("viewOrchestratorFx", viewOrchestratorFx);
             customProperties.put("clientNetworkOrchestrator", clientNetworkOrchestrator);
             customProperties.put("mainClientModel", clientController.getMainClientModel());
+            customProperties.put("playerBonusActions", clientController.getMainClientModel().getPlayerBonusActions());
 
             Injector.setConfigurationSource(customProperties::get);
             clientController.setViewOrchestrator(viewOrchestratorFx);
 
             clientController.getMainClientModel().addObserver(clientController.getViewOrchestrator());
 
+            ViewPopupFx viewPopupFx = new ViewPopupFx();
+            clientController.getMainClientModel().getPlayerBonusActions().addObserver(viewPopupFx);
+
             clientController.getViewOrchestrator().execute(args);
+
 
         }
     }

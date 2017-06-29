@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Login.LoginView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorFx;
+import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterFx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -16,7 +17,7 @@ import java.io.IOException;
 /**
  * Created by massimo on 15/06/17.
  */
-public class ConnectionMethodPresenterCLI {
+public class ConnectionMethodPresenterCLI implements ViewPresenterFx {
 
     @Inject
     ClientNetworkOrchestrator clientNetworkOrchestrator;
@@ -50,4 +51,13 @@ public class ConnectionMethodPresenterCLI {
         //   mainClientModel.changeState(ClientStateName.LOGIN);
     }
 
+    @Override
+    public void disable() {
+
+    }
+
+    @Override
+    public void setText(String text) {
+
+    }
 }
