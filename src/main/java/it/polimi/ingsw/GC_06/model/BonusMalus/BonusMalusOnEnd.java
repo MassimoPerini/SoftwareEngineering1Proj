@@ -21,10 +21,10 @@ public class BonusMalusOnEnd {
      */
     private List<Resource> activeResourceList;
     private ActionType actionType;
-    private int coefficient;
+    private double coefficient;
     private boolean permanent;
 
-    public BonusMalusOnEnd(Resource resourceTarget, List<Resource> activeResourceList, ActionType actionType,int coefficient,boolean permanent) {
+    public BonusMalusOnEnd(Resource resourceTarget, List<Resource> activeResourceList, ActionType actionType,double coefficient,boolean permanent) {
         this.resourceTarget = resourceTarget;
         this.activeResourceList= activeResourceList;
         this.actionType = actionType;
@@ -43,7 +43,7 @@ public class BonusMalusOnEnd {
             totalAmount = tmp + totalAmount;
         }
 
-        totalAmount = totalAmount*coefficient;
+        totalAmount = (int)(totalAmount*coefficient);
         ResourceSet variationSet = new ResourceSet();
 
         /* non mi permette di dare un valore minore di zero */

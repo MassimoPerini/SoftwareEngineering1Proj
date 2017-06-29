@@ -20,8 +20,8 @@ public class BonusMalusOnSettings {
     private boolean permanent;
     private boolean ON;
 
-    public BonusMalusOnSettings(int bonusMalusEntity, int coefficient, List<String> colours, ActionType actionType) {
-        this.coefficient = coefficient;
+    public BonusMalusOnSettings(int bonusMalusEntity, List<String> colours, ActionType actionType) {
+        this.bonusMalusEntity = bonusMalusEntity;
         this.colours = colours;
         this.actionType = actionType;
         this.ON = true;
