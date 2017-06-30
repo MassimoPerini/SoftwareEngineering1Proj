@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateResource;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
@@ -29,6 +30,7 @@ public class Player extends Observable {
     private BonusMalusSet bonusMalusSet;
     private boolean connected;
     private final List<PersonalBonusTile> personalBonus;
+    private List<HeroCard> heroCard;
 
     //TODO sistemare la questione dei malus e bonus sul player
 
@@ -43,6 +45,7 @@ public class Player extends Observable {
         this.bonusMalusSet = new BonusMalusSet();
         this.personalBonus = new LinkedList<>();
         this.connected = true;
+        this.heroCard = new LinkedList<>();
     }
 
     public Player (Player p)
@@ -165,5 +168,15 @@ public class Player extends Observable {
 
     public void addPersonalBonus(PersonalBonusTile personalBonusTile) {
         this.personalBonus.add(personalBonusTile);
+    }
+
+    public List<HeroCard> getHeroCard() {
+        return heroCard;
+    }
+
+    public void resetHeroCard(){
+        for (HeroCard heroCard : this.heroCard) {
+            heroCard.setCardStatus(true);
+        }
     }
 }

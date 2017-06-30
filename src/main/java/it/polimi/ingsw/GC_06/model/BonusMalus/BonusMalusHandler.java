@@ -26,7 +26,7 @@ public class BonusMalusHandler {
         System.out.println("ciao");
         for(int i=0; i<bonusMalusOnActions.size();i++){
             BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
-            if(bonusMalusOnAction.isAllowed(familyMember,actionType)&& bonusMalusOnAction.getColourTarget().equals(towerColour)){
+            if(bonusMalusOnAction.isAllowed(familyMember,actionType,towerColour)){
                 bonusMalusOnAction.modify(familyMember);
                 if(!bonusMalusOnAction.isPermanent()){
                     /** questa è la lista dei non permanent malus che sono stati lanciati durante l'azione del giocoatore */
@@ -39,20 +39,6 @@ public class BonusMalusHandler {
 
     }
 
-    /** filtro sulle azioni generiche che attaccano qualsiasi familiare*/
-
-    public static void filter(Player player, ActionType actionType, FamilyMember familyMember){
-
-        ArrayList<BonusMalusOnAction> bonusMalusOnActions = player.getBonusMalusSet().getBonusMalusOnAction().get(BonusMalusType.BONUSMALUSONACTION);
-
-        for(int i = 0; i< bonusMalusOnActions.size();i++){
-
-            BonusMalusOnAction bonusMalusOnAction = bonusMalusOnActions.get(i);
-            if(bonusMalusOnAction.isAllowed(familyMember,actionType)){
-                bonusMalusOnAction.modify(familyMember);
-            }
-        }
-    }
 
     /** questo sarà il filtro che si applicherà sulle variazioni di risorse */
     public static void filter(Player player, ActionType actionType, ResourceSet targetResourceSet) {

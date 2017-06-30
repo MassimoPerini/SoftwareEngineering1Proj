@@ -40,7 +40,37 @@ public class BonusMalusOnAction {
         this.value = bonusMalusEntity;
     }
 
-    public boolean isAllowed(FamilyMember familyMember, ActionType actionType){
+    public boolean isAllowed(FamilyMember familyMember,ActionType actionType,String towerColour){
+
+        if(checkTowerAction(actionType,familyMember,towerColour) ||checkGeneralAction(actionType)){
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    private boolean checkTowerAction(ActionType actionType,FamilyMember familyMember ,String towerColour){
+
+        if(this.actionType.equals(actionType) && familyMemberColours.contains(familyMember.getDiceColor())
+                && towerColour.equals(colourTarget)){
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    private boolean checkGeneralAction(ActionType actionType){
+
+        if((this.actionType.equals(ActionType.GENERAL) || this.actionType.equals(actionType)) && this.colourTarget == null){
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public boolean iAllowed(FamilyMember familyMember, ActionType actionType){
         if(checkFamilyMember(familyMember) && checkCompatibility(actionType)){
             return true;
         }
@@ -73,7 +103,6 @@ public class BonusMalusOnAction {
     public String getColourTarget() {
         return colourTarget;
     }
-
 
     public boolean isPermanent() {
         return permanent;

@@ -68,6 +68,7 @@ public class PayCard implements Action, Blocking {
         if (tower.shouldThrowPenality(player.getPLAYER_ID())) {
             ResourceSet malusResources = tower.getMalusOnMultipleFamilyMembers();
             // qua abbiamo levato tre monete
+            // un bonus sulle risorse con ACTION_TYPE = PAYCARD ---> significa che non dobbiamo più pagare le tre monete)
             BonusMalusHandler.filter(player,ACTION_TYPE,malusResources);
             player.variateResource(malusResources);
             //TODO INSERIAMO QUA LA CHIAMATA A FILTER CHE CI DIRÀ SE NON DOBBIAMO PAGARE PIÙ

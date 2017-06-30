@@ -49,7 +49,7 @@ public class BoardActionOnMarketCouncil implements Action {
 
         familyMember.useIt();
 
-        BonusMalusHandler.filter(player,actionType,familyMember);
+        BonusMalusHandler.filter(player,actionType,null,familyMember);
 
         game.getGameStatus().changeState(TransitionType.ACTION_ON_MARKETCOUNSIL);
 
@@ -75,7 +75,7 @@ public class BoardActionOnMarketCouncil implements Action {
             return false;
         }
         int originalValue = familyMember.getValue();
-        BonusMalusHandler.filter(player,actionType,familyMember);
+        BonusMalusHandler.filter(player,actionType,null,familyMember);
         boolean value = marketAndCouncil.isAllowed(familyMember, index) && executeEffects.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_MARKETCOUNSIL);
         familyMember.setValue(originalValue);
         return BonusMalusHandler.filter(player,actionType,value);

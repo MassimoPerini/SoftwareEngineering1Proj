@@ -73,6 +73,12 @@ public class EndGameAction  implements Action {
     /** dovrebbe fare anche l'aggiunzione dei punti finali */
 
     private void turnResourceIntoPoint(Player player){
+
+        // qui usiamo i bonus e i malus che mi levano i punti per determinate risorse
+
+        BonusMalusHandler.filter(player,player.getResourceSet(),ACTION_TYPE);
+
+
        int endPoint =  player.getResourceSet().totalResourceQuantity() - player.getResourceSet().getResourceAmount(resource);
         ResourceSet resourceSet = new ResourceSet();
         // sono inclusi anche i punti accumulati durante la partita
