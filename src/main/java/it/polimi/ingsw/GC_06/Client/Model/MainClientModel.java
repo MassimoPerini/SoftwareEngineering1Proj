@@ -19,7 +19,6 @@ public class MainClientModel extends Observable{
     private String currentPlayer;
     private String myUsername;
 
-
     public MainClientModel()
     {
         playerBonusActions = new PlayerBonusActions();

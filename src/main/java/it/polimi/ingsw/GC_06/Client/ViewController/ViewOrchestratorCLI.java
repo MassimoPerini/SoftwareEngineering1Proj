@@ -92,9 +92,11 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
         ClientStateName state = (ClientStateName) arg;
 
         try {
-            clientStates.get(currentState).viewWillDisappear();
-            this.currentState = state;
-            clientStates.get(currentState).viewWillAppear();
+            if (clientStates.get(state)!=null) {
+                clientStates.get(currentState).viewWillDisappear();
+                this.currentState = state;
+                clientStates.get(currentState).viewWillAppear();
+            }
         }
         catch (InterruptedException e)
         {

@@ -81,5 +81,6 @@ public class ViewOrchestratorFx extends Application implements ViewOrchestrator 
     @Override
     public void update(Observable o, Object arg) {
         ClientStateName clientStateName = (ClientStateName) arg;
+        if (clientStateName == ClientStateName.GAME_INIT);
     }
 }

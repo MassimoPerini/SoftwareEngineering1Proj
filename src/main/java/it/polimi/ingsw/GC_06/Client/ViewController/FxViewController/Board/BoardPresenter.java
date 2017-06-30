@@ -27,9 +27,14 @@ public class BoardPresenter{
     @Inject private MainClientModel mainClientModel;
 
 
+
+    @FXML void initialize() {
+
+    }
+
     @PostConstruct
     public void init() {
-        towerList = new HBox();
+
         System.out.println("ENTRATO NELL'INIT DELLA VIEW BOARD");
 
         for (Map.Entry<String, List<ClientTowerFloor>> tower : mainClientModel.getClientBoardGame().getTowersClient().entrySet()) {
