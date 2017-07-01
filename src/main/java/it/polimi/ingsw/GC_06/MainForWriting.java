@@ -1,8 +1,16 @@
 package it.polimi.ingsw.GC_06;
 
+import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.GameStatus;
+import it.polimi.ingsw.GC_06.model.State.Ranker;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
+import java.util.*;
 
 /**
  * Created by gabri on 20/06/2017.
@@ -10,10 +18,11 @@ import java.io.IOException;
 public class MainForWriting {
     private static FileLoader fileLoader;
 
+
     public static void main(String[] args) throws IOException {
         fileLoader = FileLoader.getFileLoader();
 
-        fileLoader.writePersonalBonus();
+        /*fileLoader.writePersonalBonus();
 
 
         fileLoader.writeGreenCard();
@@ -35,6 +44,7 @@ public class MainForWriting {
         System.out.println("factored hero cards");
 
         fileLoader.writeExcomunications();
-        System.out.println("factored excomunication cards");
+        System.out.println("factored excomunication cards");*/
+
     }
 }
