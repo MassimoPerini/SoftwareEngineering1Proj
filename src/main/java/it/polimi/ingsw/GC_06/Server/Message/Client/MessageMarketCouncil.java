@@ -33,7 +33,7 @@ public class MessageMarketCouncil implements MessageClient {
         MarketAndCouncil marketAndCouncil = currentGame.getBoard().getMarketAndCouncils().get(marketCouncil);
         Player currentPlayer = currentGame.getGameStatus().getPlayers().get(player);
 
-        BoardActionOnMarketCouncil boardActionOnMarketCouncil = new BoardActionOnMarketCouncil(marketAndCouncil, slot, currentPlayer.getFamilyMembers()[familyMember], currentPlayer, marketAndCouncil.getActionType());
+        BoardActionOnMarketCouncil boardActionOnMarketCouncil = new BoardActionOnMarketCouncil(marketAndCouncil, slot, currentPlayer.getFamilyMembers()[familyMember], currentPlayer, marketAndCouncil.getActionType(),currentGame);
 
         try {
             if (boardActionOnMarketCouncil.isAllowed()) {

@@ -48,7 +48,7 @@ public class BoardActionOnMarketCouncilTest {
         player = game.getGameStatus().getPlayers().get("peppe");
         familyMember = player.getFamilyMembers()[1];
         familyMember.setValue(100);
-        action = new BoardActionOnMarketCouncil(game.getBoard().getMarket().get(0), 0, player.getFamilyMembers()[1], player, ActionType.BOARD_ACTION_ON_MARKET);
+        action = new BoardActionOnMarketCouncil(game.getBoard().getMarket().get(0), 0, player.getFamilyMembers()[1], player, ActionType.BOARD_ACTION_ON_MARKET,game);
         action.setGame(game);
 
     }

@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 19/06/17.
  */
+
 public class MessageBoardActionTower implements MessageClient{
 
     private String tower;

@@ -24,7 +24,7 @@ public class BoardActionOnMarketCouncil implements Action {
     private Game game;
     private ActionType actionType;
 
-    public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player,ActionType actionType)
+    public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player,ActionType actionType,Game game)
     {
         super();
         this.player = player;
@@ -32,7 +32,7 @@ public class BoardActionOnMarketCouncil implements Action {
         if (marketAndCouncil==null || familyMember==null || player==null) {
             throw new NullPointerException();
         }
-
+        this.game = game;
         this.marketAndCouncil = marketAndCouncil;
         this.index = index;
         this.familyMember = familyMember;
