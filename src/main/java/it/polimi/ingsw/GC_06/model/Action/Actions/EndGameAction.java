@@ -6,7 +6,6 @@ import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-import it.polimi.ingsw.GC_06.model.playerTools.RankingPlayer;
 
 import java.util.List;
 import java.util.Set;
@@ -21,12 +20,14 @@ public class EndGameAction  implements Action {
     private Resource resource; /** saranno i punti fede*/
     private it.polimi.ingsw.GC_06.model.Resource.Resource extraResources;
     private Game game;
+    private double coefficient;
     private final ActionType ACTION_TYPE = ActionType.END_GAME;
 
-    public EndGameAction(EndGameMap endGameMap, List<Player> players, it.polimi.ingsw.GC_06.model.Resource.Resource resource) {
+    public EndGameAction(EndGameMap endGameMap, List<Player> players, Resource resource,double coefficient) {
         this.endGameMap = endGameMap;
         this.players = players;
         this.resource = resource;
+        this.coefficient = coefficient;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class EndGameAction  implements Action {
             //this.addFinalPoint(player);
         }
 
-        this.getPointsFromRanking();
+      //  this.getPointsFromRanking();
 
         /** vorrei anche che questa classe mi dicesse chi ha vinto */
 
@@ -57,22 +58,30 @@ public class EndGameAction  implements Action {
         return false;
     }
 
-    private void turnCardsIntoPoints(Player player){
+    public void turnCardsIntoPoints(Player player){
 
         Set<String> colours = endGameMap.getEndGameMap().keySet();
 
         for(String colour : colours){
-            int numbOfCards = player.getPlayerBoard().getDevelopmentCards(colour).size();
+            int numbOfCards = player.getPlayerBoard().getDevelopmentCards(colour).size()-1;
+
+            if(numbOfCards > endGameMap.getEndGameMap().get(colour).size()){
+                numbOfCards = endGameMap.getEndGameMap().get(colour).size()-1;
+            }
+
             int endPoint = endGameMap.getEndGameMap().get(colour).get(numbOfCards);
             endPoint = BonusMalusHandler.filter(player,ACTION_TYPE,endPoint,colour);
-            player.getResourceSet().variateResource(resource, endPoint);
+
+            ResourceSet resourceSet = new ResourceSet();
+            resourceSet.variateResource(resource,endPoint);
+            player.variateResource(resourceSet);
         }
 
     }
 
     /** dovrebbe fare anche l'aggiunzione dei punti finali */
 
-    private void turnResourceIntoPoint(Player player){
+    public void turnResourceIntoPoint(Player player){
 
         // qui usiamo i bonus e i malus che mi levano i punti per determinate risorse
 
@@ -80,21 +89,25 @@ public class EndGameAction  implements Action {
 
 
        int endPoint =  player.getResourceSet().totalResourceQuantity() - player.getResourceSet().getResourceAmount(resource);
+
+       //endPoint deve essere filtrato rispetto ad un coefficiente
+        endPoint = (int) (endPoint*coefficient);
         ResourceSet resourceSet = new ResourceSet();
         // sono inclusi anche i punti accumulati durante la partita
         resourceSet.variateResource(resource,endPoint);
         player.variateResource(resourceSet);
-       player.getResourceSet().variateResource(resource, endPoint);
+
        // qui dovremmo essere riusciti a modificare l'attribuzione dei punti al player
        BonusMalusHandler.filter(player,player.getResourceSet(),ACTION_TYPE);
     }
 
-   /** private void addFinalPoint(Player player){
 
-        int endPoint = player.getResourceSet().getResourceAmount(resource);
-        player.getResourceSet().variateResource(resource,endPoint);
-    }*/
 
+    public void addFinalPoint(Player player) {
+
+        player.variateResource(player.getAddAtTheEnd());
+    }
+/*
     private void getPointsFromRanking(){
         List<Player> ranking = RankingPlayer.getRanking(this.players,this.extraResources);
 
@@ -103,6 +116,6 @@ public class EndGameAction  implements Action {
             ranking.get(i).getResourceSet().variateResource(this.resource,endPoints);
 
         }
-    }
+    }*/
 
 }

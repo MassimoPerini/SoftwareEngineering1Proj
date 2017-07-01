@@ -26,7 +26,7 @@ public class Player extends Observable {
     private final ResourceSet resourceSet;
     private final String PLAYER_ID;
     private List<Effect> bonusMalus;
-    private final ResourceSet addAtTheEnd;
+    private ResourceSet addAtTheEnd;
     private BonusMalusSet bonusMalusSet;
     private boolean connected;
     private final List<PersonalBonusTile> personalBonus;
@@ -178,5 +178,9 @@ public class Player extends Observable {
         for (HeroCard heroCard : this.heroCard) {
             heroCard.setCardStatus(true);
         }
+    }
+
+    public ResourceSet getAddAtTheEnd() {
+        return addAtTheEnd;
     }
 }
