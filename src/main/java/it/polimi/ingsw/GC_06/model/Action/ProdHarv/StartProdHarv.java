@@ -78,7 +78,7 @@ public class StartProdHarv implements Action, Blocking {
         FamilyMember fakeFamilyMember = new FamilyMember(familyMemberColour,"");
         fakeFamilyMember.setValue(value);
 
-        BonusMalusHandler.filter(player,actionType,fakeFamilyMember);
+        BonusMalusHandler.filter(player,actionType,null,fakeFamilyMember);
 
         value = fakeFamilyMember.getValue();
 

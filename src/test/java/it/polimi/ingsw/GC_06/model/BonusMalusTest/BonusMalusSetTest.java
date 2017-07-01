@@ -49,7 +49,7 @@ public class BonusMalusSetTest {
         bonusMalusOnCost = new BonusMalusOnCost(resourceSet,new LinkedList<>(),ActionType.PAYCARDACTION,false);
         bonusMalusOnEnd = new BonusMalusOnEnd(Resource.FAITHPOINT, new LinkedList<Resource>(),ActionType.END_GAME,1,false);
         bonusMalusOnResources = new BonusMalusOnResources(Resource.MILITARYPOINT,5,ActionType.PRODUCTION_ACTION,false);
-        bonusMalusOnSettings = new BonusMalusOnSettings(5,3,new LinkedList<String>(),ActionType.ENDACTION);
+       // bonusMalusOnSettings = new BonusMalusOnSettings(5,3,new LinkedList<String>(),ActionType.ENDACTION);
 
         listBonusMalusOnCost = new ArrayList<>();
         listBonusMalusOnAction = new ArrayList<>();

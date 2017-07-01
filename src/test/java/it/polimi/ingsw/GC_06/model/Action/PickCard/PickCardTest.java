@@ -28,7 +28,7 @@ public class PickCardTest {
     public void setUp() throws Exception {
         game = new Game(1);
         game.addPlayer("peppe");
-        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
+        game.start(new DefaulEventManagerFake());
 
 
 

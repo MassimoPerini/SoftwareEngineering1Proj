@@ -1,20 +1,14 @@
 package it.polimi.ingsw.GC_06.model.State;
 
-import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
-import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
-import it.polimi.ingsw.GC_06.model.Resource.Resource;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-import org.junit.Before;
-import org.junit.Test;
 
-import java.io.IOException;
 
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by massimo on 06/06/17.
  */
+/**
 public class RoundManagerTest {
+    /**
 
     private Game game;
 
@@ -41,7 +35,7 @@ public class RoundManagerTest {
         assertTrue(roundManager.getTurn() == 1);
         assertTrue(roundManager.getFamilyMembersPlaced() == 0);
     }
-
+/**
     @Test (expected=IllegalArgumentException.class)
     public void testNoPlayers()
     {
@@ -87,7 +81,7 @@ public class RoundManagerTest {
         testValues(2, roundManager);
     }*/
 
-
+/**
     private void testValues(int nPlayers, RoundManager roundManager)
     {
         for (int i=1;i<=roundManager.getMaxEras();i++)
@@ -111,9 +105,9 @@ public class RoundManagerTest {
         }
 
         checkInitValues();
-    }
+    }*/
 
-    @Test
+  /**  @Test
     public void testStart() throws IOException {
         ResourceSet [] resourceSets = FileLoader.getFileLoader().loadDefaultResourceSets();
         game.addPlayer("Massimo");
@@ -127,4 +121,4 @@ public class RoundManagerTest {
 
     }
 
-}
+}*/

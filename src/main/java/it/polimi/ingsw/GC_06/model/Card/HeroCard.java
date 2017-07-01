@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Card;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
@@ -15,14 +16,14 @@ public class HeroCard extends Card {
 
     private HashMap<String,Integer> cardConditions;
     private ResourceSet resourceConditions;
-    private ArrayList<Effect> effectList;
+    private List<Effect> effectList;
     private String cardType;
     private boolean CardStatus;
     private boolean permanent;
 
 
 
-    public HeroCard(String path, HashMap<String, Integer> cardConditions, ResourceSet resourceConditions, ArrayList<Effect> effectList,
+    public HeroCard(String path, HashMap<String, Integer> cardConditions, ResourceSet resourceConditions, List<Effect> effectList,
                     boolean permanent,String cardType) {
         super(path);
         this.cardConditions = cardConditions;
@@ -46,7 +47,7 @@ public class HeroCard extends Card {
         this.CardStatus = cardStatus;
     }
 
-    public ArrayList<Effect> getEffectList() {
+    public List<Effect> getEffectList() {
         return effectList;
     }
 

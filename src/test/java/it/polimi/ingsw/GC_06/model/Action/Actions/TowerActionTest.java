@@ -1,16 +1,19 @@
-package it.polimi.ingsw.GC_06.model;
+package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
+import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHeroCard.BonusMalusType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -28,24 +31,30 @@ public class TowerActionTest {
     private Tower tower;
     private int index;
     private FamilyMember familyMember;
+    private FamilyMember familyMember1;
     private Game game;
     private Player player;
     private BoardActionOnTower action;
+    private BoardActionOnTower action1;
 
     @Before
     public void setUp() throws IOException {
 
         game = new Game(0);
         game.addPlayer("peppe");
-        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
+        game.start(new DefaulEventManagerFake());
         tower = game.getBoard().getTowers().get("YELLOW");
         index = 2;
         familyMember = game.getGameStatus().getPlayers().get("peppe").getFamilyMembers()[0];
         familyMember.setValue(100);
+        familyMember1 = game.getGameStatus().getPlayers().get("peppe").getFamilyMembers()[3];
+        familyMember1.setValue(100);
 
         player = game.getGameStatus().getPlayers().get("peppe");
 
         action = new BoardActionOnTower(player, index, tower, familyMember, game);
+        action1 = new BoardActionOnTower(player, 0, tower, familyMember1, game);
+
 
     }
 
@@ -85,6 +94,18 @@ public class TowerActionTest {
         assertTrue(1 == game.getGameStatus().getPlayers().get("peppe").getPlayerBoard().getDevelopmentCards("YELLOW").size());
 
         assertTrue(2 == player.getBonusMalusSet().getBonusMalusOnAction().get(BonusMalusType.BONUSMALUSONACTION).size());
+
+        }
+
+
+    @Test
+    public void doubleAction() throws InterruptedException {
+
+        action.execute();
+        game.endTurn();
+        action1.execute();
+
+        assertTrue(97 == player.getResourceSet().getResourceAmount(Resource.MONEY));
 
         }
 

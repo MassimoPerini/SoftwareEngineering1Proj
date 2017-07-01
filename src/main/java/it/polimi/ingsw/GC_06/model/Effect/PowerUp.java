@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 23/06/17.
  */
+
 public class PowerUp implements Blocking {
 
     private Integer powerUp;
@@ -53,5 +54,14 @@ public class PowerUp implements Blocking {
         }
 
         return powerUp;
+    }
+
+
+    public void setPowerUp(Integer powerUp) {
+        this.powerUp = powerUp;
+    }
+
+    public PowerUp() {
+
     }
 }

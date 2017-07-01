@@ -5,6 +5,7 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
  */
 
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
+import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.AskUserCard;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.DefaultAskUserSelector;
@@ -51,7 +52,7 @@ public class StartProdHarvTest {
         List<String> colours = new LinkedList<>();
         String[] colour = {"ORANGE","WHITE","BLACK"," "};
         colours = Arrays.asList(colour);
-        BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction("",colours,ActionType.PRODUCTION_ACTION,true,2);
+        BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction(null,colours,ActionType.PRODUCTION_ACTION,true,2);
         List<BonusMalusOnAction> bonusMalusOnActions = new LinkedList<>();
         bonusMalusOnActions.add(bonusMalusOnAction);
 
@@ -67,7 +68,7 @@ public class StartProdHarvTest {
         Effect donateBonusMalus = new DonateBonusMalusEffect(bonusMalusSet);
         effects.add(donateBonusMalus);
         DevelopmentCard developmentCard = new DevelopmentCard("",1,new LinkedList<>(),effects,"BLUE",new HashMap<>());
-        game.start(new DefaultEventManager(new ServerOrchestrator(),game));
+        game.start(new DefaulEventManagerFake());
         game.getBoard().getTowers().get("BLUE").getTowerFloor().get(0).setCard(developmentCard);
 
     }
@@ -110,8 +111,8 @@ public class StartProdHarvTest {
         pickCard.execute();
 
         startProdHarv.execute();
-        assertTrue(7 == startProdHarv.getValue());
-        assertTrue(player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT) == military +10);
+      assertTrue(7 == startProdHarv.getValue());
+      assertTrue(player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT) == military +10);
 
     }
 }

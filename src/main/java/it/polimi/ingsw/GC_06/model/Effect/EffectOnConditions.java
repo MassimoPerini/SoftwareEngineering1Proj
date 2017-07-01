@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -9,34 +10,41 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public class EffectOnConditions implements Effect{
 
-    private Resource modifiedResource;
+    private Resource conditionalResource; /** può essere una carta o una Resource */
+    private String cardColour;
     private double multiplier;
-    private String conditioningObject;
+    private Resource trasferredResource;
 
-    public EffectOnConditions(Resource modifiedResource, double multiplier, String conditioningObject) {
-        this.modifiedResource = modifiedResource;
+    public EffectOnConditions(Resource conditionalResource, double multiplier, Resource trasferredResource,String cardColour) {
+        this.conditionalResource = conditionalResource;
         this.multiplier = multiplier;
-        this.conditioningObject = conditioningObject;
-
+        this.trasferredResource = trasferredResource;
     }
 
     @Override
     public void execute(Player player,Game game) {
-        if (conditioningObject!="MILITARYPOINTS" && conditioningObject!="FAITHPOINTS") {
-            int size = (player.getPlayerBoard().getDevelopmentCards(conditioningObject)).size();
-            int variation = (int)(multiplier * size);
-            player.getResourceSet().variateResource(modifiedResource,variation);
+
+       int conditionalValue =  converter(player);
+
+       int transferValue = (int) (conditionalValue * multiplier);
+
+       ResourceSet resourceSet = new ResourceSet();
+       resourceSet.variateResource(trasferredResource,transferValue);
+       player.variateResource(resourceSet);
+    }
+
+    private int converter(Player player){
+
+        int conditionalValue;
+
+        if(this.cardColour == null && conditionalResource == null){
+            throw new IllegalStateException();
         }
-        else if (conditioningObject=="MILITARYPOINTS") {
-            int size = (player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT));
-            int variation = (int)(multiplier * size);
-            player.getResourceSet().variateResource(modifiedResource,variation);
+        if(this.cardColour == null){
+            return conditionalValue = player.getResourceSet().getResourceAmount(conditionalResource);
         }
-        else {
-            int size = (player.getResourceSet().getResourceAmount(Resource.FAITHPOINT));
-            int variation = (int)(multiplier * size);
-            player.getResourceSet().variateResource(modifiedResource,variation);
-        }
+        else
+            return conditionalValue = player.getPlayerBoard().getDevelopmentCards(cardColour).size();
 
     }
 

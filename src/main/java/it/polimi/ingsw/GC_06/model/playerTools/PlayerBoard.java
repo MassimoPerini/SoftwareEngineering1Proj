@@ -15,14 +15,13 @@ public class PlayerBoard {
     /**
      * This is the object which describes the "plancia"
      */
-
-    private final Map<String,List<PlayerBoardSlot>> cards;
     private List<HeroCard> heroCards;
+    private final Map<String,List<PlayerBoardSlot>> cards;
 
     public PlayerBoard (Map<String,List<PlayerBoardSlot>> cards)
     {
         this.cards = cards;
-        heroCards = new ArrayList<>();
+        this.heroCards = new LinkedList<>();
     }
 
 
@@ -105,9 +104,10 @@ public class PlayerBoard {
 
     }
 
+    /**
     public List<HeroCard> getHeroCards() {
         return heroCards;
-    }
+    }*/
 
     public void resetHeroCard(){
         for (HeroCard heroCard : this.heroCards) {

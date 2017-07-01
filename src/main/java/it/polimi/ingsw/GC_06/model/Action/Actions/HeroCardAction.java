@@ -18,7 +18,7 @@ public class HeroCardAction implements Action {
     private ActionType actionType;
     private Game game;
 
-    public HeroCardAction(Player player, List<Integer> desiredHeroCardIndexHeroCard, ActionType actionType) {
+    public HeroCardAction(Game game,Player player, List<Integer> desiredHeroCardIndexHeroCard, ActionType actionType) {
         this.player = player;
         this.desiredHeroCardIndexHeroCard = desiredHeroCardIndexHeroCard;
         this.actionType = actionType;
@@ -28,7 +28,7 @@ public class HeroCardAction implements Action {
     @Override
     public void execute() throws InterruptedException {
 
-        List<HeroCard> heroCardList = player.getPlayerBoard().getHeroCards();
+        List<HeroCard> heroCardList = player.getHeroCard();
         for (HeroCard heroCard : heroCardList) {
             List<Effect> heroCardEffectList= heroCard.getEffectList();
             for (Effect effect : heroCardEffectList) {
@@ -42,13 +42,12 @@ public class HeroCardAction implements Action {
         }
 
 
-
     }
 
     @Override
     public boolean isAllowed() {
 
-        List<HeroCard> heroCardList = player.getPlayerBoard().getHeroCards();
+        List<HeroCard> heroCardList = player.getHeroCard();
         for (HeroCard heroCard : heroCardList) {
             if(!heroCard.isActivable(player)){
                 return false;
