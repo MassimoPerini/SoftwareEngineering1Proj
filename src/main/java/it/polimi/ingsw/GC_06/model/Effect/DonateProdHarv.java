@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 23/06/17.
  */
+
 public class DonateProdHarv implements Effect {
 
     private int value;

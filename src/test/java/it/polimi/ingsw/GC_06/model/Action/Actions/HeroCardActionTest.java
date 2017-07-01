@@ -79,7 +79,7 @@ public class HeroCardActionTest {
 
         player.getHeroCard().add(heroCard);
 
-        heroCardAction = new HeroCardAction(player,choices,ActionType.PLAY_HERO_CARD);
+        heroCardAction = new HeroCardAction(game,player,choices,ActionType.PLAY_HERO_CARD);
         familyMember =player.getFamilyMembers()[0];
         familyMember.setValue(100);
         boardActionOnTower = new BoardActionOnTower(player,0,game.getBoard().getTowers().get("PURPLE"),familyMember,game);

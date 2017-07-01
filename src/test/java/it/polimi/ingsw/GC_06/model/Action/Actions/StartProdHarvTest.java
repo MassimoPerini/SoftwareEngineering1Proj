@@ -52,7 +52,7 @@ public class StartProdHarvTest {
         List<String> colours = new LinkedList<>();
         String[] colour = {"ORANGE","WHITE","BLACK"," "};
         colours = Arrays.asList(colour);
-        BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction("",colours,ActionType.PRODUCTION_ACTION,true,2);
+        BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction(null,colours,ActionType.PRODUCTION_ACTION,true,2);
         List<BonusMalusOnAction> bonusMalusOnActions = new LinkedList<>();
         bonusMalusOnActions.add(bonusMalusOnAction);
 
@@ -111,8 +111,8 @@ public class StartProdHarvTest {
         pickCard.execute();
 
         startProdHarv.execute();
-//        assertTrue(7 == startProdHarv.getValue());
-//        assertTrue(player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT) == military +10);
+      assertTrue(7 == startProdHarv.getValue());
+      assertTrue(player.getResourceSet().getResourceAmount(Resource.MILITARYPOINT) == military +10);
 
     }
 }

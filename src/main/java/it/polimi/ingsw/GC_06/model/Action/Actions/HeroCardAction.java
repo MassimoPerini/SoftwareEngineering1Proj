@@ -18,7 +18,7 @@ public class HeroCardAction implements Action {
     private ActionType actionType;
     private Game game;
 
-    public HeroCardAction(Player player, List<Integer> desiredHeroCardIndexHeroCard, ActionType actionType) {
+    public HeroCardAction(Game game,Player player, List<Integer> desiredHeroCardIndexHeroCard, ActionType actionType) {
         this.player = player;
         this.desiredHeroCardIndexHeroCard = desiredHeroCardIndexHeroCard;
         this.actionType = actionType;
