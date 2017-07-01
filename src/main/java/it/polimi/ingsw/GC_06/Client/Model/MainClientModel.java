@@ -13,8 +13,6 @@ public class MainClientModel extends Observable{
     private final ClientBoardGame clientBoardGame;
     private final PlayerBonusActions playerBonusActions;
     private ClientStateName myStatus;
-    private ClientStateName allStatus;
-    private ClientStateName popups;
     private int era, turn;
     private String currentPlayer;
     private String myUsername;

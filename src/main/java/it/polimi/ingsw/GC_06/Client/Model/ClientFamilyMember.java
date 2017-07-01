@@ -16,11 +16,11 @@ public class ClientFamilyMember implements Serializable {
         this.color = color;
     }
 
-    public String getColor() {
+    public synchronized String getColor() {
         return color;
     }
 
-    public void setValue(int value) {
+    public synchronized void setValue(int value) {
         this.value = value;
     }
 
@@ -28,11 +28,11 @@ public class ClientFamilyMember implements Serializable {
     //*******
 
 
-    public String getPlayer() {
+    public synchronized String getPlayer() {
         return player;
     }
 
-    public int getValue() {
+    public synchronized int getValue() {
         return value;
     }
 }

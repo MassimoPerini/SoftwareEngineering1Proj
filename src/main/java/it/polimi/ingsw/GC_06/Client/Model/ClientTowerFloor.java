@@ -13,20 +13,20 @@ public class ClientTowerFloor {
         spaceAction = new ClientSpaceAction();
     }
 
-    void removeCard()
+    synchronized void removeCard()
     {
         card = null;
     }
-    void addFamilyMember(ClientFamilyMember clientFamilyMember)
+    synchronized void addFamilyMember(ClientFamilyMember clientFamilyMember)
     {
         spaceAction.addClientFamilyMember(clientFamilyMember);
     }
 
-    void removeFamilyMember()
+    synchronized void removeFamilyMember()
     {
         spaceAction.reset();
     }
-    void setNewCard(String card)
+    synchronized void setNewCard(String card)
     {
         this.card = card;
     }
@@ -35,11 +35,11 @@ public class ClientTowerFloor {
     //*******
 
 
-    public String getCard() {
+    public synchronized String getCard() {
         return card;
     }
 
-    public ClientSpaceAction getSpaceAction() {
+    public synchronized ClientSpaceAction getSpaceAction() {
         return spaceAction;
     }
 }

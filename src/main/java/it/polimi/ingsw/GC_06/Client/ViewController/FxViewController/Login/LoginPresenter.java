@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.Observable;
 
 /**
  * Created by massimo on 15/06/17.
@@ -43,5 +44,10 @@ public class LoginPresenter implements ViewPresenterFx {
     @Override
     public void setText(String text) {
         statusLogin.setText(text);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }

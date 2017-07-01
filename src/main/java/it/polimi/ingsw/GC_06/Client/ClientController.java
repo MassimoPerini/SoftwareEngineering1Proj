@@ -2,14 +2,12 @@ package it.polimi.ingsw.GC_06.Client;
 
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestrator;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by massimo on 17/06/17.
  */
 public class ClientController {
 
-    @NotNull
     private final MainClientModel mainClientModel;
     private ViewOrchestrator viewOrchestrator;
 

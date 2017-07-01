@@ -1,16 +1,11 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
-import javafx.beans.property.SimpleListProperty;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by giuseppe on 6/14/17.
  */
-public class ClientBoardGame {
+public class ClientBoardGame extends Observable {
     private final Map<String, List<ClientTowerFloor>> towersClient;
     private final List<List<ClientSpaceAction>> productionHarvest;
     private final List<List<ClientSpaceAction>> market;
@@ -26,7 +21,7 @@ public class ClientBoardGame {
     }
 
 
-    public void createTower(String color, int floors)
+    public synchronized void createTower(String color, int floors)
     {
         List<ClientTowerFloor> list = new ArrayList<>();
         for (int i=0;i<floors;i++) {
@@ -35,26 +30,26 @@ public class ClientBoardGame {
         towersClient.put(color, list);
     }
 
-    public void createProdHarv(int position, int spaces)
+    public synchronized void createProdHarv(int position, int spaces)
     {
         List<ClientSpaceAction> item = generateBoardItems(spaces);
         productionHarvest.add(position, item);
     }
 
-    public void createMarket(int position, int spaces)
+    public synchronized void createMarket(int position, int spaces)
     {
         List<ClientSpaceAction> item = generateBoardItems(spaces);
         market.add(position, item);
     }
 
-    public void createCouncil(int position, int spaces)
+    public synchronized void createCouncil(int position, int spaces)
     {
         List<ClientSpaceAction> item = generateBoardItems(spaces);
         council.add(position, item);
     }
 
 
-    private List<ClientSpaceAction> generateBoardItems(int items)
+    private synchronized List<ClientSpaceAction> generateBoardItems(int items)
     {
         List list = new ArrayList();
         for (int i=0;i<items;i++) {
@@ -63,27 +58,35 @@ public class ClientBoardGame {
         return list;
     }
 
-    public void removeCard(String tower, int plane)
+    public synchronized void removeCard(String tower, int plane)
     {
         ClientTowerFloor clientTowerFloor = towersClient.get(tower).get(plane);
         clientTowerFloor.removeCard();
+
+        setChanged();
+        notifyObservers();
     }
 
-    public void addFamilyMemberToTower(ClientFamilyMember clientFamilyMember, String tower, int index)
+    public synchronized void addFamilyMemberToTower(ClientFamilyMember clientFamilyMember, String tower, int index)
     {
         towersClient.get(tower).get(index).addFamilyMember(clientFamilyMember);
+        setChanged();
+        notifyObservers();
     }
 
-    public void setNewTowerCards(String tower, List<String> cards)
+    public synchronized void setNewTowerCards(String tower, List<String> cards)
     {
         int i=0;
         for (ClientTowerFloor clientTowerFloor : towersClient.get(tower)) {
             clientTowerFloor.setNewCard(cards.get(i));
             i++;
         }
+        setChanged();
+        notifyObservers();
+
     }
 
-    public void clearAllFamilyMembers()
+    public synchronized void clearAllFamilyMembers()
     {
         for (List<ClientTowerFloor> clientTowerFloors : towersClient.values()) {
             for (ClientTowerFloor clientTowerFloor : clientTowerFloors) {
@@ -114,19 +117,19 @@ public class ClientBoardGame {
 
 
 
-    public Map<String, List<ClientTowerFloor>> getTowersClient() {
+    public synchronized Map<String, List<ClientTowerFloor>> getTowersClient() {
         return towersClient;
     }
 
-    public List<List<ClientSpaceAction>> getProductionHarvest() {
+    public synchronized List<List<ClientSpaceAction>> getProductionHarvest() {
         return productionHarvest;
     }
 
-    public List<List<ClientSpaceAction>> getMarket() {
+    public synchronized List<List<ClientSpaceAction>> getMarket() {
         return market;
     }
 
-    public List<List<ClientSpaceAction>> getCouncil() {
+    public synchronized List<List<ClientSpaceAction>> getCouncil() {
         return council;
     }
 }
