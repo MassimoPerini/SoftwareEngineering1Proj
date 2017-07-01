@@ -15,8 +15,7 @@ public class MainForWriting {
 
         fileLoader.writePersonalBonus();
 
-    //    fileLoader.writeBoardWithEffects();
-        /*
+
         fileLoader.writeGreenCard();
         System.out.println("factored green cards");
         
@@ -30,7 +29,12 @@ public class MainForWriting {
         System.out.println("factored blue cards");
 
         fileLoader.writeBoardWithEffects();
-        System.out.println("factored fucking board");*/
+        System.out.println("factored fucking board");
+
         fileLoader.writeHeroCards();
+        System.out.println("factored hero cards");
+
+        fileLoader.writeExcomunications();
+        System.out.println("factored excomunication cards");
     }
 }

@@ -1,0 +1,548 @@
+{
+  "towers": {
+    "BLUE": {
+      "towerFloors": [
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 1
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 3
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "STONE": 1
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "STONE": 2
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        }
+      ],
+      "maxSamePlayerFamilyMember": 1,
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "BLUE",
+      "changed": false,
+      "obs": []
+    },
+    "YELLOW": {
+      "towerFloors": [
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 1
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 3
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "MILITARYPOINT": 1
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "MILITARYPOINT": 2
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        }
+      ],
+      "maxSamePlayerFamilyMember": 1,
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "YELLOW",
+      "changed": false,
+      "obs": []
+    },
+    "PURPLE": {
+      "towerFloors": [
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 1
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 3
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "MONEY": 1
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "MONEY": 2
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        }
+      ],
+      "maxSamePlayerFamilyMember": 1,
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "PURPLE",
+      "changed": false,
+      "obs": []
+    },
+    "GREEN": {
+      "towerFloors": [
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 1
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {}
+                }
+              }
+            ],
+            "members": [],
+            "price": 3
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "WOOD": 1
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        },
+        {
+          "actionPlace": {
+            "type": "ActionPlaceFixed",
+            "maxFamilyMembers": 1,
+            "effects": [
+              {
+                "type": "EffectOnResources",
+                "resourceSet": {
+                  "resources": {
+                    "WOOD": 2
+                  }
+                }
+              }
+            ],
+            "members": [],
+            "price": 5
+          }
+        }
+      ],
+      "maxSamePlayerFamilyMember": 1,
+      "minFamilyMembersMalus": 1,
+      "malusOnMultipleFamilyMembers": {
+        "resources": {
+          "MONEY": -3
+        }
+      },
+      "color": "GREEN",
+      "changed": false,
+      "obs": []
+    }
+  },
+  "market": [
+    {
+      "actionPlaces": [
+        {
+          "type": "ActionPlaceFixed",
+          "maxFamilyMembers": 1,
+          "effects": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 5
+                }
+              }
+            }
+          ],
+          "members": [],
+          "price": 1
+        },
+        {
+          "type": "ActionPlaceFixed",
+          "maxFamilyMembers": 1,
+          "effects": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "SERVANT": 5
+                }
+              }
+            }
+          ],
+          "members": [],
+          "price": 1
+        },
+        {
+          "type": "ActionPlaceFixed",
+          "maxFamilyMembers": 4,
+          "effects": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 2,
+                  "MILITARYPOINT": 3
+                }
+              }
+            }
+          ],
+          "members": [],
+          "price": 1
+        },
+        {
+          "type": "ActionPlaceFixed",
+          "maxFamilyMembers": 4,
+          "effects": [
+            {
+              "type": "EffectOnParchment",
+              "different": true,
+              "quantity": 2,
+              "alreadyChoosed": []
+            }
+          ],
+          "members": [],
+          "price": 1
+        }
+      ],
+      "actionType": "BOARD_ACTION_ON_MARKET",
+      "changed": false,
+      "obs": []
+    }
+  ],
+  "prodHarvZones": [
+    {
+      "actionPlaces": [
+        {
+          "type": "ActionPlaceFixed",
+          "maxFamilyMembers": 1,
+          "effects": [],
+          "members": [],
+          "price": 1
+        },
+        {
+          "type": "ActionPlace",
+          "effects": [
+            {
+              "type": "DonateBonusMalusEffect",
+              "bonusMalusSet": {
+                "bonusMalusOnResources": {
+                  "BONUSMALUSONRESOURCE": []
+                },
+                "bonusMalusOnAction": {
+                  "BONUSMALUSONACTION": [
+                    {
+                      "colourTarget": "",
+                      "familyMemberColours": [
+                        ""
+                      ],
+                      "actionType": "PRODUCTION_ACTION",
+                      "permanent": false,
+                      "value": -3
+                    }
+                  ]
+                },
+                "bonusMalusOnSetting": {
+                  "BONUSMALUSONSETTING": []
+                },
+                "bonusMalusOnAccess": {
+                  "BONUSMALUSONACCESS": []
+                },
+                "bonusMalusOnCost": {
+                  "BONUSMALUSONCOST": []
+                },
+                "bonusMalusOnEnd": {
+                  "BONUSMALUSONEND": []
+                }
+              }
+            }
+          ],
+          "members": [],
+          "price": 1
+        }
+      ],
+      "maxSamePlayerFamilyMember": 1,
+      "actionType": "PRODUCTION_ACTION",
+      "changed": false,
+      "obs": []
+    },
+    {
+      "actionPlaces": [
+        {
+          "type": "ActionPlaceFixed",
+          "maxFamilyMembers": 1,
+          "effects": [],
+          "members": [],
+          "price": 1
+        },
+        {
+          "type": "ActionPlace",
+          "effects": [
+            {
+              "type": "DonateBonusMalusEffect",
+              "bonusMalusSet": {
+                "bonusMalusOnResources": {
+                  "BONUSMALUSONRESOURCE": []
+                },
+                "bonusMalusOnAction": {
+                  "BONUSMALUSONACTION": [
+                    {
+                      "colourTarget": "",
+                      "familyMemberColours": [
+                        ""
+                      ],
+                      "actionType": "HARVEST_ACTION",
+                      "permanent": false,
+                      "value": -3
+                    }
+                  ]
+                },
+                "bonusMalusOnSetting": {
+                  "BONUSMALUSONSETTING": []
+                },
+                "bonusMalusOnAccess": {
+                  "BONUSMALUSONACCESS": []
+                },
+                "bonusMalusOnCost": {
+                  "BONUSMALUSONCOST": []
+                },
+                "bonusMalusOnEnd": {
+                  "BONUSMALUSONEND": []
+                }
+              }
+            }
+          ],
+          "members": [],
+          "price": 1
+        }
+      ],
+      "maxSamePlayerFamilyMember": 1,
+      "actionType": "PRODUCTION_ACTION",
+      "changed": false,
+      "obs": []
+    }
+  ],
+  "councils": [
+    {
+      "actionPlaces": [
+        {
+          "type": "ActionPlace",
+          "effects": [
+            {
+              "type": "EffectOnResources",
+              "resourceSet": {
+                "resources": {
+                  "MONEY": 1
+                }
+              }
+            },
+            {
+              "type": "EffectOnParchment",
+              "different": false,
+              "quantity": 1,
+              "alreadyChoosed": []
+            }
+          ],
+          "members": [],
+          "price": 1
+        }
+      ],
+      "actionType": "COUNCIL_ACTION",
+      "changed": false,
+      "obs": []
+    }
+  ],
+  "changed": false,
+  "obs": []
+}
