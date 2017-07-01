@@ -1379,7 +1379,7 @@ public class FileLoader {
         List malusEffects25 = new ArrayList();
         List prodHarvEffects25 = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap25 = new HashMap<>();
-        EffectOnConditions effectOnCondition25 = new EffectOnConditions(Resource.MONEY, 1, "YELLOW");
+        EffectOnConditions effectOnCondition25 = new EffectOnConditions(null, 1, Resource.MONEY,"YELLOW");
         bonusEffects25.add(effectOnCondition25);
         ProdHarvEffect prodHarvEffect25 = new ProdHarvEffect(malusEffects25, bonusEffects25);
         prodHarvEffects25.add(prodHarvEffect25);
@@ -1406,7 +1406,7 @@ public class FileLoader {
         List malusEffects26 = new ArrayList();
         List prodHarvEffects26 = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap26 = new HashMap<>();
-        EffectOnConditions effectOnCondition26 = new EffectOnConditions(Resource.MONEY, 1, "GREEN");
+        EffectOnConditions effectOnCondition26 = new EffectOnConditions(null, 1,Resource.MONEY, "GREEN");
         bonusEffects26.add(effectOnCondition26);
         ProdHarvEffect prodHarvEffect26 = new ProdHarvEffect(malusEffects26, bonusEffects26);
         prodHarvEffects26.add(prodHarvEffect26);
@@ -1433,7 +1433,7 @@ public class FileLoader {
         List malusEffects27 = new ArrayList();
         List prodHarvEffects27 = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap27 = new HashMap<>();
-        EffectOnConditions effectOnCondition27 = new EffectOnConditions(Resource.VICTORYPOINT, 1, "PURPLE");
+        EffectOnConditions effectOnCondition27 = new EffectOnConditions(null,1,Resource.VICTORYPOINT, "PURPLE");
         bonusEffects27.add(effectOnCondition27);
         ProdHarvEffect prodHarvEffect27 = new ProdHarvEffect(malusEffects27, bonusEffects27);
         prodHarvEffects27.add(prodHarvEffect27);
@@ -1460,7 +1460,7 @@ public class FileLoader {
         List malusEffects28 = new ArrayList();
         List prodHarvEffects28 = new ArrayList();
         Map<Integer, List<ProdHarvEffect>> requestedMap28 = new HashMap<>();
-        EffectOnConditions effectOnCondition28 = new EffectOnConditions(Resource.VICTORYPOINT, 1, "BLUE");
+        EffectOnConditions effectOnCondition28 = new EffectOnConditions(null,1,Resource.VICTORYPOINT,  "BLUE");
         bonusEffects28.add(effectOnCondition28);
         ProdHarvEffect prodHarvEffect28 = new ProdHarvEffect(malusEffects28, bonusEffects28);
         prodHarvEffects28.add(prodHarvEffect28);
@@ -3474,7 +3474,7 @@ public class FileLoader {
         List<Effect> immediateEffects65 = new ArrayList<>();
         Map<Integer, List<ProdHarvEffect>> requestedMap65 = new HashMap<>();
         List prodHarvEffects65 = new ArrayList();
-        EffectOnConditions immediateEffect65 = new EffectOnConditions(Resource.VICTORYPOINT, 2, "GREEN" );
+        EffectOnConditions immediateEffect65 = new EffectOnConditions(null,2,Resource.VICTORYPOINT,  "GREEN" );
         immediateEffects65.add(immediateEffect65);
         cost65.variateResource(Resource.MONEY, -6);
         Requirement require65 = new Requirement(requirement65, cost65 );
@@ -3492,7 +3492,7 @@ public class FileLoader {
         List<Effect> immediateEffects66 = new ArrayList<>();
         Map<Integer, List<ProdHarvEffect>> requestedMap66 = new HashMap<>();
         List prodHarvEffects66 = new ArrayList();
-        EffectOnConditions immediateEffect66 = new EffectOnConditions(Resource.VICTORYPOINT, 2, "YELLOW" );
+        EffectOnConditions immediateEffect66 = new EffectOnConditions(null,2,Resource.VICTORYPOINT,  "YELLOW" );
         immediateEffects66.add(immediateEffect66);
         cost66.variateResource(Resource.MONEY, -6);
         Requirement require66 = new Requirement(requirement66, cost66 );
@@ -3510,7 +3510,7 @@ public class FileLoader {
         List<Effect> immediateEffects67 = new ArrayList<>();
         Map<Integer, List<ProdHarvEffect>> requestedMap67 = new HashMap<>();
         List prodHarvEffects67 = new ArrayList();
-        EffectOnConditions immediateEffect67 = new EffectOnConditions(Resource.VICTORYPOINT, 2, "BLUE" );
+        EffectOnConditions immediateEffect67 = new EffectOnConditions(null,2,Resource.VICTORYPOINT,  "BLUE" );
         immediateEffects67.add(immediateEffect67);
         cost67.variateResource(Resource.MONEY, -7);
         Requirement require67 = new Requirement(requirement67, cost67 );
@@ -3528,7 +3528,7 @@ public class FileLoader {
         List<Effect> immediateEffects68 = new ArrayList<>();
         Map<Integer, List<ProdHarvEffect>> requestedMap68 = new HashMap<>();
         List prodHarvEffects68 = new ArrayList();
-        EffectOnConditions immediateEffect68 = new EffectOnConditions(Resource.VICTORYPOINT, 2, "PURPLE" );
+        EffectOnConditions immediateEffect68 = new EffectOnConditions(null,2,Resource.VICTORYPOINT,  "PURPLE" );
         immediateEffects68.add(immediateEffect68);
         cost68.variateResource(Resource.MONEY, -6);
         Requirement require68 = new Requirement(requirement68, cost68 );
@@ -3590,7 +3590,7 @@ public class FileLoader {
         List<Effect> immediateEffects71 = new ArrayList<>();
         Map<Integer, List<ProdHarvEffect>> requestedMap71 = new HashMap<>();
         List prodHarvEffects71 = new ArrayList();
-        EffectOnConditions immediateEffect71 = new EffectOnConditions(Resource.VICTORYPOINT, 0.5, "MILITARYPOINTS" );
+        EffectOnConditions immediateEffect71 = new EffectOnConditions(Resource.MILITARYPOINT,0.5,Resource.VICTORYPOINT,null );
         immediateEffects71.add(immediateEffect71);
         cost71.variateResource(Resource.MONEY, -5);
         Requirement require71 = new Requirement(requirement71, cost71 );

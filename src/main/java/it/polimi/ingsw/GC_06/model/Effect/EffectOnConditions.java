@@ -12,10 +12,10 @@ public class EffectOnConditions implements Effect{
 
     private Resource conditionalResource; /** può essere una carta o una Resource */
     private String cardColour;
-    private int multiplier;
+    private double multiplier;
     private Resource trasferredResource;
 
-    public EffectOnConditions(Resource conditionalResource, int multiplier, Resource trasferredResource,String cardColour) {
+    public EffectOnConditions(Resource conditionalResource, double multiplier, Resource trasferredResource,String cardColour) {
         this.conditionalResource = conditionalResource;
         this.multiplier = multiplier;
         this.trasferredResource = trasferredResource;
@@ -26,7 +26,7 @@ public class EffectOnConditions implements Effect{
 
        int conditionalValue =  converter(player);
 
-       int  transferValue = conditionalValue * multiplier;
+       int transferValue = (int) (conditionalValue * multiplier);
 
        ResourceSet resourceSet = new ResourceSet();
        resourceSet.variateResource(trasferredResource,transferValue);
