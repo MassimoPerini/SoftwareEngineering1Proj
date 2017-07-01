@@ -30,7 +30,7 @@ public class EffectOnConditionsTest {
         player = game.getGameStatus().getPlayers().get("peppe");
 
         effectOnConditions = new EffectOnConditions(Resource.MILITARYPOINT,5,Resource.MONEY,null);
-        assertTrue(600 == player.getResourceSet().getResourceAmount(Resource.MONEY));
+
 
     }
 
@@ -40,6 +40,7 @@ public class EffectOnConditionsTest {
 
 
         effectOnConditions.execute(player,game);
+        assertTrue(600 == player.getResourceSet().getResourceAmount(Resource.MONEY));
     }
 
 }
