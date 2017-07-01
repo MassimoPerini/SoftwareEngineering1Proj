@@ -25,12 +25,12 @@ public class ClientPlayerBoard extends Observable{
         this.playerProdHarvBonus = playerProdHarvBonus;
     }
 
-    public void addFamilyMember(ClientFamilyMember clientFamilyMember)
+    public synchronized void addFamilyMember(ClientFamilyMember clientFamilyMember)
     {
         this.familyMembers.add(clientFamilyMember);
     }
 
-    public void addCard(String colour, String card) {
+    public synchronized void addCard(String colour, String card) {
         List<String> cardsColour = this.cards.get(colour);
         if (cardsColour==null) {
             cardsColour = new ArrayList<>();
@@ -39,15 +39,15 @@ public class ClientPlayerBoard extends Observable{
         cardsColour.add(card);
     }
 
-    public void addExcommunication(String excommunication) {
+    public synchronized void addExcommunication(String excommunication) {
         this.excommunication.add(excommunication);
     }
 
-    public void updateResourceSet(Map<Resource, Integer> resourceSet) {
+    public synchronized void updateResourceSet(Map<Resource, Integer> resourceSet) {
         this.resourceSet = resourceSet;
     }
 
-    public void changeValueFamilyMember(String color, int newVal)
+    public synchronized void changeValueFamilyMember(String color, int newVal)
     {
         for (ClientFamilyMember familyMember : familyMembers) {
             if (familyMember.getColor().equals(color)){
@@ -60,27 +60,27 @@ public class ClientPlayerBoard extends Observable{
     //*******
 
 
-    public List<String> getPlayerProdHarvBonus() {
+    public synchronized List<String> getPlayerProdHarvBonus() {
         return playerProdHarvBonus;
     }
 
-    public Map<String, List<String>> getCards() {
+    public synchronized Map<String, List<String>> getCards() {
         return cards;
     }
 
-    public List<String> getExcommunication() {
+    public synchronized List<String> getExcommunication() {
         return excommunication;
     }
 
-    public Map<Resource, Integer> getResourceSet() {
+    public synchronized Map<Resource, Integer> getResourceSet() {
         return resourceSet;
     }
 
-    public String getPlayerUsername() {
+    public synchronized String getPlayerUsername() {
         return playerUsername;
     }
 
-    public List<ClientFamilyMember> getFamilyMembers() {
+    public synchronized List<ClientFamilyMember> getFamilyMembers() {
         return familyMembers;
     }
 }

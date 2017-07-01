@@ -1,0 +1,758 @@
+[
+  {
+    "era": 1,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": [
+              {
+                "bonusMalusResource": "MILITARYPOINT",
+                "bonusMalusEntity": -1,
+                "actionType": "RESOURCEACTION",
+                "permanent": true
+              }
+            ]
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_1_era_1"
+  },
+  {
+    "era": 1,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": [
+              {
+                "bonusMalusResource": "MONEY",
+                "bonusMalusEntity": -1,
+                "actionType": "RESOURCEACTION",
+                "permanent": true
+              }
+            ]
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_2_era_1"
+  },
+  {
+    "era": 1,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": [
+              {
+                "bonusMalusResource": "SERVANT",
+                "bonusMalusEntity": -1,
+                "actionType": "RESOURCEACTION",
+                "permanent": true
+              }
+            ]
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_3_era_1"
+  },
+  {
+    "era": 1,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": [
+              {
+                "bonusMalusResource": "WOOD",
+                "bonusMalusEntity": -1,
+                "actionType": "RESOURCEACTION",
+                "permanent": true
+              },
+              {
+                "bonusMalusResource": "STONE",
+                "bonusMalusEntity": -1,
+                "actionType": "RESOURCEACTION",
+                "permanent": true
+              }
+            ]
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_4_era_1"
+  },
+  {
+    "era": 1,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "HARVEST_ACTION",
+                "permanent": true,
+                "value": -3
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_5_era_1"
+  },
+  {
+    "era": 1,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "PRODUCTION_ACTION",
+                "permanent": true,
+                "value": -3
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_6_era_1"
+  },
+  {
+    "era": 1,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK"
+                ],
+                "actionType": "GENERAL",
+                "permanent": true,
+                "value": -1
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_6_era_1"
+  },
+  {
+    "era": 2,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "BOARD_ACTION_ON_TOWER",
+                "permanent": true,
+                "value": -4
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_8_era_2"
+  },
+  {
+    "era": 2,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "YELLOW",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "BOARD_ACTION_ON_TOWER",
+                "permanent": true,
+                "value": -4
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_9_era_2"
+  },
+  {
+    "era": 2,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "BLUE",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "BOARD_ACTION_ON_TOWER",
+                "permanent": true,
+                "value": -4
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_10_era_2"
+  },
+  {
+    "era": 2,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "PURPLE",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "BOARD_ACTION_ON_TOWER",
+                "permanent": true,
+                "value": -4
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_11_era_2"
+  },
+  {
+    "era": 2,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": [
+              {
+                "actionType": "BOARD_ACTION_ON_MARKET",
+                "modifiedAccess": false,
+                "permanent": true
+              }
+            ]
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_12_era_2"
+  },
+  {
+    "era": 2,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": [
+              {
+                "bonusMalusEntity": -2,
+                "coefficient": 0,
+                "colours": [],
+                "actionType": "GENERAL",
+                "permanent": false,
+                "ON": true
+              }
+            ]
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_13_era_2"
+  },
+  {
+    "era": 3,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": [
+              {
+                "bonusMalusEntity": 0,
+                "coefficient": 0,
+                "colours": [
+                  "BLUE"
+                ],
+                "actionType": "END_GAME",
+                "permanent": false,
+                "ON": true
+              }
+            ]
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_14_era_3"
+  },
+  {
+    "era": 3,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": [
+              {
+                "bonusMalusEntity": 0,
+                "coefficient": 0,
+                "colours": [
+                  "PURPLE"
+                ],
+                "actionType": "END_GAME",
+                "permanent": false,
+                "ON": true
+              }
+            ]
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_15_era_3"
+  },
+  {
+    "era": 3,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": [
+              {
+                "bonusMalusEntity": 0,
+                "coefficient": 0,
+                "colours": [
+                  "GREEN"
+                ],
+                "actionType": "END_GAME",
+                "permanent": false,
+                "ON": true
+              }
+            ]
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "path": "ex_16_era_3"
+  },
+  {
+    "era": 3,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": [
+              {
+                "resourceTarget": "VICTORYPOINT",
+                "activeResourceList": [
+                  "VICTORYPOINT"
+                ],
+                "actionType": "END_GAME",
+                "coefficient": 0.2,
+                "permanent": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "path": "ex_17_era_3"
+  },
+  {
+    "era": 3,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": [
+              {
+                "resourceTarget": "VICTORYPOINT",
+                "activeResourceList": [
+                  "MILITARYPOINT"
+                ],
+                "actionType": "END_GAME",
+                "coefficient": 1.0,
+                "permanent": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "path": "ex_18_era_3"
+  },
+  {
+    "era": 3,
+    "effects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": [
+              {
+                "resourceTarget": "VICTORYPOINT",
+                "activeResourceList": [
+                  "MONEY",
+                  "WOOD",
+                  "STONE",
+                  "SERVANT"
+                ],
+                "actionType": "END_GAME",
+                "coefficient": 1.0,
+                "permanent": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "path": "ex_19_era_3"
+  }
+]

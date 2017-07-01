@@ -46,7 +46,248 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "MONEY": -1,
+            "WOOD": -1,
+            "STONE": -1
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_74"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "STONE": -3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "different": false,
+        "quantity": 1,
+        "alreadyChoosed": []
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_75"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": -2,
+            "STONE": -2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnParchment",
+        "different": true,
+        "quantity": 2,
+        "alreadyChoosed": []
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_76"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": -2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_77"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": -3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "SERVANT": 4
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_78"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 5
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": -3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_79"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": -2,
+            "WOOD": -1,
+            "STONE": -1
           }
         }
       },
@@ -76,7 +317,7 @@
         "type": "EffectOnEnd",
         "endResourceAddiction": {
           "resources": {
-            "VICTORYPOINT": 4
+            "VICTORYPOINT": 1
           }
         }
       }
@@ -86,6 +327,128 @@
       "0": []
     },
     "path": "devcards_f_en_c_80"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": -6
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 6
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_81"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": -2,
+            "WOOD": -2,
+            "STONE": -2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 6
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_82"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "STONE": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "different": false,
+        "quantity": 1,
+        "alreadyChoosed": []
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 2
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_83"
   },
   {
     "era": 2,
@@ -115,7 +478,8 @@
       {
         "type": "EffectOnParchment",
         "different": false,
-        "quantity": 1
+        "quantity": 1,
+        "alreadyChoosed": []
       },
       {
         "type": "EffectOnEnd",
@@ -131,5 +495,512 @@
       "0": []
     },
     "path": "devcards_f_en_c_84"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": -3,
+            "SERVANT": -2
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateProdHarv",
+        "value": 4,
+        "actionType": "HARVEST_ACTION"
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_85"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "SERVANT": 5
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_86"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 8
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 5,
+            "FAITHPOINT": 1
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_87"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 7
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": -4
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 3,
+            "WOOD": 3,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_88"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": -8
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 7
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 6
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_89"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": -3,
+            "WOOD": -3,
+            "STONE": -3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1
+          }
+        }
+      },
+      {
+        "type": "EffectOnNewCards",
+        "towerFloors": {
+          "BLUE": 7,
+          "YELLOW": 7,
+          "PURPLE": 7,
+          "GREEN": 7
+        },
+        "toAsk": []
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_90"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "STONE": -6
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MILITARYPOINT": 4
+          }
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "different": false,
+        "quantity": 1,
+        "alreadyChoosed": []
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_91"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "WOOD": -6
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_92"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 12
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": -6
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 3,
+            "WOOD": 3,
+            "STONE": 3
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 7
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_93"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": -4,
+            "SERVANT": -3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateProdHarv",
+        "value": 3,
+        "actionType": "PRODUCTION_ACTION"
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 5
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_94"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 15
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": -8
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 4
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 8
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_95"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {
+            "MILITARYPOINT": 10
+          }
+        },
+        "cost": {
+          "resources": {
+            "MILITARYPOINT": -5
+          }
+        }
+      },
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "MONEY": 4,
+            "WOOD": 3,
+            "STONE": 3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnEnd",
+        "endResourceAddiction": {
+          "resources": {
+            "VICTORYPOINT": 10
+          }
+        }
+      }
+    ],
+    "idColour": "PURPLE",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_96"
   }
 ]

@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Server.Message.Server;
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
+import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
@@ -104,6 +105,8 @@ public class MessageGameStarted implements MessageServer {
                 clientController.getMainClientModel().getClientPlayerBoard(s).addFamilyMember(clientFamilyMember);
             }
         }
+        clientController.getMainClientModel().changeMyState(ClientStateName.GAME_INIT);
+
      //   clientController.getMainClientModel().changeMyState(ClientStateName.WAIT_TURN);
 
     }

@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.util.Observable;
 
 /**
  * Created by massimo on 15/06/17.
@@ -58,6 +59,11 @@ public class ConnectionMethodPresenterCLI implements ViewPresenterFx {
 
     @Override
     public void setText(String text) {
+
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
 
     }
 }

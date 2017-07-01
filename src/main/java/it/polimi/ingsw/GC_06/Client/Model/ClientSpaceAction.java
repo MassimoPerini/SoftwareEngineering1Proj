@@ -14,18 +14,18 @@ public class ClientSpaceAction {
         familyMembers = new LinkedList<>();
     }
 
-    void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
+    synchronized void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
         familyMembers.add(clientFamilyMember);
     }
 
-    void reset() {
+    synchronized void reset() {
         familyMembers = new LinkedList<>();
         //notify
     }
 
     //*******
 
-    public List<ClientFamilyMember> getFamilyMembers() {
+    public synchronized List<ClientFamilyMember> getFamilyMembers() {
         return familyMembers;
     }
 }

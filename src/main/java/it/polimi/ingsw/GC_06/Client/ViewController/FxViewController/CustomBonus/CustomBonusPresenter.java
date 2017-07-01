@@ -12,6 +12,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -77,5 +78,8 @@ public class CustomBonusPresenter {
         clientNetworkOrchestrator.send(new DefaultAnswer(index));
         okButton.setDisable(true);
         mainItems.setDisable(true);
+
+        Stage stage = (Stage) okButton.getScene().getWindow();
+        stage.close();
     }
 }

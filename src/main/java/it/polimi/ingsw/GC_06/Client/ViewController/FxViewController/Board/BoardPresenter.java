@@ -1,62 +1,49 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board;
 
-import it.polimi.ingsw.GC_06.Client.Model.ClientTowerFloor;
+import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Tower.TowerView;
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by massimo on 03/06/17.
+ * THIS IS THE MAIN BOARD!!!
  */
-public class BoardPresenter{
+public class BoardPresenter extends Observable implements Observer {
 
-    @FXML private HBox towerList;
-    @FXML private HBox councilList;
-    @FXML private VBox prodHarvList;
-    @FXML private VBox marketList;
+    @FXML private VBox mainView;
 
     @Inject private MainClientModel mainClientModel;
 
 
-    @PostConstruct
-    public void init() {
-        towerList = new HBox();
-        System.out.println("ENTRATO NELL'INIT DELLA VIEW BOARD");
 
-        for (Map.Entry<String, List<ClientTowerFloor>> tower : mainClientModel.getClientBoardGame().getTowersClient().entrySet()) {
-            HashMap<String, Object> context = new HashMap<>();
-            Map<String, List<ClientTowerFloor>> entry = new HashMap<>();
-            entry.put(tower.getKey(), tower.getValue());
-            List <String> test = new LinkedList<>();
-            test.add(tower.getKey());
-            context.put("tower", test);
-            TowerView towerView = new TowerView(context::get);
-            towerView.getView();
-        //    towerList.getChildren().add(towerView.getView());
-        }
+    @FXML void initialize() {
 
-
-
-/*
-        for (String color : mainClientModel.getClientBoardGame().getTowersClient().keySet()) {
-            System.out.println("Iniettando " + color);
-            context.put("color", color);
-
-        }
-
-        for (String s : mainClientModel.getClientBoardGame().getTowersClient().keySet()) {
-         //   TowerView towerView = new TowerView(context::get);
-            towerList.getChildren().add(towerView.getView());
-        }*/
+        TowerView towerView = new TowerView();
+        mainView.getChildren().add(towerView.getView());        //added the tower view to the main view
     }
 
+    @PostConstruct
+    public void init() {
+
+    }
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+        ClientStateName clientStateName = (ClientStateName) arg;
+        if (clientStateName == ClientStateName.MY_TURN)
+        {
+            //Sblocca
+        }
+        else{
+            //.....
+        }
+    }
 }
