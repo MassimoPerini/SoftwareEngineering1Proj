@@ -88,7 +88,6 @@ public class EndGameActionTest {
 
 
     @Test
-
     public void turnResourceIntoPointsTest(){
 
         int oldResourceQuantity = player.getResourceSet().getResourceAmount(Resource.FAITHPOINT);
@@ -99,6 +98,21 @@ public class EndGameActionTest {
 
     }
 
+    @Test
+
+    public void addFinal() throws InterruptedException {
+        boardActionOnTower.execute();
+        game.endTurn();
+        boardActionOnTower1.execute();
+        int oldQuantity = player.getResourceSet().getResourceAmount(Resource.FAITHPOINT);
+        int addQuantity = player.getAddAtTheEnd().getResourceAmount(Resource.FAITHPOINT);
+
+
+        endGameAction.addFinalPoint(player);
+
+        assertTrue(player.getResourceSet().getResourceAmount(Resource.FAITHPOINT) == oldQuantity+addQuantity);
+
+    }
 
 }
 
