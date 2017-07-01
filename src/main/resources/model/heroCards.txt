@@ -1,0 +1,422 @@
+[
+  {
+    "cardConditions": {
+      "PURPLE": 5
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [
+      {
+        "type": "DonateProdHarv",
+        "value": 1,
+        "actionType": "HARVEST_ACTION"
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_01"
+  },
+  {
+    "cardConditions": {
+      "BLUE": 6,
+      "PURPLE": 6,
+      "YELLOW": 6,
+      "GREEN": 6
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  "BLACK",
+                  "WHITE",
+                  "RED",
+                  ""
+                ],
+                "actionType": "GENERAL",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": true,
+    "path": "leaders_f_c_13"
+  },
+  {
+    "cardConditions": {
+      "BLUE": 5
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": [
+              {
+                "actionType": "GENERAL",
+                "modifiedAccess": true,
+                "permanent": true
+              }
+            ]
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": true,
+    "path": "leaders_f_c_02"
+  },
+  {
+    "cardConditions": {},
+    "resourceConditions": {
+      "resources": {
+        "FAITHPOINT": 3,
+        "MILITARYPOINT": 7
+      }
+    },
+    "effectList": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  ""
+                ],
+                "actionType": "GENERAL",
+                "permanent": true,
+                "value": 3
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": true,
+    "path": "leaders_f_c_14"
+  },
+  {
+    "cardConditions": {},
+    "resourceConditions": {
+      "resources": {
+        "MONEY": 18
+      }
+    },
+    "effectList": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "FAITHPOINT": 1
+          }
+        }
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_05"
+  },
+  {
+    "cardConditions": {},
+    "resourceConditions": {
+      "resources": {
+        "STONE": 10
+      }
+    },
+    "effectList": [],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_08"
+  },
+  {
+    "cardConditions": {},
+    "resourceConditions": {
+      "resources": {
+        "MILITARYPOINT": 12
+      }
+    },
+    "effectList": [],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_06"
+  },
+  {
+    "cardConditions": {
+      "BLUE": 4,
+      "GREEN": 2
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [
+      {
+        "type": "DonateProdHarv",
+        "value": 0,
+        "actionType": "PRODUCTION_ACTION"
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_10"
+  },
+  {
+    "cardConditions": {
+      "BLUE": 2,
+      "PURPLE": 2,
+      "YELLOW": 2,
+      "GREEN": 2
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_07"
+  },
+  {
+    "cardConditions": {
+      "YELLOW": 5
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": [
+              {
+                "bonusMalusEntity": 3,
+                "coefficient": 0,
+                "colours": [
+                  "GREEN",
+                  "BLUE",
+                  "PURPLE",
+                  "YELLOW"
+                ],
+                "actionType": "PAYCARDACTION",
+                "permanent": false,
+                "ON": true
+              }
+            ]
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": true,
+    "path": "leaders_f_c_03"
+  },
+  {
+    "cardConditions": {
+      "PURPLE": 4,
+      "GREEN": 4
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 1,
+            "SERVANT": 3
+          }
+        }
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_19"
+  },
+  {
+    "cardConditions": {
+      "BLUE": 4,
+      "YELLOW": 4
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 4
+          }
+        }
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_20"
+  },
+  {
+    "cardConditions": {},
+    "resourceConditions": {
+      "resources": {
+        "SERVANT": 15
+      }
+    },
+    "effectList": [
+      {
+        "type": "EffectOnParchment",
+        "different": false,
+        "quantity": 1,
+        "alreadyChoosed": []
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": false,
+    "path": "leaders_f_c_09"
+  },
+  {
+    "cardConditions": {
+      "YELLOW": 2,
+      "PURPLE": 4
+    },
+    "resourceConditions": {
+      "resources": {}
+    },
+    "effectList": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": [
+              {
+                "bonusMalusEntity": {
+                  "resources": {
+                    "MONEY": -3
+                  }
+                },
+                "colourTarget": [
+                  "GREEN",
+                  "BLUE",
+                  "PURPLE",
+                  "YELLOW"
+                ],
+                "actionType": "PAYCARDACTION",
+                "permanent": true,
+                "ON": false
+              }
+            ]
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          }
+        }
+      }
+    ],
+    "cardType": "HEROES",
+    "CardStatus": true,
+    "permanent": true,
+    "path": "leaders_f_c_11"
+  }
+]
