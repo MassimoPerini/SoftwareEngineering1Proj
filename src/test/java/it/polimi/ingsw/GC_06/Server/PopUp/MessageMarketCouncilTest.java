@@ -47,7 +47,7 @@ public class MessageMarketCouncilTest {
     @Test
     public void firstTest(){
 
-        messageMarketCouncil.execute();
+     //   messageMarketCouncil.execute();
 
     }
 }

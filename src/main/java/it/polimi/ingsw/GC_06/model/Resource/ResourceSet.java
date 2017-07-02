@@ -116,6 +116,7 @@ public class ResourceSet implements Serializable {
      * This ResourceSet contains at least negative Resource?
      * @return
      */
+    /**
     public boolean isNegativeValuePresent() {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(this);
         while (i.hasNext()) {
@@ -124,12 +125,13 @@ public class ResourceSet implements Serializable {
                 return true;
         }
         return false;
-    }
+    }*/
 
     /**
      * This ResourceSet contains at least positive Resource
      * @return
      */
+    /**
     public boolean isPositiveValuePresent() {
         Iterator<Map.Entry<Resource, Integer>> i = getIterator(this);
         while (i.hasNext()) {
@@ -138,7 +140,7 @@ public class ResourceSet implements Serializable {
                 return true;
         }
         return false;
-    }
+    }*/
 
     /**
      * Gives the quantity of a certain Resource
@@ -171,10 +173,10 @@ public class ResourceSet implements Serializable {
     public HashMap<Resource, Integer> getResources() {
         return resources;
     }
-
+/**
     public boolean isEmpty(){
         return this.getResources().keySet().size() == 0;
-    }
+    }*/
 
 }
 

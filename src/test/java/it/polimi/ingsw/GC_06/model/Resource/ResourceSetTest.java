@@ -31,5 +31,35 @@ public class ResourceSetTest {
         assertTrue(r1.isIncluded(Resource.SERVANT, -3));
     }
 
+    @Test
+    public void variateResourceAmountTest(){
+
+        r1.variateResource(Resource.MONEY,5);
+
+        assertTrue(r1.getResourceAmount(Resource.MONEY) == 5);
+    }
+
+    @Test
+
+    public void totalResourcAmountTest(){
+
+        r1.variateResource(Resource.MONEY,5);
+        r1.variateResource(Resource.MILITARYPOINT,5);
+
+        assertTrue(10 == r1.totalResourceQuantity());
+    }
+
+    @Test
+    public void variateResource(){
+
+        r2.variateResource(Resource.MONEY,5);
+        r1.variateResource(Resource.MILITARYPOINT,5);
+        r1.variateResource(Resource.MONEY,5);
+        r1.variateResource(r2);
+
+        assertTrue(10 == r1.getResourceAmount(Resource.MONEY));
+        assertTrue(5 == r1.getResourceAmount(Resource.MILITARYPOINT));
+    }
+
 
 }
