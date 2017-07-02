@@ -45,7 +45,6 @@ public class EffectOnNewCardsTest {
         // dobbiamo fare in modo che il player abbia un server
         serverOrchestrator.addServer(new SocketServer());
         serverOrchestrator.startGame(game.getGameStatus().getPlayers(),0);
-        LoginHub.getInstance().setServerOrchestrator(serverOrchestrator);
         effectOnNewCards = new EffectOnNewCards(towerFloors);
         effectOnNewCards.setOptionalParams(0);
 
