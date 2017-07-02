@@ -30,7 +30,7 @@ public class LoginHubTest {
     public void firstTest() throws IOException {
 
 
-
+        System.out.println();
         Game game = new Game(0);
         game.addPlayer("peppe");
         game.addPlayer("massimo");
