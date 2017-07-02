@@ -5,6 +5,7 @@ import java.util.*;
 /**
  * Created by giuseppe on 6/14/17.
  */
+
 public class ClientBoardGame extends Observable {
     private final Map<String, List<ClientTowerFloor>> towersClient;
     private final List<List<ClientSpaceAction>> productionHarvest;

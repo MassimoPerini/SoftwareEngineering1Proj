@@ -11,6 +11,7 @@ import java.util.Observable;
 /**
  * Created by massimo on 20/06/17.
  */
+
 public class PlayerBonusActions extends Observable {
 
     private List<ResourceSet> parchmentList;
@@ -90,5 +91,9 @@ public class PlayerBonusActions extends Observable {
 
     public List<String> getPersonalBonusOptions() {
         return personalBonusOptions;
+    }
+
+    public ClientStateName getCurrentState() {
+        return currentState;
     }
 }
