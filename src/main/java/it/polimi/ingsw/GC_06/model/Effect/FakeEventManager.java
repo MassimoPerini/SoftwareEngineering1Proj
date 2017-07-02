@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.model.Action.PickCard;
+package it.polimi.ingsw.GC_06.model.Effect;
 
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -8,11 +8,16 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import java.util.List;
 
 /**
- * Created by giuseppe on 6/28/17.
+ * Created by giuseppe on 7/2/17.
  */
-public class DefaulEventManagerFake implements GameEventManager {
+public class FakeEventManager implements GameEventManager{
 
-    public DefaulEventManagerFake() {
+    private Game game;
+    private ServerOrchestrator serverOrchestrator;
+
+    public FakeEventManager(Game game, ServerOrchestrator serverOrchestrator) {
+        this.game = game;
+        this.serverOrchestrator = serverOrchestrator;
     }
 
     @Override

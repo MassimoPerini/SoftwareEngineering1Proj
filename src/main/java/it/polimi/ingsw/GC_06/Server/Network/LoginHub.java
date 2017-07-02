@@ -114,7 +114,7 @@ public class LoginHub {
 
                 //this.myTimer(game);
             }
-            if (loggedPlayers.size() == 1 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+            if (loggedPlayers.size() == 2 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game(id);
                 ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
                 timer.cancel();
@@ -163,8 +163,8 @@ public class LoginHub {
     public void restoreInTheGame(String username,int gameID){
         Game game = GameList.getInstance().getGameId(gameID);
         try{
-            game.addPlayer(username);
-
+            game.getGameStatus().getPlayers().get(username).setConnected(true);
+            GameList.getInstance().getGameMap().get(game).add(username);
         }catch (NullPointerException e){
             e.getStackTrace();
         }
@@ -178,6 +178,15 @@ public class LoginHub {
         players = new LinkedList<>();
     }
 
+    public void setPlayerTrash(Trash playerTrash) {
+        this.playerTrash = playerTrash;
+    }
+
+    public Trash getPlayerTrash() {
+        return playerTrash;
+    }
+
+    /**
     public void myTimer(Game game){
 
         TimerTask timerTask = new TimerTask() {
@@ -191,7 +200,7 @@ public class LoginHub {
 
         timer = new Timer();
         timer.schedule(timerTask,delay);
-    }
+    }*/
 
 
 

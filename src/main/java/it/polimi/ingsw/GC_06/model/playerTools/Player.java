@@ -183,4 +183,6 @@ public class Player extends Observable {
     public ResourceSet getAddAtTheEnd() {
         return addAtTheEnd;
     }
+
+
 }

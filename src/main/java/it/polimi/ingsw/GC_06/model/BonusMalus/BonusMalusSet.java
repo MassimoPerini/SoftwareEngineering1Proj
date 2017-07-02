@@ -135,7 +135,7 @@ public class BonusMalusSet {
         return i;
 
     }
-
+/**
     public int removeBonusMalusCost(ArrayList<BonusMalusOnCost> bonusMalusOnCosts,int i){
         if(!bonusMalusOnCosts.get(i).isPermanent()){
             bonusMalusOnCosts.remove(i);
@@ -152,7 +152,7 @@ public class BonusMalusSet {
         }
         return i;
     }
-
+*/
 
     public HashMap<BonusMalusType, ArrayList<BonusMalusOnResources>> getBonusMalusOnResources() {
         return bonusMalusOnResources;

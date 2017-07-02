@@ -93,9 +93,19 @@ public class GameList {
             }
         }
 
+
         g.getGameStatus().getPlayers().get(username).setConnected(false);
-        //this.gameMap.get(g).remove()
+        for (String s : this.gameMap.get(g)) {
+            if(s.equals(username)){
+                this.gameMap.get(g).remove(s);
+                break;
+            }
+        }
+
 
     }
 
+    public Map<Game, List<String>> getGameMap() {
+        return gameMap;
+    }
 }

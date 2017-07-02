@@ -16,6 +16,7 @@ import java.util.Map;
 /**
  *
  */
+
 public class EffectOnNewCards implements Effect, Blocking {
     private Map<String, Integer> towerFloors;
     private Integer inputParams;
