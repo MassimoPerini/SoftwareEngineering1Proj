@@ -28,6 +28,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by giuseppe on 6/27/17.
  */
+/**
 public class PickCardTest {
 
     private Game game;
@@ -93,4 +94,5 @@ public class PickCardTest {
     public void pickAnotherCard(){
 
     }
-}
+    */
+
