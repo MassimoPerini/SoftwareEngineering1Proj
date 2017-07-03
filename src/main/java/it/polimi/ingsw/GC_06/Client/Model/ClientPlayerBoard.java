@@ -7,6 +7,7 @@ import java.util.*;
 /**
  * Created by giuseppe on 6/14/17.
  */
+
 public class ClientPlayerBoard extends Observable{
     private Map<String, List<String>> cards;
     private List<String> excommunication;

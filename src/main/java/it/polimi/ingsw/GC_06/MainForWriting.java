@@ -15,6 +15,8 @@ public class MainForWriting {
     public static void main(String[] args) throws IOException {
         fileLoader = FileLoader.getFileLoader();
 
+        fileLoader.writeEndGameMap();
+
         /*fileLoader.writePersonalBonus();
 
 

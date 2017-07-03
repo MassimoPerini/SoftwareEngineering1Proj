@@ -57,7 +57,7 @@ public class BonusMalusOnEnd {
 
     }
 
-    private boolean isAllowed(ResourceSet resourceSet) {
+    public boolean isAllowed(ResourceSet resourceSet) {
 
         for (Resource resource : activeResourceList) {
             if (!resourceSet.getResources().keySet().contains(resource)) {

@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.playerTools;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateResource;
+import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.HeroCard;
@@ -10,6 +11,7 @@ import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
 import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 import java.util.*;
@@ -31,6 +33,7 @@ public class Player extends Observable {
     private boolean connected;
     private final List<PersonalBonusTile> personalBonus;
     private List<HeroCard> heroCard;
+    private PersonalStatistics personalStatistics;
 
     //TODO sistemare la questione dei malus e bonus sul player
 
@@ -182,6 +185,14 @@ public class Player extends Observable {
 
     public ResourceSet getAddAtTheEnd() {
         return addAtTheEnd;
+    }
+
+    public PersonalStatistics createPersonalStatistics(){
+
+        personalStatistics = new PersonalStatistics(this.PLAYER_ID,this.getResourceSet().getResourceAmount(Resource.FAITHPOINT),
+                this.getResourceSet().getResourceAmount(Resource.MILITARYPOINT),this.getResourceSet().getResourceAmount(Resource.VICTORYPOINT),
+                this.getResourceSet().totalResourceQuantity());
+        return personalStatistics;
     }
 
 
