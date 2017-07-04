@@ -2,20 +2,21 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
 
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
+import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by giuseppe on 6/16/17.
  */
-public class EndGameAction  implements Action {
+public class EndGameAction extends Observable implements Action {
 
-    private EndGameMap endGameMap;
+    private Map<String,List<Integer>> endGameMap;
     private List<Player> players;
     private Resource resource; /** saranno i punti fede*/
     private it.polimi.ingsw.GC_06.model.Resource.Resource extraResources;
@@ -23,11 +24,11 @@ public class EndGameAction  implements Action {
     private double coefficient;
     private final ActionType ACTION_TYPE = ActionType.END_GAME;
 
-    public EndGameAction(EndGameMap endGameMap, List<Player> players, Resource resource,double coefficient) {
-        this.endGameMap = endGameMap;
+    public EndGameAction(List<Player> players, Resource resource) {
+        this.endGameMap = FileLoader.getFileLoader().loadEndGameMap();
         this.players = players;
         this.resource = resource;
-        this.coefficient = coefficient;
+        this.coefficient = Integer.parseInt(Setting.getInstance().getProperty("end_game_coefficient"));
     }
 
     @Override
@@ -60,16 +61,16 @@ public class EndGameAction  implements Action {
 
     public void turnCardsIntoPoints(Player player){
 
-        Set<String> colours = endGameMap.getEndGameMap().keySet();
+        Set<String> colours = this.endGameMap.keySet();
 
         for(String colour : colours){
             int numbOfCards = player.getPlayerBoard().getDevelopmentCards(colour).size()-1;
 
-            if(numbOfCards > endGameMap.getEndGameMap().get(colour).size()){
-                numbOfCards = endGameMap.getEndGameMap().get(colour).size()-1;
+            if(numbOfCards > this.endGameMap.get(colour).size()){
+                numbOfCards = this.endGameMap.get(colour).size()-1;
             }
 
-            int endPoint = endGameMap.getEndGameMap().get(colour).get(numbOfCards);
+            int endPoint = this.endGameMap.get(colour).get(numbOfCards);
             endPoint = BonusMalusHandler.filter(player,ACTION_TYPE,endPoint,colour);
 
             ResourceSet resourceSet = new ResourceSet();
@@ -98,7 +99,7 @@ public class EndGameAction  implements Action {
         player.variateResource(resourceSet);
 
        // qui dovremmo essere riusciti a modificare l'attribuzione dei punti al player
-       BonusMalusHandler.filter(player,player.getResourceSet(),ACTION_TYPE);
+       //BonusMalusHandler.filter(player,player.getResourceSet(),ACTION_TYPE);
     }
 
 

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
+import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,7 @@ import java.util.Observable;
 /**
  * Created by giuseppe on 6/14/17.
  */
+
 public class MainClientModel extends Observable{
     private final Map<String, ClientPlayerBoard> clientPlayerBoard;
     private final ClientBoardGame clientBoardGame;
@@ -16,6 +19,7 @@ public class MainClientModel extends Observable{
     private int era, turn;
     private String currentPlayer;
     private String myUsername;
+    private List<PersonalStatistics> personalStatistics;
 
     public MainClientModel()
     {
@@ -27,6 +31,18 @@ public class MainClientModel extends Observable{
 
     public synchronized void setMyUsername(String myUsername) {
         this.myUsername = myUsername;
+    }
+
+    public void setPersonalStatistics(List<PersonalStatistics> personalStatistics) {
+        this.personalStatistics = personalStatistics;
+        myStatus = ClientStateName.END_GAME;
+        setChanged();
+        notifyObservers(myStatus);
+    }
+
+    public List<PersonalStatistics> getPersonalStatistics() {
+        // qua si deve ordinare
+        return personalStatistics;
     }
 
     public synchronized void updateStatus(int turn, int era, String username)
@@ -84,5 +100,9 @@ public class MainClientModel extends Observable{
 
     public synchronized String getMyUsername() {
         return myUsername;
+    }
+
+    public ClientStateName getMyStatus() {
+        return myStatus;
     }
 }

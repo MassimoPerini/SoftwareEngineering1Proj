@@ -3,14 +3,20 @@ package it.polimi.ingsw.GC_06.model.State;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageGameStarted;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageRankingPopUp;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
+import it.polimi.ingsw.GC_06.model.Action.Actions.EndGameAction;
+import it.polimi.ingsw.GC_06.model.Action.Actions.EndGameMap;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
+import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
+import it.polimi.ingsw.GC_06.model.Action.EndGame.Ranking;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -126,10 +132,23 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     }
 
     @Override
-    public synchronized void endGame()
-    {
+    public synchronized void endGame() {
         lastEra++;
         handleExcomm();
+
+
+        /** prendiamo la lista dei players*/
+        List<Player> gamers = new LinkedList<>();
+        Set<String> players = game.getGameStatus().getPlayers().keySet();
+
+        for (String player : players) {
+            gamers.add(game.getGameStatus().getPlayers().get(player));
+        }
+        EndGameAction endGameAction = new EndGameAction(gamers, Resource.VICTORYPOINT);
+        List<PersonalStatistics> finalRanking = Ranking.getInstance().produceCurrentGameRanking(game);
+        MessageRankingPopUp messageRanking = new MessageRankingPopUp(finalRanking);
+        serverOrchestrator.send(game.getId(),messageRanking);
+
     }
 
     private synchronized void handleExcomm()

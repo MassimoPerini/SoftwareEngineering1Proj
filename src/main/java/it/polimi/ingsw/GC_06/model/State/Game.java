@@ -176,4 +176,6 @@ public class Game {
     public static String getNEUTRALFAMILYMEMBERSKEY() {
         return NEUTRALFAMILYMEMBERSKEY;
     }
+
+    public DiceSet getDiceSet() {return diceSet;}
 }

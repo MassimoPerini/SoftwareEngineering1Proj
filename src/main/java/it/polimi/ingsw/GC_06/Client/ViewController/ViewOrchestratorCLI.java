@@ -42,7 +42,7 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
         clientStates.put(ClientStateName.MY_TURN, new UserActionViewController(mainClientModel, clientNetworkOrchestrator));
         clientStates.put(ClientStateName.ACTION_FINISHED, new MainActionFinished(clientNetworkOrchestrator));
         clientStates.put(ClientStateName.EXCOMMUNICATION, new ExcommunicationViewController(clientNetworkOrchestrator));//POPUP
-
+        clientStates.put(ClientStateName.END_GAME,new EndGameViewController(mainClientModel.getPersonalStatistics()));
     }
 
     public void suspend()

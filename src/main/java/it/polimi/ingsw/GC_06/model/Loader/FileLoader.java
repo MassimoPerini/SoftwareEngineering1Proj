@@ -42,6 +42,7 @@ public class FileLoader {
     private static final String CHURCH = "church";
     private static final String EXCOMMUNICATION = "excomm";
     private static final String PERSONAL_BONUS = "personal_bonus";
+    private static final String END_GAME_MAP = "end_game_map";
     // private static final String GAME_MAP = "end_game_map";
 
 
@@ -55,6 +56,7 @@ public class FileLoader {
     private final String church;
     private final String excommunication;
     private final String personalBonus;
+    private final String endGameMap;
     private Gson gson;
 
 
@@ -71,6 +73,7 @@ public class FileLoader {
         church = Setting.getInstance().getProperty(CHURCH);
         excommunication = Setting.getInstance().getProperty(EXCOMMUNICATION);
         personalBonus = Setting.getInstance().getProperty(PERSONAL_BONUS);
+        endGameMap = Setting.getInstance().getProperty(END_GAME_MAP);
 //        endGameMap = Setting.getInstance().getProperty(GAME_MAP);
     }
 
@@ -87,6 +90,7 @@ public class FileLoader {
         gson.toJson(resourceSet, fw);
         fw.close();
     }
+
 
     public ResourceSet[] loadDefaultResourceSets() throws IOException {
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(defaultResourceRootPath));
@@ -154,6 +158,38 @@ public class FileLoader {
         gson.toJson(requirements, fw);
 
         fw.close();
+    }
+
+    public void writeEndGameMap() throws IOException{
+        FileWriter fw = new FileWriter("src/main/resources/model/end_game_map.txt");
+        Gson gson=new GsonBuilder().setPrettyPrinting().create();
+        Map<String, List<Integer>> endGameMap = new HashMap<>();
+
+        List<Integer> extraPoints = new LinkedList<>();
+        List<Integer> extraPoints1 = new LinkedList<>();
+        Integer[] array = {1,2,5,10,15,21};
+        Integer[] array1 = {0,0,3,4,5,6};
+        extraPoints.addAll(Arrays.asList(array));
+        extraPoints1.addAll(Arrays.asList(array1));
+
+        endGameMap.put("BLUE",extraPoints);
+        endGameMap.put("GREEN",extraPoints1);
+
+        gson.toJson(endGameMap, fw);
+
+        fw.close();
+    }
+
+
+    public Map<String,List<Integer>> loadEndGameMap(){
+
+        InputStreamReader sr = new InputStreamReader(this.getClass().getResourceAsStream(endGameMap));
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Type mapType = new TypeToken<Map<String,List<Integer>>>(){}.getType();
+
+        Map<String,List<Integer>> endGameMap = gson.fromJson(sr,mapType);
+        return endGameMap;
     }
 
     public Map<Integer, ResourceSet> loadChurchRequirement()

@@ -20,6 +20,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by giuseppe on 6/26/17.
  */
+/**
 public class EndGameActionTest {
 
     private Game game;
@@ -116,3 +117,4 @@ public class EndGameActionTest {
 
 }
 
+*/
