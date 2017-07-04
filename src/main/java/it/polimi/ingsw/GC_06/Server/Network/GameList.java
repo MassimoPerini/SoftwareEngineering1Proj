@@ -49,6 +49,7 @@ public class GameList {
 
     public synchronized void setCurrentBlocking(Game game, Blocking action)
     {
+        System.out.println("Settings waiting!, game "+game.getId());
         if (gameBlocking.get(game)==null)
             gameBlocking.put(game, action);
         else
@@ -57,6 +58,7 @@ public class GameList {
 
     public synchronized void unlock(Game game, Object object)
     {
+        System.out.println("Unlocking!, game "+game.getId());
         gameBlocking.get(game).setOptionalParams(object);
     }
 

@@ -1,0 +1,87 @@
+#main-board{
+    -fx-background-image: url("../../../../../../../../view/gameboard_f_c.jpeg");
+ /*   -fx-background-image: url("gameboard_small.jpg");  */
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+  /*  -fx-max-height: 100%;  */
+    -fx-background-repeat: stretch;
+    -fx-background-size: auto 100%;
+    -fx-alignment: top-center;
+
+    -fx-background-position: top center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.market-view
+{
+/*    -fx-padding: 0px 0px 0px 10px;
+    -fx-border-insets: 0px 0px 0px 10px;
+    -fx-background-insets: 0px 0px 0px 10px;*/
+    -fx-pref-width: 150px;
+    -fx-max-width: 150px;
+    -fx-border-color: orange;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+    -fx-spacing: 10px;
+}
+
+.prodHarv-view
+{
+    -fx-pref-width: 150px;
+    -fx-max-width: 150px;
+    -fx-alignment: bottom-left;
+
+    -fx-padding: 10px 70px 0px 0px;
+    -fx-border-insets: 10px 70px 0px 0px;
+    -fx-background-insets: 10px 70px 0px 0px;
+
+    -fx-border-color: white;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+
+}
+
+.prod-market-area
+{
+    -fx-padding: 75px 0px 0px 0px;
+    -fx-border-insets: 75px 0px 0px 0px;
+    -fx-background-insets: 75px 0px 0px 0px;
+
+    -fx-alignment: bottom-center;
+    -fx-border-color: blue;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+
+}
+
+.council-view
+{
+    -fx-padding: 10px 0px 0px 70px;
+    -fx-border-insets: 10px 0px 0px 70px;
+    -fx-background-insets: 10px 0px 0px 70px;
+    -fx-alignment: center;
+    -fx-pref-height: 58;
+    -fx-max-height: 58;
+    -fx-max-width: 220;
+    -fx-pref-width: 220;
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+}
+
+.spaceaction-big
+{
+    -fx-pref-height: 30;
+    -fx-pref-width: 110;
+    -fx-alignment: bottom-right;
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+}
+
+.spaceaction
+{
+    -fx-max-height: 30;
+    -fx-max-width: 30;
+}

@@ -1,15 +1,17 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board;
 
+import it.polimi.ingsw.GC_06.Client.Model.ClientSpaceAction;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Tower.TowerView;
 import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 /**
  * Created by massimo on 03/06/17.
@@ -21,12 +23,77 @@ public class BoardPresenter extends Observable implements Observer {
 
     @Inject private MainClientModel mainClientModel;
 
+    private List<List<ClientSpaceAction>> marketInfo;
+    private List<List<ClientSpaceAction>> prodHarvInfo;
 
 
     @FXML void initialize() {
 
         TowerView towerView = new TowerView();
+
         mainView.getChildren().add(towerView.getView());        //added the tower view to the main view
+
+        HBox prodMarket = new HBox();
+
+        VBox prodHarvView = new VBox(22);
+        VBox marketView = new VBox();
+
+        SpaceActionView councilView = new SpaceActionView();
+        councilView.getView().getStyleClass().add("council-view");
+        mainView.getChildren().add(councilView.getView());
+
+
+        prodHarvView.getStyleClass().add("prodHarv-view");
+        marketView.getStyleClass().add("market-view");
+        prodMarket.getStyleClass().add("prod-market-area");
+
+        prodMarket.getChildren().add(prodHarvView);
+        prodMarket.getChildren().add(marketView);
+
+
+        marketInfo = mainClientModel.getClientBoardGame().getMarket();
+        prodHarvInfo = mainClientModel.getClientBoardGame().getProductionHarvest();
+
+        for (List<ClientSpaceAction> clientSpaceActions : prodHarvInfo) {
+            //Prod or Harv
+            HBox rowProdHarv = new HBox(35);
+            prodHarvView.getChildren().add(rowProdHarv);
+            boolean big = false;
+            for (ClientSpaceAction clientSpaceAction : clientSpaceActions)
+            {
+                Map<String, Object> context = new HashMap<>();
+                context.put("clientSpaceAction", clientSpaceAction);
+                SpaceActionView spaceActionView = new SpaceActionView(context::get);
+
+                //Mostrane una grande, l'altra normale
+                if (big) {
+                    spaceActionView.getView().getStyleClass().add("spaceaction-big");
+                    big = false;
+                }
+                else{
+                    spaceActionView.getView().getStyleClass().add("spaceaction");
+                    big = true;
+                }
+
+                rowProdHarv.getChildren().add(spaceActionView.getView());
+            }
+        }
+
+        for (List<ClientSpaceAction> clientSpaceActions : marketInfo) {
+            HBox rowMarket = new HBox(15);
+            marketView.getChildren().add(rowMarket);
+
+            for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
+                Map<String, Object> context = new HashMap<>();
+                context.put("clientSpaceAction", clientSpaceAction);
+                SpaceActionView spaceActionView = new SpaceActionView(context::get);
+                spaceActionView.getView().getStyleClass().add("spaceaction");
+                rowMarket.getChildren().add(spaceActionView.getView());
+            }
+        }
+
+        mainView.getChildren().add(prodMarket);
+
     }
 
     @PostConstruct
@@ -43,7 +110,7 @@ public class BoardPresenter extends Observable implements Observer {
             //Sblocca
         }
         else{
-            //.....
+            // redraw
         }
     }
 }

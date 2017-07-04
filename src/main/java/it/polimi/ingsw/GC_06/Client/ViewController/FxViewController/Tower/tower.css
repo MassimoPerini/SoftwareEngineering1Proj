@@ -1,0 +1,28 @@
+.tower-area{
+/*    -fx-padding: 0;
+    -fx-spacing: 0;
+    */
+    -fx-alignment: top-center;
+    -fx-fill-height: true;
+    -fx-fit-to-height: true;
+
+    -fx-padding: 30px 65px 0px 32px;
+    -fx-border-insets: 30px 65px 0px 32px;
+    -fx-background-insets: 30px 65px 0px 32px;
+
+    -fx-border-color: #353833;
+/*    -fx-border-insets: 0;  */
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+    -fx-spacing: 5px;
+}
+
+.tower{
+    -fx-border-color: white;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+    -fx-pref-width: 10px;
+    -fx-fill-height: true;
+    -fx-fit-to-height: true;
+    -fx-spacing: 4px;
+}

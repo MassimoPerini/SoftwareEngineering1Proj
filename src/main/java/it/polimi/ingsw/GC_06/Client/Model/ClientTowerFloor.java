@@ -1,9 +1,11 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
+import java.util.Observable;
+
 /**
  * Created by giuseppe on 6/14/17.
  */
-public class ClientTowerFloor {
+public class ClientTowerFloor extends Observable {
     private String card;
     private ClientSpaceAction spaceAction;
 
@@ -16,19 +18,27 @@ public class ClientTowerFloor {
     synchronized void removeCard()
     {
         card = null;
+        setChanged();
+        notifyObservers();
     }
     synchronized void addFamilyMember(ClientFamilyMember clientFamilyMember)
     {
         spaceAction.addClientFamilyMember(clientFamilyMember);
+        setChanged();
+        notifyObservers();
     }
 
     synchronized void removeFamilyMember()
     {
         spaceAction.reset();
+        setChanged();
+        notifyObservers();
     }
     synchronized void setNewCard(String card)
     {
         this.card = card;
+        setChanged();
+        notifyObservers();
     }
 
 

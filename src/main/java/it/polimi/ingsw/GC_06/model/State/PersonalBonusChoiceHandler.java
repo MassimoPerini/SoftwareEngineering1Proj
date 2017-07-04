@@ -28,7 +28,6 @@ public class PersonalBonusChoiceHandler implements Blocking {
     public synchronized void execute(Game game, ServerOrchestrator serverOrchestrator){
         List<PersonalBonusTile> boards = FileLoader.getFileLoader().loadPersonalBonus();
         List<String> freeIndexes = new LinkedList<>();
-
         for (int i=0;i<boards.size();i++)
         {
             freeIndexes.add(boards.get(i).getId());
@@ -40,15 +39,18 @@ public class PersonalBonusChoiceHandler implements Blocking {
             MessageServer messageServer = new MessageChoosePersonalBonus(freeIndexes);
             serverOrchestrator.send(players.get(i).getPLAYER_ID(), messageServer);
             GameList.getInstance().setCurrentBlocking(game, this);
+
             try {
                 while (choice == null) {
+                    System.out.println("Waiting!, game "+game.getId());
                     wait();
                 }
             }catch (InterruptedException e)
             {
+                System.out.println("EXCEPTION!");
                 continue;
             }
-
+            System.out.println("Thread wake up");
             for (PersonalBonusTile board : boards) {
                 if (board.getId().equals(freeIndexes.get(choice)))
                 {

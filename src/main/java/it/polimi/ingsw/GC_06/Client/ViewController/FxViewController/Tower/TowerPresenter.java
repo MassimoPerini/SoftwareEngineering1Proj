@@ -5,7 +5,9 @@ import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.TowerFloor.TowerFloorPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.TowerFloor.TowerFloorView;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +23,8 @@ public class TowerPresenter implements Observer {
     @FXML private HBox mainBox;
     private Map<String, List<ClientTowerFloor>> towers;
     private Map<String, TowerFloorPresenter> towerFloors;
+    private static final int spazio_piani = 5;
+
 
 
     @FXML
@@ -31,7 +35,6 @@ public class TowerPresenter implements Observer {
             List<TowerFloorPresenter> towerFloorPresenters = new LinkedList<>();
 
             VBox floorsView = new VBox();
-            mainBox.getChildren().add(floorsView);
 
             for (ClientTowerFloor clientTowerFloor : towers.get(s)) {
 
@@ -43,6 +46,13 @@ public class TowerPresenter implements Observer {
                 floorsView.getChildren().add(towerFloorView.getView());
                 towerFloorPresenters.add((TowerFloorPresenter) towerFloorView.getPresenter());
             }
+
+            floorsView.setAlignment(Pos.TOP_LEFT);
+            HBox.setHgrow(floorsView, Priority.ALWAYS);
+            floorsView.getStyleClass().add("tower");
+
+            mainBox.getChildren().add(floorsView);
+
         }
 
         mainClientModel.getClientBoardGame().addObserver(this);

@@ -79,6 +79,7 @@ public class SocketServer extends Server implements Observer {
             {
                 socketFromId.put(serverPlayerSocket.getPlayer(), serverPlayerSocket);
                 gamePlayers.add(serverPlayerSocket);
+                serverPlayerSocket.setGame(id);
                 result = true;
             }
         }

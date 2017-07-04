@@ -38,7 +38,7 @@ public class LoginHub {
      * @param username
      *
      */
-    public synchronized void loginHandler(String username) {
+    public void loginHandler(String username) {
 
         if (searchTrash(username)) {
 
@@ -114,23 +114,23 @@ public class LoginHub {
 
                 //this.myTimer(game);
             }
-            if (loggedPlayers.size() == 2 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+            if (loggedPlayers.size() == 1 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game(id);
                 ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
                 timer.cancel();
                 uploadPlayers(game,loggedPlayers);
                 GameList.getInstance().add(game,loggedPlayers);
                 id++;
+                loggedPlayers = new ArrayList<>();
                 controllerGame.start();     //Il gioco lo avvia lui
 
                 /** si salva per ogni gioco l'id dei partecipanti -> Mappa <username/Socket>*/
                    // serverOrchestrator.startGame(game);
-                loggedPlayers = new ArrayList<>();
             }
 
     }
 
-    public synchronized boolean access(String user) {
+    public boolean access(String user) {
 
         /** la lista contiene l'elenco di tutti i giocatori effettivamente registrati a tutti i giochi  quindi */
         if(!totPlayers.contains(user)){

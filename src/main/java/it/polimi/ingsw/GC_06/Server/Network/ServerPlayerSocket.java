@@ -108,7 +108,6 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                         }
                 }
             }
-
             System.out.println("ServerPlayerSocket: LOGGED: "+player+"\nNow listening commands...");
             while (true)
             {

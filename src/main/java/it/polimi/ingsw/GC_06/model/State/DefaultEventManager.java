@@ -126,10 +126,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     }
 
     @Override
-    public synchronized void endGame() {
+    public synchronized void endGame()
+    {
         lastEra++;
         handleExcomm();
-
     }
 
     private synchronized void handleExcomm()

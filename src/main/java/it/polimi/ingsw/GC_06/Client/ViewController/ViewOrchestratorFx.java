@@ -67,6 +67,7 @@ public class ViewOrchestratorFx extends Observable implements ViewOrchestrator {
                     //    Observer currentPresenter = (Observer) view.getPresenter();
                     //    this.addObserver(currentPresenter);
                         stage.setScene(scene);
+                        stage.sizeToScene();
                         stage.show();
                     }
                     catch(Exception e)
