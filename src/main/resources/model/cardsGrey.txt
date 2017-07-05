@@ -8,7 +8,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -2
+            "SERVANT": -3
           }
         }
       }
@@ -18,7 +18,7 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "MILITARYPOINT": 3
+            "VICTORYPOINT": 2
           }
         }
       },
@@ -60,11 +60,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_49"
+    "path": "devcards_f_en_c_97"
   },
   {
     "era": 1,
@@ -75,7 +75,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -4
           }
         }
       }
@@ -99,7 +99,7 @@
                 ],
                 "actionType": "BOARD_ACTION_ON_TOWER",
                 "permanent": true,
-                "value": 2
+                "value": 3
               }
             ]
           },
@@ -134,11 +134,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_50"
+    "path": "devcards_f_en_c_98"
   },
   {
     "era": 1,
@@ -149,7 +149,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -4
           }
         }
       }
@@ -173,7 +173,7 @@
                 ],
                 "actionType": "BOARD_ACTION_ON_TOWER",
                 "permanent": true,
-                "value": 2
+                "value": 3
               }
             ]
           },
@@ -207,11 +207,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_51"
+    "path": "devcards_f_en_c_99"
   },
   {
     "era": 1,
@@ -222,7 +222,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -2
+            "SERVANT": -4
           }
         }
       }
@@ -246,7 +246,7 @@
                 ],
                 "actionType": "BOARD_ACTION_ON_TOWER",
                 "permanent": true,
-                "value": 2
+                "value": 3
               }
             ]
           },
@@ -272,11 +272,11 @@
         "alreadyChoosed": []
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_52"
+    "path": "devcards_f_en_c_100"
   },
   {
     "era": 1,
@@ -287,7 +287,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -3
+            "SERVANT": -4
           }
         }
       }
@@ -311,7 +311,7 @@
                 ],
                 "actionType": "HARVEST_ACTION",
                 "permanent": true,
-                "value": 2
+                "value": 3
               }
             ]
           },
@@ -331,11 +331,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_53"
+    "path": "devcards_f_en_c_101"
   },
   {
     "era": 1,
@@ -346,7 +346,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -3
+            "SERVANT": -4
           }
         }
       }
@@ -370,7 +370,7 @@
                 ],
                 "actionType": "PRODUCTION_ACTION",
                 "permanent": true,
-                "value": 2
+                "value": 3
               }
             ]
           },
@@ -390,11 +390,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_54"
+    "path": "devcards_f_en_c_102"
   },
   {
     "era": 1,
@@ -405,7 +405,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -3
+            "SERVANT": -1
           }
         }
       }
@@ -436,11 +436,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_55"
+    "path": "devcards_f_en_c_103"
   },
   {
     "era": 1,
@@ -451,7 +451,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -3
+            "SERVANT": -3
           }
         }
       }
@@ -461,7 +461,7 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "FAITHPOINT": 1
+            "VICTORYPOINT": 2
           }
         }
       },
@@ -476,11 +476,11 @@
         "toAsk": []
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_56"
+    "path": "devcards_f_en_c_104"
   },
   {
     "era": 2,
@@ -491,7 +491,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -4
           }
         }
       }
@@ -501,7 +501,7 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "MILITARYPOINT": 2
+            "VICTORYPOINT": 2
           }
         }
       },
@@ -513,11 +513,11 @@
         "toAsk": []
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_57"
+    "path": "devcards_f_en_c_105"
   },
   {
     "era": 2,
@@ -528,7 +528,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -4
           }
         }
       }
@@ -561,8 +561,8 @@
               {
                 "bonusMalusEntity": {
                   "resources": {
-                    "STONE": -1,
-                    "WOOD": -1
+                    "STONE": -2,
+                    "WOOD": -2
                   }
                 },
                 "colourTarget": [
@@ -581,11 +581,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_58"
+    "path": "devcards_f_en_c_106"
   },
   {
     "era": 2,
@@ -596,7 +596,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -4
           }
         }
       }
@@ -629,7 +629,7 @@
               {
                 "bonusMalusEntity": {
                   "resources": {
-                    "MONEY": -2
+                    "MONEY": -3
                   }
                 },
                 "colourTarget": [
@@ -648,11 +648,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_59"
+    "path": "devcards_f_en_c_107"
   },
   {
     "era": 2,
@@ -663,7 +663,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -3
           }
         }
       }
@@ -683,11 +683,11 @@
         "toAsk": []
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_60"
+    "path": "devcards_f_en_c_108"
   },
   {
     "era": 2,
@@ -698,7 +698,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -5
           }
         }
       }
@@ -722,7 +722,7 @@
                 ],
                 "actionType": "HARVEST_ACTION",
                 "permanent": true,
-                "value": 3
+                "value": 4
               }
             ]
           },
@@ -742,11 +742,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_61"
+    "path": "devcards_f_en_c_109"
   },
   {
     "era": 2,
@@ -757,7 +757,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -5
           }
         }
       }
@@ -781,7 +781,7 @@
                 ],
                 "actionType": "PRODUCTION_ACTION",
                 "permanent": true,
-                "value": 3
+                "value": 4
               }
             ]
           },
@@ -801,11 +801,11 @@
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_62"
+    "path": "devcards_f_en_c_110"
   },
   {
     "era": 2,
@@ -816,7 +816,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -5
+            "SERVANT": -5
           }
         }
       }
@@ -826,16 +826,16 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "FAITHPOINT": 3
+            "VICTORYPOINT": 3
           }
         }
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_63"
+    "path": "devcards_f_en_c_111"
   },
   {
     "era": 2,
@@ -846,7 +846,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -5
+            "SERVANT": -5
           }
         }
       }
@@ -859,11 +859,11 @@
         "alreadyChoosed": []
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_64"
+    "path": "devcards_f_en_c_112"
   },
   {
     "era": 3,
@@ -874,7 +874,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -6
+            "SERVANT": -8
           }
         }
       }
@@ -882,15 +882,15 @@
     "immediateEffects": [
       {
         "type": "EffectOnConditions",
-        "multiplier": 2.0,
+        "multiplier": 3.0,
         "trasferredResource": "VICTORYPOINT"
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_65"
+    "path": "devcards_f_en_c_113"
   },
   {
     "era": 3,
@@ -901,7 +901,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -6
+            "SERVANT": -8
           }
         }
       }
@@ -909,15 +909,15 @@
     "immediateEffects": [
       {
         "type": "EffectOnConditions",
-        "multiplier": 2.0,
+        "multiplier": 3.0,
         "trasferredResource": "VICTORYPOINT"
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_66"
+    "path": "devcards_f_en_c_114"
   },
   {
     "era": 3,
@@ -928,7 +928,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -7
+            "SERVANT": -9
           }
         }
       }
@@ -936,15 +936,15 @@
     "immediateEffects": [
       {
         "type": "EffectOnConditions",
-        "multiplier": 2.0,
+        "multiplier": 3.0,
         "trasferredResource": "VICTORYPOINT"
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_67"
+    "path": "devcards_f_en_c_115"
   },
   {
     "era": 3,
@@ -955,7 +955,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -6
+            "SERVANT": -8
           }
         }
       }
@@ -963,15 +963,15 @@
     "immediateEffects": [
       {
         "type": "EffectOnConditions",
-        "multiplier": 2.0,
+        "multiplier": 3.0,
         "trasferredResource": "VICTORYPOINT"
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_68"
+    "path": "devcards_f_en_c_116"
   },
   {
     "era": 3,
@@ -982,7 +982,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4
+            "SERVANT": -6
           }
         }
       }
@@ -992,21 +992,21 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "FAITHPOINT": 2
+            "VICTORYPOINT": 3
           }
         }
       },
       {
         "type": "DonateProdHarv",
-        "value": 4,
+        "value": 5,
         "actionType": "HARVEST_ACTION"
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_69"
+    "path": "devcards_f_en_c_117"
   },
   {
     "era": 3,
@@ -1017,7 +1017,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -5
+            "SERVANT": -4
           }
         }
       }
@@ -1027,21 +1027,21 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "FAITHPOINT": 1
+            "VICTORYPOINT": 1
           }
         }
       },
       {
         "type": "DonateProdHarv",
-        "value": 4,
+        "value": 3,
         "actionType": "PRODUCTION_ACTION"
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_70"
+    "path": "devcards_f_en_c_118"
   },
   {
     "era": 3,
@@ -1052,7 +1052,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -5
+            "SERVANT": -5
           }
         }
       }
@@ -1065,11 +1065,11 @@
         "trasferredResource": "VICTORYPOINT"
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_71"
+    "path": "devcards_f_en_c_119"
   },
   {
     "era": 3,
@@ -1080,7 +1080,7 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -6
+            "SERVANT": -8
           }
         }
       }
@@ -1089,7 +1089,7 @@
       {
         "type": "EffectOnParchment",
         "different": false,
-        "quantity": 1,
+        "quantity": 2,
         "alreadyChoosed": []
       },
       {
@@ -1103,10 +1103,10 @@
         "toAsk": []
       }
     ],
-    "idColour": "BLUE",
+    "idColour": "GREY",
     "prodHarvEffects": {
       "0": []
     },
-    "path": "devcards_f_en_c_72"
+    "path": "devcards_f_en_c_120"
   }
 ]

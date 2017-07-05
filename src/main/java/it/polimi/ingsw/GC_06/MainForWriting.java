@@ -15,7 +15,7 @@ public class MainForWriting {
     public static void main(String[] args) throws IOException {
         fileLoader = FileLoader.getFileLoader();
 
-        fileLoader.writeEndGameMap();
+        //fileLoader.writeEndGameMap();
 
         /*fileLoader.writePersonalBonus();
 
@@ -40,6 +40,9 @@ public class MainForWriting {
 
         fileLoader.writeExcomunications();
         System.out.println("factored excomunication cards");*/
+
+        /*fileLoader.writeGreyCard();
+        System.out.println("factored grey cards");*/
 
     }
 }

@@ -22,6 +22,7 @@ public class BonusMalusSet {
     private HashMap<BonusMalusType,ArrayList<BonusMalusOnAccess>> bonusMalusOnAccess= new HashMap<>();
     private HashMap<BonusMalusType,ArrayList<BonusMalusOnCost>> bonusMalusOnCost= new HashMap<>();
     private HashMap<BonusMalusType,ArrayList<BonusMalusOnEnd>> bonusMalusOnEnd= new HashMap<>();
+    private HashMap<BonusMalusType,ArrayList<SpecialBonusMalus>> specialBonusMalus = new HashMap<>();
 
 
 
@@ -86,6 +87,13 @@ public class BonusMalusSet {
         if(bonusMalusOnAccess.size()!= 0) {
             for (BonusMalusType bonusMalusKey : this.bonusMalusOnAccess.keySet()) {
                 this.bonusMalusOnAccess.get(bonusMalusKey).addAll(bonusMalusOnAccess);
+            }
+        }
+    }
+    public void addSpecialBonusMalus(List<SpecialBonusMalus> specialBonusMaluses){
+        if(specialBonusMaluses.size()!= 0) {
+            for (BonusMalusType bonusMalusKey : this.specialBonusMalus.keySet()) {
+                this.specialBonusMalus.get(bonusMalusKey).addAll(specialBonusMaluses);
             }
         }
     }
