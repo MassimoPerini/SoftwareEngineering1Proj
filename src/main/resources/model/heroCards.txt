@@ -221,9 +221,9 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
+            "MONEY": 1,
             "WOOD": 1,
-            "STONE": 1,
-            "MONEY": 1
+            "STONE": 1
           }
         }
       }
@@ -344,8 +344,8 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "SERVANT": 3,
-            "VICTORYPOINT": 1
+            "VICTORYPOINT": 1,
+            "SERVANT": 3
           }
         }
       }

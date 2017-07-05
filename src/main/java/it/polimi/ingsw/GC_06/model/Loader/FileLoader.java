@@ -224,10 +224,8 @@ public class FileLoader {
 
     public DevelopmentCard[] loadCards() throws IOException {
 
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
-                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
-
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class).registerSubtype(ProdHarvMalusEffect.class).registerSubtype(EffectOnResources.class);
 
         RuntimeTypeAdapterFactory typeAdapterFactory3 = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
         Gson gson2 = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory3).create();
@@ -243,10 +241,9 @@ public class FileLoader {
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(boardRootPath));
 
         RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
-                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class);
-
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class).registerSubtype(ProdHarvMalusEffect.class).registerSubtype(EffectOnResources.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class).registerSubtype(EffectOnResources.class);
         Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).create();
         Board board = gson2.fromJson(fr, Board.class);
 
@@ -312,10 +309,10 @@ public class FileLoader {
     public List<PersonalBonusTile> loadPersonalBonus()
     {
         InputStreamReader sr = new InputStreamReader(this.getClass().getResourceAsStream(personalBonus));
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
-                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
-        Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class).registerSubtype(ProdHarvMalusEffect.class).registerSubtype(EffectOnResources.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class).registerSubtype(EffectOnResources.class);
+        Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory).create();
         PersonalBonusTile [] bonusTiles = gson.fromJson(sr, PersonalBonusTile[].class);
         return Arrays.asList(bonusTiles);
     }
@@ -326,7 +323,8 @@ public class FileLoader {
         try {
             RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                     .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                    .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+                    .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(ProdHarvMalusEffect.class);
+            RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
             InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream(excommunication));
@@ -352,10 +350,12 @@ public class FileLoader {
                     .registerSubtype(EffectOnParchment.class)
                     .registerSubtype(DonateBonusMalusEffect.class)
                     .registerSubtype(DonateProdHarv.class)
+                    .registerSubtype(ProdHarvMalusEffect.class)
                     ;
+            RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
 
-            Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
-            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream(heroCards));
+            Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory).create();
+            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("src/main/resources/model/heroCards.txt"));
 
 
             HeroCard[] heroCards = gson.fromJson(inputStreamReader, HeroCard[].class);

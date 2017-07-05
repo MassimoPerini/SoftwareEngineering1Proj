@@ -198,6 +198,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "WOOD": -1
@@ -219,6 +220,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "WOOD": -2
@@ -272,6 +274,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "STONE": -1
@@ -293,6 +296,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "STONE": -2
@@ -345,6 +349,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "MONEY": -1
@@ -397,6 +402,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "MONEY": -1
@@ -448,6 +454,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "MONEY": -3
@@ -501,6 +508,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "MONEY": -1
@@ -522,6 +530,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "MONEY": -2
@@ -574,6 +583,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "WOOD": -1
@@ -595,6 +605,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "WOOD": -3
@@ -647,6 +658,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "STONE": -1
@@ -668,6 +680,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "STONE": -3
@@ -721,6 +734,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "WOOD": -1,
@@ -776,6 +790,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "FAITHPOINT": -1
@@ -830,6 +845,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "SERVANT": -1
@@ -888,8 +904,8 @@
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MILITARYPOINT": 2,
-                  "VICTORYPOINT": 2
+                  "VICTORYPOINT": 2,
+                  "MILITARYPOINT": 2
                 }
               }
             }
@@ -976,6 +992,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "MONEY": -4
@@ -1129,6 +1146,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "MONEY": -1
@@ -1184,6 +1202,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "WOOD": -1
@@ -1205,6 +1224,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "STONE": -1
@@ -1259,6 +1279,7 @@
         {
           "malusEffect": [
             {
+              "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
                   "SERVANT": -1
@@ -1271,8 +1292,8 @@
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MILITARYPOINT": 3,
-                  "VICTORYPOINT": 1
+                  "VICTORYPOINT": 1,
+                  "MILITARYPOINT": 3
                 }
               }
             }
