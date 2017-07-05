@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
+import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
 import java.util.*;
@@ -15,6 +16,7 @@ public class ClientPlayerBoard extends Observable{
     private String playerUsername;
     private List<ClientFamilyMember> familyMembers;
     private List<String> playerProdHarvBonus;
+    private List<String> heroCards;
 
     public ClientPlayerBoard(String username, List<String> playerProdHarvBonus)
     {
@@ -24,6 +26,7 @@ public class ClientPlayerBoard extends Observable{
         playerUsername = username;
         familyMembers = new LinkedList<>();
         this.playerProdHarvBonus = playerProdHarvBonus;
+        this.heroCards = new LinkedList<>();
     }
 
     public synchronized void addFamilyMember(ClientFamilyMember clientFamilyMember)
@@ -60,7 +63,6 @@ public class ClientPlayerBoard extends Observable{
 
     //*******
 
-
     public synchronized List<String> getPlayerProdHarvBonus() {
         return playerProdHarvBonus;
     }
@@ -83,5 +85,13 @@ public class ClientPlayerBoard extends Observable{
 
     public synchronized List<ClientFamilyMember> getFamilyMembers() {
         return familyMembers;
+    }
+
+    public synchronized List<String> getHeroCards() {
+        return heroCards;
+    }
+
+    public synchronized void setHeroCards(List<String> heroCards) {
+        this.heroCards = heroCards;
     }
 }

@@ -7,14 +7,13 @@ import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
+import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by massimo on 17/06/17.
@@ -27,6 +26,7 @@ public class MessageGameStarted implements MessageServer {
     private List<Integer> market;
     private Map<String, List<String>> players;
     private Map<String, List<ClientFamilyMember>> familyMembers;
+    private Map <String,List<String>> heroCardsMap;
 
     //Remind: gestire solo valori primitivi e non modificabili! Altrimenti è pericoloso mandare reference con RMI
 
@@ -38,6 +38,8 @@ public class MessageGameStarted implements MessageServer {
         market = new LinkedList<>();
         players = new HashMap<>();
         familyMembers = new HashMap<>();
+        heroCardsMap = new HashMap<>();
+
 
         for (String s : game.getGameStatus().getPlayers().keySet()) {
             List<PersonalBonusTile> personalBonusTiles = game.getGameStatus().getPlayers().get(s).getPersonalBonus();
@@ -75,6 +77,18 @@ public class MessageGameStarted implements MessageServer {
             market.add(marketAndCouncil.getActionPlaces().size());
         }
 
+        // qui creiamo la nostra lista con i nomi delle carte
+
+       Set<String> gamers =  game.getGameStatus().getPlayers().keySet();
+        for (String gamer : gamers) {
+            List<String> heroCardsName = new LinkedList<>();
+            Player player = game.getGameStatus().getPlayers().get(gamer);
+            heroCardsMap.put(gamer,heroCardsName);
+            for (HeroCard heroCard : player.getHeroCard()) {
+                heroCardsMap.get(gamer).add(heroCard.getPath());
+            }
+        }
+
     }
 
     @Override
@@ -105,6 +119,15 @@ public class MessageGameStarted implements MessageServer {
                 clientController.getMainClientModel().getClientPlayerBoard(s).addFamilyMember(clientFamilyMember);
             }
         }
+
+
+        // creiamo la mappa di heroCards
+        for (String gamer : heroCardsMap.keySet()) {
+
+            clientController.getMainClientModel().getClientPlayerBoard(gamer).setHeroCards(heroCardsMap.get(gamer));
+        }
+
+
         clientController.getMainClientModel().changeMyState(ClientStateName.GAME_INIT);
 
      //   clientController.getMainClientModel().changeMyState(ClientStateName.WAIT_TURN);

@@ -35,6 +35,9 @@ public class BonusMalusSet {
         this.bonusMalusOnEnd.put(BONUSMALUSONEND,new ArrayList<>());
     }
 
+
+
+
     public void joinSet(BonusMalusSet bonusMalusSet){
         this.addActionBonusMalus(bonusMalusSet.bonusMalusOnAction.get(BONUSMALUSONACTION));
         this.addResourceBonusMalus(bonusMalusSet.bonusMalusOnResources.get(BONUSMALUSONRESOURCE));

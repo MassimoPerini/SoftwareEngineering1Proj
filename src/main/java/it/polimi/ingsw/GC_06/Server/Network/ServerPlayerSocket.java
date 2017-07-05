@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Server.Message.Client.*;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.PlayerHeroCardChoices;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.ProdHarvAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
@@ -60,6 +61,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageMarketCouncil.class)
                 .registerSubtype(ProdHarvAnswer.class)
                 .registerSubtype(PlayerChoiceExcommunication.class)
+                .registerSubtype(PlayerHeroCardChoices.class);
                 ;
         readGson=new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory2).create();
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
