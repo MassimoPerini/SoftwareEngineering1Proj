@@ -1,11 +1,15 @@
 package it.polimi.ingsw.GC_06.Server.Message.Client;
 
+import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
+import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -51,7 +55,7 @@ public class MessageBoardActionTower implements MessageClient{
                 boardActionOnTower.execute();
             }
             else{
-                System.out.println("AZIONE NON VALIDA");
+                currentGame.getGameStatus().changeState(TransitionType.ERROR);
             }
         }
         catch (InterruptedException e)

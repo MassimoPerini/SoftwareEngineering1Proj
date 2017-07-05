@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.util.List;
@@ -28,33 +29,33 @@ public class HeroCardAction implements Action {
     @Override
     public void execute() throws InterruptedException {
 
+
+        game.getGameStatus().changeState(TransitionType.PLAY_HERO_CARD);
         List<HeroCard> heroCardList = player.getHeroCard();
-        for (HeroCard heroCard : heroCardList) {
-            List<Effect> heroCardEffectList= heroCard.getEffectList();
+
+        for (Integer index : desiredHeroCardIndexHeroCard) {
+            List <Effect> heroCardEffectList = heroCardList.get(index).getEffectList();
+
             for (Effect effect : heroCardEffectList) {
                 effect.execute(player,game);
             }
-
-            if(!heroCard.isPermanent()){
-                heroCard.setCardStatus(false);
-            }
-
         }
 
-
+        game.getGameStatus().changeState(TransitionType.END_ACTION);
     }
 
     @Override
     public boolean isAllowed() {
 
-        List<HeroCard> heroCardList = player.getHeroCard();
-        for (HeroCard heroCard : heroCardList) {
-            if(!heroCard.isActivable(player)){
+        for (Integer index : desiredHeroCardIndexHeroCard) {
+            if(!player.getHeroCard().get(index).isActivable(player)){
                 return false;
             }
+
         }
 
         return true;
+
     }
 }
 

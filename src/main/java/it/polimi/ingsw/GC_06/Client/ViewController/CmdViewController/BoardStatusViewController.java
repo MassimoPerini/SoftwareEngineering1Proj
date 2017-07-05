@@ -1,11 +1,13 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import it.polimi.ingsw.GC_06.Client.Model.*;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -32,6 +34,7 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
 
     @Override
     public void viewWillAppear() {
+        System.out.println("ciao");
         ExecutorService executor = Executors.newCachedThreadPool();
         this.future = executor.submit(this);
     }
@@ -58,7 +61,7 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
         }
         catch (InterruptedException e)
         {
-            System.out.println("ELIMINANDO VIEW ATTESA");
+            System.out.println("HAI FATTO UNA AZIONE A CUI NON POTEVI AVERE ACCESSO");
             return;
         }
     }
@@ -143,6 +146,14 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
                     for (String s2 : clientPlayerBoard.get(s).getCards().get(s1)) {
                         System.out.println(s2 + "\n");
                     }
+                }
+
+                System.out.println("CARTE EROE :");
+
+                List<String> heroCardsName = clientPlayerBoard.get(s).getHeroCards();
+
+                for (String heroName : heroCardsName) {
+                    System.out.println("NOME:" + heroName);
                 }
 
             }

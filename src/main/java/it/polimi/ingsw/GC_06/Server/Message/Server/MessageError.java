@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Server.Message.Server;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
+import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
 /**
@@ -17,6 +18,6 @@ public class MessageError implements MessageServer {
 
     @Override
     public void execute(ClientController clientController) {
-
+        clientController.getMainClientModel().changeMyState(ClientStateName.LOGIN);
     }
 }

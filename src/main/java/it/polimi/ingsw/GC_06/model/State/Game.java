@@ -130,14 +130,17 @@ public class Game {
         State marketCouncil = new State(StateName.MARKET_COUNCIL);
         State choosingSupportVatican = new State(StateName.CHOOSING_SUPPORT_VATICAN);
         State turnActionCompleted = new State(StateName.TURN_ACTION_COMPLETED, new MessageUpdateState(ClientStateName.ACTION_FINISHED));
+        State playHeroCard = new State(StateName.CHOOSE_HERO_CARD);
 
         idle.addTransition(TransitionType.ACTION_ON_TOWER, pickedCard);
+        idle.addTransition(TransitionType.PLAY_HERO_CARD,playHeroCard);
         idle.addTransition(TransitionType.ACTION_ON_PRODHARV, productionHarvest);
         idle.addTransition(TransitionType.ACTION_ON_MARKETCOUNSIL, marketCouncil);
-
+        idle.addTransition(TransitionType.ERROR,idle);
         pickedCard.addTransition(TransitionType.END_ACTION, turnActionCompleted);
         productionHarvest.addTransition(TransitionType.END_ACTION, turnActionCompleted);
         marketCouncil.addTransition(TransitionType.END_ACTION, turnActionCompleted);
+        playHeroCard.addTransition(TransitionType.END_ACTION,idle);
 
         turnActionCompleted.addTransition(TransitionType.START_VATICAN, choosingSupportVatican);
         turnActionCompleted.addTransition(TransitionType.NEXT_PLAYER, idle);

@@ -3,6 +3,8 @@ package it.polimi.ingsw.GC_06.Client.View;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by massimo on 16/05/17.
@@ -53,6 +55,37 @@ public class CmdView implements CommandView {
         }
         return res;
 
+    }
+
+    @Override
+    public List<Integer> getList(int min, int max) throws InterruptedException {
+
+        boolean bool;
+        List<Integer> finalChoices;
+
+        do {
+            bool = true;
+            String choice = this.getString();
+            String[] choices = choice.split(" ");
+            finalChoices = new LinkedList<>();
+
+            for (String s : choices) {
+                try {
+                    int value = Integer.parseInt(s);
+                    if (value >= min && value <= max) {
+                        finalChoices.add(value);
+                    }
+                    else{
+                        bool = false;
+                        this.addLocalizedText("Error Input");
+                    }
+                } catch (Exception e) {
+                    bool = false;
+                }
+            }
+        }while(!bool);
+
+        return finalChoices;
     }
 
     @Override

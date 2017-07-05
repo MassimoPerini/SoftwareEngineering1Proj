@@ -43,6 +43,7 @@ public class FileLoader {
     private static final String EXCOMMUNICATION = "excomm";
     private static final String PERSONAL_BONUS = "personal_bonus";
     private static final String END_GAME_MAP = "end_game_map";
+    private static final String HERO_CARDS = "hero_cards";
     // private static final String GAME_MAP = "end_game_map";
 
 
@@ -57,6 +58,7 @@ public class FileLoader {
     private final String excommunication;
     private final String personalBonus;
     private final String endGameMap;
+    private final String heroCards;
     private Gson gson;
 
 
@@ -74,6 +76,7 @@ public class FileLoader {
         excommunication = Setting.getInstance().getProperty(EXCOMMUNICATION);
         personalBonus = Setting.getInstance().getProperty(PERSONAL_BONUS);
         endGameMap = Setting.getInstance().getProperty(END_GAME_MAP);
+        heroCards = Setting.getInstance().getProperty(HERO_CARDS);
 //        endGameMap = Setting.getInstance().getProperty(GAME_MAP);
     }
 
@@ -221,8 +224,9 @@ public class FileLoader {
 
     public DevelopmentCard[] loadCards() throws IOException {
 
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
 
 
         RuntimeTypeAdapterFactory typeAdapterFactory3 = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
@@ -239,7 +243,8 @@ public class FileLoader {
         InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(boardRootPath));
 
         RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
                 .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class);
 
         Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).create();
@@ -307,7 +312,8 @@ public class FileLoader {
     public List<PersonalBonusTile> loadPersonalBonus()
     {
         InputStreamReader sr = new InputStreamReader(this.getClass().getResourceAsStream(personalBonus));
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
                 .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
         Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
         PersonalBonusTile [] bonusTiles = gson.fromJson(sr, PersonalBonusTile[].class);
@@ -318,11 +324,11 @@ public class FileLoader {
     public ExcomunicationCard [] loadExcommunication()
     {
         try {
-            RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+            RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                    .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
                     .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
-            RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
 
-            Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory).create();
+            Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
             InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream(excommunication));
 
 
@@ -338,12 +344,18 @@ public class FileLoader {
     public HeroCard [] loadHeroCards()
     {
         try {
-            RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                    .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
-            RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
+            RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
+                    .registerSubtype(EffectOnAction.class)
+                    .registerSubtype(EffectOnConditions.class)
+                    .registerSubtype(EffectOnEnd.class)
+                    .registerSubtype(EffectOnNewCards.class)
+                    .registerSubtype(EffectOnParchment.class)
+                    .registerSubtype(DonateBonusMalusEffect.class)
+                    .registerSubtype(DonateProdHarv.class)
+                    ;
 
-            Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory).create();
-            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("src/main/resources/model/heroCards.txt"));
+            Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).create();
+            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream(heroCards));
 
 
             HeroCard[] heroCards = gson.fromJson(inputStreamReader, HeroCard[].class);
@@ -355,22 +367,4 @@ public class FileLoader {
         return null;
     }
 
-    /*public Map<String, String> loadMapNamesDescriptions() {
-        try {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("src/main/resources/model/mapNamesHeroes.txt"));
-
-            Map<String, String> mapNamesDescriptions = gson.toJson(inputStreamReader, Map<String, String>.class);
-            inputStreamReader.close();
-            return mapNamesDescriptions;
-        } catch (IOException e) {
-        }
-        return null;
-    }*/
 }
-
-
-
-
-
-

@@ -14,8 +14,10 @@ import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
 import it.polimi.ingsw.GC_06.model.Action.EndGame.Ranking;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
+import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -35,6 +37,8 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     private Map<String, Boolean> answersExcommunication = new HashMap<>();
     private final Map<Integer, List<ExcomunicationCard>> excomunicationCards;
     private List<Map<ActionType, Map<Integer, Effect>>> boards;
+    private HeroCard[] heroCards;
+    private int heroCardsNumber = Integer.parseInt(Setting.getInstance().getProperty("hero_cards_number"));
 
 
     public DefaultEventManager(ServerOrchestrator serverOrchestrator, Game game)
@@ -42,9 +46,15 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         this.serverOrchestrator = serverOrchestrator;
         this.game = game;
         this.requirements = FileLoader.getFileLoader().loadChurchRequirement();
+        this.heroCards = FileLoader.getFileLoader().loadHeroCards();
 
 
         List<ExcomunicationCard> excommCards = Arrays.asList(FileLoader.getFileLoader().loadExcommunication());
+
+
+        // creiamo la lista con la lista
+
+
 
         excomunicationCards = new HashMap<>();
         for (ExcomunicationCard excommCard : excommCards) {
@@ -57,6 +67,8 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             excomunicationCardList.add(excommCard);
         }
 
+        // qui dovremmo caricare le carte
+
 
     }
 
@@ -64,9 +76,29 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     {
         //Scegli i bonus personali
 
+
+
+
+
+
         List<Player> players = game.getRoundManager().getPlayers();
         PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
         personalBonusChoiceHandler.execute(game, serverOrchestrator);
+
+        List<HeroCard> heroCardList = new LinkedList<>();
+        heroCardList.addAll(Arrays.asList(heroCards));
+
+
+        for (Player player : players) {
+
+            for (int i = 0; i < heroCardsNumber; i++) {
+                Random rand = new Random();
+                int n = rand.nextInt(heroCardList.size());
+                HeroCard heroCard = heroCardList.get(n);
+                player.getHeroCard().add(heroCard);
+                heroCardList.remove(heroCardList.get(n));
+            }
+        }
 
         //---- Notificare l'init
         MessageGameStarted messageGameStarted = new MessageGameStarted(game);
@@ -86,6 +118,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             List<ExcomunicationCard> choosenCards = new LinkedList<>();
             choosenCards.add(sortedCard);
             excomunicationCards.replace(integer, choosenCards);
+
+            // qui dovremmo distribuire ai giocatori le carte eroe
+
+
         }
 
     }

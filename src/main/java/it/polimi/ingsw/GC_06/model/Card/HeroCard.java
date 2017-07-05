@@ -18,7 +18,7 @@ public class HeroCard extends Card {
     private ResourceSet resourceConditions;
     private List<Effect> effectList;
     private String cardType;
-    private boolean CardStatus;
+    private boolean cardStatus;
     private boolean permanent;
 
 
@@ -29,7 +29,7 @@ public class HeroCard extends Card {
         this.cardConditions = cardConditions;
         this.resourceConditions = resourceConditions;
         this.effectList = effectList;
-        this.CardStatus = true;
+        this.cardStatus = true;
         this.cardType = cardType;
         this.permanent = permanent;
     }
@@ -37,14 +37,16 @@ public class HeroCard extends Card {
 
 
     public boolean isActivable(Player player){
-        if(this.CardStatus = true && resourceConditions.isIncluded(player.getResourceSet()) && player.getPlayerBoard().isIncluded(this.cardConditions)){
-           return true;
+
+        if(this.cardStatus = true && player.getResourceSet().isIncluded(resourceConditions)
+                && player.getPlayerBoard().isIncluded(this.cardConditions)){
+            return true;
         }
         return false;
     }
 
     public void setCardStatus(boolean cardStatus) {
-        this.CardStatus = cardStatus;
+        this.cardStatus = cardStatus;
     }
 
     public List<Effect> getEffectList() {
@@ -56,7 +58,7 @@ public class HeroCard extends Card {
     }
 
     public boolean isCardStatus() {
-        return CardStatus;
+        return cardStatus;
     }
 
     public boolean isPermanent() {
@@ -70,4 +72,6 @@ public class HeroCard extends Card {
     public HashMap<String, Integer> getCardConditions() {
         return cardConditions;
     }
+
+
 }

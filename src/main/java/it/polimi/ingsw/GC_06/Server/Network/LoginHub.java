@@ -53,7 +53,7 @@ public class LoginHub {
                 addUser(username);
             }
             catch (Exception e)
-            {}
+            {e.printStackTrace();}
         }
 
     }

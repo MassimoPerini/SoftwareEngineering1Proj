@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMarketCouncil;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.PlayerHeroCardChoices;
 
 import java.util.concurrent.Future;
 
@@ -52,7 +53,7 @@ public class UserActionViewController implements ViewPresenterCLI {
         boolean ok = false;
         while(!ok) {
             commandView.addLocalizedText("E' il tuo turno. Inserire s per mostrare la board o le board dell'utente, d per tirare i dadi, p per prendere una carta," +
-                    "Se vuoi eseguire il raccolto o la produzione scrivi prod, se vuoi posizionare il familiare nello aspazio consiglio/mercato scrivi m");
+                    "Se vuoi eseguire il raccolto o la produzione scrivi prod, se vuoi posizionare il familiare nello aspazio consiglio/mercato scrivi m "+ "\n scrivi Hero Card se la vuoi attivare");
             String input = commandView.getString();
 
             if (input.equals("s")) {
@@ -95,6 +96,13 @@ public class UserActionViewController implements ViewPresenterCLI {
                 String[] inp = commandView.getString().split(" ");
                 MessageMarketCouncil messageMarketCouncil = new MessageMarketCouncil(Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]));
                 clientNetworkOrchestrator.send(messageMarketCouncil);
+                ok = true;
+            }
+
+            if(input.equals("Hero Card")){
+               // String[] inp = commandView.getString().split(" ");
+                PlayHeroCardViewController playHeroCardViewController = new PlayHeroCardViewController(mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()), clientNetworkOrchestrator);
+                playHeroCardViewController.viewWillAppear();
                 ok = true;
             }
         }

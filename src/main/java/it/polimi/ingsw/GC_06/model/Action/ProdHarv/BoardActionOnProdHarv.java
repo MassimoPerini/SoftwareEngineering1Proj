@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
@@ -24,7 +25,8 @@ public class BoardActionOnProdHarv implements Action {
     private final FamilyMember familyMember;
     private final StartProdHarv startProdHarv;
     private Game game;
-    private ActionType actionType;
+    private final ActionType ACTION_TYPE = ActionType.BOARD_ACTION_ON_PROD_HARV;
+    private ActionType actionTypeStartProdHarv;
 
     /**
      *
@@ -41,7 +43,7 @@ public class BoardActionOnProdHarv implements Action {
         super();
         if (player == null || prodHarvArea == null || familyMember == null || askUserCardFilter==null || actionType == null)
             throw new NullPointerException();
-        this.actionType = actionType;
+        this.actionTypeStartProdHarv = actionType;
         this.prodHarvArea = prodHarvArea;
         this.player = player;
         this.game = game;
@@ -67,8 +69,14 @@ public class BoardActionOnProdHarv implements Action {
         executeEffects.execute();
 
 
+        BonusMalusHandler.filter(player,ACTION_TYPE,null,familyMember);
+
+        startProdHarv.setValue(familyMember.getValue());
+        player.getBonusMalusSet().removeBonusMalusAction(ACTION_TYPE,null);
+
         startProdHarv.execute();
         prodHarvArea.addFamilyMember(familyMember, index);
+
 
         game.getGameStatus().changeState(TransitionType.END_ACTION);
 
@@ -80,11 +88,33 @@ public class BoardActionOnProdHarv implements Action {
 
 
     @Override
-    public boolean isAllowed() {
+    public boolean isAllowed() throws InterruptedException {
 
-        return familyMember.isAllowed() && prodHarvArea.isAllowed(familyMember, index) && startProdHarv.isAllowed() && game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_PRODHARV);
+
+        Player playerClone = new Player(player);
+        playerClone.getBonusMalusSet().joinSet(player.getBonusMalusSet());
+
+        for (Effect effect : prodHarvArea.getActionPlaces().get(index).getEffects()) {
+            effect.execute(playerClone,game);
+        }
+
+        int originalValue = familyMember.getValue();
+
+        BonusMalusHandler.filter(playerClone,ACTION_TYPE,null,familyMember);
+
+        startProdHarv.setValue(familyMember.getValue());
+
+       if( !startProdHarv.isAllowed()){
+           familyMember.setValue(originalValue);
+           return false;
+       }
+
+        return familyMember.isAllowed() && prodHarvArea.isAllowed(familyMember, index) &&  game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_PRODHARV);
 
     }
+
+
+
 
     //TODO BONUSMALUS
 /*
