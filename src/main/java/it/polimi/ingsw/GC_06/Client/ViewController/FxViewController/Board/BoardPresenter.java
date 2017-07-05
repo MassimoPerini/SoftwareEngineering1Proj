@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board;
 import it.polimi.ingsw.GC_06.Client.Model.ClientSpaceAction;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Tower.TowerView;
 import javafx.fxml.FXML;
@@ -54,16 +55,23 @@ public class BoardPresenter extends Observable implements Observer {
         marketInfo = mainClientModel.getClientBoardGame().getMarket();
         prodHarvInfo = mainClientModel.getClientBoardGame().getProductionHarvest();
 
+        int containerIndex=0;
+
         for (List<ClientSpaceAction> clientSpaceActions : prodHarvInfo) {
             //Prod or Harv
             HBox rowProdHarv = new HBox(35);
             prodHarvView.getChildren().add(rowProdHarv);
             boolean big = false;
+
+            int elemIndex = 0;
             for (ClientSpaceAction clientSpaceAction : clientSpaceActions)
             {
                 Map<String, Object> context = new HashMap<>();
                 context.put("clientSpaceAction", clientSpaceAction);
                 SpaceActionView spaceActionView = new SpaceActionView(context::get);
+                SpaceActionPresenter spaceActionPresenter = (SpaceActionPresenter) spaceActionView.getPresenter();
+                spaceActionPresenter.setContainerId(containerIndex);
+                spaceActionPresenter.setElemId(elemIndex);
 
                 //Mostrane una grande, l'altra normale
                 if (big) {
@@ -76,20 +84,35 @@ public class BoardPresenter extends Observable implements Observer {
                 }
 
                 rowProdHarv.getChildren().add(spaceActionView.getView());
+                elemIndex++;
             }
+
+            elemIndex++;
         }
+
+        containerIndex = 0;
 
         for (List<ClientSpaceAction> clientSpaceActions : marketInfo) {
             HBox rowMarket = new HBox(15);
             marketView.getChildren().add(rowMarket);
+            int elemIndex = 0;
 
             for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
                 Map<String, Object> context = new HashMap<>();
                 context.put("clientSpaceAction", clientSpaceAction);
                 SpaceActionView spaceActionView = new SpaceActionView(context::get);
                 spaceActionView.getView().getStyleClass().add("spaceaction");
+
+                SpaceActionPresenter spaceActionPresenter = (SpaceActionPresenter) spaceActionView.getPresenter();
+                spaceActionPresenter.setContainerId(containerIndex);
+                spaceActionPresenter.setElemId(elemIndex);
+
                 rowMarket.getChildren().add(spaceActionView.getView());
+
+
+                elemIndex++;
             }
+            containerIndex++;
         }
 
         mainView.getChildren().add(prodMarket);

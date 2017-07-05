@@ -39,6 +39,9 @@ public class TowerFloorPresenter implements Observer {
         SpaceActionView spaceActionView = new SpaceActionView(context::get);
         spaceActionPresenter = (SpaceActionPresenter) spaceActionView.getPresenter();
 
+        spaceActionPresenter.setContainerId(clientTowerFloor.getContainer());
+        spaceActionPresenter.setElemId(clientTowerFloor.getContent());
+
         spaceActionView.getView().getStyleClass().add("space-action-floor");
 
         mainView.getChildren().add(spaceActionView.getView());

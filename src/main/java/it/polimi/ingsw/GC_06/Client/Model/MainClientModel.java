@@ -105,4 +105,6 @@ public class MainClientModel extends Observable{
     public ClientStateName getMyStatus() {
         return myStatus;
     }
+
+
 }

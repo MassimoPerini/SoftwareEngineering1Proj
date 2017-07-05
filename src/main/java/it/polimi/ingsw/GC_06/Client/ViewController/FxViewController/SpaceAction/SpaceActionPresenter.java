@@ -20,6 +20,9 @@ public class SpaceActionPresenter implements Observer {
     @FXML HBox mainView;
     @Inject ClientSpaceAction clientSpaceAction;
 
+    private Object containerId;
+    private int elemId;
+
     void draw()
     {
         mainView.getChildren().clear();
@@ -31,7 +34,9 @@ public class SpaceActionPresenter implements Observer {
 
     @FXML public void initialize()
     {
-
+        mainView.setOnMouseClicked(event -> {
+            System.out.println("Container "+containerId.toString()+" elem: "+elemId);
+        });
     }
 
     @PostConstruct
@@ -43,5 +48,13 @@ public class SpaceActionPresenter implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         Platform.runLater(() -> draw());
+    }
+
+    public void setContainerId(Object containerId) {
+        this.containerId = containerId;
+    }
+
+    public void setElemId(int elemId) {
+        this.elemId = elemId;
     }
 }

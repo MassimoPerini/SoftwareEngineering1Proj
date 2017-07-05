@@ -21,7 +21,6 @@ public class TowerPresenter implements Observer {
 
     @Inject private MainClientModel mainClientModel;
     @FXML private HBox mainBox;
-    private Map<String, List<ClientTowerFloor>> towers;
     private Map<String, TowerFloorPresenter> towerFloors;
     private static final int spazio_piani = 5;
 
@@ -30,14 +29,25 @@ public class TowerPresenter implements Observer {
     @FXML
     void initialize() {
 
-        for (String s : towers.keySet()) {
+        Map<String, List<ClientTowerFloor>> towers = mainClientModel.getClientBoardGame().getTowersClient();
+        List<String> orderTowers = mainClientModel.getClientBoardGame().getOrderTowers();
+
+        for (String orderTower : orderTowers) {
+            if (towers.get(orderTower) == null)
+            {
+                continue;
+            }
+
+            List<ClientTowerFloor> towersList = towers.get(orderTower);
+
             //Nuova torre
             List<TowerFloorPresenter> towerFloorPresenters = new LinkedList<>();
 
             VBox floorsView = new VBox();
 
-            for (ClientTowerFloor clientTowerFloor : towers.get(s)) {
-
+            for (int i=towersList.size()-1; i>=0;i--)
+            {
+                ClientTowerFloor clientTowerFloor = towersList.get(i);
                 //Inject del parametro
                 Map<String, Object> context = new HashMap<>();
                 context.put("clientTowerFloor", clientTowerFloor);
@@ -60,7 +70,7 @@ public class TowerPresenter implements Observer {
 
     @PostConstruct public void init()
     {
-        towers = mainClientModel.getClientBoardGame().getTowersClient();
+
     }
 
     @Override

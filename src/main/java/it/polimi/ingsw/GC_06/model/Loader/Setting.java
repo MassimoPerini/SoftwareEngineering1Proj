@@ -12,7 +12,7 @@ public class Setting {
 
     //check http://stackoverflow.com/questions/17977539/static-resourcebundle
 
-    private final static String PATH = "settings/bundle";
+    private String PATH = "settings/bundle";
     private static volatile Setting instance;
     private ResourceBundle rb;
 
@@ -30,10 +30,21 @@ public class Setting {
         return instance;
     }
 
+    public void setPath(String path)
+    {
+        this.PATH = path;
+        this.rb = ResourceBundle.getBundle(PATH);
+    }
+
     public String getProperty(String key)
     {
         return rb.getString(key);
 
+    }
+
+    public String [] getListProperty(String key)
+    {
+        return rb.getString(key).split(",");
     }
 
 }

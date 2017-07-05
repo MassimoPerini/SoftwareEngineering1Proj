@@ -8,11 +8,22 @@ import java.util.Observable;
 public class ClientTowerFloor extends Observable {
     private String card;
     private ClientSpaceAction spaceAction;
+    private String container = "";
+    private int content;
 
     public ClientTowerFloor()
     {
         card="";
         spaceAction = new ClientSpaceAction();
+
+    }
+
+    public void setContainer(String container) {
+        this.container = container;
+    }
+
+    public void setContent(int content) {
+        this.content = content;
     }
 
     synchronized void removeCard()
@@ -44,6 +55,14 @@ public class ClientTowerFloor extends Observable {
 
     //*******
 
+
+    public String getContainer() {
+        return container;
+    }
+
+    public int getContent() {
+        return content;
+    }
 
     public synchronized String getCard() {
         return card;

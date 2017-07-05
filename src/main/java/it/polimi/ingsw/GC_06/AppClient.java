@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorFx;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPopupCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPopupFx;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -35,7 +36,7 @@ public class AppClient extends Application {
     private static ClientController clientController;
 
     public static void main(String[] args) throws IOException {
-
+        Setting.getInstance().setPath("settings/client");
 
         CommandView commandView = new CmdView();
         commandView.addLocalizedText("Che interfaccia vuoi? 0: CLI, 1: GUI");

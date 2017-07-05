@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
+
 import java.util.*;
 
 /**
@@ -11,6 +13,7 @@ public class ClientBoardGame extends Observable {
     private final List<List<ClientSpaceAction>> productionHarvest;
     private final List<List<ClientSpaceAction>> market;
     private final List<List<ClientSpaceAction>> council;
+    private final List<String> orderTowers;
 
 
     public ClientBoardGame()
@@ -19,14 +22,22 @@ public class ClientBoardGame extends Observable {
         productionHarvest = new ArrayList<>();
         market = new ArrayList<>();
         council = new ArrayList<>();
+        orderTowers = Arrays.asList(Setting.getInstance().getListProperty("order_towers"));
     }
 
+    public List<String> getOrderTowers() {
+        return orderTowers;
+    }
 
     public synchronized void createTower(String color, int floors)
     {
         List<ClientTowerFloor> list = new ArrayList<>();
         for (int i=0;i<floors;i++) {
-            list.add(new ClientTowerFloor());
+            ClientTowerFloor clientTowerFloor = new ClientTowerFloor();
+            clientTowerFloor.setContainer(color);
+            clientTowerFloor.setContent(i);
+            list.add(clientTowerFloor);
+
         }
         towersClient.put(color, list);
     }
