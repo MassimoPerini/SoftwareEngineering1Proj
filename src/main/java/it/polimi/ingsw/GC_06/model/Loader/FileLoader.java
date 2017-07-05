@@ -223,7 +223,7 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class);
 
 
         RuntimeTypeAdapterFactory typeAdapterFactory3 = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
@@ -242,7 +242,7 @@ public class FileLoader {
         RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class);
 
         Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).create();
         Board board = gson2.fromJson(fr, Board.class);
@@ -357,6 +357,7 @@ public class FileLoader {
         {}
         return null;
     }
+
 
 
 }
