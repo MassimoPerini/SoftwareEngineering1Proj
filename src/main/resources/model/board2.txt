@@ -425,7 +425,10 @@
                     {
                       "colourTarget": "",
                       "familyMemberColours": [
-                        ""
+                        "",
+                        "RED",
+                        "WHITE",
+                        "BLACK"
                       ],
                       "actionType": "PRODUCTION_ACTION",
                       "permanent": false,
@@ -444,7 +447,8 @@
                 },
                 "bonusMalusOnEnd": {
                   "BONUSMALUSONEND": []
-                }
+                },
+                "specialBonusMalus": {}
               }
             }
           ],
@@ -480,7 +484,10 @@
                     {
                       "colourTarget": "",
                       "familyMemberColours": [
-                        ""
+                        "",
+                        "RED",
+                        "WHITE",
+                        "BLACK"
                       ],
                       "actionType": "HARVEST_ACTION",
                       "permanent": false,
@@ -499,7 +506,8 @@
                 },
                 "bonusMalusOnEnd": {
                   "BONUSMALUSONEND": []
-                }
+                },
+                "specialBonusMalus": {}
               }
             }
           ],

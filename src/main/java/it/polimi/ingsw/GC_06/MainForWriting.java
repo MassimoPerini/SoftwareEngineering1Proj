@@ -39,10 +39,19 @@ public class MainForWriting {
         System.out.println("factored hero cards");
 
         fileLoader.writeExcomunications();
-        System.out.println("factored excomunication cards");*/
+        System.out.println("factored excomunication cards");/*
 
         /*fileLoader.writeGreyCard();
         System.out.println("factored grey cards");*/
+
+        /*fileLoader.writeBoardFivePlayers();
+        System.out.println("factored board 5");
+
+        fileLoader.writeBoardWithEffects();
+        System.out.println("factored normal board");
+
+        fileLoader.writeMapFile();
+        System.out.println("factored map for heroes names");*/
 
 
 
