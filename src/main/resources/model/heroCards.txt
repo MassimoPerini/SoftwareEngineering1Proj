@@ -62,7 +62,8 @@
           },
           "bonusMalusOnEnd": {
             "BONUSMALUSONEND": []
-          }
+          },
+          "specialBonusMalus": {}
         }
       }
     ],
@@ -105,7 +106,8 @@
           },
           "bonusMalusOnEnd": {
             "BONUSMALUSONEND": []
-          }
+          },
+          "specialBonusMalus": {}
         }
       }
     ],
@@ -153,7 +155,8 @@
           },
           "bonusMalusOnEnd": {
             "BONUSMALUSONEND": []
-          }
+          },
+          "specialBonusMalus": {}
         }
       }
     ],
@@ -191,7 +194,16 @@
         "STONE": 10
       }
     },
-    "effectList": [],
+    "effectList": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "MONEY": 3
+          }
+        }
+      }
+    ],
     "cardType": "HEROES",
     "CardStatus": true,
     "permanent": false,
@@ -204,7 +216,18 @@
         "MILITARYPOINT": 12
       }
     },
-    "effectList": [],
+    "effectList": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "WOOD": 1,
+            "STONE": 1,
+            "MONEY": 1
+          }
+        }
+      }
+    ],
     "cardType": "HEROES",
     "CardStatus": true,
     "permanent": false,
@@ -240,7 +263,17 @@
     "resourceConditions": {
       "resources": {}
     },
-    "effectList": [],
+    "effectList": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 1,
+            "MILITARYPOINT": 2
+          }
+        }
+      }
+    ],
     "cardType": "HEROES",
     "CardStatus": true,
     "permanent": false,
@@ -288,7 +321,8 @@
           },
           "bonusMalusOnEnd": {
             "BONUSMALUSONEND": []
-          }
+          },
+          "specialBonusMalus": {}
         }
       }
     ],
@@ -310,8 +344,8 @@
         "type": "EffectOnResources",
         "resourceSet": {
           "resources": {
-            "VICTORYPOINT": 1,
-            "SERVANT": 3
+            "SERVANT": 3,
+            "VICTORYPOINT": 1
           }
         }
       }
@@ -410,7 +444,8 @@
           },
           "bonusMalusOnEnd": {
             "BONUSMALUSONEND": []
-          }
+          },
+          "specialBonusMalus": {}
         }
       }
     ],

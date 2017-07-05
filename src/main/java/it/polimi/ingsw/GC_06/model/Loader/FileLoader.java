@@ -223,7 +223,7 @@ public class FileLoader {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnResources.class)
                 .registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class);
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class);
 
 
         RuntimeTypeAdapterFactory typeAdapterFactory3 = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
@@ -357,5 +357,7 @@ public class FileLoader {
         {}
         return null;
     }
+
+
 
 }
