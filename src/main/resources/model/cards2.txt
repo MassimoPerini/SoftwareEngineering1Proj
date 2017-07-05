@@ -708,8 +708,8 @@
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "FAITHPOINT": 1,
-                  "MONEY": 1
+                  "MONEY": 1,
+                  "FAITHPOINT": 1
                 }
               }
             }
