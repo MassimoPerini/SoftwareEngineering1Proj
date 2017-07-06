@@ -54,7 +54,6 @@ public class ServerPlayerSocket extends Observable implements Runnable {
 
         RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(MessageClient.class, "type")
                 .registerSubtype(MessageBoardActionTower.class)
-                .registerSubtype(MessageThrowDice.class)
                 .registerSubtype(MessageProdHarv.class)
                 .registerSubtype(DefaultAnswer.class)
                 .registerSubtype(MessageEndTurn.class)
@@ -62,7 +61,6 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(ProdHarvAnswer.class)
                 .registerSubtype(PlayerChoiceExcommunication.class)
                 .registerSubtype(PlayerHeroCardChoices.class);
-                ;
         readGson=new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory2).create();
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
                 .registerSubtype(MessageAddMemberOnTower.class)

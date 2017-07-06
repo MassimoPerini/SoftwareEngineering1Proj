@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorFx;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPopupCLI;
@@ -76,7 +77,10 @@ public class AppClient extends Application {
         Map<Object, Object> customProperties = new HashMap<>();
         customProperties.put("clientInputController", clientInputController);
         customProperties.put("viewOrchestratorFx", viewOrchestratorFx);
+
         customProperties.put("clientNetworkOrchestrator", clientNetworkOrchestrator);
+
+        customProperties.put("messageCreator", new MessageCreator(clientNetworkOrchestrator));
         customProperties.put("mainClientModel", clientController.getMainClientModel());
         customProperties.put("playerBonusActions", clientController.getMainClientModel().getPlayerBonusActions());
         Injector.setConfigurationSource(customProperties::get);

@@ -1,8 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Client.PopUp;
 
-import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
-import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.HeroCardAction;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
@@ -64,6 +62,7 @@ public class PlayerHeroCardChoices implements MessageClient{
     public String getPlayer() {
         return null;
     }
+
 
     @Override
     public void run() {

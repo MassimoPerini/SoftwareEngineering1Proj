@@ -23,8 +23,9 @@ public class BoardActionOnMarketCouncil implements Action {
     private Player player;
     private Game game;
     private ActionType actionType;
+    private final int powerUp;
 
-    public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player,ActionType actionType,Game game)
+    public BoardActionOnMarketCouncil(MarketAndCouncil marketAndCouncil, int index, FamilyMember familyMember, Player player,ActionType actionType,Game game, int powerUp)
     {
         super();
         this.player = player;
@@ -37,7 +38,7 @@ public class BoardActionOnMarketCouncil implements Action {
         this.index = index;
         this.familyMember = familyMember;
         List<Effect> effectList = marketAndCouncil.getEffects(index);
-
+        this.powerUp = powerUp;
         if (effectList==null)
             throw new NullPointerException();
 

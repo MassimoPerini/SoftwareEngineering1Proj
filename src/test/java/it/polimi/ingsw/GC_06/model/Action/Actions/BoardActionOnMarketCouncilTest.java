@@ -1,17 +1,14 @@
 package it.polimi.ingsw.GC_06.model.Action.Actions;
 
-import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHeroCard.BonusMalusType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAccess;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnResources;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
-import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -48,7 +45,7 @@ public class BoardActionOnMarketCouncilTest {
         player = game.getGameStatus().getPlayers().get("peppe");
         familyMember = player.getFamilyMembers()[1];
         familyMember.setValue(100);
-        action = new BoardActionOnMarketCouncil(game.getBoard().getMarket().get(0), 0, player.getFamilyMembers()[1], player, ActionType.BOARD_ACTION_ON_MARKET,game);
+        action = new BoardActionOnMarketCouncil(game.getBoard().getMarket().get(0), 0, player.getFamilyMembers()[1], player, ActionType.BOARD_ACTION_ON_MARKET,game, 0);
         action.setGame(game);
 
     }

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.Server.Message.Client;
 
-import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.BoardActionOnMarketCouncil;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
@@ -10,21 +9,29 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by massimo on 27/06/17.
  */
-public class MessageMarketCouncil implements MessageClient {
+public class MessageMarketCouncil implements MessageMultipleSteps {
 
     private String player;
     private int game;
-    private final int familyMember;
+    private int familyMember;
     private final int marketCouncil;
     private final int slot;
+    private int powerUp;
 
-    public MessageMarketCouncil(int marketCouncil, int slot, int familyMember)
+    public MessageMarketCouncil(int marketCouncil, int slot, int familyMember, int powerUp)
     {
         this.slot = slot;
         this.familyMember = familyMember;
         this.marketCouncil = marketCouncil;
+        this.powerUp = powerUp;
     }
 
+    public MessageMarketCouncil(Object marketCouncil, int slot)
+    {
+        this.marketCouncil = (int) marketCouncil;
+        this.slot = slot;
+        this.familyMember = -1;
+    }
 
     @Override
     public void execute()
@@ -33,7 +40,7 @@ public class MessageMarketCouncil implements MessageClient {
         MarketAndCouncil marketAndCouncil = currentGame.getBoard().getMarketAndCouncils().get(marketCouncil);
         Player currentPlayer = currentGame.getGameStatus().getPlayers().get(player);
 
-        BoardActionOnMarketCouncil boardActionOnMarketCouncil = new BoardActionOnMarketCouncil(marketAndCouncil, slot, currentPlayer.getFamilyMembers()[familyMember], currentPlayer, marketAndCouncil.getActionType(),currentGame);
+        BoardActionOnMarketCouncil boardActionOnMarketCouncil = new BoardActionOnMarketCouncil(marketAndCouncil, slot, currentPlayer.getFamilyMembers()[familyMember], currentPlayer, marketAndCouncil.getActionType(),currentGame, powerUp);
 
         try {
             if (boardActionOnMarketCouncil.isAllowed()) {
@@ -59,7 +66,22 @@ public class MessageMarketCouncil implements MessageClient {
     }
 
     @Override
+    public boolean isValid() {
+        return familyMember!=-1;
+    }
+
+    @Override
     public void run() {
         execute();
+    }
+
+    @Override
+    public void setFamilyMember(int index) {
+        this.familyMember = index;
+    }
+
+    @Override
+    public void setPowerUp(int powerUp) {
+        this.powerUp = powerUp;
     }
 }

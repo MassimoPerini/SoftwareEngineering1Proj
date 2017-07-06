@@ -55,8 +55,6 @@ public class UserActionViewController implements ViewPresenterCLI {
             }
 
           /*  if (input.equals("d")) {
-                MessageThrowDice messageThrowDice = new MessageThrowDice();
-                clientNetworkOrchestrator.send(messageThrowDice);
             }*/
 
             if (input.equals("p")) {
@@ -81,9 +79,9 @@ public class UserActionViewController implements ViewPresenterCLI {
             }
             if (input.equals("m"))
             {
-                commandView.addLocalizedText("slotMarketCouncil indiceSlot familiare");
+                commandView.addLocalizedText("slotMarketCouncil indiceSlot familiare powerup");
                 String[] inp = commandView.getString().split(" ");
-                MessageMarketCouncil messageMarketCouncil = new MessageMarketCouncil(Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]));
+                MessageMarketCouncil messageMarketCouncil = new MessageMarketCouncil(Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]), Integer.parseInt(inp[3]));
                 clientNetworkOrchestrator.send(messageMarketCouncil);
                 ok = true;
             }

@@ -62,7 +62,6 @@ public class ClientSocket extends Client {
 
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageClient.class, "type")
                 .registerSubtype(MessageBoardActionTower.class)
-                .registerSubtype(MessageThrowDice.class)
                 .registerSubtype(MessageProdHarv.class)
                 .registerSubtype(DefaultAnswer.class)
                 .registerSubtype(MessageEndTurn.class)

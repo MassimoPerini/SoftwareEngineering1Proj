@@ -2,7 +2,8 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Client.Model.ClientSpaceAction;
-import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMultipleSteps;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.layout.HBox;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -18,12 +20,13 @@ import java.util.Observer;
  */
 public class SpaceActionPresenter implements Observer {
 
-    @FXML HBox mainView;
-    @Inject ClientSpaceAction clientSpaceAction;
+    @FXML private HBox mainView;
+    @Inject private ClientSpaceAction clientSpaceAction;
+    @Inject private MessageCreator messageCreator;
 
     private Object containerId;
     private int elemId;
-    private Class<? extends MessageClient> message;
+    private Class<? extends MessageMultipleSteps> message;
 
     void draw()
     {
@@ -37,7 +40,13 @@ public class SpaceActionPresenter implements Observer {
     @FXML public void initialize()
     {
         mainView.setOnMouseClicked(event -> {
-            System.out.println("Container "+containerId.toString()+" elem: "+elemId+" azione: "+message.getSimpleName());
+            try {
+                MessageMultipleSteps messageMultipleSteps = message.getDeclaredConstructor(Object.class, int.class).newInstance(containerId, elemId);
+                messageCreator.setMessageClient(messageMultipleSteps);
+
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                System.out.println("ERROR!!! Something wrong with Reflect");
+            }
         });
     }
 
@@ -60,7 +69,7 @@ public class SpaceActionPresenter implements Observer {
         this.elemId = elemId;
     }
 
-    public void setMessage(Class<? extends MessageClient> message) {
+    public void setMessage(Class<? extends MessageMultipleSteps> message) {
         this.message = message;
     }
 }
