@@ -39,12 +39,6 @@ public class ConnectionTypeViewPresenterCLI implements ViewPresenterCLI {
     }
 
     @Override
-    public void addText(String txt) {
-        commandView.addLocalizedText(txt);
-        commandView.print();
-    }
-
-    @Override
     public void viewWillDisappear() {
      //   this.future.cancel(true);
     }

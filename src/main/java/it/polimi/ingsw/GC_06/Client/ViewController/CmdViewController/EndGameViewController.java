@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by giuseppe on 7/3/17.
  */
-public class EndGameViewController implements ViewPresenterCLI, Runnable  {
+public class EndGameViewController implements ViewPresenterCLI  {
 
     private final CommandView commandView = new CmdView();
     private List<PersonalStatistics> personalStatistics;
@@ -20,18 +20,8 @@ public class EndGameViewController implements ViewPresenterCLI, Runnable  {
     }
 
     @Override
-    public void run() {
-
-    }
-
-    @Override
     public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("La classifica ");
-
-    }
-
-    @Override
-    public void addText(String txt) {
 
     }
 

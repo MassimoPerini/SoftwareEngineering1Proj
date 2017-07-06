@@ -6,6 +6,8 @@ import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Tower.TowerView;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMarketCouncil;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -72,6 +74,7 @@ public class BoardPresenter extends Observable implements Observer {
                 SpaceActionPresenter spaceActionPresenter = (SpaceActionPresenter) spaceActionView.getPresenter();
                 spaceActionPresenter.setContainerId(containerIndex);
                 spaceActionPresenter.setElemId(elemIndex);
+                spaceActionPresenter.setMessage(MessageProdHarv.class);
 
                 //Mostrane una grande, l'altra normale
                 if (big) {
@@ -106,6 +109,7 @@ public class BoardPresenter extends Observable implements Observer {
                 SpaceActionPresenter spaceActionPresenter = (SpaceActionPresenter) spaceActionView.getPresenter();
                 spaceActionPresenter.setContainerId(containerIndex);
                 spaceActionPresenter.setElemId(elemIndex);
+                spaceActionPresenter.setMessage(MessageMarketCouncil.class);
 
                 rowMarket.getChildren().add(spaceActionView.getView());
 

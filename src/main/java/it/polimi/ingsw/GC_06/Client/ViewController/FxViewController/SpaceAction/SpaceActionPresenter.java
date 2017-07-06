@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Client.Model.ClientSpaceAction;
+import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -22,6 +23,7 @@ public class SpaceActionPresenter implements Observer {
 
     private Object containerId;
     private int elemId;
+    private Class<? extends MessageClient> message;
 
     void draw()
     {
@@ -35,7 +37,7 @@ public class SpaceActionPresenter implements Observer {
     @FXML public void initialize()
     {
         mainView.setOnMouseClicked(event -> {
-            System.out.println("Container "+containerId.toString()+" elem: "+elemId);
+            System.out.println("Container "+containerId.toString()+" elem: "+elemId+" azione: "+message.getSimpleName());
         });
     }
 
@@ -56,5 +58,9 @@ public class SpaceActionPresenter implements Observer {
 
     public void setElemId(int elemId) {
         this.elemId = elemId;
+    }
+
+    public void setMessage(Class<? extends MessageClient> message) {
+        this.message = message;
     }
 }

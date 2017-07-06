@@ -44,11 +44,6 @@ public class PaymentWaysViewController implements ViewPresenterCLI {
     }
 
     @Override
-    public void addText(String txt) {
-
-    }
-
-    @Override
     public void viewWillDisappear() {
 
     }

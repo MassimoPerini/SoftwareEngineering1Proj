@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.TowerFloor;
 import it.polimi.ingsw.GC_06.Client.Model.ClientTowerFloor;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionView;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,6 +42,7 @@ public class TowerFloorPresenter implements Observer {
 
         spaceActionPresenter.setContainerId(clientTowerFloor.getContainer());
         spaceActionPresenter.setElemId(clientTowerFloor.getContent());
+        spaceActionPresenter.setMessage(MessageBoardActionTower.class);
 
         spaceActionView.getView().getStyleClass().add("space-action-floor");
 
@@ -56,6 +58,6 @@ public class TowerFloorPresenter implements Observer {
     @Override
     public void update(Observable o, Object arg)
     {
-        imageCard.setImage(new Image(getClass().getResourceAsStream("/view/resources/personal_bonus/"+clientTowerFloor.getCard()+".png")));
+        imageCard.setImage(new Image(getClass().getResourceAsStream("/view/cards/"+clientTowerFloor.getCard()+".png")));
     }
 }

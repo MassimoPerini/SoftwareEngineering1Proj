@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientPlayerBoard;
-import it.polimi.ingsw.GC_06.Client.Network.Client;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
@@ -44,11 +43,6 @@ public class PlayHeroCardViewController  implements ViewPresenterCLI{
         clientNetworkOrchestrator.send(new PlayerHeroCardChoices(heroCardsIndexes));
 
 
-
-    }
-
-    @Override
-    public void addText(String txt) {
 
     }
 

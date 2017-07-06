@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.GameView;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board.BoardView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.FamilyMembers.FamilyMembersView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
@@ -24,6 +25,10 @@ public class GameViewPresenter implements Observer {
     void initialize() {
         BoardView boardView = new BoardView();
         mainWindow.setCenter(boardView.getView());
+
+        FamilyMembersView familyMembersView = new FamilyMembersView();
+        mainWindow.setRight(familyMembersView.getView());
+
 
     }
 

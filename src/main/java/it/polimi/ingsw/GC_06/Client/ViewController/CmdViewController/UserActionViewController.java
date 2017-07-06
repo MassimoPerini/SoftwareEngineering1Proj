@@ -5,11 +5,9 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
-import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMarketCouncil;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
-import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.PlayerHeroCardChoices;
 
 import java.util.concurrent.Future;
 
@@ -39,11 +37,6 @@ public class UserActionViewController implements ViewPresenterCLI {
     }
 
     @Override
-    public void addText(String txt) {
-
-    }
-
-    @Override
     public void viewWillDisappear() {
     //    this.future.cancel(true);
     }
@@ -67,12 +60,8 @@ public class UserActionViewController implements ViewPresenterCLI {
             }*/
 
             if (input.equals("p")) {
-                TutorialPickCard tutorialPickCard = new TutorialPickCard(commandView, mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()));        //Probabilmente l'interfaccia è inutile
-                String [] answers = tutorialPickCard.viewWillAppear();
-                if (answers!=null) {
-                    MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(answers[0], Integer.parseInt(answers[1]), Integer.parseInt(answers[2]),Integer.parseInt(answers[3]));
-                    clientNetworkOrchestrator.send(messageBoardActionTower);
-                }
+                TutorialPickCard tutorialPickCard = new TutorialPickCard(commandView, mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()), clientNetworkOrchestrator);        //Probabilmente l'interfaccia è inutile
+                tutorialPickCard.viewWillAppear();
                 ok = true;
             }
 

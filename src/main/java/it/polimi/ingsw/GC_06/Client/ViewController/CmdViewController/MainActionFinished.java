@@ -21,7 +21,6 @@ public class MainActionFinished implements ViewPresenterCLI {
 
     @Override
     public void viewWillAppear() throws InterruptedException {
-        //CHANGE WITH VIEW
 
         commandView.addLocalizedText("premi l per passare");
         String answ = commandView.getString();
@@ -29,11 +28,6 @@ public class MainActionFinished implements ViewPresenterCLI {
             MessageEndTurn messageEndTurn = new MessageEndTurn();
             clientNetworkOrchestrator.send(messageEndTurn);
         }
-
-    }
-
-    @Override
-    public void addText(String txt) {
 
     }
 
