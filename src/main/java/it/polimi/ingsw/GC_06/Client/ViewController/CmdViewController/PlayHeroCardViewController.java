@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.PlayerHeroCardChoices;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,15 +30,11 @@ public class PlayHeroCardViewController  implements ViewPresenterCLI{
 
     @Override
     public void viewWillAppear() throws InterruptedException {
-        commandView.addLocalizedText("Puoi Giocare una favolosa Hero Card , se non la vuoi scrivi NO" +
-                "altrimenti scrivi SI");
-        String answ = commandView.getString();
-        if(answ.equals("NO")){
-            return;
-        }
+        commandView.addLocalizedText("Puoi Giocare una favolosa Hero Card");
+        commandView.addText("\n");
         commandView.addLocalizedText("Che carte vuoi?");
         for (String s : clientPlayerBoard.getHeroCards()) {
-            System.out.println(s);
+            System.out.println(Setting.getInstance().getProperty(s));
         }
         heroCardsIndexes = commandView.getList(0,clientPlayerBoard.getHeroCards().size()-1);
         clientNetworkOrchestrator.send(new PlayerHeroCardChoices(heroCardsIndexes));

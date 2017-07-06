@@ -4,6 +4,6 @@
 <?import javafx.scene.layout.HBox?>
 <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="103.0" prefWidth="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.TowerFloor.TowerFloorPresenter" fx:id="mainView" styleClass="tower-floor">
     <children>
-        <ImageView fitHeight="50.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" fx:id="imageCard" styleClass="tower-card" />
+        <ImageView fitHeight="50.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" fx:id="imageCard" styleClass="tower-card" id="img-card"/>
     </children>
 </HBox>

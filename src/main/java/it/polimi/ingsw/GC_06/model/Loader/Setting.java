@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_06.model.Loader;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 /**
@@ -12,14 +15,15 @@ public class Setting {
 
     //check http://stackoverflow.com/questions/17977539/static-resourcebundle
 
-    private String PATH = "settings/bundle";
     private static volatile Setting instance;
-    private ResourceBundle rb;
+    private List<ResourceBundle> rb;
+ //   private ResourceBundle rb;
 
     private Setting()
     {
         super();
-        rb = ResourceBundle.getBundle(PATH);
+     //   rb = ResourceBundle.getBundle(PATH);
+        rb = new ArrayList<>();
         System.out.println("Settings init");
     }
 
@@ -30,21 +34,31 @@ public class Setting {
         return instance;
     }
 
-    public void setPath(String path)
+    public void addPath(String path)
     {
-        this.PATH = path;
-        this.rb = ResourceBundle.getBundle(PATH);
+        this.rb.add(ResourceBundle.getBundle(path));
     }
 
     public String getProperty(String key)
     {
-        return rb.getString(key);
+        for (ResourceBundle resourceBundle : rb) {
+            try{
+                String answ = resourceBundle.getString(key);
+                return answ;
+
+            }
+            catch (MissingResourceException e)
+            {
+                continue;
+            }
+        }
+        return "";
 
     }
 
     public String [] getListProperty(String key)
     {
-        return rb.getString(key).split(",");
+        return this.getProperty(key).split(",");
     }
 
 }

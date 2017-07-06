@@ -36,7 +36,9 @@ public class AppClient extends Application {
     private static ClientController clientController;
 
     public static void main(String[] args) throws IOException {
-        Setting.getInstance().setPath("settings/client");
+        Setting.getInstance().addPath("settings/client");
+        Setting.getInstance().addPath("view/heroes");
+
 
         CommandView commandView = new CmdView();
         commandView.addLocalizedText("Che interfaccia vuoi? 0: CLI, 1: GUI");
