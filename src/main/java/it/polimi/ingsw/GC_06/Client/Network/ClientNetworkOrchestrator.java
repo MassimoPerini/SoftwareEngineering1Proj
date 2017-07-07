@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.Client.Network;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -17,10 +16,10 @@ import java.util.concurrent.Executors;
 public class ClientNetworkOrchestrator extends Observable implements Observer {
 
     private Client client;
-    @NotNull private final ExecutorService executor;
+    private final ExecutorService executor;
 
 
-    public ClientNetworkOrchestrator(@NotNull Client client)
+    public ClientNetworkOrchestrator(Client client)
     {
         this.client = client;
         this.executor= Executors.newFixedThreadPool(1);

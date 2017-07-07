@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06;
 
 import it.polimi.ingsw.GC_06.Server.Message.ActionController;
 import it.polimi.ingsw.GC_06.Server.Network.*;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 
 import java.io.IOException;
 
@@ -13,6 +14,7 @@ public class AppServer {
     public static void main( String[] args ) throws IOException {
 
         System.out.println("Server started...");
+        Setting.getInstance().addPath("settings/bundle");
 
         ServerOrchestrator serverOrchestrator = new ServerOrchestrator();
         LoginHub.getInstance().setServerOrchestrator(serverOrchestrator);

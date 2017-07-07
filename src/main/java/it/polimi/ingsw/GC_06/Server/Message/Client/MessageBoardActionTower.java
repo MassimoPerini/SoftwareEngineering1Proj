@@ -1,10 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Message.Client;
 
-import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
-import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
-import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
-import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
@@ -17,7 +13,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  * Created by massimo on 19/06/17.
  */
 
-public class MessageBoardActionTower implements MessageClient{
+public class MessageBoardActionTower implements MessageMultipleSteps{
 
     private String tower;
     private int floor;
@@ -32,6 +28,13 @@ public class MessageBoardActionTower implements MessageClient{
         this.floor = floor;
         this.clientFamilyMember = familyMember;
         this.powerUpValue = powerUpValue;
+    }
+
+    public MessageBoardActionTower(Object tower, int floor)
+    {
+        this.tower = (String) tower;
+        this.floor = floor;
+        clientFamilyMember = -1;
     }
 
     @Override
@@ -100,5 +103,20 @@ public class MessageBoardActionTower implements MessageClient{
     @Override
     public void run() {
         execute();
+    }
+
+    @Override
+    public void setFamilyMember(int index) {
+        this.clientFamilyMember = index;
+    }
+
+    @Override
+    public void setPowerUp(int powerUp) {
+        this.powerUpValue = powerUp;
+    }
+
+    @Override
+    public boolean isValid() {
+        return clientFamilyMember!=-1;
     }
 }

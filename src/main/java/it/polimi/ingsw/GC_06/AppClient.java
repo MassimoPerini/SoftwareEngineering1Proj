@@ -5,13 +5,16 @@ import com.airhacks.afterburner.injection.Injector;
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.ClientInputController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
+import it.polimi.ingsw.GC_06.Client.Model.PlayerColors;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestratorFx;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPopupCLI;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPopupFx;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -33,14 +36,18 @@ public class AppClient extends Application {
     private static ClientNetworkOrchestrator clientNetworkOrchestrator;
     private static ClientInputController clientInputController;
     private static ClientController clientController;
+    private static PlayerColors playerColors;
 
     public static void main(String[] args) throws IOException {
+        Setting.getInstance().addPath("settings/client");
+        Setting.getInstance().addPath("view/heroes");
 
 
         CommandView commandView = new CmdView();
         commandView.addLocalizedText("Che interfaccia vuoi? 0: CLI, 1: GUI");
         int view = commandView.getInt(0,1);
-        clientController = new ClientController();
+        playerColors = new PlayerColors();
+        clientController = new ClientController(playerColors);
 
         clientNetworkOrchestrator = new ClientNetworkOrchestrator();
         clientInputController = new ClientInputController(clientNetworkOrchestrator, clientController);
@@ -73,7 +80,10 @@ public class AppClient extends Application {
         Map<Object, Object> customProperties = new HashMap<>();
         customProperties.put("clientInputController", clientInputController);
         customProperties.put("viewOrchestratorFx", viewOrchestratorFx);
+
         customProperties.put("clientNetworkOrchestrator", clientNetworkOrchestrator);
+        customProperties.put("playerColors", playerColors);
+        customProperties.put("messageCreator", new MessageCreator(clientNetworkOrchestrator));
         customProperties.put("mainClientModel", clientController.getMainClientModel());
         customProperties.put("playerBonusActions", clientController.getMainClientModel().getPlayerBonusActions());
         Injector.setConfigurationSource(customProperties::get);

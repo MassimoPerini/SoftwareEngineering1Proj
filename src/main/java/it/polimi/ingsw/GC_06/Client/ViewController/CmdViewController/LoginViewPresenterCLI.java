@@ -35,12 +35,6 @@ public class LoginViewPresenterCLI implements ViewPresenterCLI {
  //       this.future.cancel(true);
     }
 
-    @Override
-    public void addText(String txt) {
-        commandView.addLocalizedText(txt);
-        commandView.print();
-    }
-
     public void run() throws InterruptedException {
             commandView.addLocalizedText("msg_login_start");
             commandView.addText("\n");

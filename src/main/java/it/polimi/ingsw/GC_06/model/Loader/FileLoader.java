@@ -4,10 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
-import it.polimi.ingsw.GC_06.model.Board.*;
-import it.polimi.ingsw.GC_06.model.BonusMalus.*;
-import it.polimi.ingsw.GC_06.model.Card.*;
+import it.polimi.ingsw.GC_06.model.Board.ActionPlace;
+import it.polimi.ingsw.GC_06.model.Board.ActionPlaceFixed;
+import it.polimi.ingsw.GC_06.model.Board.Board;
+import it.polimi.ingsw.GC_06.model.Card.Card;
+import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
+import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
+import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
 import it.polimi.ingsw.GC_06.model.Effect.*;
 import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
@@ -355,7 +358,7 @@ public class FileLoader {
             RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory).create();
-            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream("src/main/resources/model/heroCards.txt"));
+            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getResourceAsStream(heroCards));
 
 
             HeroCard[] heroCards = gson.fromJson(inputStreamReader, HeroCard[].class);

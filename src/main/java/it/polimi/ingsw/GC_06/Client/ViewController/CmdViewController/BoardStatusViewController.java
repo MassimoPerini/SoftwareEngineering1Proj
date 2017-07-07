@@ -1,18 +1,17 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import it.polimi.ingsw.GC_06.Client.Model.*;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by massimo on 01/06/17.
@@ -23,6 +22,7 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
     private Map<String, ClientPlayerBoard> clientPlayerBoard;
     private Future future;
     private final CommandView commandView;
+    private ExecutorService executor;
 
 
     public BoardStatusViewController(ClientBoardGame clientBoardGame, Map<String, ClientPlayerBoard> clientPlayerBoard)
@@ -34,25 +34,25 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
 
     @Override
     public void viewWillAppear() {
-        System.out.println("ciao");
-        ExecutorService executor = Executors.newCachedThreadPool();
+        executor = Executors.newCachedThreadPool();
         this.future = executor.submit(this);
     }
 
     @Override
-    public void addText(String txt) {
-
-    }
-
-    @Override
     public void viewWillDisappear() {
-        System.out.println("VIEWWILLDISAPPEAR INVOKED!!!!");
-        this.future.cancel(true);
+        try {
+            executor.shutdownNow();
+        //    future.get();
+            executor.awaitTermination(Long.MAX_VALUE , TimeUnit.MINUTES);
+        }
+        catch (InterruptedException e)
+        {
+            return;
+        }
     }
 
     @Override
     public void run() {
-        System.out.println("CLIENTBOARDGAME INVOKED");
         try {
             while (!Thread.currentThread().isInterrupted()) {
                 showStatus();
@@ -61,7 +61,6 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
         }
         catch (InterruptedException e)
         {
-            System.out.println("HAI FATTO UNA AZIONE A CUI NON POTEVI AVERE ACCESSO");
             return;
         }
     }

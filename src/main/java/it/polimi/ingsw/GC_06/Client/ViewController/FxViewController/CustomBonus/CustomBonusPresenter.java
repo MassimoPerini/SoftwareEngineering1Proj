@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.CustomBonus;
 
 import it.polimi.ingsw.GC_06.Client.Model.PlayerBonusActions;
-import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +27,7 @@ public class CustomBonusPresenter {
     private @FXML ListView mainItems;
     private @FXML Button okButton;
     private @Inject PlayerBonusActions playerBonusActions;
-    private @Inject ClientNetworkOrchestrator clientNetworkOrchestrator;
+    private @Inject MessageCreator messageCreator;
     private ObservableList<String> items;
 
     public CustomBonusPresenter()
@@ -75,7 +75,8 @@ public class CustomBonusPresenter {
             //segnalare errore
             return;
         }
-        clientNetworkOrchestrator.send(new DefaultAnswer(index));
+        messageCreator.setMessageClient(new DefaultAnswer(index));
+        messageCreator.send();
         okButton.setDisable(true);
         mainItems.setDisable(true);
 

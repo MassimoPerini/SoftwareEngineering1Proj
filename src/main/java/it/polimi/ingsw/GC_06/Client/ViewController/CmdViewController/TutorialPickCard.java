@@ -4,30 +4,33 @@ import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Client.Model.ClientPlayerBoard;
 import it.polimi.ingsw.GC_06.Client.Model.ClientTowerFloor;
+import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
+import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 
 import java.util.List;
 
 /**
  * Created by massimo on 20/06/17.
  */
-public class TutorialPickCard implements TutorialCLI {
+public class TutorialPickCard implements ViewPresenterCLI {
 
     private final CommandView commandView;
     private final ClientBoardGame clientBoardGame;
     private final ClientPlayerBoard clientPlayerBoard;
+    private final ClientNetworkOrchestrator clientNetworkOrchestrator;
 
-    public TutorialPickCard(CommandView commandView, ClientBoardGame clientBoardGame, ClientPlayerBoard clientPlayerBoard) {
+    public TutorialPickCard(CommandView commandView, ClientBoardGame clientBoardGame, ClientPlayerBoard clientPlayerBoard, ClientNetworkOrchestrator clientNetworkOrchestrator) {
         this.commandView = commandView;
         this.clientBoardGame = clientBoardGame;
         this.clientPlayerBoard = clientPlayerBoard;
+        this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
     @Override
-    public String[] viewWillAppear() throws InterruptedException {
-        commandView.addLocalizedText("Vuoi prendere una carta... premi e se hai sbagliato, altrimenti premi qualsiasi altra cosa");
-        if (commandView.getString().equals("e"))
-                return null;
+    public void viewWillAppear() throws InterruptedException {
+        commandView.addLocalizedText("Vuoi prendere una carta...");
 
         commandView.addLocalizedText("Ok, questi sono i tuoi familiari:\n");
         int a = 1;
@@ -59,19 +62,25 @@ public class TutorialPickCard implements TutorialCLI {
             i++;
         }
 
-        String [] res = new String [4];
+
 
         int max = clientBoardGame.getTowersClient().size();
         commandView.addLocalizedText("Che torre vuoi? [1-"+max+"]");
         int val = commandView.getInt(1, max);
-        res[0] = towers[val-1];
+        String tower = towers[val-1];
         commandView.addLocalizedText("Che piano vuoi? [1-"+maxFloor+"]");
-        res[1] = String.valueOf(commandView.getInt(1, maxFloor)-1);
+        int floor = (commandView.getInt(1, maxFloor)-1);
         commandView.addLocalizedText("Con che familiare? [1-"+a+"]");
-        res[2] = String.valueOf(commandView.getInt(1, a)-1);
+        int familyMember = (commandView.getInt(1, a)-1);
         commandView.addLocalizedText("Di quanto il power-up");
-        res[3] = String.valueOf(commandView.getInt(0));
+        int powerUp = (commandView.getInt(0));
 
-        return res;
+        MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(tower, floor, familyMember,powerUp);
+        clientNetworkOrchestrator.send(messageBoardActionTower);
+    }
+
+    @Override
+    public void viewWillDisappear() {
+
     }
 }

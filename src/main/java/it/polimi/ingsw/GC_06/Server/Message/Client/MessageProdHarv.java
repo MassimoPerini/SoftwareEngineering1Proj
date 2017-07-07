@@ -1,6 +1,5 @@
 package it.polimi.ingsw.GC_06.Server.Message.Client;
 
-import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.BoardActionOnProdHarv;
@@ -13,7 +12,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 /**
  * Created by giuseppe on 6/20/17.
  */
-public class MessageProdHarv implements MessageClient{
+public class MessageProdHarv implements MessageMultipleSteps{
 
     private String player;
     private int prodHarvAreaSelector;
@@ -27,6 +26,12 @@ public class MessageProdHarv implements MessageClient{
         this.clientFamilyMember = familyMember;
         this.index = index;
         this.powerUpValue = powerUpValue;
+    }
+
+    public MessageProdHarv(Object prodHarvAreaSelector, int index) {
+        this.prodHarvAreaSelector = (int) prodHarvAreaSelector;
+        this.index = index;
+        this.clientFamilyMember = -1;
     }
 
     @Override
@@ -105,7 +110,22 @@ public class MessageProdHarv implements MessageClient{
     }
 
     @Override
+    public boolean isValid() {
+        return clientFamilyMember!=-1;
+    }
+
+    @Override
     public void run() {
         execute();
+    }
+
+    @Override
+    public void setFamilyMember(int index) {
+        this.clientFamilyMember = index;
+    }
+
+    @Override
+    public void setPowerUp(int powerUp) {
+        this.powerUpValue = powerUp;
     }
 }
