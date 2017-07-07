@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * la classe rappresenta gli spazi di produzione e raccolto
+ */
 public class ProdHarvZone extends Observable{
 
 	private final List <ActionPlace> actionPlaces;
@@ -20,6 +23,11 @@ public class ProdHarvZone extends Observable{
 		this.maxSamePlayerFamilyMember = maxSamePlayerFamilyMember;
 	}
 
+    /**
+     *
+     * @param familyMember il familiare che può essere aggiunto
+     * @param index l'indice dello spazio a cui aggiungere il familiare
+     */
 	public void addFamilyMember(FamilyMember familyMember, int index)
 	{
 		actionPlaces.get(index).addFamilyMember(familyMember);

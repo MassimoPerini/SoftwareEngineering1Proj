@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 
 /**
  * Created by massimo on 25/06/17.
+ * la classe implemta la funzionalità di passare il turno al prossimo giocatore
  */
 public class EndTurn implements Action {
 

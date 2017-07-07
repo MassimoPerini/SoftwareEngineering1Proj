@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * @author massimo
  * This class is the unlimited ActionPlace
- * We HAVE TO use the delegation pattern instead of the extension
  */
 
 public class ActionPlace {
@@ -31,8 +30,8 @@ public class ActionPlace {
 
 	/**
 	 *
-	 * @param member
-	 * @return
+	 * @param member il familiare che può essere associato allo spazio azione
+	 * @return ritorna se il familiare può essere associato
 	 * The only restriction is if the value of the familymember is lower than the field price
 	 */
 	public boolean isAllowed (FamilyMember member)
@@ -49,8 +48,8 @@ public class ActionPlace {
 
 	/**
 	 *
-	 * @param familyMember
-	 * @return
+	 * @param familyMember il familiare che può essere associato allo spazio azione
+	 * @return gli effetti legati allo spazio azione
 	 * Adds the familymember to the ActionSpace if possible. Generate a IllegalArgumentException if it is not.
 	 */
     public List<Effect> addFamilyMember(FamilyMember familyMember)

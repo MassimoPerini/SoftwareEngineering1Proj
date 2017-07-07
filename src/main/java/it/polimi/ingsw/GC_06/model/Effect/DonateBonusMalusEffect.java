@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by giuseppe on 6/20/17.
+ * la classe è un effetto che permette di associare un bonusMalus ad un giocatore
  */
 public class DonateBonusMalusEffect implements Effect{
 

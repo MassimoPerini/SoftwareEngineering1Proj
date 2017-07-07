@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by giuseppe on 5/20/17.
+ * la classe implementa l'azione di mettere un familiare su un piano di una torre
  */
 public class BoardActionOnTower implements Action {
 
@@ -35,6 +36,10 @@ public class BoardActionOnTower implements Action {
         this.game = game;
     }
 
+    /**
+     * si occupa di piazzare il familiare e di lanciare la sequenza di azioni per prendere la carta
+     * @throws InterruptedException
+     */
     @Override
     public void execute() throws InterruptedException {
 
@@ -59,6 +64,11 @@ public class BoardActionOnTower implements Action {
 
     }
 
+    /**
+     * controlla che l'azione sia conforme con tutte le regole di gioco, non solo per il piano ma per tutta la torre
+     * @return ritorna se l'azione si può eseguire o meno
+     * @throws InterruptedException
+     */
     @Override
     public boolean isAllowed() throws InterruptedException {
 

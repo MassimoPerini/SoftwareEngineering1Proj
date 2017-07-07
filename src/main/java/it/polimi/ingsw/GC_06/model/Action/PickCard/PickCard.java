@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 26/05/17.
+ * la classe si occupa di aggiungere una carta al giocatore e di eseguirne gli effetti
  */
 public class PickCard implements Action {
 
@@ -27,6 +28,10 @@ public class PickCard implements Action {
         this.game = game;
     }
 
+    /**
+     *
+     * @throws InterruptedException
+     */
     @Override
     public void execute() throws InterruptedException {
 
@@ -40,6 +45,10 @@ public class PickCard implements Action {
 
     }
 
+    /**
+     *
+     * @return ritorna se l'azione può essere eseguita
+     */
     @Override
     public boolean isAllowed() {
 

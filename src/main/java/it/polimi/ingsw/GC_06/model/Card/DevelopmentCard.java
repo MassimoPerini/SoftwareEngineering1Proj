@@ -30,12 +30,11 @@ DevelopmentCard extends Card
 
     /**
      *
-     * @param name
-     * @param era
-     * @param requirements
-     * @param immediate
-     * @param idColour
-     * To create a new DevelopmentCard. No null values are accepted!
+     * @param name nome della carta
+     * @param era era della carta
+     * @param requirements requisiti della carta, non da pagare ma da soddisfare
+     * @param immediate effetti immediati della carta
+     * @param idColour colore della carta
      */
     public DevelopmentCard(String name, int era, List<Requirement> requirements, List<Effect> immediate, String idColour, Map<Integer, List<ProdHarvEffect>> prodHarvEffects)
     {

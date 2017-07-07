@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Created by massimo on 05/06/17.
+ * azione che prende una lista di effetti associati ad un elemento e ne lancia l'esecuzione
  */
 public class ExecuteEffects implements Action {
 
@@ -24,6 +25,10 @@ public class ExecuteEffects implements Action {
         this.game = game;
     }
 
+    /**
+     * il metodo cicla su una lista di effetti e li esegue tutti
+     * @throws InterruptedException
+     */
     @Override
     public void execute() throws InterruptedException {
 

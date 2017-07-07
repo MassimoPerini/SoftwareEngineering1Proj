@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 17/05/17.
+ * la classe rappresenta una carta eroe
  */
 public class HeroCard extends Card {
 

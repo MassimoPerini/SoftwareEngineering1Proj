@@ -9,6 +9,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * la classe rappresenta gli spazi del consiglio e del mercato
+ */
 
 public class MarketAndCouncil extends Observable
 {
@@ -20,6 +23,11 @@ public class MarketAndCouncil extends Observable
 		this.actionType = actionType;
 	}
 
+    /**
+     *
+     * @param familyMember il familiare che può essere aggiunto
+     * @param index l'indice dello spazio a cui aggiungere il familiare
+     */
 	public void addFamilyMember(FamilyMember familyMember, int index) {
 		actionPlaces.get(index).addFamilyMember(familyMember);
 	}
@@ -34,6 +42,9 @@ public class MarketAndCouncil extends Observable
 		return Collections.unmodifiableList(actionPlaces.get(index).getEffects());
 	}
 
+    /**
+     * rimuove i familiari da tutti gli spazi
+     */
 	void removeFamilyMembers()
 	{
 		for (ActionPlace actionPlace : actionPlaces) {

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ *la classe è un effetto che consente di prendere una carta aggiuntiva
  */
 
 public class EffectOnNewCards implements Effect, Blocking {
@@ -27,6 +27,12 @@ public class EffectOnNewCards implements Effect, Blocking {
         this.towerFloors = towerFloors;
     }
 
+    /**
+     *
+     * @param player il giocatore a cui applicare l'effetto
+     * @param game il gioco corrente
+     * @throws InterruptedException
+     */
     @Override
     public synchronized void execute(Player player,Game game) throws InterruptedException {
 

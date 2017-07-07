@@ -23,6 +23,8 @@ import java.util.Map;
 
 /**
  * Created by massimo on 05/06/17.
+ * la classe si occupa di far partire la sequenza di azioni necessaria alla gestione delle produzioni
+ * e dei raccolti
  */
 public class StartProdHarv implements Action, Blocking {
 

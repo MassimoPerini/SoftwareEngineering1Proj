@@ -12,6 +12,13 @@ import java.util.List;
  */
 public class DefaultAskUserSelector implements AskUserCard {
 
+    /**
+     *
+     * @param card la carta sviluppo corrente
+     * @param points i punti con cui viene eseguita l'azione di produzione o sviluppo
+     * @param player il giocatore che ha eseguito l'azione
+     * @return ritorna gli effetti di produzione e raccolto ora associati al giocatore, filtrati con bonusMalus
+     */
     @Override
     public List<ProdHarvEffect> askUser(DevelopmentCard card, int points, Player player) {
         List<ProdHarvEffect> effects = card.getProdHarvEffects(points);     //The effect that needs <= points

@@ -13,6 +13,7 @@ import java.util.*;
 
 /**
  * Created by giuseppe on 6/16/17.
+ * la classe si occuppa delle azioni a fine gioco, eseguondo anche i calcoli dei punti legati all'endGame
  */
 public class EndGameAction extends Observable implements Action {
 
@@ -31,6 +32,9 @@ public class EndGameAction extends Observable implements Action {
         this.coefficient = Integer.parseInt(Setting.getInstance().getProperty("end_game_coefficient"));
     }
 
+    /**
+     * il metodo esegue tutti i calcoli sui punti legati all'endGame, compresi filtraggi
+     */
     @Override
     public void execute() {
 
@@ -48,10 +52,7 @@ public class EndGameAction extends Observable implements Action {
 
       //  this.getPointsFromRanking();
 
-        /** vorrei anche che questa classe mi dicesse chi ha vinto */
-
     }
-
 
 
     @Override
@@ -59,6 +60,11 @@ public class EndGameAction extends Observable implements Action {
         return false;
     }
 
+    /**
+     * il metodo si occupa della conversione di alcuni tipi di carte in punti
+     * @param player il giocatore di cui calcolare i punti
+     *               per l'endGame
+     */
     public void turnCardsIntoPoints(Player player){
 
         Set<String> colours = this.endGameMap.keySet();
@@ -82,6 +88,11 @@ public class EndGameAction extends Observable implements Action {
 
     /** dovrebbe fare anche l'aggiunzione dei punti finali */
 
+    /**
+     * il metodo si occupa della conversione di risorse in punti
+     * @param player il giocatore di cui calcolare i punti
+     *               per l'endGame
+     */
     public void turnResourceIntoPoint(Player player){
 
         // qui usiamo i bonus e i malus che mi levano i punti per determinate risorse

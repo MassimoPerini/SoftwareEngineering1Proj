@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class BonusMalusOnCost {
 
-    /** la logica di controllo la delego di nuovo all'handeler*/
+    /** la logica di controllo è delegata di nuovo all'handeler*/
 
     /** sarà lo sconto o l'aumento del prezzo*/
 
@@ -29,7 +29,11 @@ public class BonusMalusOnCost {
         this.permanent = permanent;
     }
 
-    /** chiediamo a massi questa cosa perchè non ricordo la struttura delle carte */
+    /**
+     *
+     * @param developmentCard la carta su cui eseguire il bonusMalus
+     * @return ritorna la stessa carta, con il costo modificato
+     */
     public DevelopmentCard modify(DevelopmentCard developmentCard){
 
         /** voglio modifciare solo fakeCard non il resto */

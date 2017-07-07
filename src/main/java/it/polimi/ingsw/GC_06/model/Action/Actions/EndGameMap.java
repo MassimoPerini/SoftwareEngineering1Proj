@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * Created by giuseppe on 6/16/17.
+ * la classe funge da configuratore per le regole di conversione dell'endGame
  */
 public class EndGameMap {
 
@@ -25,6 +26,11 @@ public class EndGameMap {
 
     /** questo metodo posso usarlo nei miei fantastici bonus malus on End */
 
+    /**
+     * il metodo setta la regola di conversione oper l'endGame
+     * @param colour colore delle carte sviluppo
+     * @param value valore della conversione per carta
+     */
     public void editConversionTable(String colour , int value){
         List<Integer> conversionValues = endGameMap.get(colour);
 

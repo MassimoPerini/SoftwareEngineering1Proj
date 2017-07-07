@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by giuseppe on 7/3/17.
+ * Contiene i dati legati ad un player
  */
 public class PersonalStatistics implements Serializable {
 

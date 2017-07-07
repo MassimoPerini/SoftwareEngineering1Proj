@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 23/06/17.
+ * la classe è un effetto che gestisce il powerUp
  */
 
 public class PowerUp implements Blocking {

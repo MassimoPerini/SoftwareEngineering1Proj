@@ -20,7 +20,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by massimo on 29/05/17.
+ * Created by massimo on 29/05/17
+ * la classe si occupa del pagamento di una carta presa da una torre, del controllo sui requirement della carta ed
+ * ha inoltre metodi sincronizzatio per essere consistente con le azioni gestite da thread separati
  */
 public class PayCard implements Action, Blocking {
 
@@ -42,6 +44,11 @@ public class PayCard implements Action, Blocking {
         pickCard = new PickCard(player, tower, floor,game);
     }
 
+    /**
+     *
+     * @param player il giocatore che sta eseguendo il pagamento
+     * @return ritorna la lista di requirement della carta soddisfatti
+     */
     private List<Requirement> getRequirements(Player player)
     {
 
@@ -61,6 +68,10 @@ public class PayCard implements Action, Blocking {
         return satisfiedRequirements;
     }
 
+    /**
+     * il metodo è synchronized, perchè alcune azioni sono gestite da thread separati
+     * @throws InterruptedException
+     */
     @Override
     public synchronized void execute() throws InterruptedException {
         //Execute tower penality
@@ -94,6 +105,11 @@ public class PayCard implements Action, Blocking {
         pickCard.execute();
     }
 
+    /**
+     * il metodo è synchronized, perchè alcune azioni sono gestite da thread separati
+     * @return ritorna se l'azione può essere eseguita
+     * @throws InterruptedException
+     */
     @Override
     public synchronized boolean isAllowed() throws InterruptedException {
         Player pClone = new Player(player);     //CLONE (I hope...) TODO
