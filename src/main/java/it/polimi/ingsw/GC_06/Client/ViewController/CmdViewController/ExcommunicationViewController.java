@@ -26,9 +26,4 @@ public class ExcommunicationViewController implements ViewPresenterCLI {
         boolean answer = (answ == 0);
         clientNetworkOrchestrator.send(new PlayerChoiceExcommunication(answer));
     }
-
-    @Override
-    public void viewWillDisappear() {
-
-    }
 }

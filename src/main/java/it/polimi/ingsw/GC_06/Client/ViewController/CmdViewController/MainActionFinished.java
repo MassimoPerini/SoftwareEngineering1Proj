@@ -31,8 +31,4 @@ public class MainActionFinished implements ViewPresenterCLI {
 
     }
 
-    @Override
-    public void viewWillDisappear() {
-
-    }
 }

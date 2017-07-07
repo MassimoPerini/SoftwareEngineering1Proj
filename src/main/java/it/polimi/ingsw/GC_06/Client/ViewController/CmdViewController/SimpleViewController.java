@@ -18,9 +18,4 @@ public class SimpleViewController implements ViewPresenterCLI {
     public void viewWillAppear() {
         System.out.println(text);
     }
-
-    @Override
-    public void viewWillDisappear() {
-
-    }
 }

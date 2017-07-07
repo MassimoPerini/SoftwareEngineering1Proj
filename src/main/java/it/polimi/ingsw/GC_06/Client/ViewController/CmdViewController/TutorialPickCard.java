@@ -29,7 +29,7 @@ public class TutorialPickCard implements ViewPresenterCLI {
     }
 
     @Override
-    public void viewWillAppear() throws InterruptedException {
+    public void viewWillAppear(){
         commandView.addLocalizedText("Vuoi prendere una carta...");
 
         commandView.addLocalizedText("Ok, questi sono i tuoi familiari:\n");
@@ -77,10 +77,5 @@ public class TutorialPickCard implements ViewPresenterCLI {
 
         MessageBoardActionTower messageBoardActionTower = new MessageBoardActionTower(tower, floor, familyMember,powerUp);
         clientNetworkOrchestrator.send(messageBoardActionTower);
-    }
-
-    @Override
-    public void viewWillDisappear() {
-
     }
 }

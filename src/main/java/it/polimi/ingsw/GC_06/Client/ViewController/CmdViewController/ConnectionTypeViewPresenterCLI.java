@@ -32,15 +32,6 @@ public class ConnectionTypeViewPresenterCLI implements ViewPresenterCLI {
             clientNetworkOrchestrator.useSocket();
         else
             clientNetworkOrchestrator.useRMI();
-        /*
-        ExecutorService executor = Executors.newCachedThreadPool();
-        this.future = executor.submit(this);
-        */
-    }
-
-    @Override
-    public void viewWillDisappear() {
-     //   this.future.cancel(true);
     }
 
 }

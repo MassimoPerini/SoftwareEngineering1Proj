@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageClearBoard;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,10 +17,10 @@ import java.util.Observable;
  * This class represents the main board of the game
  */
 public class Board extends Observable{
-    @NotNull private final Map<String, Tower> towers;
-    @NotNull private final List<MarketAndCouncil> market;
-    @NotNull private final List<ProdHarvZone> prodHarvZones;
-    @NotNull private final List<MarketAndCouncil> councils;
+    private final Map<String, Tower> towers;
+    private final List<MarketAndCouncil> market;
+    private final List<ProdHarvZone> prodHarvZones;
+    private final List<MarketAndCouncil> councils;
 
     public Board(Map<String, Tower> towers, List<MarketAndCouncil> marketAndCouncils, List<ProdHarvZone> prodHarvZones, List<MarketAndCouncil> councils)
     {

@@ -42,9 +42,4 @@ public class PlayHeroCardViewController  implements ViewPresenterCLI{
 
 
     }
-
-    @Override
-    public void viewWillDisappear() {
-
-    }
 }

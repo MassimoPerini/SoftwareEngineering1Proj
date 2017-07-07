@@ -9,6 +9,10 @@ import it.polimi.ingsw.GC_06.Client.ViewController.CmdViewController.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by massimo on 16/06/17.
@@ -21,12 +25,15 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
     private MainClientModel mainClientModel;
     private ViewPresenterCLI currentView;
     private Map<String, ClientPlayerBoard> clientPlayerBoard;
+    private ExecutorService executorService;
 
     public ViewOrchestratorCLI(ClientNetworkOrchestrator clientNetworkOrchestrator, MainClientModel mainClientModel)
     {
         this.clientStates = new HashMap<>();
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
         this.mainClientModel = mainClientModel;
+
+        executorService = Executors.newSingleThreadExecutor();
 
         mainClientModel.addObserver(this);
 
@@ -49,7 +56,6 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
     {
         if (currentView instanceof Runnable)
         {
-            currentView.viewWillDisappear();
         }
     }
 
@@ -90,17 +96,30 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
     public void update(Observable o, Object arg) {
 
         ClientStateName state = (ClientStateName) arg;
-
         try {
-            if (clientStates.get(state)!=null) {
+            if (clientStates.get(state) != null) {
+
+                executorService.shutdownNow();
+                //wait here....
+                executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
+                this.currentState = state;
+                executorService = Executors.newSingleThreadExecutor();
+                Future future = executorService.submit(() -> {
+                    try {
+                        clientStates.get(currentState).viewWillAppear();
+                    } catch (InterruptedException e) {
+                        System.out.println("interrupted");
+                    }
+                });
+
+                /*
                 clientStates.get(currentState).viewWillDisappear();
                 this.currentState = state;
                 clientStates.get(currentState).viewWillAppear();
+                */
             }
         }
-        catch (InterruptedException e)
-        {
-            return;
-        }
+        catch (InterruptedException e){}
+
     }
 }

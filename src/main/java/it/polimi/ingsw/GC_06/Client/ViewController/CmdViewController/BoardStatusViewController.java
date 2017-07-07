@@ -9,14 +9,12 @@ import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by massimo on 01/06/17.
  */
-public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
+public class BoardStatusViewController implements ViewPresenterCLI {
 
     private ClientBoardGame clientBoardGame;
     private Map<String, ClientPlayerBoard> clientPlayerBoard;
@@ -33,39 +31,7 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
     }
 
     @Override
-    public void viewWillAppear() {
-        executor = Executors.newCachedThreadPool();
-        this.future = executor.submit(this);
-    }
-
-    @Override
-    public void viewWillDisappear() {
-        try {
-            executor.shutdownNow();
-        //    future.get();
-            executor.awaitTermination(Long.MAX_VALUE , TimeUnit.MINUTES);
-        }
-        catch (InterruptedException e)
-        {
-            return;
-        }
-    }
-
-    @Override
-    public void run() {
-        try {
-            while (!Thread.currentThread().isInterrupted()) {
-                showStatus();
-                Thread.sleep(200);
-            }
-        }
-        catch (InterruptedException e)
-        {
-            return;
-        }
-    }
-
-    void showStatus() throws InterruptedException {
+    public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Sei in sola lettura. Inserire b per vedere la board, p per vedere le board dei players");
         String answ = commandView.getString();
         if(answ==null){
@@ -158,4 +124,5 @@ public class BoardStatusViewController implements ViewPresenterCLI, Runnable {
             }
         }
     }
+
 }

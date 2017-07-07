@@ -5,5 +5,4 @@ package it.polimi.ingsw.GC_06.Client.ViewController;
  */
 public interface ViewPresenterCLI {
     void viewWillAppear() throws InterruptedException;
-    void viewWillDisappear();
 }

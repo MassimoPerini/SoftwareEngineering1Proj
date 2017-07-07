@@ -42,9 +42,4 @@ public class ParchmentViewController implements ViewPresenterCLI {
         clientNetworkOrchestrator.send(defaultAnswer);
 
     }
-
-    @Override
-    public void viewWillDisappear() {
-
-    }
 }

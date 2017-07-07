@@ -26,7 +26,12 @@ public class LoginViewPresenterCLI implements ViewPresenterCLI {
     @Override
     public void viewWillAppear() throws InterruptedException {
      //   this.future = executor.submit(this);
-        run();
+        commandView.addLocalizedText("msg_login_start");
+        commandView.addText("\n");
+        commandView.addLocalizedText("username");
+        String username = commandView.getString();
+        clientNetworkOrchestrator.send(username);
+        commandView.addLocalizedText("Please wait...");
 
     }
 
@@ -35,12 +40,7 @@ public class LoginViewPresenterCLI implements ViewPresenterCLI {
  //       this.future.cancel(true);
     }
 
-    public void run() throws InterruptedException {
-            commandView.addLocalizedText("msg_login_start");
-            commandView.addText("\n");
-            commandView.addLocalizedText("username");
-            String username = commandView.getString();
-            clientNetworkOrchestrator.send(username);
-        commandView.addLocalizedText("Please wait...");
+    public void run(){
+
     }
 }

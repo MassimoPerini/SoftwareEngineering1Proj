@@ -33,15 +33,7 @@ public class UserActionViewController implements ViewPresenterCLI {
     public void viewWillAppear() throws InterruptedException {
     //    ExecutorService executor = Executors.newCachedThreadPool();
     //    this.future = executor.submit(this);
-        run();
-    }
 
-    @Override
-    public void viewWillDisappear() {
-    //    this.future.cancel(true);
-    }
-
-    public void run() throws InterruptedException{
         System.out.println("CLIENTBOARDGAME INVOKED");
         boolean ok = false;
         while(!ok) {
@@ -51,7 +43,7 @@ public class UserActionViewController implements ViewPresenterCLI {
 
             if (input.equals("s")) {
                 BoardStatusViewController boardStatusViewController = new BoardStatusViewController(mainClientModel.getClientBoardGame(), mainClientModel.getClientPlayerBoard());
-                boardStatusViewController.showStatus();        //NON AVERE UN ALTRO THREAD!!!
+                boardStatusViewController.viewWillAppear();
             }
 
           /*  if (input.equals("d")) {
@@ -87,11 +79,16 @@ public class UserActionViewController implements ViewPresenterCLI {
             }
 
             if(input.equals("Hero Card")){
-               // String[] inp = commandView.getString().split(" ");
+                // String[] inp = commandView.getString().split(" ");
                 PlayHeroCardViewController playHeroCardViewController = new PlayHeroCardViewController(mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()), clientNetworkOrchestrator);
                 playHeroCardViewController.viewWillAppear();
                 ok = true;
             }
         }
+
+    }
+
+    public void run(){
+
     }
 }

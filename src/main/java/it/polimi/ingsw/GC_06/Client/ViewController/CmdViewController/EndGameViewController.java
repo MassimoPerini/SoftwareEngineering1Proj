@@ -20,13 +20,8 @@ public class EndGameViewController implements ViewPresenterCLI  {
     }
 
     @Override
-    public void viewWillAppear() throws InterruptedException {
+    public void viewWillAppear(){
         commandView.addLocalizedText("La classifica ");
-
-    }
-
-    @Override
-    public void viewWillDisappear() {
 
     }
 }

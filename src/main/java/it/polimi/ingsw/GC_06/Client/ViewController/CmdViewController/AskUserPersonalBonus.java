@@ -23,7 +23,7 @@ public class AskUserPersonalBonus implements ViewPresenterCLI {
     }
 
     @Override
-    public void viewWillAppear() throws InterruptedException {
+    public void viewWillAppear() {
         cmdView.addLocalizedText("Puoi scegliere uno stupido bonus...");
         int i=0;
         for (String s : playerBonusActions.getPersonalBonusOptions()) {
@@ -34,10 +34,5 @@ public class AskUserPersonalBonus implements ViewPresenterCLI {
         int res = cmdView.getInt(0, i);
         DefaultAnswer defaultAnswer = new DefaultAnswer(res);
         clientNetworkOrchestrator.send(defaultAnswer);
-    }
-
-    @Override
-    public void viewWillDisappear() {
-
     }
 }

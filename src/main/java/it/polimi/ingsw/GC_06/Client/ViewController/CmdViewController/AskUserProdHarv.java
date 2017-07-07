@@ -47,9 +47,4 @@ public class AskUserProdHarv implements ViewPresenterCLI {
         MessageClient messageClient = new ProdHarvAnswer(choices);
         clientNetworkOrchestrator.send(messageClient);
     }
-
-    @Override
-    public void viewWillDisappear() {
-
-    }
 }

@@ -42,9 +42,4 @@ public class PaymentWaysViewController implements ViewPresenterCLI {
         int answ = commandView.getInt(0, i);
         clientNetworkOrchestrator.send(new DefaultAnswer(answ));
     }
-
-    @Override
-    public void viewWillDisappear() {
-
-    }
 }

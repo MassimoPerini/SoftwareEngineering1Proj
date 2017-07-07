@@ -45,26 +45,9 @@ public class PickOtherCardViewController implements ViewPresenterCLI {
             commandView.addLocalizedText(floor.getCard()+"\n");
             i++;
         }
-        /*
-
-        commandView.addLocalizedText("Inserisci la torre");
-        String tower = commandView.getString();
-        List<Integer> floors = towers.get(tower);
-        commandView.addLocalizedText("piani:");
-        int i=0;
-        for (Integer floor : floors) {
-            commandView.addLocalizedText("Scelta "+i+": "+String.valueOf(floor.intValue())+"\n");
-            i++;
-        }
-        */
         commandView.addLocalizedText("\nINDICE della tua scelta: ");
         int floor = commandView.getInt(0, i);
         DefaultAnswer defaultAnswer = new DefaultAnswer(floor);
         clientNetworkOrchestrator.send(defaultAnswer);
-    }
-
-    @Override
-    public void viewWillDisappear() {
-
     }
 }

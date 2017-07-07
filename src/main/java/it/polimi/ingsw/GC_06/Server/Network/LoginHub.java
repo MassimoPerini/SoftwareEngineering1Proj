@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
+import it.polimi.ingsw.GC_06.model.Action.Actions.EndTurn;
 import it.polimi.ingsw.GC_06.model.State.Game;
 
 import java.io.IOException;
@@ -71,6 +72,8 @@ public class LoginHub {
         /** abbiamo rimosso il player dalla partita*/
     //    GameList.getInstance().getGameId(gameID).remove(username);
         GameList.getInstance().remove(gameID,username);
+        EndTurn endTurn = new EndTurn(GameList.getInstance().getGameId(gameID));
+        endTurn.execute();
     }
 
     public void addUser(String user) throws IllegalArgumentException, IOException {
@@ -114,7 +117,7 @@ public class LoginHub {
 
                 //this.myTimer(game);
             }
-            if (loggedPlayers.size() == 1 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+            if (loggedPlayers.size() == 2 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game(id);
                 ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
                 timer.cancel();

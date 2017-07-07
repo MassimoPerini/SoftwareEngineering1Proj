@@ -117,18 +117,18 @@ public class CmdView implements CommandView {
 
     @Override
     public String getString() throws InterruptedException {
-        print();
 
+        print();
         try {
-            while (!input.ready() && !Thread.currentThread().isInterrupted()) {
+            while (!input.ready()) {
                 Thread.sleep(200);
             }
             return input.readLine();
         }
         catch (InterruptedException e) {
+            System.out.println("View... Interrupting");
             throw new InterruptedException();
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
         return null;
     }
 

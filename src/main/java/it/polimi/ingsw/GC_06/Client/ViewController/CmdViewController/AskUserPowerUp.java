@@ -28,9 +28,4 @@ public class AskUserPowerUp implements ViewPresenterCLI {
         MessageClient messageClient = new DefaultAnswer(powerUp);
         clientNetworkOrchestrator.send(messageClient);
     }
-
-    @Override
-    public void viewWillDisappear() {
-
-    }
 }
