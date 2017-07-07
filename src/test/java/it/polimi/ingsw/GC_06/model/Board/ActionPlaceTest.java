@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -28,7 +29,8 @@ public class ActionPlaceTest {
     private Game game;
     @Before
     public void setUp() throws Exception {
-    //    Game.clearForTesting();
+        Setting.getInstance().addPath("settings/bundle");
+        //    Game.clearForTesting();
 
         game = new Game(1);
 

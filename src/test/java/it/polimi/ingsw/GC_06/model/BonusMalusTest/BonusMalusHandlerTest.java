@@ -1,9 +1,8 @@
 package it.polimi.ingsw.GC_06.model.BonusMalusTest;
 
-import it.polimi.ingsw.GC_06.model.Action.Actions.Action;
-import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
 import it.polimi.ingsw.GC_06.model.BonusMalus.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHeroCard.BonusMalusType;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -41,6 +40,7 @@ public class BonusMalusHandlerTest {
 
     @Before
     public void setUp(){
+        Setting.getInstance().addPath("settings/bundle");
         LinkedList<String> colours = new LinkedList<>();
         colours.add("WHITE");
         colours.add("ORANGE");

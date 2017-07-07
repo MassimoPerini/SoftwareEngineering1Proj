@@ -73,8 +73,7 @@ public class MessageCreator extends Observable {
 
     public synchronized void send()
     {
-            clientNetworkOrchestrator.send(messageClient);
-
+        clientNetworkOrchestrator.send(messageClient);
         this.reset();
     }
 

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Card;
 
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -24,6 +25,7 @@ public class RequirementTest {
 
     @Before
     public void SetUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
         ResourceSet requirement1 = new ResourceSet();
         ResourceSet cost1 = new ResourceSet();
         ResourceSet requirement2 = new ResourceSet();

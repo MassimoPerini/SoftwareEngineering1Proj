@@ -1,7 +1,6 @@
 package it.polimi.ingsw.GC_06.model.State;
 
-import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +17,8 @@ public class GameAndGameStatusTest {
 
     @Before
     public void setUp() throws Exception {
+        Setting.getInstance().addPath("settings/bundle");
+
         //TODO to remove
         game = new Game(1);
     }

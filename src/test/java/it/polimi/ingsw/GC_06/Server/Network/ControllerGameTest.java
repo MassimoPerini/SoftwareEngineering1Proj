@@ -1,9 +1,8 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by giuseppe on 7/2/17.
@@ -15,6 +14,7 @@ public class ControllerGameTest {
 
     @Test(expected = NullPointerException.class)
     public void start() throws Exception {
+        Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("peppe");
         game.addPlayer("massi");

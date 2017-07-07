@@ -48,7 +48,14 @@ public class ConnectionMethodPresenterCLI implements ViewPresenterFx {
 
     public void handleRMIConnection(ActionEvent event) {
 
+        clientNetworkOrchestrator.useRMI();
+        //    viewOrchestratorFx.change(ClientStateName.LOGIN, "");
 
+        Stage stage=(Stage)socket.getScene().getWindow();
+        LoginView loginView = new LoginView();
+        Scene scene = new Scene(loginView.getView());
+        stage.setScene(scene);
+        stage.show();
         //   mainClientModel.changeState(ClientStateName.LOGIN);
     }
 

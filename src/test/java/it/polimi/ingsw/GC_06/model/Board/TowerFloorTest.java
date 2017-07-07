@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,6 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -29,7 +29,7 @@ public class TowerFloorTest {
 
     @Before
     public void setUp(){
-
+        Setting.getInstance().addPath("settings/bundle");
         actionPlace = new ActionPlace(new LinkedList<Effect>(),4);
         developmentCard = new DevelopmentCard("peppe",1,new LinkedList<Requirement>(), new LinkedList<Effect>(), "yellow",new HashMap<Integer,List<ProdHarvEffect>>());
         towerFloor = new TowerFloor(actionPlace,developmentCard);

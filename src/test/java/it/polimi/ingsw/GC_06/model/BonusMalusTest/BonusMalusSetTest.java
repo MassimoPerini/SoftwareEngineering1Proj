@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.BonusMalusTest;
 
 import it.polimi.ingsw.GC_06.model.BonusMalus.*;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHeroCard.BonusMalusType;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import org.junit.Before;
@@ -41,6 +42,7 @@ public class BonusMalusSetTest {
     @Before
     public void setUp() {
 
+        Setting.getInstance().addPath("settings/bundle");
 
         bonusMalusOnAction = new BonusMalusOnAction("yellow", new LinkedList<String>(), ActionType.PAYCARDACTION, false , 5);
         bonusMalusOnAction1 = new BonusMalusOnAction("green", new LinkedList<String>(), ActionType.ENDACTION, false, 5);

@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Effect.DonateBonusMalusEffect;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -31,6 +32,7 @@ public class DonateBonusMalusTest {
 
     @Before
     public void setUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
 
         bonusMalusOnAction = new BonusMalusOnAction("yellow", new LinkedList<String>(), ActionType.PAYCARDACTION, false , 5);
 

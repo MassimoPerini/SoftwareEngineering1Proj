@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -28,6 +29,8 @@ public class PlayerBoardTest {
 
     @Before
     public void setUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
+
         game = new Game(0);
         game.addPlayer("gabri");
         player = game.getGameStatus().getPlayers().get("gabri");

@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.FamilyMembe
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.AllBoards.AllBoardsView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 import javafx.beans.value.ChangeListener;
@@ -10,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ListCell;
@@ -17,6 +20,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -128,5 +134,19 @@ public class FamilyMembersPresenter {
     public void handlePassPressed(ActionEvent actionEvent) {
         MessageEndTurn messageEndTurn = new MessageEndTurn();
         messageCreator.setMessageClient(messageEndTurn);
+    }
+
+    public void handleShowAllBoards(ActionEvent actionEvent) {
+        AllBoardsView allBoardsView = new AllBoardsView();
+
+        Parent parent = allBoardsView.getView();
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("All boards");
+        stage.setScene(new Scene(parent));
+        stage.show();
+        stage.sizeToScene();
     }
 }

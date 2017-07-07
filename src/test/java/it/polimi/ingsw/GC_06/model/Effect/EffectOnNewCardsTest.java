@@ -1,8 +1,8 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
-import it.polimi.ingsw.GC_06.Server.Network.*;
-import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
-import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
+import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
+import it.polimi.ingsw.GC_06.Server.Network.SocketServer;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
@@ -11,8 +11,6 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by giuseppe on 7/2/17.
@@ -29,7 +27,7 @@ public class EffectOnNewCardsTest {
 
     @Before
     public void setUp() throws IOException {
-
+        Setting.getInstance().addPath("settings/bundle");
 
         game = new Game(0);
         game.addPlayer("peppe");

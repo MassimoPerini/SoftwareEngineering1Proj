@@ -9,8 +9,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 12/06/17.
@@ -70,11 +68,8 @@ public class ClientRMIHandler extends Client implements ClientRMI {
     @Override
     synchronized public void receive(MessageServer messageServer) throws RemoteException{
         System.out.println("RMI CLIENT IN RICEZIONE "+messageServer.toString());
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.submit(() -> {
-            setChanged();
-            notifyObservers(messageServer);
-        });
 
+        setChanged();
+        notifyObservers(messageServer);
     }
 }

@@ -2,17 +2,11 @@ package it.polimi.ingsw.GC_06;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
-
-import it.polimi.ingsw.GC_06.Client.Model.ClientBoardGame;
-import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by giuseppe on 7/2/17.
@@ -23,7 +17,7 @@ public class ClientBoardGameTest {
 
     @Before
     public void setUp(){
-
+        Setting.getInstance().addPath("settings/bundle");
         clientBoardGame = new ClientBoardGame();
     }
 

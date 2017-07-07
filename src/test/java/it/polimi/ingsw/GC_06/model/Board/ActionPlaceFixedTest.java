@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -19,6 +20,7 @@ public class ActionPlaceFixedTest {
 
     @Before
     public void setUp() throws Exception {
+        Setting.getInstance().addPath("settings/bundle");
         Game game = new Game(1);
         game.addPlayer("massimo");
         player = game.getGameStatus().getPlayers().get("massimo");

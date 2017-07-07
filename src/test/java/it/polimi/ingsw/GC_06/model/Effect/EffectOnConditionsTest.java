@@ -1,7 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Effect;
 
 import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
-import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by giuseppe on 7/1/17.
@@ -23,7 +23,7 @@ public class EffectOnConditionsTest {
 
     @Before
     public void setUp() throws IOException {
-
+        Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("peppe");
         game.start(new DefaulEventManagerFake());

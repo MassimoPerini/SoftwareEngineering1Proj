@@ -2,18 +2,11 @@ package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
 import it.polimi.ingsw.GC_06.model.Board.Board;
-import it.polimi.ingsw.GC_06.model.Board.Tower;
-import it.polimi.ingsw.GC_06.model.Board.TowerFloor;
-import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.io.IOException;
-import java.util.LinkedList;
-
-import static junit.framework.TestCase.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by giuseppe on 7/2/17.
@@ -28,6 +21,7 @@ public class RoundManagerTesst {
 
     @Before
     public void setUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
 
         game = new Game(0);
         game.addPlayer("peppe");

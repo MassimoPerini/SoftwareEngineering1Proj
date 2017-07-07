@@ -5,10 +5,12 @@ import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHeroCard.BonusMalusType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAccess;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnResources;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -35,9 +37,9 @@ public class BoardActionOnMarketCouncilTest {
 
 
 
-    @org.junit.Before
+    @Before
     public void setUp() throws IOException {
-
+        Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("peppe");
 

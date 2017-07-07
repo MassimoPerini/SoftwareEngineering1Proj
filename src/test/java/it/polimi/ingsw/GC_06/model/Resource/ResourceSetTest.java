@@ -1,10 +1,10 @@
 package it.polimi.ingsw.GC_06.model.Resource;
 
-import org.junit.After;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by massimo on 28/05/17.
@@ -15,6 +15,7 @@ public class ResourceSetTest {
 
     @Before
     public void setUp() throws Exception {
+        Setting.getInstance().addPath("settings/bundle");
 
         r1 = new ResourceSet();
         r2 = new ResourceSet();

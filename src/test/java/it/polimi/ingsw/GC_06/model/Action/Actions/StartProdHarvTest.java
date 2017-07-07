@@ -4,7 +4,6 @@ package it.polimi.ingsw.GC_06.model.Action.Actions;
  * Created by giuseppe on 6/28/17.
  */
 
-import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.PickCard;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.AskUserCard;
@@ -15,9 +14,9 @@ import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Effect.*;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
-import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
@@ -28,7 +27,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -45,8 +43,7 @@ public class StartProdHarvTest {
 
     @Before
     public void setUp() throws IOException {
-
-
+        Setting.getInstance().addPath("settings/bundle");
         BonusMalusSet bonusMalusSet = new BonusMalusSet();
 
         List<String> colours = new LinkedList<>();

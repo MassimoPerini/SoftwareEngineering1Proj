@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:id="mainView" fx:controller="it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.FamilyMembers.FamilyMembersPresenter">
@@ -18,4 +15,6 @@
     <Button mnemonicParsing="false" text="Passa turno" fx:id="pass" onAction="#handlePassPressed" />
 
     <fx:include source="../SendAction/sendaction.fxml"/>
+
+    <Button mnemonicParsing="false" text="Show all boards" onAction="#handleShowAllBoards" />
 </VBox>

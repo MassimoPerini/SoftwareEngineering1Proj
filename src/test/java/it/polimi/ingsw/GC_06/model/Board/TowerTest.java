@@ -3,10 +3,10 @@ package it.polimi.ingsw.GC_06.model.Board;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +35,7 @@ public class TowerTest {
 
     @Before
     public void setUp(){
+        Setting.getInstance().addPath("settings/bundle");
         familyMember = new FamilyMember("green","peppe");
         familyMember.setValue(15);
         developmentCard = new DevelopmentCard("Peppe",1,new LinkedList<Requirement>(),new LinkedList<Effect>(),"YELLOW",new HashMap<>());

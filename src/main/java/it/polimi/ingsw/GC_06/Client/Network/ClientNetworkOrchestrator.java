@@ -17,17 +17,20 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
 
     private Client client;
     private final ExecutorService executor;
-
+    private boolean actionFinished;
+    private ExecutorService executorService;
 
     public ClientNetworkOrchestrator(Client client)
     {
         this.client = client;
         this.executor= Executors.newFixedThreadPool(1);
+
     }
 
     public ClientNetworkOrchestrator()
     {
         this.executor= Executors.newFixedThreadPool(1);
+        this.executorService = Executors.newSingleThreadExecutor();
     }
 
     public void setClient(Client client) {
@@ -75,11 +78,20 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
         }
     }
 
+    public synchronized boolean isActionFinished() {
+        return actionFinished;
+    }
+
+    public synchronized void setActionFinished(boolean actionFinished) {
+        this.actionFinished = actionFinished;
+    }
+
     @Override
-    public synchronized void update(Observable o, Object arg) {
-        System.out.println("ClientNetworkOrch. Notified from input");
-        setChanged();
-        notifyObservers(arg);
+    public void update(Observable o, Object arg) {
+        executorService.submit(() -> {
+            setChanged();
+            notifyObservers(arg);
+        });
     }
 
 }

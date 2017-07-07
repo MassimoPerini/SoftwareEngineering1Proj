@@ -1,11 +1,12 @@
 package it.polimi.ingsw.GC_06.model.Effects;
 
 
-import it.polimi.ingsw.GC_06.model.State.Game;
-import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
+import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,6 +30,7 @@ public class EffectOnResourcesTest {
 
     @Before
     public void setUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
 
         FamilyMember [] familyMembers = new FamilyMember[1];
         familyMembers[0] = new FamilyMember("BLUE", "gabriele");

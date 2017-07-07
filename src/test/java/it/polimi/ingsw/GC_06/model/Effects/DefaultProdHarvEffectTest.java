@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.Effects;
 
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -20,6 +21,7 @@ public class DefaultProdHarvEffectTest {
 
     @Before
     public void setUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
 
         Game game = new Game(1);
         game.addPlayer("gabriele");

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Action.Actions;
 
-import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +18,7 @@ public class EndTurnTest {
 
     @Before
     public void SetUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("gabri");
         game.addPlayer("peppe");

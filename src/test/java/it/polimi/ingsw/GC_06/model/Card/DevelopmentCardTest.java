@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Card;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
@@ -27,6 +28,7 @@ public class DevelopmentCardTest {
 
     @Before
     public void SetUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
         int requiredValue2 = 2;
         int era2 = 1;
         String name2 = "devcards_f_en_c_2";

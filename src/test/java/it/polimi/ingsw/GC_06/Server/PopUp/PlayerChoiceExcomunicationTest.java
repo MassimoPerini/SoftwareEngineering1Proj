@@ -2,7 +2,7 @@ package it.polimi.ingsw.GC_06.Server.PopUp;
 
 import it.polimi.ingsw.GC_06.Server.Message.Client.PlayerChoiceExcommunication;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
-import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
@@ -19,7 +19,9 @@ public class PlayerChoiceExcomunicationTest {
     private boolean activateExcommunication;
 
     @Before
-    public void SetUp() throws IOException {
+    public void setUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
+
         game = new Game(0);
         game.addPlayer("gabri");
         game.start(new DefaulEventManagerFake());

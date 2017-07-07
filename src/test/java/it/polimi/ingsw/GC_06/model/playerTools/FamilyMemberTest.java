@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.playerTools;
 
 import it.polimi.ingsw.GC_06.model.Dice.Dice;
 import it.polimi.ingsw.GC_06.model.Dice.DiceSet;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,7 @@ public class FamilyMemberTest {
 
     @Before
     public void setUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("gabri");
         player = game.getGameStatus().getPlayers().get("gabri");

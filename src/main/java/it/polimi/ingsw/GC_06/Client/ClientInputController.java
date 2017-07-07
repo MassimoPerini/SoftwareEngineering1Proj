@@ -1,12 +1,11 @@
 package it.polimi.ingsw.GC_06.Client;
 
-import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
-import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestrator;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by massimo on 15/06/17.
@@ -33,7 +32,7 @@ public class ClientInputController implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public synchronized void update(Observable o, Object arg) {
         MessageServer serverMessage = (MessageServer) arg;
         serverMessage.execute(clientController);
     }

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
 
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import org.junit.Before;
@@ -21,6 +22,7 @@ public class ProdHarvZoneTest {
 
     @Before
     public void SetUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("gabri");
         game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[0].setValue(100);

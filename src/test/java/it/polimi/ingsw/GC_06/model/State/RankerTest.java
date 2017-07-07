@@ -1,9 +1,9 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,6 +24,8 @@ public class RankerTest {
 
     @Before
     public void SetUp() throws IOException {
+        Setting.getInstance().addPath("settings/bundle");
+
         game = new Game(1);
         game.addPlayer("player1");
         game.addPlayer("player2");

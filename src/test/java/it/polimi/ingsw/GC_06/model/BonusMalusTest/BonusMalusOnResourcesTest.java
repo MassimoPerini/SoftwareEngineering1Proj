@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.BonusMalusTest;
 
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnResources;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import org.junit.Before;
@@ -26,7 +27,7 @@ public class BonusMalusOnResourcesTest {
 
     @Before
     public void setUp(){
-
+        Setting.getInstance().addPath("settings/bundle");
         effectResourceSet = new ResourceSet();
         effectResourceSet.variateResource(Resource.MILITARYPOINT,12);
         effectResourceSet.variateResource(Resource.MONEY,4);

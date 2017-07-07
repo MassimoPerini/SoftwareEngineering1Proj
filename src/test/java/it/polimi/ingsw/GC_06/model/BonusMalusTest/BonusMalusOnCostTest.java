@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,6 @@ import org.junit.Test;
 import java.util.*;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 /**
  * Created by giuseppe on 6/17/17.
@@ -34,6 +34,7 @@ public class BonusMalusOnCostTest {
 
     @Before
     public void setUp() {
+        Setting.getInstance().addPath("settings/bundle");
         resourceSet.variateResource(it.polimi.ingsw.GC_06.model.Resource.Resource.MILITARYPOINT, 10);
         resourceSet.variateResource(it.polimi.ingsw.GC_06.model.Resource.Resource.MONEY, 10);
         bonusMalusEntity.variateResource(it.polimi.ingsw.GC_06.model.Resource.Resource.MONEY, -3);
