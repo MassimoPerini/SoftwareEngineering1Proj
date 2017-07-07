@@ -9,6 +9,7 @@ public class ClientFamilyMember implements Serializable {
     private String player;
     private int value;
     private String color;
+    private String playerColor;
 
     public ClientFamilyMember(String player, int value, String color) {
         this.player = player;
@@ -28,11 +29,19 @@ public class ClientFamilyMember implements Serializable {
     //*******
 
 
+    public void setPlayerColor(String playerColor) {
+        this.playerColor = playerColor;
+    }
+
     public synchronized String getPlayer() {
         return player;
     }
 
     public synchronized int getValue() {
         return value;
+    }
+
+    public String getPlayerColor() {
+        return playerColor;
     }
 }

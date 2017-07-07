@@ -28,11 +28,18 @@ public class ViewOrchestratorFx extends Observable implements ViewOrchestrator {
         this.generateGUIView();
     }
 
-    private FXMLView create(ClientStateName clientStateName) throws InstantiationException, IllegalAccessException {
-        Class<? extends FXMLView> clazz;
-        clazz = views.get(clientStateName);
-        FXMLView newView = clazz.newInstance();
-        return newView;
+    private FXMLView create(ClientStateName clientStateName) {
+        try {
+            Class<? extends FXMLView> clazz;
+            clazz = views.get(clientStateName);
+            FXMLView newView = clazz.newInstance();
+            return newView;
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error with reflect");
+        }
+        return null;
     }
 
 
@@ -58,22 +65,19 @@ public class ViewOrchestratorFx extends Observable implements ViewOrchestrator {
 
         if (views.get(clientStateName)!= null)
         {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        FXMLView view = create(clientStateName);
-                        view.getView();
-                        Scene scene = new Scene(view.getView());
-                    //    Observer currentPresenter = (Observer) view.getPresenter();
-                    //    this.addObserver(currentPresenter);
-                        stage.setScene(scene);
-                        stage.sizeToScene();
-                        stage.show();
-                    }
-                    catch(Exception e)
-                    {e.printStackTrace();}
+            FXMLView view = create(clientStateName);
+        //    Observer currentPresenter = (Observer) view.getPresenter();
+        //    this.addObserver(currentPresenter);
+            Platform.runLater(() -> {
+                try {
+                    view.getView();
+                    Scene scene = new Scene(view.getView());
+                    stage.setScene(scene);
+                    stage.sizeToScene();
+                    stage.show();
                 }
+                catch(Exception e)
+                {e.printStackTrace();}
             });
 
         }

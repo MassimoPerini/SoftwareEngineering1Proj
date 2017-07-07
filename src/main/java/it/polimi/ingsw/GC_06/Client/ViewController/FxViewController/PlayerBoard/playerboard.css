@@ -1,0 +1,23 @@
+.player-board-view
+{
+    -fx-background-image: url("../../../../../../../../view/player_board.jpg");
+    /*  -fx-max-height: 100%;  */
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 460, 326;
+    -fx-alignment: top-center;
+
+    -fx-min-height: 326;
+    -fx-min-width: 460;
+    -fx-pref-height: 326;
+    -fx-pref-width: 460;
+
+    -fx-padding: 5px 5px 5px 5px;
+    -fx-border-insets: 5px 5px 5px 5px;
+    -fx-background-insets: 5px 5px 5px 5px;
+
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+
+    -fx-background-position: top center;
+}

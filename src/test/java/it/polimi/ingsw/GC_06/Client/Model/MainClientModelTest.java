@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_06.Client.Model;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by giuseppe on 7/2/17.
@@ -14,7 +14,7 @@ public class MainClientModelTest {
 
     @Before
     public void setUp(){
-        mainClientModel = new MainClientModel();
+        mainClientModel = new MainClientModel(new PlayerColors());
     }
     @Test
     public void updateStatus() throws Exception {

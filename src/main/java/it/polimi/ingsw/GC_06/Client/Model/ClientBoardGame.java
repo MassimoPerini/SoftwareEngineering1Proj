@@ -74,9 +74,9 @@ public class ClientBoardGame extends Observable {
     {
         ClientTowerFloor clientTowerFloor = towersClient.get(tower).get(plane);
         clientTowerFloor.removeCard();
-
+/*
         setChanged();
-        notifyObservers();
+        notifyObservers();*/
     }
 
     public synchronized void addFamilyMemberToTower(ClientFamilyMember clientFamilyMember, String tower, int index)

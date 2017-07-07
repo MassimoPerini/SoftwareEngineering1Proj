@@ -4,10 +4,12 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMultipleSteps;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 
+import java.util.Observable;
+
 /**
  * Created by massimo on 06/07/17.
  */
-public class MessageCreator {
+public class MessageCreator extends Observable {
 
     private MessageClient messageClient;
     private int familyMember;
@@ -19,16 +21,19 @@ public class MessageCreator {
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
-    private void reset()
+    private synchronized void reset()
     {
         this.familyMember = -1;
         this.powerUp = 0;
+        this.messageClient = null;
     }
 
-    private boolean validate()
+    private synchronized void validate()
     {
         if (messageClient==null) {
-            return false;
+            setChanged();
+            notifyObservers(false);
+            return;
         }
 
         if (messageClient instanceof MessageMultipleSteps)
@@ -36,35 +41,40 @@ public class MessageCreator {
             MessageMultipleSteps messageMultipleSteps = (MessageMultipleSteps) messageClient;
             messageMultipleSteps.setFamilyMember(familyMember);
             messageMultipleSteps.setPowerUp(powerUp);
-            return messageMultipleSteps.isValid();
+            setChanged();
+            notifyObservers(messageMultipleSteps.isValid());
+            return;
         }
         else
         {
-            return true;
+            setChanged();
+            notifyObservers(true);
         }
     }
 
-    public void setMessageClient(MessageClient messageClient)
+    public synchronized void setMessageClient(MessageClient messageClient)
     {
         this.messageClient = messageClient;
+        validate();
     }
 
 
-    public void setFamilyMember(int familyMember)
+    public synchronized void setFamilyMember(int familyMember)
     {
         this.familyMember = familyMember;
+        validate();
     }
 
-    public void setPowerUp(int powerUp)
+    public synchronized void setPowerUp(int powerUp)
     {
         this.powerUp = powerUp;
+        validate();
     }
 
-    public void send()
+    public synchronized void send()
     {
-        if (this.validate()) {
             clientNetworkOrchestrator.send(messageClient);
-        }
+
         this.reset();
     }
 

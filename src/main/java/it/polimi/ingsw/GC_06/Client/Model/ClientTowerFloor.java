@@ -30,7 +30,7 @@ public class ClientTowerFloor extends Observable {
     {
         card = null;
         setChanged();
-        notifyObservers();
+        notifyObservers(card);
     }
     synchronized void addFamilyMember(ClientFamilyMember clientFamilyMember)
     {

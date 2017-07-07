@@ -17,10 +17,14 @@ public class ClientSpaceAction extends Observable {
 
     synchronized void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
         familyMembers.add(clientFamilyMember);
+        setChanged();
+        notifyObservers();
     }
 
     synchronized void reset() {
         familyMembers = new LinkedList<>();
+        setChanged();
+        notifyObservers();
         //notify
     }
 

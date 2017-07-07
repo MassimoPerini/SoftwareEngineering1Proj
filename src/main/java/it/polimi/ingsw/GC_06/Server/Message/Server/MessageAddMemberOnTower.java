@@ -2,10 +2,8 @@ package it.polimi.ingsw.GC_06.Server.Message.Server;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
-import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by massimo on 14/06/17.
@@ -18,7 +16,7 @@ public class MessageAddMemberOnTower implements MessageServer{
     private final String userFamilyMember;
     private final String diceColor;
 
-    public MessageAddMemberOnTower(@NotNull String tower, int index, @NotNull FamilyMember familyMember)
+    public MessageAddMemberOnTower(String tower, int index, FamilyMember familyMember)
     {
         this.tower = tower;
         this.index = index;

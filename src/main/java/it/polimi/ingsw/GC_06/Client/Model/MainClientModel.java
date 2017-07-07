@@ -20,13 +20,15 @@ public class MainClientModel extends Observable{
     private String currentPlayer;
     private String myUsername;
     private List<PersonalStatistics> personalStatistics;
+    private PlayerColors playerColors;
 
-    public MainClientModel()
+    public MainClientModel(PlayerColors playerColors)
     {
         playerBonusActions = new PlayerBonusActions();
         clientPlayerBoard = new HashMap<>();
         this.clientBoardGame = new ClientBoardGame();
         this.myUsername = "";
+        this.playerColors = playerColors;
     }
 
     public synchronized void setMyUsername(String myUsername) {
@@ -65,6 +67,8 @@ public class MainClientModel extends Observable{
     public synchronized void generateNewPlayerBoard(String username, List<String> customResources)
     {
         clientPlayerBoard.put(username, new ClientPlayerBoard(username, customResources));
+        // add color
+        playerColors.addPlayer(username);
     }
 
     public synchronized ClientPlayerBoard getClientPlayerBoard(String name) {

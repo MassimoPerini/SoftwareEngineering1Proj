@@ -3,17 +3,19 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.FamilyMembe
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
+import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +28,7 @@ public class FamilyMembersPresenter {
 
 
     @FXML private ListView familyMembersView;
-    @FXML private BorderPane mainView;
+    @FXML private VBox mainView;
     @FXML private TextField powerUpValue;
 
     @Inject
@@ -53,9 +55,9 @@ public class FamilyMembersPresenter {
                         Canvas canvas = new Canvas();
                         GraphicsContext gc = canvas.getGraphicsContext2D();
                     //    Field field = Class.forName("javafx.scene.paint.Color").getField(familyMember.getColor().toLowerCase());
-                    //    gc.setFill((Color) field.get(null));
-                        gc.setFill(Color.RED);
-                        gc.fillOval(2, 2, 5, 5);
+                        gc.setFill(Color.web(familyMember.getPlayerColor()));
+                   //     gc.setFill(Color.RED);
+                        gc.fillOval(5, 5, 10, 10);
                         setGraphic(canvas);
                         setText(String.valueOf(familyMember.getValue()));
                     }
@@ -123,4 +125,8 @@ public class FamilyMembersPresenter {
         }
 
 
+    public void handlePassPressed(ActionEvent actionEvent) {
+        MessageEndTurn messageEndTurn = new MessageEndTurn();
+        messageCreator.setMessageClient(messageEndTurn);
     }
+}

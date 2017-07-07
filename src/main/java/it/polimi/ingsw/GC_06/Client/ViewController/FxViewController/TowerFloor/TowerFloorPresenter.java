@@ -53,14 +53,13 @@ public class TowerFloorPresenter implements Observer {
         spaceActionView.getView().getStyleClass().add("space-action-floor");
 
         mainView.getChildren().add(spaceActionView.getView());
-
+        clientTowerFloor.addObserver(this);
         update(null, null);
     }
 
     @PostConstruct
     public void init()
     {
-        clientTowerFloor.addObserver(this);
     }
 
     @Override

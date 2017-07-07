@@ -107,7 +107,7 @@ public class MessageBoardActionTower implements MessageMultipleSteps{
 
     @Override
     public void setFamilyMember(int index) {
-
+        this.clientFamilyMember = index;
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.airhacks.afterburner.injection.Injector;
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.ClientInputController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
+import it.polimi.ingsw.GC_06.Client.Model.PlayerColors;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
@@ -35,6 +36,7 @@ public class AppClient extends Application {
     private static ClientNetworkOrchestrator clientNetworkOrchestrator;
     private static ClientInputController clientInputController;
     private static ClientController clientController;
+    private static PlayerColors playerColors;
 
     public static void main(String[] args) throws IOException {
         Setting.getInstance().addPath("settings/client");
@@ -44,7 +46,8 @@ public class AppClient extends Application {
         CommandView commandView = new CmdView();
         commandView.addLocalizedText("Che interfaccia vuoi? 0: CLI, 1: GUI");
         int view = commandView.getInt(0,1);
-        clientController = new ClientController();
+        playerColors = new PlayerColors();
+        clientController = new ClientController(playerColors);
 
         clientNetworkOrchestrator = new ClientNetworkOrchestrator();
         clientInputController = new ClientInputController(clientNetworkOrchestrator, clientController);
@@ -79,7 +82,7 @@ public class AppClient extends Application {
         customProperties.put("viewOrchestratorFx", viewOrchestratorFx);
 
         customProperties.put("clientNetworkOrchestrator", clientNetworkOrchestrator);
-
+        customProperties.put("playerColors", playerColors);
         customProperties.put("messageCreator", new MessageCreator(clientNetworkOrchestrator));
         customProperties.put("mainClientModel", clientController.getMainClientModel());
         customProperties.put("playerBonusActions", clientController.getMainClientModel().getPlayerBonusActions());

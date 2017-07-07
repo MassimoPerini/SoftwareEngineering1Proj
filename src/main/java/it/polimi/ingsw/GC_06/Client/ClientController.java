@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Client;
 
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
+import it.polimi.ingsw.GC_06.Client.Model.PlayerColors;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestrator;
 
 /**
@@ -11,8 +12,8 @@ public class ClientController {
     private final MainClientModel mainClientModel;
     private ViewOrchestrator viewOrchestrator;
 
-    public ClientController() {
-        this.mainClientModel = new MainClientModel();
+    public ClientController(PlayerColors playerColors) {
+        this.mainClientModel = new MainClientModel(playerColors);
     }
 
 
