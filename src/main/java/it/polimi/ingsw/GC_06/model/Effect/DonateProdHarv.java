@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 23/06/17.
+ * la classe è un effetto che dà un azione di raccolto o produzione aggiuntiva
  */
 
 public class DonateProdHarv implements Effect {
@@ -15,6 +16,11 @@ public class DonateProdHarv implements Effect {
     private int value;
     private ActionType actionType;
 
+    /**
+     *
+     * @param value il valore dell'azione aggiuntiva da eseguire
+     * @param actionType il tipo di azione aggiunta, raccolto o produzione
+     */
     public DonateProdHarv(int value, ActionType actionType) {
         this.value = value;
         this.actionType = actionType;

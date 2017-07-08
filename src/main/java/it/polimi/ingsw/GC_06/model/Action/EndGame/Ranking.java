@@ -8,6 +8,7 @@ import java.util.Set;
 
 /**
  * Created by giuseppe on 7/3/17.
+ * renak dei giocaotori in una partita, ne esiste una sola istanza
  */
 public class Ranking {
 
@@ -18,6 +19,11 @@ public class Ranking {
 
     }
 
+    /**
+     * getter della classe Singleton
+     * @return ritorna l'istanza della classe
+     */
+
     public static  Ranking getInstance(){
         if(instance == null){
             instance = new Ranking();
@@ -26,6 +32,11 @@ public class Ranking {
     }
 
 
+    /**
+     *
+     * @param game gioco di cui si sta eseguendo il ranking
+     * @return ritorna una lista di statistiche legate ai giocatori
+     */
     public List<PersonalStatistics> produceCurrentGameRanking(Game game){
 
         List<PersonalStatistics> currentRanking = new LinkedList<>();

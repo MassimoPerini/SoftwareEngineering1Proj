@@ -15,7 +15,6 @@ public class ClientBoardGame extends Observable {
     private final List<List<ClientSpaceAction>> council;
     private final List<String> orderTowers;
 
-
     public ClientBoardGame()
     {
         towersClient = new HashMap<>();

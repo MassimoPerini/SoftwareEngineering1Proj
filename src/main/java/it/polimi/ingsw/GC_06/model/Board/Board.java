@@ -14,7 +14,7 @@ import java.util.Observable;
 
 /**
  * @author massimo
- * This class represents the main board of the game
+ * This class represents the main board of the game, and contains all the elements
  */
 public class Board extends Observable{
     private final Map<String, Tower> towers;
@@ -30,13 +30,16 @@ public class Board extends Observable{
         this.prodHarvZones = prodHarvZones;
         this.councils = councils;
 
-    }//TODO da integrare con il caricamento degli effetti da file, in modo da mettere gli effetti sui vari actionplace
+    }
 
     //TODO remove FIX here!
     public Map<String, Tower> getTowers() {
         return towers;
     }
 
+    /**
+     * elimina i familiari associati a tutti gli spazi della board
+     */
     public void resetFamilyMembers()
     {
         for (Tower tower : towers.values()) {

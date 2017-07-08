@@ -7,6 +7,8 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by giuseppe on 5/28/17.
+ * la classe è un effetto che permette di convertire tra di loro alcune carte con risorse e punti sulla base di
+ * condizioni settate
  */
 public class EffectOnConditions implements Effect{
 
@@ -21,6 +23,11 @@ public class EffectOnConditions implements Effect{
         this.trasferredResource = trasferredResource;
     }
 
+    /**
+     *
+     * @param player il giocatore sul quale eseguire l'effetto
+     * @param game il gioco corrente
+     */
     @Override
     public void execute(Player player,Game game) {
 
@@ -33,6 +40,11 @@ public class EffectOnConditions implements Effect{
        player.variateResource(resourceSet);
     }
 
+    /**
+     *
+     * @param player il giocatore sul quale eseguire l'effetto
+     * @return ritorna la quantità di carte del giocatore che rispettano il colore settato per la conversione
+     */
     private int converter(Player player){
 
         int conditionalValue;

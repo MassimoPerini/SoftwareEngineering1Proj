@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.BonusMalus;
 
 /**
  * Created by giuseppe on 6/12/17.
+ * bonus malus che modifica la possibilità di accesso di un giocatore ad uno spazio
  */
 public class BonusMalusOnAccess {
 

@@ -9,9 +9,8 @@ import java.util.List;
 
 /**
  * Created by giuseppe on 6/22/17.
+ * la classe rappresenta bonusMalus da applicare durante l'endGame
  */
-
-/** queste sono le ultime 4 carte della colonna III delle scomuniche */
 
 public class BonusMalusOnEnd {
 

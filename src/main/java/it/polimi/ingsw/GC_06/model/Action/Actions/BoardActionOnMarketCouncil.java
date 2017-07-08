@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * Created by massimo on 06/06/17.
+ * L'azione che rappresenta il posizionamento di un familiare su uno spazio mercato o consiglio
+ * l'azione si occupa anche di lanciare gli effetti ed i filtraggi conseguenti la mossa del giocatore
  */
 public class BoardActionOnMarketCouncil implements Action {
 
@@ -45,6 +47,10 @@ public class BoardActionOnMarketCouncil implements Action {
         this.executeEffects = new ExecuteEffects(effectList, player,game);
     }
 
+    /**
+     * Il metodo execute è il metodo principale della classe, che gestisce il lancio di effetti e filtraggi
+     * @throws InterruptedException
+     */
     @Override
     public void execute() throws InterruptedException {
 
@@ -69,6 +75,10 @@ public class BoardActionOnMarketCouncil implements Action {
         this.game = game;
     }
 
+    /**
+     * il metodo isAllowed controlla l'applicabilità della mossa
+     * @return ritorna il risultato del filtraggio con bonusMalus
+     */
     @Override
     public boolean isAllowed() {
         if (!familyMember.isAllowed())

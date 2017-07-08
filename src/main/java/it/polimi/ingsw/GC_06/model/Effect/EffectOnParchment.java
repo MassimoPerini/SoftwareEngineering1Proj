@@ -16,6 +16,8 @@ import java.util.List;
 
 /**
  * Created by giuseppe on 5/28/17.
+ * la classe è un effetto che permette di ricevere uno o più privilegi del consiglio, che possono o meno essere
+ * diversi tra loro
  */
 public class EffectOnParchment implements Effect, Blocking {
 
@@ -32,6 +34,13 @@ public class EffectOnParchment implements Effect, Blocking {
         alreadyChoosed = new LinkedList<>();
     }
 
+    /**
+     * permette non solo di ricevere il privilegio del consiglio, ma anche di gestire la scelta del giocatore
+     * il metodo è synchronized per permettere di evitare stati di attesa, gestendo le azioni con thread diversi
+     * @param player
+     * @param game
+     * @throws InterruptedException
+     */
     @Override
     public synchronized void execute (Player player,Game game) throws InterruptedException {
         FileLoader fileLoader = FileLoader.getFileLoader();
@@ -54,6 +63,12 @@ public class EffectOnParchment implements Effect, Blocking {
         }
     }
 
+    /**
+     * attende e gestisce la scelta  del giocatore
+     * @param game
+     * @param messageChooseParchment
+     * @throws InterruptedException
+     */
     private synchronized void waitAnswer(Game game, MessageChooseParchment messageChooseParchment) throws InterruptedException {
         GameList.getInstance().setCurrentBlocking(game, this, messageChooseParchment);
         while (choosen == null) {

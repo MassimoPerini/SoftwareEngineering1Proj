@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Created by massimo on 01/06/17.
+ * la classe implementa l'azione da parte di un giocatore di mettere un familiare su una zona produzione o una zona raccolto
  */
 public class BoardActionOnProdHarv implements Action {
 
@@ -56,6 +57,10 @@ public class BoardActionOnProdHarv implements Action {
      * Adds the family member and starts the prod/harv
      */
 
+    /**
+     * il metodo si occupa di utilizzare il familiare e di gestire gli effetti legati agli spazi azione
+     * @throws InterruptedException
+     */
     @Override
     public void execute() throws InterruptedException {
 
@@ -84,9 +89,11 @@ public class BoardActionOnProdHarv implements Action {
     }
 
 
-
-
-
+    /**
+     *
+     * @return ritorna se l'azione può essere eseguita
+     * @throws InterruptedException
+     */
     @Override
     public boolean isAllowed() throws InterruptedException {
 

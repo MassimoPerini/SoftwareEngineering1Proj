@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 26/05/17.
+ * la classe implementa la possibilità di potenziare un familiare tramite servitori
  */
 public class PowerUpFamilyMember implements Action {
 
@@ -30,6 +31,9 @@ public class PowerUpFamilyMember implements Action {
         variateResources.variateResource(resource,value*coefficient);
     }
 
+    /**
+     * esegue il filtraggio dell'azione con i bonusMalus e poi cambia il valore del familiare
+     */
     @Override
     public void execute() {
 
@@ -41,6 +45,11 @@ public class PowerUpFamilyMember implements Action {
 
     }
 
+    /**
+     * controlla che il giocatore abbia le risorse per eseguire l'azione
+     *
+     * @return ritorna se l'azione si può eseguire o meno
+     */
     @Override
     public boolean isAllowed() {
 

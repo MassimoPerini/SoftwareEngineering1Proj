@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * @author massimo
  * This class is the fixed-element ActionPlace
- * We HAVE TO use the delegation pattern instead of the extension
  */
 public class ActionPlaceFixed extends ActionPlace {
 
@@ -24,8 +23,8 @@ public class ActionPlaceFixed extends ActionPlace {
 	/**
 	 * Inherited check (the value of the family member) + check if the number of familyMembers is lower than the maximum
 	 * (if it is equals I readched the treshold)
-	 * @param member
-	 * @return
+	 * @param member il familiare che può essere aggiunto allo spazio azione
+	 * @return ritorna se l'azione può essere eseguita
 	 */
 	@Override
 	public boolean isAllowed(FamilyMember member)

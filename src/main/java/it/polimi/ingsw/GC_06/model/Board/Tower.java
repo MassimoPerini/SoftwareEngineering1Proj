@@ -41,8 +41,7 @@ public class Tower extends Observable{
     /**
      * Chack if you deserve a malus when you add the card (the -3 gold).
      * It will be used together with getMalusOnMultipleFamilyMembers
-     * TODO DO IT!
-     * @return
+     * @return se va applicato il malus di -3 legato alla torre
      */
 
 
@@ -69,7 +68,7 @@ public class Tower extends Observable{
      * Neutral family member doesn't count
      * @param familyMember
      * @param towerFloorUser
-     * @return
+     * @return se può essere o meno aggiunto il familiare
      */
     public boolean isAllowed(FamilyMember familyMember, int towerFloorUser) {
 

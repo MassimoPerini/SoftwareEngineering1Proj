@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Created by giuseppe on 6/11/17.
+ * la classe implementa la possibilità, durante un turno, di giocare una carta eroe
  */
 public class HeroCardAction implements Action {
 
@@ -26,6 +27,10 @@ public class HeroCardAction implements Action {
         this.game = game;
     }
 
+    /**
+     * il metodo che si occupa di lanciare gli effetti della carta scelta dal giocatore
+     * @throws InterruptedException
+     */
     @Override
     public void execute() throws InterruptedException {
 
