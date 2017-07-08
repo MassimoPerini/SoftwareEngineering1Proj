@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.BoardActionOnProdHarv;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.DefaultAskUserSelector;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -21,12 +22,15 @@ public class MessageProdHarv implements MessageMultipleSteps{
     private int game;
     private int index;
     private int powerUpValue;  /** di quanto il player vuole alzare il valore del familiare */
+    private ActionType actionType;
+    private ActionType startProdHarv;
 
-    public MessageProdHarv(int prodHarvAreaSelector, int familyMember,int index, int powerUpValue) {
+    public MessageProdHarv(int prodHarvAreaSelector, int familyMember,int index, int powerUpValue,ActionType actionType) {
         this.prodHarvAreaSelector = prodHarvAreaSelector;
         this.clientFamilyMember = familyMember;
         this.index = index;
         this.powerUpValue = powerUpValue;
+        this.actionType = actionType;
     }
 
     public MessageProdHarv(Object prodHarvAreaSelector, int index) {
@@ -46,7 +50,7 @@ public class MessageProdHarv implements MessageMultipleSteps{
 
 
 
-        BoardActionOnProdHarv boardActionOnProdHarv = new BoardActionOnProdHarv(currentPlayer,index,prodHarvZone,prodHarvZone.getActionType(),defaultAskUserSelector,familyMember, currentGame);
+        BoardActionOnProdHarv boardActionOnProdHarv = new BoardActionOnProdHarv(currentPlayer,index,prodHarvZone,actionType,startProdHarv,defaultAskUserSelector,familyMember, currentGame);
         PowerUpFamilyMember powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,powerUpValue);
 /*
         System.out.println("ACTION STARTED");
@@ -68,6 +72,7 @@ public class MessageProdHarv implements MessageMultipleSteps{
                 boardActionOnProdHarv.execute();
             }
             else{
+                System.out.println("grazie a dio stai sbagliando");
                 currentGame.getGameStatus().changeState(TransitionType.ERROR);
             }
         }
@@ -118,10 +123,6 @@ public class MessageProdHarv implements MessageMultipleSteps{
         return clientFamilyMember!=-1;
     }
 
-    @Override
-    public void run() {
-        execute();
-    }
 
     @Override
     public void setFamilyMember(int index) {
@@ -131,5 +132,9 @@ public class MessageProdHarv implements MessageMultipleSteps{
     @Override
     public void setPowerUp(int powerUp) {
         this.powerUpValue = powerUp;
+    }
+
+    public void setStartProdHarv(ActionType startProdHarv) {
+        this.startProdHarv = startProdHarv;
     }
 }

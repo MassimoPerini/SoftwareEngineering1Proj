@@ -85,20 +85,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
         personalBonusChoiceHandler.execute(game, serverOrchestrator);
 
-        List<HeroCard> heroCardList = new LinkedList<>();
-        heroCardList.addAll(Arrays.asList(heroCards));
 
-
-        for (Player player : players) {
-
-            for (int i = 0; i < heroCardsNumber; i++) {
-                Random rand = new Random();
-                int n = rand.nextInt(heroCardList.size());
-                HeroCard heroCard = heroCardList.get(n);
-                player.getHeroCard().add(heroCard);
-                heroCardList.remove(heroCardList.get(n));
-            }
-        }
 
         //---- Notificare l'init
         MessageGameStarted messageGameStarted = new MessageGameStarted(game);
@@ -106,6 +93,29 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         serverOrchestrator.send(game.getId(), messageGameStarted);
 
         //------- END MESSAGE
+
+
+
+        List<HeroCard> heroCardList = new LinkedList<>();
+        heroCardList.addAll(Arrays.asList(heroCards));
+
+        List<HeroCard> selectedHeroCard = new LinkedList<>();
+
+        for (Player player : players) {
+
+            for (int i = 0; i < heroCardsNumber; i++) {
+                Random rand = new Random();
+                int n = rand.nextInt(heroCardList.size());
+                HeroCard heroCard = heroCardList.get(n);
+                selectedHeroCard.add(heroCard);
+                heroCardList.remove(heroCardList.get(n));
+            }
+
+            player.setHeroCard(selectedHeroCard);
+            selectedHeroCard = new LinkedList<>();
+
+        }
+
 
         game.roll();
 
@@ -133,7 +143,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         game.roll();
 
         //Handle the new order
-        List<FamilyMember> familyMembersCouncil = game.getBoard().getMarketAndCouncils().get(0).getActionPlaces().get(0).getMembers();
+        List<FamilyMember> familyMembersCouncil = game.getBoard().getCouncils().get(0).getActionPlaces().get(0).getMembers();
         List<String> playersTurn = new LinkedList<>();
         //Save the name of the players inside the council
         for (FamilyMember familyMember : familyMembersCouncil) {
@@ -156,6 +166,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         //Getting the Players
         for (String namePlayer : playersTurn) {
             players.add(game.getGameStatus().getPlayers().get(namePlayer));
+        }
+
+        for (Player player : players) {
+            player.resetHeroCard();
         }
         return players;
     }

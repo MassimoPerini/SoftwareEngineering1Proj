@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.model.playerTools;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.HeroCardUploadMessageServer;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddCard;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateResource;
 import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
@@ -145,6 +146,32 @@ public class Player extends Observable {
 
         Player player = (Player) o;
         return PLAYER_ID.equals(player.PLAYER_ID);
+    }
+
+
+    public void setHeroCard(List<HeroCard> heroCard) {
+
+        this.heroCard = heroCard;
+        List<String> heroCardsName = new LinkedList<>();
+        for (HeroCard card : this.heroCard) {
+            heroCardsName.add(card.getPath());
+        }
+        MessageServer messageServer = new HeroCardUploadMessageServer(this.PLAYER_ID,heroCardsName);
+        setChanged();
+        notifyObservers(messageServer);
+    }
+
+    public void  removeHeroCard(int value){
+        this.heroCard.remove(value);
+        List<String> heroCardsName = new LinkedList<>();
+
+        for (HeroCard card : this.heroCard) {
+            heroCardsName.add(card.getPath());
+        }
+        MessageServer messageServer = new HeroCardUploadMessageServer(this.PLAYER_ID,heroCardsName);
+        setChanged();
+        notifyObservers(messageServer);
+
     }
 
 

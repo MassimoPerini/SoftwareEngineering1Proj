@@ -44,8 +44,12 @@ public class MainClientModel extends Observable{
 
     public List<PersonalStatistics> getPersonalStatistics() {
         // qua si deve ordinare
+
+
         return personalStatistics;
     }
+
+
 
     public synchronized void updateStatus(int turn, int era, String username)
     {
@@ -109,6 +113,8 @@ public class MainClientModel extends Observable{
     public ClientStateName getMyStatus() {
         return myStatus;
     }
+
+
 
 
 }

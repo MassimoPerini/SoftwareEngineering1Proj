@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Server.Message.Client;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.BoardActionOnMarketCouncil;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
@@ -12,24 +13,29 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
  */
 public class MessageMarketCouncil implements MessageMultipleSteps {
 
+    /** questo messaggio mi deve creare o l'azione market o l'azione council */
+
     private String player;
     private int game;
     private int familyMember;
-    private final int marketCouncil;
+    private final int slotSelector;
     private final int slot;
     private int powerUp;
+    private ActionType actionType;
+    private MarketAndCouncil marketAndCouncil;
 
-    public MessageMarketCouncil(int marketCouncil, int slot, int familyMember, int powerUp)
+    public MessageMarketCouncil(int slotSelector, int slot, int familyMember, int powerUp, ActionType actionType)
     {
         this.slot = slot;
         this.familyMember = familyMember;
-        this.marketCouncil = marketCouncil;
+        this.slotSelector = slotSelector;
         this.powerUp = powerUp;
+        this.actionType = actionType;
     }
 
-    public MessageMarketCouncil(Object marketCouncil, int slot)
+    public MessageMarketCouncil(Object slotSelector, int slot)
     {
-        this.marketCouncil = (int) marketCouncil;
+        this.slotSelector = (int) slotSelector;
         this.slot = slot;
         this.familyMember = -1;
     }
@@ -38,10 +44,21 @@ public class MessageMarketCouncil implements MessageMultipleSteps {
     public void execute()
     {
         Game currentGame = GameList.getInstance().getGameId(game);
-        MarketAndCouncil marketAndCouncil = currentGame.getBoard().getMarketAndCouncils().get(marketCouncil);
+
+        // questa è da sistemare
+
+        // a seconda del tipo di azione che ha richiesto il client noi dovremmo aggiungere al consiglio o al mercato
+
         Player currentPlayer = currentGame.getGameStatus().getPlayers().get(player);
 
-        BoardActionOnMarketCouncil boardActionOnMarketCouncil = new BoardActionOnMarketCouncil(marketAndCouncil, slot, currentPlayer.getFamilyMembers()[familyMember], currentPlayer, marketAndCouncil.getActionType(),currentGame, powerUp);
+        if(actionType.equals(ActionType.BOARD_ACTION_ON_MARKET)){
+              this.marketAndCouncil = currentGame.getBoard().getMarket().get(slotSelector);
+        }
+        else
+            this.marketAndCouncil = currentGame.getBoard().getCouncils().get(slotSelector);
+
+            BoardActionOnMarketCouncil boardActionOnMarketCouncil = new BoardActionOnMarketCouncil(marketAndCouncil, slot, currentPlayer.getFamilyMembers()[familyMember], currentPlayer, actionType,currentGame, powerUp);
+
 
         try {
             if (boardActionOnMarketCouncil.isAllowed()) {
@@ -74,10 +91,7 @@ public class MessageMarketCouncil implements MessageMultipleSteps {
         return familyMember!=-1;
     }
 
-    @Override
-    public void run() {
-        execute();
-    }
+
 
     @Override
     public void setFamilyMember(int index) {

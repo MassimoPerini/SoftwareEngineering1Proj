@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Server.PopUp;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMarketCouncil;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import org.junit.Before;
@@ -31,7 +32,7 @@ public class MessageMarketCouncilTest {
 
         game.getGameStatus().getPlayers().get("peppe").getFamilyMembers()[0].setValue(100);
 
-        messageMarketCouncil = new MessageMarketCouncil(0,0,0, 0);
+        messageMarketCouncil = new MessageMarketCouncil(0,0,0, 0, ActionType.BOARD_ACTION_ON_MARKET);
         messageMarketCouncil.setGame(0);
         messageMarketCouncil.setPlayer("peppe");
 

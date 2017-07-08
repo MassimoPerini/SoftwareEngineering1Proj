@@ -91,10 +91,7 @@ public class MessageBoardActionTower implements MessageMultipleSteps{
         return player;
     }
 
-    @Override
-    public void run() {
-        execute();
-    }
+
 
     @Override
     public void setFamilyMember(int index) {

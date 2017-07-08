@@ -22,4 +22,13 @@ public class PersonalStatistics implements Serializable {
         this.victoryPointQuantity = victoryPointQuantity;
         this.totalResourceAmountQuantity = totalResourceAmountQuantity;
     }
+
+    public int pointDifferences(PersonalStatistics personalStatistics){
+
+        return this.faithPointQuantity - personalStatistics.getFaithPointQuantity();
+    }
+
+    public int getFaithPointQuantity() {
+        return faithPointQuantity;
+    }
 }

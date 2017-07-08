@@ -75,7 +75,7 @@ public class RoundManager extends Observable {
         return -1;
     }
 
-    void endTurn()
+    boolean endTurn()
     {
         if (players.size()==0)
             throw new IllegalStateException();
@@ -85,7 +85,7 @@ public class RoundManager extends Observable {
         {
             endGame();
             reset();
-            return;
+            return false;
         }
 
         if (currentPlayer >= newPlayer)      //means that I'm starting again the "cycle"
@@ -101,7 +101,7 @@ public class RoundManager extends Observable {
                         era=1;
                         endGame();      //Do here what you need to do when the game finished
                         reset();
-                        return;
+                        return false;
                     } else {
                         this.newEra();       //A new era started
                     }
@@ -113,11 +113,12 @@ public class RoundManager extends Observable {
         }
         currentPlayer = newPlayer;
 
+        System.out.println("ERA: "+era+" TURN: "+turn);
 
         MessageChangePlayer messageChangePlayer = new MessageChangePlayer(this.getCurrentPlayer().getPLAYER_ID(), era, turn);
         setChanged();
         notifyObservers(messageChangePlayer);
-
+        return true;
 //        Game.getInstance().getGameStatus().changeState(TransitionType.ROUNDFINISHED);
     }
 

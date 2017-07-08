@@ -5,24 +5,20 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
-import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.PlayerHeroCardChoices;
+import it.polimi.ingsw.GC_06.Server.Message.Client.DiscardHeroCardMessage;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
- * Created by giuseppe on 7/5/17.
+ * Created by giuseppe on 7/8/17.
  */
-public class PlayHeroCardViewController  implements ViewPresenterCLI{
+public class DiscardHeroCardViewController implements ViewPresenterCLI {
 
     private final CommandView commandView;
     private final ClientNetworkOrchestrator clientNetworkOrchestrator;
     private final ClientPlayerBoard clientPlayerBoard;
-    private List<Integer> heroCardsIndexes = new LinkedList<>();
+    private int discardedHeroCards;
 
-
-    public PlayHeroCardViewController(ClientPlayerBoard clientPlayerBoard,ClientNetworkOrchestrator clientNetworkOrchestrator) {
+    public DiscardHeroCardViewController(ClientPlayerBoard clientPlayerBoard,ClientNetworkOrchestrator clientNetworkOrchestrator) {
         commandView = new CmdView();
         this.clientPlayerBoard = clientPlayerBoard;
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
@@ -30,17 +26,18 @@ public class PlayHeroCardViewController  implements ViewPresenterCLI{
 
     @Override
     public void viewWillAppear() throws InterruptedException {
-        commandView.addLocalizedText("Puoi Giocare una favolosa Hero Card");
+
+        commandView.addLocalizedText("Puoi Scartare una carta");
         commandView.addText("\n");
-        commandView.addLocalizedText("Che carte vuoi?");
+        commandView.addLocalizedText("Che carte vuoi Scartate?");
         int i = 0;
         for (String s : clientPlayerBoard.getHeroCards()) {
-            System.out.println(String.valueOf(i) + Setting.getInstance().getProperty(s) +  "   " + s);
+
+            System.out.println(String.valueOf(i) + " " + Setting.getInstance().getProperty(s) +  "   " + s);
+            i++;
         }
-        heroCardsIndexes = commandView.getList(0,clientPlayerBoard.getHeroCards().size()-1);
-        clientNetworkOrchestrator.send(new PlayerHeroCardChoices(heroCardsIndexes));
-
-
+        discardedHeroCards = commandView.getInt(0,clientPlayerBoard.getHeroCards().size()-1);
+        clientNetworkOrchestrator.send(new DiscardHeroCardMessage(discardedHeroCards));
 
     }
 }

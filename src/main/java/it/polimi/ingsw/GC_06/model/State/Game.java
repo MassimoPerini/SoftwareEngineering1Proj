@@ -75,8 +75,9 @@ public class Game {
 
     public void endTurn()
     {
-        roundManager.endTurn();
-        getGameStatus().changeState(TransitionType.NEXT_PLAYER);
+        if (roundManager.endTurn()) {
+            getGameStatus().changeState(TransitionType.NEXT_PLAYER);
+        }
     }
 
 

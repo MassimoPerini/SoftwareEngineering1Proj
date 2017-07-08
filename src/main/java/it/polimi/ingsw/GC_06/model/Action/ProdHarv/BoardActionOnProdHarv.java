@@ -26,8 +26,8 @@ public class BoardActionOnProdHarv implements Action {
     private final FamilyMember familyMember;
     private final StartProdHarv startProdHarv;
     private Game game;
-    private final ActionType ACTION_TYPE = ActionType.BOARD_ACTION_ON_PROD_HARV;
     private ActionType actionTypeStartProdHarv;
+    private ActionType actionType;
 
     /**
      *
@@ -39,18 +39,19 @@ public class BoardActionOnProdHarv implements Action {
      * @param familyMember The family member placed
      */
 
-    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ActionType actionType, AskUserCard askUserCardFilter , FamilyMember familyMember, Game game)
+    public BoardActionOnProdHarv(Player player, int index, ProdHarvZone prodHarvArea, ActionType actionType, ActionType startProdHarvType, AskUserCard askUserCardFilter , FamilyMember familyMember, Game game)
     {
         super();
         if (player == null || prodHarvArea == null || familyMember == null || askUserCardFilter==null || actionType == null)
             throw new NullPointerException();
-        this.actionTypeStartProdHarv = actionType;
+        this.actionType = actionType;
         this.prodHarvArea = prodHarvArea;
+        this.actionTypeStartProdHarv = startProdHarvType;
         this.player = player;
         this.game = game;
         this.index = index;
         this.familyMember = familyMember;
-        this.startProdHarv = new StartProdHarv(actionType, askUserCardFilter ,familyMember.getValue(), player, game);
+        this.startProdHarv = new StartProdHarv(actionTypeStartProdHarv, askUserCardFilter ,familyMember.getValue(), player, game);
     }
 
     /**
@@ -74,10 +75,10 @@ public class BoardActionOnProdHarv implements Action {
         executeEffects.execute();
 
 
-        BonusMalusHandler.filter(player,ACTION_TYPE,null,familyMember);
+        BonusMalusHandler.filter(player,actionType,null,familyMember);
 
         startProdHarv.setValue(familyMember.getValue());
-        player.getBonusMalusSet().removeBonusMalusAction(ACTION_TYPE,null);
+        player.getBonusMalusSet().removeBonusMalusAction(actionType,null);
 
         startProdHarv.execute();
         prodHarvArea.addFamilyMember(familyMember, index);
@@ -107,7 +108,7 @@ public class BoardActionOnProdHarv implements Action {
 
         int originalValue = familyMember.getValue();
 
-        BonusMalusHandler.filter(playerClone,ACTION_TYPE,null,familyMember);
+        BonusMalusHandler.filter(playerClone,actionType,null,familyMember);
 
         startProdHarv.setValue(familyMember.getValue());
 
@@ -119,7 +120,6 @@ public class BoardActionOnProdHarv implements Action {
         return familyMember.isAllowed() && prodHarvArea.isAllowed(familyMember, index) &&  game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_PRODHARV);
 
     }
-
 
 
 

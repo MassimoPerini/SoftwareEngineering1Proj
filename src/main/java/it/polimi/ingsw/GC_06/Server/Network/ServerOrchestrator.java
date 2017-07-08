@@ -93,6 +93,7 @@ public class ServerOrchestrator extends Observable implements Observer {
                 @Override
                 public void run() {
                     try {
+                        System.out.println("sono qua");
                         LoginHub.getInstance().manageLogOut(playerId);
                     }
                     catch (Exception e)
@@ -135,6 +136,7 @@ public class ServerOrchestrator extends Observable implements Observer {
             Timer timer = userTimer.get(player);
             if (timer != null) {
                 timer.cancel();
+                userTimer.remove(player);
             }
 
             setChanged();

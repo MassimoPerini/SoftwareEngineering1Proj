@@ -372,8 +372,8 @@
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "MILITARYPOINT": 3,
-                  "MONEY": 2
+                  "MONEY": 2,
+                  "MILITARYPOINT": 3
                 }
               }
             }
@@ -388,13 +388,15 @@
             {
               "type": "EffectOnParchment",
               "different": true,
-              "quantity": 2
+              "quantity": 2,
+              "alreadyChoosed": []
             }
           ],
           "members": [],
           "price": 1
         }
       ],
+      "actionType": "BOARD_ACTION_ON_MARKET",
       "changed": false,
       "obs": []
     }
@@ -423,7 +425,10 @@
                     {
                       "colourTarget": "",
                       "familyMemberColours": [
-                        ""
+                        "",
+                        "RED",
+                        "WHITE",
+                        "BLACK"
                       ],
                       "actionType": "PRODUCTION_ACTION",
                       "permanent": false,
@@ -442,7 +447,8 @@
                 },
                 "bonusMalusOnEnd": {
                   "BONUSMALUSONEND": []
-                }
+                },
+                "specialBonusMalus": {}
               }
             }
           ],
@@ -478,7 +484,10 @@
                     {
                       "colourTarget": "",
                       "familyMemberColours": [
-                        ""
+                        "",
+                        "RED",
+                        "WHITE",
+                        "BLACK"
                       ],
                       "actionType": "HARVEST_ACTION",
                       "permanent": false,
@@ -497,7 +506,8 @@
                 },
                 "bonusMalusOnEnd": {
                   "BONUSMALUSONEND": []
-                }
+                },
+                "specialBonusMalus": {}
               }
             }
           ],
@@ -528,13 +538,15 @@
             {
               "type": "EffectOnParchment",
               "different": false,
-              "quantity": 1
+              "quantity": 1,
+              "alreadyChoosed": []
             }
           ],
           "members": [],
           "price": 1
         }
       ],
+      "actionType": "COUNCIL_ACTION",
       "changed": false,
       "obs": []
     }

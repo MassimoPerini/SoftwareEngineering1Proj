@@ -32,20 +32,27 @@ public class BoardStatusViewController implements ViewPresenterCLI {
 
     @Override
     public void viewWillAppear() throws InterruptedException {
-        commandView.addLocalizedText("Sei in sola lettura. Inserire b per vedere la board, p per vedere le board dei players");
+        commandView.addLocalizedText("Le tue scelte sono: \n 1)Inserire Board per vedere il campo da gioco , \n 2) Inserire Plancia per vedere la personal Board  \n 3) STOP per aspettare che l'altro giocatore termini il turno");
         String answ = commandView.getString();
-        if(answ==null){
+        if (answ == null) {
             return;
         }
 
-        if (answ.equals("b")) {
+        while(!answ.equals("STOP")){
+
+        if (answ.equals("STOP")){
+            System.out.println("Aspettando l'altro giocatore");
+            return;
+        }
+
+        if (answ.equals("Board")) {
             for (String s : clientBoardGame.getTowersClient().keySet()) {
                 System.out.println("TORRE: " + s);
                 for (ClientTowerFloor clientTowerFloor : clientBoardGame.getTowersClient().get(s)) {
                     System.out.println("CARTA PIANO " + clientTowerFloor.getCard());
                     System.out.println("FAMILY MEMBERS: ");
                     for (ClientFamilyMember clientFamilyMember : clientTowerFloor.getSpaceAction().getFamilyMembers()) {
-                        System.out.println("FAMILY MEMBER: "+clientFamilyMember.getPlayer()+" "+clientFamilyMember.getValue()+" "+clientFamilyMember.getColor());
+                        System.out.println("FAMILY MEMBER: " + clientFamilyMember.getPlayer() + " " + clientFamilyMember.getValue() + " " + clientFamilyMember.getColor());
                     }
                 }
 
@@ -85,14 +92,14 @@ public class BoardStatusViewController implements ViewPresenterCLI {
             }
         }
 
-        if (answ.equals("p")) {
+        if (answ.equals("Plancia")) {
             System.out.println("ORA MOSTRO I GIOCATORI:\n");
             for (String s : clientPlayerBoard.keySet()) {
                 System.out.println("GIOCATORE :" + s);
 
                 System.out.println("BONUS SCELTO: ");
                 for (String bonus : clientPlayerBoard.get(s).getPlayerProdHarvBonus()) {
-                    System.out.print(bonus+", ");
+                    System.out.print(bonus + ", ");
                 }
 
                 System.out.println("RISORSE :");
@@ -122,6 +129,10 @@ public class BoardStatusViewController implements ViewPresenterCLI {
                 }
 
             }
+        }
+            commandView.addLocalizedText("Le tue scelte sono: \n 1)Inserire Board per vedere il campo da gioco , \n 2) Inserire Plancia per vedere la personal Board \n 3) Terminare La visualizzazione ");
+            answ = commandView.getString();
+
         }
     }
 

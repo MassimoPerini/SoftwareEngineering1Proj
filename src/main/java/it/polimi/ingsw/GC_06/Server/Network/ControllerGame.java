@@ -45,6 +45,10 @@ public class ControllerGame implements Observer {
         for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarket()) {
             marketAndCouncil.addObserver(this);
         }
+
+        for(MarketAndCouncil marketAndCouncil : game.getBoard().getCouncils()){
+            marketAndCouncil.addObserver(this);
+        }
         Map<String, Player> players = game.getGameStatus().getPlayers();
         for (Player player : players.values()) {
             player.addObserver(this);

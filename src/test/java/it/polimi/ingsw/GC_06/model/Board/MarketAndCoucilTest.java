@@ -28,7 +28,7 @@ public class MarketAndCoucilTest {
         game.addPlayer("massi");
 
         board = game.getBoard();
-        marketAndCouncils = board.getMarketAndCouncils();
+        marketAndCouncils = board.getCouncils();
         game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[0].setValue(100);
     }
 
