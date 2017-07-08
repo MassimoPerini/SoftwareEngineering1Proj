@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.BoardActionOnMarketCouncil;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
@@ -45,6 +46,9 @@ public class MessageMarketCouncil implements MessageMultipleSteps {
         try {
             if (boardActionOnMarketCouncil.isAllowed()) {
                 boardActionOnMarketCouncil.execute();
+            }
+            else{
+                currentGame.getGameStatus().changeState(TransitionType.ERROR);
             }
         }
         catch (InterruptedException e){}

@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.EndTurn;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 
 /**
  * Created by massimo on 20/06/17.
@@ -21,6 +22,9 @@ public class MessageEndTurn implements MessageClient {
         if (endTurn.isAllowed())
         {
             endTurn.execute();
+        }
+        else{
+            currentGame.getGameStatus().changeState(TransitionType.ERROR);
         }
 
     }

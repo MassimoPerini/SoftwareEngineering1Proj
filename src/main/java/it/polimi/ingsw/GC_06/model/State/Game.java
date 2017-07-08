@@ -142,6 +142,7 @@ public class Game {
         marketCouncil.addTransition(TransitionType.END_ACTION, turnActionCompleted);
         playHeroCard.addTransition(TransitionType.END_ACTION,idle);
 
+        turnActionCompleted.addTransition(TransitionType.ERROR,turnActionCompleted);
         turnActionCompleted.addTransition(TransitionType.START_VATICAN, choosingSupportVatican);
         turnActionCompleted.addTransition(TransitionType.NEXT_PLAYER, idle);
         idle.addTransition(TransitionType.START_VATICAN, choosingSupportVatican);

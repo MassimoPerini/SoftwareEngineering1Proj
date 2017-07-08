@@ -11,7 +11,6 @@ public class EffectOnResourcesHarvProduction{
     private int requiredValue;
     private ResourceSet variateResource;
 
-
     public EffectOnResourcesHarvProduction(int requiredValue, ResourceSet variateResource) {
         this.requiredValue = requiredValue;
         this.variateResource = variateResource;
@@ -21,7 +20,6 @@ public class EffectOnResourcesHarvProduction{
     public void execute(Player player, int points) {
         if (points >= requiredValue)
         {
-
             player.getResourceSet().variateResource(variateResource);
         }
     }

@@ -104,10 +104,19 @@ public class RMIServer extends Server implements Observer {
     }
 
     @Override
+    void remove(String player) {
+        ServerPlayerRMIHandler playerRMIHandler = playerRMI.get(player);
+        List<ServerPlayerRMIHandler> serverPlayers = playerFromGame.get(playerRMIHandler.getGame());
+        serverPlayers.remove(playerRMIHandler);
+        playerRMI.remove(player);
+        playerRMIHandler.finish();
+    }
+
+    @Override
     synchronized void stop() throws IOException {
 
         for (String s : playerRMI.keySet()) {
-            playerRMI.get(s).logout();
+            playerRMI.get(s).finish();
         }
     }
 

@@ -37,7 +37,6 @@ public class PlayerHeroCardChoices implements MessageClient{
             }
             else{
                 currentGame.getGameStatus().changeState(TransitionType.ERROR);
-                System.out.println("AZIONE NON VALIDA");
             }
 
         }catch (Exception e){

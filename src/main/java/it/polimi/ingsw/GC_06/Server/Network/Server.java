@@ -16,5 +16,6 @@ public abstract class Server extends Observable {
     abstract boolean isPlayerManaged(@NotNull String player);
     abstract void sendMessageToPlayer(@NotNull String player, @NotNull Object o) throws IOException;
     abstract void sendMessageToGame(int game, @NotNull Object o) throws IOException;
+    abstract void remove(String player);
     abstract void stop() throws IOException;
 }

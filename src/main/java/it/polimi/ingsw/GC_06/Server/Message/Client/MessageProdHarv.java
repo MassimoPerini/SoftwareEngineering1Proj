@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.model.Action.ProdHarv.BoardActionOnProdHarv;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.DefaultAskUserSelector;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
@@ -65,6 +66,9 @@ public class MessageProdHarv implements MessageMultipleSteps{
                 powerUpFamilyMember.execute();
             if (boardActionOnProdHarv.isAllowed()) {
                 boardActionOnProdHarv.execute();
+            }
+            else{
+                currentGame.getGameStatus().changeState(TransitionType.ERROR);
             }
         }
         catch (InterruptedException e)

@@ -34,15 +34,15 @@ public class ServerPlayerSocket extends Observable implements Runnable {
     private String player;
     private int game;
 
-    public String getPlayer() {
+    String getPlayer() {
         return player;
     }
 
-    public int getGame() {
+    int getGame() {
         return game;
     }
 
-    public void setGame(int game) {
+    void setGame(int game) {
         this.game = game;
     }
 
@@ -125,11 +125,11 @@ public class ServerPlayerSocket extends Observable implements Runnable {
         }
         catch(Exception e)
         {
-            loginHub.manageLogOut(player);
+            loginHub.manageDisconnection(player);
         }
     }
 
-    public void send(MessageServer messageServer){
+    void send(MessageServer messageServer){
      //   executor.submit (() -> {
             String res = writeGson.toJson(messageServer, MessageServer.class);
             System.out.println("SERVER: SENDING " + res+" TO "+player+" SOCKET");
@@ -137,16 +137,22 @@ public class ServerPlayerSocket extends Observable implements Runnable {
             socketOut.flush();
             if (socketOut.checkError())
             {
-                loginHub.manageLogOut(player);
+                loginHub.manageDisconnection(player);
             }
 
     //    });
     }
 
-    public void finish() throws IOException {
-        socketOut.close();
-        socketIn.close();
-        socket.close();
+    void finish(){
+        try {
+            socketOut.close();
+            socketIn.close();
+            socket.close();
+        }
+        catch (IOException e)
+        {
+            System.out.print("IOException on closing...");
+        }
     }
 
 

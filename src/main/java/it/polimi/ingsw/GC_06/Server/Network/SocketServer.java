@@ -61,6 +61,15 @@ public class SocketServer extends Server implements Observer {
         }
     }
 
+    @Override
+    synchronized void remove(String player) {
+        ServerPlayerSocket playerSocket = socketFromId.get(player);
+        List<ServerPlayerSocket> serverPlayerSockets = socketsFromGame.get(playerSocket.getGame());
+        serverPlayerSockets.remove(playerSocket);
+        socketFromId.remove(player);
+        playerSocket.finish();
+    }
+
 
     @Override
     synchronized void stop() throws IOException {

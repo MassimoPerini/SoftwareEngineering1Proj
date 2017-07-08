@@ -115,11 +115,10 @@ public class Tower extends Observable{
         for (int i=0;i<this.towerFloors.size();i++)
         {
             this.towerFloors.get(i).setCard(cards.get(0));
-            addedCards.add(cards.get(0));
             cards.remove(0);
         }
 
-        MessageServer messageServer = new MessageNewCardOnTower(addedCards, this.color);
+        MessageServer messageServer = new MessageNewCardOnTower(this);
         setChanged();
         notifyObservers(messageServer);
     }

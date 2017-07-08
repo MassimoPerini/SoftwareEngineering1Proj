@@ -64,7 +64,6 @@ public class LoginHub {
      * @param username
      */
     public void manageLogOut(String username){
-
         totPlayers.remove(username);
         /** qui mi fai ritornare il game id così io lo rimuovo dalla lista sul game */
         int gameID = GameList.getInstance().getGame(username);
@@ -72,6 +71,18 @@ public class LoginHub {
         /** abbiamo rimosso il player dalla partita*/
     //    GameList.getInstance().getGameId(gameID).remove(username);
         GameList.getInstance().remove(gameID,username);
+        EndTurn endTurn = new EndTurn(GameList.getInstance().getGameId(gameID));
+        endTurn.execute();
+    }
+
+    public void manageDisconnection(String username)
+    {
+        System.out.println("Disconnecting "+username);
+        totPlayers.remove(username);
+        int gameID = GameList.getInstance().getGame(username);
+        playerTrash.add(username,gameID);
+   //     GameList.getInstance().remove(gameID,username);
+        serverOrchestrator.remove(username);
         EndTurn endTurn = new EndTurn(GameList.getInstance().getGameId(gameID));
         endTurn.execute();
     }

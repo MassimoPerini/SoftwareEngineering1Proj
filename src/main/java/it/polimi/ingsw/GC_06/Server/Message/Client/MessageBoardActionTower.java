@@ -52,6 +52,9 @@ public class MessageBoardActionTower implements MessageMultipleSteps{
         if(powerUpFamilyMember.isAllowed()){
             powerUpFamilyMember.execute();
         }
+        else{
+            currentGame.getGameStatus().changeState(TransitionType.ERROR);
+        }
 
         try {
             if (boardActionOnTower.isAllowed()) {
@@ -70,18 +73,6 @@ public class MessageBoardActionTower implements MessageMultipleSteps{
 
         //TODO FIX IT!
 
-      /*  /** rollBack
-        if(!boardActionOnTower.isAllowed()){
-            System.out.println("Azione non consentita");
-            int newPowerUpValue = -powerUpValue;
-            powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,newPowerUpValue);
-            powerUpFamilyMember.setCoefficient(0);
-            return;
-        }
-        else{
-
-         //   boardActionOnTower.execute();
-        }*/
 
     }
 

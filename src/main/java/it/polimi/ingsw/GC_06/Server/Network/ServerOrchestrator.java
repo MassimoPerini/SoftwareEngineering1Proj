@@ -117,6 +117,13 @@ public class ServerOrchestrator extends Observable implements Observer {
         }
     }
 
+    public void remove(String player)
+    {
+        Server playerServer = serverByString.get(player);
+        playerServer.remove(player);
+        serverByString.remove(player);
+    }
+
     //Stop timer
     @Override
     synchronized public void update(Observable o, Object arg) {

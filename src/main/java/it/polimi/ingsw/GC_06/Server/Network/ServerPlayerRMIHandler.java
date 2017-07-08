@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientRMI;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 
-import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.concurrent.ExecutorService;
@@ -25,33 +24,30 @@ public class ServerPlayerRMIHandler extends Observable implements ServerPlayerRM
         this.username = player;
         this.clientRMI = clientRMI;
         this.game = -1;
-    /*    try {
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }*/
     }
 
-    synchronized public void send(MessageServer messageServer)
+    synchronized void send(MessageServer messageServer)
     {
         try {
             System.out.println("RMI SERVER SENDING..."+messageServer.toString());
             clientRMI.receive(messageServer);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            LoginHub.getInstance().manageDisconnection(username);
         }
     }
 
-    synchronized public void logout() throws RemoteException
+    synchronized void finish()
     {
-        unexportObject(this, true);
-    }
-
-    synchronized public void unreferenced() throws NoSuchObjectException {
-        unexportObject(this, true); // needs to be in a try/catch block of course
+        try {
+            unexportObject(this, true);
+        }
+        catch (RemoteException e){
+            System.out.println("RemoteException");
+        }
     }
 
     @Override
-    synchronized public void receive(MessageClient messageClient)throws RemoteException {
+    synchronized public void receive(MessageClient messageClient){
         System.out.println("RMI SERVER RECEIVING..."+messageClient.toString());
         if (game<0)
         {
@@ -67,7 +63,15 @@ public class ServerPlayerRMIHandler extends Observable implements ServerPlayerRM
 
     }
 
-    synchronized public void setGame(int game)
+    String getUsername() {
+        return username;
+    }
+
+    int getGame() {
+        return game;
+    }
+
+    synchronized void setGame(int game)
     {
         this.game = game;
     }
