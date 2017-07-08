@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.FamilyMembe
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
+import it.polimi.ingsw.GC_06.Client.Model.PlayerColors;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.AllBoards.AllBoardsView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
@@ -41,6 +42,8 @@ public class FamilyMembersPresenter {
     private MainClientModel mainClientModel;
 
     @Inject private MessageCreator messageCreator;
+    @Inject
+    PlayerColors playerColors;
     private ObservableList<ClientFamilyMember> listItems;
 
 
@@ -61,7 +64,7 @@ public class FamilyMembersPresenter {
                         Canvas canvas = new Canvas();
                         GraphicsContext gc = canvas.getGraphicsContext2D();
                     //    Field field = Class.forName("javafx.scene.paint.Color").getField(familyMember.getColor().toLowerCase());
-                        gc.setFill(Color.web(familyMember.getPlayerColor()));
+                        gc.setFill(Color.web(playerColors.getPlayerColor(mainClientModel.getCurrentPlayer())));
                    //     gc.setFill(Color.RED);
                         gc.fillOval(5, 5, 10, 10);
                         setGraphic(canvas);

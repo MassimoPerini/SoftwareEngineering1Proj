@@ -4,7 +4,7 @@ import it.polimi.ingsw.GC_06.Client.Model.ClientPlayerBoard;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.PlayerBoard.PlayerBoardView;
 import javafx.fxml.FXML;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 
 import javax.inject.Inject;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class AllBoardsPresenter {
 
-    private @FXML FlowPane containerView;
+    private @FXML VBox containerView;
     private @Inject MainClientModel mainClientModel;
 
     @FXML

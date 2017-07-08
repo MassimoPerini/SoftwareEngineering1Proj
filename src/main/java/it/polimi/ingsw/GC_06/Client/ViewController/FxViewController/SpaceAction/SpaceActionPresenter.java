@@ -51,11 +51,12 @@ public class SpaceActionPresenter implements Observer {
 
     @FXML public void initialize()
     {
+        clientSpaceAction.addObserver(this);
+
         mainView.setOnMouseClicked(event -> {
             try {
                 MessageMultipleSteps messageMultipleSteps = message.getDeclaredConstructor(Object.class, int.class).newInstance(containerId, elemId);
                 messageCreator.setMessageClient(messageMultipleSteps);
-                clientSpaceAction.addObserver(this);
 
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 System.out.println("ERROR!!! Something wrong with Reflect");

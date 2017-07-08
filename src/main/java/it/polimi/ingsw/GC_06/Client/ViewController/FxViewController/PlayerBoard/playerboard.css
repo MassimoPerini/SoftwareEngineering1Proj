@@ -7,17 +7,103 @@
     -fx-alignment: top-center;
 
     -fx-min-height: 326;
-    -fx-min-width: 460;
+    -fx-min-width: 880;
     -fx-pref-height: 326;
-    -fx-pref-width: 460;
+    -fx-pref-width: 880;
+    -fx-max-height: 326;
+
 
     -fx-padding: 5px 5px 5px 5px;
     -fx-border-insets: 5px 5px 5px 5px;
     -fx-background-insets: 5px 5px 5px 5px;
 
-    -fx-border-color: white;
+    -fx-background-position: top left;
+    -fx-spacing: 10;
+}
+
+.container{
+    -fx-max-height: 110;
+    -fx-pref-height: 110;
+    -fx-pref-width: 880;
+    -fx-spacing: 10;
+}
+
+.blue{
+    -fx-pref-height: 110;
+    -fx-max-height: 110;
+    -fx-pref-width: 440;
+    -fx-alignment: center-left;
+
+    -fx-border-color: blue;
     -fx-border-width: 2;
     -fx-border-style: solid;
+}
 
-    -fx-background-position: top center;
+.yellow{
+    -fx-max-height: 110;
+    -fx-pref-height: 110;
+    -fx-pref-width: 440;
+    -fx-alignment: center-left;
+
+    -fx-border-color: yellow;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+}
+
+.purple{
+    -fx-max-height: 110;
+    -fx-pref-height: 110;
+    -fx-pref-width: 440;
+    -fx-alignment: center-left;
+
+    -fx-border-color: purple;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+}
+
+.green{
+    -fx-max-height: 110;
+    -fx-pref-height: 110;
+    -fx-pref-width: 440;
+    -fx-alignment: center-left;
+
+    -fx-border-color: green;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+}
+
+.label-resource{
+    -fx-max-height: 60;
+    -fx-pref-height: 60;
+    -fx-pref-width: 60;
+    -fx-max-width: 60;
+    -fx-alignment: center;
+    -fx-font-size: 10;
+    -fx-color: BLACK;
+
+    -fx-background-color: rgba(255,255,255,0.5);
+/*
+    -fx-padding: 18px 0px 0px 30px;
+    -fx-border-insets: 18px 0px 0px 30px;
+    -fx-background-insets: 18px 0px 0px 30px;
+    */
+}
+
+.resource-container
+{
+    -fx-spacing: 20;
+
+    /*
+    -fx-max-height: 70;
+    -fx-pref-height: 70;
+    -fx-pref-width: 320;
+    -fx-max-width: 320;
+    -fx-spacing: 10;
+
+    -fx-alignment: center-left;
+
+    -fx-border-color: purple;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+*/
 }

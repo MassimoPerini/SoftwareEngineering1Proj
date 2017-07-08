@@ -128,7 +128,7 @@ public class LoginHub {
 
                 //this.myTimer(game);
             }
-            if (loggedPlayers.size() == 2 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
+            if (loggedPlayers.size() == 1 /** Integer.parseInt(Setting.getInstance().getProperty("max_player"))*/) {
                 Game game = new Game(id);
                 ControllerGame controllerGame = new ControllerGame(game,serverOrchestrator,id);
                 timer.cancel();

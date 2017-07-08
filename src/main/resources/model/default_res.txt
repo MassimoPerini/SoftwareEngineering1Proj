@@ -1,12 +1,12 @@
 [
   {
     "resources": {
-      "SERVANT": 0,
-      "STONE": 0,
-      "MILITARYPOINT": 0,
-      "MONEY": 0,
-      "WOOD": 0,
-      "FAITHPOINT": 10
+      "SERVANT": 7,
+      "STONE": 6,
+      "MILITARYPOINT": 8,
+      "MONEY": 10,
+      "WOOD": 5,
+      "FAITHPOINT": 9
     }
   },
   {
