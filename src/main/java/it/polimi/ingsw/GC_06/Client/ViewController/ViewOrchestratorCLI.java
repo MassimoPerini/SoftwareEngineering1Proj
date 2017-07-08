@@ -54,21 +54,24 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
 
     public void suspend()
     {
-        if (currentView instanceof Runnable)
-        {
+        try {
+            executorService.shutdownNow();
+            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
         }
+        catch (InterruptedException e)
+        {}
     }
 
     public void resume()
     {
-        if (currentView instanceof Runnable)
-        {
+        executorService = Executors.newSingleThreadExecutor();
+        Future future = executorService.submit(() -> {
             try {
-                currentView.viewWillAppear();
+                clientStates.get(currentState).viewWillAppear();
             } catch (InterruptedException e) {
-                return;
+                System.out.println("interrupted");
             }
-        }
+        });
     }
 
     @Override

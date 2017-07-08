@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by massimo on 24/06/17.
@@ -30,16 +33,20 @@ public class ViewPopupCLI implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        try {
             ClientStateName clientStateName = (ClientStateName) arg;
-            viewOrchestratorCLI.suspend();
-            clientStates.get(clientStateName).viewWillAppear();
-            viewOrchestratorCLI.resume();
-        }
-        catch (InterruptedException e)
-        {
-            return;
-        }
+
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            System.out.println("Displaying popup");
+            Future future = executorService.submit(() -> {
+                try {
+                    viewOrchestratorCLI.suspend();
+                    clientStates.get(clientStateName).viewWillAppear();
+                    viewOrchestratorCLI.resume();
+                } catch (InterruptedException e) {
+                    System.out.println("interrupted");
+                }
+            });
+
     }
 
     private void initViews ()
