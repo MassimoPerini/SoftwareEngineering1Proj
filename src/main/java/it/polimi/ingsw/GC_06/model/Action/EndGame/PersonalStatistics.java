@@ -25,10 +25,22 @@ public class PersonalStatistics implements Serializable {
 
     public int pointDifferences(PersonalStatistics personalStatistics){
 
-        return this.faithPointQuantity - personalStatistics.getFaithPointQuantity();
+        return this.militaryPointQuantity- personalStatistics.getMilitaryPointQuantity();
+    }
+
+    public int victoryDifferences(PersonalStatistics personalStatistics){
+        return this.faithPointQuantity-personalStatistics.getMilitaryPointQuantity();
     }
 
     public int getFaithPointQuantity() {
         return faithPointQuantity;
+    }
+
+    public int getMilitaryPointQuantity() {
+        return militaryPointQuantity;
+    }
+
+    public String getPlayerID() {
+        return playerID;
     }
 }

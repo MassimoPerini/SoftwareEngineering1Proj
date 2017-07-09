@@ -2,10 +2,8 @@ package it.polimi.ingsw.GC_06.Client.Model;
 
 import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Observable;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by giuseppe on 6/14/17.
@@ -43,13 +41,8 @@ public class MainClientModel extends Observable{
     }
 
     public List<PersonalStatistics> getPersonalStatistics() {
-        // qua si deve ordinare
-
-
         return personalStatistics;
     }
-
-
 
     public synchronized void updateStatus(int turn, int era, String username)
     {

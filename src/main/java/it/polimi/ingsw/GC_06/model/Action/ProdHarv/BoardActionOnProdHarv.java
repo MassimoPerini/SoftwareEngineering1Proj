@@ -110,12 +110,18 @@ public class BoardActionOnProdHarv implements Action {
 
         BonusMalusHandler.filter(playerClone,actionType,null,familyMember);
 
+        if(familyMember.getValue() < 1){
+            return false;
+        }
+
         startProdHarv.setValue(familyMember.getValue());
 
        if( !startProdHarv.isAllowed()){
            familyMember.setValue(originalValue);
            return false;
        }
+
+
 
         return familyMember.isAllowed() && prodHarvArea.isAllowed(familyMember, index) &&  game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_PRODHARV);
 

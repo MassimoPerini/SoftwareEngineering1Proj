@@ -47,6 +47,7 @@ public class FileLoader {
     private static final String PERSONAL_BONUS = "personal_bonus";
     private static final String END_GAME_MAP = "end_game_map";
     private static final String HERO_CARDS = "hero_cards";
+    private static final String RANKING_POINTS = "ranking_points";
     // private static final String GAME_MAP = "end_game_map";
 
 
@@ -62,6 +63,7 @@ public class FileLoader {
     private final String personalBonus;
     private final String endGameMap;
     private final String heroCards;
+    private final String rankingPoints;
     private Gson gson;
 
 
@@ -79,6 +81,7 @@ public class FileLoader {
         excommunication = Setting.getInstance().getProperty(EXCOMMUNICATION);
         personalBonus = Setting.getInstance().getProperty(PERSONAL_BONUS);
         endGameMap = Setting.getInstance().getProperty(END_GAME_MAP);
+        rankingPoints = Setting.getInstance().getProperty(RANKING_POINTS);
         heroCards = Setting.getInstance().getProperty(HERO_CARDS);
 //        endGameMap = Setting.getInstance().getProperty(GAME_MAP);
     }
@@ -185,6 +188,33 @@ public class FileLoader {
 
         fw.close();
     }
+
+    public void writeRankingPoints() throws IOException {
+        FileWriter fw = new FileWriter("src/main/resources/model/ranking_points.txt");
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Map<Resource,List<Integer>> rankingPoints = new HashMap<>();
+        Integer[] extraPoints = {5,2};
+        List<Integer> rankingBonus = new LinkedList<>();
+        rankingBonus.addAll(Arrays.asList(extraPoints));
+        rankingPoints.put(Resource.MILITARYPOINT,rankingBonus);
+
+        gson.toJson(rankingPoints,fw);
+        fw.close();
+    }
+
+    public Map<Resource,List<Integer>> loadRankingPoints(){
+
+        InputStreamReader sr = new InputStreamReader(this.getClass().getResourceAsStream(rankingPoints));
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Type mapType = new TypeToken<Map<Resource,List<Integer>>>(){}.getType();
+
+        Map<Resource,List<Integer>> rankingPoints = gson.fromJson(sr,mapType);
+        return rankingPoints;
+
+    }
+
+
 
 
     public Map<String,List<Integer>> loadEndGameMap(){

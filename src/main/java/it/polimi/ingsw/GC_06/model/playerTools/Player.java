@@ -214,6 +214,10 @@ public class Player extends Observable {
         return addAtTheEnd;
     }
 
+    public PersonalStatistics getPersonalStatistics() {
+        return personalStatistics;
+    }
+
     public PersonalStatistics createPersonalStatistics(){
 
         personalStatistics = new PersonalStatistics(this.PLAYER_ID,this.getResourceSet().getResourceAmount(Resource.FAITHPOINT),

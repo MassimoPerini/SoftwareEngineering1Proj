@@ -47,8 +47,11 @@ public class MainForWriting {
         fileLoader.writeBoardFivePlayers();
         System.out.println("factored board 5");
 
+
+
         fileLoader.writeMapFile();
         System.out.println("factored map for heroes names");*/
 
+        fileLoader.writeRankingPoints();
     }
 }

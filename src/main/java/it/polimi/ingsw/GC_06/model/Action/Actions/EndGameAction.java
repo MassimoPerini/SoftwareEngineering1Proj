@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.model.Action.Actions;
 
+import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusHandler;
 import it.polimi.ingsw.GC_06.model.Loader.FileLoader;
@@ -9,7 +10,9 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
+import java.io.File;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by giuseppe on 6/16/17.
@@ -18,6 +21,7 @@ import java.util.*;
 public class EndGameAction extends Observable implements Action {
 
     private Map<String,List<Integer>> endGameMap;
+    private Map<Resource,List<Integer>> rakingPoints;
     private List<Player> players;
     private Resource resource; /** saranno i punti fede*/
     private it.polimi.ingsw.GC_06.model.Resource.Resource extraResources;
@@ -25,11 +29,13 @@ public class EndGameAction extends Observable implements Action {
     private double coefficient;
     private final ActionType ACTION_TYPE = ActionType.END_GAME;
 
-    public EndGameAction(List<Player> players, Resource resource) {
+    public EndGameAction(List<Player> players, Resource resource,Game game) {
         this.endGameMap = FileLoader.getFileLoader().loadEndGameMap();
+        this.rakingPoints = FileLoader.getFileLoader().loadRankingPoints();
         this.players = players;
         this.resource = resource;
         this.coefficient = Integer.parseInt(Setting.getInstance().getProperty("end_game_coefficient"));
+        this.game = game;
     }
 
     /**
@@ -47,10 +53,10 @@ public class EndGameAction extends Observable implements Action {
             BonusMalusHandler.filter(player,player.getResourceSet(),ACTION_TYPE);
             this.turnCardsIntoPoints(player);
             this.turnResourceIntoPoint(player);
-            //this.addFinalPoint(player);
+            this.addFinalPoint(player);
         }
 
-      //  this.getPointsFromRanking();
+      //this.getPointsFromRanking();
 
     }
 
@@ -119,15 +125,33 @@ public class EndGameAction extends Observable implements Action {
 
         player.variateResource(player.getAddAtTheEnd());
     }
-/*
+/**
     private void getPointsFromRanking(){
-        List<Player> ranking = RankingPlayer.getRanking(this.players,this.extraResources);
 
-        for(int i = 0; i < ranking.size(); i++){
-            int endPoints = this.endGameMap.getEndGameResourceMap().get(this.extraResources).get(i);
-            ranking.get(i).getResourceSet().variateResource(this.resource,endPoints);
-
+        List<Player> players = new LinkedList<>();
+        for (String s : game.getGameStatus().getPlayers().keySet()) {
+            players.add(game.getGameStatus().getPlayers().get(s));
         }
-    }*/
 
+        List<PersonalStatistics> personalStatistics = new LinkedList();
+        for (Player player : players) {
+            personalStatistics.add(player.getPersonalStatistics());
+        }
+
+
+        // adesso dobbiamo ordinare questa lista rispetto ai punti militari
+        // dovrebbe essere già decrescete;
+        personalStatistics.stream().sorted((personalStatistics1,personalStatistics2) -> personalStatistics1.pointDifferences(personalStatistics2))
+        .collect(Collectors.toList());
+
+        for(int i = 0; i < personalStatistics.size(); i ++){
+            String playerId = personalStatistics.get(i).getPlayerID();
+            List<Integer> points = rakingPoints.get(Resource.MILITARYPOINT);
+            ResourceSet resourceSet = new ResourceSet();
+            resourceSet.variateResource(resource,points.get(0));
+            Player player = game.getGameStatus().getPlayers().get(playerId);
+            player.variateResource(resourceSet);
+        }
+
+    } */
 }

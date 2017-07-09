@@ -194,7 +194,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         for (String player : players) {
             gamers.add(game.getGameStatus().getPlayers().get(player));
         }
-        EndGameAction endGameAction = new EndGameAction(gamers, Resource.VICTORYPOINT);
+        EndGameAction endGameAction = new EndGameAction(gamers, Resource.VICTORYPOINT,game);
         List<PersonalStatistics> finalRanking = Ranking.getInstance().produceCurrentGameRanking(game);
         MessageRankingPopUp messageRanking = new MessageRankingPopUp(finalRanking);
         serverOrchestrator.send(game.getId(),messageRanking);

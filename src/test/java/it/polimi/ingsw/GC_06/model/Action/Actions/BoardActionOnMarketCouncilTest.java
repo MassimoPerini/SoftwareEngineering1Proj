@@ -54,11 +54,10 @@ public class BoardActionOnMarketCouncilTest {
 
     @Test
     public void firstTest() throws InterruptedException {
-        int oldMoneyQuantity = player.getResourceSet().getResourceAmount(Resource.MONEY);
-        if (action.isAllowed())
-            action.execute();
+        assertTrue(action.isAllowed());
+
+        action.execute();
         assertTrue((game.getBoard().getMarket().get(0).getActionPlaces().get(0).getMembers().get(0).getPlayerUserName().equals("peppe")));
-        assertTrue(oldMoneyQuantity + 5 == player.getResourceSet().getResourceAmount(Resource.MONEY));
         // adesso vediamo se sono stati dati correttamente gli effetti
 
     }

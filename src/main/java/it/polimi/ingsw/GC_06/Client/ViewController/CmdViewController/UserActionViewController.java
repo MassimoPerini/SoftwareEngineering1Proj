@@ -62,9 +62,12 @@ public class UserActionViewController implements ViewPresenterCLI {
             if(input.equals("prod")){
                 ActionType actionType = ActionType.BOARD_ACTION_ON_PROD;
                 ActionType actionTypeProd = ActionType.PRODUCTION_ACTION;
-                commandView.addLocalizedText("Dammi i dati");
+                commandView.addLocalizedText("1)Scegli prod = 0 altrimenti harv = 1\n" +
+                        "2)Scegli il tuo familiare\n" +
+                        "3)Scegli slot piccolo  = 0 altimenti il grande = 1\n" +
+                        "4)Inserisci il valore di power up\n");
                 String[] inp = commandView.getString().split(" ");
-                MessageProdHarv messageProdHarv = new MessageProdHarv(Integer.parseInt(inp[0]),Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]),actionType);
+                MessageProdHarv messageProdHarv = new MessageProdHarv(Integer.parseInt(inp[0]),Integer.parseInt(inp[1]),Integer.parseInt(inp[2]),Integer.parseInt(inp[3]),actionType);
                 messageProdHarv.setStartProdHarv(actionTypeProd);
                 clientNetworkOrchestrator.send(messageProdHarv);
                 ok = true;
