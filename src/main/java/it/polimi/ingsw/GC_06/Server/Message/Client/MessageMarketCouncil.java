@@ -40,7 +40,6 @@ public class MessageMarketCouncil implements MessageMultipleSteps {
     {
         this.slotSelector = (int) slotSelector;
         this.slot = slot;
-        this.familyMember = -1;
         this.actionType = actionType;
         this.clientFamilyMember = -1;
     }
