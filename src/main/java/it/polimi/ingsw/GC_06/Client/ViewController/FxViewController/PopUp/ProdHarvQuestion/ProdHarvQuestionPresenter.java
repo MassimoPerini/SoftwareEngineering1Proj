@@ -9,6 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import javax.inject.Inject;
@@ -32,11 +35,17 @@ public class ProdHarvQuestionPresenter {
     {
         Map<String, List<Integer>> cards = playerBonusActions.getProdHarvAsk();
 
-        for (String cardName : cards.keySet()) {
+        for (String cardName : cards.keySet())
+        {
+            ImageView imageView = new ImageView();
+            imageView.setImage(new Image(getClass().getResourceAsStream("/view/cards/"+cardName+".png")));
+            BorderPane borderPane = new BorderPane();
+            borderPane.setTop(imageView);
             List<Integer> effOptions = cards.get(cardName);
             ObservableList<Integer> items = FXCollections.observableList(effOptions);
             ListView<Integer> list = new ListView<>();
             listViews.put(cardName, list);
+            borderPane.setCenter(list);
             list.setItems(items);
             list.setCellFactory(param -> new ListCell<Integer>() {
                 @Override
@@ -50,7 +59,7 @@ public class ProdHarvQuestionPresenter {
                     }
                 }
             });
-            mainContainer.getChildren().add(list);
+            mainContainer.getChildren().add(borderPane);
         }
     }
 

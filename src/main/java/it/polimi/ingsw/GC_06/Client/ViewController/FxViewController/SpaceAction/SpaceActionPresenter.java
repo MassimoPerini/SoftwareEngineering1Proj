@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_06.Client.Model.ClientSpaceAction;
 import it.polimi.ingsw.GC_06.Client.Model.PlayerColors;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMultipleSteps;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -30,6 +31,7 @@ public class SpaceActionPresenter implements Observer {
 
     private Object containerId;
     private int elemId;
+    private ActionType actionType;
     private Class<? extends MessageMultipleSteps> message;
 
     void draw()
@@ -55,7 +57,8 @@ public class SpaceActionPresenter implements Observer {
 
         mainView.setOnMouseClicked(event -> {
             try {
-                MessageMultipleSteps messageMultipleSteps = message.getDeclaredConstructor(Object.class, int.class).newInstance(containerId, elemId);
+                MessageMultipleSteps messageMultipleSteps = message.getDeclaredConstructor(Object.class, int.class, ActionType.class).newInstance(containerId, elemId, actionType);
+
                 messageCreator.setMessageClient(messageMultipleSteps);
 
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -85,5 +88,9 @@ public class SpaceActionPresenter implements Observer {
 
     public void setMessage(Class<? extends MessageMultipleSteps> message) {
         this.message = message;
+    }
+
+    public void setActionType(ActionType actionType) {
+        this.actionType = actionType;
     }
 }

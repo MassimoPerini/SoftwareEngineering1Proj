@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Tower.TowerView;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageMarketCouncil;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageProdHarv;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -44,6 +45,11 @@ public class BoardPresenter extends Observable implements Observer {
         SpaceActionView councilView = new SpaceActionView();
         councilView.getView().getStyleClass().add("council-view");
         mainView.getChildren().add(councilView.getView());
+        SpaceActionPresenter councilPresenter = (SpaceActionPresenter) councilView.getPresenter();
+        councilPresenter.setActionType(ActionType.COUNCIL_ACTION);
+        councilPresenter.setElemId(0);
+        councilPresenter.setContainerId(0);
+        councilPresenter.setMessage(MessageMarketCouncil.class);
 
 
         prodHarvView.getStyleClass().add("prodHarv-view");
@@ -110,6 +116,7 @@ public class BoardPresenter extends Observable implements Observer {
                 spaceActionPresenter.setContainerId(containerIndex);
                 spaceActionPresenter.setElemId(elemIndex);
                 spaceActionPresenter.setMessage(MessageMarketCouncil.class);
+                spaceActionPresenter.setActionType(ActionType.BOARD_ACTION_ON_MARKET);
 
                 rowMarket.getChildren().add(spaceActionView.getView());
 

@@ -33,7 +33,7 @@ public class MessageProdHarv implements MessageMultipleSteps{
         this.actionType = actionType;
     }
 
-    public MessageProdHarv(Object prodHarvAreaSelector, int index) {
+    public MessageProdHarv(Object prodHarvAreaSelector, int index, ActionType actionType) {
         this.prodHarvAreaSelector = (int) prodHarvAreaSelector;
         this.index = index;
         this.clientFamilyMember = -1;
