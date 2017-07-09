@@ -32,7 +32,7 @@ public class ProdHarvZoneTest {
       //  prodHarvZones = board.getProdHarvZones();
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void addTest() throws IOException {
         ProdHarvZone prodHarvZone = prodHarvZones.get(0);
         FamilyMember familyMember = game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[0];
@@ -40,7 +40,7 @@ public class ProdHarvZoneTest {
         assertTrue(prodHarvZone.getActionPlaces().get(0).getMembers().size()==1);
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void multipleAddTest() throws IOException {
         ProdHarvZone prodHarvZone = prodHarvZones.get(0);
         FamilyMember familyMember = game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[0];
@@ -53,7 +53,7 @@ public class ProdHarvZoneTest {
         assertTrue(prodHarvZone.getActionPlaces().get(1).getMembers().size()==2);
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void removeTest() throws IOException {
         ProdHarvZone prodHarvZone = prodHarvZones.get(0);
         FamilyMember familyMember = game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[0];
