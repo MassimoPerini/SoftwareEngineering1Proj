@@ -4,15 +4,19 @@ import it.polimi.ingsw.GC_06.Server.Message.Client.MessageBoardActionTower;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by giuseppe on 7/1/17.
@@ -35,11 +39,15 @@ public class MessageBoardActionOnTowerTest {
         tower = "YELLOW";
         floor = 2;
         familyMember = 1;
-        powerUpValue = 100;
+        powerUpValue = 10;
         game = new Game(0);
         game.addPlayer("peppe");
+        game.init();
         game.start(new DefaulEventManagerFake());
         player = game.getGameStatus().getPlayers().get("peppe");
+        ResourceSet neededServants = new ResourceSet();
+        neededServants.variateResource(it.polimi.ingsw.GC_06.model.Resource.Resource.SERVANT, 20 );
+        player.variateResource(neededServants);
 
         List<String> gamers = new LinkedList<>();
 
@@ -57,8 +65,8 @@ public class MessageBoardActionOnTowerTest {
 
     @Test
     public void firstTest(){
-     /*   messageBoardActionTower.execute();
-        assertTrue(player.getPlayerBoard().getDevelopmentCards("YELLOW").size() == 1);*/
+        messageBoardActionTower.execute();
+        assertTrue(player.getPlayerBoard().getDevelopmentCards("YELLOW").size() == 1);
     }
 
 

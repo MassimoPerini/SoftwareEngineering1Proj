@@ -34,8 +34,9 @@ public class EndGameActionTest {
     public void setUp() throws IOException {
 
         game = new Game(0);
-        game.addPlayer("peppe");
+        game.init();
         game.start(new DefaulEventManagerFake());
+        game.addPlayer("peppe");
         player = game.getGameStatus().getPlayers().get("peppe");
 
         Tower tower = game.getBoard().getTowers().get("PURPLE");
@@ -64,7 +65,7 @@ public class EndGameActionTest {
             players.add(game.getGameStatus().getPlayers().get(s));
         }
 
-        endGameAction = new EndGameAction(endGame,players, Resource.FAITHPOINT,0.5);
+        endGameAction = new EndGameAction(players, Resource.FAITHPOINT,game);
 
 
 
@@ -116,5 +117,4 @@ public class EndGameActionTest {
     }
 
 }
-
 */

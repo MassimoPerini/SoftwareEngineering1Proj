@@ -65,6 +65,7 @@ public class StartProdHarvTest {
         Effect donateBonusMalus = new DonateBonusMalusEffect(bonusMalusSet);
         effects.add(donateBonusMalus);
         DevelopmentCard developmentCard = new DevelopmentCard("",1,new LinkedList<>(),effects,"BLUE",new HashMap<>());
+        game.init();
         game.start(new DefaulEventManagerFake());
         game.getBoard().getTowers().get("BLUE").getTowerFloor().get(0).setCard(developmentCard);
 

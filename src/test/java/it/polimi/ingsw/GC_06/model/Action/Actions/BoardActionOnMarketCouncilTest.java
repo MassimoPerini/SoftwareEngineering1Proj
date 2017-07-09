@@ -43,6 +43,7 @@ public class BoardActionOnMarketCouncilTest {
         game = new Game(0);
         game.addPlayer("peppe");
 
+        game.init();
         game.start(new DefaulEventManagerFake());
         player = game.getGameStatus().getPlayers().get("peppe");
         familyMember = player.getFamilyMembers()[1];

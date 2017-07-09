@@ -31,6 +31,7 @@ public class PowerUpFamilyMemberTest {
         Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("peppe");
+        game.init();
         game.start(new DefaulEventManagerFake());
         player = game.getGameStatus().getPlayers().get("peppe");
         familyMember = player.getFamilyMembers()[0];
@@ -48,7 +49,7 @@ public class PowerUpFamilyMemberTest {
 
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
 
     public void testWithMalus(){
 

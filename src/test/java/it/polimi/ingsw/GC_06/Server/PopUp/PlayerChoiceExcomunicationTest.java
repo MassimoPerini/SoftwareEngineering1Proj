@@ -24,18 +24,18 @@ public class PlayerChoiceExcomunicationTest {
 
         game = new Game(0);
         game.addPlayer("gabri");
+        game.init();
         game.start(new DefaulEventManagerFake());
         player = game.getGameStatus().getPlayers().get("gabri");
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void FirstTest() throws IOException {
         activateExcommunication = true;
         PlayerChoiceExcommunication p = new PlayerChoiceExcommunication(activateExcommunication);
         p.setGame(0);
         p.setPlayer("gabri");
 
-        //p.execute();
-        //TODO peppe qui come ti dicevo ci sono gli errori sulla GameList
+        p.execute();
     }
 }

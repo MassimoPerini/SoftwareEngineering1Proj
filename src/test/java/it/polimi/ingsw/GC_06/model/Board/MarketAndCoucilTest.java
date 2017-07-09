@@ -23,6 +23,7 @@ public class MarketAndCoucilTest {
     public void SetUp() throws IOException {
         Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
+        game.init();
         game.addPlayer("gabri");
         game.addPlayer("peppe");
         game.addPlayer("massi");

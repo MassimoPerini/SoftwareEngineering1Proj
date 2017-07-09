@@ -38,6 +38,7 @@ public class TowerActionTest {
         Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("peppe");
+        game.init();
         game.start(new DefaulEventManagerFake());
         tower = game.getBoard().getTowers().get("YELLOW");
         index = 2;

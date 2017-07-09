@@ -24,6 +24,7 @@ public class ProdHarvZoneTest {
     public void SetUp() throws IOException {
         Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
+        game.init();
         game.addPlayer("gabri");
         game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[0].setValue(100);
         game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[1].setValue(100);

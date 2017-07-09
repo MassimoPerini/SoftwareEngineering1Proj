@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.Effect.EffectOnResources;
 import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
+import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.DefaultEventManager;
@@ -28,7 +29,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by giuseppe on 6/27/17.
  */
-/**
+
 public class PickCardTest {
 
     private Game game;
@@ -38,9 +39,11 @@ public class PickCardTest {
 
     @Before
     public void setUp() throws Exception {
-        game = new Game(1);
+        Setting.getInstance().addPath("settings/bundle");
+        game = new Game(0);
+        game.init();
         game.addPlayer("peppe");
-        game.start(new DefaulEventManagerFake());
+        //game.start(new DefaulEventManagerFake());
 
         List<String> username = new LinkedList<>();
         username.add("peppe");
@@ -72,7 +75,7 @@ public class PickCardTest {
         Requirement requirement = new Requirement(resourceSet1,resourceSet2);
         requirements.add(requirement);
 
-      DevelopmentCard developmentCard = new DevelopmentCard("cartaPazza",1,requirements,effects,"",prodHarv);
+      DevelopmentCard developmentCard = new DevelopmentCard("cartaPazza",1,requirements,effects,"YELLOW",prodHarv);
       game.getBoard().getTowers().get("YELLOW").getTowerFloor().get(0).setCard(developmentCard);
 
         pickCard = new PickCard(player,tower,0,game);
@@ -90,9 +93,7 @@ public class PickCardTest {
         assertTrue(player.getPlayerBoard().getDevelopmentCards().size() == 1);
     }
 
-    @Test
-    public void pickAnotherCard(){
 
     }
-    */
+
 

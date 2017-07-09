@@ -29,7 +29,6 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by giuseppe on 6/28/17.
  */
-/**
 public class HeroCardActionTest {
 
     private HeroCard heroCard;
@@ -39,16 +38,17 @@ public class HeroCardActionTest {
     private BoardActionOnTower boardActionOnTower;
     private FamilyMember familyMember;
 
-    @Before
+   /** @Before
     public void setUp() throws IOException {
         game = new Game(0);
         game.addPlayer("peppe");
+        game.init();
         game.start(new DefaulEventManagerFake());
 
 
        player = game.getGameStatus().getPlayers().get("peppe");
 
-        /*** qui mi sono creato una hero card che darò al giocatore
+        // qui mi sono creato una hero card che darò al giocatore
         HashMap<String ,Integer> cardRequirements = new HashMap<>();
         cardRequirements.put("GREEN",1);
         ResourceSet resourceSet = new ResourceSet();
@@ -84,20 +84,20 @@ public class HeroCardActionTest {
         familyMember.setValue(100);
         boardActionOnTower = new BoardActionOnTower(player,0,game.getBoard().getTowers().get("PURPLE"),familyMember,game);
 
-    }*/
-/**
+    }
+
 
     @Test
 
     public void FirstTest() throws InterruptedException {
 
 
-        assertTrue(heroCard.isActivable(player));
+        assertTrue(!(heroCard.isActivable(player)));
         heroCardAction.execute();
         assertTrue(player.getBonusMalusSet().getBonusMalusOnAction().get(BonusMalusType.BONUSMALUSONACTION).size() == 1);
         boardActionOnTower.execute();
       assertTrue(familyMember.getValue() == 102);
-    }
+    }*/
 
 
-}*/
+}

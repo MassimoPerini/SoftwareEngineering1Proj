@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.model.Effect;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
+import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
@@ -26,10 +27,13 @@ public class EffectOnConditionsTest {
         Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("peppe");
-        game.start(new DefaulEventManagerFake());
+        game.init();
         player = game.getGameStatus().getPlayers().get("peppe");
+        ResourceSet playerResources = new ResourceSet();
+        playerResources.variateResource(Resource.MILITARYPOINT, 5);
+        player.variateResource(playerResources);
 
-        effectOnConditions = new EffectOnConditions(Resource.MILITARYPOINT,5,Resource.MONEY,null);
+        effectOnConditions = new EffectOnConditions(Resource.MILITARYPOINT,2,Resource.MONEY,null);
 
 
     }
@@ -40,7 +44,7 @@ public class EffectOnConditionsTest {
 
 
         effectOnConditions.execute(player,game);
-        assertTrue(600 == player.getResourceSet().getResourceAmount(Resource.MONEY));
+        assertTrue(10 == player.getResourceSet().getResourceAmount(Resource.MONEY));
     }
 
 }

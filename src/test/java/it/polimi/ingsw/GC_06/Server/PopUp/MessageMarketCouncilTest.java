@@ -28,6 +28,7 @@ public class MessageMarketCouncilTest {
 
         game = new Game(0);
         game.addPlayer("peppe");
+        game.init();
         game.start(new DefaulEventManagerFake());
 
         game.getGameStatus().getPlayers().get("peppe").getFamilyMembers()[0].setValue(100);
@@ -49,7 +50,7 @@ public class MessageMarketCouncilTest {
     @Test
     public void firstTest(){
 
-        //messageMarketCouncil.execute();
+        messageMarketCouncil.execute();
 
 
     }

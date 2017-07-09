@@ -20,9 +20,10 @@ public class EndTurnTest {
     public void SetUp() throws IOException {
         Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
+        game.init();
         game.addPlayer("gabri");
         game.addPlayer("peppe");
-        game.addPlayer("massi");
+
     }
 
     @Test
@@ -30,8 +31,6 @@ public class EndTurnTest {
         endTurn = new EndTurn(game);
         endTurn.execute();
         assertTrue(game.getCurrentPlayer().getPLAYER_ID()=="peppe");
-        endTurn.execute();
-        assertTrue(game.getCurrentPlayer().getPLAYER_ID()=="massi");
         endTurn.execute();
         assertTrue(game.getCurrentPlayer().getPLAYER_ID()=="gabri");
     }

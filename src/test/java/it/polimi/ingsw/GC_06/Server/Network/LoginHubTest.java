@@ -27,7 +27,6 @@ public class LoginHubTest {
         LoginHub.getInstance().setServerOrchestrator(new ServerOrchestrator());
     }
 
-    /** questo è da sistemare
     @Test
     public void firstTest() throws IOException {
 
@@ -58,7 +57,6 @@ public class LoginHubTest {
 
 
 
-    }
+    }*/
 
 
-}*/

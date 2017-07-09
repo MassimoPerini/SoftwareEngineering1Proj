@@ -34,6 +34,7 @@ public class BonusMalusOnEndTest {
         Setting.getInstance().addPath("settings/bundle");
         game = new Game(0);
         game.addPlayer("peppe");
+        game.init();
         game.start(new DefaulEventManagerFake());
         player = game.getGameStatus().getPlayers().get("peppe");
         List<Resource> resources = new LinkedList<>();

@@ -47,13 +47,13 @@ public class TowerFloorTest {
 
 
     }
-    /**
-    @Test(expected = IllegalStateException.class)
+
+    @Test
     public void notAddFamilyMember(){
         fixedTowerFloor.addFamilyMember(familyMember);
         fixedTowerFloor.addFamilyMember(familyMember);
-        assertTrue(towerFloor.getActionPlace().getMembers().size() == 2);
-    }*/
+        assertTrue(towerFloor.getActionPlace().getMembers().size() == 0);
+    }
 
     @Test
 

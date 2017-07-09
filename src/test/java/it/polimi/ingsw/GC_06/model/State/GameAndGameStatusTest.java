@@ -1,6 +1,10 @@
 package it.polimi.ingsw.GC_06.model.State;
 
+import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
+import it.polimi.ingsw.GC_06.model.Action.PickCard.DefaulEventManagerFake;
+import it.polimi.ingsw.GC_06.model.Effect.EffectOnNewCards;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,6 +25,7 @@ public class GameAndGameStatusTest {
 
         //TODO to remove
         game = new Game(1);
+        game.init();
     }
 
 
@@ -51,13 +56,13 @@ public class GameAndGameStatusTest {
         assertEquals(game.getGameStatus().getPlayers().get("pallino").getPLAYER_ID(), "pallino");
 
     }
-/**
+
     @Test
     public void testFirst() throws IOException {
         game.addPlayer("pinco");
         game.addPlayer("pallino");
         game.addPlayer("massimo");
-        game.start(new DefaultEventManager(new ServerOrchestrator(), game));
+        game.start(new DefaulEventManagerFake());
         int i=0;
         Player currentPlayer = game.getCurrentPlayer();
 
@@ -68,6 +73,6 @@ public class GameAndGameStatusTest {
         assertTrue(i==1);
     }
 
-*/
+
 
 }

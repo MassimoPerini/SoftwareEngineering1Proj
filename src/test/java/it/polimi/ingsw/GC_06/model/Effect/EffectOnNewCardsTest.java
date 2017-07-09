@@ -32,6 +32,7 @@ public class EffectOnNewCardsTest {
         game = new Game(0);
         game.addPlayer("peppe");
         ServerOrchestrator serverOrchestrator = new ServerOrchestrator();
+        game.init();
         game.start(new FakeEventManager(game,serverOrchestrator));
 
         player = game.getGameStatus().getPlayers().get("peppe");
