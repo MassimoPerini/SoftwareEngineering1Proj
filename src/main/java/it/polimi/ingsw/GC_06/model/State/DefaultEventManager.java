@@ -2,13 +2,12 @@ package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageGameStarted;
-import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageActivatePopup;
 import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageRankingPopUp;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Action.Actions.EndGameAction;
-import it.polimi.ingsw.GC_06.model.Action.Actions.EndGameMap;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
 import it.polimi.ingsw.GC_06.model.Action.EndGame.Ranking;
@@ -233,7 +232,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             Player realPlayer = game.getGameStatus().getPlayers().get(player);
             if (realPlayer.isAllowedVariate(excomm) && realPlayer.isConnected())
             {
-                serverOrchestrator.send(player, new MessageUpdateState(ClientStateName.EXCOMMUNICATION));
+                serverOrchestrator.send(player, new MessageActivatePopup(ClientStateName.EXCOMMUNICATION));
                 playerAskExcomm++;
             }
             else

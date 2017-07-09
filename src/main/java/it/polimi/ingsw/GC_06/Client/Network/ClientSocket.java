@@ -60,7 +60,8 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageAddMemberOnProdHarv.class)
                 .registerSubtype(MessageAddMemberOnMarket.class)
                 .registerSubtype(MessageAddMemberOnCouncil.class)
-                .registerSubtype(HeroCardUploadMessageServer.class);
+                .registerSubtype(HeroCardUploadMessageServer.class)
+                .registerSubtype(MessageActivatePopup.class)
                 ;
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 

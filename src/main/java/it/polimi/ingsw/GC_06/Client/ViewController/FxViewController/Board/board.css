@@ -13,6 +13,16 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
+#main-board:disabled{
+    -fx-background-image: url("../../../../../../../../view/background-disabled.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: auto 100%;
+    -fx-alignment: top-center;
+
+    -fx-background-position: top center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
 .market-view
 {
 /*    -fx-padding: 0px 0px 0px 10px;

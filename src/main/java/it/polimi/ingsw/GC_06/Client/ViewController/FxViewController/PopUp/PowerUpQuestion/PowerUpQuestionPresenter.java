@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import javax.inject.Inject;
 
@@ -30,6 +31,7 @@ public class PowerUpQuestionPresenter {
                 return;
 
             clientNetworkOrchestrator.send(new DefaultAnswer(val));
+            ((Stage) okButton.getScene().getWindow()).close();
         }
         catch (NumberFormatException n)
         {
@@ -39,5 +41,6 @@ public class PowerUpQuestionPresenter {
 
     public void handleNoButtonPressed(ActionEvent actionEvent) {
         clientNetworkOrchestrator.send(new DefaultAnswer(0));
+        ((Stage) noButton.getScene().getWindow()).close();
     }
 }

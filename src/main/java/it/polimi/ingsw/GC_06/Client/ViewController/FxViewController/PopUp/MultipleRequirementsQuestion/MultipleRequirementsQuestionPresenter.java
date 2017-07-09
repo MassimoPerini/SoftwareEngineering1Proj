@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import javax.inject.Inject;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,30 +31,36 @@ public class MultipleRequirementsQuestionPresenter {
 
 
     @FXML
-    public void init()
+    public void initialize()
     {
         List<Requirement> requirementList = playerBonusActions.getRequirementCard();
-        ObservableList<Requirement> items = FXCollections.observableList(requirementList);
+        List<String> txtRep = new LinkedList<>();
+        for (Requirement requirement : requirementList) {
+            String txt = "Requirements: ";
+            for (Resource resource : requirement.getRequirements().getResources().keySet()) {
+                txt+=resource.name()+": "+requirement.getRequirements().getResources().get(resource)+", ";
+            }
+            txt+="Cost ";
+            for (Resource resource : requirement.getCost().getResources().keySet()) {
+                txt+=resource.name()+": "+requirement.getCost().getResources().get(resource)+", ";
+            }
+            txtRep.add(txt);
+            txt="";
+        }
+
+        ObservableList<String> items = FXCollections.observableList(txtRep);
 
         optionsView.setItems(items);
 
-        optionsView.setCellFactory(param -> new ListCell<Requirement>() {
+        optionsView.setCellFactory(param -> new ListCell<String>() {
             @Override
-            public void updateItem(Requirement requirement, boolean empty) {
+            public void updateItem(String requirement, boolean empty) {
                 super.updateItem(requirement, empty);
                 if (empty) {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    String txt = "Requirements: ";
-                    for (Resource resource : requirement.getRequirements().getResources().keySet()) {
-                        txt+=resource.name()+": "+requirement.getRequirements().getResources().get(resource)+", ";
-                    }
-                    txt+="Cost ";
-                    for (Resource resource : requirement.getCost().getResources().keySet()) {
-                        txt+=resource.name()+": "+requirement.getCost().getResources().get(resource)+", ";
-                    }
-                    setText(txt);
+                    setText(requirement);
                 }
             }
         });

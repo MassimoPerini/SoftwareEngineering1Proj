@@ -50,5 +50,6 @@ public class SendActionPresenter implements Observer {
     public void handleOkPressed(ActionEvent actionEvent) {
         mainClientModel.changeMyState(ClientStateName.WAIT_TURN);
         messageCreator.send();
+        sendAction.setDisable(true);
     }
 }

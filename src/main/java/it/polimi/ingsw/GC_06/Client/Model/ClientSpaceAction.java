@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -12,7 +13,7 @@ public class ClientSpaceAction extends Observable {
 
     public ClientSpaceAction()
     {
-        familyMembers = new LinkedList<>();
+        familyMembers = Collections.synchronizedList(new LinkedList<>());
     }
 
     public synchronized void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {

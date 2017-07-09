@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Client.Model;
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by giuseppe on 6/14/17.
@@ -24,13 +25,13 @@ public class ClientPlayerBoard extends Observable{
 
     public ClientPlayerBoard(String username, List<String> playerProdHarvBonus)
     {
-        cards = new HashMap<>();
-        excommunication = new LinkedList<>();
-        resourceSet = new HashMap<>();
+        cards = new ConcurrentHashMap<>();
+        excommunication = Collections.synchronizedList(new LinkedList<>());
+        resourceSet = new ConcurrentHashMap<>();
         playerUsername = username;
-        familyMembers = new LinkedList<>();
+        familyMembers = Collections.synchronizedList(new LinkedList<>());
         this.playerProdHarvBonus = playerProdHarvBonus;
-        this.heroCards = new LinkedList<>();
+        this.heroCards = Collections.synchronizedList(new LinkedList<>());
     }
 
     public synchronized void addFamilyMember(ClientFamilyMember clientFamilyMember)
@@ -41,7 +42,7 @@ public class ClientPlayerBoard extends Observable{
     public synchronized void addCard(String colour, String card) {
         List<String> cardsColour = this.cards.get(colour);
         if (cardsColour==null) {
-            cardsColour = new ArrayList<>();
+            cardsColour = Collections.synchronizedList(new ArrayList<>());
             cards.put(colour, cardsColour);
         }
         cardsColour.add(card);

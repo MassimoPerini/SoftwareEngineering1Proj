@@ -57,6 +57,7 @@ public class ViewPopupCLI implements Observer {
         clientStates.put(ClientStateName.ASK_PRODHARV_CARDS, new AskUserProdHarv(mainClientModel.getPlayerBonusActions(), clientNetworkOrchestrator));
         clientStates.put(ClientStateName.POWERUP, new AskUserPowerUp(clientNetworkOrchestrator));
         clientStates.put(ClientStateName.CHOOSE_PERSONAL_BONUS, new AskUserPersonalBonus(clientNetworkOrchestrator, mainClientModel.getPlayerBonusActions()));
+        clientStates.put(ClientStateName.EXCOMMUNICATION, new ExcommunicationViewController(clientNetworkOrchestrator));//POPUP
     }
 
 }
