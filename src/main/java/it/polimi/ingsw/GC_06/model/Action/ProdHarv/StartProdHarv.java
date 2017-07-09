@@ -78,11 +78,14 @@ public class StartProdHarv implements Action, Blocking {
 
 
         FamilyMember fakeFamilyMember = new FamilyMember(familyMemberColour,"");
+
+        /** filtriamo l'azione di produzione */
         fakeFamilyMember.setValue(value);
 
-        BonusMalusHandler.filter(player,actionType,null,fakeFamilyMember);
+        BonusMalusHandler.filter(player,actionType,"",fakeFamilyMember);
 
         value = fakeFamilyMember.getValue();
+        /** fine del filtraggio */
 
         // se il bonus avviene una volta per turno lo elimino una volta iniziata l'azione
         player.getBonusMalusSet().removeBonusMalusAction(actionType,null);

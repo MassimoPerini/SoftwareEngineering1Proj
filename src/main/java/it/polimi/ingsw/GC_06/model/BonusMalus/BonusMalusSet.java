@@ -123,17 +123,15 @@ public class BonusMalusSet {
 
     }
 
-    public void removeBonusMalusAccess( ActionType actionType,boolean position){
+    public void removeBonusMalusAccess( ActionType actionType){
 
         ArrayList<BonusMalusOnAccess> bonusMalusOnAccesses = this.bonusMalusOnAccess.get(BonusMalusType.BONUSMALUSONACCESS);
 
-        for(int i = 0; i < bonusMalusOnAccesses.size();i++){
-
-            if(bonusMalusOnAccesses.get(i).getActionType().equals(actionType) && bonusMalusOnAccesses.get(i).isModifiedAccess() == !position){
-                bonusMalusOnAccesses.remove(i);
-                i--;
-            }
-
+        for(int i = 0; i< bonusMalusOnAccesses.size();i++){
+                if(!bonusMalusOnAccesses.get(i).isPermanent() && bonusMalusOnAccesses.get(i).isUsed()){
+                    bonusMalusOnAccesses.remove(i);
+                    i = i-1;
+                }
         }
 
     }

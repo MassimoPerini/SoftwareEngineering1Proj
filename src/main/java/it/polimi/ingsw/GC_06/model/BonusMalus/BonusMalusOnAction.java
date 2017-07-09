@@ -63,7 +63,7 @@ public class BonusMalusOnAction {
 
     private boolean checkGeneralAction(ActionType actionType){
 
-        if((this.actionType.equals(ActionType.GENERAL) || this.actionType.equals(actionType)) && this.colourTarget == null){
+        if((this.actionType.equals(ActionType.GENERAL) || this.actionType.equals(actionType)) && this.colourTarget == ""){
             return true;
         }
         else

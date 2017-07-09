@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.model.Action.ProdHarv.BoardActionOnProdHarv;
 import it.polimi.ingsw.GC_06.model.Action.ProdHarv.DefaultAskUserSelector;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
+import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -45,26 +46,23 @@ public class MessageProdHarv implements MessageMultipleSteps{
         Game currentGame = GameList.getInstance().getGameId(game);
         Player currentPlayer = currentGame.getGameStatus().getPlayers().get(player);
         FamilyMember familyMember = currentPlayer.getFamilyMembers()[clientFamilyMember];
-        ProdHarvZone prodHarvZone = currentGame.getBoard().getProdHarvZones().get(prodHarvAreaSelector);
+
+
+        ProdHarvZone prodOrharvZone;
+        if(actionType.equals(ActionType.BOARD_ACTION_ON_HARV)){
+            prodOrharvZone = currentGame.getBoard().getHarvestZones().get(prodHarvAreaSelector);
+        }
+        else{
+            prodOrharvZone = currentGame.getBoard().getProductionZones().get(prodHarvAreaSelector);
+        }
         DefaultAskUserSelector defaultAskUserSelector = new DefaultAskUserSelector();
 
 
 
-        BoardActionOnProdHarv boardActionOnProdHarv = new BoardActionOnProdHarv(currentPlayer,index,prodHarvZone,actionType,startProdHarv,defaultAskUserSelector,familyMember, currentGame);
+
+        BoardActionOnProdHarv boardActionOnProdHarv = new BoardActionOnProdHarv(currentPlayer,index,prodOrharvZone,actionType,startProdHarv,defaultAskUserSelector,familyMember, currentGame);
         PowerUpFamilyMember powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,powerUpValue);
-/*
-        System.out.println("ACTION STARTED");
-        int originalValue = familyMember.getValue();
-        BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
-        if (this.isAllowed()) {
-            this.execute();
-            // devo rimuovere il bonus o il malus che ho utilizzato
-        }
-        else{
-            familyMember.setValue(originalValue);
-            System.out.println("ERRORE, NON POSSO ESEGUIRE L'AZIONE");
-        }
-*/
+
         try {
             if (powerUpFamilyMember.isAllowed())
                 powerUpFamilyMember.execute();
@@ -72,7 +70,6 @@ public class MessageProdHarv implements MessageMultipleSteps{
                 boardActionOnProdHarv.execute();
             }
             else{
-                System.out.println("grazie a dio stai sbagliando");
                 currentGame.getGameStatus().changeState(TransitionType.ERROR);
             }
         }
@@ -89,17 +86,6 @@ public class MessageProdHarv implements MessageMultipleSteps{
 
         /** rollBack */
 
-        /*
-        if(!boardActionOnProdHarv.isAllowed()){
-           int newPowerUpValue = -powerUpValue;
-           powerUpFamilyMember = new PowerUpFamilyMember(currentPlayer,familyMember,newPowerUpValue);
-           powerUpFamilyMember.setCoefficient(0);
-           return;
-        }
-        else{
-            boardActionOnProdHarv.execute();
-        }
-        */
     }
 
     @Override

@@ -29,7 +29,7 @@ public class ProdHarvZoneTest {
         game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[0].setValue(100);
         game.getGameStatus().getPlayers().get("gabri").getFamilyMembers()[1].setValue(100);
         board = game.getBoard();
-        prodHarvZones = board.getProdHarvZones();
+      //  prodHarvZones = board.getProdHarvZones();
     }
 
     @Test

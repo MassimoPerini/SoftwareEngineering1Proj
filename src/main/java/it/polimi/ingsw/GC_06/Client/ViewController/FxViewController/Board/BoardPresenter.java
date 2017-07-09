@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board;
 import it.polimi.ingsw.GC_06.Client.Model.ClientSpaceAction;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
+import it.polimi.ingsw.GC_06.Client.Network.Client;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Tower.TowerView;
@@ -63,45 +64,53 @@ public class BoardPresenter extends Observable implements Observer {
         prodMarket.getChildren().add(marketView);
 
 
+        Map<ActionType,List<List<ClientSpaceAction>>> prodHarvMap = new HashMap<>();
+        prodHarvMap.put(ActionType.BOARD_ACTION_ON_HARV,mainClientModel.getClientBoardGame().getHarvestZone());
+        prodHarvMap.put(ActionType.BOARD_ACTION_ON_PROD,mainClientModel.getClientBoardGame().getProductionZone());
+
         marketInfo = mainClientModel.getClientBoardGame().getMarket();
-        prodHarvInfo = mainClientModel.getClientBoardGame().getProductionHarvest();
+       // prodHarvInfo = mainClientModel.getClientBoardGame().getProductionHarvest();
 
         int containerIndex=0;
+/** problema */
 
-        for (List<ClientSpaceAction> clientSpaceActions : prodHarvInfo) {
-            //Prod or Harv
-            HBox rowProdHarv = new HBox(35);
-            prodHarvView.getChildren().add(rowProdHarv);
-            boolean big = false;
+        for (ActionType actionType : prodHarvMap.keySet()) {
 
-            int elemIndex = 0;
-            for (ClientSpaceAction clientSpaceAction : clientSpaceActions)
-            {
-                context = new HashMap<>();
-                context.put("clientSpaceAction", clientSpaceAction);
-                SpaceActionView spaceActionView = new SpaceActionView(context::get);
-                SpaceActionPresenter spaceActionPresenter = (SpaceActionPresenter) spaceActionView.getPresenter();
-                spaceActionPresenter.setContainerId(containerIndex);
-                spaceActionPresenter.setElemId(elemIndex);
-                spaceActionPresenter.setMessage(MessageProdHarv.class);
 
-                //Mostrane una grande, l'altra normale
-                if (big) {
-                    spaceActionView.getView().getStyleClass().add("spaceaction-big");
-                    big = false;
+            for (List<ClientSpaceAction> clientSpaceActions : prodHarvMap.get(actionType)) {
+                //Prod or Harv
+                HBox rowProdHarv = new HBox(35);
+                prodHarvView.getChildren().add(rowProdHarv);
+                boolean big = false;
+
+                int elemIndex = 0;
+                for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
+                    context = new HashMap<>();
+                    context.put("clientSpaceAction", clientSpaceAction);
+                    SpaceActionView spaceActionView = new SpaceActionView(context::get);
+                    SpaceActionPresenter spaceActionPresenter = (SpaceActionPresenter) spaceActionView.getPresenter();
+                    spaceActionPresenter.setContainerId(containerIndex);
+                    spaceActionPresenter.setElemId(elemIndex);
+                    spaceActionPresenter.setMessage(MessageProdHarv.class);
+                    spaceActionPresenter.setActionType(actionType);
+
+                    //Mostrane una grande, l'altra normale
+                    if (big) {
+                        spaceActionView.getView().getStyleClass().add("spaceaction-big");
+                        big = false;
+                    } else {
+                        spaceActionView.getView().getStyleClass().add("spaceaction");
+                        big = true;
+                    }
+
+                    rowProdHarv.getChildren().add(spaceActionView.getView());
+                    elemIndex++;
                 }
-                else{
-                    spaceActionView.getView().getStyleClass().add("spaceaction");
-                    big = true;
-                }
 
-                rowProdHarv.getChildren().add(spaceActionView.getView());
                 elemIndex++;
             }
-
-            elemIndex++;
         }
-
+/** problema */
         containerIndex = 0;
 
         for (List<ClientSpaceAction> clientSpaceActions : marketInfo) {

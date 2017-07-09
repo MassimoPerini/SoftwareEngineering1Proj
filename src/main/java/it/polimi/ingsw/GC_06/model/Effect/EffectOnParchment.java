@@ -54,6 +54,7 @@ public class EffectOnParchment implements Effect, Blocking {
             }
             while(alreadyChoosed.contains(choosen) && different);
             player.variateResource(parchments.get(choosen));
+            alreadyChoosed.add(choosen);
             choosen = null;
 
         }

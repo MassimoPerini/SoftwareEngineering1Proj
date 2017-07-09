@@ -59,6 +59,8 @@ public class BoardActionOnTower implements Action {
 
         // qui potrebbe essere un buon momento per eliminarli
         player.getBonusMalusSet().removeBonusMalusAction(ACTION_TYPE,tower.getColor());
+        player.getBonusMalusSet().removeBonusMalusAccess(ACTION_TYPE);
+
 
         game.getGameStatus().changeState(TransitionType.END_ACTION);
 
@@ -80,12 +82,15 @@ public class BoardActionOnTower implements Action {
             return false;
         }
 
-        if(!tower.isAllowed(familyMember, index))
-        {
-            return false;
-        }
+        /** stiamo diminuendo o aumentando il valore del familiare prima dei controlli sul piazzamento*/
         int originalValue = familyMember.getValue();
         BonusMalusHandler.filter(player,ACTION_TYPE,tower.getColor(),familyMember);
+
+        if(!tower.isAllowed(familyMember, index))
+        {
+            familyMember.setValue(originalValue);
+            return false;
+        }
         if (!game.getGameStatus().getCurrentStatus().canConsume(TransitionType.ACTION_ON_TOWER))
         {
             familyMember.setValue(originalValue);

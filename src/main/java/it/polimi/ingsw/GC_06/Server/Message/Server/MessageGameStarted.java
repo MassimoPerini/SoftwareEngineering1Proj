@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
 import it.polimi.ingsw.GC_06.model.Card.HeroCard;
+import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -22,7 +23,8 @@ public class MessageGameStarted implements MessageServer {
 
     private Map<String, Integer> towers;
     private List<Integer> councils;
-    private List<Integer> prodHarv;
+    private List<Integer> production;
+    private List<Integer> harvest;
     private List<Integer> market;
     private Map<String, List<String>> players;
     private Map<String, List<ClientFamilyMember>> familyMembers;
@@ -34,7 +36,8 @@ public class MessageGameStarted implements MessageServer {
     {
         towers = new HashMap<>();
         councils = new LinkedList<>();
-        prodHarv = new LinkedList<>();
+        production = new LinkedList<>();
+        harvest = new LinkedList<>();
         market = new LinkedList<>();
         players = new HashMap<>();
         familyMembers = new HashMap<>();
@@ -69,8 +72,13 @@ public class MessageGameStarted implements MessageServer {
             councils.add(marketAndCouncil.getActionPlaces().size());            //Il primo council ha x actionplaces...
         }
 
-        for (ProdHarvZone prodHarvZone : game.getBoard().getProdHarvZones()) {
-            prodHarv.add(prodHarvZone.getActionPlaces().size());
+        /** qui creiamo le x produzioni */
+        for (ProdHarvZone prodZone : game.getBoard().getProductionZones()) {
+            production.add(prodZone.getActionPlaces().size());
+        }
+
+        for (ProdHarvZone harvZone : game.getBoard().getHarvestZones()) {
+            harvest.add(harvZone.getActionPlaces().size());
         }
 
         for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarket()) {
@@ -99,12 +107,23 @@ public class MessageGameStarted implements MessageServer {
         for (int i=0;i<councils.size();i++) {
             clientBoardGame.createCouncil(i, councils.get(i));
         }
+        /**
         for (int i=0;i<prodHarv.size();i++) {
             clientBoardGame.createProdHarv(i, prodHarv.get(i));
-        }
+        }*/
+
         for (int i=0;i<market.size();i++) {
             clientBoardGame.createMarket(i, market.get(i));
         }
+
+        for(int i = 0; i< harvest.size(); i++){
+            clientBoardGame.createHarvestZone(i,harvest.get(i));
+        }
+
+        for(int i = 0; i < production.size();i++){
+            clientBoardGame.createProductionZone(i,production.get(i));
+        }
+
         for (String s : towers.keySet()) {
             clientBoardGame.createTower(s, towers.get(s));
         }

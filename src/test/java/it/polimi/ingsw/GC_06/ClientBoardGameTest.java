@@ -28,12 +28,12 @@ public class ClientBoardGameTest {
         assertTrue(clientBoardGame.getTowersClient().get("YELLOW").size() == 3 );
     }
 
-    @Test
+  /**  @Test
     public void createProdHarv() throws Exception {
 
         clientBoardGame.createProdHarv(0,2);
         assertTrue(clientBoardGame.getProductionHarvest().get(0).size() == 2);
-    }
+    }*/
 
     @Test
     public void createMarket() throws Exception {

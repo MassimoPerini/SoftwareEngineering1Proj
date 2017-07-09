@@ -99,7 +99,7 @@ public class BonusMalusHandler {
 
             if(bonusMalusOnAccess.isAllowed(actionType,result)){
                  result = bonusMalusOnAccess.modify(result);
-
+                 bonusMalusOnAccess.setUsed(true);
             }
 
         }

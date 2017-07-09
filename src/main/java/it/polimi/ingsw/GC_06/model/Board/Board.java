@@ -19,15 +19,17 @@ import java.util.Observable;
 public class Board extends Observable{
     private final Map<String, Tower> towers;
     private final List<MarketAndCouncil> market;
-    private final List<ProdHarvZone> prodHarvZones;
+    private final List<ProdHarvZone> productionZones;
     private final List<MarketAndCouncil> councils;
+    private final List<ProdHarvZone> harvestZones;
 
-    public Board(Map<String, Tower> towers, List<MarketAndCouncil> market, List<ProdHarvZone> prodHarvZones, List<MarketAndCouncil> councils)
+    public Board(Map<String, Tower> towers, List<MarketAndCouncil> market, List<ProdHarvZone> prodHarvZones,List<ProdHarvZone> harvestZones, List<MarketAndCouncil> councils)
     {
         super();
         this.towers = towers;
         this.market = market;
-        this.prodHarvZones = prodHarvZones;
+        this.productionZones = prodHarvZones;
+        this.harvestZones = harvestZones;
         this.councils = councils;
 
     }
@@ -48,8 +50,12 @@ public class Board extends Observable{
         for (MarketAndCouncil marketAndCouncil : market) {
             marketAndCouncil.removeFamilyMembers();
         }
-        for (ProdHarvZone prodHarvZone : prodHarvZones) {
+        for (ProdHarvZone prodHarvZone : productionZones) {
             prodHarvZone.removeFamilyMembers();
+        }
+
+        for (ProdHarvZone harvestZone : harvestZones) {
+            harvestZone.removeFamilyMembers();
         }
         for (MarketAndCouncil council : councils) {
             council.removeFamilyMembers();
@@ -65,9 +71,20 @@ public class Board extends Observable{
         return Collections.unmodifiableList(market);
     }
 
+
+    public List<ProdHarvZone> getProductionZones() {
+        return Collections.unmodifiableList(productionZones);
+    }
+
+    public List<ProdHarvZone> getHarvestZones() {
+        return Collections.unmodifiableList(harvestZones);
+    }
+
+
+    /**
     public List<ProdHarvZone> getProdHarvZones() {
         return Collections.unmodifiableList(prodHarvZones);
-    }
+    }*/
 
     public List<MarketAndCouncil> getCouncils() {
         return Collections.unmodifiableList(councils);

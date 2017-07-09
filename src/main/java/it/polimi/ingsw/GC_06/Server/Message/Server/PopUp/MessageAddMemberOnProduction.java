@@ -1,4 +1,4 @@
-package it.polimi.ingsw.GC_06.Server.Message.Server;
+package it.polimi.ingsw.GC_06.Server.Message.Server.PopUp;
 
 import it.polimi.ingsw.GC_06.Client.ClientController;
 import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
@@ -6,27 +6,27 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 
 /**
- * Created by giuseppe on 7/7/17.
+ * Created by giuseppe on 7/9/17.
  */
-public class MessageAddMemberOnProdHarv /**implements MessageServer*/ {
-/**
-    private int harvestProdIndex; // specifica quale fra harv o prod area utilizzare
-    private int slotIndex;// which slot
+public class MessageAddMemberOnProduction implements MessageServer{
+
+    private int productionIndex;
     private int valueFamilyMember;
+    private int slotIndex;
     private String userFamilyMember;
     private String diceColor;
 
-    public MessageAddMemberOnProdHarv(int harvestProdIndex, int slotIndex, FamilyMember familyMember) {
-        this.harvestProdIndex = harvestProdIndex;
+    public MessageAddMemberOnProduction(int productionIndex, int slotIndex, FamilyMember familyMember){
+        this.productionIndex = productionIndex;
         this.slotIndex = slotIndex;
         this.valueFamilyMember = familyMember.getValue();
-        this.userFamilyMember = familyMember.getPlayerUserName();
         this.diceColor = familyMember.getDiceColor();
+        this.userFamilyMember = familyMember.getPlayerUserName();
     }
 
     @Override
     public void execute(ClientController clientController) {
         ClientFamilyMember clientFamilyMember = new ClientFamilyMember(userFamilyMember,valueFamilyMember,diceColor);
-        clientController.getMainClientModel().getClientBoardGame().getProductionHarvest().get(harvestProdIndex).get(slotIndex).addClientFamilyMember(clientFamilyMember);
-    }*/
+        clientController.getMainClientModel().getClientBoardGame().getProductionZone().get(productionIndex).get(slotIndex).addClientFamilyMember(clientFamilyMember);
+    }
 }

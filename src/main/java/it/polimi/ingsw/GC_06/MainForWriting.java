@@ -53,5 +53,6 @@ public class MainForWriting {
         System.out.println("factored map for heroes names");*/
 
         fileLoader.writeRankingPoints();
+        fileLoader.writeBoardWithEffects();
     }
 }

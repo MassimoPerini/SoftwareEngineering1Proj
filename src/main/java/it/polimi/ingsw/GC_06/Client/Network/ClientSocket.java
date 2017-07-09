@@ -57,11 +57,13 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageUpdateResource.class)
                 .registerSubtype(MessageRankingPopUp.class)
                 .registerSubtype(MessageError.class)
-                .registerSubtype(MessageAddMemberOnProdHarv.class)
+             //   .registerSubtype(MessageAddMemberOnProdHarv.class)
                 .registerSubtype(MessageAddMemberOnMarket.class)
                 .registerSubtype(MessageAddMemberOnCouncil.class)
                 .registerSubtype(HeroCardUploadMessageServer.class)
                 .registerSubtype(MessageActivatePopup.class)
+                .registerSubtype(MessageAddMemberOnProduction.class)
+                .registerSubtype(MessageAddMemberOnHarvest.class)
                 ;
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 

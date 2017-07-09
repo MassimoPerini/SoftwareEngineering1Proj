@@ -1,7 +1,11 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnCouncil;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnHarvest;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnMarket;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnProdHarv;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageAddMemberOnProduction;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -33,14 +37,17 @@ public class ProdHarvZone extends Observable{
 	public void addFamilyMember(FamilyMember familyMember, int index)
 	{
 		actionPlaces.get(index).addFamilyMember(familyMember);
-		int harvProd;
-		if(this.actionType.equals(ActionType.PRODUCTION_ACTION)){
-			harvProd = 1;
+
+		MessageServer messageServer;
+
+		if(actionType.equals(ActionType.BOARD_ACTION_ON_HARV)){
+			messageServer = new MessageAddMemberOnHarvest(0,index,familyMember);
 		}
+
 		else{
-			harvProd = 0;
+			messageServer = new MessageAddMemberOnProduction(0,index,familyMember);
 		}
-		MessageServer messageServer = new MessageAddMemberOnProdHarv(harvProd,index,familyMember);
+
 		setChanged();
 		notifyObservers(messageServer);
 	}

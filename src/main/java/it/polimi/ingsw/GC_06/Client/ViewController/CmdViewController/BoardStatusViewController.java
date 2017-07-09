@@ -58,8 +58,20 @@ public class BoardStatusViewController implements ViewPresenterCLI {
 
             }
 
-            System.out.println("ORA MOSTRO GLI SPAZI PROD: HARV:\n");
-            for (List<ClientSpaceAction> clientSpaceActions : clientBoardGame.getProductionHarvest()) {
+            System.out.println("ORA MOSTRO GLI SPAZI PROD:\n");
+            for (List<ClientSpaceAction> clientSpaceActions : clientBoardGame.getProductionZone()) {
+                System.out.println("SPAZIO PROD:");
+                for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
+                    System.out.println("SPAZIO AZIONE: PEDINE SOPRA: ");
+                    for (ClientFamilyMember clientFamilyMember : clientSpaceAction.getFamilyMembers()) {
+                        System.out.println("PEDINA TROVATA " + clientFamilyMember.getPlayer());
+                    }
+                }
+            }
+
+
+            System.out.println("ORA MOSTRO GLI SPAZI HARV:\n");
+            for (List<ClientSpaceAction> clientSpaceActions : clientBoardGame.getHarvestZone()) {
                 System.out.println("SPAZIO PROD: HARV:");
                 for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
                     System.out.println("SPAZIO AZIONE: PEDINE SOPRA: ");
@@ -68,6 +80,7 @@ public class BoardStatusViewController implements ViewPresenterCLI {
                     }
                 }
             }
+
 
 
             System.out.println("ORA MOSTRO GLI SPAZI MERCATO:\n");

@@ -46,7 +46,10 @@ public class ControllerGame implements Observer {
         for (Tower tower : game.getBoard().getTowers().values()) {
             tower.addObserver(this);
         }
-        for (ProdHarvZone prodHarvZone : game.getBoard().getProdHarvZones()) {
+        for (ProdHarvZone prodHarvZone : game.getBoard().getHarvestZones()) {
+            prodHarvZone.addObserver(this);
+        }
+        for (ProdHarvZone prodHarvZone : game.getBoard().getProductionZones()) {
             prodHarvZone.addObserver(this);
         }
         for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarket()) {

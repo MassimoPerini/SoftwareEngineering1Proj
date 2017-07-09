@@ -89,6 +89,7 @@ public class Tower extends Observable{
             }
         }
 
+
         if (samePlayerFamilyMember > maxSamePlayerFamilyMember)
             return false;
         return towerFloors.get(towerFloorUser).isAllowed(familyMember);

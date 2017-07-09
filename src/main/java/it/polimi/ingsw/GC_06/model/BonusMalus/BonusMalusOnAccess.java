@@ -9,6 +9,7 @@ public class BonusMalusOnAccess {
     private ActionType actionType;
     private boolean modifiedAccess;
     private boolean permanent;
+    private boolean used = false;
 
     public BonusMalusOnAccess(ActionType actionType, boolean modifiedAccess, boolean permanent) {
         this.actionType = actionType;
@@ -45,5 +46,13 @@ public class BonusMalusOnAccess {
 
     public boolean isPermanent() {
         return permanent;
+    }
+
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
+
+    public boolean isUsed() {
+        return used;
     }
 }

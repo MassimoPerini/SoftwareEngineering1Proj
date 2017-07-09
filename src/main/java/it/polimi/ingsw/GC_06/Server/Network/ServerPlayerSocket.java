@@ -85,11 +85,13 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageChooseParchment.class)
                 .registerSubtype(MessageUpdateResource.class)
                 .registerSubtype(MessageRankingPopUp.class)
-                .registerSubtype(MessageAddMemberOnProdHarv.class)
+                //.registerSubtype(MessageAddMemberOnProdHarv.class)
                 .registerSubtype(MessageAddMemberOnMarket.class)
                 .registerSubtype(MessageAddMemberOnCouncil.class)
                 .registerSubtype(HeroCardUploadMessageServer.class)
                 .registerSubtype(MessageActivatePopup.class)
+                .registerSubtype(MessageAddMemberOnHarvest.class)
+                .registerSubtype(MessageAddMemberOnProduction.class)
                 ;
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }

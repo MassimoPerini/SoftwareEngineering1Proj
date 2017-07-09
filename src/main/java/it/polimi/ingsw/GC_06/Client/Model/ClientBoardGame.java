@@ -11,7 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ClientBoardGame extends Observable {
     private final Map<String, List<ClientTowerFloor>> towersClient;
-    private final List<List<ClientSpaceAction>> productionHarvest;
+    private final List<List<ClientSpaceAction>> harvestZone;
+    private final List<List<ClientSpaceAction>> productionZone;
     private final List<List<ClientSpaceAction>> market;
     private final List<List<ClientSpaceAction>> council;
     private final List<String> orderTowers;
@@ -19,7 +20,8 @@ public class ClientBoardGame extends Observable {
     public ClientBoardGame()
     {
         towersClient = new ConcurrentHashMap<>();
-        productionHarvest = Collections.synchronizedList(new ArrayList<>());
+        harvestZone = Collections.synchronizedList(new ArrayList<>());
+        productionZone = Collections.synchronizedList(new ArrayList<>());
         market = Collections.synchronizedList( new ArrayList<>());
         council = Collections.synchronizedList( new ArrayList<>());
         orderTowers = Collections.synchronizedList(Arrays.asList(Setting.getInstance().getListProperty("order_towers")));
@@ -42,10 +44,20 @@ public class ClientBoardGame extends Observable {
         towersClient.put(color, list);
     }
 
-    public synchronized void createProdHarv(int position, int spaces)
+  /**  public synchronized void createProdHarv(int position, int spaces)
     {
         List<ClientSpaceAction> item = generateBoardItems(spaces);
         productionHarvest.add(position, item);
+    }*/
+
+    public synchronized void createProductionZone(int position, int spaces){
+        List<ClientSpaceAction> item = generateBoardItems(spaces);
+        productionZone.add(item);
+    }
+
+    public synchronized void createHarvestZone(int position, int spaces){
+        List<ClientSpaceAction> item = generateBoardItems(spaces);
+        harvestZone.add(position,item);
     }
 
     public synchronized void createMarket(int position, int spaces)
@@ -105,8 +117,22 @@ public class ClientBoardGame extends Observable {
                 clientTowerFloor.removeFamilyMember();
             }
         }
-
+/**
         for (List<ClientSpaceAction> clientSpaceActions : productionHarvest) {
+            for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
+                clientSpaceAction.reset();
+            }
+        }
+*/
+
+        for (List<ClientSpaceAction> clientSpaceActions : productionZone) {
+            for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
+                clientSpaceAction.reset();
+            }
+        }
+
+
+        for (List<ClientSpaceAction> clientSpaceActions : harvestZone) {
             for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
                 clientSpaceAction.reset();
             }
@@ -133,9 +159,9 @@ public class ClientBoardGame extends Observable {
         return towersClient;
     }
 
-    public synchronized List<List<ClientSpaceAction>> getProductionHarvest() {
+    /**public synchronized List<List<ClientSpaceAction>> getProductionHarvest() {
         return productionHarvest;
-    }
+    }*/
 
     public synchronized List<List<ClientSpaceAction>> getMarket() {
         return market;
@@ -143,5 +169,13 @@ public class ClientBoardGame extends Observable {
 
     public synchronized List<List<ClientSpaceAction>> getCouncil() {
         return council;
+    }
+
+    public List<List<ClientSpaceAction>> getHarvestZone() {
+        return harvestZone;
+    }
+
+    public List<List<ClientSpaceAction>> getProductionZone() {
+        return productionZone;
     }
 }

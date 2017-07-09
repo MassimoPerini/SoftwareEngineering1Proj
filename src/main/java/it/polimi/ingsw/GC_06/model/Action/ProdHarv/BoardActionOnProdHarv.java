@@ -81,6 +81,8 @@ public class BoardActionOnProdHarv implements Action {
         player.getBonusMalusSet().removeBonusMalusAction(actionType,null);
 
         startProdHarv.execute();
+
+
         prodHarvArea.addFamilyMember(familyMember, index);
 
 
