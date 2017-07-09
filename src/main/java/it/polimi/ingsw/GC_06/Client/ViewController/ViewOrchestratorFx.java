@@ -15,6 +15,7 @@ import java.util.Observable;
 
 /**
  * Created by massimo on 16/06/17.
+ * This class is responsible for managing the general behaviour of the view (GUI version)
  */
 public class ViewOrchestratorFx extends Observable implements ViewOrchestrator {
 

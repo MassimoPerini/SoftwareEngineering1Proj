@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by massimo on 16/06/17.
+ * This class is responsible for managing the general behaviour of the view (CLI version)
  */
 public class ViewOrchestratorCLI implements ViewOrchestrator{
 
@@ -40,6 +41,9 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
         this.generateViewCli();
     }
 
+    /**
+     * generates a map of the possible states of the client and respective views
+     */
     private void generateViewCli()
     {
         clientStates.put(ClientStateName.LOGIN, new LoginViewPresenterCLI(clientNetworkOrchestrator));

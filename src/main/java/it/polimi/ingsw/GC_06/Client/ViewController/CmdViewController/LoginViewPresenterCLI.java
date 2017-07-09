@@ -9,6 +9,7 @@ import java.util.concurrent.Future;
 
 /**
  * Created by massimo on 09/06/17.
+ * this class is used to manage the client's login phase with the view
  */
 public class LoginViewPresenterCLI implements ViewPresenterCLI {
 
@@ -22,6 +23,10 @@ public class LoginViewPresenterCLI implements ViewPresenterCLI {
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
+    /**
+     * shows the view to login and manages client's interaction
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
      //   this.future = executor.submit(this);

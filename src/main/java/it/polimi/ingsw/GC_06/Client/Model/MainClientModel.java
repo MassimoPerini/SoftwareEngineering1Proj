@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 /**
  * Created by giuseppe on 6/14/17.
+ * This class represents the entire Model client side, is an observable class
  */
 
 public class MainClientModel extends Observable{
@@ -48,6 +49,12 @@ public class MainClientModel extends Observable{
         return personalStatistics;
     }
 
+    /**
+     * Updates the status of the game
+     * @param turn the new turn
+     * @param era the new era
+     * @param username usernam,e of the current player
+     */
     public synchronized void updateStatus(int turn, int era, String username)
     {
         this.turn = turn;
@@ -58,6 +65,10 @@ public class MainClientModel extends Observable{
         notifyObservers(myStatus);
     }
 
+    /**
+     * change the state of the client
+     * @param clientStateName name of the nee status of the client
+     */
     public synchronized void changeMyState(ClientStateName clientStateName)
     {
         myStatus = clientStateName;

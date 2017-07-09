@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.Client.ViewController.ViewOrchestrator;
 
 /**
  * Created by massimo on 17/06/17.
+ * this class represents the main controller of the client
  */
 public class ClientController {
 
@@ -17,7 +18,10 @@ public class ClientController {
     }
 
 
-
+    /**
+     *
+     * @return returns the representation of the model for the client
+     */
     public MainClientModel getMainClientModel() {
         return mainClientModel;
     }

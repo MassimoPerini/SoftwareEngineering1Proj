@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by giuseppe on 6/14/17.
+ * this class represents a familyMember client side, is a serializable class
  */
 public class ClientFamilyMember implements Serializable {
     private String player;

@@ -6,7 +6,8 @@ import java.rmi.RemoteException;
 import java.util.Observable;
 
 /**
- * Created by massimo on 14/06/17.
+ * Created by massimo on 14/06/
+ * This is the abstract class to be extended by both clients, socket and RMI
  */
 public abstract class Client extends Observable implements Runnable {
     public abstract void submit(MessageClient action) throws RemoteException;

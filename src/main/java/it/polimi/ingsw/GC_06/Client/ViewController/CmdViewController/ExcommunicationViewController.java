@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.Server.Message.Client.PlayerChoiceExcommunication;
 
 /**
  * Created by massimo on 24/06/17.
+ * this class is used to manage the client's choice during the "rapporto al vaticano" with the view
  */
 public class ExcommunicationViewController implements ViewPresenterCLI {
 
@@ -19,6 +20,10 @@ public class ExcommunicationViewController implements ViewPresenterCLI {
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
+    /**
+     * shows the view for selecting wether to pay faithpoints or not and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Vuoi essere scomunicato? 0: sì, 1:no");

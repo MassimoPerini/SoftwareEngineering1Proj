@@ -13,6 +13,7 @@ import java.util.concurrent.Future;
 
 /**
  * Created by massimo on 01/06/17.
+ * this class is used to manage the client's visualization of both general board and personal board with the view
  */
 public class BoardStatusViewController implements ViewPresenterCLI {
 
@@ -30,6 +31,10 @@ public class BoardStatusViewController implements ViewPresenterCLI {
         this.commandView = new CmdView();
     }
 
+    /**
+     * waits for another player or, based on the choice of the client, shows the genral board or the personal board
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Le tue scelte sono: \n 1)Inserire Board per vedere il campo da gioco , \n 2) Inserire Plancia per vedere la personal Board  \n 3) STOP per aspettare che l'altro giocatore termini il turno");

@@ -12,12 +12,16 @@ import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Created by massimo on 12/06/17.
+ * This class manages comunication of the client via RMI
  */
 public class ClientRMIHandler extends Client implements ClientRMI {
 
     private RMIListener rmiListener;
     private ServerPlayerRMIClient serverPlayerRMIClient;
 
+    /**
+     * gets the registry from the server and execute the binding
+     */
     public ClientRMIHandler()
     {
         try {
@@ -33,6 +37,11 @@ public class ClientRMIHandler extends Client implements ClientRMI {
         }
     }
 
+    /**
+     * submits an action via RMI
+     * @param action action to be sent to the server
+     * @throws RemoteException
+     */
     @Override
     synchronized public void submit(MessageClient action) throws RemoteException {
         try {
@@ -43,6 +52,11 @@ public class ClientRMIHandler extends Client implements ClientRMI {
         }
     }
 
+    /**
+     * submits a string to the server
+     * @param string string to be sent to the server
+     * @throws RemoteException
+     */
     @Override
     synchronized public void submit(String string) throws RemoteException {
         //Sono all'inizio
@@ -65,6 +79,11 @@ public class ClientRMIHandler extends Client implements ClientRMI {
         //Ascolto e ricevo azioni
     }
 
+    /**
+     *
+     * @param messageServer message receive from the server
+     * @throws RemoteException
+     */
     @Override
     synchronized public void receive(MessageServer messageServer) throws RemoteException{
         System.out.println("RMI CLIENT IN RICEZIONE "+messageServer.toString());

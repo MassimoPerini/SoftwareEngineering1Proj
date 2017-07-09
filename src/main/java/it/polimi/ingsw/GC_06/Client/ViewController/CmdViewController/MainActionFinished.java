@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
 
 /**
  * Created by massimo on 25/06/17.
+ * this class is used to manage the client's ending of an action and passing turn with the view
  */
 public class MainActionFinished implements ViewPresenterCLI {
 
@@ -19,6 +20,10 @@ public class MainActionFinished implements ViewPresenterCLI {
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
+    /**
+     * shows the view to decide if to pass the turn or not and manages client's interaction
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
 

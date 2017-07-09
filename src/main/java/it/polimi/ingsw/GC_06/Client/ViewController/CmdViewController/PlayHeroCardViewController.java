@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by giuseppe on 7/5/17.
+ * this class is used to manage the client's slection of the hero card to play with the view
  */
 public class PlayHeroCardViewController  implements ViewPresenterCLI{
 
@@ -28,6 +29,10 @@ public class PlayHeroCardViewController  implements ViewPresenterCLI{
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
+    /**
+     * shows the view to select the desired hero card and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Puoi Giocare una favolosa Hero Card");

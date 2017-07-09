@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by giuseppe on 6/14/17.
+ * this class represents the game board client side, is an observable class
  */
 
 public class ClientBoardGame extends Observable {
@@ -31,6 +32,11 @@ public class ClientBoardGame extends Observable {
         return orderTowers;
     }
 
+    /**
+     *
+     * @param color color of the tower
+     * @param floors number of floors to the tower
+     */
     public synchronized void createTower(String color, int floors)
     {
         List<ClientTowerFloor> list = Collections.synchronizedList(new ArrayList<>());
@@ -44,7 +50,13 @@ public class ClientBoardGame extends Observable {
         towersClient.put(color, list);
     }
 
-  /**  public synchronized void createProdHarv(int position, int spaces)
+  //  public synchronized void createProdHarv(int position, int spaces)
+    /**
+     *
+     * @param position position of the space
+     * @param spaces number of action spaces
+     */
+    /**public synchronized void createProdHarv(int position, int spaces)
     {
         List<ClientSpaceAction> item = generateBoardItems(spaces);
         productionHarvest.add(position, item);
@@ -60,12 +72,22 @@ public class ClientBoardGame extends Observable {
         harvestZone.add(position,item);
     }
 
+    /**
+     *
+     * @param position position of the space
+     * @param spaces number of action spaces
+     */
     public synchronized void createMarket(int position, int spaces)
     {
         List<ClientSpaceAction> item = generateBoardItems(spaces);
         market.add(position, item);
     }
 
+    /**
+     *
+     * @param position position of the space
+     * @param spaces number of action spaces
+     */
     public synchronized void createCouncil(int position, int spaces)
     {
         List<ClientSpaceAction> item = generateBoardItems(spaces);
@@ -73,6 +95,11 @@ public class ClientBoardGame extends Observable {
     }
 
 
+    /**
+     *
+     * @param items
+     * @return returns a list of space actions for the client
+     */
     private synchronized List<ClientSpaceAction> generateBoardItems(int items)
     {
         List list = Collections.synchronizedList(new ArrayList());
@@ -82,6 +109,10 @@ public class ClientBoardGame extends Observable {
         return list;
     }
 
+    /**
+     * @param tower the target tower
+     * @param plane the target towerfloor
+     */
     public synchronized void removeCard(String tower, int plane)
     {
         ClientTowerFloor clientTowerFloor = towersClient.get(tower).get(plane);
@@ -91,6 +122,12 @@ public class ClientBoardGame extends Observable {
         notifyObservers();*/
     }
 
+    /**
+     *
+     * @param clientFamilyMember familyMember to be added
+     * @param tower target tower
+     * @param index target towerfloor
+     */
     public synchronized void addFamilyMemberToTower(ClientFamilyMember clientFamilyMember, String tower, int index)
     {
         towersClient.get(tower).get(index).addFamilyMember(clientFamilyMember);
@@ -110,6 +147,9 @@ public class ClientBoardGame extends Observable {
 
     }
 
+    /**
+     * removes all familymembers from board
+     */
     public synchronized void clearAllFamilyMembers()
     {
         for (List<ClientTowerFloor> clientTowerFloors : towersClient.values()) {

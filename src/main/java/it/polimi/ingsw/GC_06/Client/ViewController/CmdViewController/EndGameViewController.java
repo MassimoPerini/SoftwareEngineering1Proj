@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by giuseppe on 7/3/17.
+ * this class shows the view related to the endgame
  */
 public class EndGameViewController implements ViewPresenterCLI  {
 
@@ -19,6 +20,9 @@ public class EndGameViewController implements ViewPresenterCLI  {
         this.personalStatistics = personalStatistics;
     }
 
+    /**
+     * shows the view
+     */
     @Override
     public void viewWillAppear(){
         commandView.addLocalizedText("La classifica ");

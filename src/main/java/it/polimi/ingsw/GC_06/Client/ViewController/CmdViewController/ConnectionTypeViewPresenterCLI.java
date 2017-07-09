@@ -9,6 +9,7 @@ import java.util.concurrent.Future;
 
 /**
  * Created by massimo on 15/06/17.
+ * this class is used to manage the client's choice of the type of connection (Socket/RMI) with the view
  */
 public class ConnectionTypeViewPresenterCLI implements ViewPresenterCLI {
 
@@ -23,6 +24,10 @@ public class ConnectionTypeViewPresenterCLI implements ViewPresenterCLI {
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
+    /**
+     * shows the view for selceting the connection and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
 

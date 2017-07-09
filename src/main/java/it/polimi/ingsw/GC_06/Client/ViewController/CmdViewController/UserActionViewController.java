@@ -14,6 +14,7 @@ import java.util.concurrent.Future;
 
 /**
  * Created by massimo on 19/06/17.
+ * this class is used to manage the client's general actions with the view
  */
 public class UserActionViewController implements ViewPresenterCLI {
 
@@ -30,6 +31,10 @@ public class UserActionViewController implements ViewPresenterCLI {
         this.commandView = new CmdView();
     }
 
+    /**
+     * shows the view to select the main actions available during the game and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
     //    ExecutorService executor = Executors.newCachedThreadPool();

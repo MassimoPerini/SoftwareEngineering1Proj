@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by massimo on 21/06/17.
+ * this class is used to manage the client's choice of wether to piuck a bonus card with the view
  */
 public class PickOtherCardViewController implements ViewPresenterCLI {
 
@@ -29,6 +30,10 @@ public class PickOtherCardViewController implements ViewPresenterCLI {
     }
 
 
+    /**
+     * shows the view to select the desired bonus card ( or to refuse it) and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
 

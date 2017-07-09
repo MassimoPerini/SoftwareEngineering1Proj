@@ -8,6 +8,7 @@ import java.io.IOException;
 
 /**
  * Created by massimo on 01/06/17.
+ * This is the main server application
  */
 public class AppServer {
 

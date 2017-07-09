@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_06.model.Resource.Resource;
 
 /**
  * Created by massimo on 21/06/17.
+ * this class is used to manage the client's choice in case of multiple payment methods with the view
  */
 public class PaymentWaysViewController implements ViewPresenterCLI {
 
@@ -25,6 +26,10 @@ public class PaymentWaysViewController implements ViewPresenterCLI {
         this.commandView = new CmdView();
     }
 
+    /**
+     * shows the view to select the desired payment method and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Puoi scegliere diversi metodi di pagamento!");

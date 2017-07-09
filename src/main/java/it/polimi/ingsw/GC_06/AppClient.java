@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Hello world!
+ * This is the main client application
  *
  */
 public class AppClient extends Application {
@@ -38,6 +38,12 @@ public class AppClient extends Application {
     private static ClientController clientController;
     private static PlayerColors playerColors;
 
+    /**
+     * Launches the client and handles the selection of the presenting method (GUI or CLI)
+     * @param args
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws IOException, InterruptedException {
         Setting.getInstance().addPath("settings/client");
         Setting.getInstance().addPath("view/heroes");
@@ -69,6 +75,11 @@ public class AppClient extends Application {
         }
     }
 
+    /**
+     * Initialize and launch the GUI
+     * @param primaryStage the first GUI view
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainStage = primaryStage;

@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Created by massimo on 07/07/17.
+ * this class handles the association of players and colours
  */
 public class PlayerColors {
 
@@ -11,6 +12,9 @@ public class PlayerColors {
     private List<String> colorList;
     private Random random;
 
+    /**
+     * initialize and populate the array of colours
+     */
     public PlayerColors()
     {
         super();
@@ -41,6 +45,10 @@ public class PlayerColors {
         return colors.get(player);
     }
 
+    /**
+     * associates a random colour to a player
+     * @param player player to be given a colour
+     */
     public void addPlayer(String player)
     {
         int rnd = random.nextInt(colorList.size());

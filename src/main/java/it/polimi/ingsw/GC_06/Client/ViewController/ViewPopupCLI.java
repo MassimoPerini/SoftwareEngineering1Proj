@@ -15,6 +15,8 @@ import java.util.concurrent.Future;
 
 /**
  * Created by massimo on 24/06/17.
+ * This class is responsible for managing PopUps, which are used every time the model needs to ask for an input to
+ * the client (CLI version)
  */
 public class ViewPopupCLI implements Observer {
 
@@ -31,6 +33,11 @@ public class ViewPopupCLI implements Observer {
         this.initViews();
     }
 
+    /**
+     * shows the necessary view to the client
+     * @param o object observed
+     * @param arg object passed during the notify process
+     */
     @Override
     public void update(Observable o, Object arg) {
             ClientStateName clientStateName = (ClientStateName) arg;
@@ -49,6 +56,9 @@ public class ViewPopupCLI implements Observer {
 
     }
 
+    /**
+     * initialize the necessary PopUp views
+     */
     private void initViews ()
     {
         clientStates.put(ClientStateName.CHOOSE_NEW_CARD, new PickOtherCardViewController(mainClientModel.getPlayerBonusActions(), mainClientModel.getClientBoardGame(), clientNetworkOrchestrator));

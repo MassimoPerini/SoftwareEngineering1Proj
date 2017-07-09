@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
 /**
  * Created by massimo on 21/06/17.
+ * this class is used to manage the client's choice of council privilege with the view
  */
 public class ParchmentViewController implements ViewPresenterCLI {
 
@@ -25,6 +26,10 @@ public class ParchmentViewController implements ViewPresenterCLI {
     }
 
 
+    /**
+     * shows the view to select the desired council privilege and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Ti è stato concesso un privilegio del consiglio\n");

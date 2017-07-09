@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Created by massimo on 16/05/17.
+ * this class handles the functioning logic of the view, managing client's input
  */
 public class CmdView implements CommandView {
 
@@ -22,21 +23,35 @@ public class CmdView implements CommandView {
         input =  new BufferedReader(new InputStreamReader(System.in));
     }
 
+    /**
+     *
+     * @param string text to be shown
+     */
     @Override
     public synchronized void addLocalizedText(String string) {
         text = text.concat(string);
     }
 
+    /**
+     * clears all the text
+     */
     @Override
     public synchronized void flush() {
         text="";
     }
 
+    /**
+     *
+     * @param string text to be shown
+     */
     @Override
     public synchronized void addText(String string) {
         text = text.concat(string);
     }
 
+    /**
+     * shows all text memorized
+     */
     @Override
     public synchronized void print() {
         System.out.println(text);
@@ -57,6 +72,13 @@ public class CmdView implements CommandView {
 
     }
 
+    /**
+     *
+     * @param min
+     * @param max
+     * @return returns client input as a list of Integers
+     * @throws InterruptedException
+     */
     @Override
     public List<Integer> getList(int min, int max) throws InterruptedException {
 
@@ -88,6 +110,12 @@ public class CmdView implements CommandView {
         return finalChoices;
     }
 
+    /**
+     *
+     * @param start
+     * @return returns the client input as an int
+     * @throws InterruptedException
+     */
     @Override
     public int getInt(int start) throws InterruptedException {
         this.print();
@@ -115,6 +143,11 @@ public class CmdView implements CommandView {
         return res;
     }
 
+    /**
+     *
+     * @return return client input as a string
+     * @throws InterruptedException
+     */
     @Override
     public String getString() throws InterruptedException {
 

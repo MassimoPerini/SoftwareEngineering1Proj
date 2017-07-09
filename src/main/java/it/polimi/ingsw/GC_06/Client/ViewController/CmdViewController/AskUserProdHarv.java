@@ -13,6 +13,7 @@ import java.util.Map;
 
 /**
  * Created by massimo on 23/06/17.
+ * this class is used to manage the client's choice about prodHarv cards with the view
  */
 public class AskUserProdHarv implements ViewPresenterCLI {
 
@@ -27,6 +28,10 @@ public class AskUserProdHarv implements ViewPresenterCLI {
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
+    /**
+     * shows the view for the selection of cards and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
         cmdView.addLocalizedText("Puoi scegliere vari tipi di carte produzione facontative:\n");

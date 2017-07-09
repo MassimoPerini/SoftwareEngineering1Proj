@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 12/06/17.
+ * this class handles the comunication client side, and is both an observer and an observable class
  */
 public class ClientNetworkOrchestrator extends Observable implements Observer {
 
@@ -37,6 +38,9 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
         this.client = client;
     }
 
+    /**
+     * adds a client connected via socket
+     */
     public void useSocket()
     {
         try {
@@ -48,6 +52,9 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
         }
     }
 
+    /**
+     * adds a client connected via RMI
+     */
     public void useRMI()
     {
         client = new ClientRMIHandler();
@@ -60,6 +67,10 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
         executor.submit(client);
     }
 
+    /**
+     * sends a message to the client
+     * @param messageClient message to be sent
+     */
     public synchronized void send(MessageClient messageClient)
     {
         try {
@@ -69,6 +80,10 @@ public class ClientNetworkOrchestrator extends Observable implements Observer {
         }
     }
 
+    /**
+     * sends a string to the client
+     * @param string string to be sent
+     */
     public void send(String string)
     {
         try {

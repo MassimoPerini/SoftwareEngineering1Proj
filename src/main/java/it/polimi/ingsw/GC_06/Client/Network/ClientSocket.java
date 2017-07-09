@@ -20,6 +20,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 11/06/17.
+ * This class manages communications of the client via Socket
  */
 public class ClientSocket extends Client {
 
@@ -31,6 +32,11 @@ public class ClientSocket extends Client {
     private final Socket socket;
 
 
+    /**
+     *
+     * @param socket socket through which communications are passed
+     * @throws IOException
+     */
     public ClientSocket(@NotNull Socket socket) throws IOException {
         this.socket = socket;
         this.socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -81,6 +87,9 @@ public class ClientSocket extends Client {
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();
     }
 
+    /**
+     * this method also receives all the comunications from the server
+     */
     @Override
     public void run() {
 
@@ -105,6 +114,10 @@ public class ClientSocket extends Client {
             }
     }
 
+    /**
+     * submits an action to the server
+     * @param action action to be passed to the server
+     */
     @Override
     public synchronized void submit(MessageClient action) {
     //    pool.submit(() -> {
@@ -123,6 +136,10 @@ public class ClientSocket extends Client {
     //    });
     }
 
+    /**
+     * submits a string to the server
+     * @param string string to be passed to the server
+     */
     @Override
     public void submit(String string) {
         pool.execute(() -> {
@@ -139,6 +156,10 @@ public class ClientSocket extends Client {
         });
     }
 
+    /**
+     * shuts down and close the socket
+     * @throws IOException
+     */
     public void finish() throws IOException {
         socketOut.close();
         socketIn.close();

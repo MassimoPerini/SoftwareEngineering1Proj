@@ -7,6 +7,7 @@ import java.util.Observable;
 
 /**
  * Created by giuseppe on 6/14/17.
+ * this class represents an ActionSpace client side, is an observable class
  */
 public class ClientSpaceAction extends Observable {
     private List<ClientFamilyMember> familyMembers;
@@ -16,12 +17,19 @@ public class ClientSpaceAction extends Observable {
         familyMembers = Collections.synchronizedList(new LinkedList<>());
     }
 
+    /**
+     * adds a familyMember to the action place
+     * @param clientFamilyMember
+     */
     public synchronized void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
         familyMembers.add(clientFamilyMember);
         setChanged();
         notifyObservers();
     }
 
+    /**
+     * clears all familyMembers
+     */
     synchronized void reset() {
         familyMembers = new LinkedList<>();
         setChanged();

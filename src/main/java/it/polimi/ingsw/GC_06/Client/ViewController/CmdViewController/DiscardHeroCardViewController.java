@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_06.model.Loader.Setting;
 
 /**
  * Created by giuseppe on 7/8/17.
+ * this class is used to manage the client's choice of discardind a hero card with the view
  */
 public class DiscardHeroCardViewController implements ViewPresenterCLI {
 
@@ -24,6 +25,10 @@ public class DiscardHeroCardViewController implements ViewPresenterCLI {
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
+    /**
+     * shows the view for the selection of the card to discard and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
 

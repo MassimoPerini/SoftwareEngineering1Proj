@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
 
 /**
  * Created by massimo on 23/06/17.
+ * this class is used to manage the client's choice for powering up a familyMember with the view
  */
 public class AskUserPowerUp implements ViewPresenterCLI {
 
@@ -21,6 +22,10 @@ public class AskUserPowerUp implements ViewPresenterCLI {
         this.clientNetworkOrchestrator = clientNetworkOrchestrator;
     }
 
+    /**
+     * shows the view for the powerUp and manages client's choice
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Puoi scegliere se fare un powerup (digita valore [0-X])");

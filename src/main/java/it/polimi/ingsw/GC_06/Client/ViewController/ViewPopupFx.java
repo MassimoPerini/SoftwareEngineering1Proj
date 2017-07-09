@@ -23,6 +23,8 @@ import java.util.Observer;
 
 /**
  * Created by massimo on 28/06/17.
+ * This class is responsible for managing PopUps, which are used every time the model needs to ask for an input to
+ * the client (GUI version)
  */
 public class ViewPopupFx implements Observer {
 

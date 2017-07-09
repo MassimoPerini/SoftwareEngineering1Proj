@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by giuseppe on 6/14/17.
+ * this class represents the personal playerBoard client side, is an observable class
  */
 
 public class ClientPlayerBoard extends Observable{
@@ -34,11 +35,20 @@ public class ClientPlayerBoard extends Observable{
         this.heroCards = Collections.synchronizedList(new LinkedList<>());
     }
 
+    /**
+     *
+     * @param clientFamilyMember familyMember to be added
+     */
     public synchronized void addFamilyMember(ClientFamilyMember clientFamilyMember)
     {
         this.familyMembers.add(clientFamilyMember);
     }
 
+    /**
+     *
+     * @param colour colour of the card to be added
+     * @param card string that represents the name of the card
+     */
     public synchronized void addCard(String colour, String card) {
         List<String> cardsColour = this.cards.get(colour);
         if (cardsColour==null) {
@@ -50,12 +60,20 @@ public class ClientPlayerBoard extends Observable{
         notifyObservers();
     }
 
+    /**
+     *
+     * @param excommunication name that represents the excomunication to be asssociated to the player
+     */
     public synchronized void addExcommunication(String excommunication) {
         this.excommunication.add(excommunication);
         setChanged();
         notifyObservers();
     }
 
+    /**
+     *
+     * @param resourceSet the new state of the resourceSet
+     */
     public synchronized void updateResourceSet(Map<Resource, Integer> resourceSet) {
         this.resourceSet = resourceSet;
         setChanged();

@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
 
 /**
  * Created by massimo on 28/06/17.
+ * this class is used to manage the client's choice of the personal bonus with the view
  */
 public class AskUserPersonalBonus implements ViewPresenterCLI {
 
@@ -22,6 +23,10 @@ public class AskUserPersonalBonus implements ViewPresenterCLI {
         this.playerBonusActions = playerBonusActions;
     }
 
+    /**
+     * shows the view of the personal bonus choice and manages client's response
+     * @throws InterruptedException
+     */
     @Override
     public void viewWillAppear() throws InterruptedException {
         cmdView.addLocalizedText("Puoi scegliere uno stupido bonus...");
