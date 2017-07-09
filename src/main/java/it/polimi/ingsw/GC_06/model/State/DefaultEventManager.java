@@ -79,11 +79,6 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     {
         //Scegli i bonus personali
 
-
-
-
-
-
         List<Player> players = game.getRoundManager().getPlayers();
         PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
         personalBonusChoiceHandler.execute(game, serverOrchestrator);
@@ -147,6 +142,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     @Override
     public synchronized List<Player> newTurn(int turn)
     {
+        System.out.println("Nuovo turno");
         //reset bonus malus o altro
         game.roll();
 
@@ -179,6 +175,9 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         for (Player player : players) {
             player.resetHeroCard();
         }
+
+        game.getBoard().resetFamilyMembers();
+
         return players;
     }
 
@@ -188,6 +187,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
      */
     @Override
     public synchronized void newEra(int era) {
+        System.out.println("Nuova era");
         //gestione scomunica
         lastEra = era;
         handleExcomm();
@@ -221,6 +221,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
      */
     private synchronized void handleExcomm()
     {
+        System.out.println("Invio scomuniche");
         game.getGameStatus().changeState(TransitionType.START_VATICAN);
         ResourceSet excomm = this.requirements.get(lastEra);
         if (excomm==null)

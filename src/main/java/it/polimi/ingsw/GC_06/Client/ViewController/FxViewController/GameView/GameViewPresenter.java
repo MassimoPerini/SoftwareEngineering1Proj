@@ -37,9 +37,10 @@ public class GameViewPresenter implements Observer {
     private FamilyMembersPresenter familyMembersPresenter;
     private BoardPresenter boardPresenter;
     private Parent boardView;
+    private boolean initDisabled = true;
 
     @FXML
-    void initialize() {
+    synchronized void initialize() {
 
 
         ClientPlayerBoard clientPlayerBoard = mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername());
@@ -53,6 +54,7 @@ public class GameViewPresenter implements Observer {
         BoardView boardView = new BoardView();
         mainWindow.setCenter(boardView.getView());
         this.boardView = boardView.getView();
+        this.boardView.setDisable(true);
         boardPresenter = (BoardPresenter) boardView.getPresenter();
 
 
@@ -75,7 +77,7 @@ public class GameViewPresenter implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    synchronized public void update(Observable o, Object arg) {
         ClientStateName clientStateName = (ClientStateName) arg;
         Platform.runLater(() -> {
             if (clientStateName == ClientStateName.MY_TURN)

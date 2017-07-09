@@ -64,6 +64,7 @@ public class ViewPopupFx implements Observer {
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.setTitle("ABC");
                 stage.setScene(new Scene(parent));
+                stage.setAlwaysOnTop(true);
                 stage.show();
                 stage.sizeToScene();
             }

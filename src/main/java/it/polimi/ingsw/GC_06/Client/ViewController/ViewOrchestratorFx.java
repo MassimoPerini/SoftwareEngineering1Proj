@@ -66,12 +66,13 @@ public class ViewOrchestratorFx extends Observable implements ViewOrchestrator {
         if (views.get(clientStateName)!= null)
         {
             FXMLView view = create(clientStateName);
+            view.getView();
+            Scene scene = new Scene(view.getView());
         //    Observer currentPresenter = (Observer) view.getPresenter();
         //    this.addObserver(currentPresenter);
             Platform.runLater(() -> {
                 try {
-                    view.getView();
-                    Scene scene = new Scene(view.getView());
+
                     stage.setScene(scene);
                     stage.sizeToScene();
                     stage.show();
