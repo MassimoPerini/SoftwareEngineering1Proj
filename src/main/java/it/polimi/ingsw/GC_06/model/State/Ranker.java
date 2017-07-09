@@ -8,6 +8,7 @@ import java.util.*;
 
 /**
  * Created by gabri on 01/07/2017.
+ * this class is responsible for ranking all the players associated to agame based on a configurable resource
  */
 public class Ranker {
 
@@ -19,6 +20,11 @@ public class Ranker {
         this.players = gameStatus.getPlayers();
     }
 
+    /**
+     *
+     * @param resource the target resource on ehich to base the ranking
+     * @return return a sorted list of players that represents the ranking
+     */
     public List<Player> rankByResource(Resource resource) {
         Map<Integer, Player> backMap = new HashMap<>();
         List<Player> rankedList = new ArrayList<>();

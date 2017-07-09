@@ -14,6 +14,7 @@ import java.util.*;
 
 /**
  * Created by massimo on 06/06/17.
+ * this class is responsible for managing rounds during a game
  */
 public class RoundManager extends Observable {
 
@@ -50,6 +51,9 @@ public class RoundManager extends Observable {
         this.gameEventManager = gameEventManager;
     }
 
+    /**
+     * resets a game to the initial status
+     */
     private void reset()
     {
         turn = 1;
@@ -58,6 +62,10 @@ public class RoundManager extends Observable {
         familyMembersPlaced = 0;
     }
 
+    /**
+     *
+     * @return returns the next player that has to play
+     */
     private int nextPlayer(){
         int oldPlayer = currentPlayer;
         int nextPlayer;
@@ -75,6 +83,10 @@ public class RoundManager extends Observable {
         return -1;
     }
 
+    /**
+     * this method is responsible for managing all ednturn actions from the players
+     * @return
+     */
     boolean endTurn()
     {
         if (players.size()==0)
@@ -130,6 +142,9 @@ public class RoundManager extends Observable {
         }
     }
 
+    /**
+     * the methos initialize a new turn
+     */
     private void newTurn()
     {
         // resetBonusMalus
@@ -139,6 +154,9 @@ public class RoundManager extends Observable {
         }
     }
 
+    /**
+     * this method initialize a new era
+     */
     private void newEra()
     {
         disposeCards();
@@ -159,6 +177,9 @@ public class RoundManager extends Observable {
 
     }
 
+    /**
+     *this methos is responsible for managing the positioning of cards on the playerboard
+     */
     private void disposeCards()
     {
         Collections.shuffle(developmentCards);

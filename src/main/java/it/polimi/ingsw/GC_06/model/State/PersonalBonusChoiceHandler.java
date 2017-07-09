@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by massimo on 27/06/17.
+ * This class handles the selection, at he beginning of a game, of a personal bonus tile
  */
 public class PersonalBonusChoiceHandler implements Blocking {
 

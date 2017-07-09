@@ -13,6 +13,7 @@ import java.util.*;
 
 /**
  * Created by massimo on 26/06/17.
+ * this class is the RMI server of the game
  */
 public class RMIServer extends Server implements Observer {
 
@@ -26,6 +27,9 @@ public class RMIServer extends Server implements Observer {
         playerFromGame = new HashMap<>();
     }
 
+    /**
+     * this method starts the server, who begin listening for connections
+     */
     @Override
     synchronized void start() {
 
@@ -44,12 +48,23 @@ public class RMIServer extends Server implements Observer {
 
     }
 
+    /**
+     * adds a player to the server
+     * @param serverPlayerRMIClient client performing login
+     * @param player player associated to the client
+     */
     synchronized void addPlayerRMI(ServerPlayerRMIHandler serverPlayerRMIClient, String player)
     {
         this.playerRMI.put(player, serverPlayerRMIClient);
         serverPlayerRMIClient.addObserver(this);
     }
 
+    /**
+     *
+     * @param players player
+     * @param id username of the player
+     * @return
+     */
     @Override
     synchronized boolean startGame(Map<String, Player> players, int id) {
 
@@ -79,6 +94,12 @@ public class RMIServer extends Server implements Observer {
         return playerRMI.get(player)!=null;
     }
 
+    /**
+     *
+     * @param player player who has to receive a comunication
+     * @param o the object to be passed to the player
+     * @throws IOException
+     */
     @Override
     synchronized void sendMessageToPlayer(String player, Object o) throws IOException {
 
@@ -91,6 +112,12 @@ public class RMIServer extends Server implements Observer {
         serverPlayerRMIClient.send(messageServer);
     }
 
+    /**
+     *
+     * @param game the game that has to receive a comunication
+     * @param o the object to be passed to the game
+     * @throws IOException
+     */
     @Override
     synchronized void sendMessageToGame(int game, Object o) throws IOException {
 
@@ -103,6 +130,10 @@ public class RMIServer extends Server implements Observer {
         }
     }
 
+    /**
+     * removes a player rom the server
+     * @param player player to be removed
+     */
     @Override
     void remove(String player) {
         ServerPlayerRMIHandler playerRMIHandler = playerRMI.get(player);
@@ -112,6 +143,10 @@ public class RMIServer extends Server implements Observer {
         playerRMIHandler.finish();
     }
 
+    /**
+     * shuts down the server
+     * @throws IOException
+     */
     @Override
     synchronized void stop() throws IOException {
 

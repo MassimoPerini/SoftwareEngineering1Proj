@@ -10,7 +10,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by massimo on 13/06/17.
+ * Created by massimo on 13/06/17
+ * this class is the main socket server
  */
 public class SocketServer extends Server implements Observer {
 
@@ -24,6 +25,9 @@ public class SocketServer extends Server implements Observer {
         socketsFromGame = new HashMap<>();
     }
 
+    /**
+     * starts the server
+     */
     @Override
     synchronized void start(){
         ExecutorService executor = Executors.newCachedThreadPool();
@@ -31,6 +35,10 @@ public class SocketServer extends Server implements Observer {
         executor.submit(socketListener);
     }
 
+    /**
+     * adds a player to the server
+     * @param serverPlayerSocket player to be added
+     */
     synchronized void addPlayerSocket(@NotNull ServerPlayerSocket serverPlayerSocket)
     {
         this.socketList.add(serverPlayerSocket);
@@ -42,6 +50,12 @@ public class SocketServer extends Server implements Observer {
         return socketFromId.get(player) != null;
     }
 
+    /**
+     *
+     * @param player player that has to receive a comunication
+     * @param o object to be passed to the player
+     * @throws IOException
+     */
     @Override
     synchronized void sendMessageToPlayer(@NotNull String player, @NotNull Object o) throws IOException
     {
@@ -50,6 +64,12 @@ public class SocketServer extends Server implements Observer {
         socketFromId.get(player).send((MessageServer) o);       //TODO FIX IT
     }
 
+    /**
+     *
+     * @param game game that has to receive a comunication
+     * @param o object to be passed to the game
+     * @throws IOException
+     */
     @Override
     synchronized void sendMessageToGame(int game, @NotNull Object o) throws IOException {
         if (socketsFromGame.get(game)==null)
@@ -61,6 +81,10 @@ public class SocketServer extends Server implements Observer {
         }
     }
 
+    /**
+     *
+     * @param player the player to be removed
+     */
     @Override
     synchronized void remove(String player) {
         ServerPlayerSocket playerSocket = socketFromId.get(player);
@@ -71,6 +95,10 @@ public class SocketServer extends Server implements Observer {
     }
 
 
+    /**
+     * shuts down the server
+     * @throws IOException
+     */
     @Override
     synchronized void stop() throws IOException {
         for (ServerPlayerSocket serverPlayerSocket : socketList) {

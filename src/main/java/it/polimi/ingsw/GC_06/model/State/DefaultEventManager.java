@@ -27,6 +27,7 @@ import java.util.*;
 
 /**
  * Created by massimo on 24/06/17.
+ * this class represents the event manager for an entire game
  */
 public class DefaultEventManager implements GameEventManager, Blocking {
 
@@ -72,6 +73,9 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method is responsible for starting and getting the game in a ready to go status
+     */
     public void start()
     {
         //Scegli i bonus personali
@@ -136,6 +140,11 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method handles the succession of turns during the game
+     * @param turn
+     * @return the list of players affected by the method
+     */
     @Override
     public synchronized List<Player> newTurn(int turn)
     {
@@ -174,6 +183,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         return players;
     }
 
+    /**
+     * this method handles the succession of eras during the game
+     * @param era
+     */
     @Override
     public synchronized void newEra(int era) {
         //gestione scomunica
@@ -181,6 +194,9 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         handleExcomm();
     }
 
+    /**
+     * this method handles the succession of actions needed during the EndGame
+     */
     @Override
     public synchronized void endGame() {
         lastEra++;
@@ -201,6 +217,9 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method handles the "rapporto al vaticano"
+     */
     private synchronized void handleExcomm()
     {
         game.getGameStatus().changeState(TransitionType.START_VATICAN);
@@ -248,6 +267,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         answersExcommunication = new HashMap<>();
     }
 
+    /**
+     * this method associates an excomunication to a player
+     * @param player the player that gets an excomunication
+     */
     private void giveExcummunication(Player player)
     {
         try {

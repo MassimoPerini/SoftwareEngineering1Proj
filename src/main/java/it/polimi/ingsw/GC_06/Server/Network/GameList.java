@@ -11,6 +11,7 @@ import java.util.Set;
 
 /**
  * Created by giuseppe on 6/14/17.
+ * this class contains all the necessary working elements associated to a game
  */
 public class GameList {
 

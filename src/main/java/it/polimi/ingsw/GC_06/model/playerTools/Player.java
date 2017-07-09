@@ -64,10 +64,18 @@ public class Player extends Observable {
         //TODO complete here...
     }
 
+    /**
+     *
+     * @return returns the personal playerBoard of the player
+     */
     public PlayerBoard getPlayerBoard() {
         return playerBoard;
     }
 
+    /**
+     *
+     * @return returns the complete resourceset of the player
+     */
     public ResourceSet getResourceSet() {
         return resourceSet;
     }
@@ -76,21 +84,37 @@ public class Player extends Observable {
         return PLAYER_ID;
     }
 
+    /**
+     *
+     * @return returns the complete bonusMalusSet associated to the player
+     */
     public BonusMalusSet getBonusMalusSet() {
         return bonusMalusSet;
     }
 
 
-
+    /**
+     *
+     * @return returns all the familyMembers associated to the player
+     */
     public FamilyMember[] getFamilyMembers() {
         return familyMembers;
     }
 
+    /**
+     * this method variates the resourceset of the player based on the requirements, so it only variates based on the cost
+     * @param requirement requirements to be evaluated
+     */
     public void variateResource(Requirement requirement)
     {
         this.variateResource(requirement.getCost());
     }
 
+    /**
+     *
+     * @param resourceSet resourceset to add to the player
+     * @throws IllegalArgumentException
+     */
     public void variateResource(ResourceSet resourceSet) throws IllegalArgumentException
     {
         if (this.getResourceSet().isIncluded(resourceSet)) {
@@ -121,6 +145,10 @@ public class Player extends Observable {
         return this.resourceSet.isIncluded(requirement);
     }
 
+    /**
+     * this method adds a development card to the ones owned by the player
+     * @param developmentCard card to be added to the player
+     */
         public void addCard(DevelopmentCard developmentCard)
     {
         playerBoard.addCard(developmentCard, resourceSet);
@@ -175,10 +203,18 @@ public class Player extends Observable {
     }
 
 
+    /**
+     *
+     * @return returns true if the player is connected to the game
+     */
     public boolean isConnected() {
         return connected;
     }
 
+    /**
+     *
+     * @param disconnected sets the state of the player's connection
+     */
     public void setConnected(boolean disconnected) {
         this.connected = disconnected;
     }
@@ -214,6 +250,10 @@ public class Player extends Observable {
         return addAtTheEnd;
     }
 
+    /**
+     *
+     * @return returns the statistics generated for the current player
+     */
     public PersonalStatistics createPersonalStatistics(){
 
         personalStatistics = new PersonalStatistics(this.PLAYER_ID,this.getResourceSet().getResourceAmount(Resource.FAITHPOINT),

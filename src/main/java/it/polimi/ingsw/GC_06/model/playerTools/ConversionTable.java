@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 /**
  * Created by giuseppe on 5/31/17.
+ * This class represent the conversion table to assign point during EndGame
  */
 
 public class ConversionTable {

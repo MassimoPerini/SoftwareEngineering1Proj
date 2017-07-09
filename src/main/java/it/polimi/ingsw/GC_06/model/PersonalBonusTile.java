@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by massimo on 27/06/17.
+ * Created by massimo on 27/06/17.+
+ * this class represents the personal bonus tile to be chosen at the beginning of the game
  */
 public class PersonalBonusTile {
 
@@ -25,6 +26,12 @@ public class PersonalBonusTile {
         return id;
     }
 
+    /**
+     *
+     * @param actionType the action to trigger the bonus
+     * @param val the value of the action
+     * @return returns a corresponding bonus
+     */
     public List<ProdHarvEffect> getBonus(ActionType actionType, int val) {
         //Da 0 ad int
 
