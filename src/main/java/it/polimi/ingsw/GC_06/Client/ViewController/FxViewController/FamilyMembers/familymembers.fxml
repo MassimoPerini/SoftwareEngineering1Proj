@@ -13,7 +13,7 @@
             </children>
         </VBox>
     <Button mnemonicParsing="false" text="Passa turno" fx:id="pass" onAction="#handlePassPressed" />
-
+    <Button mnemonicParsing="false" text="Visualizza Carte Eroe " fx:id="hero" onAction="#handleHeroPressed" />
     <fx:include source="../SendAction/sendaction.fxml"/>
 
     <Button mnemonicParsing="false" text="Show all boards" onAction="#handleShowAllBoards" />

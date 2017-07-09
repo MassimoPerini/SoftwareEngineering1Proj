@@ -4,8 +4,11 @@ import it.polimi.ingsw.GC_06.Client.Model.ClientFamilyMember;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
 import it.polimi.ingsw.GC_06.Client.Model.PlayerColors;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.AllBoards.AllBoardsView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.HeroCard.HeroCardView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionView;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
+import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,6 +30,8 @@ import javafx.stage.StageStyle;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by massimo on 05/07/17.
@@ -38,6 +43,7 @@ public class FamilyMembersPresenter {
     @FXML private VBox mainView;
     @FXML private TextField powerUpValue;
     @FXML private Button pass;
+    @FXML private Button hero;
 
     @Inject
     private MainClientModel mainClientModel;
@@ -168,4 +174,23 @@ public class FamilyMembersPresenter {
         pass.setDisable(disable);
     }
 
+    public void handleHeroPressed(ActionEvent actionEvent) {
+
+        Map<String, Object> context = new HashMap<>();
+        context.put("clientPlayerBoard", mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()));
+
+        HeroCardView heroCardView = new HeroCardView(context::get);
+
+        /** stiamo iniziallizando una nuova schermata */
+        Parent parent = heroCardView.getView();
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle("All boards");
+        stage.setScene(new Scene(parent));
+        stage.show();
+        stage.sizeToScene();
+
+    }
 }
