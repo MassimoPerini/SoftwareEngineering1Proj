@@ -430,7 +430,7 @@
                         "WHITE",
                         "BLACK"
                       ],
-                      "actionType": "PRODUCTION_ACTION",
+                      "actionType": "BOARD_ACTION_ON_PROD_HARV",
                       "permanent": false,
                       "value": -3
                     }
@@ -457,7 +457,7 @@
         }
       ],
       "maxSamePlayerFamilyMember": 1,
-      "actionType": "PRODUCTION_ACTION",
+      "actionType": "BOARD_ACTION_ON_PROD_HARV",
       "changed": false,
       "obs": []
     },
@@ -489,7 +489,7 @@
                         "WHITE",
                         "BLACK"
                       ],
-                      "actionType": "HARVEST_ACTION",
+                      "actionType": "BOARD_ACTION_ON_PROD_HARV",
                       "permanent": false,
                       "value": -3
                     }
@@ -516,7 +516,7 @@
         }
       ],
       "maxSamePlayerFamilyMember": 1,
-      "actionType": "PRODUCTION_ACTION",
+      "actionType": "BOARD_ACTION_ON_PROD_HARV",
       "changed": false,
       "obs": []
     }

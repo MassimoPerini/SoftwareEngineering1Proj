@@ -8,6 +8,7 @@ import java.util.Observer;
 
 /**
  * Created by massimo on 14/06/17.
+ * this class is the controller of the player
  */
 public class ControllerUser implements Observer {
 
@@ -20,6 +21,9 @@ public class ControllerUser implements Observer {
         this.game = game;
     }
 
+    /**
+     * handles the basic actions (start and finish) of a player for a networked game
+     */
     public void start()
     {
         game.getStatuses().get(StateName.IDLE).addObserver(this);

@@ -15,7 +15,7 @@ public class ClientSpaceAction extends Observable {
         familyMembers = new LinkedList<>();
     }
 
-    synchronized void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
+    public synchronized void addClientFamilyMember(ClientFamilyMember clientFamilyMember) {
         familyMembers.add(clientFamilyMember);
         setChanged();
         notifyObservers();

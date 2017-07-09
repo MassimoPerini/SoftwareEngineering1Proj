@@ -36,9 +36,9 @@ public class ResourceSet implements Serializable {
     }
 
     /**
-     * Questo fa X
-     * @param resource
-     * @param amount
+     * This methos adds or subs resources to the resourceset
+     * @param resource the type of resource to be variated
+     * @param amount the amount of the variation
      */
 
     public void variateResource(Resource resource, int amount) {

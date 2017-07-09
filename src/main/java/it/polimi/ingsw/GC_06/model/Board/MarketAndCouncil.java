@@ -1,5 +1,9 @@
 package it.polimi.ingsw.GC_06.model.Board;
 
+import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnCouncil;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnMarket;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageAddMemberOnProdHarv;
 import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.Effect.Effect;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -30,6 +34,18 @@ public class MarketAndCouncil extends Observable
      */
 	public void addFamilyMember(FamilyMember familyMember, int index) {
 		actionPlaces.get(index).addFamilyMember(familyMember);
+		//market
+		MessageServer messageServer;
+		if(actionType.equals(ActionType.BOARD_ACTION_ON_MARKET)){
+
+			messageServer = new MessageAddMemberOnMarket(index,familyMember);
+		}
+		else {
+			//counsil
+			messageServer = new MessageAddMemberOnCouncil(index,familyMember);
+		}
+		setChanged();
+		notifyObservers(messageServer);
 	}
 
 	public boolean isAllowed(FamilyMember familyMember, int index) {

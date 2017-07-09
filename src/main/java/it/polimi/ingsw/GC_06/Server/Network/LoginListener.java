@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 26/06/17.
+ * this class handles login of a client via RMI
  */
 public class LoginListener extends UnicastRemoteObject implements RMIListener {
 
@@ -24,6 +25,13 @@ public class LoginListener extends UnicastRemoteObject implements RMIListener {
         this.executorService = Executors.newCachedThreadPool();
     }
 
+    /**
+     *
+     * @param username username of the player who is logging in
+     * @param clientRMI the rmi client performing login
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public synchronized ServerPlayerRMIClient login(String username, ClientRMI clientRMI) throws RemoteException{
 

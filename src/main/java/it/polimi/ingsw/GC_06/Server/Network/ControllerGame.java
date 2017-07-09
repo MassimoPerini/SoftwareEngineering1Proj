@@ -16,6 +16,7 @@ import java.util.Observer;
 
 /**
  * Created by massimo on 14/06/17.
+ * this class represent the genral controller of the game, is an observer class
  */
 
 public class ControllerGame implements Observer {
@@ -34,6 +35,9 @@ public class ControllerGame implements Observer {
         controllerUser = new ControllerUser(serverOrchestrator, game);
     }
 
+    /**
+     * starts and initialize a game
+     */
     public void start()
     {
         game.init();
@@ -45,6 +49,10 @@ public class ControllerGame implements Observer {
             prodHarvZone.addObserver(this);
         }
         for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarket()) {
+            marketAndCouncil.addObserver(this);
+        }
+
+        for(MarketAndCouncil marketAndCouncil : game.getBoard().getCouncils()){
             marketAndCouncil.addObserver(this);
         }
         Map<String, Player> players = game.getGameStatus().getPlayers();

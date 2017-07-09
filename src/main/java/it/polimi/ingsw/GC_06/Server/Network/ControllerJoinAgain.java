@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * Created by massimo on 08/07/17.
+ * TODO
+ * this class handles messages coming from the player
  */
 public class ControllerJoinAgain {
 

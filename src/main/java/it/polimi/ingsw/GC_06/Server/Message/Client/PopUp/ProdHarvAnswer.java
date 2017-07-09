@@ -42,8 +42,4 @@ public class ProdHarvAnswer implements MessageClient {
         return player;
     }
 
-    @Override
-    public void run() {
-        execute();
-    }
 }

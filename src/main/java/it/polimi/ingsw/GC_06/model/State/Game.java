@@ -52,6 +52,12 @@ public class Game {
         gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
     }
 
+    /**
+     * this methos adds a player to a game
+     * @param p player's username
+     * @throws IllegalStateException
+     * @throws IllegalArgumentException
+     */
     public void addPlayer (String p) throws IllegalStateException, IllegalArgumentException
     {
         if (p==null)
@@ -81,8 +87,9 @@ public class Game {
 
     public void endTurn()
     {
-        roundManager.endTurn();
-        getGameStatus().changeState(TransitionType.NEXT_PLAYER);
+        if (roundManager.endTurn()) {
+            getGameStatus().changeState(TransitionType.NEXT_PLAYER);
+        }
     }
 
 

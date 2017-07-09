@@ -14,6 +14,7 @@ import java.util.*;
 
 /**
  * Created by massimo on 06/06/17.
+ * this class is responsible for managing rounds during a game
  */
 public class RoundManager extends Observable {
 
@@ -49,6 +50,9 @@ public class RoundManager extends Observable {
         this.gameEventManager = gameEventManager;
     }
 
+    /**
+     * resets a game to the initial status
+     */
     private void reset()
     {
         turn = 1;
@@ -57,6 +61,10 @@ public class RoundManager extends Observable {
         familyMembersPlaced = 0;
     }
 
+    /**
+     *
+     * @return returns the next player that has to play
+     */
     private int nextPlayer(){
         int oldPlayer = currentPlayer;
         int nextPlayer;
@@ -74,7 +82,11 @@ public class RoundManager extends Observable {
         return -1;
     }
 
-    void endTurn()
+    /**
+     * this method is responsible for managing all ednturn actions from the players
+     * @return
+     */
+    boolean endTurn()
     {
         if (players.size()==0)
             throw new IllegalStateException();
@@ -84,7 +96,7 @@ public class RoundManager extends Observable {
         {
             endGame();
             reset();
-            return;
+            return false;
         }
 
         if (currentPlayer >= newPlayer)      //means that I'm starting again the "cycle"
@@ -100,7 +112,7 @@ public class RoundManager extends Observable {
                         era=1;
                         endGame();      //Do here what you need to do when the game finished
                         reset();
-                        return;
+                        return false;
                     } else {
                         this.newEra();       //A new era started
                     }
@@ -112,11 +124,12 @@ public class RoundManager extends Observable {
         }
         currentPlayer = newPlayer;
 
+        System.out.println("ERA: "+era+" TURN: "+turn);
 
         MessageChangePlayer messageChangePlayer = new MessageChangePlayer(this.getCurrentPlayer().getPLAYER_ID(), era, turn);
         setChanged();
         notifyObservers(messageChangePlayer);
-
+        return true;
 //        Game.getInstance().getGameStatus().changeState(TransitionType.ROUNDFINISHED);
     }
 
@@ -128,6 +141,9 @@ public class RoundManager extends Observable {
         }
     }
 
+    /**
+     * the methos initialize a new turn
+     */
     private void newTurn()
     {
         // resetBonusMalus
@@ -137,6 +153,9 @@ public class RoundManager extends Observable {
         }
     }
 
+    /**
+     * this method initialize a new era
+     */
     private void newEra()
     {
         disposeCards();
@@ -157,6 +176,9 @@ public class RoundManager extends Observable {
 
     }
 
+    /**
+     *this methos is responsible for managing the positioning of cards on the playerboard
+     */
     private void disposeCards()
     {
         Collections.shuffle(developmentCards);

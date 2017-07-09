@@ -57,6 +57,10 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageUpdateResource.class)
                 .registerSubtype(MessageRankingPopUp.class)
                 .registerSubtype(MessageError.class)
+                .registerSubtype(MessageAddMemberOnProdHarv.class)
+                .registerSubtype(MessageAddMemberOnMarket.class)
+                .registerSubtype(MessageAddMemberOnCouncil.class)
+                .registerSubtype(HeroCardUploadMessageServer.class);
                 ;
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 
@@ -69,6 +73,7 @@ public class ClientSocket extends Client {
                 .registerSubtype(ProdHarvAnswer.class)
                 .registerSubtype(PlayerChoiceExcommunication.class)
                 .registerSubtype(PlayerHeroCardChoices.class)
+                .registerSubtype(DiscardHeroCardMessage.class)
                 ;
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();
     }

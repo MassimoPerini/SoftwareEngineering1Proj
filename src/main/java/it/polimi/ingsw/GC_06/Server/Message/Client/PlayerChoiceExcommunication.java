@@ -44,8 +44,4 @@ public class PlayerChoiceExcommunication implements MessageClient {
         return player;
     }
 
-    @Override
-    public void run() {
-        execute();
-    }
 }

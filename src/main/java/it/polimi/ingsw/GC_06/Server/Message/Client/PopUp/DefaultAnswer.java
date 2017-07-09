@@ -39,8 +39,4 @@ public class DefaultAnswer implements MessageClient {
     }
 
 
-    @Override
-    public void run() {
-        execute();
-    }
 }

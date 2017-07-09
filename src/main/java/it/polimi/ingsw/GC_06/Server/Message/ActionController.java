@@ -20,6 +20,6 @@ public class ActionController implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         MessageClient messageClient = (MessageClient) arg;
-        Future future = executorService.submit(messageClient);
+        Future future = executorService.submit(() -> messageClient.execute());
     }
 }

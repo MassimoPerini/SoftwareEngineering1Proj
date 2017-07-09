@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 13/06/17.
+ * this class manages servers, and is both an observer and an observable object
  */
 public class ServerOrchestrator extends Observable implements Observer {
 
@@ -93,6 +94,7 @@ public class ServerOrchestrator extends Observable implements Observer {
                 @Override
                 public void run() {
                     try {
+                        System.out.println("sono qua");
                         LoginHub.getInstance().manageLogOut(playerId);
                     }
                     catch (Exception e)
@@ -135,6 +137,7 @@ public class ServerOrchestrator extends Observable implements Observer {
             Timer timer = userTimer.get(player);
             if (timer != null) {
                 timer.cancel();
+                userTimer.remove(player);
             }
 
             setChanged();

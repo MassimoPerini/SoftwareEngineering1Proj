@@ -27,6 +27,7 @@ import java.util.*;
 
 /**
  * Created by massimo on 24/06/17.
+ * this class represents the event manager for an entire game
  */
 public class DefaultEventManager implements GameEventManager, Blocking {
 
@@ -72,6 +73,9 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method is responsible for starting and getting the game in a ready to go status
+     */
     public void start()
     {
         //Scegli i bonus personali
@@ -85,20 +89,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
         personalBonusChoiceHandler.execute(game, serverOrchestrator);
 
-        List<HeroCard> heroCardList = new LinkedList<>();
-        heroCardList.addAll(Arrays.asList(heroCards));
 
-
-        for (Player player : players) {
-
-            for (int i = 0; i < heroCardsNumber; i++) {
-                Random rand = new Random();
-                int n = rand.nextInt(heroCardList.size());
-                HeroCard heroCard = heroCardList.get(n);
-                player.getHeroCard().add(heroCard);
-                heroCardList.remove(heroCardList.get(n));
-            }
-        }
 
         //---- Notificare l'init
         MessageGameStarted messageGameStarted = new MessageGameStarted(game);
@@ -106,6 +97,29 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         serverOrchestrator.send(game.getId(), messageGameStarted);
 
         //------- END MESSAGE
+
+
+
+        List<HeroCard> heroCardList = new LinkedList<>();
+        heroCardList.addAll(Arrays.asList(heroCards));
+
+        List<HeroCard> selectedHeroCard = new LinkedList<>();
+
+        for (Player player : players) {
+
+            for (int i = 0; i < heroCardsNumber; i++) {
+                Random rand = new Random();
+                int n = rand.nextInt(heroCardList.size());
+                HeroCard heroCard = heroCardList.get(n);
+                selectedHeroCard.add(heroCard);
+                heroCardList.remove(heroCardList.get(n));
+            }
+
+            player.setHeroCard(selectedHeroCard);
+            selectedHeroCard = new LinkedList<>();
+
+        }
+
 
         game.roll();
 
@@ -126,6 +140,11 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method handles the succession of turns during the game
+     * @param turn
+     * @return the list of players affected by the method
+     */
     @Override
     public synchronized List<Player> newTurn(int turn)
     {
@@ -133,7 +152,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         game.roll();
 
         //Handle the new order
-        List<FamilyMember> familyMembersCouncil = game.getBoard().getMarketAndCouncils().get(0).getActionPlaces().get(0).getMembers();
+        List<FamilyMember> familyMembersCouncil = game.getBoard().getCouncils().get(0).getActionPlaces().get(0).getMembers();
         List<String> playersTurn = new LinkedList<>();
         //Save the name of the players inside the council
         for (FamilyMember familyMember : familyMembersCouncil) {
@@ -157,9 +176,17 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         for (String namePlayer : playersTurn) {
             players.add(game.getGameStatus().getPlayers().get(namePlayer));
         }
+
+        for (Player player : players) {
+            player.resetHeroCard();
+        }
         return players;
     }
 
+    /**
+     * this method handles the succession of eras during the game
+     * @param era
+     */
     @Override
     public synchronized void newEra(int era) {
         //gestione scomunica
@@ -167,6 +194,9 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         handleExcomm();
     }
 
+    /**
+     * this method handles the succession of actions needed during the EndGame
+     */
     @Override
     public synchronized void endGame() {
         lastEra++;
@@ -187,6 +217,9 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method handles the "rapporto al vaticano"
+     */
     private synchronized void handleExcomm()
     {
         game.getGameStatus().changeState(TransitionType.START_VATICAN);
@@ -234,6 +267,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         answersExcommunication = new HashMap<>();
     }
 
+    /**
+     * this method associates an excomunication to a player
+     * @param player the player that gets an excomunication
+     */
     private void giveExcummunication(Player player)
     {
         try {

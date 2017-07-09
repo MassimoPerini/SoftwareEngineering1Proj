@@ -22,11 +22,11 @@ public class Board extends Observable{
     private final List<ProdHarvZone> prodHarvZones;
     private final List<MarketAndCouncil> councils;
 
-    public Board(Map<String, Tower> towers, List<MarketAndCouncil> marketAndCouncils, List<ProdHarvZone> prodHarvZones, List<MarketAndCouncil> councils)
+    public Board(Map<String, Tower> towers, List<MarketAndCouncil> market, List<ProdHarvZone> prodHarvZones, List<MarketAndCouncil> councils)
     {
         super();
         this.towers = towers;
-        this.market = marketAndCouncils;
+        this.market = market;
         this.prodHarvZones = prodHarvZones;
         this.councils = councils;
 
@@ -69,7 +69,8 @@ public class Board extends Observable{
         return Collections.unmodifiableList(prodHarvZones);
     }
 
-    public List<MarketAndCouncil> getMarketAndCouncils() {
+    public List<MarketAndCouncil> getCouncils() {
         return Collections.unmodifiableList(councils);
     }
+
 }

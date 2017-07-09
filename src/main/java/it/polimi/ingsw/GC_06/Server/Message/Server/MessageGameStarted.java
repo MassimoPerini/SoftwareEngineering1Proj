@@ -65,7 +65,7 @@ public class MessageGameStarted implements MessageServer {
             towers.put(s, game.getBoard().getTowers().get(s).getTowerFloor().size());       //Color - tower floors
         }
 
-        for (MarketAndCouncil marketAndCouncil : game.getBoard().getMarketAndCouncils()) {
+        for (MarketAndCouncil marketAndCouncil : game.getBoard().getCouncils()) {
             councils.add(marketAndCouncil.getActionPlaces().size());            //Il primo council ha x actionplaces...
         }
 
@@ -122,11 +122,14 @@ public class MessageGameStarted implements MessageServer {
 
 
         // creiamo la mappa di heroCards
+
+        /**
         for (String gamer : heroCardsMap.keySet()) {
 
             clientController.getMainClientModel().getClientPlayerBoard(gamer).setHeroCards(heroCardsMap.get(gamer));
         }
 
+         */
 
         clientController.getMainClientModel().changeMyState(ClientStateName.GAME_INIT);
 

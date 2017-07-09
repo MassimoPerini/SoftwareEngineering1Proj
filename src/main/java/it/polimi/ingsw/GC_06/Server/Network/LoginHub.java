@@ -9,6 +9,7 @@ import java.util.*;
 
 /**
  * Created by massimo on 13/06/17.
+ * this class is an entry point for all the connections of the networked game, managing all connections from clients
  */
 public class LoginHub {
 
