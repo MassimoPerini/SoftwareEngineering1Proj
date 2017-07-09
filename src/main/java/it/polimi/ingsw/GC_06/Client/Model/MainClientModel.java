@@ -2,6 +2,10 @@ package it.polimi.ingsw.GC_06.Client.Model;
 
 import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,7 +27,7 @@ public class MainClientModel extends Observable{
     public MainClientModel(PlayerColors playerColors)
     {
         playerBonusActions = new PlayerBonusActions();
-        clientPlayerBoard = new HashMap<>();
+        clientPlayerBoard = new ConcurrentHashMap<>();
         this.clientBoardGame = new ClientBoardGame();
         this.myUsername = "";
         this.playerColors = playerColors;

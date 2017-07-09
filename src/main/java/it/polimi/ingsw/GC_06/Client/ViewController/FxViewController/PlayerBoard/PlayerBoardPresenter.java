@@ -73,7 +73,8 @@ public class PlayerBoardPresenter implements Observer {
             if (colorList == null){
                 continue;
             }
-            for (String color : colorList) {
+            for (int j=0;j<colorList.size();j++){
+                String color = colorList.get(j);
                 ImageView imageView = new ImageView();
                 imageView.setImage(new Image(getClass().getResourceAsStream("/view/cards/" + color + ".png")));
                 imageView.setPreserveRatio(true);

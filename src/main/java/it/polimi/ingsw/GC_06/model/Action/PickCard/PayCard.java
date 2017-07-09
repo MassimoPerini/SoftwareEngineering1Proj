@@ -129,6 +129,7 @@ public class PayCard implements Action, Blocking {
             }
         }
 
+
         //Check requirements (add plane and...)
         //Start effect plane!
 

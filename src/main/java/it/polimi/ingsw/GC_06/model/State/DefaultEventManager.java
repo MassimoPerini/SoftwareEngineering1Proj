@@ -2,13 +2,12 @@ package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageGameStarted;
-import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUpdateState;
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageActivatePopup;
 import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageRankingPopUp;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.Server.Network.ServerOrchestrator;
 import it.polimi.ingsw.GC_06.model.Action.Actions.Blocking;
 import it.polimi.ingsw.GC_06.model.Action.Actions.EndGameAction;
-import it.polimi.ingsw.GC_06.model.Action.Actions.EndGameMap;
 import it.polimi.ingsw.GC_06.model.Action.Actions.ExecuteEffects;
 import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
 import it.polimi.ingsw.GC_06.model.Action.EndGame.Ranking;
@@ -27,6 +26,7 @@ import java.util.*;
 
 /**
  * Created by massimo on 24/06/17.
+ * this class represents the event manager for an entire game
  */
 public class DefaultEventManager implements GameEventManager, Blocking {
 
@@ -72,14 +72,12 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method is responsible for starting and getting the game in a ready to go status
+     */
     public void start()
     {
         //Scegli i bonus personali
-
-
-
-
-
 
         List<Player> players = game.getRoundManager().getPlayers();
         PersonalBonusChoiceHandler personalBonusChoiceHandler = new PersonalBonusChoiceHandler(players);
@@ -136,9 +134,15 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method handles the succession of turns during the game
+     * @param turn
+     * @return the list of players affected by the method
+     */
     @Override
     public synchronized List<Player> newTurn(int turn)
     {
+        System.out.println("Nuovo turno");
         //reset bonus malus o altro
         game.roll();
 
@@ -171,16 +175,27 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         for (Player player : players) {
             player.resetHeroCard();
         }
+
+        game.getBoard().resetFamilyMembers();
+
         return players;
     }
 
+    /**
+     * this method handles the succession of eras during the game
+     * @param era
+     */
     @Override
     public synchronized void newEra(int era) {
+        System.out.println("Nuova era");
         //gestione scomunica
         lastEra = era;
         handleExcomm();
     }
 
+    /**
+     * this method handles the succession of actions needed during the EndGame
+     */
     @Override
     public synchronized void endGame() {
         lastEra++;
@@ -201,8 +216,12 @@ public class DefaultEventManager implements GameEventManager, Blocking {
 
     }
 
+    /**
+     * this method handles the "rapporto al vaticano"
+     */
     private synchronized void handleExcomm()
     {
+        System.out.println("Invio scomuniche");
         game.getGameStatus().changeState(TransitionType.START_VATICAN);
         ResourceSet excomm = this.requirements.get(lastEra);
         if (excomm==null)
@@ -214,7 +233,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             Player realPlayer = game.getGameStatus().getPlayers().get(player);
             if (realPlayer.isAllowedVariate(excomm) && realPlayer.isConnected())
             {
-                serverOrchestrator.send(player, new MessageUpdateState(ClientStateName.EXCOMMUNICATION));
+                serverOrchestrator.send(player, new MessageActivatePopup(ClientStateName.EXCOMMUNICATION));
                 playerAskExcomm++;
             }
             else
@@ -248,6 +267,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         answersExcommunication = new HashMap<>();
     }
 
+    /**
+     * this method associates an excomunication to a player
+     * @param player the player that gets an excomunication
+     */
     private void giveExcummunication(Player player)
     {
         try {

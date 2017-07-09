@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 13/06/17.
+ * this class manages servers, and is both an observer and an observable object
  */
 public class ServerOrchestrator extends Observable implements Observer {
 

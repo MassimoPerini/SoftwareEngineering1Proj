@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Client.Model;
 import it.polimi.ingsw.GC_06.model.Loader.Setting;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by giuseppe on 6/14/17.
@@ -17,11 +18,11 @@ public class ClientBoardGame extends Observable {
 
     public ClientBoardGame()
     {
-        towersClient = new HashMap<>();
-        productionHarvest = new ArrayList<>();
-        market = new ArrayList<>();
-        council = new ArrayList<>();
-        orderTowers = Arrays.asList(Setting.getInstance().getListProperty("order_towers"));
+        towersClient = new ConcurrentHashMap<>();
+        productionHarvest = Collections.synchronizedList(new ArrayList<>());
+        market = Collections.synchronizedList( new ArrayList<>());
+        council = Collections.synchronizedList( new ArrayList<>());
+        orderTowers = Collections.synchronizedList(Arrays.asList(Setting.getInstance().getListProperty("order_towers")));
     }
 
     public List<String> getOrderTowers() {
@@ -30,7 +31,7 @@ public class ClientBoardGame extends Observable {
 
     public synchronized void createTower(String color, int floors)
     {
-        List<ClientTowerFloor> list = new ArrayList<>();
+        List<ClientTowerFloor> list = Collections.synchronizedList(new ArrayList<>());
         for (int i=0;i<floors;i++) {
             ClientTowerFloor clientTowerFloor = new ClientTowerFloor();
             clientTowerFloor.setContainer(color);
@@ -62,7 +63,7 @@ public class ClientBoardGame extends Observable {
 
     private synchronized List<ClientSpaceAction> generateBoardItems(int items)
     {
-        List list = new ArrayList();
+        List list = Collections.synchronizedList(new ArrayList());
         for (int i=0;i<items;i++) {
             list.add(new ClientSpaceAction());
         }

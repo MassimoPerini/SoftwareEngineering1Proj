@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_06.Server.Network.GameList;
 import it.polimi.ingsw.GC_06.model.Action.Actions.PowerUpFamilyMember;
 import it.polimi.ingsw.GC_06.model.Action.PickCard.BoardActionOnTower;
 import it.polimi.ingsw.GC_06.model.Board.Tower;
+import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.TransitionType;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -30,7 +31,7 @@ public class MessageBoardActionTower implements MessageMultipleSteps{
         this.powerUpValue = powerUpValue;
     }
 
-    public MessageBoardActionTower(Object tower, int floor)
+    public MessageBoardActionTower(Object tower, int floor, ActionType actionType)
     {
         this.tower = (String) tower;
         this.floor = floor;

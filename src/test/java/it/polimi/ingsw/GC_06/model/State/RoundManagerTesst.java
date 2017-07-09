@@ -31,7 +31,7 @@ public class RoundManagerTesst {
         player = game.getGameStatus().getPlayers().get("peppe");
         player1 = game.getGameStatus().getPlayers().get("massi");
 
-        roundManager = new RoundManager(game.getBoard(),4);
+        roundManager = new RoundManager(4);
 
 
     }

@@ -4,10 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import it.polimi.ingsw.GC_06.model.Board.*;
-import it.polimi.ingsw.GC_06.model.BonusMalus.ActionType;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusOnAction;
-import it.polimi.ingsw.GC_06.model.BonusMalus.BonusMalusSet;
+import it.polimi.ingsw.GC_06.model.Board.ActionPlace;
+import it.polimi.ingsw.GC_06.model.Board.ActionPlaceFixed;
+import it.polimi.ingsw.GC_06.model.Board.Board;
 import it.polimi.ingsw.GC_06.model.Card.Card;
 import it.polimi.ingsw.GC_06.model.Card.DevelopmentCard;
 import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
@@ -38,7 +37,9 @@ public class FileLoader {
 
     private static final String CARDS_PATH = "cards_path";
     private static final String PARCHMENTS_PATH = "parchments_path";
-    private static final String BOARD_PATH = "board_path";
+    private static final String BOARD_PATH_MEDIUM = "board_medium";
+    private static final String BOARD_PATH_SMALL = "board_small";
+    private static final String BOARD_PATH_BIG = "board_big";
     private static final String DEFAULT_RES = "default_resource_path";
     private static final String DICES = "dices_path";
     private static final String PLAYER_BOARD = "player_board_path";
@@ -53,7 +54,6 @@ public class FileLoader {
 
     private final String cardsRootPath;
     private final String parchmentsPath;
-    private final String boardRootPath;
     private final String defaultResourceRootPath;
     private final String dicePath;
     // private String endGameMap;
@@ -73,7 +73,6 @@ public class FileLoader {
         this.gson = new Gson();
         parchmentsPath = Setting.getInstance().getProperty(PARCHMENTS_PATH);
         cardsRootPath = Setting.getInstance().getProperty(CARDS_PATH);
-        boardRootPath = Setting.getInstance().getProperty(BOARD_PATH);
         defaultResourceRootPath = Setting.getInstance().getProperty(DEFAULT_RES);
         dicePath = Setting.getInstance().getProperty(DICES);
         playerBoardPath = Setting.getInstance().getProperty(PLAYER_BOARD);
@@ -270,19 +269,31 @@ public class FileLoader {
         //    System.out.println(cards[3].toString());
     }
 
-    public Board loadBoard() throws IOException {
-        InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(boardRootPath));
+    public Board loadBoard(int nPlayers) {
+        try {
+            String boardPath = "";
+            if (nPlayers <= 2)
+                boardPath = BOARD_PATH_SMALL;
+            else if (nPlayers <= 4)
+                boardPath = BOARD_PATH_MEDIUM;
+            else
+                boardPath = BOARD_PATH_BIG;
 
-        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
-        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
-                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class).registerSubtype(ProdHarvMalusEffect.class).registerSubtype(EffectOnResources.class);
-        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
+            InputStreamReader fr = new InputStreamReader(this.getClass().getResourceAsStream(Setting.getInstance().getProperty(boardPath)));
 
-        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).registerTypeAdapterFactory(typeAdapterFactory).create();
-        Board board = gson2.fromJson(fr, Board.class);
+            RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
+            RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                    .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class).registerSubtype(ProdHarvMalusEffect.class).registerSubtype(EffectOnResources.class);
+            RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
 
-        fr.close();
-        return board;
+            Gson gson2 = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).registerTypeAdapterFactory(typeAdapterFactory).create();
+            Board board = gson2.fromJson(fr, Board.class);
+
+            fr.close();
+            return board;
+        }
+        catch (IOException e){}
+        return null;
     }
 
     public PlayerBoard loadPlayerBoard()
@@ -400,5 +411,6 @@ public class FileLoader {
         {}
         return null;
     }
+
 
 }

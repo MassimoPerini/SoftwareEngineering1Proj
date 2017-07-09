@@ -8,7 +8,6 @@ import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.State.StateName;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
 import it.polimi.ingsw.GC_06.model.playerTools.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.Observable;
@@ -16,6 +15,7 @@ import java.util.Observer;
 
 /**
  * Created by massimo on 14/06/17.
+ * this class represent the genral controller of the game, is an observer class
  */
 
 public class ControllerGame implements Observer {
@@ -26,7 +26,7 @@ public class ControllerGame implements Observer {
     private final int id;
     private final ControllerUser controllerUser;
 
-    public ControllerGame (@NotNull Game game, @NotNull ServerOrchestrator serverOrchestrator, int id)
+    public ControllerGame (Game game, ServerOrchestrator serverOrchestrator, int id)
     {
         this.game = game;
         this.serverOrchestrator = serverOrchestrator;
@@ -34,8 +34,15 @@ public class ControllerGame implements Observer {
         controllerUser = new ControllerUser(serverOrchestrator, game);
     }
 
+    /**
+     * starts and initialize a game
+     */
     public void start()
     {
+        game.init();
+
+        game.getBoard().addObserver(this);
+
         for (Tower tower : game.getBoard().getTowers().values()) {
             tower.addObserver(this);
         }

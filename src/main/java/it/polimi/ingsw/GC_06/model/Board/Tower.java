@@ -76,7 +76,7 @@ public class Tower extends Observable{
             return towerFloors.get(towerFloorUser).isAllowed(familyMember);
         }
 
-        int samePlayerFamilyMember = 0;     //I'm checking, but you have not added it
+        int samePlayerFamilyMember = 1;     //I'm checking, but you have not added it
 
         for (TowerFloor towerFloor : towerFloors)
         {

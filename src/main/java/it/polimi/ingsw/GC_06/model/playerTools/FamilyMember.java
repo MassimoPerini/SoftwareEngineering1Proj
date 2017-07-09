@@ -8,6 +8,7 @@ import java.util.Observer;
 
 /**
  * Created by massimo on 12/05/17.
+ * This class represents a familyMember
  */
 public class FamilyMember extends Observable implements Observer {
 
@@ -16,6 +17,10 @@ public class FamilyMember extends Observable implements Observer {
     private String playerUserName;
     private boolean alreadyUsed;
 
+    /**
+     *
+     * @return returns player's username
+     */
     public String getPlayerUserName() {
         return playerUserName;
     }
@@ -33,11 +38,20 @@ public class FamilyMember extends Observable implements Observer {
         return diceColor;
     }
 
+    /**
+     *
+     * @return return true if the familymember is the neutral one
+     */
     public boolean isNeutral()
     {
         return diceColor.equals("");
     }
 
+    /**
+     *
+     * @param obs
+     * @param args
+     */
     public void update(Observable obs, Object args)
     {
         Integer val =(Integer) args;
@@ -50,6 +64,10 @@ public class FamilyMember extends Observable implements Observer {
         return value;
     }
 
+    /**
+     * this method assigns an arbitrary value to the familyMember
+     * @param value the value to assign to the familymember
+     */
     public void setValue(int value) {
 
         this.value = value;

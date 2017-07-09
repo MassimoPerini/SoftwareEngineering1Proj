@@ -22,7 +22,7 @@ public class AskUserPowerUp implements ViewPresenterCLI {
     }
 
     @Override
-    public void viewWillAppear() {
+    public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Puoi scegliere se fare un powerup (digita valore [0-X])");
         int powerUp = commandView.getInt(0);
         MessageClient messageClient = new DefaultAnswer(powerUp);

@@ -53,10 +53,10 @@ public class EffectOnConditions implements Effect{
             throw new IllegalStateException();
         }
         if(this.cardColour == null){
-            return conditionalValue = player.getResourceSet().getResourceAmount(conditionalResource);
+            return player.getResourceSet().getResourceAmount(conditionalResource);
         }
         else
-            return conditionalValue = player.getPlayerBoard().getDevelopmentCards(cardColour).size();
+            return player.getPlayerBoard().getDevelopmentCards(cardColour).size();
 
     }
 

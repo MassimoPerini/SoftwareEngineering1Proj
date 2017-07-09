@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by massimo on 27/06/17.
+ * This class handles the selection, at he beginning of a game, of a personal bonus tile
  */
 public class PersonalBonusChoiceHandler implements Blocking {
 
@@ -47,7 +48,6 @@ public class PersonalBonusChoiceHandler implements Blocking {
                 }
             }catch (InterruptedException e)
             {
-                System.out.println("EXCEPTION!");
                 continue;
             }
             System.out.println("Thread wake up");
@@ -73,7 +73,7 @@ public class PersonalBonusChoiceHandler implements Blocking {
     }
 
     @Override
-    public void userLoggedOut(String user) {
+    public synchronized void userLoggedOut(String user) {
 
     }
 }

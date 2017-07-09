@@ -13,6 +13,7 @@ import static java.rmi.server.UnicastRemoteObject.unexportObject;
 
 /**
  * Created by massimo on 26/06/17.
+ * this class manages the factual comunication with the clients via RMI
  */
 public class ServerPlayerRMIHandler extends Observable implements ServerPlayerRMIClient {
 
@@ -26,6 +27,10 @@ public class ServerPlayerRMIHandler extends Observable implements ServerPlayerRM
         this.game = -1;
     }
 
+    /**
+     *
+     * @param messageServer message to be sent
+     */
     synchronized void send(MessageServer messageServer)
     {
         try {
@@ -36,6 +41,9 @@ public class ServerPlayerRMIHandler extends Observable implements ServerPlayerRM
         }
     }
 
+    /**
+     *
+     */
     synchronized void finish()
     {
         try {
@@ -46,6 +54,10 @@ public class ServerPlayerRMIHandler extends Observable implements ServerPlayerRM
         }
     }
 
+    /**
+     *
+     * @param messageClient the message to be received
+     */
     @Override
     synchronized public void receive(MessageClient messageClient){
         System.out.println("RMI SERVER RECEIVING..."+messageClient.toString());

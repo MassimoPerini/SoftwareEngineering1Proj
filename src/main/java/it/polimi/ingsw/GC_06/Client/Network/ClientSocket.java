@@ -23,12 +23,12 @@ import java.util.concurrent.Executors;
  */
 public class ClientSocket extends Client {
 
-    @NotNull private final BufferedReader socketIn;
-    @NotNull private final PrintWriter socketOut;
-    @NotNull private final ExecutorService pool;
-    @NotNull private final Gson readGson;
-    @NotNull private final Gson writeGson;
-    @NotNull private final Socket socket;
+    private final BufferedReader socketIn;
+    private final PrintWriter socketOut;
+    private final ExecutorService pool;
+    private final Gson readGson;
+    private final Gson writeGson;
+    private final Socket socket;
 
 
     public ClientSocket(@NotNull Socket socket) throws IOException {
@@ -60,7 +60,8 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageAddMemberOnProdHarv.class)
                 .registerSubtype(MessageAddMemberOnMarket.class)
                 .registerSubtype(MessageAddMemberOnCouncil.class)
-                .registerSubtype(HeroCardUploadMessageServer.class);
+                .registerSubtype(HeroCardUploadMessageServer.class)
+                .registerSubtype(MessageActivatePopup.class)
                 ;
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 

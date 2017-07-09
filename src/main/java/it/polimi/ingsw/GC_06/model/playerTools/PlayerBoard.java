@@ -9,6 +9,7 @@ import java.util.*;
 
 /**
  * @author giuseppe
+ * this class represents the personal playerBoard associated to a player
  */
 public class PlayerBoard {
 
@@ -28,6 +29,11 @@ public class PlayerBoard {
     // adesso qui mettiamo il metodo per farci restituire un array di carte che vogliamo
 
 
+    /**
+     *
+     * @param color color of the development cards to be returned
+     * @return returns all the development cards of a color owned by the player
+     */
     public List<DevelopmentCard> getDevelopmentCards(String color)
     {
         LinkedList <DevelopmentCard> list = new LinkedList();
@@ -39,6 +45,10 @@ public class PlayerBoard {
         return Collections.unmodifiableList(list);
     }
 
+    /**
+     *
+     * @return returns all the development cards owned by a player
+     */
     public List<DevelopmentCard> getDevelopmentCards()
     {
         List<DevelopmentCard> list = new ArrayList();
@@ -66,6 +76,11 @@ public class PlayerBoard {
 
     }
 
+    /**
+     *
+     * @param color the target colour
+     * @return returns the first free slot associated to the given colour
+     */
     private PlayerBoardSlot getFirstEmpty(String color)
     {
         List<PlayerBoardSlot> cardsColor = cards.get(color);

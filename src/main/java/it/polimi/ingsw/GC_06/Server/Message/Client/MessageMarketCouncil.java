@@ -36,10 +36,12 @@ public class MessageMarketCouncil implements MessageMultipleSteps {
         this.actionType = actionType;
     }
 
-    public MessageMarketCouncil(Object slotSelector, int slot)
+    public MessageMarketCouncil(Object slotSelector, int slot, ActionType actionType)
     {
         this.slotSelector = (int) slotSelector;
         this.slot = slot;
+        this.familyMember = -1;
+        this.actionType = actionType;
         this.clientFamilyMember = -1;
     }
 

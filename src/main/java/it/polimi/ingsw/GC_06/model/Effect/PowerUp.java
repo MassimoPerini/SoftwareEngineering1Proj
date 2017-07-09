@@ -37,11 +37,7 @@ public class PowerUp implements Blocking {
 
         while (powerUp==null)
         {
-            try {
                 wait();
-            } catch (InterruptedException e) {
-                throw new InterruptedException();
-            }
         }
 
         if (powerUp>0)

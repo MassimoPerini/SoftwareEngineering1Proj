@@ -3,10 +3,7 @@ package it.polimi.ingsw.GC_06.Client.Model;
 import it.polimi.ingsw.GC_06.model.Card.Requirement;
 import it.polimi.ingsw.GC_06.model.Resource.ResourceSet;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Observable;
+import java.util.*;
 
 /**
  * Created by massimo on 20/06/17.
@@ -23,14 +20,14 @@ public class PlayerBonusActions extends Observable {
 
     public PlayerBonusActions()
     {
-        parchmentList = new LinkedList<>();
-        pickAnotherCard = new LinkedList<>();
-        requirementCard = new LinkedList<>();
+        parchmentList = Collections.synchronizedList(new LinkedList<>());
+        pickAnotherCard = Collections.synchronizedList(new LinkedList<>());
+        requirementCard = Collections.synchronizedList(new LinkedList<>());
     }
 
     public void setPersonalBonusOptions (List<String> personalBonusOptions)
     {
-        this.personalBonusOptions = personalBonusOptions;
+        this.personalBonusOptions = Collections.synchronizedList(personalBonusOptions);
         this.currentState = ClientStateName.CHOOSE_PERSONAL_BONUS;
         setChanged();
         notifyObservers(currentState);
@@ -69,6 +66,13 @@ public class PlayerBonusActions extends Observable {
     public void setProdHarvAsk(Map<String, List<Integer>> cards) {
         this.prodHarvAsk = cards;
         this.currentState = ClientStateName.ASK_PRODHARV_CARDS;
+        setChanged();
+        notifyObservers(currentState);
+    }
+
+    public void changeState(ClientStateName clientStateName)
+    {
+        this.currentState = clientStateName;
         setChanged();
         notifyObservers(currentState);
     }

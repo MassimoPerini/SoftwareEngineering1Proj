@@ -3,11 +3,16 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.GameView;
 import it.polimi.ingsw.GC_06.Client.Model.ClientPlayerBoard;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board.BoardPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board.BoardView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.FamilyMembers.FamilyMembersPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.FamilyMembers.FamilyMembersView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.PlayerBoard.PlayerBoardPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.PlayerBoard.PlayerBoardView;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
 import javax.annotation.PostConstruct;
@@ -28,9 +33,14 @@ public class GameViewPresenter implements Observer {
     @Inject
     MainClientModel mainClientModel;
 
+    private PlayerBoardPresenter playerBoardPresenter;
+    private FamilyMembersPresenter familyMembersPresenter;
+    private BoardPresenter boardPresenter;
+    private Parent boardView;
+    private boolean initDisabled = true;
 
     @FXML
-    void initialize() {
+    synchronized void initialize() {
 
 
         ClientPlayerBoard clientPlayerBoard = mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername());
@@ -38,14 +48,19 @@ public class GameViewPresenter implements Observer {
         context.put("clientPlayerBoard", clientPlayerBoard);
         PlayerBoardView playerBoardView = new PlayerBoardView(context::get);
         mainWindow.setLeft(playerBoardView.getView());
-
+        playerBoardPresenter = (PlayerBoardPresenter) playerBoardView.getPresenter();
 
 
         BoardView boardView = new BoardView();
         mainWindow.setCenter(boardView.getView());
+        this.boardView = boardView.getView();
+        this.boardView.setDisable(true);
+        boardPresenter = (BoardPresenter) boardView.getPresenter();
+
 
         FamilyMembersView familyMembersView = new FamilyMembersView();
         mainWindow.setRight(familyMembersView.getView());
+        familyMembersPresenter = (FamilyMembersPresenter) familyMembersView.getPresenter();
 
         mainClientModel.addObserver(this);
 
@@ -62,19 +77,27 @@ public class GameViewPresenter implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    synchronized public void update(Observable o, Object arg) {
         ClientStateName clientStateName = (ClientStateName) arg;
-        if (clientStateName == ClientStateName.MY_TURN)
-        {
-            System.out.println("Ora mi sblocco");
-        }
-        else if (clientStateName == ClientStateName.ACTION_FINISHED)
-        {
-            System.out.println("Azione finita!");
-        }
-        else{
-            System.out.println("Sono bloccato!");
-        }
+        Platform.runLater(() -> {
+            if (clientStateName == ClientStateName.MY_TURN)
+            {
+                boardView.setDisable(false);
+                familyMembersPresenter.disableAll(false);
+                System.out.println("Ora mi sblocco");
+            }
+            else if (clientStateName == ClientStateName.ACTION_FINISHED)
+            {
+                boardView.setDisable(true);
+                familyMembersPresenter.disableOnlyFamilyMembers(true);
+                System.out.println("Azione finita!");
+            }
+            else{
+                boardView.setDisable(true);
+                familyMembersPresenter.disableAll(true);
+                System.out.println("Sono bloccato!");
+            }
+        });
     }
 
 }

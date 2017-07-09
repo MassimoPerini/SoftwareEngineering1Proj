@@ -28,7 +28,7 @@ public class AskUserProdHarv implements ViewPresenterCLI {
     }
 
     @Override
-    public void viewWillAppear() {
+    public void viewWillAppear() throws InterruptedException {
         cmdView.addLocalizedText("Puoi scegliere vari tipi di carte produzione facontative:\n");
         Map<String, Integer> choices = new HashMap<>();
         for (String cardName : playerBonusActions.getProdHarvAsk().keySet()) {

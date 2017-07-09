@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 /**
  * Created by massimo on 09/06/17.
+ * this class represents a single slot for the playerBoard
  */
 public class PlayerBoardSlot {
 

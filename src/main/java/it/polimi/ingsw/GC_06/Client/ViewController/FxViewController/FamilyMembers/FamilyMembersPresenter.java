@@ -16,11 +16,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -37,6 +37,7 @@ public class FamilyMembersPresenter {
     @FXML private ListView familyMembersView;
     @FXML private VBox mainView;
     @FXML private TextField powerUpValue;
+    @FXML private Button pass;
 
     @Inject
     private MainClientModel mainClientModel;
@@ -64,10 +65,10 @@ public class FamilyMembersPresenter {
                         Canvas canvas = new Canvas();
                         GraphicsContext gc = canvas.getGraphicsContext2D();
                     //    Field field = Class.forName("javafx.scene.paint.Color").getField(familyMember.getColor().toLowerCase());
-                        gc.setFill(Color.web(playerColors.getPlayerColor(mainClientModel.getCurrentPlayer())));
+                 //       gc.setFill(Color.web(playerColors.getPlayerColor(mainClientModel.getCurrentPlayer())));
                    //     gc.setFill(Color.RED);
-                        gc.fillOval(5, 5, 10, 10);
-                        setGraphic(canvas);
+                  //      gc.fillOval(5, 5, 10, 10);
+                  //      setGraphic(canvas);
                         setText(String.valueOf(familyMember.getValue()));
                     }
                     catch (Exception e){
@@ -152,4 +153,19 @@ public class FamilyMembersPresenter {
         stage.show();
         stage.sizeToScene();
     }
+
+    public void disableOnlyFamilyMembers(boolean disable)
+    {
+        pass.setDisable(false);
+        familyMembersView.getSelectionModel().clearSelection();
+        familyMembersView.setDisable(disable);
+    }
+
+    public void disableAll(boolean disable)
+    {
+        familyMembersView.getSelectionModel().clearSelection();
+        familyMembersView.setDisable(disable);
+        pass.setDisable(disable);
+    }
+
 }

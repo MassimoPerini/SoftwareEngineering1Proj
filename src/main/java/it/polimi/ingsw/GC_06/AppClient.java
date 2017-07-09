@@ -38,7 +38,7 @@ public class AppClient extends Application {
     private static ClientController clientController;
     private static PlayerColors playerColors;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Setting.getInstance().addPath("settings/client");
         Setting.getInstance().addPath("view/heroes");
 

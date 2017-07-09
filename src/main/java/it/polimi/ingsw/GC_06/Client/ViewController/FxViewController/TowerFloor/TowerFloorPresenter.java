@@ -66,7 +66,7 @@ public class TowerFloorPresenter implements Observer {
     public void update(Observable o, Object arg)
     {
         String cardName = clientTowerFloor.getCard();
-        if (cardName==null)
+        if (cardName==null || cardName.equals(""))
             imageCard.setImage(null);
         else
             imageCard.setImage(new Image(getClass().getResourceAsStream(Setting.getInstance().getProperty("cards_root")+cardName+Setting.getInstance().getProperty("img_extension"))));

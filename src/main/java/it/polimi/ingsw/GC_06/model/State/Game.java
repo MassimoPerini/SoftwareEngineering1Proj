@@ -21,7 +21,6 @@ import java.util.Map;
  */
 public class Game {
     private final int id;
-    private final Board board;
     private final DiceSet diceSet;
     private final RoundManager roundManager;
 
@@ -30,6 +29,7 @@ public class Game {
     private final int neutralFamilyMembers;
     private  GameStatus gameStatus;
     private final Map<StateName, FsmNode> statuses;
+    private Board board;
 
     //keys
     private static final String NEUTRALFAMILYMEMBERSKEY = "neutral_family_members";
@@ -41,18 +41,23 @@ public class Game {
      */
     public Game(int id) throws IOException {
         FileLoader f = FileLoader.getFileLoader();
-        board = f.loadBoard();
         diceSet = f.loadDiceSet();
         neutralFamilyMembers = Integer.parseInt(Setting.getInstance().getProperty(NEUTRALFAMILYMEMBERSKEY));
         //load from file
         this.statuses = new HashMap<>();
         this.generateStatuses();
-        roundManager = new RoundManager(board, neutralFamilyMembers+diceSet.getDices().length);
+        roundManager = new RoundManager(neutralFamilyMembers+diceSet.getDices().length);
         this.id = id;
         //THE LAST
         gameStatus = new GameStatus(this.statuses.get(StateName.IDLE));
     }
 
+    /**
+     * this methos adds a player to a game
+     * @param p player's username
+     * @throws IllegalStateException
+     * @throws IllegalArgumentException
+     */
     public void addPlayer (String p) throws IllegalStateException, IllegalArgumentException
     {
         if (p==null)
@@ -63,10 +68,17 @@ public class Game {
 
     }
 
+    public void init()
+    {
+        this.board = FileLoader.getFileLoader().loadBoard(this.getPlayerNumber());
+        roundManager.setBoard(board);
+    }
+
     public void start(GameEventManager gameEventManager){
-        roundManager.setGameEventManager(gameEventManager);
-        roundManager.start();
-        gameStatus.start();
+      //      board = FileLoader.getFileLoader().loadBoard(gameStatus.getPlayers().size());
+            roundManager.setGameEventManager(gameEventManager);
+            roundManager.start();
+            gameStatus.start();
     }
 
     public int getPlayerNumber(){

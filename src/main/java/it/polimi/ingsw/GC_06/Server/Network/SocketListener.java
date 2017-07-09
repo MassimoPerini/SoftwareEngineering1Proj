@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by massimo on 13/06/17.
+ * this class represents the listener of the socket server
  */
 public class SocketListener implements Runnable {
 
@@ -20,6 +21,9 @@ public class SocketListener implements Runnable {
         this.loginHub = loginHub;
     }
 
+    /**
+     * runs the server and handles listening for connections
+     */
     @Override
     public void run() {
         try {

@@ -26,7 +26,7 @@ public class PaymentWaysViewController implements ViewPresenterCLI {
     }
 
     @Override
-    public void viewWillAppear() {
+    public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Puoi scegliere diversi metodi di pagamento!");
         int i=0;
         for (Requirement requirement : playerBonusActions.getRequirementCard()) {

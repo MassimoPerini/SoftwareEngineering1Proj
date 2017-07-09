@@ -44,7 +44,7 @@ public class CmdView implements CommandView {
     }
 
     @Override
-    public int getInt(int start, int end) {
+    public int getInt(int start, int end) throws InterruptedException {
         boolean ok = true;
         int res=getInt(start);
         while (res > end)
@@ -89,14 +89,14 @@ public class CmdView implements CommandView {
     }
 
     @Override
-    public int getInt(int start) {
+    public int getInt(int start) throws InterruptedException {
         this.print();
         boolean ok = true;
         int res = 0;
         do {
             ok=true;
             try {
-                while (!input.ready() && !Thread.currentThread().isInterrupted()) {
+                while (!input.ready()) {
                     Thread.sleep(200);
                 }
                 if (Thread.currentThread().isInterrupted()) {
@@ -104,7 +104,7 @@ public class CmdView implements CommandView {
                 }
                 res = Integer.parseInt(input.readLine());
             }
-            catch (Exception e)
+            catch (NumberFormatException | IOException e)
             {
                 this.addLocalizedText("error_input");
                 this.print();
@@ -125,10 +125,7 @@ public class CmdView implements CommandView {
             }
             return input.readLine();
         }
-        catch (InterruptedException e) {
-            System.out.println("View... Interrupting");
-            throw new InterruptedException();
-        } catch (IOException e) {}
+        catch (IOException e) {}
         return null;
     }
 

@@ -4,6 +4,7 @@ import java.util.Observable;
 
 /**
  * Created by massimo on 03/06/17.
+ * The abstract class that represents a node of the fined state machine
  */
 public abstract class FsmNode extends Observable {
     public abstract boolean canConsume(TransitionType type);
