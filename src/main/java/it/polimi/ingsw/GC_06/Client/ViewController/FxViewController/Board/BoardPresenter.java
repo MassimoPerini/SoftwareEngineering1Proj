@@ -42,7 +42,10 @@ public class BoardPresenter extends Observable implements Observer {
         VBox prodHarvView = new VBox(22);
         VBox marketView = new VBox();
 
-        SpaceActionView councilView = new SpaceActionView();
+
+        Map<String, Object> context = new HashMap<>();
+        context.put("clientSpaceAction", mainClientModel.getClientBoardGame().getCouncil().get(0).get(0));
+        SpaceActionView councilView = new SpaceActionView(context::get);
         councilView.getView().getStyleClass().add("council-view");
         mainView.getChildren().add(councilView.getView());
         SpaceActionPresenter councilPresenter = (SpaceActionPresenter) councilView.getPresenter();
@@ -74,7 +77,7 @@ public class BoardPresenter extends Observable implements Observer {
             int elemIndex = 0;
             for (ClientSpaceAction clientSpaceAction : clientSpaceActions)
             {
-                Map<String, Object> context = new HashMap<>();
+                context = new HashMap<>();
                 context.put("clientSpaceAction", clientSpaceAction);
                 SpaceActionView spaceActionView = new SpaceActionView(context::get);
                 SpaceActionPresenter spaceActionPresenter = (SpaceActionPresenter) spaceActionView.getPresenter();
@@ -107,7 +110,7 @@ public class BoardPresenter extends Observable implements Observer {
             int elemIndex = 0;
 
             for (ClientSpaceAction clientSpaceAction : clientSpaceActions) {
-                Map<String, Object> context = new HashMap<>();
+                context = new HashMap<>();
                 context.put("clientSpaceAction", clientSpaceAction);
                 SpaceActionView spaceActionView = new SpaceActionView(context::get);
                 spaceActionView.getView().getStyleClass().add("spaceaction");
