@@ -111,7 +111,7 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
                     try {
                         clientStates.get(currentState).viewWillAppear();
                     } catch (InterruptedException e) {
-                        System.out.println("interrupted");
+                        Thread.currentThread().interrupt();
                     }
                 });
 

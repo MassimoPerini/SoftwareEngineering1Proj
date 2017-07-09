@@ -26,14 +26,13 @@ public class RoundManager extends Observable {
     private final List<DevelopmentCard> developmentCards;
 
 
-    private final Board board;
     private GameEventManager gameEventManager;
 
     private final int maxEras;
     private final int maxTurns;
+    private Board board;
 
-
-    public RoundManager(Board board, int nFamilyMembersMax) throws IOException {
+    public RoundManager(int nFamilyMembersMax) throws IOException {
         reset();
         developmentCards = Arrays.asList(FileLoader.getFileLoader().loadCards());
 
@@ -235,6 +234,11 @@ public class RoundManager extends Observable {
         notifyObservers(messageChangePlayer);
 
     }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
     public Player getCurrentPlayer()
     {
         return players.get(currentPlayer);

@@ -26,7 +26,7 @@ public class ParchmentViewController implements ViewPresenterCLI {
 
 
     @Override
-    public void viewWillAppear() {
+    public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Ti è stato concesso un privilegio del consiglio\n");
         int i=0;
         for (ResourceSet resourceSet : playerBonusActions.getParchmentList()) {

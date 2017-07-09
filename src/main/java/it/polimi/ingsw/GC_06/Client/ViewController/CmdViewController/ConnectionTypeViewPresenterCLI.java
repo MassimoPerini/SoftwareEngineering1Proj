@@ -24,7 +24,7 @@ public class ConnectionTypeViewPresenterCLI implements ViewPresenterCLI {
     }
 
     @Override
-    public void viewWillAppear() {
+    public void viewWillAppear() throws InterruptedException {
 
         commandView.addLocalizedText("Come vuoi connetterti? 0:Socket, 1: RMI Tanto puoi scegliere solo socket...");
         answer = commandView.getInt(0,1);

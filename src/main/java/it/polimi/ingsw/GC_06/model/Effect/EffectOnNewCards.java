@@ -59,11 +59,7 @@ public class EffectOnNewCards implements Effect, Blocking {
         MessagePickAnotherCard messagePickAnotherCard = new MessagePickAnotherCard(toAsk);
         GameList.getInstance().setCurrentBlocking(game, this, messagePickAnotherCard);
         while (inputParams ==null) {
-            try {
                 wait();
-            } catch (InterruptedException e) {
-                throw new InterruptedException();
-            }
         }
 
         if (inputParams==-1)

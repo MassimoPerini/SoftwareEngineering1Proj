@@ -29,7 +29,7 @@ public class TutorialPickCard implements ViewPresenterCLI {
     }
 
     @Override
-    public void viewWillAppear(){
+    public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Vuoi prendere una carta...");
 
         commandView.addLocalizedText("Ok, questi sono i tuoi familiari:\n");

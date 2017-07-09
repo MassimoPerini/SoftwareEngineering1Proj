@@ -47,7 +47,6 @@ public class PersonalBonusChoiceHandler implements Blocking {
                 }
             }catch (InterruptedException e)
             {
-                System.out.println("EXCEPTION!");
                 continue;
             }
             System.out.println("Thread wake up");
@@ -73,7 +72,7 @@ public class PersonalBonusChoiceHandler implements Blocking {
     }
 
     @Override
-    public void userLoggedOut(String user) {
+    public synchronized void userLoggedOut(String user) {
 
     }
 }

@@ -50,11 +50,7 @@ public class EffectOnParchment implements Effect, Blocking {
 
             do{
                 MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
-                try {
-                    waitAnswer(game, messageChooseParchment);
-                } catch (InterruptedException e) {
-                    throw new InterruptedException();
-                }
+                waitAnswer(game, messageChooseParchment);
             }
             while(alreadyChoosed.contains(choosen) && different);
             player.variateResource(parchments.get(choosen));

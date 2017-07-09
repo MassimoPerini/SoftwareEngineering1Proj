@@ -36,6 +36,8 @@ public class ControllerGame implements Observer {
 
     public void start()
     {
+        game.init();
+
         for (Tower tower : game.getBoard().getTowers().values()) {
             tower.addObserver(this);
         }

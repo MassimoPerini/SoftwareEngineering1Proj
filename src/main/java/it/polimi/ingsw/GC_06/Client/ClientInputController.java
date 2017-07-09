@@ -2,7 +2,6 @@ package it.polimi.ingsw.GC_06.Client;
 
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -12,7 +11,7 @@ import java.util.Observer;
  */
 public class ClientInputController implements Observer {
 
-    @NotNull private final ClientNetworkOrchestrator clientNetworkOrchestrator;
+    private final ClientNetworkOrchestrator clientNetworkOrchestrator;
     private final ClientController clientController;
 
     public ClientInputController(ClientNetworkOrchestrator clientNetworkOrchestrator, ClientController clientController)

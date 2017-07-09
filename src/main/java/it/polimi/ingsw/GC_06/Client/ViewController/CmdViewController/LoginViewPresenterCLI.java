@@ -4,7 +4,6 @@ import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
 import it.polimi.ingsw.GC_06.Client.View.CmdView;
 import it.polimi.ingsw.GC_06.Client.View.CommandView;
 import it.polimi.ingsw.GC_06.Client.ViewController.ViewPresenterCLI;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.Future;
 
@@ -13,8 +12,8 @@ import java.util.concurrent.Future;
  */
 public class LoginViewPresenterCLI implements ViewPresenterCLI {
 
-    @NotNull private CommandView commandView;
-    @NotNull private ClientNetworkOrchestrator clientNetworkOrchestrator;
+    private CommandView commandView;
+    private ClientNetworkOrchestrator clientNetworkOrchestrator;
     private Future future;
 
     public LoginViewPresenterCLI(ClientNetworkOrchestrator clientNetworkOrchestrator)

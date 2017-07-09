@@ -11,11 +11,11 @@ public interface CommandView extends Runnable{
     void flush();
     void addText(String string);
     void print();
-    int getInt(int start, int end);
+    int getInt(int start, int end) throws InterruptedException;
 
     List<Integer> getList(int min, int max) throws InterruptedException;
 
-    int getInt(int start);
+    int getInt(int start) throws InterruptedException;
     String getString() throws InterruptedException;
     void sleep();
     void unload();

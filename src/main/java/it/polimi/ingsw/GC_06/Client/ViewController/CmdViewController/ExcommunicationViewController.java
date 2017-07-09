@@ -20,7 +20,7 @@ public class ExcommunicationViewController implements ViewPresenterCLI {
     }
 
     @Override
-    public void viewWillAppear() {
+    public void viewWillAppear() throws InterruptedException {
         commandView.addLocalizedText("Vuoi essere scomunicato? 0: sì, 1:no");
         int answ = commandView.getInt(0, 1);
         boolean answer = (answ == 0);
