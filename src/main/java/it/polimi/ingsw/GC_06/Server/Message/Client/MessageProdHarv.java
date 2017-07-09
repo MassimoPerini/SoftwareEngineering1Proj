@@ -37,6 +37,7 @@ public class MessageProdHarv implements MessageMultipleSteps{
     public MessageProdHarv(Object prodHarvAreaSelector, int index, ActionType actionType) {
         this.prodHarvAreaSelector = (int) prodHarvAreaSelector;
         this.index = index;
+        this.actionType = actionType;
         this.clientFamilyMember = -1;
     }
 
@@ -51,9 +52,11 @@ public class MessageProdHarv implements MessageMultipleSteps{
         ProdHarvZone prodOrharvZone;
         if(actionType.equals(ActionType.BOARD_ACTION_ON_HARV)){
             prodOrharvZone = currentGame.getBoard().getHarvestZones().get(prodHarvAreaSelector);
+            startProdHarv = ActionType.HARVEST_ACTION;
         }
         else{
             prodOrharvZone = currentGame.getBoard().getProductionZones().get(prodHarvAreaSelector);
+            startProdHarv = ActionType.PRODUCTION_ACTION;
         }
         DefaultAskUserSelector defaultAskUserSelector = new DefaultAskUserSelector();
 
