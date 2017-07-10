@@ -55,6 +55,7 @@ public class ProdHarvQuestionPresenter {
             imageView.setFitHeight(120);
             imageView.setPreserveRatio(true);
             borderPane.setTop(imageView);
+            mainContainer.setPrefHeight(200*items.size());
             list.setCellFactory(param -> new ListCell<String>() {
                 @Override
                 public void updateItem(String string, boolean empty) {

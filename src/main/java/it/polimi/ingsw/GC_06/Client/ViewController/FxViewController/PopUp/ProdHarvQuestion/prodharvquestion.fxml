@@ -8,7 +8,7 @@
     <center>
         <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <content>
-                <VBox prefHeight="200.0" prefWidth="100.0" fx:id="mainContainer" />
+                <VBox prefWidth="100.0" fx:id="mainContainer" />
             </content>
         </ScrollPane>
     </center>
