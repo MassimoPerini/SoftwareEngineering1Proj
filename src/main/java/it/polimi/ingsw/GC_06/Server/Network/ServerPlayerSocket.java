@@ -95,6 +95,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageAddMemberOnHarvest.class)
                 .registerSubtype(MessageAddMemberOnProduction.class)
                 .registerSubtype(MessagePlayerDisconnected.class)
+                .registerSubtype(MessageUserExcommunication.class)
                 ;
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }

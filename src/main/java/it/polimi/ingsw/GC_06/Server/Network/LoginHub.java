@@ -18,7 +18,7 @@ public class LoginHub {
     private List<String> totPlayers = new ArrayList<>(); /** tutti i giocatori iscritti alle partire */
     private List<String> loggedPlayers = new ArrayList<>();
     private Trash playerTrash = new Trash();
-    private int delay  = 1000*15;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
+    private int delay  = Integer.parseInt(Setting.getInstance().getProperty("timer_login"));
     private Timer timer = new Timer(true);
     private int id = 0;
     private List<String> alreadyNotified = new LinkedList<>();

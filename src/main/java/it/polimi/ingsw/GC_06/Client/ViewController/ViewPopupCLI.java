@@ -79,6 +79,7 @@ public class ViewPopupCLI implements Observer {
         clientStates.put(ClientStateName.CHOOSE_PERSONAL_BONUS, new AskUserPersonalBonus(clientNetworkOrchestrator, mainClientModel.getPlayerBonusActions()));
         clientStates.put(ClientStateName.EXCOMMUNICATION, new ExcommunicationViewController(clientNetworkOrchestrator));//POPUP
         clientStates.put(ClientStateName.USER_DISCONNECT, new UserDisconnectedController(mainClientModel, clientNetworkOrchestrator));
+        clientStates.put(ClientStateName.ERROR, new ErrorViewController());
     }
 
 }

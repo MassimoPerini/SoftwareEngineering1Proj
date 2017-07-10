@@ -72,6 +72,7 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessagePlayerDisconnected.class)
                 .registerSubtype(MessageAddMemberOnProduction.class)
                 .registerSubtype(MessageAddMemberOnHarvest.class)
+                .registerSubtype(MessageUserExcommunication.class)
                 ;
         readGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory1).create();
 
