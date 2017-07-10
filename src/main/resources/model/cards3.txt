@@ -32,6 +32,7 @@
           "bonusEffect": [
             {
               "type": "EffectOnConditions",
+              "cardColour": "YELLOW",
               "multiplier": 1.0,
               "trasferredResource": "MONEY"
             }
@@ -74,6 +75,7 @@
           "bonusEffect": [
             {
               "type": "EffectOnConditions",
+              "cardColour": "GREEN",
               "multiplier": 1.0,
               "trasferredResource": "MONEY"
             }
@@ -116,6 +118,7 @@
           "bonusEffect": [
             {
               "type": "EffectOnConditions",
+              "cardColour": "PURPLE",
               "multiplier": 1.0,
               "trasferredResource": "VICTORYPOINT"
             }
@@ -134,8 +137,8 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -2,
-            "WOOD": -2
+            "WOOD": -2,
+            "MONEY": -2
           }
         }
       }
@@ -158,6 +161,7 @@
           "bonusEffect": [
             {
               "type": "EffectOnConditions",
+              "cardColour": "BLUE",
               "multiplier": 1.0,
               "trasferredResource": "VICTORYPOINT"
             }
@@ -176,8 +180,8 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -1,
-            "WOOD": -2
+            "WOOD": -2,
+            "MONEY": -1
           }
         }
       }
@@ -737,9 +741,9 @@
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
+                  "SERVANT": -1,
                   "WOOD": -1,
-                  "STONE": -1,
-                  "SERVANT": -1
+                  "STONE": -1
                 }
               }
             }
@@ -877,8 +881,8 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -2,
             "WOOD": -2,
+            "MONEY": -2,
             "STONE": -2
           }
         }
@@ -904,8 +908,8 @@
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "VICTORYPOINT": 2,
-                  "MILITARYPOINT": 2
+                  "MILITARYPOINT": 2,
+                  "VICTORYPOINT": 2
                 }
               }
             }
@@ -924,8 +928,8 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -3,
             "WOOD": -1,
+            "MONEY": -3,
             "STONE": -3
           }
         }
@@ -970,8 +974,8 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -4,
-            "WOOD": -3
+            "WOOD": -3,
+            "MONEY": -4
           }
         }
       }
@@ -1025,8 +1029,8 @@
         },
         "cost": {
           "resources": {
-            "WOOD": -4,
             "SERVANT": -2,
+            "WOOD": -4,
             "STONE": -2
           }
         }
@@ -1071,8 +1075,8 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -2,
             "WOOD": -2,
+            "MONEY": -2,
             "STONE": -4
           }
         }
@@ -1123,8 +1127,8 @@
         },
         "cost": {
           "resources": {
-            "MONEY": -3,
             "WOOD": -3,
+            "MONEY": -3,
             "STONE": -1
           }
         }
@@ -1159,8 +1163,8 @@
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "VICTORYPOINT": 4,
-                  "SERVANT": 2
+                  "SERVANT": 2,
+                  "VICTORYPOINT": 4
                 }
               }
             }
@@ -1256,8 +1260,8 @@
         },
         "cost": {
           "resources": {
-            "WOOD": -2,
             "SERVANT": -1,
+            "WOOD": -2,
             "STONE": -2
           }
         }
@@ -1292,8 +1296,8 @@
               "type": "EffectOnResources",
               "resourceSet": {
                 "resources": {
-                  "VICTORYPOINT": 1,
-                  "MILITARYPOINT": 3
+                  "MILITARYPOINT": 3,
+                  "VICTORYPOINT": 1
                 }
               }
             }

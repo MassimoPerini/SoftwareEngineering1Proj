@@ -882,6 +882,7 @@
     "immediateEffects": [
       {
         "type": "EffectOnConditions",
+        "cardColour": "GREEN",
         "multiplier": 2.0,
         "trasferredResource": "VICTORYPOINT"
       }
@@ -909,6 +910,7 @@
     "immediateEffects": [
       {
         "type": "EffectOnConditions",
+        "cardColour": "YELLOW",
         "multiplier": 2.0,
         "trasferredResource": "VICTORYPOINT"
       }
@@ -936,6 +938,7 @@
     "immediateEffects": [
       {
         "type": "EffectOnConditions",
+        "cardColour": "BLUE",
         "multiplier": 2.0,
         "trasferredResource": "VICTORYPOINT"
       }
@@ -963,6 +966,7 @@
     "immediateEffects": [
       {
         "type": "EffectOnConditions",
+        "cardColour": "PURPLE",
         "multiplier": 2.0,
         "trasferredResource": "VICTORYPOINT"
       }

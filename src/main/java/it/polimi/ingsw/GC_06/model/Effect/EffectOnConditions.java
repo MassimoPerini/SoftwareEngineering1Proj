@@ -21,6 +21,7 @@ public class EffectOnConditions implements Effect{
         this.conditionalResource = conditionalResource;
         this.multiplier = multiplier;
         this.trasferredResource = trasferredResource;
+        this.cardColour = cardColour;
     }
 
     /**
