@@ -150,6 +150,8 @@ public class PayCard implements Action, Blocking {
             originalRequirement.add(new Requirement(requirement));
         }
 
+        BonusMalusHandler.filter(player,ACTION_TYPE,developmentCard);
+
         if (!pClone.isAllowedVariate(developmentCard.getRequirements()))
         {
             resetCost(developmentCard, originalRequirement);

@@ -45,6 +45,7 @@ public class MainClientModel extends Observable{
         notifyObservers(myStatus);
     }
 
+
     public List<PersonalStatistics> getPersonalStatistics() {
         return personalStatistics;
     }

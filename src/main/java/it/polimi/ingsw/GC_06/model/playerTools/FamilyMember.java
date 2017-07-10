@@ -91,4 +91,8 @@ public class FamilyMember extends Observable implements Observer {
     public boolean isAlreadyUsed() {
         return alreadyUsed;
     }
+
+    public void setAlreadyUsed(boolean alreadyUsed) {
+        this.alreadyUsed = alreadyUsed;
+    }
 }

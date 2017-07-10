@@ -40,6 +40,10 @@ public class PersonalStatistics implements Serializable {
         return militaryPointQuantity;
     }
 
+    public int getVictoryPointQuantity() {
+        return victoryPointQuantity;
+    }
+
     public String getPlayerID() {
         return playerID;
     }

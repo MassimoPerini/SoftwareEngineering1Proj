@@ -176,6 +176,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
             player.resetHeroCard();
         }
 
+        for (Player player : players) {
+            player.resetFamilyMember();
+        }
+
         game.getBoard().resetFamilyMembers();
 
         return players;

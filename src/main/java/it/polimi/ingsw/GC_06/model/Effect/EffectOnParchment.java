@@ -48,10 +48,12 @@ public class EffectOnParchment implements Effect, Blocking {
 
         for (int i=0;i<quantity;i++) {
 
+
             do{
                 MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
                 waitAnswer(game, messageChooseParchment);
             }
+            /** si deve restituire il controllo all'utente a partire da qua*/
             while(alreadyChoosed.contains(choosen) && different);
             player.variateResource(parchments.get(choosen));
             alreadyChoosed.add(choosen);

@@ -254,6 +254,14 @@ public class Player extends Observable {
         return personalStatistics;
     }
 
+    public void resetFamilyMember(){
+        for(int i = 0; i< familyMembers.length; i++){
+            if(familyMembers[i].isAlreadyUsed()){
+                familyMembers[i].setAlreadyUsed(false);
+            }
+        }
+    }
+
     /**
      *
      * @return returns the statistics generated for the current player
@@ -265,6 +273,11 @@ public class Player extends Observable {
                 this.getResourceSet().totalResourceQuantity());
         return personalStatistics;
     }
+
+
+
+
+
 
 
 }

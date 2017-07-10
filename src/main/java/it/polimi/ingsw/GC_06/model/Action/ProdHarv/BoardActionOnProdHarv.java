@@ -75,7 +75,7 @@ public class BoardActionOnProdHarv implements Action {
         executeEffects.execute();
 
 
-        BonusMalusHandler.filter(player,actionType,null,familyMember);
+        BonusMalusHandler.filter(player,actionType,"",familyMember);
 
         startProdHarv.setValue(familyMember.getValue());
         player.getBonusMalusSet().removeBonusMalusAction(actionType,null);
@@ -110,7 +110,7 @@ public class BoardActionOnProdHarv implements Action {
 
         int originalValue = familyMember.getValue();
 
-        BonusMalusHandler.filter(playerClone,actionType,null,familyMember);
+        BonusMalusHandler.filter(playerClone,actionType,"",familyMember);
 
         if(familyMember.getValue() < 1){
             return false;
