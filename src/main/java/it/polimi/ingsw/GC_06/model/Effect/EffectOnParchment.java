@@ -45,17 +45,32 @@ public class EffectOnParchment implements Effect, Blocking {
     public synchronized void execute (Player player,Game game) throws InterruptedException {
         FileLoader fileLoader = FileLoader.getFileLoader();
         parchments = Arrays.asList(fileLoader.loadParchments());
+        boolean stopIt;
 
         for (int i=0;i<quantity;i++) {
 
+            stopIt = false;
+            if(choosen == null || choosen!= null){
+                // facciamo tutta la storiella del messaggio
 
-            do{
+                MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
+                waitAnswer(game, messageChooseParchment);
+
+                if(alreadyChoosed.contains(choosen) && different){
+                    i--;
+                    stopIt = true;
+                }
+            }
+
+
+            /**do{
                 MessageChooseParchment messageChooseParchment = new MessageChooseParchment(parchments, "");
                 waitAnswer(game, messageChooseParchment);
             }
-            /** si deve restituire il controllo all'utente a partire da qua*/
-            while(alreadyChoosed.contains(choosen) && different);
-            player.variateResource(parchments.get(choosen));
+            while(alreadyChoosed.contains(choosen) && different);*/
+            if(!stopIt){
+                player.variateResource(parchments.get(choosen));
+            }
             alreadyChoosed.add(choosen);
             choosen = null;
 
