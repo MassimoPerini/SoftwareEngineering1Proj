@@ -63,7 +63,7 @@ public class MessageBoardActionOnTowerTest {
 
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void firstTest(){
         messageBoardActionTower.execute();
         assertTrue(player.getPlayerBoard().getDevelopmentCards("YELLOW").size() == 1);

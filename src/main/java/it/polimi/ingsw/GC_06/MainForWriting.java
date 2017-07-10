@@ -52,7 +52,8 @@ public class MainForWriting {
         fileLoader.writeMapFile();
         System.out.println("factored map for heroes names");*/
 
-        fileLoader.writeRankingPoints();
+        fileLoader.writeGreenCard();
+        System.out.print("done");
         //fileLoader.writeBoardWithEffects();
     }
 }
