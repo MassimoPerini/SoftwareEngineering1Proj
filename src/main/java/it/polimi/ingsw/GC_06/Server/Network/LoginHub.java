@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
+import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessagePlayerDisconnected;
 import it.polimi.ingsw.GC_06.model.Action.Actions.EndTurn;
-import it.polimi.ingsw.GC_06.model.Loader.Setting;
 import it.polimi.ingsw.GC_06.model.State.Game;
+import it.polimi.ingsw.GC_06.model.playerTools.Player;
 
 import java.io.IOException;
 import java.util.*;
@@ -19,6 +20,7 @@ public class LoginHub {
     private int delay  = 1000*15;//Integer.parseInt(Setting.getInstance().getProperty("timer"));
     private Timer timer = new Timer(true);
     private int id = 0;
+    private List<String> alreadyNotified = new LinkedList<>();
 
     public static LoginHub instance = new LoginHub();
 
@@ -66,27 +68,100 @@ public class LoginHub {
      * @param username
      */
     public void manageLogOut(String username){
-        totPlayers.remove(username);
+        if (playerTrash.isInTrash(username))
+        {
+            return;
+        }
+    //    totPlayers.remove(username);
         /** qui mi fai ritornare il game id così io lo rimuovo dalla lista sul game */
         int gameID = GameList.getInstance().getGame(username);
-        playerTrash.add(username,gameID);
+    //    playerTrash.add(username,gameID);
         /** abbiamo rimosso il player dalla partita*/
     //    GameList.getInstance().getGameId(gameID).remove(username);
-        GameList.getInstance().remove(gameID,username);
-        EndTurn endTurn = new EndTurn(GameList.getInstance().getGameId(gameID));
-        endTurn.execute();
+        Game currGame = GameList.getInstance().getGameId(gameID);
+        MessagePlayerDisconnected messagePlayerDisconnected = new MessagePlayerDisconnected(username);
+        for (Player player : currGame.getGameStatus().getPlayers().values()) {
+            if (player.isConnected())
+            {
+                serverOrchestrator.notifyUser(player.getPLAYER_ID(), messagePlayerDisconnected);
+            }
+        }
+        alreadyNotified.add(username);
+        currGame.getGameStatus().getPlayers().get(username).setConnected(false);
+        //    GameList.getInstance().remove(gameID,username);
+        if (currGame.getCurrentPlayer().getPLAYER_ID().equals(username)) {
+            EndTurn endTurn = new EndTurn(GameList.getInstance().getGameId(gameID));
+            endTurn.execute();
+        }
+    }
+
+    public void removeAlreadyNotified(String user)
+    {
+        alreadyNotified.remove(user);
     }
 
     public void manageDisconnection(String username)
     {
+        if (playerTrash.isInTrash(username))
+        {
+            return;
+        }
         System.out.println("Disconnecting "+username);
-        totPlayers.remove(username);
         int gameID = GameList.getInstance().getGame(username);
+        Game actGame = GameList.getInstance().getGameId(gameID);
+        actGame.getGameStatus().getPlayers().get(username).setConnected(false);
         playerTrash.add(username,gameID);
-   //     GameList.getInstance().remove(gameID,username);
-        serverOrchestrator.remove(username);
-        EndTurn endTurn = new EndTurn(GameList.getInstance().getGameId(gameID));
-        endTurn.execute();
+        //     GameList.getInstance().remove(gameID,username);
+        serverOrchestrator.remove(username, gameID);
+
+        if (!alreadyNotified.contains(username))
+        {
+            MessagePlayerDisconnected messagePlayerDisconnected = new MessagePlayerDisconnected(username);
+            for (Player player : actGame.getGameStatus().getPlayers().values()) {
+                if (player.isConnected())
+                {
+                    serverOrchestrator.notifyUser(player.getPLAYER_ID(), messagePlayerDisconnected);
+                }
+            }
+        }
+        if (actGame.getCurrentPlayer().getPLAYER_ID().equals(username))
+        {
+            EndTurn endTurn = new EndTurn(GameList.getInstance().getGameId(gameID));
+            endTurn.execute();
+        }
+        GameList.getInstance().getGameMap().get(actGame).remove(username);
+        totPlayers.remove(username);
+        removeAlreadyNotified(username);
+    }
+
+    /**
+     *
+     * @param username
+     * @param gameID
+     *
+     * it gets infos from the trash in order to find the right game where the player was before logging out
+     *
+     */
+
+    public void restoreInTheGame(String username,int gameID){
+        System.out.println("Restoring...");
+        Game game = GameList.getInstance().getGameId(gameID);
+        try{
+            serverOrchestrator.addUserToGame(username, gameID);
+            System.out.println("Added user to server orchestrator");
+            totPlayers.add(username);
+            playerTrash.remove(username);
+
+            GameList.getInstance().getGameMap().get(GameList.getInstance().getGameId(gameID)).add(username);
+            Player player = game.getGameStatus().getPlayers().get(username);
+            player.setConnected(true);
+            ControllerJoinAgain controllerJoinAgain = new ControllerJoinAgain();
+            controllerJoinAgain.execute(serverOrchestrator, username, game);
+
+        }catch (NullPointerException e){
+            e.getStackTrace();
+        }
+
     }
 
     public void addUser(String user) throws IllegalArgumentException, IOException {
@@ -167,25 +242,6 @@ public class LoginHub {
        return  playerTrash.search(username);
     }
 
-    /**
-     *
-     * @param username
-     * @param gameID
-     *
-     * it gets infos from the trash in order to find the right game where the player was before logging out
-     *
-     */
-
-    public void restoreInTheGame(String username,int gameID){
-        Game game = GameList.getInstance().getGameId(gameID);
-        try{
-            game.getGameStatus().getPlayers().get(username).setConnected(true);
-            GameList.getInstance().getGameMap().get(game).add(username);
-        }catch (NullPointerException e){
-            e.getStackTrace();
-        }
-
-    }
 
     private void uploadPlayers(Game game, List<String> players){
         for(String username : players){

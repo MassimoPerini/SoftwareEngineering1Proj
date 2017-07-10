@@ -12,6 +12,7 @@ import java.util.Observer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by massimo on 24/06/17.
@@ -24,6 +25,8 @@ public class ViewPopupCLI implements Observer {
     private MainClientModel mainClientModel;
     private ClientNetworkOrchestrator clientNetworkOrchestrator;
     private ViewOrchestratorCLI viewOrchestratorCLI;
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private Future future;
 
     public ViewPopupCLI(MainClientModel mainClientModel, ClientNetworkOrchestrator clientNetworkOrchestrator, ViewOrchestratorCLI viewOrchestratorCLI)
     {
@@ -40,13 +43,19 @@ public class ViewPopupCLI implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+    /*    if (future!= null && !future.isDone())
+        {
+            return;
+        }*/
+        try {
+            System.out.println("Displaying popup --- stopping main CLI");
+            viewOrchestratorCLI.suspend();
+            executorService.shutdownNow();
+            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
             ClientStateName clientStateName = (ClientStateName) arg;
-
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
-            System.out.println("Displaying popup");
-            Future future = executorService.submit(() -> {
+            executorService = Executors.newSingleThreadExecutor();
+            future = executorService.submit(() -> {
                 try {
-                    viewOrchestratorCLI.suspend();
                     clientStates.get(clientStateName).viewWillAppear();
                     viewOrchestratorCLI.resume();
                 } catch (InterruptedException e) {
@@ -54,6 +63,7 @@ public class ViewPopupCLI implements Observer {
                 }
             });
 
+        }catch (InterruptedException e){}
     }
 
     /**
@@ -68,6 +78,7 @@ public class ViewPopupCLI implements Observer {
         clientStates.put(ClientStateName.POWERUP, new AskUserPowerUp(clientNetworkOrchestrator));
         clientStates.put(ClientStateName.CHOOSE_PERSONAL_BONUS, new AskUserPersonalBonus(clientNetworkOrchestrator, mainClientModel.getPlayerBonusActions()));
         clientStates.put(ClientStateName.EXCOMMUNICATION, new ExcommunicationViewController(clientNetworkOrchestrator));//POPUP
+        clientStates.put(ClientStateName.USER_DISCONNECT, new UserDisconnectedController(mainClientModel, clientNetworkOrchestrator));
     }
 
 }

@@ -18,4 +18,5 @@ public abstract class Server extends Observable {
     abstract void sendMessageToGame(int game, @NotNull Object o) throws IOException;
     abstract void remove(String player);
     abstract void stop() throws IOException;
+    abstract boolean addUserToGame(String user, int game);
 }

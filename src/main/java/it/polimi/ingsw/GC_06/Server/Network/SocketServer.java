@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,7 +21,7 @@ public class SocketServer extends Server implements Observer {
     private final Map<Integer, List<ServerPlayerSocket>> socketsFromGame;
 
     public SocketServer() {
-        this.socketList = new ArrayList<>();
+        this.socketList = new CopyOnWriteArrayList();
         socketFromId = new HashMap<>();
         socketsFromGame = new HashMap<>();
     }
@@ -75,9 +76,9 @@ public class SocketServer extends Server implements Observer {
         if (socketsFromGame.get(game)==null)
             return;
 
-        List<ServerPlayerSocket> sockets = socketsFromGame.get(game);
-        for (ServerPlayerSocket socket : sockets) {
-            socket.send((MessageServer) o);     //TODO fix it
+        List<ServerPlayerSocket> sockets = (socketsFromGame.get(game));
+        for (int i=0;i<sockets.size();i++){
+            sockets.get(i).send((MessageServer) o);
         }
     }
 
@@ -91,6 +92,7 @@ public class SocketServer extends Server implements Observer {
         List<ServerPlayerSocket> serverPlayerSockets = socketsFromGame.get(playerSocket.getGame());
         serverPlayerSockets.remove(playerSocket);
         socketFromId.remove(player);
+        socketList.remove(playerSocket);
         playerSocket.finish();
     }
 
@@ -107,10 +109,23 @@ public class SocketServer extends Server implements Observer {
     }
 
     @Override
+    synchronized boolean addUserToGame(String user, int game) {
+        for (ServerPlayerSocket playerSocket : socketList) {
+            if (playerSocket.getPlayer().equals(user))
+            {
+                socketFromId.put(user, playerSocket);
+                socketsFromGame.get(game).add(playerSocket);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     synchronized boolean startGame(Map<String, Player> players, int id)
     {
         boolean result = false;
-        List <ServerPlayerSocket> gamePlayers = new ArrayList();
+        List <ServerPlayerSocket> gamePlayers = (new CopyOnWriteArrayList());
         for (ServerPlayerSocket serverPlayerSocket : socketList) {
             if (players.get(serverPlayerSocket.getPlayer()) != null)
             {

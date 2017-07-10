@@ -19,6 +19,7 @@ public class PlayerBonusActions extends Observable {
     private Map<String, List<Integer>> prodHarvAsk;
     private ClientStateName currentState;
     private List<String> personalBonusOptions;
+    private String userDisconnected;
 
     public PlayerBonusActions()
     {
@@ -31,6 +32,14 @@ public class PlayerBonusActions extends Observable {
      * this method handles the selection of a personal bonus (beginning of the game)
      * @param personalBonusOptions list of the possible options
      */
+    public void setUserDisconnected(String userDisconnected)
+    {
+        this.userDisconnected = userDisconnected;
+        this.currentState = ClientStateName.USER_DISCONNECT;
+        setChanged();
+        notifyObservers(currentState);
+    }
+
     public void setPersonalBonusOptions (List<String> personalBonusOptions)
     {
         this.personalBonusOptions = Collections.synchronizedList(personalBonusOptions);
@@ -129,5 +138,9 @@ public class PlayerBonusActions extends Observable {
 
     public ClientStateName getCurrentState() {
         return currentState;
+    }
+
+    public String getUserDisconnected() {
+        return userDisconnected;
     }
 }

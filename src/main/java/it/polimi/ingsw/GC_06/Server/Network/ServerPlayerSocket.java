@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Server.Message.Client.*;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.MessageComeBack;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.PlayerHeroCardChoices;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.ProdHarvAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
@@ -63,6 +64,7 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(PlayerChoiceExcommunication.class)
                 .registerSubtype(PlayerHeroCardChoices.class)
                 .registerSubtype(DiscardHeroCardMessage.class)
+                .registerSubtype(MessageComeBack.class)
                 ;
         readGson=new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory2).create();
         RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(MessageServer.class, "type")
@@ -85,13 +87,14 @@ public class ServerPlayerSocket extends Observable implements Runnable {
                 .registerSubtype(MessageChooseParchment.class)
                 .registerSubtype(MessageUpdateResource.class)
                 .registerSubtype(MessageRankingPopUp.class)
-                //.registerSubtype(MessageAddMemberOnProdHarv.class)
+          //      .registerSubtype(MessageAddMemberOnProdHarv.class)
                 .registerSubtype(MessageAddMemberOnMarket.class)
                 .registerSubtype(MessageAddMemberOnCouncil.class)
                 .registerSubtype(HeroCardUploadMessageServer.class)
                 .registerSubtype(MessageActivatePopup.class)
                 .registerSubtype(MessageAddMemberOnHarvest.class)
                 .registerSubtype(MessageAddMemberOnProduction.class)
+                .registerSubtype(MessagePlayerDisconnected.class)
                 ;
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();  //setPrettyPrinting
     }

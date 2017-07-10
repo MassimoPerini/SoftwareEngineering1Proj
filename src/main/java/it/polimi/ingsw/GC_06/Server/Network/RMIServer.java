@@ -156,6 +156,16 @@ public class RMIServer extends Server implements Observer {
     }
 
     @Override
+    synchronized boolean addUserToGame(String user, int game) {
+        ServerPlayerRMIHandler serverPlayerRMIHandler = playerRMI.get(user);
+        if (serverPlayerRMIHandler!=null) {
+            playerFromGame.get(game).add(serverPlayerRMIHandler);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     synchronized public void update(Observable o, Object arg) {
         try {
             MessageClient messageClient = (MessageClient) arg;

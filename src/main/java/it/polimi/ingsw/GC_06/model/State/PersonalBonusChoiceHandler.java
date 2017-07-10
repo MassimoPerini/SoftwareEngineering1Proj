@@ -38,7 +38,7 @@ public class PersonalBonusChoiceHandler implements Blocking {
         {
             choice = null;
             MessageServer messageServer = new MessageChoosePersonalBonus(freeIndexes);
-            serverOrchestrator.send(players.get(i).getPLAYER_ID(), messageServer);
+            serverOrchestrator.notifyUser(players.get(i).getPLAYER_ID(), messageServer);
             GameList.getInstance().setCurrentBlocking(game, this);
 
             try {

@@ -33,6 +33,16 @@ public class ServerOrchestrator extends Observable implements Observer {
         executorService = Executors.newCachedThreadPool();
     }
 
+    public synchronized void addUserToGame(String user, int game)
+    {
+        for (Server server : servers) {
+            if (server.addUserToGame(user, game)){
+                serverByString.put(user, server);
+                serverByGame.get(game).add(server);
+            }
+        }
+    }
+
     synchronized public void addServer(Server server)
     {
         servers.add(server);
@@ -77,6 +87,18 @@ public class ServerOrchestrator extends Observable implements Observer {
         this.serverByGame.put(id, serversContainer);
     }
 
+    public synchronized void notifyUser (final String playerId, final Object o)
+    {
+        try {
+            final Server server = serverByString.get(playerId);
+            if (server!=null) {
+                server.sendMessageToPlayer(playerId, o);
+            }
+        }
+        catch (IOException e)
+        {}
+    }
+
     //Manda e attendi risposta
     synchronized public void send(final String playerId, final Object o)  {
             final Server server = serverByString.get(playerId);
@@ -94,7 +116,6 @@ public class ServerOrchestrator extends Observable implements Observer {
                 @Override
                 public void run() {
                     try {
-                        System.out.println("sono qua");
                         LoginHub.getInstance().manageLogOut(playerId);
                     }
                     catch (Exception e)
@@ -103,7 +124,10 @@ public class ServerOrchestrator extends Observable implements Observer {
                     }
                 }
             },timeout);
-
+            if (userTimer.containsKey(playerId))
+            {
+                userTimer.remove(playerId);
+            }
             userTimer.put(playerId, timer);
     }
 
@@ -119,11 +143,14 @@ public class ServerOrchestrator extends Observable implements Observer {
         }
     }
 
-    public void remove(String player)
+    public synchronized void remove(String player, int game)
     {
         Server playerServer = serverByString.get(player);
-        playerServer.remove(player);
+        if (player!=null) {
+            playerServer.remove(player);
+        }
         serverByString.remove(player);
+        serverByGame.get(game).remove(playerServer);
     }
 
     //Stop timer

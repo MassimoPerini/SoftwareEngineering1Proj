@@ -3,7 +3,6 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Board;
 import it.polimi.ingsw.GC_06.Client.Model.ClientSpaceAction;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.Model.MainClientModel;
-import it.polimi.ingsw.GC_06.Client.Network.Client;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionPresenter;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Tower.TowerView;
@@ -65,6 +64,10 @@ public class BoardPresenter extends Observable implements Observer {
 
 
         Map<ActionType,List<List<ClientSpaceAction>>> prodHarvMap = new HashMap<>();
+        List<List<List<ClientSpaceAction>>> prodHarvLists = new LinkedList<>();
+        prodHarvLists.add(mainClientModel.getClientBoardGame().getProductionZone());
+        prodHarvLists.add(mainClientModel.getClientBoardGame().getHarvestZone());
+
         prodHarvMap.put(ActionType.BOARD_ACTION_ON_HARV,mainClientModel.getClientBoardGame().getHarvestZone());
         prodHarvMap.put(ActionType.BOARD_ACTION_ON_PROD,mainClientModel.getClientBoardGame().getProductionZone());
 
@@ -72,12 +75,12 @@ public class BoardPresenter extends Observable implements Observer {
        // prodHarvInfo = mainClientModel.getClientBoardGame().getProductionHarvest();
 
         int containerIndex=0;
+        int h = 0;
 /** problema */
 
-        for (ActionType actionType : prodHarvMap.keySet()) {
+        for (List<List<ClientSpaceAction>> prodHarvList : prodHarvLists) {
 
-
-            for (List<ClientSpaceAction> clientSpaceActions : prodHarvMap.get(actionType)) {
+            for (List<ClientSpaceAction> clientSpaceActions : prodHarvList) {
                 //Prod or Harv
                 HBox rowProdHarv = new HBox(35);
                 prodHarvView.getChildren().add(rowProdHarv);
@@ -92,7 +95,10 @@ public class BoardPresenter extends Observable implements Observer {
                     spaceActionPresenter.setContainerId(containerIndex);
                     spaceActionPresenter.setElemId(elemIndex);
                     spaceActionPresenter.setMessage(MessageProdHarv.class);
-                    spaceActionPresenter.setActionType(actionType);
+                    if (h==0)
+                        spaceActionPresenter.setActionType(ActionType.BOARD_ACTION_ON_PROD);
+                    else
+                        spaceActionPresenter.setActionType(ActionType.BOARD_ACTION_ON_HARV);
 
                     //Mostrane una grande, l'altra normale
                     if (big) {
@@ -109,6 +115,7 @@ public class BoardPresenter extends Observable implements Observer {
 
                 elemIndex++;
             }
+            h++;
         }
 /** problema */
         containerIndex = 0;

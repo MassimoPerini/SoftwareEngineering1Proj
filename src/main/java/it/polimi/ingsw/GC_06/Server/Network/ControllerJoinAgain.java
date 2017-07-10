@@ -35,7 +35,7 @@ public class ControllerJoinAgain {
         messageServerList.add(new MessageChangePlayer(game.getCurrentPlayer().getPLAYER_ID(), game.getRoundManager().getEra(), game.getRoundManager().getTurn()));
 
         for (MessageServer messageServer : messageServerList) {
-            serverOrchestrator.send(player, messageServer);
+            serverOrchestrator.notifyUser(player, messageServer);
         }
 
     }

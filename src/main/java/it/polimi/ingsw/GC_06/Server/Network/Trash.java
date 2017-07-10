@@ -1,7 +1,5 @@
 package it.polimi.ingsw.GC_06.Server.Network;
 
-import it.polimi.ingsw.GC_06.model.playerTools.Player;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +28,16 @@ public class Trash {
 
     public void restore(){
 
+    }
+
+    public boolean isInTrash(String username)
+    {
+        return playerTrash.containsKey(username);
+    }
+
+    public void remove(String user)
+    {
+        playerTrash.remove(user);
     }
 
     public void add(String username, int gameID){

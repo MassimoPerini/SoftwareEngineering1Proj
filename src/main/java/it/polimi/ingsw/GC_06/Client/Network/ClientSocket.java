@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.GC_06.Server.Message.Client.*;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.DefaultAnswer;
+import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.MessageComeBack;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.PlayerHeroCardChoices;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.ProdHarvAnswer;
 import it.polimi.ingsw.GC_06.Server.Message.MessageClient;
@@ -68,6 +69,7 @@ public class ClientSocket extends Client {
                 .registerSubtype(MessageAddMemberOnCouncil.class)
                 .registerSubtype(HeroCardUploadMessageServer.class)
                 .registerSubtype(MessageActivatePopup.class)
+                .registerSubtype(MessagePlayerDisconnected.class)
                 .registerSubtype(MessageAddMemberOnProduction.class)
                 .registerSubtype(MessageAddMemberOnHarvest.class)
                 ;
@@ -83,6 +85,7 @@ public class ClientSocket extends Client {
                 .registerSubtype(PlayerChoiceExcommunication.class)
                 .registerSubtype(PlayerHeroCardChoices.class)
                 .registerSubtype(DiscardHeroCardMessage.class)
+                .registerSubtype(MessageComeBack.class)
                 ;
         writeGson = new GsonBuilder().registerTypeAdapterFactory(typeAdapterFactory).create();
     }

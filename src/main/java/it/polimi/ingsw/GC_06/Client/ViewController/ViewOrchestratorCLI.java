@@ -27,6 +27,7 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
     private ViewPresenterCLI currentView;
     private Map<String, ClientPlayerBoard> clientPlayerBoard;
     private ExecutorService executorService;
+    private boolean suspended = false;
 
     public ViewOrchestratorCLI(ClientNetworkOrchestrator clientNetworkOrchestrator, MainClientModel mainClientModel)
     {
@@ -55,24 +56,27 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
         clientStates.put(ClientStateName.END_GAME,new EndGameViewController(mainClientModel.getPersonalStatistics()));
     }
 
-    public void suspend()
+    public synchronized void suspend()
     {
         try {
+            suspended = true;
             executorService.shutdownNow();
             executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
+            System.out.println("SOSPESO!!!!!");
         }
         catch (InterruptedException e)
         {}
     }
 
-    public void resume()
+    public synchronized void resume()
     {
+        System.out.println("RESUMING...");
+        suspended = false;
         executorService = Executors.newSingleThreadExecutor();
         Future future = executorService.submit(() -> {
             try {
                 clientStates.get(currentState).viewWillAppear();
             } catch (InterruptedException e) {
-                System.out.println("interrupted");
             }
         });
     }
@@ -99,16 +103,20 @@ public class ViewOrchestratorCLI implements ViewOrchestrator{
 
     //L'era o qualcos'altro è finita
     @Override
-    public void update(Observable o, Object arg) {
+    public synchronized void update(Observable o, Object arg) {
 
         ClientStateName state = (ClientStateName) arg;
+        if (currentState==state)
+        {
+            return;
+        }
         try {
-            if (clientStates.get(state) != null) {
-
-                executorService.shutdownNow();
-                //wait here....
-                executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
-                this.currentState = state;
+            executorService.shutdownNow();
+            //wait here....
+            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
+            this.currentState = state;
+            if (clientStates.get(state) != null && !suspended) {
+                System.out.println("EXECUTING UPDATE...");
                 executorService = Executors.newSingleThreadExecutor();
                 Future future = executorService.submit(() -> {
                     try {
