@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,28 +39,37 @@ public class ProdHarvQuestionPresenter {
 
         for (String cardName : cards.keySet())
         {
-            ImageView imageView = new ImageView();
-            imageView.setImage(new Image(getClass().getResourceAsStream("/view/cards/"+cardName+".png")));
+
             BorderPane borderPane = new BorderPane();
-            borderPane.setTop(imageView);
             List<Integer> effOptions = cards.get(cardName);
-            ObservableList<Integer> items = FXCollections.observableList(effOptions);
-            ListView<Integer> list = new ListView<>();
+            List<String> pass = new LinkedList<>();
+            for (Integer effOption : effOptions) {
+                pass.add(String.valueOf(effOption));
+            }
+            ObservableList<String> items = FXCollections.observableList(pass);
+            ListView<String> list = new ListView<>();
             listViews.put(cardName, list);
             borderPane.setCenter(list);
-            list.setItems(items);
-            list.setCellFactory(param -> new ListCell<Integer>() {
+            ImageView imageView = new ImageView();
+            imageView.setImage(new Image(getClass().getResourceAsStream("/view/cards/"+cardName+".png")));
+            imageView.setFitHeight(120);
+            imageView.setPreserveRatio(true);
+            borderPane.setTop(imageView);
+            list.setCellFactory(param -> new ListCell<String>() {
                 @Override
-                public void updateItem(Integer integer, boolean empty) {
-                    super.updateItem(integer, empty);
+                public void updateItem(String string, boolean empty) {
+                    super.updateItem(string, empty);
                     if (empty) {
+                        System.out.println("empty");
                         setText(null);
                         setGraphic(null);
                     } else {
-                        setText("Effect: "+String.valueOf(integer));
+                        System.out.println(string);
+                        setText("Effect: "+string);
                     }
                 }
             });
+            list.setItems(items);
             mainContainer.getChildren().add(borderPane);
         }
     }
