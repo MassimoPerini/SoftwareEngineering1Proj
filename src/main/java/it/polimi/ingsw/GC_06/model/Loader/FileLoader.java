@@ -410,7 +410,243 @@ public class FileLoader {
         return null;
     }
 
+    public void writeBoardWithEffects() throws IOException {
+        Map<String, Tower> towers = new HashMap<>();
+        //genero un piano alla volta i piani per ogni torre, da sinistra verso destra della gameBoard e dal basso verso l'alto
+        ArrayList<TowerFloor> towerFloors = new ArrayList<>();
+        ResourceSet malus = new ResourceSet();
+        malus.variateResource(Resource.MONEY, -3);
+        ResourceSet bonus = new ResourceSet();
+        EffectOnResources bonusEffect = new EffectOnResources(bonus);
+        ArrayList<Effect> bonusEffects = new ArrayList<>();
+        bonusEffects.add(bonusEffect);
+        TowerFloor towerFloor1Green = new TowerFloor(new ActionPlaceFixed(bonusEffects, 1, 1), null);
+        towerFloors.add(towerFloor1Green);
+        TowerFloor towerFloor2Green = new TowerFloor(new ActionPlaceFixed(bonusEffects, 3, 1), null);
+        towerFloors.add(towerFloor2Green);
+        ResourceSet bonus3pianogreen = new ResourceSet();
+        bonus3pianogreen.variateResource(Resource.WOOD, 1);
+        EffectOnResources bonusEffect3 = new EffectOnResources(bonus3pianogreen);
+        ArrayList<Effect> bonusEffects3 = new ArrayList<>();
+        bonusEffects3.add(bonusEffect3);
+        TowerFloor towerFloor3Green = new TowerFloor(new ActionPlaceFixed(bonusEffects3, 5, 1), null);
+        towerFloors.add(towerFloor3Green);
+        ResourceSet bonus4pianogreen = new ResourceSet();
+        bonus4pianogreen.variateResource(Resource.WOOD, 2);
+        EffectOnResources bonusEffect4 = new EffectOnResources(bonus4pianogreen);
+        ArrayList<Effect> bonusEffects4 = new ArrayList<>();
+        bonusEffects4.add(bonusEffect4);
+        TowerFloor towerFloor4Green = new TowerFloor(new ActionPlaceFixed(bonusEffects4, 5, 1), null);
+        towerFloors.add(towerFloor4Green);
+        //ora posso genrare la torre verde
+        Tower greenTower = new Tower(towerFloors, 1, 1, "GREEN", malus);
+        towers.put(greenTower.getColor(), greenTower);
+        //passo a genrare i towerFloor per la torre blu
+        ArrayList<TowerFloor> towerFloors1 = new ArrayList<>();
+        ResourceSet bonusBlu = new ResourceSet();
+        EffectOnResources bonusEffectBlu = new EffectOnResources(bonusBlu);
+        ArrayList<Effect> bonusEffectsBlu = new ArrayList<>();
+        bonusEffectsBlu.add(bonusEffectBlu);
+        TowerFloor towerFloor1Blu = new TowerFloor(new ActionPlaceFixed(bonusEffectsBlu, 1, 1), null);
+        towerFloors1.add(towerFloor1Blu);
+        TowerFloor towerFloor2Blu = new TowerFloor(new ActionPlaceFixed(bonusEffectsBlu, 3, 1), null);
+        towerFloors1.add(towerFloor2Blu);
+        ResourceSet bonus3pianoBlu = new ResourceSet();
+        bonus3pianoBlu.variateResource(Resource.STONE, 1);
+        EffectOnResources bonusEffectBlu3 = new EffectOnResources(bonus3pianoBlu);
+        ArrayList<Effect> bonusEffectsBlu3 = new ArrayList<>();
+        bonusEffectsBlu3.add(bonusEffectBlu3);
+        TowerFloor towerFloor3Blu = new TowerFloor(new ActionPlaceFixed(bonusEffectsBlu3, 5, 1), null);
+        towerFloors1.add(towerFloor3Blu);
+        ResourceSet bonus4pianoBlu = new ResourceSet();
+        bonus4pianoBlu.variateResource(Resource.STONE, 2);
+        EffectOnResources bonusEffectBlu4 = new EffectOnResources(bonus4pianoBlu);
+        ArrayList<Effect> bonusEffectsBlu4 = new ArrayList<>();
+        bonusEffectsBlu4.add(bonusEffectBlu4);
+        TowerFloor towerFloor4Blu = new TowerFloor(new ActionPlaceFixed(bonusEffectsBlu4, 5, 1), null);
+        towerFloors1.add(towerFloor4Blu);
+        //ora posso generare la torre blu
+        Tower blueTower = new Tower(towerFloors1, 1, 1, "BLUE", malus);
+        towers.put(blueTower.getColor(), blueTower);
+        //passo a generare i toweFloor per la torre gialla
+        ArrayList<TowerFloor> towerFloors2 = new ArrayList<>();
+        ResourceSet bonusYellow = new ResourceSet();
+        EffectOnResources bonusEffectYellow = new EffectOnResources(bonusYellow);
+        ArrayList<Effect> bonusEffectsYellow = new ArrayList<>();
+        bonusEffectsYellow.add(bonusEffectYellow);
+        TowerFloor towerFloor1Yellow = new TowerFloor(new ActionPlaceFixed(bonusEffectsYellow, 1, 1), null);
+        towerFloors2.add(towerFloor1Yellow);
+        TowerFloor towerFloor2Yellow = new TowerFloor(new ActionPlaceFixed(bonusEffectsYellow, 3, 1), null);
+        towerFloors2.add(towerFloor2Yellow);
+        ResourceSet bonus3pianoYellow = new ResourceSet();
+        bonus3pianoYellow.variateResource(Resource.MILITARYPOINT, 1);
+        EffectOnResources bonusEffectYellow3 = new EffectOnResources(bonus3pianoYellow);
+        ArrayList<Effect> bonusEffectsYellow3 = new ArrayList<>();
+        bonusEffectsYellow3.add(bonusEffectYellow3);
+        TowerFloor towerFloor3Yellow = new TowerFloor(new ActionPlaceFixed(bonusEffectsYellow3, 5, 1), null);
+        towerFloors2.add(towerFloor3Yellow);
+        ResourceSet bonus4pianoYellow = new ResourceSet();
+        bonus4pianoYellow.variateResource(Resource.MILITARYPOINT, 2);
+        EffectOnResources bonusEffectYellow4 = new EffectOnResources(bonus4pianoYellow);
+        ArrayList<Effect> bonusEffectsYellow4 = new ArrayList<>();
+        bonusEffectsYellow4.add(bonusEffectYellow4);
+        TowerFloor towerFloor4Yellow = new TowerFloor(new ActionPlaceFixed(bonusEffectsYellow4, 5, 1), null);
+        towerFloors2.add(towerFloor4Yellow);
+        //ora posso generare la torre gialla
+        Tower yellowTower = new Tower(towerFloors2, 1, 1, "YELLOW", malus);
+        towers.put(yellowTower.getColor(), yellowTower);
+        //passo a generare i towerFloor per la torre viola
+        ArrayList<TowerFloor> towerFloors3 = new ArrayList<>();
+        ResourceSet bonusPurple = new ResourceSet();
+        EffectOnResources bonusEffectPurple = new EffectOnResources(bonusPurple);
+        ArrayList<Effect> bonusEffectsPurple = new ArrayList<>();
+        bonusEffectsPurple.add(bonusEffectPurple);
+        TowerFloor towerFloor1Purple = new TowerFloor(new ActionPlaceFixed(bonusEffectsPurple, 1, 1), null);
+        towerFloors3.add(towerFloor1Purple);
+        TowerFloor towerFloor2Purple = new TowerFloor(new ActionPlaceFixed(bonusEffectsPurple, 3, 1), null);
+        towerFloors3.add(towerFloor2Purple);
+        ResourceSet bonus3pianoPurple = new ResourceSet();
+        bonus3pianoPurple.variateResource(Resource.MONEY, 1);
+        EffectOnResources bonusEffectPurple3 = new EffectOnResources(bonus3pianoPurple);
+        ArrayList<Effect> bonusEffectsPurple3 = new ArrayList<>();
+        bonusEffectsPurple3.add(bonusEffectPurple3);
+        TowerFloor towerFloor3Purple = new TowerFloor(new ActionPlaceFixed(bonusEffectsPurple3, 5, 1), null);
+        towerFloors3.add(towerFloor3Purple);
+        ResourceSet bonus4pianoPurple = new ResourceSet();
+        bonus4pianoPurple.variateResource(Resource.MONEY, 2);
+        EffectOnResources bonusEffectPurple4 = new EffectOnResources(bonus4pianoPurple);
+        ArrayList<Effect> bonusEffectsPurple4 = new ArrayList<>();
+        bonusEffectsPurple4.add(bonusEffectPurple4);
+        TowerFloor towerFloor4Purple = new TowerFloor(new ActionPlaceFixed(bonusEffectsPurple4, 5, 1), null);
+        towerFloors3.add(towerFloor4Purple);
+        //ora posso generare la torre viola
+        Tower purpleTower = new Tower(towerFloors3, 1, 1, "PURPLE", malus);
+        towers.put(purpleTower.getColor(), purpleTower);
 
+        /**adesso genero la zona produzione*/
+
+        ArrayList<ProdHarvZone> prodZones = new ArrayList<>(); /** sarà la mia produzione */
+
+        ActionType actionType = ActionType.BOARD_ACTION_ON_PROD;
+        ArrayList<ActionPlace> prodActionPlaces = new ArrayList<>(); /** la lista con cui si riempie la produzione */
+        prodActionPlaces.add(new ActionPlaceFixed(new ArrayList<Effect>(), 1, 1));/** slot della produzione*/
+        //TODO capire se il malus sulla produzione va bene scritto cosi
+        ProdHarvZone prodZone = new ProdHarvZone(prodActionPlaces, actionType, 1);
+        prodZones.add(prodZone);
+
+        //lista dei familiari su cui il malus impatta
+        /**
+        LinkedList<String> familyMemberColours = new LinkedList<>();
+        familyMemberColours.add("");
+        familyMemberColours.add("RED");
+        familyMemberColours.add("WHITE");
+        familyMemberColours.add("BLACK");
+        BonusMalusOnAction bonusMalusOnAction = new BonusMalusOnAction("", familyMemberColours, actionType, false, -3);
+
+        BonusMalusSet malusProduction = new BonusMalusSet();
+
+        List<BonusMalusOnAction> requestedList = new ArrayList<>();
+        requestedList.add(bonusMalusOnAction);
+
+
+        malusProduction.addActionBonusMalus(requestedList);
+        DonateBonusMalusEffect malusOnProduction = new DonateBonusMalusEffect(malusProduction);
+
+        List<Effect> effectsBigSpaceProd = new ArrayList<>();
+        effectsBigSpaceProd.add(malusOnProduction);
+        prodActionPlaces.add(new ActionPlace(effectsBigSpaceProd, 1));
+        ProdHarvZone prodZone = new ProdHarvZone(prodActionPlaces, actionType, 1);
+        prodZones.add(prodZone);
+
+
+        /** adesso genero la zona raccolto */
+
+        ArrayList<ProdHarvZone> harvZones = new ArrayList<>(); /** sarà il mio raccolto*/
+
+        ActionType actionType1 = ActionType.BOARD_ACTION_ON_HARV;
+        ArrayList<ActionPlace> harvActionPlaces = new ArrayList<>();
+        harvActionPlaces.add(new ActionPlaceFixed(new ArrayList<Effect>(), 1, 1));
+        ProdHarvZone harvZone = new ProdHarvZone(harvActionPlaces, ActionType.BOARD_ACTION_ON_HARV, 1);
+        harvZones.add(harvZone);
+
+        //TODO capire se il malus sul raccolto va bene scritto cosi
+        /**
+        BonusMalusOnAction bonusMalusOnAction1 = new BonusMalusOnAction("", familyMemberColours, actionType1, false, -3);
+        BonusMalusSet malusHarvest = new BonusMalusSet();
+        List<BonusMalusOnAction> requestedList1 = new ArrayList<>();
+        requestedList1.add(bonusMalusOnAction1);
+        malusHarvest.addActionBonusMalus(requestedList1);
+        DonateBonusMalusEffect malusOnHarvest = new DonateBonusMalusEffect(malusHarvest);
+        List<Effect> effectsBigSpaceHarv = new ArrayList<>();
+        effectsBigSpaceHarv.add(malusOnHarvest);
+        harvActionPlaces.add(new ActionPlace(effectsBigSpaceHarv, 1));
+        ProdHarvZone harvZone = new ProdHarvZone(harvActionPlaces, ActionType.BOARD_ACTION_ON_HARV, 1);
+        harvZones.add(harvZone);*/
+
+
+        //adesso genero il mercato con gli actionPlace differenziati
+        ArrayList<MarketAndCouncil> markets = new ArrayList<>();
+        ResourceSet bonusMarket1 = new ResourceSet();
+        bonusMarket1.variateResource(Resource.MONEY, 5);
+        EffectOnResources marketEffect1 = new EffectOnResources(bonusMarket1);
+        ArrayList<Effect> marketEffects1 = new ArrayList<>();
+        marketEffects1.add(marketEffect1);
+        ArrayList<ActionPlace> placesMarket = new ArrayList<>();
+        ActionPlaceFixed market1 = new ActionPlaceFixed(marketEffects1, 1, 1);
+        placesMarket.add(market1);
+        ResourceSet bonusMarket2 = new ResourceSet();
+        bonusMarket2.variateResource(Resource.SERVANT, 5);
+        EffectOnResources marketEffect2 = new EffectOnResources(bonusMarket2);
+        ArrayList<Effect> marketEffects2 = new ArrayList<>();
+        marketEffects2.add(marketEffect2);
+        ActionPlaceFixed market2 = new ActionPlaceFixed(marketEffects2, 1, 1);
+        placesMarket.add(market2);
+        ResourceSet bonusMarket3 = new ResourceSet();
+        bonusMarket3.variateResource(Resource.MILITARYPOINT, 3);
+        bonusMarket3.variateResource(Resource.MONEY, 2);
+        EffectOnResources marketEffect3 = new EffectOnResources(bonusMarket3);
+        ArrayList<Effect> marketEffects3 = new ArrayList<>();
+        marketEffects3.add(marketEffect3);
+        ActionPlaceFixed market3 = new ActionPlaceFixed(marketEffects3, 1, 4);
+        placesMarket.add(market3);
+        EffectOnParchment marketEffect4 = new EffectOnParchment(2,true );
+        ArrayList<Effect> marketEffects4 = new ArrayList<>();
+        marketEffects4.add(marketEffect4);
+        ActionPlaceFixed market4 = new ActionPlaceFixed(marketEffects4, 1, 4);
+        placesMarket.add(market4);
+        MarketAndCouncil market = new MarketAndCouncil(placesMarket, ActionType.BOARD_ACTION_ON_MARKET);
+        markets.add(market);
+
+        //adesso genero lo spazio del consiglio
+        ArrayList<MarketAndCouncil> counsils = new ArrayList<>();
+        ArrayList<ActionPlace> placesCounsil = new ArrayList<>();
+        ResourceSet counsilResources = new ResourceSet();
+        counsilResources.variateResource(Resource.MONEY, 1);
+        EffectOnResources counsilEffectResources = new EffectOnResources(counsilResources);
+        EffectOnParchment cousilEffect = new EffectOnParchment(1, false);
+        List<Effect> counsilEffects = new ArrayList<>();
+        counsilEffects.add(counsilEffectResources);
+        counsilEffects.add(cousilEffect);
+        ActionPlace cousilPlace = new ActionPlace(counsilEffects, 1);
+        placesCounsil.add(cousilPlace);
+        MarketAndCouncil counsil = new MarketAndCouncil(placesCounsil, ActionType.COUNCIL_ACTION);
+        counsils.add(counsil);
+        //posso finalmente creare una board per poi scriverla
+
+        Board board = new Board(towers, markets, prodZones,harvZones, counsils);
+
+        FileWriter fw = new FileWriter("src/main/resources/model/twoPlayerBoard.txt");
+
+        RuntimeTypeAdapterFactory typeAdapterFactory1 = RuntimeTypeAdapterFactory.of(ActionPlace.class, "type").registerSubtype(ActionPlace.class).registerSubtype(ActionPlaceFixed.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory2 = RuntimeTypeAdapterFactory.of(Effect.class, "type").registerSubtype(EffectOnAction.class).registerSubtype(EffectOnConditions.class).registerSubtype(EffectOnEnd.class).registerSubtype(EffectOnNewCards.class)
+                .registerSubtype(EffectOnParchment.class).registerSubtype(DonateBonusMalusEffect.class).registerSubtype(DonateProdHarv.class).registerSubtype(ProdHarvMalusEffect.class).registerSubtype(EffectOnResources.class);
+        RuntimeTypeAdapterFactory typeAdapterFactory = RuntimeTypeAdapterFactory.of(ProdHarvMalusEffect.class, "type").registerSubtype(EffectOnResources.class);
+
+        Gson gson2=new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(typeAdapterFactory2).registerTypeAdapterFactory(typeAdapterFactory1).registerTypeAdapterFactory(typeAdapterFactory).create();
+        gson2.toJson(board, fw);
+        fw.close();
+
+    }
 
 
 
