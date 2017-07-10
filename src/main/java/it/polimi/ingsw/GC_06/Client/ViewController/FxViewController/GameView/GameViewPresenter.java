@@ -79,6 +79,7 @@ public class GameViewPresenter implements Observer {
     @Override
     synchronized public void update(Observable o, Object arg) {
         ClientStateName clientStateName = (ClientStateName) arg;
+
         Platform.runLater(() -> {
             if (clientStateName == ClientStateName.MY_TURN)
             {

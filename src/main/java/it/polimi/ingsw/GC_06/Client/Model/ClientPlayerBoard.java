@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_06.Client.Model;
 
 import it.polimi.ingsw.GC_06.model.Resource.Resource;
+import javafx.collections.FXCollections;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,7 +31,7 @@ public class ClientPlayerBoard extends Observable{
         excommunication = Collections.synchronizedList(new LinkedList<>());
         resourceSet = new ConcurrentHashMap<>();
         playerUsername = username;
-        familyMembers = Collections.synchronizedList(new LinkedList<>());
+        familyMembers = Collections.synchronizedList(FXCollections.observableArrayList());
         this.playerProdHarvBonus = playerProdHarvBonus;
         this.heroCards = Collections.synchronizedList(new LinkedList<>());
     }
@@ -87,6 +88,8 @@ public class ClientPlayerBoard extends Observable{
                 familyMember.setValue(newVal);
             }
         }
+        setChanged();
+        notifyObservers();
     }
 
 

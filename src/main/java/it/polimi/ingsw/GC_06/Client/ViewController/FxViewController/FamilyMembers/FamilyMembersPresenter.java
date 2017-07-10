@@ -6,9 +6,7 @@ import it.polimi.ingsw.GC_06.Client.Model.PlayerColors;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.AllBoards.AllBoardsView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.HeroCard.HeroCardView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.MessageCreator;
-import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.SpaceAction.SpaceActionView;
 import it.polimi.ingsw.GC_06.Server.Message.Client.MessageEndTurn;
-import it.polimi.ingsw.GC_06.model.Card.HeroCard;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -32,11 +30,13 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by massimo on 05/07/17.
  */
-public class FamilyMembersPresenter {
+public class FamilyMembersPresenter implements Observer {
 
 
     @FXML private ListView familyMembersView;
@@ -57,11 +57,13 @@ public class FamilyMembersPresenter {
     @FXML
     public void initialize()
     {
-        familyMembersView.setItems(listItems);
+        this.update(null, null);
+        mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()).addObserver(this);
         familyMembersView.setCellFactory(param -> new ListCell<ClientFamilyMember>() {
             @Override
             public void updateItem(ClientFamilyMember familyMember, boolean empty) {
                 super.updateItem(familyMember, empty);
+                System.out.println("Updating items...");
                 if (empty) {
                     setText(null);
                     setGraphic(null);
@@ -137,7 +139,6 @@ public class FamilyMembersPresenter {
 
         @PostConstruct public void init()
         {
-            this.listItems = FXCollections.observableList(mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()).getFamilyMembers());
         }
 
 
@@ -192,5 +193,12 @@ public class FamilyMembersPresenter {
         stage.show();
         stage.sizeToScene();
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        this.listItems = FXCollections.observableList(mainClientModel.getClientPlayerBoard(mainClientModel.getMyUsername()).getFamilyMembers());
+        familyMembersView.setItems(listItems);
+        familyMembersView.refresh();
     }
 }
