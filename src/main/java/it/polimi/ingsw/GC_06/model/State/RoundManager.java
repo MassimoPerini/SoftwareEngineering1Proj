@@ -46,6 +46,10 @@ public class RoundManager extends Observable {
         this.board = board;
     }
 
+    public GameEventManager getGameEventManager() {
+        return gameEventManager;
+    }
+
     public void setGameEventManager(GameEventManager gameEventManager) {
         this.gameEventManager = gameEventManager;
     }

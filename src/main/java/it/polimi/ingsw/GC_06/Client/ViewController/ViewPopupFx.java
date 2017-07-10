@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController;
 import com.airhacks.afterburner.views.FXMLView;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.CustomBonus.CustomBonusView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.PopUp.Disconnected.DisconnectedView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.PopUp.ExcommunicationQuestion.ExcommunicationQuestionView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.PopUp.MultipleRequirementsQuestion.MultipleRequirementsQuestionView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.PopUp.ParchmentQuestion.ParchmentQuestionView;
@@ -42,6 +43,7 @@ public class ViewPopupFx implements Observer {
         popupMap.put(ClientStateName.POWERUP, PowerUpQuestionView.class);
         popupMap.put(ClientStateName.ASK_PRODHARV_CARDS, ProdHarvQuestionView.class);
         popupMap.put(ClientStateName.CHOOSE_NEW_CARD, PickAnotherCardQuestionView.class);
+        popupMap.put(ClientStateName.USER_DISCONNECT, DisconnectedView.class);
     }
 
     private FXMLView create(ClientStateName clientStateName) {

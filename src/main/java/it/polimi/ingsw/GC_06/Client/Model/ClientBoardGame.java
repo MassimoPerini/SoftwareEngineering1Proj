@@ -17,6 +17,7 @@ public class ClientBoardGame extends Observable {
     private final List<List<ClientSpaceAction>> market;
     private final List<List<ClientSpaceAction>> council;
     private final List<String> orderTowers;
+    private Map<Integer, List<String>> excomunicationCards;
 
     public ClientBoardGame()
     {
@@ -194,6 +195,13 @@ public class ClientBoardGame extends Observable {
     //*******
 
 
+    public void setExcomunicationCards(Map<Integer, List<String>> excomunicationCards) {
+        this.excomunicationCards = excomunicationCards;
+    }
+
+    public Map<Integer, List<String>> getExcomunicationCards() {
+        return excomunicationCards;
+    }
 
     public synchronized Map<String, List<ClientTowerFloor>> getTowersClient() {
         return towersClient;

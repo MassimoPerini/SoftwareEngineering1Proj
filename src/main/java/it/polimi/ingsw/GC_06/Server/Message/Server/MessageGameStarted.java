@@ -7,8 +7,8 @@ import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.MessageServer;
 import it.polimi.ingsw.GC_06.model.Board.MarketAndCouncil;
 import it.polimi.ingsw.GC_06.model.Board.ProdHarvZone;
+import it.polimi.ingsw.GC_06.model.Card.ExcomunicationCard;
 import it.polimi.ingsw.GC_06.model.Card.HeroCard;
-import it.polimi.ingsw.GC_06.model.Effect.ProdHarvEffect;
 import it.polimi.ingsw.GC_06.model.PersonalBonusTile;
 import it.polimi.ingsw.GC_06.model.State.Game;
 import it.polimi.ingsw.GC_06.model.playerTools.FamilyMember;
@@ -29,8 +29,7 @@ public class MessageGameStarted implements MessageServer {
     private Map<String, List<String>> players;
     private Map<String, List<ClientFamilyMember>> familyMembers;
     private Map <String,List<String>> heroCardsMap;
-
-    //Remind: gestire solo valori primitivi e non modificabili! Altrimenti è pericoloso mandare reference con RMI
+    private Map<Integer, List<String>> excomunicationCards;
 
     public MessageGameStarted(Game game)
     {
@@ -97,6 +96,18 @@ public class MessageGameStarted implements MessageServer {
             }
         }
 
+        excomunicationCards = new HashMap();
+
+        for (Integer integer : game.getRoundManager().getGameEventManager().getExcomunicationCards().keySet()) {
+
+            List<String> cards = new LinkedList<>();
+
+            for (ExcomunicationCard excomunicationCard : game.getRoundManager().getGameEventManager().getExcomunicationCards().get(integer)) {
+                cards.add(excomunicationCard.getPath());
+            }
+            excomunicationCards.put(integer, cards);
+        }
+
     }
 
     @Override
@@ -139,6 +150,7 @@ public class MessageGameStarted implements MessageServer {
             }
         }
 
+        clientBoardGame.setExcomunicationCards(this.excomunicationCards);
 
         // creiamo la mappa di heroCards
 

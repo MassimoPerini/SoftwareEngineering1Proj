@@ -146,6 +146,11 @@ public class BoardStatusViewController implements ViewPresenterCLI {
                     System.out.println("NOME:" + heroName);
                 }
 
+                System.out.println("SCOMUNICHE ATTIVE:");
+                for (String s1 : clientPlayerBoard.get(s).getExcommunication()) {
+                    System.out.println(s1);
+                }
+
             }
         }
             commandView.addLocalizedText("Le tue scelte sono: \n 1)Inserire Board per vedere il campo da gioco , \n 2) Inserire Plancia per vedere la personal Board \n 3) Terminare La visualizzazione ");

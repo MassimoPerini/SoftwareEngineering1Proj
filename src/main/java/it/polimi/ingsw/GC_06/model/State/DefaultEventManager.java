@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.model.State;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Server.Message.Server.MessageGameStarted;
+import it.polimi.ingsw.GC_06.Server.Message.Server.MessageUserExcommunication;
 import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageActivatePopup;
 import it.polimi.ingsw.GC_06.Server.Message.Server.PopUp.MessageRankingPopUp;
 import it.polimi.ingsw.GC_06.Server.Network.GameList;
@@ -39,6 +40,8 @@ public class DefaultEventManager implements GameEventManager, Blocking {
     private List<Map<ActionType, Map<Integer, Effect>>> boards;
     private HeroCard[] heroCards;
     private int heroCardsNumber = Integer.parseInt(Setting.getInstance().getProperty("hero_cards_number"));
+
+
 
 
     public DefaultEventManager(ServerOrchestrator serverOrchestrator, Game game)
@@ -271,6 +274,10 @@ public class DefaultEventManager implements GameEventManager, Blocking {
         answersExcommunication = new HashMap<>();
     }
 
+    public Map<Integer, List<ExcomunicationCard>> getExcomunicationCards() {
+        return excomunicationCards;
+    }
+
     /**
      * this method associates an excomunication to a player
      * @param player the player that gets an excomunication
@@ -283,6 +290,8 @@ public class DefaultEventManager implements GameEventManager, Blocking {
                 List<Effect> effects = card.getEffects();
                 ExecuteEffects executor = new ExecuteEffects(effects, player, game);
                 executor.execute();
+                MessageUserExcommunication messageUserExcommunication = new MessageUserExcommunication(player.getPLAYER_ID(), card.getPath());
+                serverOrchestrator.send(game.getId(), messageUserExcommunication);
             }
         }
         catch (InterruptedException e){}
