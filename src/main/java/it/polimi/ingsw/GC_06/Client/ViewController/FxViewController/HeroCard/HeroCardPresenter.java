@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.HeroCard;
 
 import it.polimi.ingsw.GC_06.Client.Model.ClientPlayerBoard;
 import it.polimi.ingsw.GC_06.Client.Network.ClientNetworkOrchestrator;
+import it.polimi.ingsw.GC_06.Server.Message.Client.DiscardHeroCardMessage;
 import it.polimi.ingsw.GC_06.Server.Message.Client.PopUp.PlayerHeroCardChoices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.util.LinkedList;
@@ -22,6 +24,7 @@ import java.util.List;
  */
 public class HeroCardPresenter {
 
+    public Button showHeroCardButton;
     @FXML
     private Button okButton;
     @FXML
@@ -61,14 +64,23 @@ public class HeroCardPresenter {
         int index = heroList.getSelectionModel().getSelectedIndex();
         if (index==-1)
         {
-            //segnalare errore
             return;
         }
 
         List<Integer> heroCardSelection = new LinkedList<>();
         heroCardSelection.add(index);
         clientNetworkOrchestrator.send(new PlayerHeroCardChoices(heroCardSelection));
+        Stage stage = (Stage) okButton.getScene().getWindow();
+        stage.close();
 
+    }
 
+    public void discardHeroCard(ActionEvent actionEvent) {
+        int index = heroList.getSelectionModel().getSelectedIndex();
+        if (index==-1)
+            return;
+        clientNetworkOrchestrator.send(new DiscardHeroCardMessage(index));
+        Stage stage = (Stage) showHeroCardButton.getScene().getWindow();
+        stage.close();
     }
 }
