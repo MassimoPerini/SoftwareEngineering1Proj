@@ -370,22 +370,7 @@
       "obs": []
     }
   ],
-  "prodHarvZones": [
-    {
-      "actionPlaces": [
-        {
-          "type": "ActionPlaceFixed",
-          "maxFamilyMembers": 1,
-          "effects": [],
-          "members": [],
-          "price": 1
-        }
-      ],
-      "maxSamePlayerFamilyMember": 1,
-      "actionType": "PRODUCTION_ACTION",
-      "changed": false,
-      "obs": []
-    },
+  "productionZones": [
     {
       "actionPlaces": [
         {
@@ -428,6 +413,23 @@
         }
       ],
       "actionType": "COUNCIL_ACTION",
+      "changed": false,
+      "obs": []
+    }
+  ],
+  "harvestZones": [
+    {
+      "actionPlaces": [
+        {
+          "type": "ActionPlaceFixed",
+          "maxFamilyMembers": 1,
+          "effects": [],
+          "members": [],
+          "price": 1
+        }
+      ],
+      "maxSamePlayerFamilyMember": 1,
+      "actionType": "PRODUCTION_ACTION",
       "changed": false,
       "obs": []
     }
