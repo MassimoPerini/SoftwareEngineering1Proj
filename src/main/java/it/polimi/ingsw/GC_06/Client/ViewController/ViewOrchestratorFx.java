@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_06.Client.ViewController;
 import com.airhacks.afterburner.views.FXMLView;
 import it.polimi.ingsw.GC_06.Client.Model.ClientStateName;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.ConnectionMethod.ConnectionMethodView;
+import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.EndGame.EndGameView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.GameView.GameViewView;
 import it.polimi.ingsw.GC_06.Client.ViewController.FxViewController.Login.LoginView;
 import javafx.application.Platform;
@@ -49,6 +50,7 @@ public class ViewOrchestratorFx extends Observable implements ViewOrchestrator {
         views.put(ClientStateName.START, ConnectionMethodView.class);
         views.put(ClientStateName.LOGIN, LoginView.class);
         views.put(ClientStateName.GAME_INIT, GameViewView.class);
+        views.put(ClientStateName.END_GAME, EndGameView.class);
     }
 
     @Override

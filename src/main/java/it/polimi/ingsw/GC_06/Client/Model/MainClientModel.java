@@ -2,12 +2,11 @@ package it.polimi.ingsw.GC_06.Client.Model;
 
 import it.polimi.ingsw.GC_06.model.Action.EndGame.PersonalStatistics;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by giuseppe on 6/14/17.
@@ -39,6 +38,7 @@ public class MainClientModel extends Observable{
     }
 
     public void setPersonalStatistics(List<PersonalStatistics> personalStatistics) {
+        Collections.sort(personalStatistics);
         this.personalStatistics = personalStatistics;
         myStatus = ClientStateName.END_GAME;
         setChanged();

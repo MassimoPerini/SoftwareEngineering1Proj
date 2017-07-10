@@ -4260,5 +4260,1115 @@
       "0": []
     },
     "path": "devcards_f_en_c_72"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "GREEN",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "BOARD_ACTION_ON_TOWER",
+                "permanent": true,
+                "value": 2
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_97"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "YELLOW",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "BOARD_ACTION_ON_TOWER",
+                "permanent": true,
+                "value": 3
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": [
+              {
+                "bonusMalusEntity": {
+                  "resources": {
+                    "WOOD": -1,
+                    "STONE": -1
+                  }
+                },
+                "colourTarget": [
+                  "YELLOW"
+                ],
+                "actionType": "PAYCARDACTION",
+                "permanent": false,
+                "ON": false
+              }
+            ]
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_98"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "BLUE",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "BOARD_ACTION_ON_TOWER",
+                "permanent": true,
+                "value": 3
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": [
+              {
+                "bonusMalusEntity": {
+                  "resources": {
+                    "MONEY": -1
+                  }
+                },
+                "colourTarget": [
+                  "YELLOW"
+                ],
+                "actionType": "PAYCARDACTION",
+                "permanent": false,
+                "ON": false
+              }
+            ]
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_99"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "PURPLE",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "BOARD_ACTION_ON_TOWER",
+                "permanent": true,
+                "value": 3
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      },
+      {
+        "type": "EffectOnParchment",
+        "different": false,
+        "quantity": 1,
+        "alreadyChoosed": []
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_100"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "HARVEST_ACTION",
+                "permanent": true,
+                "value": 3
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_101"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "PRODUCTION_ACTION",
+                "permanent": true,
+                "value": 3
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_102"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -1
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_103"
+  },
+  {
+    "era": 1,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnNewCards",
+        "towerFloors": {
+          "BLUE": 4,
+          "PURPLE": 4,
+          "YELLOW": 4,
+          "GREEN": 4
+        },
+        "toAsk": []
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_104"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 2
+          }
+        }
+      },
+      {
+        "type": "EffectOnNewCards",
+        "towerFloors": {
+          "GREEN": 6
+        },
+        "toAsk": []
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_105"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnNewCards",
+        "towerFloors": {
+          "YELLOW": 6
+        },
+        "toAsk": []
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": [
+              {
+                "bonusMalusEntity": {
+                  "resources": {
+                    "WOOD": -2,
+                    "STONE": -2
+                  }
+                },
+                "colourTarget": [
+                  "YELLOW"
+                ],
+                "actionType": "PAYCARDACTION",
+                "permanent": false,
+                "ON": false
+              }
+            ]
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_106"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnNewCards",
+        "towerFloors": {
+          "BLUE": 6
+        },
+        "toAsk": []
+      },
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": []
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": [
+              {
+                "bonusMalusEntity": {
+                  "resources": {
+                    "MONEY": -3
+                  }
+                },
+                "colourTarget": [
+                  "BLUE"
+                ],
+                "actionType": "PAYCARDACTION",
+                "permanent": false,
+                "ON": false
+              }
+            ]
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_107"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -3
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnParchment",
+        "different": false,
+        "quantity": 1,
+        "alreadyChoosed": []
+      },
+      {
+        "type": "EffectOnNewCards",
+        "towerFloors": {
+          "PURPLE": 6
+        },
+        "toAsk": []
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_108"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -5
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "HARVEST_ACTION",
+                "permanent": true,
+                "value": 4
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_109"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -5
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "DonateBonusMalusEffect",
+        "bonusMalusSet": {
+          "bonusMalusOnResources": {
+            "BONUSMALUSONRESOURCE": []
+          },
+          "bonusMalusOnAction": {
+            "BONUSMALUSONACTION": [
+              {
+                "colourTarget": "",
+                "familyMemberColours": [
+                  "WHITE",
+                  "RED",
+                  "BLACK",
+                  ""
+                ],
+                "actionType": "PRODUCTION_ACTION",
+                "permanent": true,
+                "value": 4
+              }
+            ]
+          },
+          "bonusMalusOnSetting": {
+            "BONUSMALUSONSETTING": []
+          },
+          "bonusMalusOnAccess": {
+            "BONUSMALUSONACCESS": []
+          },
+          "bonusMalusOnCost": {
+            "BONUSMALUSONCOST": []
+          },
+          "bonusMalusOnEnd": {
+            "BONUSMALUSONEND": []
+          },
+          "specialBonusMalus": {}
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_110"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -5
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_111"
+  },
+  {
+    "era": 2,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -5
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnParchment",
+        "different": true,
+        "quantity": 3,
+        "alreadyChoosed": []
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_112"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -8
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnConditions",
+        "multiplier": 3.0,
+        "trasferredResource": "VICTORYPOINT"
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_113"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -8
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnConditions",
+        "multiplier": 3.0,
+        "trasferredResource": "VICTORYPOINT"
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_114"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -9
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnConditions",
+        "multiplier": 3.0,
+        "trasferredResource": "VICTORYPOINT"
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_115"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -8
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnConditions",
+        "multiplier": 3.0,
+        "trasferredResource": "VICTORYPOINT"
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_116"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -6
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 3
+          }
+        }
+      },
+      {
+        "type": "DonateProdHarv",
+        "value": 5,
+        "actionType": "HARVEST_ACTION"
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_117"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -4
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnResources",
+        "resourceSet": {
+          "resources": {
+            "VICTORYPOINT": 1
+          }
+        }
+      },
+      {
+        "type": "DonateProdHarv",
+        "value": 3,
+        "actionType": "PRODUCTION_ACTION"
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_118"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -5
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnConditions",
+        "conditionalResource": "MILITARYPOINT",
+        "multiplier": 0.5,
+        "trasferredResource": "VICTORYPOINT"
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_119"
+  },
+  {
+    "era": 3,
+    "requirements": [
+      {
+        "requirements": {
+          "resources": {}
+        },
+        "cost": {
+          "resources": {
+            "SERVANT": -8
+          }
+        }
+      }
+    ],
+    "immediateEffects": [
+      {
+        "type": "EffectOnParchment",
+        "different": false,
+        "quantity": 2,
+        "alreadyChoosed": []
+      },
+      {
+        "type": "EffectOnNewCards",
+        "towerFloors": {
+          "BLUE": 7,
+          "YELLOW": 7,
+          "PURPLE": 7,
+          "GREEN": 7
+        },
+        "toAsk": []
+      }
+    ],
+    "idColour": "GREY",
+    "prodHarvEffects": {
+      "0": []
+    },
+    "path": "devcards_f_en_c_120"
   }
 ]

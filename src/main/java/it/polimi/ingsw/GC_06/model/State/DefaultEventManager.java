@@ -205,6 +205,7 @@ public class DefaultEventManager implements GameEventManager, Blocking {
      */
     @Override
     public synchronized void endGame() {
+        System.out.println("END game");
         lastEra++;
         handleExcomm();
 

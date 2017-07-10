@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by giuseppe on 7/3/17.
  * Contiene i dati legati ad un player
  */
-public class PersonalStatistics implements Serializable {
+public class PersonalStatistics implements Serializable, Comparable<PersonalStatistics> {
 
     private String playerID;
     private int faithPointQuantity;
@@ -46,5 +46,19 @@ public class PersonalStatistics implements Serializable {
 
     public String getPlayerID() {
         return playerID;
+    }
+
+
+    @Override
+    public int compareTo(PersonalStatistics o) {
+        if (o.victoryPointQuantity > this.victoryPointQuantity)
+        {
+            return 1;
+        }
+        else if (o.victoryPointQuantity < this.victoryPointQuantity)
+        {
+            return -1;
+        }
+        return 0;
     }
 }
