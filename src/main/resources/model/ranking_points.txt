@@ -1,0 +1,6 @@
+{
+  "MILITARYPOINT": [
+    5,
+    2
+  ]
+}
